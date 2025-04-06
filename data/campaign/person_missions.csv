@@ -2,6 +2,7 @@ mission id,person id,tagsAll,tagsAny,tagsNotAny,tags,freq,min timeout,max timeou
 sotf_apromise,,,,,,,,,,,,,,,graphics/icons/missions/sotf_apromise.png,data.scripts.campaign.missions.SotfAPromise
 sotf_lostthread,,,sotf_inadvertent,,priority,20,30,60,FAVORABLE,,,,,,graphics/icons/missions/sotf_lostthread.png,data.scripts.campaign.missions.SotfLostThread
 sotf_affw,,,,,,,,,,,,,,,graphics/icons/missions/sotf_affw.png,data.scripts.campaign.missions.SotfAFavorForWendigo
+sotf_haunted,,,,,,,,,,,,,,,graphics/icons/missions/sotf_lotl.png,data.scripts.campaign.missions.SotfHauntedFinale
 ,,,,,,,,,,,,,,,,
 sotf_dkcb,,,"sotf_inadvertent, sotf_wendigo",,priority,20,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/military_bounty.png,data.scripts.campaign.missions.dkcontact.cb.SotfDKCustomBounty
 sotf_dkpsb,,,sotf_inadvertent,,,10,30,60,INHOSPITABLE,,,,,,graphics/icons/missions/pirate_system_bounty.png,data.scripts.campaign.missions.dkcontact.SotfDKPirateSystemBounty
