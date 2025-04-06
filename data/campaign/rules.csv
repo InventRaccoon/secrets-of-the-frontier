@@ -4759,13 +4759,33 @@ You have to remember.
 You have to return.",defaultLeave:Return to your duties,
 ,,,,,,
 # FINALE QUEST,,,,,,
+sotfHFinaleSatbombOpen,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == SCENE_OF_THE_CRIME
+$id == $sotf_haunted_satbombPlanet",ShowPic bombard_saturation_result,You're here again.,sotfHFinale_satbomb2:Remember,
+sotfHFinaleSatbomb2,DialogOptionSelected,$option == sotfHFinale_satbomb2,,"The memories of this place are fragmented, lost to fervor and then consuming shame. You don't remember the names, just the actions.
+
+It seems so pointless now. Credits gone unpaid. A threat they thought you never truly meant. Numbers, targets. Loyalties were tested. Not enough of them were lacking.
+
+Fire. Fire, and begging, and silence.",sotfHFinale_satbomb3:Continue,
+sotfHFinaleSatbomb3,DialogOptionSelected,$option == sotfHFinale_satbomb3,,"In a sick sort of way, it's almost funny that the last straw wasn't the slaughter. No, when your second had you escorted onto a shuttle at gunpoint, you were ""bad for business"".
+
+You'd attract the wrong kind of attention. How right he was.
+
+""$PlayerSirOrMadam,"" Sensors says with a cough. ""We've got a signal from orbit. Some sort of encoded transmission on loop from a nav-satellite.""",sotfHFinale_satbomb4:Continue,
+sotfHFinaleSatbomb4,DialogOptionSelected,$option == sotfHFinale_satbomb4,"AddTextSmall ""PAY YOUR PENANCE\nREMEMBER THE DEAD\nAT THE SHRINE TO A MURDERED WORLD"" sotfDaydreamTextColor
+AddText ""You understand.""
+$global.sotf_haunted_gotokilla = true
+Call $global.sotf_haunted_ref updateStage","You remember the key, though you're not quite sure why.",sotfHFinale_satbomb4:Continue,
 ,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
+sotfHFinaleVisitShrineOverride,PopulateKillaOptions,"$id == killa
+$tag:luddic_shrine
+!$global.lpp_inProgress
+!$global.lpp_visitedShrineKilla
+Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == PAY_YOUR_PENANCE",# bcs you can't normally visit if you haven't started Pilgrim's Path,,1:lpp_killaVisitStart:Take a shuttle to the Luddic Church beacon,
+sotfHFFinaleShrineOutDone,DialogOptionSelected,"$option == lpp_killaOssuaryOutDone
+Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == PAY_YOUR_PENANCE score:100",,You are left among the dead. The webs of ash hanging in the air twitch and flow as movement elsewhere in the labyrinth triggers minor fluctuations in the standing electrostatic charge.,sotfHFFinale_shrine1:Brave the ,
 ,,,,,,
 ,,,,,,
 ,,,,,,
