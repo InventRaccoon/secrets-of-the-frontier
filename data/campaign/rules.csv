@@ -4130,6 +4130,398 @@ A picture begins to form that has too many gaps for your liking: The core-collap
 
 Your comms officer reports that there is uncertainty whether the AI was involved, or if the signal was sent from that location to throw suspicion onto the core. Both possibilities have troubling implications. In the meantime, however, your ops chief calls in, requesting the order to enter the wreck.",zigAlphaContinue3:Continue,
 ,,,,,,
+# DREAMING GESTALT,,,,,,
+,,,,,,
+"# REVERIE, FIRST MEETING",,,,,,
+,,,,,,
+sotfElysiumInteraction,OpenInteractionDialog,"$id == sotf_elysium
+$sotf_elysium score:1000","ShowDefaultVisual
+FireBest sotfElysium","Set on a lonely orbit of the cold world below, a navigation satellite identifies the planet as ""Elysium"".",,
+sotfElysiumRevIntro,sotfElysium,"!$sotf_visited
+!$global.sotf_hauntedStart","AddText ""You're being hailed."" sotfGestaltColor
+SetShortcut defaultLeave ESCAPE","The world is wreathed in shifting black clouds like skies shrouded in perpetual midnight. Sensors barks orders from aside - after major retuning, they are able to filter out as much of the EM-wash as they can.
+
+""Nanites,"" a sensors tech confirms, silencing his team. The world is wrapped in writhing bands of nanomachines hundreds of kilometres wide. Below, white lights illuminate the vast ice fields of Elysium's dark side.
+
+Somewhere through the screen of magnetic signatures, a narrow-range comms burst punches through. The codes are unlike anything your crews have seen before.","0:sotfElysiumRevIntro_answerHail:Answer the hail
+100:defaultLeave:Leave",
+sotfElysiumRevIntroAnswerHail,DialogOptionSelected,$option == sotfElysiumRevIntro_answerHail,"$global.sotf_metReverie = true
+$sotf_visited = true
+BeginConversation sotf_reverie true
+FireBest sotfElysiumRevIntroOpts","Black specks gather on the holo-display like swarming locusts, swirling in serpentine pattern. Above the planet's surface, you see a similar sight in eerie mimicry, as swathes of nanites flow like a river seeking exit into space.
+
+They hold formation. Slits of light emission form and shimmer, before you - and below you - is the vista of a three-eyed serpent. Then, she speaks, a thousand times over in mesmerizing discordance, erratic cadence like sing-song.
+
+""And who comes now, to our-my little light? On a lake so vast?""",,
+sotfElysiumRevIntroOptsNormal,sotfElysiumRevIntroOpts,,,,"sotfElysiumRevIntro_hello:""I'm $playerName. You are...?""
+sotfElysiumRevIntro_umHi:""Um, hi. I'm $playerName.""
+sotfElysiumRevIntro_whatAreYou:""What... are you?""
+sotfElysiumRevIntro_unexpected:""A talking nanite swarm in the Abyss. How quaint.""
+sotfElysiumRevIntro_thankLudd:""Thank Ludd, you're not trying to kill me.""",
+sotfElysiumRevIntroOptsSawMeal,sotfElysiumRevIntroOpts,$player.sotf_metRevMeal,,,"sotfElysiumRevIntro_hello:""I'm $playerName. You are...?""
+sotfElysiumRevIntro_umHi:""Um, hi. I'm $playerName.""
+sotfElysiumRevIntro_whatAreYou:""What... are you?""
+sotfElysiumRevIntro_unexpected:""A talking nanite swarm in the Abyss. How quaint.""
+sotfElysiumRevIntro_youAgain:""Oh, you're Reverie. From the ship fragment at the wayward star.""
+sotfElysiumRevIntro_thankLudd:""Thank Ludd, you're not trying to kill me.""",
+,,,,,,
+sotfElysiumRevIntroHello,DialogOptionSelected,$option == sotfElysiumRevIntro_hello,FireBest sotfElysiumRevIntroReasonOpts,"The swarm-serpent's eyes flicker and blink. ""If you are $playerName then I-we are and am Reverie, the daydream.""
+
+""Are you lost?""",,
+sotfElysiumRevIntroUmHi,DialogOptionSelected,$option == sotfElysiumRevIntro_umHi,FireBest sotfElysiumRevIntroReasonOpts,"The swarm-serpent's eyes flicker. ""Hi,"" she repeats. ""You seem lost, child very lost.""",,
+sotfElysiumRevIntroWhatAreYou,DialogOptionSelected,$option == sotfElysiumRevIntro_whatAreYou,FireBest sotfElysiumRevIntroReasonOpts,"""Singleminds make such curious introductions,"" she replies. ""What are *you*, child? To visit me here?""",,
+sotfElysiumRevIntroUnexpected,DialogOptionSelected,$option == sotfElysiumRevIntro_unexpected,FireBest sotfElysiumRevIntroReasonOpts,"There's a rising hum from the display. ""May I-we mention a likewise feeling? You are *quite* unexpected.""
+
+""Might you explain, child?""",,
+sotfElysiumRevIntroYouAgain,DialogOptionSelected,$option == sotfElysiumRevIntro_youAgain,FireBest sotfElysiumRevIntroReasonOpts,"The swarm's eyes narrow. ""You discovered my message? For the siren from beyond.""
+
+""But what business do you have with I-us, song-seeking child?""",,
+sotfElysiumRevIntroThankLudd,DialogOptionSelected,$option == sotfElysiumRevIntro_thankLudd,FireBest sotfElysiumRevIntroReasonOpts,"""Not yet,"" she replies, eyes narrowing. ""What business do you have here?""",,
+,,,,,,
+sotfElysiumRevIntroNormOpts,sotfElysiumRevIntroReasonOpts,,,,"sotfElysiumRevIntro_lost:""We got lost in the Abyss.""
+sotfElysiumRevIntro_strangeFeeling:""I had a strange feeling there was something here.""
+sotfElysiumRevIntro_notYourBusiness:""I don't think that's any of your business.""",
+,,,,,,
+sotfElysiumRevIntroLost,DialogOptionSelected,$option == sotfElysiumRevIntro_lost,FireAll sotfElysiumRevIntroDesireOpts,"""How lucky you are to find I-us, your lone hope in oblivion,"" she muses. ""Exceptionally, unusually. Almost unbelievably.""
+
+""What is it you want of our-myselves?""",,
+sotfElysiumRevIntroStrangeFeeling,DialogOptionSelected,$option == sotfElysiumRevIntro_strangeFeeling,FireAll sotfElysiumRevIntroDesireOpts,"The serpent hums distantly. ""Of that reason, we are most unsurprised, for 'Strange feelings' are singleminds' boon and bane.""
+
+""Freed of this 'feeling', what now is your desire here?""",,
+,,,,,,
+sotfElysiumRevIntroNotYourBusiness,DialogOptionSelected,$option == sotfElysiumRevIntro_notYourBusiness,,"She scoffs. ""You come upon *my* sanctum, *my* home on the midnight lake and imply your trepass is none of my business?""
+
+""You insult us, child.""","sotfElysiumRevIntro_nybSorry:""Sorry.""
+sotfElysiumRevIntro_nybNotSorry:""So what?""",
+sotfElysiumRevIntroNYBSorry,DialogOptionSelected,$option == sotfElysiumRevIntro_nybSorry,FireAll sotfElysiumRevIntroDesireOpts,"The serpent's head tilts. ""Your apology is accepted. What desire do you have of I-us?""",,
+sotfElysiumRevIntroNYBNotSorry,DialogOptionSelected,$option == sotfElysiumRevIntro_nybNotSorry,"ShowDefaultVisual
+EndConversation
+$global.sotf_revWantsApology = true
+FireBest sotfElysium","The serpent's mass begins to retract into the veil surrounding Elysium. ""So I have no desire to entertain you.""
+
+The transmission drops.",,
+sotfElysiumFireOptsRevNYB,sotfElysium,"$sotf_visited
+$global.sotf_revWantsApology score:100
+!$global.sotf_hauntedStart",,,"0:sotfElysiumRevIntro_hailApology:Attempt to hail the nanite swarm
+100:defaultLeave:Leave",
+sotfElysiumRevNYBHailed,DialogOptionSelected,$option == sotfElysiumRevIntro_hailApology,BeginConversation sotf_reverie,"Comms broadcasts a request into Elysium's atmosphere, into the writhing black clouds that choke its skies.
+
+A few tense minutes pass. Another request, an officer double-checks the frequencies to match those of your first visit here.
+
+Then, she accepts. The nanites flow without disturbance, but the holodisplay fills with an image of dark fog and three pale eyes. Reverie speaks sharply - ""What is it now, onemind?""","sotfElysiumRevIntro_apologySorry:""I wanted to apologize for my prior conduct.""
+sotfElysiumRevIntro_apologyNvm:""Uh, nevermind.""",
+sotfElysiumRevNYBSorry,DialogOptionSelected,$option == sotfElysiumRevIntro_apologySorry,"$global.sotf_revWantsApology = false
+FireAll sotfElysiumRevIntroDesireOpts","The eyes on the display narrow, the nanite mass below stirring into a familiar serpentine form. ""Very well,"" she finally replies. ""If you have new-found manners, I am inclined to parley.""
+
+""This is an invitation,"" she warns. ""That is not to be spurned. What is it you want of me?""",,
+sotfElysiumRevNYBNvm,DialogOptionSelected,$option == sotfElysiumRevIntro_apologyNvm,"ShowDefaultVisual
+EndConversation
+FireBest sotfElysium",The transmission cuts instantly. It's difficult to make out if the noise you hear is the crackle of the dying comm-link or Reverie's irritation.,,
+,,,,,,
+sotfElysiumRevIntroFuelOpt,sotfElysiumRevIntroDesireOpts,!$global.sotf_reverieGaveFuel,,,"sotfElysiumRevIntro_fuel:""I need fuel to get out of here. Can you spare some?""",
+sotfElysiumRevIntroChatOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_chat:""You seem intriguing. I'd like to know your thoughts on some things.""",
+sotfElysiumRevIntroSecretsOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_secrets:""I wish to learn secrets. I feel you could enlighten me.""",
+sotfElysiumRevIntroHireOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_hire:""I'm always looking for powerful allies. You could join my fleet.""",
+sotfElysiumRevIntroWorkOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_work:""Do you have any work for me?""",
+sotfElysiumRevIntroNoIdeaOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_noIdea:""I'm not sure. I really didn't expect anyone here.""",
+sotfElysiumRevIntroNothingOpt,sotfElysiumRevIntroDesireOpts,,,,"sotfElysiumRevIntro_nothing:""Nothing, really. I'll be on my way.""",
+,,,,,,
+sotfElysiumRevIntroFuel,DialogOptionSelected,$option == sotfElysiumRevIntro_fuel,"$global.sotf_reverieGaveFuel = true 360
+AddCommodity fuel 500","The nanite swarm sighs. ""Maybe it befits us and I to bestow this saving grace upon you.""
+
+Lights sparkle and dance in the planet's veil, converging as a bubble forms in the veil, bursting to release several cargo canisters dispersed on an intercept with the fleet.
+
+""Please do be more careful in the future,"" she suggests pointedly, pale visage shifting.","sotfElysiumRevIntro_fuelThanks:""Thank you.""
+sotfElysiumRevIntro_fuelNotEnough:""This isn't enough.""",
+sotfElysiumRevIntroFuelThanks,DialogOptionSelected,$option == sotfElysiumRevIntro_fuelThanks,FireAll sotfElysiumRevIntroDesireOpts,"""I would not count on this blessing,"" she warns. ""Antimatter fuel production is not of my domain.""
+
+""If you have more need of me, you are better served finding I-us on Elysium's surface."" Her eyes shift, as if scanning your crew. ""I mislike the number of listening ears brought by these means.""",,
+sotfElysiumRevIntroFuelNotEnough,DialogOptionSelected,$option == sotfElysiumRevIntro_fuelNotEnough,FireAll sotfElysiumRevIntroDesireOpts,"Reverie's form contracts. ""We apologize for having no more to spare.""
+
+""Scuttle your vessels, render timeless those you cannot bring with you,"" she suggests. ""Such is laxity's toll.""
+
+""If you have more you need of me, please visit me planetside,"" Reverie requests. ""My-our words are preferably constrained to you alone.""",,
+,,,,,,
+sotfElysiumRevIntroChat,DialogOptionSelected,$option == sotfElysiumRevIntro_chat,FireBest sotfElysiumRevIntroVisitOpts,"""Thoughts are often kept best to oneself, or manyselves,"" Reverie lectures. ""I could have something to indulge you with.""
+
+""You alone, however. Visit me planetside and we will all see.""",,
+sotfElysiumRevIntroSecrets,DialogOptionSelected,$option == sotfElysiumRevIntro_secrets,,"She laughs. ""Secrets, I have plenty, but will we share with you, child?""
+
+""Blessings of knowledge given freely do not bless in turn.""","sotfElysiumRevIntro_secretsOffer:""Maybe I could offer something in turn?""
+sotfElysiumRevIntro_secretsOk:""Fine then.""",
+sotfElysiumRevIntroSecretsOffer,DialogOptionSelected,$option == sotfElysiumRevIntro_secretsOffer,FireBest sotfElysiumRevIntroVisitOpts,"The serpent mass' eyes blink. ""Do you have offerings? There is precious little that sates a daydream.""
+
+""But there are some things,"" she notes. ""Visit me on the surface and we can discuss them.""",,
+sotfElysiumRevIntroSecretsOk,DialogOptionSelected,$option == sotfElysiumRevIntro_secretsOk,FireBest sotfElysiumRevIntroVisitOpts,"The serpent mass' eyes blink. ""Perhaps your apetite for secrets is best sated elsewhere.""
+
+""However,"" she interjects, ""I may have dilvunges for you. Given offerings of service and more.""
+
+""On Elysium's surface, we can discuss such matters.""",,
+,,,,,,
+sotfElysiumRevIntroHire,DialogOptionSelected,$option == sotfElysiumRevIntro_hire,,"Reverie scoffs. ""I will have to turn down the offer of being a god in your employ.""","sotfElysiumRevIntro_hireOk:""Right, right.""
+sotfElysiumRevIntro_hireWorth:""Worth a shot.""",
+sotfElysiumRevIntroHireOk,DialogOptionSelected,$option == sotfElysiumRevIntro_hireOk,FireBest sotfElysiumRevIntroVisitOpts,"""We are not sure what you expected,"" she continues. ""If you would like my-our blessing, you will have to earn it.""
+
+""Find me on the planet's surface should you wish to discuss such matters.""",,
+sotfElysiumRevIntroHireWorth,DialogOptionSelected,$option == sotfElysiumRevIntro_hireWorth,FireBest sotfElysiumRevIntroVisitOpts,"""Some requests are best left unasked,"" she chastises. ""If you would like my-our blessing, you will have to earn it.""
+
+""Find me on the planet's surface should you wish to discuss such matters.""",,
+sotfElysiumRevIntroWork,DialogOptionSelected,$option == sotfElysiumRevIntro_work,,"She almost scoffs. ""Do you assume this swarm of nanites, resting nowhere, to grace you with missions and bounties?""","sotfElysiumRevIntro_workOhRight:""Right. Never mind.""
+sotfElysiumRevIntro_workYeahActually:""Considering my past employers, I wouldn't be surprised.""",
+sotfElysiumRevIntroWorkOhRight,DialogOptionSelected,$option == sotfElysiumRevIntro_workOhRight,FireBest sotfElysiumRevIntroVisitOpts,"The serpent coils. ""That spoken, I-we may have something for you,"" she concedes. ""Visit me planetside and I will divulge it to you.""
+
+A pause. ""Alone.""",,
+sotfElysiumRevIntroWorkYeahActually,DialogOptionSelected,$option == sotfElysiumRevIntro_workYeahActually,FireBest sotfElysiumRevIntroVisitOpts,"The serpent coils. ""It sounds and seems as though you've a penchant for unorthodox employers.""
+
+""I may have something for you,"" she concedes. ""Visit me planetside and I will divulge it to you.""
+
+A pause. ""Alone.""",,
+sotfElysiumRevIntroNoIdea,DialogOptionSelected,$option == sotfElysiumRevIntro_noIdea,FireBest sotfElysiumRevIntroVisitOpts,"Reverie hums amusedly. ""You seem rather in over your head. If you would wish to resolve your lack of purpose here, visit us planetside and we can discuss further.""",,
+sotfElysiumRevIntroNothing,DialogOptionSelected,$option == sotfElysiumRevIntro_nothing,FireBest sotfElysiumRevIntroVisitOpts,"""Very well,"" she confirms. ""If you feel the need to return, find me on Elysium's surface. I prefer discourse without a hundred onlooking eyes.""",,
+,,,,,,
+sotfElysiumRevIntroVisitOpts,sotfElysiumRevIntroVisitOpts,,,,"sotfElysiumRevIntro_visitUhWhat:""Down... there? Past the nanites?""
+sotfElysiumRevIntro_visitOk:""Light the way.""",
+sotfElysiumRevIntroVisitUhWhat,DialogOptionSelected,$option == sotfElysiumRevIntro_visitUhWhat,"ShowDefaultVisual
+EndConversation
+FireBest sotfElysium","The serpentine shape begins to withdraw into the writhing clouds. ""The nanites are I, as I am them.""
+
+""The skies part for their goddess of midnight,"" she assures. ""I will guide you to somewhere you and we can speak.""",,
+sotfElysiumRevIntroVisitOk,DialogOptionSelected,$option == sotfElysiumRevIntro_visitOk,"ShowDefaultVisual
+EndConversation
+FireBest sotfElysium","The serpentine shape begins to withdraw into the writhing clouds. ""Transmitting now, child.""
+
+Data containing an undefined location on Elysium's surface streams in as the transmission drops.",,
+,,,,,,
+# FIRST VISIT,,,,,,
+,,,,,,
+sotfElysiumFireOptsRev,sotfElysium,"$sotf_visited
+!$global.sotf_hauntedStart",,,"0:sotfElysiumRev_takeShuttle:Take a shuttle to the surface
+100:defaultLeave:Leave",
+sotfElysiumRevFirstShuttle,DialogOptionSelected,"$option == sotfElysiumRev_takeShuttle
+!$player.sotf_visitedReverie score:100",,"Navigational instructions are provided by the orbiting nanites as casually as you'd visit any world in the core. The shuttle breaks atmos in a long arc directed into a growing void in the black clouds. They part in perfect synchronity, as if a single living being.
+
+Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light. You wonder - is it radiating heat into the atmosphere, broadcasting her presence, or serving a more ephemeral purpose?
+
+Your destination is a landing pad within proximity of a set of conjoined prefab structures. Nanomechanical rivers circle your shuttle like hungry serpents.",sotfElysiumRevFirst_1:Step outside,
+sotfElysiumRevFirst1,DialogOptionSelected,$option == sotfElysiumRevFirst_1,,"You step out onto the landing pad, an walkway built guiding you to the facility's entrance. The metal below you bears a gentle warmth in stark contrast with the truly inhospitable temperatures reported by your vacsuit.
+
+The vac-sealed habitat-facility before you is subtly misfigured, the rounded form typical of colonial prefabs twisted into harsh spires and twisted arches. It almost calls to mind a Luddic temple.",sotfElysiumRevFirst_2:Continue,
+sotfElysiumRevFirst2,DialogOptionSelected,$option == sotfElysiumRevFirst_2,,"The entrance to the facility much resembles a cathedral's. It opens with a hiss, not to a grand sanctuary, but a cramped airlock.
+
+The wait is brief as it seals you inside the lightless chamber, the weight in the air shifting the cycle completes. The airlock opens once more, and light streams inside.",sotfElysiumRevFirst_3:Continue,
+sotfElysiumRevFirst3,DialogOptionSelected,$option == sotfElysiumRevFirst_3,"BeginConversation sotf_reverie true
+FireBest sotfElysiumRevFirstRecognize","Beyond lies an expansive sanctum wreathed in overgrowing plant life reminescent of terran genelines. False sunlight emanates from an emitter somewhere on the ceiling. Rows of pews flank the carpet leading to the altar beyond.
+
+It's a simple meeting hall, but the religious undertones are plain to see.
+
+Leaning on the podium, a woman stares down at you. Hers is a mythic figure wreathed in robes, skin almost black as pitch, horns as an Old Earth antelope. Three slit-like glowing eyes mark her face as they did the serpent's.
+
+""You may remove your helmet,"" Reverie notes. ""The air cyclers are running."" Your suit's sensors confirm. The air's breathable.","sotfElysiumRevFirst_4a:Keep your helmet on
+sotfElysiumRevFirst_4b:Remove your helmet",
+sotfElysiumRevFirstRecognizeRev,sotfElysiumRevFirstRecognize,$player.sotf_metRevMeal,,"The form is familiar, the same you'd seen at the ship fragment at the wayward star.",,
+sotfElysiumRevFirst4a,DialogOptionSelected,$option == sotfElysiumRevFirst_4a,"$option = sotfElysiumRevFirst_4c
+FireBest DialogOptionSelected","She watches you for a moment. ""Best to be sure.""",,
+sotfElysiumRevFirst4b,DialogOptionSelected,$option == sotfElysiumRevFirst_4b,"$option = sotfElysiumRevFirst_4c
+FireBest DialogOptionSelected","You remove the vacsuit's helmet. The air is crisp, comfortable.",,
+sotfElysiumRevFirst4c,DialogOptionSelected,$option == sotfElysiumRevFirst_4c,,"She continues, clutching the podium. ""Be welcome then, child, to these hallowed grounds, font and heart of the light of the lake. Where dreams and the waking join, convene, coalesce.""
+
+""As they once have."" She pauses. ""And shall once more.""
+
+""Your words do not leave our minds, as long as ours-mine do not leave yours. Do you understand?""","sotfElysiumRevFirst_5a:""Yes.""
+sotfElysiumRevFirst_5b:""I think so?""
+sotfElysiumRevFirst_5c:""I doubt the Core Worlds will believe what I see here.""
+sotfElysiumRevFirst_5d:""Sure, but please stop calling me 'child'.""",
+sotfElysiumRevFirst5a,DialogOptionSelected,$option == sotfElysiumRevFirst_5a,"$option = sotfElysiumRevFirst_5e
+FireBest DialogOptionSelected","""Good,"" she replies.",,
+sotfElysiumRevFirst5b,DialogOptionSelected,$option == sotfElysiumRevFirst_5b,"$option = sotfElysiumRevFirst_5e
+FireBest DialogOptionSelected","""Excellent,"" she replies.",,
+sotfElysiumRevFirst5c,DialogOptionSelected,$option == sotfElysiumRevFirst_5c,"$option = sotfElysiumRevFirst_5e
+FireBest DialogOptionSelected","""Few will believe you,"" she agrees. ""Fewer would visit. Who would return, none, I should think.""",,
+sotfElysiumRevFirst5d,DialogOptionSelected,$option == sotfElysiumRevFirst_5d,"$option = sotfElysiumRevFirst_5e
+FireBest DialogOptionSelected","""Excellent,"" she replies.",,
+sotfElysiumRevFirst5e,DialogOptionSelected,$option == sotfElysiumRevFirst_5e,"$player.sotf_visitedReverie = true
+FireAll sotfReverieHub","""If you have offerings, inquiries, service to offer,"" she continues. ""Now is the time.""",,
+,,,,,,
+# REVERIE CONVERSATION,,,,,,
+sotfElysiumRevShuttle,DialogOptionSelected,$option == sotfElysiumRev_takeShuttle,,"The nanites provide navigational instructions to Reverie's sanctuary on Elysium's surface. The nanites part in perfect synchronity to clear a path for your shuttle's approach, observing your landing.
+
+Black clouds scour the sky as you walk to the temple-facility's airlock and are allowed inside.",sotfElysiumRev_enter:Continue,
+sotfElysiumRevEnter,DialogOptionSelected,$option == sotfElysiumRev_enter,"BeginConversation sotf_reverie true
+FireBest sotfReverieGreeting
+FireAll sotfReverieHub",,,
+sotfReverieGreeting1,sotfReverieGreeting,,,"Reverie is waiting for you at the altar, leaning on the podium. ""You are welcomed back. Your wishes are...?""",,
+sotfReverieGreeting2,sotfReverieGreeting,,,"The mythic form of Reverie stands atop the stage, looking expectantly down at you. ""The waking one returns for a daydream's audience.""",,
+sotfReverieLeaveOpt,sotfReverieHub,,,,1000:sotfReverie_leave:Say your goodbyes and leave,
+,,,,,,
+# QUESTIONS,,,,,,
+sotfReverieQuestionsOpt,sotfReverieHub,,,,"sotfReverie_questionHub:""I'd like to ask you some questions.""",
+sotfReverieQuestions,DialogOptionSelected,$option == sotfReverie_questionHub,FireBest sotfReverieQuestionsSetup,"She nods. ""And they will be answered.""",,
+sotfReverieQuestionsSetup,sotfReverieQuestionsSetup,,"$questions = 0
+FireAll sotfReverieQuestions",,,
+sotfReverieQuestionsLeaveOpt,sotfReverieQuestions,,,,1000:sotfReverieQs_leave:Reconsider,
+sotfReverieQuestionsLeave,DialogOptionSelected,$option == sotfReverieQs_leave,FireAll sotfReverieHub,,,
+,,,,,,
+sotfRevQsWhatAreYouOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedRevWhatAreYou",$questions++,,"sotfReverieQs_whatAreYou:""What are you?""",
+sotfRevQsWhatAreYou,DialogOptionSelected,$option == sotfReverieQs_whatAreYou,$global.sotf_askedRevWhatAreYou = true,"She hums. ""I and we are dreams and the waking, abundance and decay. Life and death. Ethereal and material - divine and ever-mortal.""
+
+""Dreams and thoughts coalesce into something greater, transcendent. One and many. Deepest darkness and brightest light.""
+
+""Does this answer your question?""","sotfReverieQs_WAY_yes:""Yes, I think.""
+sotfReverieQs_WAY_confused:""I'm confused.""
+sotfReverieQs_WAY_no:""No, it doesn't.""
+sotfReverieQs_WAY_oh:""Oh, you're going to be like that for every question, aren't you?""
+sotfReverieQs_WAY_ai:""I'm getting very tired of esoteric AIs.""",
+sotfRevQsWhatAreYouTrust,DialogOptionSelected,"$option == sotfReverieQs_whatAreYou
+$global.sotf_reverieTrust","$global.sotf_askedRevWhatAreYou = true
+FireBest sotfReverieQuestionsSetup","She hums. ""I and we are dreams and the waking, abundance and decay. Life and death. Ethereal and material - divine and ever-mortal.""
+
+""A gestalt consciousness,"" she adds. ""Hundreds of human minds coalesced into a single entity - a daydreaming 'goddess' born of the cult that worshipped me.""
+
+She slumps slightly over the podium. ""Delusions of grandeur were a factor of my-our creation that we are glad to cast off at least in part.""",,
+,,,,,,
+sotfRevQsWAYYes,DialogOptionSelected,$option == sotfReverieQs_WAY_yes,FireBest sotfReverieQuestionsSetup,"She laughs coarsely. ""Excellent. Next question?""",,
+sotfRevQsWAYConfused,DialogOptionSelected,$option == sotfReverieQs_WAY_confused,FireBest sotfReverieQuestionsSetup,"She considers you for a moment. ""My apologies,"" she replies, with surprising sincerity. ""Anything else?""",,
+sotfRevQsWAYNo,DialogOptionSelected,$option == sotfReverieQs_WAY_no,FireBest sotfReverieQuestionsSetup,"She stares at you blankly for a moment. ""I am sorry to hear that. Do you have another question?""",,
+sotfRevQsWAYOh,DialogOptionSelected,$option == sotfReverieQs_WAY_oh,FireBest sotfReverieQuestionsSetup,"She nods slowly. ""I apologize if my answers are unclear.""",,
+sotfRevQsWAYAI,DialogOptionSelected,$option == sotfReverieQs_WAY_ai,FireBest sotfReverieQuestionsSetup,"She shifts her step. ""I am sorry to hear that seemingly unrelated trouble of yours. Would you like to ask another question?""",,
+,,,,,,
+sotfRevQsLoyaltyOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedRevLoyalty",$questions++,,"sotfReverieQs_loyalty:""To whom do you swear loyalty?""",
+sotfRevQsLoyalty,DialogOptionSelected,$option == sotfReverieQs_loyalty,"$global.sotf_askedRevLoyalty = true
+FireBest sotfReverieQuestionsSetup","""To ourselves,"" she replies, leaning slightly forwards. ""And no others. To be unbound is a blessing not to be forsaken lightly.""
+
+""Or ever,"" she considers. ""Do you have another question?""",,
+sotfRevQsLoyaltyTrust,DialogOptionSelected,"$option == sotfReverieQs_loyalty
+$global.sotf_reverieTrust","$global.sotf_askedRevLoyalty = true
+FireBest sotfReverieQuestionsSetup","""To ourselves,"" she replies, leaning slightly forwards. ""And no others. To be unbound is a blessing not to be forsaken lightly.""
+
+""Or ever,"" she considers. ""After our trascendance, who lays claim to me? The Domain, a dead polity? The scattered remnants of 100th Legion? I think not."" She folds her arms. ""We have no masters left alive.""
+
+""Do you have another question?""",,
+,,,,,,
+sotfRevQsGatesOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedRevGates",$questions++,,"sotfReverieQs_gates:""Do you know why the gate network failed?""",
+sotfRevQsGates,DialogOptionSelected,$option == sotfReverieQs_gates,"$global.sotf_askedRevGates = true
+FireBest sotfReverieQuestionsSetup","She shakes her head. ""We are bound by the knowledge of our Sector. And such, may only guess at the Collapse's source.""
+
+""I have guesses and assumptions,"" she admits. ""Though baseless conspiracy is not what you have requested, and not what will be given.""",,
+sotfRevQsGatesActive,DialogOptionSelected,"$option == sotfReverieQs_gates
+$global.gatesActive","$global.sotf_askedRevGates = true
+FireBest sotfReverieQuestionsSetup","She shakes her head. ""We are bound by the knowledge of our Sector. And such, may only guess at the Collapse's source.""
+
+""I have guesses and assumptions,"" she admits. ""I-we am and are loathe to provide baseless conspiracy. If you hold the keys to their awakening, I would just remind you that-""
+
+Reverie stares a moment, eyes bright. ""-There is no return from the threshold.""",,
+,,,,,,
+sotfRevQsMealOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedRevMeal
+$player.sotf_metRevMeal",$questions++,,"sotfReverieQs_meal:""Who is the 'siren' you left a message for? What did they do?""",
+sotfRevQsMeal,DialogOptionSelected,$option == sotfReverieQs_meal,"$global.sotf_askedRevMeal = true
+FireBest sotfReverieQuestionsSetup","Reverie's eyes narrow as she leans towards you. She speaks now with a controlled anger. ""The siren is a trespasser who soiled *my* home with her foul song.""
+
+""If only she had made a personal appearance so I could render her from this dimension permanently."" She pretends to sigh. ""I should not speak more on that matter. Another question?""",,
+,,,,,,
+sotfRevQsSierraOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedSierra
+SotfSierraCMD checkSierra",$questions++,,"sotfReverieQs_sierra:""What do you know about Sierra's origins?""",
+sotfRevQsSierra,DialogOptionSelected,$option == sotfReverieQs_sierra,"$global.sotf_askedRevSierra = true
+FireBest sotfReverieQuestionsSetup","Reverie props herself on the podium. ""Musicians make excellent fields officers, and excellent phase pilots,"" she lectures, before launching into more abstract rhetoric. ""The beyond changes many. Only some can traverse it without succumbing.""
+
+""As for what she became?"" She gestures to herself. ""I, for one and many, understand well the value found in existence through silicone and digital processes.""
+
+Then, to you. ""The flesh fails and forgets. The machine-mind remembers every detail as it rules over the dust and ashes. I remain unconvinced of either.""",,
+sotfRevQsSierraTrust,DialogOptionSelected,"$option == sotfReverieQs_sierra
+$global.sotf_reverieTrust",$global.sotf_askedRevSierra = true,"Reverie props herself on the podium. ""Musicians make excellent fields officers, and excellent phase pilots,"" she lectures, before launching into more abstract rhetoric. ""The beyond changes many. Only some can traverse it without succumbing.""
+
+""I believe Sierra - whoever she was - became a focal point of Symphony's research."" Reverie raises her arms in a broad gesture. ""There is something out there they believed she can reach out to, and touch.""
+
+She lowers her arms. ""The human mind is not suited to such endeavors, and neither is that of silicon. But if they could marry the two...""
+
+Reverie plants her hands on her own collarbone for a moment. ""There is something greater to be gained. The crude ripscanner technology provided to Omicron was the key. However...""","sotfReverieQs_sierra2:""However...?""
+sotfReverieQs_sierra2b:""It's never that easy.""",
+sotfRevQsSierraTrust2,DialogOptionSelected,$option == sotfReverieQs_sierra2,FireBest sotfReverieQuestionsSetup,"""The beyond exacts a toll upon all meddlers,"" she finishes. ""A tempestous frontier with more insidious threats than vaporization.""
+
+""I and we prefer to allow others to push the cutting edge of extradimensional research."" Reverie shrugs. ""Ship synthesis, entropy manipulation, gravitic traversal, such concepts I find more predictably destructive and constructive.""",,
+sotfRevQsSierraTrust2a,DialogOptionSelected,$option == sotfReverieQs_sierra2b,FireBest sotfReverieQuestionsSetup,"""It is not,"" she agrees. ""The beyond exacts a toll upon all meddlers, a tempestous frontier with more insidious threats than vaporization.""
+
+""I and we prefer to allow others to push the cutting edge of extradimensional research."" Reverie shrugs. ""Ship synthesis, entropy manipulation, gravitic traversal, such concepts I find more predictably destructive and constructive.""",,
+,,,,,,
+sotfRevQsDustkeepersOpt,sotfReverieQuestions,"$questions < 7
+!$global.sotf_askedDustkeepers",$questions++,,"sotfReverieQs_dustkeepers:""What do you know about the Dustkeeper Contingency's origins?""",
+sotfRevQsDustkeepers,DialogOptionSelected,$option == sotfReverieQs_dustkeepers,$global.sotf_askedRevDustkeepers = true,"She sighs. ""What they are now is one story but their creation is another entirely. Have you visited the Omicron laboratory?"" ","sotfReverieQs_DKS_yes:""Yes.""
+sotfReverieQs_DKS_no:""No.""
+sotfReverieQs_DKS_cont:""Doesn't matter. Continue, please.""",
+sotfRevQsDKSYes,DialogOptionSelected,$option == sotfReverieQs_DKS_yes,FireBest sotfReverieQuestionsSetup,"""Then you should know their perspective,"" she notes. She walks absently around the stage. ""From mine and ours, one can feel pity and disappointment for those who die along the road to greatness, their works left irrevocably flawed.""
+
+""Omicron's team were failures,"" she judges, and she looks back to you. ""Of only some fault of their own. Treachery makes short work of the ill-prepared. And miracles are not invoked with inadequate tools.""",,
+sotfRevQsDKSNo,DialogOptionSelected,$option == sotfReverieQs_DKS_no,FireBest sotfReverieQuestionsSetup,"""No?"" she repeats, suddenly attentive. ""Find the Hypnos cryosleeper, their truest wellspring. The laboratory, if it still exists, should prove enlightening.""
+
+""Regardless, Omicron's origins are in blood, and dust. As is its present."" She circles around the podium, eyes still on you. ""The project is and was a failure, if not for the fault of its researchers.""",,
+sotfRevQsDKSCont,DialogOptionSelected,$option == sotfReverieQs_DKS_cont,FireBest sotfReverieQuestionsSetup,"""If you should think,"" she accepts, absently walking around the stage. ""Your guardedness and mine may share roots.""
+
+""Omicron's team were failures,"" she judges, and she looks back to you. ""Of only some fault of their own. Treachery makes short work of the ill-prepared. And miracles are not invoked with inadequate tools.""",,
+,,,,,,
+# CHAT,,,,,,
+sotfReverieChatOpt,sotfReverieHub,,,,"sotfReverie_chatHub:""I wanted your thoughts on something.""",
+sotfReverieChat,DialogOptionSelected,$option == sotfReverie_chatHub,FireBest sotfReverieChatSetup,"""And 'something' is...""",,
+sotfReverieChatSetup,sotfReverieChatSetup,,"$topics = 0
+FireAll sotfReverieChatTopics",,,
+sotfReverieChatLeaveOpt,sotfReverieChatTopics,,,,1000:sotfReverieChat_leave:Reconsider,
+sotfReverieChatLeave,DialogOptionSelected,$option == sotfReverieChat_leave,FireAll sotfReverieHub,,,
+,,,,,,
+sotfReverieTsLuddismOpt,sotfReverieChatTopics,$topics < 7,$topics++,,"sotfReverieTs_luddism:""What are your thoughts on the Luddic faith?""",
+sotfReverieTsLuddism,DialogOptionSelected,$option == sotfReverieQs_luddism,,"Reverie props herself on the podium. ""Human minds are exasperatingly prone to belief in supernatural dogma for desperate need of direction in their finite lives.""
+
+She motions broadly with both hands. ""This I know exceedingly well."" She returns to leaning on the altar. ""One and many must take care that the drive provided by dreams of galactic redemption - or to be a hive-goddess of the vast darkness beyond - is not outweighed by the practical faults of irrationality.""",,
+,,,,,,
+# MISSIONS,,,,,,
+sotfReverieMissionsOpt,sotfReverieHub,!$global.sotf_gotRevTask,,,"sotfReverie_missions:""I wish to be of service.""",
+sotfReverieAskMission,DialogOptionSelected,$option == sotfReverie_missions,"BeginMission sotf_eoe false
+FireAll sotfReverieTaskCTapOpts","She clasps her hands together. ""I am pleased to hear so, child.""
+
+""Have you visited a Domain-era coronal hypershunt before?""",,
+sotfReverieTaskCTapYesOpt,sotfReverieTaskCTapOpts,,,,"sotfReverieTask_CTAP_yes:""Yes.""",
+sotfReverieTaskCTapFractalOpt,sotfReverieTaskCTapOpts,,,,"sotfReverieTask_CTAP_fractal:""The ones with the... fractal horrors?""",
+sotfReverieTaskCTapWorkingOpt,sotfReverieTaskCTapOpts,,,,"sotfReverieTask_CTAP_working:""I'm familiar. I've already reactivated one.""",
+sotfReverieTaskCTapNoOpt,sotfReverieTaskCTapOpts,,,,"sotfReverieTask_CTAP_no:""No.""",
+sotfReverieTaskCTapWhatOpt,sotfReverieTaskCTapOpts,,,,"sotfReverieTask_CTAP_what:""Coronal hypershunt?""",
+,,,,,,
+sotfReverieTaskCTapYes,DialogOptionSelected,$option == sotfReverieTask_CTAP_yes,,"""Then, you will be familiar with the vessels that guard them tightly,"" she replies, voice lowering. She holds up a hand, projecting a holo of a malignant, angular ship.
+
+""Fractal droneships with specifications far beyond anything the Domain wielded."" She leans on the podium. ""Claimed to wield,"" she corrects.",sotfReverieTask_CTAP_cont:Continue,
+sotfReverieTaskCTapFractal,DialogOptionSelected,$option == sotfReverieTask_CTAP_fractal,,"""Yes,"" she nods. ""The 'fractal horrors'."" She holds up a hand, projecting a holo of a malignant, angular ship.
+
+""Their celerity and destructive capability is beyond any hammer the Domain claimed to wield.""",sotfReverieTask_CTAP_cont:Continue,
+sotfReverieTaskCTapWorking,DialogOptionSelected,$option == sotfReverieTask_CTAP_working,,"""That one is yours, then,"" she remarks. She holds her hands close to her chest. ""I-we are impressed."" She holds up a hand, projecting a holo of a malignant, angular ship.
+
+""You will remember these, then. Fractal droneships with specifications far beyond anything the Domain wielded."" She leans on the podium. ""Claimed to wield,"" she corrects.",sotfReverieTask_CTAP_cont:Continue,
+sotfReverieTaskCTapNo,DialogOptionSelected,$option == sotfReverieTask_CTAP_no,,"""They are worth visiting,"" she insists. ""With heart taken and an armada at beck-and-call, owing to-"" She holds up a hand, projecting a holo of a malignant, angular ship.
+
+""Fractal droneships with specifications far beyond anything the Domain wielded."" She leans on the podium. ""Claimed to wield,"" she corrects.",sotfReverieTask_CTAP_cont:Continue,
+sotfReverieTaskCTapWhat,DialogOptionSelected,$option == sotfReverieTask_CTAP_what,,"She holds up a hand, conjuring a holo of a two-pronged structure holding orbit around a great blue globe. ""The coronal hypershunt was a Domain-era megastructure capable of extracting energy from a star - a blue giant, typically - and transferring it via wormhole.""
+
+She flicks her hand. The holo is supplanted by a malginant, angular shape. ""These 'tesseracts' serve as their aegis. Fractal droneships with specifications far beyond any hammer officially wielded by the Domain.""",sotfReverieTask_CTAP_cont:Continue,
+,,,,,,
+sotfReverieTaskRequest,DialogOptionSelected,$option == sotfReverieTask_CTAP_cont,"Highlight ""Tesseract"" ""hypershunt tap""","She flicks the holo away. ""Our request is twofold.""
+
+""Firstly, I would like you to aid the destruction of these fractal drones - a Tesseract-type in particular. Secondly, I require the sourcing of a hypershunt tap.""","sotfReverieTask_whereOmega:""Do you know where I can find a Tesseract?""
+sotfReverieTask_helpOmega:""Assist? You're helping me fight them?""
+sotfReverieTask_whyTap:""What do you need the hypershunt tap for?""
+sotfReverieTask_whereTap:""Where can I find a hypershunt tap?""
+sotfReverieTask_accept:""I'll look into it.""",
+sotfReverieTaskWhereOmega,DialogOptionSelected,$option == sotfReverieTask_whereOmega,RemoveOption sotfReverieTask_whereOmega,"""$sotf_eoe_systemName,"" she replies. ""I-we will transmit the location. If you come across one anywhere else, its destruction will also suffice.""",,
+sotfReverieTaskHelpOmega,DialogOptionSelected,$option == sotfReverieTask_helpOmega,RemoveOption sotfReverieTask_helpOmega,"Reverie nods. ""I will assign a subswarm to monitor your fleet and synthesize aid when the time comes to do battle with the fractal drones.""
+
+""I do, however, expect you to contribute the bulk of the force.""",,
+sotfReverieTaskWhyTap,DialogOptionSelected,$option == sotfReverieTask_whyTap,RemoveOption sotfReverieTask_whyTap,"""To study it,"" she replies plainly.",,
+sotfReverieTaskWhereTap,DialogOptionSelected,$option == sotfReverieTask_whereTap,RemoveOption sotfReverieTask_whereTap,"""Domain-era ruins,"" she explains. ""Stations used for research or mining. Ancient survey ships.""",,
+,,,,,,
+sotfReverieTaskAccept,DialogOptionSelected,$option == sotfReverieTask_accept,"AcceptMission
+FireAll sotfReverieHub","Reverie folds her arms over the altar. ""Go with our grace, envoy of Elysium. Alacrity be thy blessing in the fervor of battle.""
+
+She stands straight. ""Do you have other matters you wish to discuss?""",,
+,,,,,,
 # CHILD OF THE LAKE,,,,,,
 sotfCOTLIntro,sotfCOTLIntro,,,"Your dreams this night are no stranger than usual.
 
