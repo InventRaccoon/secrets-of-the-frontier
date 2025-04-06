@@ -24,6 +24,7 @@ X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Edict Stormblaster now applies hidden bonus vs a certain new vanilla enemy type
 - Cyberwarfare Protocols now unlocked in codex if player has seen Cyberwarfare Suite or has Nightingale/Seraph, and appears in its related entries
 - Derelict Contingent now unlocked in codex if player has Barrow
+- Added some alt dialogue if using Spyglass' codephrase with Imoinu Kato during Usurpers
 - Fixed Sierra's core from A Promise appearing in codex
 
 X Can no longer build orbital habitats in the Abyss

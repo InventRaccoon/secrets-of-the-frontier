@@ -3276,11 +3276,24 @@ $personFaction.id == pirates
 $global.sotf_SDTUgotSpyglassQuest
 Call $global.sdtu_ref updateData
 $sdtu_stage == EXTRACT_AGENT",,,"sotfSDTUUmbra_spyglassCode:""The urn's tipped over.""",
+sotfSDTUUmbraImoinu,PopulateOptions,"$market.id == umbra
+$postId == supplyOfficer
+$id == imoinu_kato score:10
+$global.sotf_SDTUgotSpyglassQuest
+Call $global.sdtu_ref updateData
+$sdtu_stage == EXTRACT_AGENT",,,"sotfSDTUUmbra_spyglassCode:""The urn's tipped over.""",
 sotfSDTUUmbraSpyglassCode,DialogOptionSelected,$option == sotfSDTUUmbra_spyglassCode,$global.sotf_SDTUgotFakeAgent = true,"$HisOrHer eyes narrow. ""What in Askonia's fires is that supposed to mean?""
 
 Then, as if a switch flicks behind $hisOrHer eyes, they widen. ""You're with them,"" $heOrShe stutters, burying $hisOrHer face in $hisOrHer hands. ""A favor's a favor, suppose. Building bridges and that.""
 
 ""Tell your handler that's one down,"" $heOrShe scowls. ""If you even know 'em.""","sdtu_umbraTrickVIPending2:""Of course.""",
+sotfSDTUUmbraSpyglassCodeImoinu,DialogOptionSelected,"$option == sotfSDTUUmbra_spyglassCode
+$id == imoinu_kato score:10",,"Her eyes narrow. ""What is that even supposed to mean?""","sotfSDTUUmbra_spyglassCode2:""It's a code phrase. Ask one of the other ARC leaders.""",
+sotfSDTUUmbraSpyglassCodeImoinu2,DialogOptionSelected,$option == sotfSDTUUmbra_spyglassCode2,$global.sotf_SDTUgotFakeAgent = true,"She gives you a funny look. ""Alright, but if this is a joke, you're paying a time-wasting fee on your next supply order."" She mutes the feed and turns to a secondary display.
+
+One-sided as your view of the conversation might be, you can see Imoinu's eyes widen as the situation is made clear.
+
+She turns back and sighs, grave concern on her face. ""Alright, look, I'll make the arrangements. Just tell the old man that's one more favor spent."" She shivers, a subtle dread in her eyes.","sdtu_umbraImoinuAgent4:""Of course.""",
 ,,,,,,
 sotfSDTUSpyglassHint1,SDTUCadenExecReplies2,"$global.sotf_SDTUgotSpyglassQuest
 $global.sotf_SDTUgotSpyglassHintList
@@ -4344,13 +4357,26 @@ He does not speak, only stretch out a hand.",sotfHauntedUlt_4:Continue,
 sotfHauntedUlt4,DialogOptionSelected,$option == sotfHauntedUlt_4,,"You take it. A cold grasp, but sympathetic. Understanding, pitying, offering.
 
 Then, something pulls your legs out from under you, and drags you into the fog.",sotfHauntedUlt_5:Wake up,
-sotfHauntedUlt5,DialogOptionSelected,$option == sotfHauntedUlt_5,BeginMission sotf_haunted,"You awaken breathless, still grasping for a hand that is no longer there, for that chance that was offered to you.
+sotfHauntedUlt5,DialogOptionSelected,$option == sotfHauntedUlt_5,"AddTextSmall ""    - The end draws near"" textGrayColor
+BeginMission sotf_haunted","You awaken breathless, still grasping for a hand that is no longer there, for that chance that was offered to you.
 
 The way is open. You just need to follow it to its end, come what may. Something lingers with you - the first step.
 
 You have to remember.
 
 You have to return.",defaultLeave:Return to your duties,
+,,,,,,
+# FINALE QUEST,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
 ,,,,,,
 # KILLA SHRINE,,,,,,
 sotfkillaOssuaryWait,DialogOptionSelected,"$option == lpp_killaShrineStayAWhile score:5
