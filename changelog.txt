@@ -1,11 +1,10 @@
 Version 0.15:
-X Major expansion to The Haunted narrative content
-	- Experience dreams at milestone levels
-	- Dreams gradually intensify your guilt as you progress
+X Expansion to The Haunted narrative content
+	- Spookier dreams
 	- Added an endgame task upon reaching max level
 	- Dream of somewhere you're meant to be, something you're meant to be, an escape from your torment, an end and a beginning
 X New background/custom start: "Child of the Lake"
-	- Unlocked by completing The Haunted
+	- Unlocked by completing The Haunted endgame task
 	- Trade in your starting skillpoint for an occult technological heirloom who serves you dutifully
 	- His service is remarkably akin to the power of necromancy
 X Added the Light of the Lake, and they who dream

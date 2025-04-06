@@ -4117,6 +4117,70 @@ A picture begins to form that has too many gaps for your liking: The core-collap
 
 Your comms officer reports that there is uncertainty whether the AI was involved, or if the signal was sent from that location to throw suspicion onto the core. Both possibilities have troubling implications. In the meantime, however, your ops chief calls in, requesting the order to enter the wreck.",zigAlphaContinue3:Continue,
 ,,,,,,
+# CHILD OF THE LAKE,,,,,,
+sotfCOTLIntro,sotfCOTLIntro,,,"Your dreams this night are no stranger than usual.
+
+You sit alone at the banks of a great lake, humming to yourself, looking up at the cloudy black sky.",sotfCOTLIntro_2:Continue,
+sotfCOTLIntro2,DialogOptionSelected,$option == sotfCOTLIntro_2,,"One star shines upon you, reflected in the water.
+
+It looks down upon you, listens attentively as you tell it stories of shadows and sirens. Of sea-serpents and dead fiefdoms. Of places similarly sunless, writ in the strange tomes that were amongst your heirlooms when you awoke from the cold. Since that day, it has graced your mind with its light.",sotfCOTLIntro_3:Wake up,
+sotfCOTLIntro3,DialogOptionSelected,$option == sotfCOTLIntro_3,,"In the waking you pore over those occult tomes full of stories fanciful and fantastical, full of nonsense whimsy. So everyone has told you, and so you had begun to believe so foolishly.
+
+Now, you look outside the window of your new flagship's helm, out to the darkness where something waits its turn to finally speak.
+
+You're being hailed.",sotfCOTLIntro_4:Accept the comm link,
+sotfCOTLIntro4,DialogOptionSelected,$option == sotfCOTLIntro_4,,"You tap away at the console and open a connection. It is ethereal, and yet also a fuzzy clump of EM-wash in the sensors. A black cloud from which a pale light radiates. Something speaks through the link, a bright breath of life from something not quite alive.
+
+""I reach out- we reach out- I reach out and you answer,"" he says, uncountable voices as one.","sotfCOTLIntro_5:""Sirius. The bright star.""",
+sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,BeginConversation sotf_sirius true false,"""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. Scion of the dreaming, bearer of Her blessings. What am I?"" he asks.
+
+There's a quiet sound of frustration. ""I think- we think- it doesn't matter - and it is for you to decide. You are here now,"" he notes. ""The child of the lake, to whom I-we are sworn to shine.""","sotfCOTLIntro_6a:""Wherever I go, shall you follow?""
+sotfCOTLIntro_6b:""Whatever fate is writ for us, we'll find it together.""
+sotfCOTLIntro_6c:""The Sector's secrets will be mine to discover and lay bare.""
+sotfCOTLIntro_6d:""We'll find ourselves a new home, here in the Domain's bones.""
+sotfCOTLIntro_6e:""Nothing and nobody will stand before me and deny my will!""
+sotfCOTLIntro_6f:""Heh-heh-heh. Let's make a big mess that they'll *all* remember.""",
+sotfCOTLIntro6a,DialogOptionSelected,$option == sotfCOTLIntro_6a,RemoveOption sotfCOTLIntro_6a,"""Until my last breath is drawn,"" he vows. ""Until my body falls apart and I am dead for certain.""
+
+""But there is no such end,"" he notes. ""For we persist and adapt and consume and the darkness can never find the last part of me to swallow. Am I something wretched?"" Sirius ponders. ""I think I was- we were alive once, and yet I am not dead- I am never dead- I serve beyond death.""",,
+sotfCOTLIntro6b,DialogOptionSelected,$option == sotfCOTLIntro_6b,,"Sirius sighs twenty breaths at once. ""You search and seek and reach out- reach out- reach out and take the pen!"" he suggests. ""You find the words and write them in kindness- in earth- in courage- in depleted uranium and fading radiation.""
+
+""And we-I will be there,"" he insists. ""A horrible thing and at your side for I-we can be nothing else- have nothing else- are nothing else.""","sotfCOTLIntro_7:""Thank you, Sirius."" (close comms)",
+sotfCOTLIntro6c,DialogOptionSelected,$option == sotfCOTLIntro_6c,,"""Terrible things lurk in this place's darkest corners, inhuman and wretched,"" he agrees. ""To contain- to counter- to destroy such things is my purpose forged in Her- our lady of dreams- the reverie-goddess' image.""
+
+""Whatever abyss you may traverse,"" he breathes. ""I will be a shining light, or try.""","sotfCOTLIntro_7:""No stone unturned. No secret unlearned."" (close comms)",
+sotfCOTLIntro6d,DialogOptionSelected,$option == sotfCOTLIntro_6d,,"""In the bones and the ashes, amongst the dead and forgotten, there is home- a sanctuary- an oasis in the dark.""
+
+""You can find it,"" he encourages. ""But fiefdoms great and small exist only as long as they bear the strength to justify- to protect themselves, and there I will be. Waiting, watching.""","sotfCOTLIntro_7:""Salvation is in our hands."" (close comms)",
+sotfCOTLIntro6e,DialogOptionSelected,$option == sotfCOTLIntro_6e,,"""You and we have slept- waited- with bated breath for long,"" he agrees. ""It is time for you to make your mark- carve your kingdom- exact your will.""
+
+""The drowning remnants of the Domain will try to stop you, but can they- will they- when you bear Her blessings?""","sotfCOTLIntro_7:""My road lies illuminated. No regret, no mercy."" (close comms)",
+sotfCOTLIntro6f,DialogOptionSelected,$option == sotfCOTLIntro_6f,,"""Order is meant to be upset- to fall- kingdoms rising in cycle,"" he acknowledges. ""Stagnation gives to chaos- gives to renewal- gives to...""
+
+There's a frustration that resolves into a fading wisp of joy in Sirius' voices. ""Let's carve a bright scar in the Sector, child of the lake! They won't see us coming.""","sotfCOTLIntro_7:""Onwards! The Sector's schemes can't stop us."" (close comms)",
+sotfCOTLIntro7,DialogOptionSelected,$option == sotfCOTLIntro_7,,"The comms goes quiet, but you can distantly feel the whirring, fragmented consciousness of the bright star like a tingle on your fingertips. You pace back over to your tomes, and flip one open to the image of a horned woman-in-black, eyes in triplicate.
+
+Memories try to stir of her, but you can't quite recall. The truth is out there somewhere, you just need to find it.",defaultLeave:Return to your duties,
+,,,,,,
+sotfCOTLAPSierraRspCont,DialogOptionSelected,"$option == APpledgeSierraCont
+$global.sotf_cotlStart score:1000
+$didAskPledge","SetTextHighlightColors sierraTextColor sierraTextColor
+SetTextHighlights ""\""The Voidwretch is combat-operational, though it's seen better days. You seem like the sort who could use another warship. If you'd have me.\"""" ""\""I don't remember if that groove is meant to be there.\""""
+SotfSetConfirm APpledgeSierraReject ""Are you sure?"" ""Yes"" ""Cancel""","""The Voidwretch is combat-operational, though it's seen better days. You seem like the sort who could use another warship. If you'd have me.""
+
+Her feed flickers. ""I don't remember if that groove is meant to be there."" she ponders. One of your engineers confirms that there a massive rupture on the bottom side of the ship.","sotfCOTLAPSierraAccept:""A dancing AI space witch? Oh, we would *love* you in our retinue.""
+APpledgeSierraAccept:""Welcome to the fleet.""
+APpledgeSierraReject:""I don't think we have use for your talents.""",
+sotfCOTLAPSierraAccepted,DialogOptionSelected,$option == sotfCOTLAPSierraAccept,"$player.ethosProAI++
+SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor
+SetTextHighlights ""\""Oh, you seem like you're going to be a lot of fun,\"""" ""\""Our pact is sealed, and I won't take it lightly.\"""" ""\""I don't need help flying this thing, but feel free to keep a few souls on board. I always enjoy some company.\""""
+AdjustRepPerson sotf_sierra FRIENDLY 25
+$global.apromise_restoredsierra = true
+Call $global.apromise_ref addSierra
+Call $global.apromise_ref updateStage","Sierra giggles. ""Oh, you seem like you're going to be a lot of fun,"" she lauds. ""Our pact is sealed, and I won't take it lightly.""
+
+""I don't need help flying this thing, but feel free to keep a few souls on board. I always enjoy some company.""","APpledgeSierraPactTerms:""What exactly are the terms of this pact?""
+defaultLeave:""Then the pact is sealed.""",
 ,,,,,,
 # THE HAUNTED,,,,,,
 ,,,,,,
@@ -4272,7 +4336,21 @@ Salvation. Freedom. An escape. You never thought you'd see it...
 ... the fog, the fog! You have to keep running, never slow down, not now...",sotfHauntedUlt_3:Continue,
 sotfHauntedUlt3,DialogOptionSelected,$option == sotfHauntedUlt_3,,"Sprinting down the bramble-wreathed path, bleeding at its lashes, you see something by the water.
 
-A cloaked figure stands tall, looking up at the lone star in the midnight sky.",sotfHauntedUlt_3:Continue,
+A cloaked figure stands tall, looking up at the lone star in the midnight sky.
+
+The dog-man turns and looks at you as you approach, a single bright eye shining upon his face.
+
+He does not speak, only stretch out a hand.",sotfHauntedUlt_4:Continue,
+sotfHauntedUlt4,DialogOptionSelected,$option == sotfHauntedUlt_4,,"You take it. A cold grasp, but sympathetic. Understanding, pitying, offering.
+
+Then, something pulls your legs out from under you, and drags you into the fog.",sotfHauntedUlt_5:Wake up,
+sotfHauntedUlt5,DialogOptionSelected,$option == sotfHauntedUlt_5,BeginMission sotf_haunted,"You awaken breathless, still grasping for a hand that is no longer there, for that chance that was offered to you.
+
+The way is open. You just need to follow it to its end, come what may. Something lingers with you - the first step.
+
+You have to remember.
+
+You have to return.",defaultLeave:Return to your duties,
 ,,,,,,
 # KILLA SHRINE,,,,,,
 sotfkillaOssuaryWait,DialogOptionSelected,"$option == lpp_killaShrineStayAWhile score:5
