@@ -230,6 +230,10 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         }
     }
 
+    init {
+        isImportant = true
+    }
+
     override fun runWhilePaused(): Boolean {
         return true
     }
