@@ -4,7 +4,6 @@ package data.scripts.utils;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
-import com.fs.starfarer.api.characters.FullName.Gender;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.SkillSpecAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
@@ -24,8 +23,6 @@ import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import lunalib.lunaSettings.LunaSettings;
 import org.lazywizard.lazylib.combat.DefenseUtils;
-import org.lwjgl.util.vector.Vector2f;
-import org.magiclib.util.MagicAnim;
 import second_in_command.SCUtils;
 
 import java.awt.*;
@@ -342,6 +339,14 @@ public class SotfMisc {
 
     public static Color getEidolonColor() {
         return SYMPHONY_COLOR;
+    }
+
+    public static boolean getHauntedFastDreams() {
+        boolean lockoutStarts = Global.getSettings().getBoolean("sotf_fastDreams");
+        if (Global.getSettings().getModManager().isModEnabled("lunalib")) {
+            lockoutStarts = LunaSettings.getBoolean("secretsofthefrontier", "sotf_fastDreams");
+        }
+        return lockoutStarts;
     }
 
     // retrieve player Guilt score

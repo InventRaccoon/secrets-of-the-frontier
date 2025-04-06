@@ -212,7 +212,7 @@ public class SotfGravispatialSurgeSystem extends BaseShipSystemScript {
             CombatEngineAPI engine = Global.getCombatEngine();
 
             float damage = 0f;
-            if (target.getProjectileSpecId().contains("mote")) {
+            if (target.getProjectileSpecId().contains("mote") || target.getProjectileSpecId().contains("kol_sparkle")) {
                 damage = 300f;
             }
 
@@ -222,7 +222,7 @@ public class SotfGravispatialSurgeSystem extends BaseShipSystemScript {
                     ship,
                     target,
                     DamageType.FRAGMENTATION,
-                    0f, // bcs we're collapsing it anyway
+                    damage, // bcs we're collapsing it anyway
                     0f,
                     99999f,
                     "tachyon_lance_emp_impact",
@@ -231,7 +231,7 @@ public class SotfGravispatialSurgeSystem extends BaseShipSystemScript {
                     Color.BLACK
             );
 
-            // flame out, disarm (if possible), and damp the fuck out of it
+            // flame out, disarm (if possible), and damp the hell out of it
             target.flameOut();
             target.setArmedWhileFizzling(false);
             // slow zoned like a Belter kid in a makeshift racing ship

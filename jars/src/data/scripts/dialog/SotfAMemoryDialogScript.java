@@ -13,7 +13,7 @@ public class SotfAMemoryDialogScript implements EveryFrameScript, FleetEventList
 	private float counter = 0;
 
 	public void advance(float amount) {
-		if (Global.getSector().isPaused()) {return;}
+		if (Global.getSector().isPaused()) return;
 		counter += amount;
 
 		if (counter < 1) {return;}

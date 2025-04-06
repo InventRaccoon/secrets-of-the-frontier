@@ -10,34 +10,20 @@ import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
-import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
-import com.fs.starfarer.api.impl.combat.threat.FragmentSwarmHullmod;
 import com.fs.starfarer.api.impl.combat.threat.RoilingSwarmEffect;
-import com.fs.starfarer.api.impl.combat.threat.SwarmLauncherEffect;
-import com.fs.starfarer.api.impl.combat.threat.VoltaicDischargeOnFireEffect;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
-import com.fs.starfarer.api.util.ColorShifterUtil;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.hullmods.SotfNaniteSynthesized;
-import data.scripts.combat.SotfRingTimerVisualScript;
-import data.scripts.utils.SotfMisc;
 import data.subsystems.SotfNaniteDronesSubsystem;
-import data.subsystems.SotfSoulbondSubsystem;
-import org.lazywizard.lazylib.combat.DefenseUtils;
 import org.lwjgl.util.vector.Vector2f;
 import org.magiclib.subsystems.MagicSubsystemsManager;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-import static com.fs.starfarer.api.impl.combat.threat.VoltaicDischargeOnFireEffect.pickFragmentTowardsPointWithinRange;
-import static data.hullmods.SotfNaniteSynthesized.SotfNaniteSynthesizedListener.getBaseSwarmRespawnRateMult;
-import static data.hullmods.SotfNaniteSynthesized.SotfNaniteSynthesizedListener.getBaseSwarmSize;
 import static data.scripts.weapons.SotfLethargyOnFireEffect.lethargyFakeBeam;
 
 public class SotfAdvancedCountermeasures {
@@ -50,6 +36,18 @@ public class SotfAdvancedCountermeasures {
 	public static float SWARM_ATTACK_DAMAGE = 50f;
 	public static float SWARM_ATTACK_EMP = 50f;
 	public static DamageType SWARM_ATTACK_DAMAGE_TYPE = DamageType.FRAGMENTATION;
+	// delay between shots for a frigate
+	public static float SWARM_ATTACK_RATE = 2f;
+
+	// Attack swarm attack rate multiplier based on hull size
+	public static Map<HullSize, Float> SWARM_ATTACK_RATE_MULT = new HashMap<HullSize, Float>();
+	static {
+		SWARM_ATTACK_RATE_MULT.put(HullSize.FIGHTER, 0.5f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.FRIGATE, 1f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.DESTROYER, 1.5f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.CRUISER, 2f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.CAPITAL_SHIP, 3f);
+	}
 
 	public static class ECCM implements ShipSkillEffect {
 		public void apply(MutableShipStatsAPI stats, HullSize hullSize, String id, float level) {
@@ -109,17 +107,21 @@ public class SotfAdvancedCountermeasures {
 											TooltipMakerAPI info, float width) {
 			initElite(stats, skill);
 
-			info.addPara("Deploys an orbiting defense swarm to protect the ship", hc, 0f
-			);
+			info.addPara("Deploys an orbiting defense swarm to protect the ship with energy beams", hc, 0f);
+			info.addPara("Each fighter craft deployed also gains its own swarm", hc, 0f);
 		}
 
 		public static class SotfNaniteDefenseSwarmScript implements AdvanceableListener {
 
 			protected ShipAPI ship;
 
-			IntervalUtil interval = new IntervalUtil(2f, 2.25f);
+			IntervalUtil interval = new IntervalUtil(SWARM_ATTACK_RATE, SWARM_ATTACK_RATE + 0.2f);
+			float rate;
 
-			public SotfNaniteDefenseSwarmScript(ShipAPI ship) { this.ship = ship; }
+			public SotfNaniteDefenseSwarmScript(ShipAPI ship) {
+				this.ship = ship;
+				this.rate = SWARM_ATTACK_RATE_MULT.get(ship.getHullSize());
+			}
 
 			public void advance(float amount) {
 				if (!Global.getCurrentState().equals(GameState.COMBAT)) {
@@ -128,9 +130,12 @@ public class SotfAdvancedCountermeasures {
 				if (amount <= 0f || ship == null) return;
 
 				RoilingSwarmEffect swarm = RoilingSwarmEffect.getSwarmFor(ship);
-				if (swarm == null) return;
+				// create a swarm for non-nanite-synthesized ships, i.e. for Fel
+				if (swarm == null) {
+					swarm = SotfNaniteSynthesized.SotfNaniteSynthesizedListener.createSwarmFor(ship);
+				}
 
-				interval.advance(amount);
+				interval.advance(amount * rate);
 				if (interval.intervalElapsed()) {
 					fire(swarm);
 				}
@@ -160,6 +165,7 @@ public class SotfAdvancedCountermeasures {
 						SWARM_ATTACK_DAMAGE,
 						SWARM_ATTACK_DAMAGE_TYPE,
 						SWARM_ATTACK_EMP,
+						rate,
 						ship
 				);
 

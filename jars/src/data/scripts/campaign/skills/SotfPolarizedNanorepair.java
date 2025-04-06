@@ -1,10 +1,7 @@
 package data.scripts.campaign.skills;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.characters.AfterShipCreationSkillEffect;
-import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
-import com.fs.starfarer.api.characters.ShipSkillEffect;
-import com.fs.starfarer.api.characters.SkillSpecAPI;
+import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
@@ -16,6 +13,10 @@ import com.fs.starfarer.api.util.Misc;
 import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.combat.DefenseUtils;
 import org.magiclib.util.MagicAnim;
+
+import java.awt.*;
+
+import static com.fs.starfarer.api.impl.campaign.skills.PolarizedArmor.NON_SHIELD_FLUX_LEVEL;
 
 public class SotfPolarizedNanorepair {
 
@@ -44,6 +45,25 @@ public class SotfPolarizedNanorepair {
 	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 650f;
 	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 1f;
 
+	public static class Desc implements DescriptionSkillEffect {
+		public String getString() {
+			return "\n\n*Ships without a shield or a phase cloak are treated as always having " + (int) NON_SHIELD_FLUX_LEVEL +
+					"% hard flux.\nNormally, a damaged but functional module will not be repaired until 5 seconds have passed " +
+					"without it taking damage.";
+		}
+		public Color[] getHighlightColors() {
+			Color h = Misc.getHighlightColor();
+			h = Misc.getDarkHighlightColor();
+			return new Color[] {h};
+		}
+		public String[] getHighlights() {
+			return new String [] {"" + (int) NON_SHIELD_FLUX_LEVEL + "%"};
+		}
+		public Color getTextColor() {
+			return null;
+		}
+	}
+
 	public static class ArmorRegen extends BaseSkillEffectDescription implements ShipSkillEffect, AfterShipCreationSkillEffect {
 		public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
 			ship.addListener(new SotfPolarizedNanorepairArmorRegen(ship));
@@ -70,7 +90,7 @@ public class SotfPolarizedNanorepair {
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%"
 //			);
-			info.addPara("Regenerate up to %s of armor per second; maximum total repair is " +
+			info.addPara("Repair up to %s of armor per second; maximum total repair is " +
 							"the higher of %s armor points or %s of maximum armor", 0f, hc, hc,
 					"" + Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE * 100f) + "%",
 					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",

@@ -65,7 +65,7 @@ public class SotfNGCCMD extends BaseCommandPlugin
             case "hauntedStartingScript":
                 data.addScriptBeforeTimePass(new Script() {
                     public void run() {
-                        Global.getSector().getMemoryWithoutUpdate().set("$sotf_hauntedStart", true);
+                        Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_HAUNTED_START, true);
                         MemoryAPI char_mem = Global.getSector().getPlayerPerson().getMemoryWithoutUpdate();
                         char_mem.set(SotfIDs.GUILT_KEY, SotfMisc.getHauntedGuilt());
                         char_mem.set(MemFlags.PLAYER_ATROCITIES, 4f);

@@ -27,6 +27,11 @@ public class SotfHasOfficer extends BaseCommandPlugin {
 		CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
 
 		String id = params.get(0).getString(memoryMap);
+		return haveOfficer(id);
+	}
+
+	public static boolean haveOfficer(String id) {
+		CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
 		boolean hasOfficer = false;
 		if (playerFleet != null) {
 			for (OfficerDataAPI data : playerFleet.getFleetData().getOfficersCopy()) {

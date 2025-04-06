@@ -70,6 +70,16 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		e.endCreate();
 	}
 
+	public static void sendWendigoHauntedWarning() {
+		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoHauntedWarning", "$sotf_WHauntedWarningFleet");
+		e.endCreate();
+	}
+
+	public static void sendWendigoHauntedHunt() {
+		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoHauntedHunt", "$sotf_WHauntedHuntFleet");
+		e.endCreate();
+	}
+
 	public static void sendWendigoFailureHunt() {
 		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoFailHunt", "$sotf_WFailHuntFleet");
 		e.endCreate();
@@ -100,6 +110,7 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		e.triggerGetFleetParams().commander = SotfPeople.getPerson(SotfPeople.WENDIGO);
 		//e.triggerSetFleetCommander(SotfPeople.getPerson(SotfPeople.WENDIGO));
 		e.triggerFleetSetFlagship("sotf_respite_Assault");
+		e.triggerFleetAddDefeatTriggerPermanent(id + "Defeated");
 
 		e.triggerFleetMakeFaster(true, 0, true);
 		e.triggerSetStandardAggroInterceptFlags();

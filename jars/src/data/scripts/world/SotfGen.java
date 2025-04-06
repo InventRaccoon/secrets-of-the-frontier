@@ -135,6 +135,10 @@ public class SotfGen implements SectorGeneratorPlugin
         // the material is my-our world
         // you are not welcome in my-our world
         daydreams.setRelationship(Factions.OMEGA, RepLevel.VENGEFUL);
+        // BORN FOR THIS
+        daydreams.setRelationship(Factions.THREAT, RepLevel.VENGEFUL);
+        // WHAT IN HER GOOD NAME ARE YOU. DIE DIE DIE DIE DIE
+        daydreams.setRelationship(Factions.DWELLER, RepLevel.VENGEFUL);
     }
 
 //    public static void trySetupHuntingFeros(SectorAPI sector) {
@@ -202,9 +206,9 @@ public class SotfGen implements SectorGeneratorPlugin
                 w = 1000f;
             }
             // prefer systems close to the Abyss
-            if (Misc.getDistance(system.getHyperspaceAnchor(), Global.getSector().getStarSystem("limbo").getHyperspaceAnchor()) < 20000) {
-                w += (20000 - Misc.getDistance(system.getHyperspaceAnchor(), Global.getSector().getStarSystem("limbo").getHyperspaceAnchor()));
-            }
+//            if (Misc.getDistance(system.getHyperspaceAnchor(), Global.getSector().getStarSystem("limbo").getHyperspaceAnchor()) < 20000) {
+//                w += (20000 - Misc.getDistance(system.getHyperspaceAnchor(), Global.getSector().getStarSystem("limbo").getHyperspaceAnchor()));
+//            }
 
             systems.add(system, w);
         }

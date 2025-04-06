@@ -111,6 +111,8 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 		boolean withObjectives = smaller > maxFPForObj;
 		if (!context.objectivesAllowed) {
 			withObjectives = false;
+		} else if (context.forceObjectivesOnMap) {
+			withObjectives = true;
 		}
 
 		int numObjectives = 0;

@@ -48,7 +48,9 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
      * Code taken from MagicLib, by Tartiflette and Deathfly
      * Almost entirely copypasted, but I need to add an onhit effect!
      */
-    public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width, float full, float fading, float impactSize, Color core, Color fringe, float normalDamage, DamageType type, float emp, ShipAPI source) {
+    public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width,
+                                        float full, float fading, float impactSize, Color core, Color fringe,
+                                        float normalDamage, DamageType type, float emp, float dampMult, ShipAPI source) {
 
         CombatEntityAPI theTarget = null;
         float damage = normalDamage;
@@ -180,13 +182,17 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                         slowdown = 0.15f;
                     }
                 }
-                theTarget.getVelocity().scale(1f - slowdown);
+                theTarget.getVelocity().scale(1f - (slowdown * dampMult));
             }
 
             //Add the beam to the plugin
             //public static void addBeam(float duration, float fading, float width, Vector2f from, float angle, float length, Color core, Color fringe)
             MagicFakeBeamPlugin.addBeam(full, fading, width, from, angle, MathUtils.getDistance(from, end) + 10, core, fringe);
         }
+    }
+
+    public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width, float full, float fading, float impactSize, Color core, Color fringe, float normalDamage, DamageType type, float emp, ShipAPI source) {
+        lethargyFakeBeam(engine, from, range, angle, width, full, fading, impactSize, core, fringe, normalDamage, type, emp, 1f, source);
     }
 
 }

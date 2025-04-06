@@ -20,6 +20,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class SotfPersonalFleetBlithe extends PersonalFleetScript {
 
+	public int pointsAtSpawn = 0;
+
 	public SotfPersonalFleetBlithe() {
 		super(SotfPeople.BLITHE);
 		setMinRespawnDelayDays(20f);
@@ -67,6 +69,7 @@ public class SotfPersonalFleetBlithe extends PersonalFleetScript {
 		m.triggerOrderFleetPatrol(holdout.getStarSystem());
 		
 		CampaignFleetAPI fleet = m.createFleet();
+		pointsAtSpawn = fleet.getFleetPoints();
 
 		// give Blithe a proper skills list (otherwise would be default Alpha skills)
 		SotfMisc.reassignAICoreSkills(SotfPeople.getPerson(SotfPeople.BLITHE), fleet.getFlagship(), fleet, Misc.random);
@@ -100,9 +103,9 @@ public class SotfPersonalFleetBlithe extends PersonalFleetScript {
 	@Override
 	public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {
 		if (fleet == null) return;
-		if (fleet.getFlagship() != null && fleet.getFlagship().getCaptain() == getPerson()) return;
-
-		Misc.giveStandardReturnToSourceAssignments(fleet);
+		if (fleet.getFleetPoints() < (pointsAtSpawn * 0.5f)) {
+			Misc.giveStandardReturnToSourceAssignments(fleet);
+		}
 	}
 
 	@Override

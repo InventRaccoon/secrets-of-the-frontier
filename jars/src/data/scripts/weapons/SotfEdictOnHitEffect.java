@@ -1,9 +1,15 @@
 // just a simple on-hit effect for the Edict Stormblaster. Arcs that deal scaling damage and EMP.
 package data.scripts.weapons;
 
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI;
+import com.fs.starfarer.api.impl.SharedSettings;
+import com.fs.starfarer.api.impl.SharedUnlockData;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
+import com.fs.starfarer.api.impl.campaign.shared.SharedData;
 import org.lwjgl.util.vector.Vector2f;
+import org.magiclib.achievements.SharedCombatDamageListener;
 
 import java.awt.*;
 
@@ -15,6 +21,10 @@ public class SotfEdictOnHitEffect implements OnHitEffectPlugin {
             ShipAPI target_ship = (ShipAPI) target;
             // vs ghosts, on-hit works through shields, and hull hits deal double damage
             boolean ghostBusting = target_ship.getVariant().hasHullMod("sotf_phantasmalship");
+            // also strong vs demons
+            if (target_ship.getHullSpec().hasTag(Tags.DWELLER)) {
+                ghostBusting = true;
+            }
             if (shieldHit && !ghostBusting) {
                 return;
             }

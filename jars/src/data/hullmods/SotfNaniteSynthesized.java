@@ -22,6 +22,7 @@ import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.combat.SotfClingingFlareVisualScript;
 //import data.scripts.combat.special.SotfInvokeHerBlessingPlugin;
+import org.dark.graphics.plugins.ShipDestructionEffects;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
@@ -62,7 +63,7 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
         public void advance(float amount) {
             if (ship.isHulk() && !startedFadingOut && Global.getCombatEngine().isEntityInPlay(ship)) {
-                Global.getCombatEngine().addPlugin(createNaniteFadeOutPlugin(ship, ship.getHullSize().ordinal() * 1.5f));
+                Global.getCombatEngine().addPlugin(createNaniteFadeOutPlugin(ship, ship.getHullSize().ordinal() * 1.5f, false));
                 if (ship.getVariant().hasTag(SotfIDs.COTL_SERVICEBEYONDDEATH) && !ship.isFighter()) {
                     String wing_id;
                     switch (ship.getHullSize().ordinal() - 1) {
@@ -202,16 +203,16 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
             params.flashProbability = 0.5f;
             params.flashRateMult = 4f;
-            //params.flashCoreRadiusMult = 0f;
+            params.flashCoreRadiusMult = 0.25f;
             params.flashRadius = 50f / mult;
             params.flashFringeColor = new Color(0, 175, 255, 40);
-            params.flashCoreColor = new Color(235, 245, 255, 167);
+            params.flashCoreColor = COLOR_STRONGER;
 
             // if this is set to true and the swarm is glowing, missile-fragments pop over the glow and it looks bad
             //params.renderFlashOnSameLayer = true;
 
             params.minOffset = 0f;
-            params.maxOffset = Math.min(60f, ship.getCollisionRadius() * 0.5f);
+            params.maxOffset = Math.min(20f, ship.getCollisionRadius() * 0.75f);
             params.generateOffsetAroundAttachedEntityOval = true;
             params.despawnSound = null; // ship explosion does the job instead
             params.spawnOffsetMult = 0.33f;
@@ -290,8 +291,8 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
     public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
         ship.addListener(new SotfNaniteSynthesizedListener(ship));
-        ship.setExtraOverlay(Global.getSettings().getSpriteName("misc", "fragment_swarm"));
-        ship.setExtraOverlayMatchHullColor(true);
+        ship.setExtraOverlay(Global.getSettings().getSpriteName("misc", "sotf_overlay_nanitesynthesized"));
+        ship.setExtraOverlayMatchHullColor(false);
         ship.setExtraOverlayShadowOpacity(0.5f);
     }
 
@@ -303,9 +304,11 @@ public class SotfNaniteSynthesized extends BaseHullMod {
         stats.getBreakProb().modifyMult(id, 0f);
     }
 
-    protected static EveryFrameCombatPlugin createNaniteFadeOutPlugin(final ShipAPI ship, final float fadeOutTime) {
+    public static EveryFrameCombatPlugin createNaniteFadeOutPlugin(final ShipAPI ship, final float fadeOutTime, boolean withSmoke) {
         return new BaseEveryFrameCombatPlugin() {
             float elapsed = 0f;
+
+            IntervalUtil interval = new IntervalUtil(0.075f, 0.125f);
 
             @Override
             public void advance(float amount, List<InputEventAPI> events) {
@@ -323,9 +326,51 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
                 if (elapsed > fadeOutTime) {
                     //ship.setHitpoints(0f);
+                    ShipDestructionEffects.suppressEffects(ship, true, true);
                     Global.getCombatEngine().removeEntity(ship);
                     ship.setAlphaMult(0f);
                     Global.getCombatEngine().removePlugin(this);
+                }
+
+                if (!withSmoke) return;
+
+                List<ShipAPI> shipAndModules = ship.getChildModulesCopy();
+                shipAndModules.add(ship);
+
+                // nanite fog effect
+                interval.advance(amount);
+                if (interval.intervalElapsed()) {
+                    CombatEngineAPI engine = Global.getCombatEngine();
+
+                    Color c = RiftLanceEffect.getColorForDarkening(SMOKE_COLOR);
+                    c = Misc.setAlpha(c, 35);
+                    float baseDuration = 2f;
+                    for (ShipAPI toSmoke : shipAndModules) {
+                        Vector2f vel = new Vector2f(toSmoke.getVelocity());
+                        float size = toSmoke.getCollisionRadius() * 0.3f;
+                        for (int i = 0; i < 4; i++) {
+                            Vector2f point = new Vector2f(toSmoke.getLocation());
+                            point = Misc.getPointWithinRadiusUniform(point, toSmoke.getCollisionRadius() * 0.5f, Misc.random);
+                            float dur = baseDuration + baseDuration * (float) Math.random();
+                            float nSize = size;
+                            Vector2f pt = Misc.getPointWithinRadius(point, nSize * 0.5f);
+                            Vector2f v = Misc.getUnitVectorAtDegreeAngle((float) Math.random() * 360f);
+                            v.scale(nSize + nSize * (float) Math.random() * 0.5f);
+                            v.scale(0.2f);
+                            Vector2f.add(vel, v, v);
+
+                            float maxSpeed = nSize * 1.5f * 0.2f;
+                            float minSpeed = nSize * 1f * 0.2f;
+                            float overMin = v.length() - minSpeed;
+                            if (overMin > 0) {
+                                float durMult = 1f - overMin / (maxSpeed - minSpeed);
+                                if (durMult < 0.1f) durMult = 0.1f;
+                                dur *= 0.5f + 0.5f * durMult;
+                            }
+                            engine.addNegativeNebulaParticle(pt, v, nSize * 1f, 2f,
+                                    0.5f / dur, 0f, dur, c);
+                        }
+                    }
                 }
             }
         };

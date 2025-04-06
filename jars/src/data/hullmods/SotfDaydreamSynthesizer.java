@@ -133,6 +133,8 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		for (String hmod : variant.getNonBuiltInHullmods()) {
 			HullModSpecAPI spec = Global.getSettings().getHullModSpec(hmod);
 			if (spec.isHiddenEverywhere()) return;
+			// no Dweller or Threat hullmods pls
+			if (spec.getEffect().getRequiredItem() != null) return;
 			Global.getSector().getFaction(SotfIDs.DREAMING_GESTALT).addKnownHullMod(hmod);
 		}
 	}
@@ -318,21 +320,25 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 				"exchanged for more common alternatives.", opad);
 
 		tooltip.addSectionHeading("Daydream Skills", Alignment.MID, opad);
-		tooltip.addPara("Reverie's skillset is roughly equivalent in power to an alpha core, but taking the " +
-				"form of 6 unique skills that include the following bonuses: ", opad, new Color[]{h, bad}, "Capital ships", "cannot be dragged");
-		tooltip.addPara("- Regeneration of small missile weapon ammo every %s seconds equal to their " +
-				"base ammmo", pad,  h, "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfMissileReplication.RELOAD_TIMER));
-		tooltip.addPara("- Regeneration of medium missile weapon ammo every %s seconds equal to half of " +
-				"their base ammmo", pad, h, "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfMissileReplication.RELOAD_TIMER));
-		tooltip.addPara("- Repair of %s of max armor per second, up to %s armor or %s of max armor, whichever is higher", pad,  h,
-				Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE * 100f) + "%",
-				"" + Misc.getRoundedValue(SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_POINTS),
-				Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%");
-		tooltip.addPara("- An escort of %s/%s/%s/%s point-defense drones, depending on hull size", pad,  h,
-				"" + SotfNaniteDronesSubsystem.DRONES_FRIGATE,
-				"" + SotfNaniteDronesSubsystem.DRONES_DESTROYER,
-				"" + SotfNaniteDronesSubsystem.DRONES_CRUISER,
-				"" + SotfNaniteDronesSubsystem.DRONES_CAPITAL);
+		tooltip.addPara("Reverie's skillset is roughly equivalent in power to an alpha core, but takes the form of " +
+				"7 unique skills that provide unique bonuses such as periodic missile reloads, gradual armor repair and a " +
+				"defensive swarm . See the hullmod's related entries in the codex for a full list.", opad, h,
+				"alpha core", "7 unique skills", "periodic missile reloads", "gradual armor repair", "defensive swarm", "related entries");
+//		tooltip.addPara("Reverie's skillset is roughly equivalent in power to an alpha core, but taking the " +
+//				"form of 6 unique skills that include the following bonuses: ", opad, new Color[]{h, bad}, "Capital ships", "cannot be dragged");
+//		tooltip.addPara("- Regeneration of small missile weapon ammo every %s seconds equal to their " +
+//				"base ammmo", pad,  h, "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfMissileReplication.RELOAD_TIMER));
+//		tooltip.addPara("- Regeneration of medium missile weapon ammo every %s seconds equal to half of " +
+//				"their base ammmo", pad, h, "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfMissileReplication.RELOAD_TIMER));
+//		tooltip.addPara("- Repair of %s of max armor per second, up to %s armor or %s of max armor, whichever is higher", pad,  h,
+//				Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE * 100f) + "%",
+//				"" + Misc.getRoundedValue(SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_POINTS),
+//				Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%");
+//		tooltip.addPara("- An escort of %s/%s/%s/%s point-defense drones, depending on hull size", pad,  h,
+//				"" + SotfNaniteDronesSubsystem.DRONES_FRIGATE,
+//				"" + SotfNaniteDronesSubsystem.DRONES_DESTROYER,
+//				"" + SotfNaniteDronesSubsystem.DRONES_CRUISER,
+//				"" + SotfNaniteDronesSubsystem.DRONES_CAPITAL);
 
 		if (isForModSpec || ship == null) return;
 

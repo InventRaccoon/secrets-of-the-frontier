@@ -62,6 +62,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
     public void advance(float amount, List<InputEventAPI> events) {
         if (engine == null) return;
         if (engine.isSimulation()) return;
+        if (engine.isInCampaignSim()) return;
         if (engine.isMission()) return;
         if (Global.getCurrentState() == GameState.TITLE) return;
         if (Global.getSector() == null) { return; }
@@ -436,21 +437,27 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             totalAllyDP += ally.getDeploymentPointsCost();
         }
 
-        int level = 9;
-        if (totalFP < 40f) {
-            level -= 1;
-        }
-        if (totalFP < 60f) {
-            level -= 1;
+        // clear skills
+        for (MutableCharacterStatsAPI.SkillLevelAPI skill : fel.getStats().getSkillsCopy()) {
+            fel.getStats().setSkillLevel(skill.getSkill().getId(), 0);
         }
 
-        // generate an officer with all-elite skills tailored to the ship
+        // assign back Fel's unique generalist skillset
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+        fel.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
+
+        // if small fleet, remove swarm PD and hull/armor regen
+        if (totalFP < 60f) {
+            fel.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 1);
+            fel.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1);
+        }
+
         OfficerManagerEvent.SkillPickPreference pref = FleetFactoryV3.getSkillPrefForShip(member);
-        PersonAPI temp = OfficerManagerEvent.createOfficer(
-                Global.getSector().getFaction(Factions.MERCENARY),
-                level, pref, true, null, true, true, level, random);
-        // give Fel that person's stats
-        fel.setStats(temp.getStats());
         MutableCharacterStatsAPI stats = fel.getStats();
 
         // ... now for the fun part! Let's add some extra SPECIAL skills on top!
@@ -517,7 +524,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         // Hybrid skill - she's good at both fire support and PD
         float dottyWeight = 1f;
         // Dotty spawns slightly weaker during the earlygame
-        if (level < 9 || !member.isCapital()) {
+        if (totalFP < 60f || !member.isCapital()) {
             fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 99999f);
         } else {
             fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);

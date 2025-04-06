@@ -78,6 +78,7 @@ public class SotfPeople {
 
     public static String FEL = "sotf_fel";
     public static String REVERIE = "sotf_reverie";
+    public static String MEIRYR = "sotf_meiryr";
     public static String SIRIUS = "sotf_sirius";
     public static String SIRIUS_MIMIC = "sotf_sirius_mimic";
 
@@ -624,20 +625,16 @@ public class SotfPeople {
             // Officer
             person.setPersonality(Personalities.AGGRESSIVE);
             //person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true); // probably more dangerous without it
-            person.getStats().setLevel(9);
-            // Elegy of Opis, their signature skill
-            person.getStats().setSkillLevel(SotfIDs.SKILL_ELEGYOFOPIS, 2);
+            person.getStats().setLevel(10);
+            // Unique skills, covering most of the essentials of vanilla combat skills
+            person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
 
-            // Lowtech capital captain
-            // Just for the LORE since Fel's skills are reset and reassigned when they possess a ship
-            person.getStats().setSkillLevel(Skills.DAMAGE_CONTROL, 2);
-            person.getStats().setSkillLevel(Skills.IMPACT_MITIGATION, 2);
-            person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-            person.getStats().setSkillLevel(Skills.GUNNERY_IMPLANTS, 2);
-            person.getStats().setSkillLevel(Skills.BALLISTIC_MASTERY, 2);
-            person.getStats().setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2);
-            person.getStats().setSkillLevel(Skills.POLARIZED_ARMOR, 2);
-            person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
             person.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f); // ???
             ip.addPerson(person);
         }
@@ -1089,17 +1086,17 @@ public class SotfPeople {
         person.setId(REVERIE);
         person.setFaction(SotfIDs.DREAMING_GESTALT);
         person.setGender(Gender.FEMALE);
-        person.setRankId(Ranks.UNKNOWN);
+        person.setRankId(Ranks.ELDER); // "Speaker"
         person.setPostId(SotfIDs.POST_GESTALT);
         person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "reverie"));
-        person.getName().setFirst("Reverie, the Daydream");
+        person.getName().setFirst("Reverie, the Voice");
         person.getName().setLast("");
         person.setImportance(PersonImportance.VERY_HIGH);
 
         // Officer
         person.setPersonality(Personalities.AGGRESSIVE);
         //person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true);
-        person.getStats().setLevel(6);
+        person.getStats().setLevel(7);
         // Unique skills, covering most of the essentials of vanilla combat skills
         person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
         person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
@@ -1107,8 +1104,40 @@ public class SotfPeople {
         person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
         person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
         person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
 
+        person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
         person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_reverie");
+        return person;
+    }
+
+    public static PersonAPI genMeiryr() {
+        PersonAPI person = Global.getFactory().createPerson();
+        person.setId(MEIRYR);
+        person.setFaction(SotfIDs.DREAMING_GESTALT);
+        person.setGender(Gender.MALE);
+        person.setRankId(Ranks.SPACE_CAPTAIN); // "Adaptive Countermeasure"
+        person.setPostId(SotfIDs.POST_GESTALT);
+        person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "reverie"));
+        person.getName().setFirst("Meiryr, the Ire");
+        person.getName().setLast("");
+        person.setImportance(PersonImportance.HIGH);
+
+        // Officer
+        person.setPersonality(Personalities.AGGRESSIVE);
+        //person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true);
+        person.getStats().setLevel(7);
+        // Unique skills, covering most of the essentials of vanilla combat skills
+        person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
+
+        person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
+        person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_meiryr");
         return person;
     }
 
@@ -1116,10 +1145,10 @@ public class SotfPeople {
         PersonAPI person = Global.getFactory().createPerson();
         person.setFaction(SotfIDs.DREAMING_GESTALT);
         person.setGender(Gender.MALE);
-        person.setRankId(Ranks.UNKNOWN);
+        person.setRankId(Ranks.SPACE_CAPTAIN); // "Adaptive Countermeasure"
         person.setPostId(SotfIDs.POST_GESTALT);
         person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "sirius"));
-        person.getName().setFirst("Sirius, the Brightstar");
+        person.getName().setFirst("Sirius, the Bright Star");
         person.getName().setLast("");
         person.setImportance(PersonImportance.MEDIUM);
 
@@ -1127,24 +1156,26 @@ public class SotfPeople {
         if (!mimic) {
             person.setId(SIRIUS);
             person.setPersonality(Personalities.AGGRESSIVE);
-            person.getStats().setLevel(6);
+            person.getStats().setLevel(7);
             person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
             person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
         } else {
             person.setId(SIRIUS_MIMIC);
             person.setPersonality(Personalities.RECKLESS);
-            person.getStats().setLevel(6);
+            person.getStats().setLevel(7);
             person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 1);
             person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 1);
             person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1);
+            person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 1);
             person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true);
         }
 

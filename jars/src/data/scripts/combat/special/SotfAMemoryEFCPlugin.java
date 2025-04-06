@@ -241,6 +241,8 @@ public class SotfAMemoryEFCPlugin extends BaseEveryFrameCombatPlugin {
                         "\"Good work, Captain. Let's get out of here.\"",
                         40f, sc, sierra, 1f, 0f);
             }
+            // just in case, this will force the post-battle dialogue to be "win"
+            Global.getSector().getMemoryWithoutUpdate().set("$sotf_AMemoryCombatWon", true);
             last = true;
         }
         // end combat if the player loses their Concord ship

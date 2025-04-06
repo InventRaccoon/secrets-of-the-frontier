@@ -21,6 +21,8 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 
+	public int pointsAtSpawn = 0;
+
 	public SotfPersonalFleetSeraph() {
 		super(SotfPeople.SERAPH);
 		setMinRespawnDelayDays(20f);
@@ -64,6 +66,7 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 		m.triggerFleetSetPatrolLeashRange(1000f);
 		
 		CampaignFleetAPI fleet = m.createFleet();
+		pointsAtSpawn = fleet.getFleetPoints();
 		int shipIndex = 3;
 		if (Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.SERAPH_FLEET + "_timesKilled")) {
 			shipIndex += Global.getSector().getMemoryWithoutUpdate().getInt(SotfIDs.SERAPH_FLEET + "_timesKilled");
@@ -86,9 +89,9 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 	@Override
 	public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {
 		if (fleet == null) return;
-		if (fleet.getFlagship() != null && fleet.getFlagship().getCaptain() == getPerson()) return;
-
-		Misc.giveStandardReturnToSourceAssignments(fleet);
+		if (fleet.getFleetPoints() < (pointsAtSpawn * 0.5f)) {
+			Misc.giveStandardReturnToSourceAssignments(fleet);
+		}
 	}
 
 	@Override

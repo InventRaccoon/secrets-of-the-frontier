@@ -11,19 +11,20 @@ import com.fs.starfarer.api.campaign.listeners.ColonyPlayerHostileActListener;
 import com.fs.starfarer.api.campaign.listeners.FleetInflationListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.fleet.FleetMemberAPI;
-import com.fs.starfarer.api.impl.campaign.missions.cb.CustomBountyCreator;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.MarketCMD;
-import com.fs.starfarer.campaign.fleet.CampaignFleet;
-import com.fs.starfarer.campaign.fleet.FleetMember;
+import com.fs.starfarer.api.util.DelayedActionScript;
+import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
+import data.scripts.campaign.plugins.wendigo.SotfWendigoEncounterManager;
 import data.scripts.dialog.SotfGenericDialogScript;
+import data.scripts.dialog.SotfWSEidolonOpen;
+import data.scripts.dialog.haunted.SotfHauntedDream1;
+import data.scripts.dialog.haunted.SotfHauntedDream2;
+import data.scripts.dialog.haunted.SotfHauntedDream3;
 import data.scripts.utils.SotfMisc;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Tracks guilt gain from atrocities and handles the dreams during The Haunted
@@ -59,18 +60,52 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
 
         if (!sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_INTRO)) {
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_INTRO, true);
-            Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedIntro"));
+            //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedIntro"));
+            Global.getSector().addScript(new DelayedActionScript(0.5f) {
+                @Override
+                public void doAction() {
+                    if (SotfMisc.getHauntedFastDreams()) {
+                        Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedIntro");
+                    } else {
+                        Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream1(), null);
+                    }
+                }
+            });
         } else if (player.getStats().getLevel() >= 5 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_MILE1)) {
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_MILE1, true);
-            Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedMilestone1"));
+            //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedMilestone1"));
+            Global.getSector().addScript(new DelayedActionScript(0.5f) {
+                @Override
+                public void doAction() {
+                    if (SotfMisc.getHauntedFastDreams()) {
+                        Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedMilestone1");
+                    } else {
+                        Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream2(), null);
+                    }
+                }
+            });
         } else if (player.getStats().getLevel() >= 10 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_PENULT)) {
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_PENULT, true);
-            Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
+            //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
+            Global.getSector().addScript(new DelayedActionScript(0.5f) {
+                @Override
+                public void doAction() {
+                    if (SotfMisc.getHauntedFastDreams()) {
+                        Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedPenultimate");
+                    } else {
+                        Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream3(), null);
+                    }
+                }
+            });
+        } else if (player.getStats().getLevel() >= 15 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_ULT)) {
+            //sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
+            //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedUltimate"));
         }
-//        } else if (player.getStats().getLevel() >= 15 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_ULT)) {
-//            sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
-//            Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedUltimate"));
-//        }
+
+        if (!sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_WARNING)) {
+            sector_mem.set(SotfIDs.MEM_DID_HAUNTED_WARNING, true);
+            SotfWendigoEncounterManager.sendWendigoHauntedWarning();
+        }
     }
 
     public boolean isDone() {
@@ -111,6 +146,11 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             guiltToAdd++;
         }
         SotfMisc.addGuilt(guiltToAdd);
+        MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
+        if (sector_mem.contains(SotfIDs.MEM_HAUNTED_START) && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_HUNT)) {
+            sector_mem.set(SotfIDs.MEM_DID_HAUNTED_HUNT, true);
+            SotfWendigoEncounterManager.sendWendigoHauntedHunt();
+        }
     }
 
 }

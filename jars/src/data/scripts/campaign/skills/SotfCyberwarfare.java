@@ -312,10 +312,10 @@ public class SotfCyberwarfare {
 
         public void executeHack(ShipAPI target) {
             WeightedRandomPicker<String> hackPicker = new WeightedRandomPicker<String>();
-            if (target.getUsableWeapons().size() > 0) {
+            if (!target.getUsableWeapons().isEmpty()) {
                 hackPicker.add("weapons");
             }
-            if (target.getEngineController().getShipEngines().size() > 0 && !target.getEngineController().isFlamedOut()) {
+            if (!target.getEngineController().getShipEngines().isEmpty() && !target.getEngineController().isFlamedOut()) {
                 float enginesWeight = 0.8f;
                 // prioritise engine hacks against fleeing ships
                 if (target.getShipAI() != null) {

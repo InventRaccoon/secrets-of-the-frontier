@@ -169,8 +169,9 @@ public class SotfIDs {
 	public static String SKILL_FIELDSRESONANCE = "sotf_fieldsresonance";
 	public static String SKILL_GUNNERYUPLINK = "sotf_gunneryuplink";
 	public static String SKILL_MISSILEREPLICATION = "sotf_missilereplication";
-	public static String SKILL_POLARIZEDNANOREPAIR = "sotf_polarizednanorepair";
 	public static String SKILL_ORDNANCEMASTERY = "sotf_ordnancemastery";
+	public static String SKILL_POLARIZEDNANOREPAIR = "sotf_polarizednanorepair";
+	public static String SKILL_SPATIALEXPERTISE = "sotf_spatialexpertise";
 
 	// FEL: OFFENSIVE
 	public static String SKILL_HATREDBEYONDDEATH = "sotf_hatredbeyonddeath";
@@ -196,6 +197,8 @@ public class SotfIDs {
 	// guilt
 	public static String GUILT_KEY = "$sotf_guilt";
 	public static String MEM_HAUNTED_START = "$sotf_hauntedStart";
+	public static String MEM_DID_HAUNTED_WARNING = "$sotf_didHauntedWendigoWarning";
+	public static String MEM_DID_HAUNTED_HUNT = "$sotf_didHauntedWendigoHunt";
 	public static String MEM_DID_HAUNTED_INTRO = "$sotf_didHauntedIntro";
 	public static String MEM_DID_HAUNTED_MILE1 = "$sotf_didHauntedMile1";
 	public static String MEM_DID_HAUNTED_PENULT = "$sotf_didHauntedPenult";

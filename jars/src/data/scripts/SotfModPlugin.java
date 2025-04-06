@@ -5,6 +5,7 @@ import com.fs.starfarer.api.BaseModPlugin;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.PluginPick;
 import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.listeners.ListenerManagerAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.ShipAIConfig;
 import com.fs.starfarer.api.combat.ShipAIPlugin;
@@ -17,17 +18,20 @@ import com.fs.starfarer.api.impl.campaign.intel.events.EventFactor;
 import com.fs.starfarer.api.impl.campaign.intel.events.HostileActivityEventIntel;
 import com.fs.starfarer.api.impl.campaign.missions.cb.MilitaryCustomBounty;
 import com.fs.starfarer.api.impl.campaign.rulecmd.Nex_TransferMarket;
+import com.fs.starfarer.api.impl.codex.CodexDataV2;
+import com.fs.starfarer.api.impl.codex.CodexUnlocker;
 import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.loading.FighterWingSpecAPI;
 import data.scripts.campaign.SotfHostileActivityFactorManager;
 import data.scripts.campaign.SotfPlayerColonyScriptManager;
+import data.scripts.campaign.codex.SotfCodexUnlocker;
 import data.scripts.campaign.customstart.SotfSkillsChangeAutoshipsEffect;
 import data.scripts.campaign.ghosts.SotfFelWhisperGhostCreator;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.campaign.intel.misc.SotfSierraConvIntel;
 import data.scripts.campaign.intel.misc.SotfDustkeeperHatred;
-//import data.scripts.campaign.intel.misc.SotfSiriusIntel;
+import data.scripts.campaign.intel.misc.SotfSiriusIntel;
 import data.scripts.campaign.intel.quests.SotfWaywardStarIntel;
 import data.scripts.campaign.missions.cb.SotfCBDustkeeper;
 import data.scripts.campaign.missions.cb.SotfCBDustkeeperBurnout;
@@ -40,6 +44,7 @@ import data.scripts.campaign.missions.cb.SotfCBProjectSiren;
 import data.scripts.campaign.plugins.SotfOfficerJankHandler;
 import data.scripts.campaign.plugins.fel.SotfGuiltTracker;
 import data.scripts.campaign.plugins.wendigo.SotfWendigoEncounterManager;
+import data.scripts.campaign.skills.SotfCyberwarfare;
 import data.scripts.combat.convo.SotfOfficerConvoPlugin.SotfOfficerConvoData;
 import data.scripts.combat.obj.SotfReinforcerEffect.SotfFactionRemoteAIData;
 import data.scripts.world.SotfGen;
@@ -263,6 +268,7 @@ public class SotfModPlugin extends BaseModPlugin {
     }
     protected void addScriptsIfNeeded() {
         SectorAPI sector = Global.getSector();
+        ListenerManagerAPI listeners = sector.getListenerManager();
 
         sector.registerPlugin(new SotfCampaignPluginImpl());
 
@@ -281,6 +287,11 @@ public class SotfModPlugin extends BaseModPlugin {
         }
 
         if (WATCHER) {
+            if (!listeners.hasListenerOfClass(SotfCodexUnlocker.class)) {
+                listeners.addListener(new SotfCodexUnlocker(), true);
+            }
+
+            // sierra conversation intel
             if (!sector.getIntelManager().hasIntelOfClass(SotfSierraConvIntel.class)) {
                 Global.getSector().getIntelManager().addIntel(new SotfSierraConvIntel(), false);
             } else if (!Global.getSector().getListenerManager().hasListenerOfClass(SotfSierraConvIntel.class)) {
@@ -337,13 +348,13 @@ public class SotfModPlugin extends BaseModPlugin {
                 sector.addScript(new SotfWendigoEncounterManager());
             }
 
-            //if (!sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class) && sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
-            //    Global.getSector().getIntelManager().addIntel(new SotfSiriusIntel(), false);
-            //}
+            if (!sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class) && sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
+                Global.getSector().getIntelManager().addIntel(new SotfSiriusIntel(), false);
+            }
         }
 
         if (sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_BEGAN_WITH_NIGHTINGALE)) {
-            sector.getListenerManager().addListener(new SotfSkillsChangeAutoshipsEffect(), true);
+            listeners.addListener(new SotfSkillsChangeAutoshipsEffect(), true);
         }
     }
 
@@ -493,6 +504,78 @@ public class SotfModPlugin extends BaseModPlugin {
      }
 
     @Override
+    public void onAboutToLinkCodexEntries() {
+        // Daydream Synthesizer w daydream skills
+        CodexDataV2.makeRelated(
+                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_SYNTHESIZER),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_FIELDSRESONANCE),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_GUNNERYUPLINK),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_MISSILEREPLICATION),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_ORDNANCEMASTERY),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_POLARIZEDNANOREPAIR),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_SPATIALEXPERTISE)
+        );
+        // CWAR
+        CodexDataV2.makeRelated(
+                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_CWARSUITE),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getHullmodEntryId(HullMods.ECM),
+                CodexDataV2.getSkillEntryId(Skills.ELECTRONIC_WARFARE),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getHullmodEntryId(HullMods.ECCM),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        for (String dmod : SotfCyberwarfare.VULNERABLE_DMODS) {
+            CodexDataV2.makeRelated(
+                    CodexDataV2.getHullmodEntryId(dmod),
+                    CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+            );
+        }
+        // Proxy ships with original versions
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_picket_prox"),
+                CodexDataV2.getSkillEntryId("picket")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_warden_prox"),
+                CodexDataV2.getSkillEntryId("warden")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_sentry_prox"),
+                CodexDataV2.getSkillEntryId("sentry")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_defender_prox"),
+                CodexDataV2.getSkillEntryId("defender")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_bastillon_prox"),
+                CodexDataV2.getSkillEntryId("bastillon")
+        );CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_berserker_prox"),
+                CodexDataV2.getSkillEntryId("berserker")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_keeper_prox"),
+                CodexDataV2.getSkillEntryId("sotf_keeper")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_rampart_prox"),
+                CodexDataV2.getSkillEntryId("rampart")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipEntryId("sotf_cavalier_prox"),
+                CodexDataV2.getSkillEntryId("sotf_cavalier")
+        );
+
+    }
+
+    @Override
     public void afterGameSave()
     {
         if (Global.getSector().getListenerManager().hasListenerOfClass(SotfGuiltTracker.class)) {
@@ -526,14 +609,11 @@ public class SotfModPlugin extends BaseModPlugin {
 
         String hullId = ship.getHullSpec().getHullId();
 
-        // Reminder: vanilla's automated ship AI override is CORE_SPECIFIC i.e MOD_SPECIFIC required to override it
-        // TODO: probably change this once Alex fixes vanilla to use CORE_SET
-
         // Dustkeeper escort auxiliaries have hacked programming, so they're more passive
         if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_AUX_ESCORT)) {
             ShipAIConfig auxEscortConfig = new ShipAIConfig();
             auxEscortConfig.personalityOverride = Personalities.STEADY;
-            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, auxEscortConfig), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, auxEscortConfig), CampaignPlugin.PickPriority.MOD_SET);
         }
         if (ship.getCaptain() == null) return null;
         if (ship.getCaptain().isDefault()) return null;
@@ -547,7 +627,7 @@ public class SotfModPlugin extends BaseModPlugin {
         // Also add a memory flag that can be assigned to any officer to prevent their automated ships from being fearless
         if (ship.getCaptain().getFaction().getId().equals(SotfIDs.DUSTKEEPERS) || ship.getCaptain().getFaction().getId().equals(SotfIDs.DUSTKEEPERS_BURNOUTS)
                 || ship.getCaptain().getMemoryWithoutUpdate().contains(SotfIDs.OFFICER_NOT_FEARLESS)) {
-            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, new ShipAIConfig()), CampaignPlugin.PickPriority.MOD_SPECIFIC);
+            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, new ShipAIConfig()), CampaignPlugin.PickPriority.MOD_SET);
         }
 
         return null;
