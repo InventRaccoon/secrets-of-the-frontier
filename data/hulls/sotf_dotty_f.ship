@@ -1,0 +1,106 @@
+{
+  "hullName": "Dotty",
+  "hullId": "sotf_dotty_f",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/dotty/sotf_dotty_core.png",
+  "style": "HIGH_TECH",
+  "height": 36,
+  "width": 38,
+  "center": [19, 20],
+  "collisionRadius": 37,
+  "shieldCenter": [-1, -0],
+  "shieldRadius": 34.5,
+  "viewOffset": 0,
+  "builtInWeapons": {
+    "LWING": "sotf_dottylwing",
+    "PLATING": "sotf_dottyplating",
+    "RWING": "sotf_dottyrwing"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [3, -0]
+    },
+    {
+      "id": "LWING",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 69.5,
+      "locations": [8.5, 7]
+    },
+    {
+      "id": "RWING",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": -69.5,
+      "locations": [8.5, -7]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": 119.5,
+      "locations": [-5, 14]
+    },
+    {
+      "id": "WS 004",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": -119.5,
+      "locations": [-5, -14]
+    },
+    {
+      "id": "PLATING",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 5,
+      "angle": 0,
+      "locations": [10, 0],
+      "renderOrderMod": 1
+    },
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 25,
+      "angle": 0,
+      "locations": [4, -0],
+      "renderOrderMod": 3
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-11, -0],
+      "length": 30,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 64,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    16.5, 0,
+    9, 26,
+    0, 14.5,
+    -18.5, 11,
+    -11, -0.5,
+    -18.5, -11,
+    0, -14.5,
+    9, -26
+  ]
+}

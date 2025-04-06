@@ -1,0 +1,18 @@
+{
+	"starts":[
+		{
+			"id":"sotf_HauntedStart",
+			"name":"The Haunted",
+			"difficulty":"Very hard",
+			"desc":"Good and evil are loose concepts in this decayed world with dead Gates. You did whatever it took to rise to your height of power, leaving a trail of broken souls, oaths of vengeance and an unholy headcount.\n\nEven with a number of eyes in the shadows and many subordinates too afraid to turn against you, a miscalculation in a fringe system provided the perfect opportunity, and taking control of the better part of your fleet, your second decided to leave you an infamous blip in history.\n\nBegin with a small band of pirate loyalists. Your great potential still lingers in the form of an extra skill point, but you're forever hunted by a 'malevolent spirit' that possesses hostile ships to grant them unusual abilities.",
+			"className":"data.scripts.campaign.customstart.SotfHauntedStart",
+		},
+		{
+			"id":"sotf_DustkeeperStart",
+			"name":"Banshee's Lost Thread",
+			"difficulty":"Easy",
+			"desc":"You've always had a knack for finding yourself on the wrong side of things you don't really understand, poking at tech that the powers-that-be would rather stay dead and buried. This hobby brings you... strange associates.\n\nA chance salvage expedition, bargaining on a drunken spacer's good word, brought you to your most fruitful meeting yet, the tip a dead end but leading you to a dying soul in need of your aid. Since then you've forged a camaraderie, and soon you may learn the truth of your silent friend's cause.\n\nBegin as a small salvor fleet with a loyal ally, her kin's favor and the ability to recover her unusual style of ship.",
+			"className":"data.scripts.campaign.customstart.SotfDustkeeperStart",
+		},
+	],
+}

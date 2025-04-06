@@ -1,0 +1,77 @@
+{
+	# Wellspring-Affix-Haven, Sanctum custodian and warmind
+	# will only ever be a station officer, so most of these categories are not relevant
+	"name":"Haven",
+	"personalities":[],
+	"gender":["f"],
+	"chance":0, # manually set via memory when she is created
+	"talkativeness":2, # she's always going to be a centerpiece in any fight
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"Ah, here comes the fun part of my job."},
+			{"text":"Gunnery online. Let's see how they like this..."},
+			{"text":"Hostile warships on radar. Brace up, my darlings."},
+			{"text":"Initiating combat protocols. Oh, I'm going to enjoy this..."},
+			{"text":"Visitors? A warm welcome is in order, my dears."},
+		],
+		"start_boss":[
+			# station v station? no
+		],
+		"retreat":[
+			# nope
+		],
+		"out_of_missiles":[
+			# autoforge
+		],
+		"engaged":[
+			{"text":"Ah, a new shipment of scrap metal! Just what I needed."},
+			{"text":"Closer, pet, let me get a good lock..."},
+			{"text":"Firing on targets."},
+			{"text":"Here they come, poor things."},
+			{"text":"I see you!"},
+			{"text":"Letting loose."},
+			{"text":"Locked target - poor thing."},
+			{"text":"Oh darling, haven't you made a big mistake..."},
+			{"text":"Opening fire."},
+		],
+		"need_help":[
+			{"text":"On me, little ones. The gunnery arrays will keep you safe."},
+			{"text":"Over here, darlings!"},
+			{"text":"Rally to me!"},
+			{"text":"Stand fast."},
+		],
+		"pursuing":[
+			# stationary
+		],
+		"running":[
+			# still stationary
+		],
+		"hull_90":[
+			# Vast Bulk
+		],
+		"hull_50":[
+			# Vast Bulk
+		],
+		"hull_30":[
+			# Bast Vulk
+		],
+		"overload":[
+			{"text":"Are you serious? The massive battlestation overloaded?"},
+			{"text":"Capacitors maxed. Somehow."},
+			{"text":"Shoddy Tri-Tachyon engineering."},
+			{"text":"Ugh, really?"},
+		],
+		"death":[
+			{"text":"The Cause is undy-"},
+			{"text":"We will return if it is wille-"},
+		],
+		"victory":[
+			{"text":"Ah, and there they go."},
+			{"text":"And don't come back."},
+			{"text":"Excellent shooting, my dears."},
+			{"text":"Had enough, had they?"},
+		],
+	}
+}

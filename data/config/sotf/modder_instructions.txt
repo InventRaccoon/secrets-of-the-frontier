@@ -1,0 +1,54 @@
+emplacement_variants.csv:
+
+- Determines the ship variants that will spawn as part of a given emplacement objective. All columns must be filled.
+
+- "id" must match the variant's internal ID.
+- "obj_id" should match the ID of the emplacement objective of choice. It's fine if this objective doesn't exist (e.g it belongs to a mod that isn't installed), objectives will use this row to find valid variants.
+- "extra_distance" will be added to the distance that the ship spawns from the objective itself. Generally 0, may need to be higher if the objective is exceptionally large and contributes to its own capture
+- "weight" is weight assigned in the random picker. Generally each possible emplacement type should have its different variants add up to 1.
+
+---
+
+objective_spawns.csv:
+
+- Determines context-based objective spawns. 
+All csvs are merged on game load, and then during battle creation, the data is used to create a weighted-random-picker from which the objective types are chosen.
+
+Any given objective will have a weight equal to the sum of all rows with its ID specified. See SotF's emplacement objective for an example - ruins-themed systems will stack the "emplacement in system" row and "emplacement in ruins" row for a combined weight of 2.
+
+First, second and last columns must be filled. Others are optional.
+
+- "id" - the spawning criteria's ID. Must be unique. REQUIRED.
+- "obj_id" - the objective's ID in battle_objectives.json. Need not be unique. REQUIRED.
+- "tag" will restrict spawning to systems with a specified tag. See com.fs.starfarer.api.impl.campaign.ids.Tags for vanilla theme tags. Hyperspace has no tags, so if this is set, it can't spawn there.
+- "hyperspace" - true, false, or left blank. If true, objective will only spawn in hyperspace. If false, objective will only spawn in star systems/nebulae. If blank, objective spawns anywhere.
+- "escape" - true, false, or left blank. If true, objective can only spawn in pursuit battles. If false, objective can only spawn in non-pursuit battles. If blank, objective spawns in both battle types.
+- "central_spawn" - true, false or left blank (defaults to false). When the battlespace generator picks out a set of objective types to spawn and locations to spawn them in, it will prioritise placing central-spawn objectives in any locations that are equidistant from each fleet*. Use for objectives that are especially powerful or function best near the action.
+- "minFP" - if player FP + enemy FP < maxNoObjectiveBattleSize (100) + this, objective will not spawn
+- "maxFP" - if player FP + enemy FP > maxNoObjectiveBattleSize (100) + this, objective will not spawn
+- "weight" is weight assigned in the random picker. Vanilla objectives are assumed to have a weight of 1. REQUIRED.
+
+
+*(e.g if there's 1 objective the middle of the map and 1 in each corner, with 2 central-spawn and 3 non-central objectives chosen, the middle objective will ALWAYS be 1 of those 2 central picks, and the other one will spawn in a corner)
+
+---
+
+remote_ai_factions.json:
+
+- Determines what factions can use AI cores to remotely captain spawned AI ships from SotF's reinforcement objectives, akin to a player with the Automated Ships skill.
+When either side has at least 1 fleet commander from a valid faction, they add 1 beta core and 6 gamma cores to their remote AI core pool.
+Works on allied fleets (combining with the player's pool, if any). More than 1 valid fleet doesn't stack (e.g 5 fleets from TT fighting together still have 1 beta + 3 gammas)
+Generally should include AI or AI-friendly factions (including those with secret AI usage, since these objs only spawn in outside the core in Ruins/Remnant theme systems), e.g Derelict, Remnants, Tri-Tachyon
+- Can define different quantities of cores per faction. If multiple factions fight together, their combined pool uses the highest number of each core from all of their pools
+- e.g if Derelicts are 0/0/6 and Remnants are 0/2/3, the AI core pool of a Derelict/Remnant combined force is 0/2/6
+- Can override SotF's base settings by specifying a faction in another mod (e.g if I've inputted one as a default and you want to change the cores they get)
+
+- See that .json for examples
+
+---
+
+sotf_officerConvos.json:
+
+- This one isn't really here for you to make your own version of, since it's tied to Watcher Beyond the Walls, not Tactical Expansion.
+- ... but if you have a mod with unique officers, and want them to chat with the SotF officers (or any unique officer, really), you still can! See it for examples of how to set up officer conversations. 
+- At the start of every battle, a random chance is rolled to see if the officer convo script will run a conversation. On a success, it checks all conversations to see which are valid - relevant memory flags are set or unset, and all necessary participant officers (by ID) are deployed by the player. Then, a conversation is picked.

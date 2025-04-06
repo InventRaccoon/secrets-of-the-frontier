@@ -1,0 +1,14 @@
+id,name,iconPath,npcSpawnWeight,plugin
+,,,,
+#Witchcraft,,,,
+sotf_dance_between_realms,Dance Between Realms,graphics/secondInCommand/witchcraft/dance_between_realms.png,1,data.scripts.campaign.secondInCommand.DanceBetweenRealms
+sotf_voidwalking,Voidwalking,graphics/secondInCommand/witchcraft/voidwalking.png,1,data.scripts.campaign.secondInCommand.Voidwalking
+sotf_accelerando,Accelerando,graphics/secondInCommand/witchcraft/accelerando.png,1,data.scripts.campaign.secondInCommand.Accelerando
+sotf_the_withering_hex,The Withering Hex,graphics/secondInCommand/witchcraft/the_withering_hex.png,1,data.scripts.campaign.secondInCommand.TheWitheringHex
+sotf_seal_of_abjuration,Seal of Abjuration,graphics/secondInCommand/witchcraft/seal_of_abjuration.png,1,data.scripts.campaign.secondInCommand.SealOfAbjuration
+sotf_dance_with_me,Dance With Me!,graphics/secondInCommand/witchcraft/dance_with_me.png,1,data.scripts.campaign.secondInCommand.DanceWithMe
+sotf_tend_to_our_garden,Tend To Our Garden,graphics/secondInCommand/witchcraft/tend_to_our_garden.png,1,data.scripts.campaign.secondInCommand.TendToOurGarden
+sotf_agony_encore,Agony's Encore,graphics/secondInCommand/witchcraft/agony_encore.png,1,data.scripts.campaign.secondInCommand.AgonyEncore
+sotf_spirit_ward,Spirit Ward,graphics/secondInCommand/witchcraft/spirit_ward.png,1,data.scripts.campaign.secondInCommand.SpiritWard
+sotf_one_witch_waltz,One-Witch Waltz,graphics/secondInCommand/witchcraft/one_witch_waltz.png,1,data.scripts.campaign.secondInCommand.OneWitchWaltz
+,,,,

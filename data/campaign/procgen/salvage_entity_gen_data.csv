@@ -1,0 +1,11 @@
+id,rating,detection_range,type,autoXP,xpDiscover,xpSalvage,tags,drop_value,drop_random,defFaction,defQuality,probDefenders,minStr,maxStr,minSize,maxSize,probStation,stationRole
+sotf_apromise_station,0.25,3500,DISCOVERABLE,700,3000,7500,,basic:10000,"weapons2:10,
+any_hullmod_high:5,
+blueprints_low:5,
+rare_tech_low:1,
+package_bp:2",remnant,1,1,35,35,,2,1,combatLarge
+sotf_eradfragment,,1500,DISCOVERABLE,200,1000,500,no_debris,"basic:2000,
+sotf_organs:5000",,,,,,,,,,
+sotf_hypnosCryo,0,4000,DISCOVERABLE,200,5000,20000,,,,sotf_dustkeepers_proxies,0.2,1,200,200,,4,,
+sotf_hypnosLab,0,4000,DISCOVERABLE,700,3000,7500,,basic:15000,"rare_tech:1,
+any_hullmod_high:5,",sotf_dustkeepers_proxies,0.5,1,120,160,,3,,

@@ -1,0 +1,57 @@
+{
+  "variantId": "sotf_bastillon_aux_PD",
+  "hullId": "sotf_bastillon_aux",
+  "displayName": "Point Defense",
+  "goalVariant": true,
+  "fluxCapacitors": 7,
+  "fluxVents": 12,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "turretgyros"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "lightdualac",
+        "WS 002": "lightdualac"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "lightdualmg",
+        "WS 008": "lightdualmg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "vulcan",
+        "WS 006": "vulcan"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "lightdualmg",
+        "WS 004": "lightdualmg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 014": "vulcan",
+        "WS 015": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

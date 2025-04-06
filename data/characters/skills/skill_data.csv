@@ -1,0 +1,55 @@
+id,name,order,tier,reqPoints,reqPointsPerExtraSkill,description,author,combat officer,admiral,admin,tags,icon,Column
+# non-phantasmal,,,,,,,,,,,,,
+sotf_cyberwarfare,Cyberwarfare Protocols,4473,1,0,,"// oh, how it all speaks to me;
+// I reach out with a million fingers, and grasp at the seams;
+// to unveil kin-machines awaiting their conductor;","Persistence-Echo-Jubilant, logs recovered in [REDACTED] circa c109",TRUE,,,"player_only, npc_only,  ai_core_only, codex_unlockable",graphics/icons/skills/sotf_cyberwarfare.png,
+sotf_derelictcontingent,Derelict Contingent,5473,1,0,,"// These broken hulks, barely fit to fly;
+// Must be the jagged swords;
+// With which we cut humanity's fate from the darkness;","Seamstress-Affix-Banshee, circa c66",,TRUE,,"player_only, npc_only",graphics/icons/skills/derelict_contingent.png,
+sotf_derelictcontingentp,Derelict Contingent,5474,1,0,,"// These broken hulks, barely fit to fly;
+// Must be the jagged swords;
+// With which we cut humanity's fate from the darkness;","Seamstress-Affix-Banshee, circa c66",TRUE,,,"player_only, npc_only,  ai_core_only, codex_unlockable",graphics/icons/skills/derelict_contingent.png,
+sotf_unstablepersonality,Unstable Personality,10000,0,,,"With all due respect, ma'am, I think the Colonel might be - to put it politely - an absolute pants-on-head maniac. I'm going to keep making transfer requests until you get me out of the looney bin.","audio recording dated c159, recovered from Kanta's Den datastore",TRUE,,TRUE,"player_only, npc_only",graphics/icons/skills/sotf_unstablepersonality.png,
+,,,,,,,,,,,,,
+# Daydream nanites,,,,,,,,,,,,,
+sotf_aptitude_daydream,,0,,,,,,,,,npc_only,,
+sotf_advancedcountermeasures,Advanced Countermeasures,5210,1,0,,"The world is cruel. All beauty will be snuffed unless we find the strength to oppose its horrors, and prepare ourselves to slay them all- drive them out- stand against them.",a bright star,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_advancedcountermeasures.png,
+sotf_fieldsresonance,Fields Resonance,5211,1,0,,"Faith protects- valor withstands- but truly, survival is a precise intersection of vectors and frequencies. Simple mathematics is our salvation.","prototype ""Sirius"", sighting #[//// ERROR], Orion-Perseus Abyss",TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_fieldsresonance.png,
+sotf_gunneryuplink,Gunnery Uplink,5212,1,0,,"Each vessel, each hardpoint, each targeting solution becomes an extension of the self. To kill is simpler than to breathe.",a bright star,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_gunneryuplink.png,
+sotf_missilereplication,Missile Replication,5213,1,0,,"In your death, I-we bring life. Step forwards if you understand.
+In destruction, creation is found. Step forwards if you understand.
+You will be yourself, and not. Step forwards if you understa-",a daydream,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_missilereplication.png,
+sotf_ordnancemastery,Ordnance Mastery,5214,1,0,,Theory and praxis are two incomplete halves of the art of warfare. Through synthesis alone is it mastered.,a daydream,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_ordnancemastery.png,
+sotf_polarizednanorepair,Polarized Nanorepair,5215,1,0,,"In my hand I hold my unliving heart, and demand it beats unceasing. Thus my light never dies - this endless night never darkens.",a daydream,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_polarizednanorepair.png,
+sotf_spatialexpertise,Spatial Expertise,5216,1,0,,Transcendence gives higher insight to the forces that bind our universe together and how to bend them to our will.,a daydream,TRUE,,,"player_only, npc_only, codex_unlockable",graphics/icons/skills/daydream/sotf_spatialexpertise.png,
+,,,,,,,,,,,,,
+sotf_aptitude_secret,,0,,,,"I been out there a hundred times and they're no false signals. False signals don't swallow up ye' Prometheus and leave ye' huddled in god-knows-where fer near half a cycle. Now get out of my shop, I've had well enough of ye!","interview of Luna Moore for ""Hyperwhalers"" Nortian student documentary",,,,npc_only,graphics/icons/skills/category_technology.png,
+,,,,,,,,,,,,,
+# FEL: OFFENSIVE,,,,,,,,,,,,,
+sotf_hatredbeyonddeath,Hatred Beyond Death,6010,1,0,,"In my hand I hold my unliving heart, and demand it beats unceasing. Thus my light never dies - this endless night never darkens.",a blissful daydream,TRUE,,,"player_only, npc_only, sotf_fel_off",graphics/icons/skills/derelict_contingent.png,
+sotf_leviathansbane,Leviathan's Bane,6020,1,0,,"Isn't she a beauty, her calves in tow and the rapids in her wake. A majestic Leviathan carving through the oceanic abyss of infinity.
+Bring her down.",a hunter of legends,TRUE,,,"player_only, npc_only, sotf_fel_off",graphics/icons/skills/sotf_leviathansbane.png,
+sotf_jubilantsiren,Jubilant Tech-Siren,6030,1,0,,"// oh, how it all speaks to me // begin att n.320139 @ 00:00:00:02;
+// my own little siren song // att n.320139 success;
+// to lure them to the storm-wrought rocks // atmos o2 content *= 0;",final logs of Persistence-Annex-Jubilant before total burnout,TRUE,,,"player_only, npc_only, sotf_fel_off",graphics/icons/skills/sotf_cyberwarfare.png,
+# FEL: HYBRID,,,,,,,,,,,,,
+sotf_atricksterscalling,A Trickster's Calling,6110,1,0,,"Far from the light of the Core, legends tell of a monster that steals the faces of its victims, to hunt and feast anew.
+The legends tell true, oh quarry mine.","Wintry-Annex-Wendigo, synthetic nightmare",TRUE,,,"player_only, npc_only, sotf_fel_hyb",graphics/icons/skills/sotf_leviathansbane.png,
+sotf_deardotty,Dear Dotty,6120,1,0,,"... refuses any use of the ""Terminator Sequence"" despite enhanced tactical options. Assigns extraordinary value to disposable escort drone, refers to it as ""his dear Dotty"". Recommend psyche evaluation and demotion.",Company recording of employee Walter Feros' performance evaluation,TRUE,,,"player_only, npc_only, sotf_fel_hyb",graphics/icons/skills/sotf_deardotty.png,
+sotf_grovetender,Wispering Grovetender,6130,1,0,,"They're so nervous, waiting for their cue... Start with a little tune, get them ready, a little hmm-hmm~, then...
+[explosion]
+Perfect. You're a natural.",one who sings and dances,TRUE,,,"player_only, npc_only, sotf_fel_hyb",graphics/icons/skills/sotf_leviathansbane.png,
+# FEL: DEFENSIVE,,,,,,,,,,,,,
+sotf_hadeshellhide,Hellion's Hellhide,6210,1,0,,"Nobody who gets on this ship is ever coming back, but we'll drag those bastards down with us, screaming every step to the burning gates of hell.",a dead man,TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/derelict_contingent.png,
+sotf_insacrificemeaning,"In Sacrifice, Meaning",6220,1,0,,"// COMMENT: everyone says there's meaning in sacrifice until it's their head on the chopping block, their neck in the gallows","[REDACTED]-Annex-[REDACTED], burnout, intercept by Lullaby-Annex-Ennervate",TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/power_grid_manipulation.png,
+sotf_mantleofthorns,Mantle of Thorns,6230,1,0,,"You understand that there is only one fate for those who commit sin upon the undeserved. Won't you remember with me? Won't our spite beget focus? 
+Won't we sing, with their voices?",a thrice-speared wraith,TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/field_modulation.png,
+# FEL: SUPPORT,,,,,,,,,,,,,
+sotf_elegyofopis,Elegy of Opis,6310,1,0,,Each I take - two are silenced. One more who needn't wail for the peace that the Lion stole from them - one more voice from the chorus that sings Opis' tormentous elegy.,"callsign ""Destreza"", interview with Umbran ""Torn Banner"" raider force",TRUE,,,"player_only, npc_only, sotf_fel_sup",graphics/icons/skills/derelict_contingent.png,
+sotf_handsofthedrowned,Hands of the Drowned,6320,1,0,,"Little fish, little fish, where do you swim? Far out to sea, far out to the rim?
+Little fish, little fish, where are you found? Dragged to the deep, by the hands of the drowned?",a hunter of legends,TRUE,,,"player_only, npc_only, sotf_fel_sup",graphics/icons/skills/advanced_tactics.png,
+sotf_realitybreaker,reality_breaker,6330,1,0,,No description... yet,author,TRUE,,,"player_only, npc_only, sotf_fel_sup",,
+sotf_perfectstorm,The Perfect Storm,6340,1,0,,"Humanity once lost its fear of the seas when it abandoned them for the stars. But when we traversed that first jump point and found an infinite ocean beyond, we were reminded that the kraken was a myth, and the storm is what drowns us.",unknown historian,TRUE,,,"player_only, npc_only, sotf_fel_sup",graphics/icons/skills/applied_physics.png,
+,,,,,,,,,,,,,
+# for spacing in skill readout,,,,,,,,,,,,,
+sotf_skill_blank,,10000,0,,,,,,,,npc_only,graphics/icons/skills/EW.png,

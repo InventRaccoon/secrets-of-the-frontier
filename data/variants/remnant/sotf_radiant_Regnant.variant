@@ -1,0 +1,83 @@
+{
+	# Omicron-Regnant's personal flagship
+  "variantId": "sotf_radiant_Regnant",
+  "hullId": "radiant",
+  "displayName": "Regnant",
+  "goalVariant": false,
+  "fluxCapacitors": 32,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "sMods": [
+        "fluxbreakers",
+        "missleracks",
+        "targetingunit"
+   ],
+  "hullMods": [
+    "fluxdistributor"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 000": "tachyonlance",
+        "WS 001": "tachyonlance"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "squall",
+        "WS 004": "squall"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 005": "typhoon",
+        "WS 006": "typhoon",
+        "WS 007": "typhoon",
+        "WS 008": "typhoon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "plasma"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "pdlaser",
+        "WS 010": "pdburst",
+        "WS 011": "pdlaser",
+        "WS 016": "pdlaser",
+        "WS 017": "pdburst",
+        "WS 018": "pdlaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 012": "pdburst",
+        "WS 013": "pdburst",
+        "WS 014": "pdburst",
+        "WS 015": "pdburst"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

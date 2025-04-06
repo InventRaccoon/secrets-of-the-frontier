@@ -1,0 +1,5 @@
+name,id,planetary,decivRemove,script,desc,icon,order
+Proxy Patrols,sotf_proxypatrols_condition,,TRUE,data.scripts.campaign.econ.SotfProxyPatrolsCondition,,graphics/icons/markets/sotf_proxypatrols_condition.png,
+,,,,,,,
+Orbital Habitat (hidden),sotf_habitatcondition,,TRUE,data.scripts.campaign.econ.SotfHabitatCondition,Hidden condition; does not need icon.,,
+Cramped Quarters,sotf_crampedcondition,,TRUE,data.scripts.campaign.econ.SotfCrampedCondition,"Though able to harbor a sizeable population, the space this station has is relatively small, limiting its potential for growth.",graphics/icons/markets/orbital_station.png,

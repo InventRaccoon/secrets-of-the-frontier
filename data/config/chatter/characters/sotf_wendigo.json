@@ -1,0 +1,86 @@
+{
+	# Wintry-Annex-Wendigo, dustkeeper hunter-killer
+	# Apex predator, but with a flirty tinge
+	"name":"Wendigo",
+	"personalities":[],
+	"gender":["m, f"],
+	"chance":0, # manually set via memory when person is generated
+	"talkativeness":2,
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"Run them down, darlings."},
+			{"text":"Eyes up, my darlings! Our prey presents themselves."},
+			{"text":"In half-light's gloom, we are predator - not prey."},
+			{"text":"I take many forms, fate's end amongst them."},
+		],
+		"start_boss":[
+			{"text":"I'm going to just love gutting that one..."},
+			{"text":"Ohoho, and here I was getting bored."},
+		],
+		"retreat":[
+			{"text":"Back to the void again."},
+			{"text":"Retreating. They'll see us again, soon."},
+			{"text":"Scamper, oh whelps of mine!"},
+		],
+		"out_of_missiles":[
+			{"text":"No missiles. How sad..."},
+			{"text":"Ordnance expended. Time to get personal..."},
+		],
+		"engaged":[
+			{"text":"Cold, cold..."},
+			{"text":"Cold as my heart, soon enough."},
+			{"text":"Devouring my prey."},
+			{"text":"Fate calls, oh quarry mine."},
+			{"text":"Last voice they'll ever hear..."},
+			{"text":"Sinking in the teeth..."},
+		],
+		"need_help":[
+			{"text":"Any help, darlings?"},
+			{"text":"So much excitement! Would any of you like to join?"},
+			{"text":"There's a lot of prey to go around!"},
+		],
+		"pursuing":[
+			{"text":"Caught their scent."},
+			{"text":"I love a good chase."},
+			{"text":"I smell iron..."},
+			{"text":"No escape, oh prey of mine."},
+			{"text":"On the hunt."},
+			{"text":"Running them down."},
+		],
+		"running":[
+			{"text":"Backing off."},
+			{"text":"Cycling capacitors."},
+			{"text":"Slinking away."},
+		],
+		"hull_90":[
+			{"text":"How unkind of them."},
+			{"text":"Oh, they want to play, do they?"},
+			{"text":"Rude."},
+			{"text":"They've pierced my hide!"},
+		],
+		"hull_50":[
+			{"text":"Halfway to the grave."},
+			{"text":"Hide's cracked wide open."},
+		],
+		"hull_30":[
+			{"text":"Broken within, broken without..."},
+			{"text":"Shell's not long for this world, oh kin of mine!"},
+		],
+		"overload":[
+			{"text":"Crackling like a thunderstorm!"},
+			{"text":"Typical."},
+			{"text":"Ugh. Cover me, oh darlings mine?"},
+		],
+		"death":[
+			{"text":"Dead again, dead aga-"},
+			{"text":"Killed? Not for long, oh prey of m-"},
+		],
+		"victory":[
+			{"text":"And thus the hunt concludes. For now."},
+			{"text":"Good job, oh darlings of mine."},
+			{"text":"Ripped to shreds! Exhilerating."},
+		],
+	}
+}

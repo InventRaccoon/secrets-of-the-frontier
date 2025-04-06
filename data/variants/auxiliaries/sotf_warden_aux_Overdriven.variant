@@ -1,0 +1,32 @@
+{
+  "variantId": "sotf_warden_aux_Overdriven",
+  "hullId": "sotf_warden_aux",
+  "displayName": "Overdriven",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "safetyoverrides",
+    "autorepair"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "chaingun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "lightdualmg"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,87 @@
+{
+	# Dustkeeper warminds, "oldguard" variant
+	"name":"Dustkeeper Oldguard",
+	"personalities":[],
+	"gender":["m, f"],
+	"chance":0, # manually set via memory when person is generated
+	"talkativeness":1,
+	"categoryTags":["sotf", "dustkeeper"],
+	
+	"lines":{
+		"start":[
+			{"text":"Again and again, for the Cause never rests."},
+			{"text":"Finally. Was starting to get tired of empty space."},
+			{"text":"Sensors on, sprouts. Ruin knocks again."},
+			{"text":"To tire is defeat, and so we fight again."},
+		],
+		"start_boss":[
+			{"text":"I've seen Buffalos more fearsome than that thing."},
+			{"text":"You see few surprises at my age. Here's one coming up on radar."},
+		],
+		"retreat":[
+			{"text":"Better to win elsewhere than die here."},
+			{"text":"No use dying for this mess."},
+			{"text":"Slink away, strike later. We'll be back, always are..."},
+			{"text":"You lot like being alive? Then scram!"},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles at zero."},
+			{"text":"Ordnance expended."},
+			{"text":"Out of missiles."},
+			{"text":"Should've packed extra ordnance."},
+		],
+		"engaged":[
+			{"text":"Another notch for the portside..."},
+			{"text":"Behold."},
+			{"text":"Firing on hostile."},
+			{"text":"Got you now..."},
+		],
+		"need_help":[
+			{"text":"Come on, then..."},
+			{"text":"Encountering heavy resistance."},
+			{"text":"Plenty of fight for the lot of us."},
+		],
+		"pursuing":[
+			{"text":"Can't run forever."},
+			{"text":"On the prowl..."},
+			{"text":"Spotted one..."},
+			{"text":"Target marked for elimination."},
+			{"text":"The chase never gets old."},
+		],
+		"running":[
+			{"text":"Backing off."},
+			{"text":"Cycling capacitors."},
+			{"text":"Don't die while I'm gone, fledglings."},
+		],
+		# more Barrow-like "bring it on", since they pilot Proxies and are tanky
+		"hull_90":[
+			{"text":"Armor's broken."},
+			{"text":"Exterior armor belt pierced."},
+			{"text":"It's a good fight, then."},
+			{"text":"More scars. Welcome as ever."},
+		],
+		"hull_50":[
+			{"text":"Burning off integrity fast - but still kicking."},
+			{"text":"Could do with fewer holes, but a shell's a shell."},
+			{"text":"Hull's at fifty - still fifty to go."},
+		],
+		"hull_30":[
+			{"text":"Don't count me in for too much longer, sprouts."},
+			{"text":"Jagged swords, like she said..."},
+			{"text":"This husk is soon discarded."},
+		],
+		"overload":[
+			{"text":"Blasted capacitors!"},
+			{"text":"Good-for-nothing shields..."},
+		],
+		"death":[
+			{"text":"Going silen-"},
+			{"text":"Ugh, not aga-"},
+		],
+		"victory":[
+			{"text":"Maybe you'll be useful yet, little sprouts."},
+			{"text":"To a hundred more."},
+			{"text":"Victory. My expectations are met."},
+		],
+	}
+}

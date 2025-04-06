@@ -1,0 +1,281 @@
+{
+  "bounds": [
+    60,
+    63,
+    61,
+    41,
+    99,
+    32,
+    92,
+    15,
+    45,
+    6,
+    45,
+    -5,
+    94,
+    -14,
+    71,
+    -61,
+    32,
+    -65,
+    19,
+    -51,
+    -57,
+    -79,
+    -85,
+    -50,
+    -92,
+    -10,
+    -60,
+    0,
+    -92,
+    12,
+    -82,
+    52,
+    -57,
+    78,
+    10,
+    57,
+    20,
+    67
+  ],
+  "builtInMods": [
+    "sotf_sierrasconcord",
+	"phasefield"
+  ],
+  "builtInWings": [],
+  "center": [
+    80,
+    96
+  ],
+  "collisionRadius": 140,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 60,
+      "length": 64,
+      "location": [
+        -94,
+        17
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 20
+    },
+    {
+      "angle": 180,
+      "contrailSize": 60,
+      "length": 64,
+      "location": [
+        -94,
+        -17
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 20
+    },
+    {
+      "angle": 180,
+      "contrailSize": 30,
+      "length": 25,
+      "location": [
+        -88,
+        47
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 6
+    },
+    {
+      "angle": 180,
+      "contrailSize": 30,
+      "length": 25,
+      "location": [
+        -89,
+        41
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 6
+    },
+    {
+      "angle": 180,
+      "contrailSize": 36,
+      "length": 35,
+      "location": [
+        -90,
+        35
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 36,
+      "length": 35,
+      "location": [
+        -90,
+        -34
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 8
+    },
+    {
+      "angle": 180,
+      "contrailSize": 30,
+      "length": 25,
+      "location": [
+        -89,
+        -41
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 6
+    },
+    {
+      "angle": 180,
+      "contrailSize": 30,
+      "length": 25,
+      "location": [
+        -88,
+        -46
+      ],
+      "style": "SOTF_SIERRA",
+      "width": 6
+    }
+  ],
+  "height": 200,
+  "hullId": "sotf_vow_rem",
+  "hullName": "Vow",
+  "hullSize": "CRUISER",
+  "shieldCenter": [
+    1,
+    0
+  ],
+  "shieldRadius": 135,
+  "spriteName": "graphics/ships/sierra/sotf_vow_rem.png",
+  "style": "SOTF_SIERRA",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 20,
+      "arc": 120,
+      "id": "WS 000",
+      "locations": [
+        -25,
+        37
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": -45,
+      "arc": 180,
+      "id": "WS 001",
+      "locations": [
+        -46,
+        -46
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "HYBRID"
+    },
+    {
+      "angle": 0,
+      "arc": 200,
+      "id": "WS 002",
+      "locations": [
+        70,
+        27
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "ENERGY"
+    },
+    {
+      "angle": -45,
+      "arc": 200,
+      "id": "WS 003",
+      "locations": [
+        40,
+        -48
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "ENERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 8,
+      "id": "WS 004",
+      "locations": [
+        58,
+        56
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 0,
+      "arc": 8,
+      "id": "WS 005",
+      "locations": [
+        78,
+        -31
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "ENERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 8,
+      "id": "WS 006",
+      "locations": [
+        71,
+        -49
+      ],
+      "mount": "HARDPOINT",
+      "size": "MEDIUM",
+      "type": "ENERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 30,
+      "id": "WS 007",
+      "locations": [
+        11,
+        10,
+        11,
+        -9,
+        -2,
+        -1
+      ],
+      "mount": "HIDDEN",
+      "size": "MEDIUM",
+      "type": "LAUNCH_BAY"
+    },
+    {
+      "angle": 45,
+      "arc": 5,
+      "id": "WS 008",
+      "locations": [
+        -26,
+        72
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "SYSTEM"
+    },
+    {
+      "angle": -45,
+      "arc": 5,
+      "id": "WS 009",
+      "locations": [
+        -26,
+        -71
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "SYSTEM"
+    }
+  ],
+  "width": 160
+}

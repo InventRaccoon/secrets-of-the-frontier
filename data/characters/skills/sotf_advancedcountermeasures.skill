@@ -1,0 +1,39 @@
+{
+	"id":"sotf_advancedcountermeasures",
+	"governingAptitude":"sotf_apt_daydream",
+	"compressHullmods":false,
+	"elite":true,
+	"scope":"PILOTED_SHIP",
+	"scope2":"SHIP_FIGHTERS",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Damage to fighters
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.PointDefense$Level1"},
+				# Damage to missiles
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.PointDefense$Level2"},
+				# Target leading
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.GunneryImplants$Level2"},
+				{"type":"SHIP_FIGHTERS", "script":"com.fs.starfarer.api.impl.campaign.skills.PointDefense$Level1"},
+				{"type":"SHIP_FIGHTERS", "script":"com.fs.starfarer.api.impl.campaign.skills.PointDefense$Level2"},
+				{"type":"SHIP_FIGHTERS", "script":"com.fs.starfarer.api.impl.campaign.skills.GunneryImplants$Level2"},
+			]
+		},
+		{
+			"name":"Elite",
+			"requiredSkillLevel":2,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Defense drones
+				#{"type":"SHIP", "script":"data.scripts.campaign.skills.SotfAdvancedCountermeasures$Drones"},
+				# Defense swarm
+				{"type":"SHIP", "script":"data.scripts.campaign.skills.SotfAdvancedCountermeasures$Swarm"},
+				{"type":"SHIP_FIGHTERS", "script":"data.scripts.campaign.skills.SotfAdvancedCountermeasures$Swarm"},
+				# ECCM
+				{"type":"SHIP", "script":"data.scripts.campaign.skills.SotfAdvancedCountermeasures$ECCM"},
+			]
+		},
+	],
+}

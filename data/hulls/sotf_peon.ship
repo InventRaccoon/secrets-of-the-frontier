@@ -1,0 +1,86 @@
+{
+  "bounds": [
+    -18.5,
+    -9,
+    -2.5,
+    -18,
+    19.5,
+    -9,
+    8.5,
+    -0,
+    19.5,
+    9,
+    -2.5,
+    18,
+    -18.5,
+    9
+  ],
+  "builtInWings": [],
+  "center": [
+    18,
+    20.5
+  ],
+  "collisionRadius": 24.5,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 7,
+      "length": 17,
+      "location": [
+        -10.5,
+        13
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 7
+    },
+    {
+      "angle": 180,
+      "contrailSize": 7,
+      "length": 17,
+      "location": [
+        -10.5,
+        -13
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 7
+    },
+    {
+      "angle": 180,
+      "contrailSize": 8,
+      "length": 20,
+      "location": [
+        -18.5,
+        -0
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 8
+    }
+  ],
+  "height": 41,
+  "hullId": "sotf_peon",
+  "hullName": "Peon",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 24.5,
+  "spriteName": "graphics/ships/derelict/sotf_peon.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 5,
+      "id": "WS 001",
+      "locations": [
+        12,
+        -0
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 36
+}

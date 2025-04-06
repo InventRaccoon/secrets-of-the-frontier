@@ -1,0 +1,58 @@
+{
+	
+	#"faction_id":{ # here's an example of the default settings
+	#	"alphas":0, # number of alpha cores
+	#	"betas":1, # number of beta cores
+	#	"gammas":3, # number of gamma cores
+	#},
+
+	"derelict":{
+		"betas":0,
+		"gammas":6,
+	},
+	
+	"remnant":{
+		"betas":2,
+	},
+	
+	"omega":{
+		"alphas":99,
+	},
+	
+	"tritachyon":{
+	},
+	
+	"sotf_dustkeepers":{
+		"betas":0, # they don't use betas for military purposes
+		"gammas":6, # but have plenty of these
+	},
+	
+	"sotf_dustkeepers_burnouts":{
+		"betas":0, # they don't use betas for military purposes
+		"gammas":6, # but have plenty of these
+	},
+	
+	"sotf_symphony":{
+		"alphas":2,
+		"betas":3,
+	},
+	
+	# they like em, so makes sense they might have a few off in the frontier?
+	"interstellarimperium":{
+	},
+	
+	"bladebreakers":{
+	},
+	
+	"cabal":{
+	},
+	
+	# always have cores in their AI ships - probably have spares?
+	"tahlan_legioinfernalis":{
+		"betas":2,
+	},
+	
+	"tahlan_legioelite":{
+		"betas":3,
+	},
+}

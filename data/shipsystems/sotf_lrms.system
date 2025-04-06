@@ -1,0 +1,24 @@
+{
+	"id":"sotf_lrms",
+	"type":"STAT_MOD",
+	"aiType":"MINE_STRIKE",
+	
+	"statsScript":"data.shipsystems.SotfLRMSystem",
+
+	"canUseWhileRightClickSystemOn":true,
+
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+	"aiHints":{
+		"threatRange":4000,
+		"threatAmount":15,
+		"threatAngle":0,
+		"threatArc":360,
+	}
+}
+
+
+
+

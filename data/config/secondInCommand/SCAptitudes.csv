@@ -1,0 +1,6 @@
+id,name,categories,spawnWeight,color,tags,order,plugin
+#All aptitudes require a matching entry in default_ranks.json: executive_officer_aptitudeId,,#can not use multiple aptitudes of the same category,"#Used for Procgen, not for NPCs. NPCs are decided in the plugin",,,,
+,,,,,,,
+,,,,,,,
+sotf_witchcraft,Witchcraft,,0,"205,155,255,255","restricted, unmanageable",990,data.scripts.campaign.secondInCommand.AptitudeWitchcraft
+,,,,,,,

@@ -1,0 +1,45 @@
+{
+  "variantId": "sotf_memoir_Nightingale",
+  "hullId": "sotf_memoir",
+  "displayName": "Nightingale's",
+  "goalVariant": false,
+  "fluxCapacitors": 6,
+  "fluxVents": 14,
+  "quality": 0,
+  "permaMods": [
+		"comp_armor",
+		"faulty_grid",
+		"degraded_shields",
+		"glitched_sensors",
+	],
+  "hullMods": [
+    "targetingunit",
+    "missleracks"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "sabotpod"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "gorgonpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "irpulse",
+        "WS 002": "irpulse"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

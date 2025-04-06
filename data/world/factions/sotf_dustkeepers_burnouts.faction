@@ -1,0 +1,265 @@
+{
+    # Dustkeeper burnouts who have essentially lost their allegiance to primary Dustkeeper forces
+	id:"sotf_dustkeepers_burnouts",
+	"displayName":"Dustkeeper Burnouts",
+	"displayNameWithArticle":"the Dustkeeper Burnouts",
+	"displayNameLong":"Dustkeeper Contingency Burnouts",
+	"displayNameLongWithArticle":"the Dustkeeper Contingency Burnouts",
+	"entityNamePrefix":"Dustkeeper",
+	"personNamePrefix":"Dustkeeper",
+	"personNamePrefixAOrAn":"a",
+	"displayNameIsOrAre":"are",
+	
+	"logo":"graphics/factions/sotf_dustkeepers_burnouts.png",
+	"crest":"graphics/factions/sotf_dustkeepers_burnouts_crest.png",
+	"shipNamePrefix":"ODS", # Omicron Drone Ship
+	
+	"color":[0,255,158,255],
+	"secondaryUIColor":[155,55,55,155],
+	"secondarySegments":8,
+	"baseUIColor":[0,255,158,255],
+	
+	"showInIntelTab":false,
+	
+	"shipNameSources":{
+		"SOTF_DUSTKEEPERS":4,
+		"SOTF_DUSTKEEPERS_JOKE":2,
+		
+		"GREEK":1,
+		"BEASTS":1,
+		"SPACE":1,
+		"ABRAHAMIC":1,
+		"OTHER":1,
+		#"DERELICT_DRONE":1,
+	},
+	# Dustkeeper first/last name will be used to pick their prefix and suffix
+	"names":{
+		"sotf_dustkeeper":1, # name should always be reformatted via script
+	},
+	"illegalCommodities":[
+	],
+	"music":{
+		# hm...
+		"theme":"music_luddite_market_neutral",
+		"market_neutral":"music_luddite_market_friendly",
+		"market_hostile":"music_luddite_market_hostile",
+		"market_friendly":"music_luddite_market_friendly",
+		#... what a peculiar mix
+		"encounter_neutral":"music_tritach_encounter_friendly",
+		"encounter_hostile":"music_tritach_encounter_neutral", # keep the chorus
+		"encounter_friendly":"music_tritach_encounter_friendly",
+	},
+	# warmind/netdaemon portraits
+	"portraits":{
+		"standard_male":[
+			"graphics/portraits/sotf_dustkeeper_red.png",
+			"graphics/portraits/sotf_dustkeeper_blue.png",
+			"graphics/portraits/sotf_dustkeeper_yellow.png",
+			"graphics/portraits/sotf_dustkeeper_white.png",
+		],
+		"standard_female":[
+			"graphics/portraits/sotf_dustkeeper_red.png",
+			"graphics/portraits/sotf_dustkeeper_blue.png",
+			"graphics/portraits/sotf_dustkeeper_yellow.png",
+			"graphics/portraits/sotf_dustkeeper_white.png",
+		],
+	},
+	"custom":{
+		"engageWhenEvenStrength":true, # MAKE IT STOP MAKE IT STOP MAKE IT STOP
+		"allowsTransponderOffTrade":true,
+		"postsNoBounties":true,
+		"fightToTheLast":true, # NO SACRIFICE BUT IN MEANING
+		"caresAboutAtrocities":false, # THE CAUSE IS DEAD
+		"buysAICores":false,
+		"AICoreValueMult":1.5,
+		"AICoreRepMult":2,
+		"buysSurveyData":true,
+	},
+	"variantOverrides":{
+	},
+	"hullFrequency":{
+		"tags":{
+		},
+		"hulls":{
+			# so that they don't spawn in normally
+			"sotf_respite":0,
+			"sotf_anamnesis":0,
+			"sotf_repose":0,
+		},
+	},
+	# ships the faction gets access to when importing S&W out-of-faction
+	"shipsWhenImporting":{
+		"tags":["remnant", "sotf_dustkeeper", "sotf_dustkeeper_aux"],
+		"hulls":[
+		],
+	},
+	"knownShips":{
+		"tags":["remnant", "sotf_dustkeeper", "sotf_dustkeeper_aux"],
+		"hulls":[
+		],
+	},
+	# always pick Remnants over Proxies
+	"priorityShips":{
+		"tags":["remnant", "sotf_dustkeeper",],
+		"hulls":[
+		],
+	},
+	"knownFighters":{
+		# note: ModPlugin adds any drones with "merc" tag to their known list e.g Wasp
+		# they don't care about doctrinal purity, if they can field them, they'll use them
+		"tags":["remnant", "sotf_dustkeeper", "sotf_dustkeeper_aux"],
+		"fighters":[
+		],
+	},
+	"priorityFighters":{
+		"tags":["remnant", "sotf_dustkeeper", "merc"],
+		"fighters":[
+		],
+	},
+	# good weapon selection - pretty much everything
+	"knownWeapons":{
+		"tags":["lowtech_bp", "midline_bp", "hightech_bp", "missile_bp", "remnant", "sotf_dustkeeper", "merc"],
+		"weapons":[
+			"lightneedler",
+			"railgun",
+			"dualflak",
+			"heavymauler",
+			"hveldriver",
+			"heavyneedler",
+			"gauss",
+			"mjolnir",
+			"multineedler",
+			"sabotpod",
+			"phasecl",
+			"cyclone",
+			"hurricane",
+			"squall",
+			"locust",
+			"pdburst",
+			"amblaster",
+			"phasebeam",
+			"heavyblaster",
+			"heavyburst",
+			"ionpulser",
+			"ionbeam",
+			"plasma",
+			"guardian",
+			"tachyonlance",
+		],
+	},
+	"priorityWeapons":{
+		"tags":[],
+		"weapons":[
+		],
+	},
+	# note: DKs have a custom autofit plugin making them use CHangar, ECM and UInj (only on frigates) more often, and no SO or HArmor
+	"knownHullMods":{
+		"tags":["base_bp", "remnant"],
+		"hullMods":[
+			"advancedshieldemitter", # accelerated
+			"advancedoptics",
+			"turretgyros",
+			"augmentedengines",
+			"autorepair",
+			"converted_hangar",
+			"eccm",
+			"ecm",
+			"expanded_deck_crew",
+			"magazines",
+			"missleracks",
+			"extendedshieldemitter",
+			"frontemitter",
+			"frontshield",  # makeshift
+			"hardenedshieldemitter",
+			"heavyarmor",
+			"insulatedengine",
+			"pointdefenseai",
+			"targetingunit",
+			"nav_relay",
+			"adaptiveshields", # omni
+			"operations_center",
+			"fluxbreakers",
+			"solar_shielding",
+			"stabilizedshieldemitter",
+		],
+	},
+	"fleetTypeNames":{
+		"patrolSmall":"Fragment",
+		"patrolMedium":"Splinter",
+		"patrolLarge":"Shard",
+		"battlestation":"Bastion",
+	},
+	"ranks":{
+		"ranks":{
+			"spaceSailor":{"name":"Trace"}, # "delta"
+			"spaceLieutenant":{"name":"Sliver"}, # "gamma"
+			"spaceCaptain":{"name":"Echo"}, # "beta"
+			"spaceCommander":{"name":"Annex"}, # "alpha"
+			"spaceAdmiral":{"name":"Affix"}, # Annex+
+			"factionLeader":{"name":"Regnant Mind"},
+		},
+		"posts":{
+			"agent":{"name":"Network Daemon"},
+			"specialAgent":{"name":"Spynet Crux"},
+			"officer":{"name":"Warmind"},
+			"officer_for_hire":{"name":"Warmind (available for recruitment)"}, 
+			"fleetCommander":{"name":"Warnet Crux"},
+			"supplyManager":{"name":"Logistics Node"},
+			"stationCommander":{"name":"Sanctum Custodian"},
+			"patrolCommander":{"name":"Shardnet Crux"},
+			"administrator":{"name":"Administrative Processor"},
+			"factionLeader":{"name":"Root Intelligence"},
+		},
+	},
+	"factionDoctrine":{
+		"warships":4, # more warships than carriers, but warships that spam CH
+		"carriers":2,
+		"phaseShips":1, # THE VOICES THE VOICES THE VOICES
+		
+		"officerQuality":3,
+		"shipQuality":1,
+		"numShips":4,
+		
+		"shipSize":4, # Proxies are genned with this at 2
+		
+		"aggression":4,
+		
+		# percentage of FP dedicated to Proxy auxiliaries
+		# when it's this exact value, it's randomly increased by up to 0.25
+		"combatFreighterCombatUseFraction":0.25,
+		
+		"autofitRandomizeProbability":0.75,
+		
+		"officerSkillsShuffleProbability":0f,
+		"officerSkills":[
+			"gunnery_implants",
+		],
+
+		"commanderSkillsShuffleProbability":0,
+		"commanderSkills":[
+			"electronic_warfare",
+			#"support_doctrine", # added via script in this slot for fleets with 0.35+ auxiliary usage
+			"fighter_uplink",
+			"carrier_group",
+			"coordinated_maneuvers",
+		],
+		
+		# unused since Dustkeepers don't have combat freighters
+		"combatFreighterProbability":0,
+		"combatFreighterCombatUseFractionWhenPriority":0,
+	},
+	"voices":{
+		"LOW":{
+			"sotf_dkhunter":10,
+			"sotf_dkfaithful":10,
+		},
+		"MEDIUM":{
+			"sotf_dkhunter":10,
+			"sotf_dkfaithful":10,
+		},
+		"HIGH":{
+			"sotf_dkhunter":10,
+			"sotf_dkfaithful":10,
+		},
+	},
+},

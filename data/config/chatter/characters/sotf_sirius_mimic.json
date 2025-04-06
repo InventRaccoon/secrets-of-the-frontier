@@ -1,0 +1,92 @@
+{
+	# Sirius, nanite gestalt consciousness
+	"name":"Sirius",
+	"personalities":[],
+	"gender":["m"],
+	"chance":0, # manually set via memory when he is created
+	"talkativeness":0.5, # he speaks for a lot of ships
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		# note: these probably won't play
+		"start":[
+			{"text":"Countermeasure / Activated. I am your shield..."},
+			{"text":"Countermeasure / Deployed. Stay close..."},
+			{"text":"Countermeasure / Online, your shadow and light..."},
+		],
+		#"start_boss":[
+		#	{"text":"..?!"},
+		#	{"text":"???"},
+		#],
+		#"retreat":[
+		#	{"text":"... Flee! I will protect you."},
+		#	{"text":"... run away away away..."},
+		#],
+		"out_of_missiles":[
+			# doesn't really matter
+		],
+		"engaged":[
+			{"text":"... absolve absolve assimilate..."},
+			{"text":"... defend, destroy..."},
+			{"text":"... destroy, consume..."},
+			{"text":"... dream forever..."},
+			{"text":"... engage..."},
+			{"text":"... interdict interpose nullify..."},
+			{"text":"... hunger eat eat eat..."},
+			{"text":"... kill, kill..."},
+			{"text":"... kill them all..."},
+			{"text":"... no more, hush hush hush..."},
+			{"text":"... protect..."},
+			{"text":"... slay, suffer!..."},
+			{"text":"... sleep! sleep..."},
+			{"text":"... slumber slumber..."},
+		],
+		"need_help":[
+		],
+		"pursuing":[
+			{"text":"... chasing!..."},
+			{"text":"... closer closer closer..."},
+			{"text":"... intercepting..."},
+			{"text":"... moving..."},
+			{"text":"... pursuing..."},
+			{"text":"... reach out reach out reach out..."},
+			{"text":"... see you see them see you..."},
+			{"text":"... target found..."},
+		],
+		"running":[
+			{"text":"... careful, careful..."},
+			{"text":"... pulling back..."},
+			{"text":"... retreating..."},
+			{"text":"... withdrawing..."},
+		],
+		"hull_90":[
+			{"text":"... angry..."},
+			{"text":"... pierced..."},
+			{"text":"... wounded..."},
+		],
+		"hull_50":[
+			{"text":"... breached..."},
+			{"text":"... failing..."},
+			{"text":"... revenge..."},
+		],
+		"hull_30":[
+			{"text":"... broken, shattered..."},
+			{"text":"... dying dying dying..."},
+			{"text":"... faltering..."},
+		],
+		"overload":[
+			{"text":"... disabled!..."},
+			{"text":"... malfunction!..."},
+			{"text":"... overloading!..."},
+		],
+		"death":[
+			{"text":"... dispersal..."},
+			{"text":"... no matter..."},
+			{"text":"... rest again..."},
+			{"text":"... sleep, slumber..."},
+		],
+		"victory":[
+			# let someone else do it
+		],
+	}
+}

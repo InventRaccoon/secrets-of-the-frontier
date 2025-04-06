@@ -1,0 +1,18 @@
+{
+	"id":"sotf_edict_shot",
+	"onHitEffect":"data.scripts.weapons.SotfEdictOnHitEffect",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":70.0,
+	"width":18.0,
+	"fadeTime":0.25,
+	"fringeColor":[200,125,255,255],
+	"coreColor":[255,255,255,255],
+	"glowColor":[200,125,255,75],
+	"glowRadius":35,
+	"hitGlowRadius":75,
+	"textureScrollSpeed":64.0,
+	"pixelsPerTexel":5.0,
+}

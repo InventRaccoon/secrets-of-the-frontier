@@ -1,0 +1,35 @@
+{
+  "variantId": "sotf_vow_Base",
+  "hullId": "sotf_vow",
+  "displayName": "Eidolon's",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "vpdriver",
+        "WS 003": "resonatormrm",
+        "WS 006": "riftlance",
+        "WS 008": "shockrepeater"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

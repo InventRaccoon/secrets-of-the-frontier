@@ -1,0 +1,47 @@
+{
+	# used when Fel summons Dotty in larger fights
+  "variantId": "sotf_dotty_5",
+  "hullId": "sotf_dotty_fel",
+  "displayName": "Vengeful",
+  "goalVariant": false,
+  "fluxCapacitors": 8,
+  "fluxVents": 8,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+	"coherer",
+	"no_weapon_flux",
+    "terminator_core",
+	"magazines",
+    "turretgyros",
+    "sotf_noventing"
+  ],
+  # level 5 Dotty is immune to such constraints as "mount size"
+  # Get fucked lol
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "ionpulser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "sotf_resonator_f",
+        "WS 004": "sotf_resonator_f"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "heavyburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

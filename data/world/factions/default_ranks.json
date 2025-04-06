@@ -1,0 +1,24 @@
+{
+	"ranks":{
+		"sotf_rank_sierra":{"name":" "},
+		"sotf_rank_eidolon":{"name":"null"},
+		"sotf_rank_courser":{"name":"Tactical Network Hub"},
+		"sotf_rank_sirius":{"name":"Adaptive Countermeasure"},
+		#"sotf_rank_twins":{"name":"Linked Affixes"},
+	},
+	
+	"posts":{
+		"sotf_post_sierra":{"name":"Experimental Persona"},
+		"sotf_post_eidolon":{"name":": : : error : : :"},
+		"sotf_post_dotty":{"name":"Faithful Figment"},
+		"sotf_post_warhorn":{"name":"Leviathan Hunter"},
+		"sotf_post_fel":{"name":"Vengeful Arbiter"},
+		"sotf_post_courser":{"name":"Hunter-Killer Crux"},
+		
+		"sotf_post_hunterKiller":{"name":"Hunter-Killer Crux"},
+		"sotf_post_naniteswarm":{"name":"Adaptive Nanite Swarm"},
+		"sotf_post_gestalt":{"name":"Gestalt Consciousness"},
+		#"sotf_post_twins":{"name":"Shardnet Cruxes"},
+		#"sotf_post_scribe":{"name":"Scribe"},
+	},
+}

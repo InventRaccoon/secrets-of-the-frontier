@@ -1,0 +1,99 @@
+{
+	# CONCORD SHIPS
+	"sotf_system_concordshift_fire":[
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_01.ogg","pitch":0.9,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_01.ogg","pitch":1.1,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_01.ogg","pitch":1.0,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_02.ogg","pitch":0.9,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_02.ogg","pitch":1.1,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_02.ogg","pitch":1.0,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_03.ogg","pitch":0.9,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_03.ogg","pitch":1.1,"volume":0.8},
+		{"file":"sounds/sfx_wpn_energy/rift_explosion_03.ogg","pitch":1.0,"volume":0.8},
+                
+		#{"file":"sounds/sfx_wpn_energy/rift_explosion_01.ogg","pitch":1,"volume":1.0},
+		#{"file":"sounds/sfx_wpn_energy/rift_explosion_02.ogg","pitch":1,"volume":1.0},
+		#{"file":"sounds/sfx_wpn_energy/rift_explosion_03.ogg","pitch":1,"volume":1.0},
+		#{"file":"sounds/sfx_wpn_energy/rift_explosion_04.ogg","pitch":1,"volume":1.0},
+		#{"file":"sounds/sfx_wpn_energy/rift_explosion_05.ogg","pitch":1,"volume":1.0},
+	],
+	"music":{
+		# Wayward Star fight music
+		"sotf_weightlessthoughts": [
+			{"file":"sotf_weightlessthoughts.ogg", "source":"sounds/music", "pitch":1,"volume":0.6},
+		],
+		# Haunted dreams
+		"sotf_scavenge_ambience": [
+			{"file":"scavenge_ambience_v1.ogg", "source":"sounds/music/music.bin", "pitch":1,"volume":0.6},
+		],
+	},
+    # EDICT
+    "sotf_edict_fire":
+    [ 
+        {"file":"sounds/sfx_wpn_energy/sotf_edict_fire.ogg","pitch":1,"volume":1},
+	],
+	# ASB impact
+	"sotf_impact_heavy":
+    [ 
+        {"file":"sounds/sfx_wpn_ballistic/sotf_impact_heavy.ogg","pitch":1,"volume":0.75},
+	],
+	# ANTI-SHIP BATTERY / THE HIDECRACKER
+	"sotf_asb_fire":
+    [ 
+        {"file":"sounds/sfx_wpn_ballistic/sotf_asb_fire.ogg","pitch":0.75,"volume":1},
+	],
+	"sotf_lidar_loop":
+	[
+		{"file":"sounds/sfx_systems/targeting_feed_loop.ogg","pitch":1,"volume":0.45},
+	],
+	"sotf_asb_acquired":
+    [ 
+        {"file":"sounds/sfx_systems/lidar_array_targeting.ogg","pitch":1,"volume":1},
+	],
+	"sotf_asb_locked":
+    [ 
+        {"file":"sounds/sfx_misc/sotf_asb_locked.ogg","pitch":1,"volume":0.9},
+	],
+	# DO YOU HEAR THEM CALLING
+	"sotf_ghost_playful":
+	[ 
+		{"file":"sounds/sfx_misc/sotf_ghost_playful1.ogg","pitch":1,"volume":0.15},
+		{"file":"sounds/sfx_misc/sotf_ghost_playful2.ogg","pitch":1,"volume":0.15},
+		{"file":"sounds/sfx_misc/sotf_ghost_playful3.ogg","pitch":1,"volume":0.15},
+		{"file":"sounds/sfx_misc/sotf_ghost_playful4.ogg","pitch":1,"volume":0.15},
+	],
+	"sotf_ghost_angry":
+	[ 
+		{"file":"sounds/sfx_misc/sotf_ghost_angry1.ogg","pitch":1,"volume":0.25},
+		{"file":"sounds/sfx_misc/sotf_ghost_angry2.ogg","pitch":1,"volume":0.25},
+		{"file":"sounds/sfx_misc/sotf_ghost_angry3.ogg","pitch":1,"volume":0.25},
+		{"file":"sounds/sfx_misc/sotf_ghost_angry4.ogg","pitch":1,"volume":0.25},
+	],
+	
+	# SiC Spirit Ward skill
+	"sotf_spirit_ward_burnout":[
+            {"file":"sounds/sfx_shields/shields_burnout_oneshot.ogg","pitch":1,"volume":1},
+    ],
+	
+	# reactor overload from Elegy of Opis skill
+	"sotf_lastlaughprimed":
+	[
+	{"file":"sounds/sfx_interface/ui_income_report_negative.ogg","pitch":1,"volume":1},
+	],
+	
+	# Invoke Her Blessing ability
+	"sotf_invokeherblessing":
+	[ 
+        {"file":"sounds/sfx_misc/sotf_invokeherblessing.ogg","pitch":1.25,"volume":0.9},
+	],
+	
+	# PERFECT STORM SKILL
+	"sotf_perfectstorm_blast":
+	[
+	{"file":"sounds/sfx_skills/sotf_perfectstorm_blast.ogg","pitch":1,"volume":1},
+	],
+	"sotf_perfectstorm_loop":
+	[
+	{"file":"sounds/sfx_skills/sotf_perfectstorm_loop.ogg","pitch":1,"volume":1},
+	]
+}

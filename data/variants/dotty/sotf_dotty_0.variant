@@ -1,0 +1,41 @@
+{
+  "variantId": "sotf_dotty_0",
+  "hullId": "sotf_dotty",
+  "displayName": "Achiral",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "pointdefenseai",
+    "turretgyros",
+    "sotf_noventing"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "irpulse"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "swarmer_fighter",
+        "WS 004": "swarmer_fighter"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

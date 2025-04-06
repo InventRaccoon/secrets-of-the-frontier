@@ -1,0 +1,18 @@
+{
+    "displayName": "",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "goalVariant": false,
+    "hullId": "sotf_wisp_lesser",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "sotf_lwisp_var",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "sotf_wispdischarge"}
+        },
+    ]
+}

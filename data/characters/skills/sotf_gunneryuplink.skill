@@ -1,0 +1,30 @@
+{
+	"id":"sotf_gunneryuplink",
+	"governingAptitude":"sotf_apt_daydream",
+	"compressHullmods":false,
+	"elite":true,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Recoil
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.GunneryImplants$Level1"},
+				# Range
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.GunneryImplants$Level3"},
+			]
+		},
+		{
+			"name":"Elite",
+			"requiredSkillLevel":2,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Weapon/engine damage
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.TargetAnalysis$Level4"},
+				# Faster repairs
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.DamageControl$Level3"},
+			]
+		},
+	],
+}

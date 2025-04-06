@@ -1,0 +1,35 @@
+{
+  "displayName": "Suppression",
+  "fluxCapacitors": 10,
+  "fluxVents": 10,
+  "goalVariant": true,
+  "hullId": "sotf_remturret",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0.5,
+  "variantId": "sotf_remturret_Defense",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "plasma"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+	    "WS 004": "squall"
+	  }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+	    "WS 002": "heavyburst"
+	  }
+    }
+  ],
+  "wings": []
+}

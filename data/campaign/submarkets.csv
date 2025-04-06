@@ -1,0 +1,5 @@
+id,name,faction,desc,script,icon,order
+sotf_forgeshipmarket,"Forgeship
+Surplus",sotf_dustkeepers,"Surplus materiel mined from within-system, and the augmented proxy drones that the forgeship churns out day after day.
+
+Commodities and weaponry are available for sale to any Dustkeeper collaborator. Automated ships are only sold to those with the expertise to use them.",data.scripts.campaign.submarkets.SotfForgeshipMarket,,0

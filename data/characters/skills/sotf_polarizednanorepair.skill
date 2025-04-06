@@ -1,0 +1,38 @@
+{
+	"id":"sotf_polarizednanorepair",
+	"governingAptitude":"sotf_apt_daydream",
+	"compressHullmods":false,
+	"elite":true,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":0,
+			"effects":[
+				{"type":"DESCRIPTION", "script":"data.scripts.campaign.skills.SotfPolarizedNanorepair$Desc"},
+				#{"type":"DESCRIPTION", "script":"com.fs.starfarer.api.impl.campaign.skills.PolarizedArmor$Level0"},
+			]
+		},
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Armor damage taken
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.ImpactMitigation$Level2"},
+				# +armor effectiveness based on flux level
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.PolarizedArmor$Level2"},
+				# Repairs while under fire
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.DamageControl$Level8"},
+			]
+		},
+		{
+			"name":"Elite",
+			"requiredSkillLevel":2,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Hull repair
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.CombatEndurance$Level4"},
+				{"type":"SHIP", "script":"data.scripts.campaign.skills.SotfPolarizedNanorepair$ArmorRegen"},
+			]
+		},
+	],
+}

@@ -1,0 +1,13 @@
+trail,projectile,sprite,minLength,fadeIn,duration,fadeOut,sizeIn,sizeOut,colorIn,colorOut,opacity,textLength,textScroll,randomTextureOffset,distance,dispersion,drift,fadeOnFadeOut,angleAdjustment,additive,velocityIn,velocityOut,randomVelocity,angle,rotationIn,rotationOut,randomRotation,renderBelowExplosions
+sotf_edict_shot_one,sotf_edict_shot,sotf_trail_weave,10,0.1,0.1,0.4,30,15,"[200,125,255]","[100,50,150]",0.4,-1,0,TRUE,0,0,1,TRUE,FALSE,FALSE,0,0,0,0,0,0,FALSE,FALSE
+sotf_edict_shot_two,sotf_edict_shot,sotf_trail_weave,10,0.1,0.1,0.4,30,15,"[200,125,255]","[100,50,150]",0.4,-1,0,TRUE,0,0,1,TRUE,FALSE,FALSE,0,0,0,0,0,0,FALSE,FALSE
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+sotf_asb_blsmoke,sotf_asb_shot,base_trail_heavySmoke,10,0,1,2,60,150,"[50,50,50]","[20,20,20]",0.75,300,5,TRUE,-20,2,1,FALSE,FALSE,FALSE,0,0,0,0,0,0,true,false
+sotf_asb_brsmoke,sotf_asb_shot,base_trail_heavySmoke,10,0,0.75,0.75,30,45,"[255,200,100]","[50,50,50]",0.8,300,5,TRUE,-10,1,1,TRUE,FALSE,TRUE,100,50,0.4,0,0,20,true,false
+sotf_asb_zap1,sotf_asb_shot,base_trail_zapWithCore,10,0,0.5,1.5,20,15,"[255,200,100]","[200,155,100]",0.8,-1,0,TRUE,0,0,1,TRUE,FALSE,TRUE,30,100,0.8,0,0,150,true,false
+sotf_asb_zap2,sotf_asb_shot,base_trail_zapWithCore,10,0,0.5,1,18,12,"[255,225,150]","[200,155,100]",1,-1,0,TRUE,0,0,1,TRUE,FALSE,TRUE,30,100,0.8,0,0,150,true,false
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+sotf_cryoharpoon_blweave,sotf_cryoharpoon,sotf_trail_weave,10,0.1,1,2,75,150,"[50,50,50]","[20,20,20]",0.75,-1,0,TRUE,-20,4,1,FALSE,FALSE,FALSE,0,0,0,0,0,0,true,false
+sotf_cryoharpoon_brweave,sotf_cryoharpoon,sotf_trail_weave,10,0,0.75,0.75,40,55,"[160,200,255]","[110,145,200]",0.8,-1,0,TRUE,-10,2,1,TRUE,FALSE,TRUE,100,50,0.4,0,0,20,true,false
+sotf_cryoharpoon_zap1,sotf_cryoharpoon,base_trail_zapWithCore,10,0,0.5,1.5,25,20,"[120,200,255]","[120,165,255]",0.8,-1,0,TRUE,0,0,1,TRUE,FALSE,TRUE,30,100,0.8,0,0,150,true,false
+sotf_cryoharpoon_zap2,sotf_cryoharpoon,base_trail_zapWithCore,10,0,0.5,1,20,15,"[170,225,255]","[120,165,255]",1,-1,0,TRUE,0,0,1,TRUE,FALSE,TRUE,30,100,0.8,0,0,150,true,false

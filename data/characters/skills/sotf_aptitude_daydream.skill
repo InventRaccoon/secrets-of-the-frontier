@@ -1,0 +1,12 @@
+{
+	"id":"sotf_aptitude_daydream",
+	"governingAptitude":"sotf_apt_daydream",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":0,
+			"effects":[
+				{"type":"DESCRIPTION", "script":"data.scripts.campaign.skills.SotfSecretAptitudeDesc$Level0"},
+			]
+		},
+	],
+}

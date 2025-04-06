@@ -1,0 +1,122 @@
+{
+	"combatSmallForSmallFleet":{
+		"sotf_warden_aux_Assault":4,
+		"sotf_warden_aux_CS":3,
+		"sotf_warden_aux_Overdriven":3,
+		
+		"sotf_sentry_aux_CS":4,
+		"sotf_sentry_aux_FS":3,
+		"sotf_sentry_aux_Strike":3,
+		
+		"sotf_defender_aux_Escort":10,
+	},
+	"combatSmall":{
+		# Proxy ships aren't used in standard roles by Dustkeepers, since they're non-priority
+		"sotf_warden_aux_Assault":4,
+		"sotf_warden_aux_CS":3,
+		"sotf_warden_aux_Overdriven":3,
+		
+		"sotf_sentry_aux_CS":4,
+		"sotf_sentry_aux_FS":2,
+		"sotf_sentry_aux_Strike":4,
+		
+		"sotf_picket_aux_Attack":10,
+		
+		"sotf_defender_aux_Escort":10,
+	},
+	
+	"combatMedium":{
+		# "combat", bcs derelicts don't usually have carriers - keeps fleet makeup more consistent
+		"sotf_keeper_CS":8,
+		
+		"sotf_berserker_aux_Assault":6,
+		"sotf_berserker_aux_CS":6,
+		
+		"sotf_bastillon_aux_PD":8,
+		
+		"sotf_memoir_Strike":5,
+		"sotf_memoir_Support":5,
+	},
+	"combatLarge":{
+		#"sotf_selene_d_Redeemed":4,
+		#"sotf_selene_d_Protector":3,
+		#"sotf_selene_d_Elite":3,
+		
+		"sotf_cavalier_Attack":10,
+		
+		"sotf_cavalier_aux_Attack":4,
+		"sotf_cavalier_aux_Overdriven":3,
+		"sotf_cavalier_aux_CS":3,
+		
+		"sotf_rampart_aux_Assault":5,
+		"sotf_rampart_aux_Siege":5,
+	},
+	"combatCapital":{
+		"sotf_respite_Assault":6,
+		"sotf_respite_CS":4,
+		
+		"sotf_anamnesis_Artillery":6,
+		"sotf_anamnesis_CS":4,
+		
+		"sotf_repose_Steadfast":10,
+	},
+	
+	"carrierSmall":{
+		"sotf_keeper_aux_CS":3,
+		"sotf_keeper_aux_Strike":3,
+	},
+	
+	# roles/variants for the Dustkeeper Proxies
+	"sotf_auxiliarySmall":{
+		"sotf_warden_aux_Assault":4,
+		"sotf_warden_aux_CS":2,
+		"sotf_warden_aux_Overdriven":4,
+		
+		"sotf_sentry_aux_CS":4,
+		"sotf_sentry_aux_FS":2,
+		"sotf_sentry_aux_Strike":4,
+		
+		"sotf_picket_aux_Attack":10,
+		
+		"sotf_defender_aux_Escort":10,
+		
+		"fallback":{"sotf_auxiliaryMedium":0.5},
+	},
+	
+	"sotf_auxiliaryMedium":{
+		# backbone so it's more common
+		"sotf_berserker_aux_Assault":6,
+		"sotf_berserker_aux_CS":6,
+		
+		"sotf_bastillon_aux_PD":8,
+		
+		# carrier spam is more the regulars' thing
+		"sotf_keeper_aux_CS":3,
+		"sotf_keeper_aux_Strike":3,
+		
+		"fallback":{"sotf_auxiliarySmall":1},
+	},
+	
+	"sotf_auxiliaryLarge":{
+		"sotf_cavalier_aux_Attack":4,
+		"sotf_cavalier_aux_Overdriven":4,
+		"sotf_cavalier_aux_CS":2,
+		
+		"sotf_rampart_aux_Assault":5,
+		"sotf_rampart_aux_Siege":5,
+		"fallback":{"sotf_auxiliaryMedium":1},
+	},
+	
+	# Dustkeeper flagships when fleet is large
+	"sotf_flagship":{
+		"sotf_respite_Assault":6,
+		"sotf_respite_CS":4,
+		
+		"sotf_anamnesis_Artillery":4,
+		"sotf_anamnesis_CS":3,
+		
+		"sotf_repose_Steadfast":3,
+		"fallback":{"combatCapital":1},
+	},
+
+}

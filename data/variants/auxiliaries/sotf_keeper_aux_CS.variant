@@ -1,0 +1,38 @@
+{
+  "variantId": "sotf_keeper_aux_CS",
+  "hullId": "sotf_keeper_aux",
+  "displayName": "Close Support",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 2,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "missleracks",
+	"reinforcedhull",
+	"autorepair"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "harpoonpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "vulcan",
+        "WS 003": "vulcan",
+        "WS 004": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "sotf_brattice_wing",
+    "sotf_parapet_wing"
+  ]
+}

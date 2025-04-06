@@ -1,0 +1,58 @@
+{
+	tips:[
+	{"freq":0, "tip":"Welcome to the SotF tips.json, a wonderful place of learning and sharing information. Glad to have you here. This is how you make tips with custom frequencies! Neat, huh?"},
+	
+	#"[SoTF - Watcher Beyond the Walls] With the right connection, you can call for help with large bounties and other challenges. The larger your fleet, the more help will arrive.",
+	{"freq":0.75, "tip":"[SoTF - Watcher Beyond the Walls] At world's end, kindness and fellowship is all we have. Treasure your friendships."},
+	{"freq":1, "tip":"[SoTF - Watcher Beyond the Walls] Saturation bombardment is an atrocity against humanity itself, and attracts an appropriate level of emnity from powers across the Sector."},
+	{"freq":0.2, "tip":"[SoTF - Watcher Bey :: :: ] Your actions have consequences."},
+	
+	"[SoTF - Tactical Expansion] In larger battles, you may encounter defensive emplacements that can be reprogrammed to provide fire support to your fleet.",
+	"[SoTF - Tactical Expansion] In certain star systems, you may encounter objectives that attract respawning droneship reinforcements. With the Automated Ships skill, any spare AI cores in your cargo can remotely captain these drones.",
+	"[SoTF - Frontier Development] At stable locations, you can build orbital habitats that provide a hazard reduction to planets in-system. Additionally, they can be upgraded into outposts, which serve as limited-growth markets, ideal for non-resource-dependent industries.",
+	
+	"Black holes and nebulae have an independent chance to spawn an extra research station.",
+	"Scavengers, prospectors and salvage fleets travel to systems with ruins and other salvage. Follow them to find goodies.",
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	# Looking for tips against Felcesis' adaptive nanite invasions? Here, have some.
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Cyberwarfare Protocols and Jubilant Tech-Siren can be mitigated with ECM, ECCM or hullmods that improve weapon and engine repair rates or reduce overload duration."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Felcesis abandons their commandeered ship if the enemy fleet begins retreating - against human opponents, you might be able to avoid taking them head-on."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Leviathan's Bane can only target ships of larger size. The Hyperion and other superfrigates can hunt down Fel without ever risking a lock, and an especially mobile or phase-capable flagship can dodge incoming cryoharpoons - the lidar beam shows its trajectory."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Be careful when finishing off Felcesis if they have Elegy of Opis - it gives them a few extra chances to finish the job. Once they hit zero hull the first time, they're on a timer that you can wait out. The hull-tossing reactor detonation targets the last enemy to damage Fel pre-destruction."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] When deployed by Felcesis, Dotty is extremely powerful - but once banished, she's gone for good."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Wispering Grovetender can overwhelm you with wisps in fighter-heavy battles. Wisps are best killed with beams and frag weapons - they're small and hard to hit, but beams don't miss, and they have no armor!"},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Hellion's Hellhide can't regenerate if it has recently mitigated any damage. Press the attack! Even a Vulcan shot to an exposed engine will do the trick."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Mantle of Thorns's arcs only work while shields are raised - try forcing Fel to drop shields while discharging. Additionally, missiles don't trigger revenge arcs or build up charge."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] Hands of the Drowned's impulse mines can pull you out of position and wreck your shields, but heavy point-defense can shoot them down before they detonate."},
+	{"freq":0, "tip":"[SoTF - Watcher Bey :: :: ] The Perfect Storm doesn't overload any ships that are actively venting or phased when the timer hits zero. Time it well! Well-trained officers and advanced AIs will also exploit this, more often than fresh recruits and Gammas."},
+	{"freq":0, "tip":"Tip tip = new Tip(if (felcesis.getCurrentHull() == 0) {reality_breaker.countered = true;})"},
+    ],    
+}

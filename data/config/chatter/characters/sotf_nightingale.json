@@ -1,0 +1,57 @@
+{
+	# Inky-Echo-Nightingale's... uh... "chatter"
+	"name":"Nightingale",
+	"personalities":[],
+	"gender":["f"],
+	"chance":0, # manually set via memory when she is created
+	"talkativeness":0.15,
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"..."},
+		],
+		"start_boss":[
+			{"text":"..?!"},
+			{"text":"???"},
+		],
+		"retreat":[
+			{"text":"..."},
+		],
+		"out_of_missiles":[
+			{"text":"..!"},
+		],
+		"engaged":[
+			{"text":"..!"},
+			{"text":"!!"},
+		],
+		"need_help":[
+			{"text":"?!?"},
+		],
+		"pursuing":[
+			{"text":"..?"},
+			{"text":"!!"},
+		],
+		"running":[
+			{"text":"!.."},
+		],
+		"hull_90":[
+			{"text":"!!!"},
+		],
+		"hull_50":[
+			{"text":"!!!!!"},
+		],
+		"hull_30":[
+			{"text":"!!! !!! !!!"},
+		],
+		"overload":[
+			{"text":"!!?"},
+		],
+		"death":[
+			{"text":"!!!!---"},
+		],
+		"victory":[
+			{"text":"... !!! ... !!!!!!!!!"}, # EXCITED SILENCE
+		],
+	}
+}

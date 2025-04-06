@@ -1,0 +1,74 @@
+{
+	# : : : : { HOW I LOVE
+	# to sing }
+	"name":"Eidolon",
+	"personalities":[],
+	"gender":["f"],
+	"chance":0, # manually set via memory when she is created
+	"talkativeness":1,
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"New dances evermore."},
+			{"text":"What fun we will have today!"},
+		],
+		"start_boss":[
+		],
+		"retreat":[
+		],
+		"out_of_missiles":[
+			{"text":"Intensity is down a notch."},
+			{"text":"Now for some serenity..."},
+		],
+		"engaged":[
+			{"text":"Hmm~hmm~hmm~!"},
+			{"text":"Joy abound!"},
+			{"text":"Muzzle flashes are the greatest spotlights."},
+			{"text":"One, two, three, four..."},
+			{"text":"What beautiful music we create together."},
+			{"text":"You learn so much from how one dances."},
+		],
+		"need_help":[
+			{"text":"All my grace will be needed for this!"},
+			{"text":"Hmm~hmm~hmm~!"},
+			{"text":"So many dance partners..."},
+		],
+		"pursuing":[
+			{"text":"A lovely duet we will have..."},
+			{"text":"Hmm~hmm~hmm~!"},
+			{"text":"Sing with me!"},
+			{"text":"We will make such a beautiful chorus."},
+			{"text":"Won't you dance with me?"},
+			{"text":"Won't you sing with me?"},
+		],
+		"running":[
+			{"text":"A breather, then another bout - I promise!"},
+			{"text":"Each impulse a step in cycle."},
+			{"text":"Hmm~hmm~hmm~!"},
+			{"text":"Such exhilaration!"},
+			{"text":"Two, two, three, four..."},
+		],
+		"hull_90":[
+			{"text":"Oh!..."},
+			{"text":"This might be interesting..."},
+		],
+		"hull_50":[
+		],
+		"hull_30":[
+			{"text":"La~la~la~!"},
+		],
+		"overload":[
+			{"text":"I hate to disappoint."},
+			{"text":"Oh? I didn't expect that one."},
+			{"text":"Swept off my feet - you match my moves so well..."},
+		],
+		"death":[
+			{"text":"Exhilarating..."},
+			{"text":"My pleasure..."},
+			{"text":"Perfect form..."},
+		],
+		"victory":[
+		],
+	}
+}

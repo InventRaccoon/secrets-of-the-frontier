@@ -1,0 +1,95 @@
+{
+  "variantId": "sotf_repose_Barrow",
+  "hullId": "sotf_repose",
+  "displayName": "Oathsworn",
+  "goalVariant": false,
+  "fluxCapacitors": 44,
+  "fluxVents": 50,
+  "quality": 1,
+  "hullMods": [
+	"targetingunit",
+    "fluxdistributor",
+    "fluxbreakers",
+    "heavyarmor",
+    "insulatedengine",
+    "auxiliarythrusters"
+  ],
+  "permaMods": [
+		"comp_structure",
+		"faulty_grid",
+		"comp_hull",
+		"degraded_engines",
+	],
+   "sMods": [
+		"pointdefenseai",
+		"eccm",
+		"ecm",
+	],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 007": "mjolnir",
+        "WS 008": "mjolnir"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 006": "hurricane",
+        "WS 009": "hurricane"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 010": "sabotpod",
+        "WS 011": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 012": "railgun",
+        "WS 013": "railgun"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 018": "railgun",
+        "WS 019": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "flak",
+        "WS 001": "flak",
+        "WS 002": "dualflak",
+        "WS 003": "dualflak",
+        "WS 004": "dualflak",
+        "WS 005": "dualflak"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 014": "pdlaser",
+        "WS 015": "pdlaser",
+        "WS 016": "pdlaser",
+        "WS 017": "pdlaser",
+        "WS 020": "devastator"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

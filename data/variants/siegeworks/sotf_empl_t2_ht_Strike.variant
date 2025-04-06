@@ -1,0 +1,35 @@
+{
+  "variantId": "sotf_empl_t2_ht_Strike",
+  "hullId": "sotf_empl_t2_ht",
+  "displayName": "Strike",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavyburst"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "pdburst",
+        "WS 003": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+	"longbow_wing",
+    "longbow_wing",
+	"dagger_wing",
+	"dagger_wing"
+  ]
+}

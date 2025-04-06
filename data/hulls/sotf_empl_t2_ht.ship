@@ -1,0 +1,88 @@
+{
+  "hullName": "Hangar Bastion",
+  "hullId": "sotf_empl_t2_ht",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/emplacements/sotf_empl_t2_ht.png",
+  "style": "HIGH_TECH",
+  "height": 182,
+  "width": 170,
+  "center": [90, 86],
+  "collisionRadius": 130,
+  "shieldCenter": [8, -6],
+  "shieldRadius": 118.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "supercomputer",
+    "chassis_storage",
+    "axialrotation",
+    "sotf_noventing",
+    "sotf_fighteroverlay"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 45,
+      "locations": [-12, 14]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 300,
+      "angle": 90,
+      "locations": [40, 49]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 300,
+      "angle": -90,
+      "locations": [42, -51]
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        29, -1,
+        36, 18.5,
+        36.5, -22.5
+      ]
+    },
+    {
+      "id": "LB 2",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        -20, 43.5,
+        -3, 57.5,
+        -39, 25
+      ]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    62.5, 36.5,
+    52, -2,
+    67.5, -48,
+    12, -79,
+    -45.5, -73,
+    -76.5, -42,
+    -78, 9,
+    4, 87.5,
+    24.5, 86
+  ]
+}

@@ -1,0 +1,27 @@
+{
+	"displayName":"",
+	"hullId":"sotf_lidardrone",
+	"variantId":"sotf_lidardrone_Variant",
+	"fluxVents":0,
+	"fluxCapacitors":0,
+	"mods":[], # array of strings
+	
+	# mode is either LINKED or ALTERNATING
+	# slot ids (WS ***) must match what's in the .ship file
+	"weaponGroups":[
+		{
+		"autofire": false,
+		"mode":"LINKED",
+		 "weapons":{
+		 		"WS 001":"sotf_lidarlaser",
+			},
+		},
+		{
+		"autofire": false,
+		"mode":"LINKED",
+		 "weapons":{
+		 		"WS 002":"sotf_lidarlaser_const",
+			},
+		},
+	],
+}

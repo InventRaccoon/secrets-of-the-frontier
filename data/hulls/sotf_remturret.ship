@@ -1,0 +1,105 @@
+{
+  "bounds": [
+    104,
+    13,
+    104,
+    -11,
+    15,
+    -33,
+    3,
+    -50,
+    -25,
+    -52,
+    -42.5,
+    -30.5,
+    -84.5,
+    -38.5,
+    -105,
+    0,
+    -82,
+    38.5,
+    -41,
+    30,
+    -5,
+    32,
+    7,
+    44,
+    28,
+    24
+  ],
+  "builtInMods": [
+    "supercomputer",
+    "axialrotation",
+    "sotf_noventing"
+  ],
+  "builtInWings": [],
+  "center": [
+    120,
+    120
+  ],
+  "collisionRadius": 140,
+  "engineSlots": [],
+  "height": 240,
+  "hullId": "sotf_remturret",
+  "hullName": "Module",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 140,
+  "spriteName": "graphics/ships/emplacements/sotf_remturret.png",
+  "style": "HIGH_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": -15,
+      "arc": 150,
+      "id": "WS 001",
+      "locations": [
+        -23,
+        3
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "SYNERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 270,
+      "id": "WS 002",
+      "locations": [
+        26,
+        0
+      ],
+      "mount": "TURRET",
+      "size": "MEDIUM",
+      "type": "SYNERGY"
+    },
+    {
+      "angle": 0,
+      "arc": 6,
+      "id": "WS 004",
+      "locations": [
+        90,
+        0
+      ],
+      "mount": "HARDPOINT",
+      "size": "LARGE",
+      "type": "MISSILE"
+    },
+    {
+      "angle": -50,
+      "arc": 8,
+      "id": "WS 007",
+      "locations": [
+        45,
+        -26
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "SYSTEM"
+    }
+  ],
+  "width": 240
+}

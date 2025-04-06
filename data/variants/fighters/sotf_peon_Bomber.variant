@@ -1,0 +1,19 @@
+{
+  "displayName": "Bomber",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "hullId": "sotf_peon",
+  "hullMods": [],
+  "quality": 0,
+  "variantId": "sotf_peon_Bomber",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "sotf_miningcharge"
+      }
+    }
+  ],
+  "wings": []
+}

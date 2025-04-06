@@ -1,0 +1,18 @@
+{
+    "displayName": "",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "goalVariant": false,
+    "hullId": "sotf_wisp_xo",
+    "hullMods": [],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "sotf_wisp_xo_variant",
+    "weaponGroups": [
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 000": "sotf_wisp_xo_laser"}
+        },
+    ]
+}

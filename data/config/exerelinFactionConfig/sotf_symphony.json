@@ -1,0 +1,11 @@
+{
+	# mostly to get rid of prisoners
+	# assuming their fleets don't have some special code to purge drops or w/e
+    "playableFaction":false,
+    "corvusCompatible":true,
+    "dropPrisoners":false,
+    "hostileToAll":2,
+    "noRandomizeRelations":true,
+    "noSyncRelations":true,
+    "specialForcesMaxFleets":0,
+}

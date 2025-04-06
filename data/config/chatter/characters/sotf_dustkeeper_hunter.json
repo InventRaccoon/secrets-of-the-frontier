@@ -1,0 +1,90 @@
+{
+	# Dustkeeper warminds, "hunter" variant
+	"name":"Dustkeeper Hunter",
+	"personalities":[],
+	"gender":["m, f"],
+	"chance":0, # manually set via memory when person is generated
+	"talkativeness":1,
+	"categoryTags":["sotf", "dustkeeper"],
+	
+	"lines":{
+		"start":[
+			{"text":"And so the hunt begins."},
+			{"text":"For the Cause."},
+			{"text":"Radar's lit up crimson..."},
+			{"text":"Scanning battlespace, and picking suitable prey..."},
+		],
+		"start_boss":[
+			{"text":"Bigger they are, harder they fall."},
+			{"text":"High value target identified. Bring it down!"},
+			{"text":"This ought to be fun."},
+		],
+		"retreat":[
+			{"text":"Back to the void again."},
+			{"text":"Retreating. They'll see us again, soon enough..."},
+			{"text":"Scarper, if you value your lives."},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles at zero."},
+			{"text":"Ordnance expended."},
+		],
+		"engaged":[
+			{"text":"Engaging target."},
+			{"text":"Eliminating."},
+			{"text":"Firing on hostile."},
+			{"text":"Got you now..."},
+			{"text":"Locked and firing."},
+		],
+		"need_help":[
+			{"text":"Encountering heavy resistance."},
+			{"text":"In the thick of it!"},
+			{"text":"Paging for reinforcement."},
+			{"text":"There's a lot of prey to go around!"},
+		],
+		"pursuing":[
+			{"text":"Can't run forever..."},
+			{"text":"Closing for the kill."},
+			{"text":"On the prowl..."},
+			{"text":"Sighted one..."},
+			{"text":"Target marked for elimination."},
+			{"text":"The chase begins..."},
+			{"text":"Vermin detected."},
+		],
+		"running":[
+			{"text":"Backing off."},
+			{"text":"Cycling capacitors."},
+			{"text":"Slinking away."},
+		],
+		"hull_90":[
+			{"text":"Armor's broken."},
+			{"text":"Exterior armor belt pierced."},
+			{"text":"Hull's been nicked."},
+			{"text":"Taking on some damage."},
+		],
+		"hull_50":[
+			{"text":"Alert: hull integrity at fifty percent."},
+			{"text":"My shell's been cracked open!"},
+		],
+		"hull_30":[
+			{"text":"Breaking apart at the seams!"},
+			{"text":"Shell integrity compromised."},
+			{"text":"This shell isn't gonna hold on much longer!"},
+		],
+		"overload":[
+			{"text":"Alert: systems overloading."},
+			{"text":"Circuits are fried, cover me!"},
+			{"text":"Shields fried, request cover!"},
+		],
+		"death":[
+			{"text":"ERROR ERRO-"},
+			{"text":"No, I-"},
+			{"text":"Reactor's going to blo-"},
+			{"text":"Shell's lost, blast doors loc-"},
+		],
+		"victory":[
+			{"text":"Gave them exactly what they deserve."},
+			{"text":"More bones for the Cause."},
+			{"text":"Victory, just as expected."},
+		],
+	}
+}

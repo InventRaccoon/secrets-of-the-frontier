@@ -1,0 +1,147 @@
+{
+	# : : :    : :             {oh look, it's us!}
+	"id":"sotf_symphony",
+	#"color":[155,255,0,155],
+	"color":[175,155,255,127],
+	
+	"baseUIColor":[175,155,255,255],
+	"secondaryUIColor":[100,100,100,255],
+	"secondarySegments":3,
+	"darkUIColor":[125,75,155,175],
+	"gridUIColor":[175,150,255,75],
+	#"brightUIColor":[203,245,255,255],
+	
+	"showInIntelTab":false,
+	
+	"displayName":"Symphony",
+	"displayNameWithArticle":"the Symphony",
+	"logo":"graphics/factions/sotf_symphony.png",
+	"crest":"graphics/factions/sotf_symphony_crest.png",
+	"shipNamePrefix":"",
+	"shipNameSources":{
+		"SOTF_EIDOLON":1,
+	},
+	"names":{
+		"modern":1,
+		"world":1,
+		"future":1,
+		"myth":1,
+	},
+	"portraits":{
+		"standard_male":[
+			#"graphics/portraits/characters/sotf_fractured.png",
+			"graphics/portraits/characters/sotf_taken.png",
+		],
+		"standard_female":[
+			#"graphics/portraits/characters/sotf_fractured.png",
+			"graphics/portraits/characters/sotf_taken.png",
+		],
+	},
+	"custom":{
+		"engageWhenEvenStrength":true,
+		"allowsTransponderOffTrade":true, # to prevent cargoscan dialog from "patrols"
+		"postsNoBounties":true,
+		"fightToTheLast":true, # never surrender!
+	},	
+	"variantOverrides":{
+	},
+	# multiplier for how often hulls show up in the faction's fleets
+	"hullFrequency":{
+		"tags":{
+		},
+		"hulls":{
+			"buffalo2":0,
+			"gremlin":0,
+			"venture":0,
+		},
+	},
+	# ships the faction gets access to when importing S&W out-of-faction
+	"shipsWhenImporting":{
+		"tags":["remnant", "merc"],
+		"hulls":[
+		],
+	},
+	"knownShips":{
+		"tags":["remnant", "merc"],
+		"hulls":[
+		],
+	},
+	# listing ships here will make the faction mostly use them even if other hulls become available
+	"priorityShips":{
+		"tags":[],
+		"hulls":[
+		],
+	},
+	"knownFighters":{
+		"tags":["remnant", "merc"],
+		"fighters":[
+		],
+	},
+	"priorityFighters":{
+		"tags":[],
+		"fighters":[
+		],
+	},
+	"knownWeapons":{
+		"tags":["merc", "remnant"],
+		"weapons":[
+		],
+	},
+	"priorityWeapons":{
+		"tags":[],
+		"weapons":[
+		],
+	},
+	"knownHullMods":{
+		"tags":["merc", "remnant"],
+		"hullMods":[
+		],
+	},
+	"fleetTypeNames":{
+		"patrolSmall":"Figment",
+		"patrolMedium":"Anomaly",
+		"patrolLarge":"Trespass",
+		"battlestation":"Abberation",
+	},
+	"ranks":{
+		"ranks":{
+			"spaceLieutenant":{"name":"Apparition"},
+			"spaceCommander":{"name":"Phantom"},
+			"spaceCaptain":{"name":"Wraith"},
+			"spaceAdmiral":{"name":"Aspect"},
+		},
+		"posts":{
+			#"patrolCommander":{"name":""},
+			#"fleetCommander":{"name":""},
+			#"baseCommander":{"name":""},
+			#"administrator":{"name":""},
+		},
+	},
+	"factionDoctrine":{
+		"warships":3,
+		"carriers":2,
+		"phaseShips":3,
+		
+		"officerQuality":5,
+		"shipQuality":5,
+		"numShips":5,
+		
+		"shipSize":4,
+		
+		"aggression":4,
+		
+		"combatFreighterProbability":0,     				# instead of some portion of the freighters in a fleet
+		"combatFreighterCombatUseFraction":1,				# as part of the normal combat lineup
+		"combatFreighterCombatUseFractionWhenPriority":1,   # as part of normal combat lineup, when marked as priority ship
+		"autofitRandomizeProbability":0.25,
+
+		"commanderSkillsShuffleProbability":0,
+		"commanderSkills":[
+			"phase_corps",
+			"coordinated_maneuvers",
+			"electronic_warfare",
+			"flux_regulation",
+		],
+	},	
+
+},

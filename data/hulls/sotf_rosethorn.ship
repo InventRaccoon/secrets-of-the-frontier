@@ -1,0 +1,124 @@
+{
+  "hullName": "Rosebush",
+  "hullId": "sotf_rosethorn",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/dreaming/sotf_rosethorn.png",
+  "style": "HIGH_TECH",
+  "height": 77,
+  "width": 82,
+  "center": [41, 38.5],
+  "collisionRadius": 56,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 56,
+  "viewOffset": 0,
+  "builtInMods": [
+    "coherer"
+  ],
+  "builtInWings": [
+    "terminator_wing"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 20,
+      "locations": [20.5, 9]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": -20,
+      "locations": [20.5, -9]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 135,
+      "angle": 70,
+      "locations": [-0.5, 26]
+    },
+    {
+      "id": "WS 004",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 135,
+      "angle": -70,
+      "locations": [-0.5, -26]
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        8, 17,
+        12, 20.5,
+        8.5, -17,
+        11.5, -20.5
+      ]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-36.5, 10.5],
+      "length": 35,
+      "width": 6,
+      "angle": 172,
+      "contrailSize": 6,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-36.5, -10.5],
+      "length": 35,
+      "width": 6,
+      "angle": -172,
+      "contrailSize": 6,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-34, 16.5],
+      "length": 30,
+      "width": 7,
+      "angle": 170,
+      "contrailSize": 7,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-34, -16.5],
+      "length": 30,
+      "width": 7,
+      "angle": -170,
+      "contrailSize": 7,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-36.5, -0],
+      "length": 45,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 12,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    -25, -31,
+    4, -33.5,
+    34.5, -4.5,
+    34.5, 4.5,
+    34.5, 4.5,
+    4, 33.5,
+    -25, 31,
+    -37, -0
+  ]
+}

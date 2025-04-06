@@ -1,0 +1,43 @@
+{
+  "variantId": "sotf_berserker_aux_Assault",
+  "hullId": "sotf_berserker_aux",
+  "displayName": "Assault",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 13,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "autorepair",
+    "unstable_injector"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "chaingun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "heavymg",
+        "WS 007": "heavymg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "lightmortar",
+        "WS 002": "lightmortar",
+        "WS 006": "lightdualac",
+        "WS 008": "lightmortar"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -1,0 +1,30 @@
+{
+	"id":"sotf_missilereplication",
+	"governingAptitude":"sotf_apt_daydream",
+	"compressHullmods":false,
+	"elite":true,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Missile HP
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.MissileSpecialization$Level2"},
+				# Missile ROF
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.MissileSpecialization$Level3"},
+			]
+		},
+		{
+			"name":"Elite",
+			"requiredSkillLevel":2,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Missile reload
+				{"type":"SHIP", "script":"data.scripts.campaign.skills.SotfMissileReplication$MissileReload"},
+				# Missile damage
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.MissileSpecialization$Level4"},
+			]
+		},
+	],
+}

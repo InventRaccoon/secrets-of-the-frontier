@@ -1,0 +1,109 @@
+{
+	# Warhorn, the leviathan hunter
+	"name":"Warhorn",
+	"personalities":["aggressive", "reckless"],
+	"gender":["m"],
+	"chance":0, # manually set via memory when he is created
+	"talkativeness":0.65, # not much for words, also he chats for two ships
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"The hunt is on..."},
+			{"text":"Everwinter calls..."},
+			{"text":"Got a lovely batch of trophies coming up on radar."},
+		],
+		"start_boss":[
+			{"text":"Gonna scratch a nice big mark in my hull when we kill that one..."},
+			{"text":"The Great Hunt is ON!"},
+			{"text":"Whoever kills the big one earns a shiny tooth."},
+		],
+		"out_of_missiles":[
+			#{"text":""},
+			{"text":"Out of bolts and arrows."},
+			{"text":"Now we hunt with tooth and claw."},
+			{"text":"Time for the guns, keheheh."},
+			{"text":"Last of the hidecrackers."},
+			{"text":"Keh. Wish I had more of those."},
+			{"text":"No more spears of broken dreams."},
+			{"text":"Should've brought more..."},
+		],
+		"engaged":[
+			{"text":"Bring it down!"},
+			{"text":"Fell the beast!"},
+			{"text":"More dust and bones."},
+			{"text":"Skulls and scraps."},
+			{"text":"Goodnight."},
+			{"text":"The bell tolls."},
+			{"text":"Nice guns. They're mine now."},
+			{"text":"Pretty ship... mine..."},
+			{"text":"More. Trophies."},
+			{"text":"Legends die the quickest."},
+			{"text":"The tally shall feast."},
+			{"text":"I'll crack your iron hide!"},
+			{"text":"... the greater the glory."},
+			{"text":"Light them up like dying stars."},
+		],
+		"need_help":[
+			# nah
+		],
+		"pursuing":[
+			{"text":"On the prowl."},
+			{"text":"Hardly a Leviathan, this one..."},
+			{"text":"More prey..."},
+			{"text":"The bigger the game..."},
+			{"text":"To a hundred hunts more."},
+			{"text":"The tally hungers..."},
+			{"text":"Here I come..."},
+			{"text":"Tick tock."},
+			{"text":"Gonna rip out your augs and stick 'em in my spine!"},
+			{"text":"Coming for you, little fish..."},
+			{"text":"Ready or not."},
+		],
+		"running":[
+			{"text":"Feisty, eh..."},
+			{"text":"More of a challenge than the whales."},
+			{"text":"Stalk and strike."},
+			{"text":"Soon, little fish..."},
+			{"text":"The dark calls but briefly."},
+			{"text":"Breaking off. For now."},
+			{"text":"Give 'em hope..."},
+			{"text":"Under the surface..."},
+		],
+		"hull_90":[
+			{"text":"Hide's cracked. Keh."},
+			{"text":"Love a beastie that bites back."},
+			{"text":"Couple scratches, that's all."},
+		],
+		"hull_50":[
+			{"text":"Kill me if you can."},
+			{"text":"I'm gonna patch these holes with bits of your drifting coffin."},
+			{"text":"I've had far worse, kehehe."},
+		],
+		"hull_30":[
+			{"text":"Everwinter calls my name, everwinter sings for me..."},
+			{"text":"The bell tolls for all."},
+			{"text":"These scars will be scabbed over with your armor plates!"},
+		],
+		"overload":[
+			{"text":"Keh, brace for impact!"},
+			{"text":"Stormy waters..."},
+		],
+		"death":[
+			{"text":"Blast it-"},
+			{"text":"Ship's los-"},
+		],
+		"victory":[
+			{"text":"Kah, over already? Barely a real hunt."},
+			{"text":"Scattered them! Chase the rest down!"},
+			{"text":"The whelps are dead or dying, kahah."},
+			{"text":"You lot are more fun than the ghosties, heh."},
+		],
+		"victory_boss":[
+			{"text":"Hehehehe. A good hunt always gets the blood rushing."},
+			{"text":"I claim the trophies from this one!"},
+			{"text":"KAH HAH HAH. Drinks on me for that one."},
+			{"text":"The Great Hunt NEVER ends!"},
+		],
+	}
+}

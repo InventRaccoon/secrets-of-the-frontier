@@ -1,0 +1,183 @@
+{
+  "hullName": "Berserker (PROX)",
+  "hullId": "sotf_berserker_aux",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/auxiliaries/sotf_berserker_aux.png",
+  "style": "LOW_TECH",
+  "height": 164,
+  "width": 150,
+  "center": [82, 73],
+  "collisionRadius": 111,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 111,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "rugged",
+    "sotf_aux_assault"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [39, 71]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [39, 57]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [49, 40]
+    },
+    {
+      "id": "WS 005",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [67, -3]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [74, -19]
+    },
+    {
+      "id": "WS 007",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [70, -37]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 15,
+      "angle": 0,
+      "locations": [72, -53]
+    },
+    {
+      "id": "WS 009",
+      "size": "LARGE",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 30,
+      "locations": [36, 77]
+    },
+    {
+      "id": "WS 011",
+      "size": "LARGE",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": -30,
+      "locations": [48.5, -60.5]
+    },
+    {
+      "id": "WS 010",
+      "size": "LARGE",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": 25,
+      "locations": [52, 5.5]
+    },
+    {
+      "id": "WS 013",
+      "size": "LARGE",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 175,
+      "locations": [-45, 40.5]
+    },
+    {
+      "id": "WS 012",
+      "size": "LARGE",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": -160,
+      "locations": [-28, -58]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-65, 53],
+      "length": 36,
+      "width": 14,
+      "angle": 180,
+      "contrailSize": 42,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-70, 22],
+      "length": 46,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 52,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-70, -1],
+      "length": 46,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 42,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-71, -22],
+      "length": 42,
+      "width": 14,
+      "angle": 180,
+      "contrailSize": 40,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-70, -42],
+      "length": 36,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 42,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    35, 77,
+    35, 33,
+    23, 26,
+    23, 6,
+    70, 3,
+    68, -62,
+    -64, -53,
+    -61, 58,
+    -14, 64,
+    -7, 77
+  ]
+}

@@ -1,0 +1,42 @@
+{
+	# Level 2: active flares > EMP
+  "variantId": "sotf_dotty_2",
+  "hullId": "sotf_dotty2",
+  "displayName": "Achiral",
+  "goalVariant": false,
+  "fluxCapacitors": 2,
+  "fluxVents": 2,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "pointdefenseai",
+    "turretgyros",
+    "sotf_noventing"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "minipulser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "sotf_resonator_f",
+        "WS 004": "sotf_resonator_f"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

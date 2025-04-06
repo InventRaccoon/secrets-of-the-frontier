@@ -1,0 +1,45 @@
+{
+  "displayName": "",
+  "fluxCapacitors": 5,
+  "fluxVents": 5,
+  "goalVariant": true,
+  "hullId": "sotf_wispmother",
+  "hullMods": ["missleracks", "eccm"],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "sotf_wispmother_WS",
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "resonatormrm"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+	  # ECCM AMSRMs are genuinely too powerful to use against the player
+        #"WS 007": "amsrm",
+        #"WS 008": "amsrm"
+		"WS 007": "atropos",
+        "WS 008": "atropos"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "shockrepeater",
+        "WS 001": "shockrepeater",
+        "WS 002": "shockrepeater",
+        "WS 003": "shockrepeater"
+      }
+    }
+  ],
+  "wings": [
+    "spark_wing",
+    "lux_wing"
+  ]
+}

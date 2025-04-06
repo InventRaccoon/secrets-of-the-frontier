@@ -1,0 +1,72 @@
+{
+  "bounds": [
+    9.5,
+    -6,
+    -0.5,
+    -13.5,
+    -10,
+    -8,
+    -10,
+    8,
+    -0.5,
+    13.5,
+    9.5,
+    6
+  ],
+  "center": [
+    15,
+    11.5
+  ],
+  "collisionRadius": 16,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 5,
+      "length": 17.5,
+      "location": [
+        -9.5,
+        4.5
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 5
+    },
+    {
+      "angle": -180,
+      "contrailSize": 5,
+      "length": 17.5,
+      "location": [
+        -9.5,
+        -4.5
+      ],
+      "style": "LOW_TECH_FIGHTER",
+      "width": 5
+    }
+  ],
+  "height": 30,
+  "hullId": "sotf_brattice",
+  "hullName": "Brattice",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    -0
+  ],
+  "shieldRadius": 16,
+  "spriteName": "graphics/ships/derelict/sotf_brattice.PNG",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 15,
+      "id": "WS 001",
+      "locations": [
+        6.5,
+        -0
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "BALLISTIC"
+    }
+  ],
+  "width": 30
+}

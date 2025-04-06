@@ -1,0 +1,248 @@
+{
+    # used to generate DK automated defenses and Proxy-only fleets
+	# not actually used for auxiliaries in mixed fleets (except to generate their names)
+	# those are generated via a special fleet creator/fleet inflator combo for the regular DK faction
+	id:"sotf_dustkeepers_proxies",
+	"displayName":"Dustkeeper Proxies",
+	"displayNameWithArticle":"the Dustkeeper Proxies",
+	"displayNameLong":"Dustkeeper Proxies",
+	"displayNameLongWithArticle":"the Dustkeeper Proxies",
+	"entityNamePrefix":"Dustkeeper Proxy",
+	"personNamePrefix":"Dustkeeper Proxy",
+	"personNamePrefixAOrAn":"a",
+	"displayNameIsOrAre":"are",
+	
+	"logo":"graphics/factions/sotf_dustkeepers.png",
+	"crest":"graphics/factions/sotf_dustkeepers_crest.png",
+	"shipNamePrefix":"DSS",
+	
+	"color":[0,255,158,255],
+	"baseUIColor":[0,255,158,255],
+	
+	"showInIntelTab":false,
+	
+	"shipNameSources":{
+		"DERELICT_DRONE":1,
+	},
+	"names":{
+		"ai":1, # will be "Gamma Core" anyways
+	},
+	"illegalCommodities":[
+
+	],
+	"music":{
+		# hm...
+		"theme":"music_luddite_market_neutral",
+		"market_neutral":"music_luddite_market_friendly",
+		"market_hostile":"music_luddite_market_hostile",
+		"market_friendly":"music_luddite_market_friendly",
+		#... what a peculiar mix
+		"encounter_neutral":"music_tritach_encounter_friendly",
+		"encounter_hostile":"music_tritach_encounter_neutral", # keep the chorus
+		"encounter_friendly":"music_tritach_encounter_friendly",
+	},
+	# just gammas
+	"portraits":{
+		"standard_male":[
+			"graphics/portraits/portrait_ai1b.png",
+		],
+		"standard_female":[
+			"graphics/portraits/portrait_ai1b.png",
+		],
+	},
+	"custom":{
+		"engageWhenEvenStrength":true, # in victory, sacrifice
+		"allowsTransponderOffTrade":true, # they know anyways
+		"fightToTheLast":true, # in sacrifice, meaning
+		"officersOnAutomatedDefenses":true,
+	},	
+	"variantOverrides":{
+	},
+	# multiplier for how often hulls show up in the faction's fleets
+	"hullFrequency":{
+		"tags":{
+		},
+		"hulls":{
+		},
+	},
+	# ships the faction gets access to when importing S&W out-of-faction
+	"shipsWhenImporting":{
+		"tags":["sotf_dustkeeper_aux"],
+		"hulls":[
+		],
+	},
+	"knownShips":{
+		"tags":["sotf_dustkeeper_aux"],
+		"hulls":[
+		],
+	},
+	# listing ships here will make the faction mostly use them even if other hulls become available
+	"priorityShips":{
+		"tags":[],
+		"hulls":[
+		],
+	},
+	"knownFighters":{
+		"tags":["sotf_dustkeeper_aux"],
+		"fighters":[
+		],
+	},
+	"priorityFighters":{
+		"tags":[],
+		"fighters":[
+		],
+	},
+	# force them to fall back to the auxiliary roles used by the auxiliary ships
+	"shipRoles":{
+		"carrierSmall":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryMedium":1},
+		},
+		"carrierMedium":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryLarge":1},
+		},
+		"carrierLarge":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryLarge":0.5},
+		},
+		"combatSmall":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliarySmall":1},
+		},
+		"combatMedium":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryMedium":1},
+		},
+		"combatLarge":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryLarge":1},
+		},
+		"combatCapital":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryLarge":0.5},
+		},
+		"phaseSmall":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliarySmall":1},
+		},
+		"phaseMedium":{
+			"includeDefault":false,
+			"fallback":{"sotf_auxiliaryMedium":1},
+		},
+		"phaseLarge":{
+			"includeDefault":false,
+			"fallback2":{"sotf_auxiliaryLarge":1},
+		},
+	},
+	# still DKs, still get their decent hardware
+	"knownWeapons":{
+		"tags":["lowtech_bp", "midline_bp", "hightech_bp", "missile_bp", "remnant", "merc"],
+		"weapons":[
+			"lightneedler",
+			"railgun",
+			"dualflak",
+			"heavymauler",
+			"hveldriver",
+			"heavyneedler",
+			"gauss",
+			"mjolnir",
+			"multineedler",
+			"sabotpod",
+			"phasecl",
+			"cyclone",
+			"hurricane",
+			"squall",
+			"locust",
+			"pdburst",
+			"amblaster",
+			"phasebeam",
+			"heavyblaster",
+			"heavyburst",
+			"ionpulser",
+			"ionbeam",
+			"plasma",
+			"guardian",
+			"tachyonlance",
+		],
+	},
+	"priorityWeapons":{
+		"tags":[],
+		"weapons":[
+		],
+	},
+	"knownHullMods":{
+		"tags":["base_bp", "remnant"],
+		"hullMods":[
+			"advancedshieldemitter", # accelerated
+			"advancedoptics",
+			"turretgyros",
+			"augmentedengines",
+			"autorepair",
+			"converted_hangar",
+			"eccm",
+			"ecm",
+			"expanded_deck_crew",
+			"magazines",
+			"missleracks",
+			"extendedshieldemitter",
+			"frontemitter",
+			"frontshield",  # makeshift
+			"hardenedshieldemitter",
+			"heavyarmor",
+			"insulatedengine",
+			"pointdefenseai",
+			"targetingunit",
+			"nav_relay",
+			"adaptiveshields", # omni
+			"operations_center",
+			"recovery_shuttles",
+			"fluxbreakers",
+			"solar_shielding",
+			"stabilizedshieldemitter",
+		],
+	},
+	"fleetTypeNames":{
+		"patrolSmall":"Recon Drones",
+		"patrolMedium":"Warfleet",
+		"patrolLarge":"Armada",
+		"battlestation":"Bastion",
+	},
+	"ranks":{
+		"ranks":{
+		},
+		"posts":{
+		},
+	},
+	"factionDoctrine":{
+		"warships":4,
+		"carriers":2,
+		"phaseShips":1,
+		
+		"officerQuality":3,
+		"shipQuality":1,
+		"numShips":3,
+		
+		"shipSize":3, # dedicated aux-only fleets have bigger drones
+		
+		"aggression":5, # doesn't matter - assault drones are Fearless, escort drones are Steady
+		
+		"autofitRandomizeProbability":0.75,
+
+		"commanderSkillsShuffleProbability":0,
+		"commanderSkills":[
+			"support_doctrine",
+			"derelict_contingent", # this is vanilla Derelict Operations, not SoTF's 0.95a Derelict Contingent w damage reduction
+			"electronic_warfare",
+			"coordinated_maneuvers",
+			"fighter_uplink",
+			"sensors",
+		],
+		
+		# don't touch
+		"combatFreighterProbability":0,
+		"combatFreighterCombatUseFraction":0,
+		"combatFreighterCombatUseFractionWhenPriority":0,
+	},	
+
+},

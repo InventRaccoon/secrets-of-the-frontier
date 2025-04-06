@@ -1,0 +1,40 @@
+{
+	# BRING
+	# HER
+	# DOWN!
+	"id":"sotf_cryoharpoon",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"onHitEffect":"data.scripts.weapons.SotfHidecrackerOnHitEffect",
+	#"sprite":"graphics/missiles/missile_torpedo.png",
+	#"size":[16,28],	
+	#"center":[8,14],
+	"length":120.0,
+	"width":75.0,
+	"hitGlowRadius":500,
+	"fadeTime":0.5,
+	"fringeColor":[100,150,255,255],
+	"coreColor":[150,150,255,255],
+	"glowColor":[150,150,255,255],
+	"glowRadius":120,
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"passThroughMissiles":true,	
+	"passThroughFighters":true,
+	"textureType":"SMOOTH",  # only needed for BEAM spawnType
+	"textureScrollSpeed":-256,
+	"pixelsPerTexel":5.0,
+	"explosionColor":[100,150,255,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":750, # purely visual
+	"explosionSpec":{"duration":0.2f, # not visual
+					 "radius":400,
+					 "coreRadius":300, # full damage within core radius
+					 "collisionClass":HITS_SHIPS_AND_ASTEROIDS,
+					 "collisionClassByFighter":HITS_SHIPS_AND_ASTEROIDS,
+					 "particleSizeMin":5.0,
+					 "particleSizeRange":3.0,
+					 "particleDuration":1,
+					 "particleCount":200,
+					 "particleColor":[160,200,255,255]},		
+}
+			

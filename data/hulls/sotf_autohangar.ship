@@ -1,0 +1,123 @@
+{
+  "bounds": [
+    33,
+    -25.5,
+    53.5,
+    -35,
+    32.5,
+    -60.5,
+    -52.5,
+    -36,
+    -67.5,
+    -0,
+    -52.5,
+    36,
+    32.5,
+    60.5,
+    53.5,
+    35,
+    33,
+    25.5
+  ],
+  "builtInMods": [
+    "targetingunit",
+    "chassis_storage",
+    "axialrotation",
+    "sotf_noventing",
+    "sotf_fighteroverlay"
+  ],
+  "builtInWings": [],
+  "center": [
+    62,
+    70
+  ],
+  "collisionRadius": 94.5,
+  "engineSlots": [],
+  "height": 160,
+  "hullId": "sotf_autohangar",
+  "hullName": "Defensive Emplacement",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    -0
+  ],
+  "shieldRadius": 94.5,
+  "spriteName": "graphics/ships/emplacements/sotf_autohangar.png",
+  "style": "MIDLINE",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 70,
+      "arc": 210,
+      "id": "WS 001",
+      "locations": [
+        29,
+        49.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": -70,
+      "arc": 210,
+      "id": "WS 002",
+      "locations": [
+        29,
+        -49.5
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "LB 1",
+      "locations": [
+        14,
+        -1,
+        4.5,
+        -1,
+        25.5,
+        -1
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    },
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "LB 2",
+      "locations": [
+        16.5,
+        19.5,
+        27.5,
+        20,
+        7,
+        20
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    },
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "LB 3",
+      "locations": [
+        17.5,
+        -20,
+        6,
+        -20,
+        29.5,
+        -19.5
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    }
+  ],
+  "width": 124
+}

@@ -1,0 +1,19 @@
+{
+	"sotf_inadvertent":{
+		"name":"Frontier Operations",
+		"sort":10,
+	},
+	"sotf_wendigo":{
+		"name":"Hunter-Killer",
+		"sort":10,
+	},
+	"sotf_spyglass":{
+		"name":"Espionage",
+		#"color":"buttonShortcut",
+		#"putFirst":true,
+		"sort":10,
+	},
+}
+
+
+

@@ -1,0 +1,69 @@
+{
+	# yes, this is blatantly cheating, but Eidolon is an extradimensional anomaly who doesn't care about "ordnance points"
+  "variantId": "sotf_vow_eidolon_WS",
+  "hullId": "sotf_vow_eidolon",
+  "displayName": "",
+  "goalVariant": true,
+  "fluxCapacitors": 10,
+  "fluxVents": 15,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "fluxbreakers",
+    #"magazines",
+    #"advancedshieldemitter",
+    #"auxiliarythrusters",
+    "sotf_wispersong"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "vpdriver"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "resonatormrm"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "cryoflux"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "cryoblaster",
+        "WS 005": "cryoblaster"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "riftlance"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "shockrepeater",
+        "WS 008": "shockrepeater"
+		# makes her a bit too survivable against fighters and etc
+        #"WS 009": "shockrepeater",
+        #"WS 010": "shockrepeater"
+      }
+    },
+  ],
+  "modules": [],
+  "wings": []
+}

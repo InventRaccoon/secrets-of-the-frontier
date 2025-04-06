@@ -1,0 +1,49 @@
+{
+	"id":"sotf_dronepod",
+	"specClass":"missile",	
+	"missileType":"PHASE_MINE",
+	"sprite":"graphics/missiles/sotf_dronepod.png",
+	#"onHitEffect":"data.scripts.weapons.SotfGraviticMineOnHitEffect",
+	"glowSprite":"graphics/missiles/sotf_dronepod_glow1.png",
+	"glowColor":[190,60,255,255],
+	"size":[64,64],	
+	"center":[32,32],	
+	"collisionRadius":20,
+	#"armingTime":1,
+	"collisionClass":"NONE",
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"fadeTime":0.1, # fadeout duration
+	"noEngineGlowTime":0.05, # time spent without the engine glow being rendered
+	"explosionColor":[255,225,125,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":350, # purely visual	
+	"engineSpec":{"turnAcc":500,
+				  "turnRate":150,
+				  "acc":500,
+				  "dec":500},
+	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
+					"onExplosionEffect":"data.scripts.weapons.SotfDronePodOnExplosionEffect",
+					"range":175,
+					"slowToMaxSpeed":true,
+					"delay":3,
+					"pingSound":"mine_ping",
+					"pingColor":[0,255,158,255],
+					"pingRadius":450,
+					"pingDuration":0.5,
+					"windupSound":"mine_windup_heavy",
+					"windupDelay":1,
+					"explosionSpec":{"duration":3f,
+									 "radius":325,
+									 "coreRadius":250, # full damage within core radius
+									 "collisionClass":PROJECTILE_FIGHTER,
+									 "collisionClassByFighter":PROJECTILE_FIGHTER,
+									 "particleSizeMin":7.0,
+									 "particleSizeRange":4.0,
+									 "particleDuration":4,
+									 "particleCount":25,
+									 "particleColor":[255,225,125,255],
+									 "explosionColor":[255,225,125,125],
+									 "sound":"mine_explosion"},
+					}	
+}
+
+

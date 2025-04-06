@@ -1,0 +1,123 @@
+{
+  "hullName": "Memoir",
+  "hullId": "sotf_memoir",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/dustkeepers/sotf_memoir.png",
+  "style": "HIGH_TECH",
+  "height": 164,
+  "width": 144,
+  "center": [72, 74],
+  "collisionRadius": 107.5,
+  "shieldCenter": [8, 0],
+  "shieldRadius": 99.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_cwarsuite",
+    "automated",
+    "ecm",
+    "eccm"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 30,
+      "locations": [13, 33]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -30,
+      "locations": [13, -33]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 90,
+      "locations": [-31, 49]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": -90,
+      "locations": [-31, -49]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-70, 40],
+      "length": 30,
+      "width": 10,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-70, -40],
+      "length": 30,
+      "width": 10,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-65, 29],
+      "length": 25,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-65, -29],
+      "length": 25,
+      "width": 8,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-61, 19],
+      "length": 22,
+      "width": 7,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-61, -19],
+      "length": 22,
+      "width": 7,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    -42, -10.5,
+    -61.5, -15,
+    -72.5, -39,
+    -65, -48.5,
+    9.5, -53.5,
+    88, -30,
+    42, -0,
+    88, 30,
+    9.5, 53.5,
+    -65, 48.5,
+    -72.5, 39,
+    -61.5, 15,
+    -42, 10.5
+  ]
+}

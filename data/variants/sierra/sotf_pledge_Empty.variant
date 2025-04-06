@@ -1,0 +1,14 @@
+{
+  "variantId": "sotf_pledge_Empty",
+  "hullId": "sotf_pledge",
+  "displayName": "Sierra's",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 0,
+  "permaMods": [],
+  "weaponGroups": [
+  ],
+  "modules": [],
+  "wings": []
+}

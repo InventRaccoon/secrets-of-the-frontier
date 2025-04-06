@@ -1,0 +1,23 @@
+{
+	# IT'S BACK, BABY
+	"id":"sotf_derelictcontingent",
+	"governingAptitude":"industry",
+	"compressHullmods":false,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":0,
+			"effects":[
+				{"type":"DESCRIPTION", "script":"data.scripts.campaign.skills.SotfDerelictContingent$Level0"},
+			]
+		},
+		{
+
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				{"type":"ALL_SHIPS_IN_FLEET", "script":"data.scripts.campaign.skills.SotfDerelictContingentPersonal$Level1"},
+			]
+		},
+	],
+}

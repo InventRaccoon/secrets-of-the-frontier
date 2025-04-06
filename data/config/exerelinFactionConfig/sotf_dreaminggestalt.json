@@ -1,0 +1,9 @@
+{
+	# mostly to get rid of prisoners
+    "playableFaction":false,
+    "corvusCompatible":true,
+    "dropPrisoners":false,
+    "noRandomizeRelations":true,
+    "noSyncRelations":true,
+    "specialForcesMaxFleets":0,
+}

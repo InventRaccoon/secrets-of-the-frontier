@@ -1,0 +1,25 @@
+{
+    "chatter":{
+		"factionRoundels":{
+			"sotf_dustkeepers":"graphics/factions/sotf_roundel_dustkeepers.png",
+			"sotf_dustkeepers_burnouts":"graphics/factions/sotf_roundel_dustkeepers.png",
+		},
+    },
+	
+	"TakeNoPrisoners": {
+		"factionsWithConfigs": [
+			"sotf_dreaminggestalt",
+			"sotf_symphony",
+		]
+	},
+	
+	"MoreMilitaryMissions":{
+		"DmReinforcementFactionBlacklist": [
+            "sotf_sierra_faction",
+			"sotf_daydreamgestalt",
+			"sotf_dustkeepers", # just do Burnouts instead, makes slightly more sense
+			"sotf_dustkeepers_proxies",
+			"sotf_symphony",
+        ],
+	},
+}

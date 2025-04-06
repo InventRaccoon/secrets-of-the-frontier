@@ -1,0 +1,24 @@
+{
+	"id":"sotf_dronestrike",
+	"type":"STAT_MOD",
+	"aiType":"MINE_STRIKE",
+	
+	"statsScript":"data.shipsystems.SotfDroneStrikeSystem",
+
+	"canUseWhileRightClickSystemOn":true,
+
+	"fadeActivationSoundOnChargedown":true,
+	"useSound":"system_interdictor",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+	"aiHints":{
+		"threatRange":3500,
+		"threatAmount":100,
+		"threatAngle":0,
+		"threatArc":360,
+	}
+}
+
+
+
+

@@ -1,0 +1,85 @@
+{
+  "bounds": [
+    -40,
+    0,
+    -30,
+    38,
+    0,
+    45,
+    30,
+    38,
+    40,
+    -0,
+    30,
+    -38,
+    0,
+    -45,
+    -30,
+    -38
+  ],
+  "builtInMods": [
+    "axialrotation",
+    "supercomputer",
+    "sotf_noventing",
+	"turretgyros",
+    "missile_reload"
+  ],
+  "builtInWings": [],
+  "center": [
+    45,
+    44
+  ],
+  "collisionRadius": 72,
+  "engineSlots": [],
+  "height": 88,
+  "hullId": "sotf_gunturret",
+  "hullName": "Defensive Emplacement",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    -0
+  ],
+  "shieldRadius": 72,
+  "spriteName": "graphics/ships/emplacements/sotf_gunturret.png",
+  "style": "LOW_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "WS 001",
+      "locations": [
+        0,
+        -0
+      ],
+      "mount": "TURRET",
+      "size": "LARGE",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": 0,
+      "arc": 0,
+      "id": "WS 002",
+      "locations": [
+        32,
+        -0
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "MISSILE"
+    },
+    {
+      "angle": 180,
+      "arc": 0,
+      "id": "WS 003",
+      "locations": [
+        -32,
+        -0
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "MISSILE"
+    }
+  ],
+  "width": 90
+}

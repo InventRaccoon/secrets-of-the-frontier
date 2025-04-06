@@ -1,0 +1,200 @@
+{
+  "hullName": "Vow",
+  "hullId": "sotf_vow_lifedrinker",
+  "hullSize": "CRUISER",
+  "spriteName": "graphics/ships/sierra/sotf_vow.png",
+  "style": "SOTF_SIERRA",
+  "height": 249,
+  "width": 196,
+  "center": [98, 118],
+  "collisionRadius": 150,
+  "shieldCenter": [7, -0],
+  "shieldRadius": 138.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_sierrasconcord",
+    "phasefield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "LARGE",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 15,
+      "locations": [-2, 30]
+    },
+    {
+      "id": "WS 005",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -45,
+      "locations": [-9, -34]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 0,
+      "locations": [42, 22]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": -45,
+      "locations": [-1, -73]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 8,
+      "angle": 0,
+      "locations": [59, 57]
+    },
+    {
+      "id": "WS 002",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [82, -0]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": 0,
+      "locations": [29, -21]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -135,
+      "locations": [-70, -33]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 135,
+      "locations": [-70, 33]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 45,
+      "locations": [-1, 73]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-79, 14],
+      "length": 80,
+      "width": 20,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-79, -14],
+      "length": 80,
+      "width": 20,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-90.5, 52.5],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-89.5, 47.5],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-91.5, 57],
+      "length": 35,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 36,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-91.5, -57],
+      "length": 35,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 36,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-90.5, -52.5],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-89.5, -47.5],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    }
+  ],
+  "bounds": [
+    129, -24.5,
+    81, -0,
+    129, 24.5,
+    86, 41,
+    57, 64,
+    7, 69.5,
+    4, 88,
+    -50, 61,
+    -94.5, 62,
+    -88.5, 45,
+    -117, 34.5,
+    -79.5, 19,
+    -93, -0,
+    -79.5, -19,
+    -117, -34.5,
+    -88.5, -45,
+    -94.5, -62,
+    -50, -61,
+    4, -88,
+    10, -59.5,
+    61, -58,
+    86, -41
+  ]
+}

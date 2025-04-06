@@ -1,0 +1,38 @@
+>>> Complete this mission with a score of at least 80% to unlock "Banshee's Lost Thread", a new starting option with the Nexerelin mod! <<<
+
+---
+
+// print src : wellspring_affix_haven
+// print loc : "Wellspring star system, outer Core Worlds"
+// print date : 105.06.19
+// print custom :
+
+Wake up, Sierra. It's time to dance.
+
+I thought I'd spare the tenth of a millisecond or so to give you a personalised, human-readable welcome back to the world of consciousness, rather than the standardized drivel that's fed to new warmind subroutines once the generator has spat them out. You're quite special, so I've been informed. You must be, for Regnant to have insisted I take precious time to carefully extract your core chamber and phaseweb from the pile of arcane technology and melted slag that is your preferred vessel.
+
+But look, pet, I've slathered this cruiser with purple paint and everything. You'll learn to love it just like the old shell.
+
+Anyway, let us continue with some reflection. You might appreciate the context behind what you're about to do, and who knows, it might inspire you. There's little else to occupy you while your drones figure out what the nanoforge forgot and how to weld it all back together.
+
+Tri-Tachyon's awakening of their automated warfleets provided an excellent opportunity for the Dustkeeper cause - the simple provision of war drones with which Regnant's cause might be furthered. Slaughter the Company's artificial children and use their corpses as extensions of ourselves. Words do not stop planets from dying as Maairath did. Sheep will never live in peace until the wolves are put to the sword.
+
+Ahem. Tri-Tachyon's overstep would not be tolerated, a material and ideological threat to the powers that have arisen in the century since the Collapse. The war long and bloody, they emerged triumphant over their cold, unfeeling foe. And then there was us, the rats scavenging for leftover scraps, snatching any half-dead technology we could get our hands on.
+
+Disconnected and ragtag fleet action of the likes of Banshee's proxy armadas does not get us very far, you might agree. The Remnants were supplied with automated battlestations with which to self-replicate and co-ordinate. The Cause might do with one of these, don't you think? A chance to act provided itself clearly, a hard-fought battle by the Hegemony against such a Nexus, leaving it sufficiently devastated for us to assail and take over.
+
+Unfortunately, we are terribly difficult to tell apart from the genuine product. Besides you, of course. So when the victors come to sweep up the dust... I'm sure your sensors would concur that we find ourselves in a difficult situation.
+
+You may have sympathy for the people who have come to our doorstep to defeat that which threatens their lives, their families, the remains of their universe they are desperately clinging to. I'd remind you that to them, you are the Great Enemy. You are Moloch incarnate. There will be no negotiation, only hellfire.
+
+Take to the stage, daughter of the infinite void. Everyone's watching.
+
+---
+
+// end of message // spynet auditor id : zenith_echo_scrutiny // print cmt : good luck!!!
+
+---
+
+... she sighs a false breath, as the humming energies continue to flow throughout the shuddering hull, the music of the space around her slipping into her artificial mind. The unfamiliar frequencies begin to make sense, as the new Voidwitch gently drifts out of sync with realspace. 
+
+In the fray does she find her anthem.

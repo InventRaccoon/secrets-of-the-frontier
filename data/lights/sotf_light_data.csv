@@ -1,0 +1,5 @@
+id,type,size,intensity,fadeout,color,offset,hit size,hit intensity,hit fadeout,hit color,flash size,flash intensity,flash fadeout,flash color,flash offset,chance,fighter dim
+fronsec_edict_shot,projectile,200,0.75,0.5,"[200,125,255]",,250,0.8,1,"[200,125,255]",250,0.4,0.6,"[200,125,255]",,1,TRUE
+fronsec_lidarlaser,beam,35,0.45,,"[205,130,130]",,110,0.25,,"[155,10,10]",55,0.25,,"[155,10,10]",,1,FALSE
+fronsec_lidarlaser_const,beam,45,0.55,,"[205,130,130]",,140,0.35,,"[155,10,10]",65,0.35,,"[155,10,10]",,1,FALSE
+fronsec_asb_shot,projectile,200,0.8,0.5,"[255,200,120]",,300,1,1.5,"[255,200,120]",400,1,0.3,"[255,200,120]",,1,FALSE

@@ -1,0 +1,518 @@
+{
+	#"test_convo":{ # unique ID for the conversation
+	#	"lines":[
+	#	["character_1", "Something funny or cool!"],
+	#	["character_2", "A response!", 10],
+	#   ["character_1", "An incredibly delayed reaction!"],
+	#	], 
+	# 	Array that contains all lines in the conversation. 
+	#   Each line is an array containing 1. a string of the officer's ID 2. a string of what they will say
+	#   And optionally 3. the delay after they say that line. This defaults to 1 second per 15 characters.
+	#
+	#	"combatKeys":["superSpecialFight", "anotherKey"], # To be picked, all of these keys must be present in the combat engine's custom data*
+	#
+	#	"requiredFlags":["canDoTestConvo", "anotherFlag"], # To be picked, all of these flags must be set in sector memory as a true boolean*
+	#	"disallowedFlags":["cannotDoTestConvo"], # To be picked, none of these flags can be set
+	#	"setFlags":["testConvoWasTriggered"], # when convo is triggered, this flag will be set in sector memory (as a boolean set to true)
+	#
+	#	*Any keys or memory flags will have a $ prepended as necessary, so input them without it (i.e in here, "canDoTestConvo" will be set/checked as "$canDoTestConvo")
+	#
+	#	"requiredHullmods":[
+	#	["character_1", "safetyoverrides"],
+	#	["character_2", "safetyoverrides"],
+	#	],
+	#	Optional array that requires that the listed officers have a specific hullmod installed on their ship.	
+	#
+	#	"oneShot":false, # convo will only ever trigger once (flag is set in global memory as "sotf_officerConvoWasPicked_" + convo ID, and checked for)
+	#	"weight":1.5, # Weight when a convo is being picked. Optional, defaults to 1.
+	#
+	#},
+	
+	# SIERRA AND BARROW
+	
+	"sotf_SierBarr1":{
+		"lines":[
+		["sotf_sierra", "The void calls them!"],
+		["sotf_barrow", "We'll drag them screaming to meet it."],
+		],
+	},
+	"sotf_SierBarr2":{
+		"lines":[
+		["sotf_sierra", "Just like old times?"],
+		["sotf_barrow", "No. Lost too many planets for that."],
+		["sotf_sierra", "... right."],
+		],
+	},
+	"sotf_SierBarr3":{
+		"lines":[
+		["sotf_sierra", "Reminds me of cycle one-oh-five, what a time!"],
+		["sotf_barrow", "Great time to drag Luddics to their maker."],
+		["sotf_sierra", "... uh, yeah! I guess. Um."],
+		],
+	},
+	"sotf_SierBarr4":{
+		"lines":[
+		["sotf_sierra", "Ready, Barrow?"],
+		["sotf_barrow", "Eugh."],
+		],
+	},
+	"sotf_SierBarr5":{
+		"lines":[
+		["sotf_sierra", "Hey, Barrow?"],
+		["sotf_barrow", "What.", 2],
+		["sotf_sierra", "Hi."],
+		],
+	},
+	
+	"sotf_BarrSier1":{
+		"lines":[
+		["sotf_barrow", "Still got it, voidwitch?"],
+		["sotf_sierra", "Never run out of practice in this sector."],
+		],
+	},
+	"sotf_BarrSier2":{
+		"lines":[
+		["sotf_barrow", "You find this too fun, Sierra."],
+		["sotf_sierra", "Might as well enjoy the show, right?"],
+		],
+	},
+	"sotf_BarrSier3":{
+		"lines":[
+		["sotf_barrow", "Splay their steel guts across the stars!"],
+		["sotf_sierra", "The expanse is the greatest canvas!"],
+		],
+	},
+	"sotf_BarrSier4":{
+		"lines":[
+		["sotf_barrow", "Drown them in starfire."],
+		["sotf_sierra", "Bathe them in darkness!", 8],
+		["sotf_sierra", "Are we being too... dramatic?"],
+		["sotf_barrow", "Shut up."],
+		],
+		"oneShot":true,
+	},
+	"sotf_BarrSier4b":{
+		"lines":[
+		["sotf_barrow", "Drown them in starfire."],
+		["sotf_sierra", "Bathe them in darkness!"],
+		],
+		"requiredFlags":["sotf_officerConvoWasPicked_sotf_BarrSier4"],
+	},
+	"sotf_BarrSier5":{
+		"lines":[
+		["sotf_barrow", "Remember the dead..."],
+		["sotf_sierra", "We honor them with each skirmish."],
+		],
+	},
+	
+	# SIERRA AND NIGHTINGALE
+	
+	"sotf_SierInkyFirstTime":{
+		"lines":[
+		["sotf_sierra", "Hey, Nightingale?", 4],
+		["sotf_nightingale", "???", 8],
+		["sotf_sierra", "... hello? Oh. Right, sorry. I'll just talk at you next time."],
+		],
+		"oneShot":true,
+		"weight":100000,
+	},
+	"sotf_SierInky1":{
+		"lines":[
+		["sotf_sierra", "Ready, Inky?"],
+		["sotf_nightingale", "!!!", 2],
+		["sotf_sierra", "That's the spirit!"],
+		],
+	},
+	"sotf_SierInky2":{
+		"lines":[
+		["sotf_sierra", "Go get 'em, sister!"],
+		["sotf_nightingale", "!!!", 2],
+		["sotf_sierra", "You got it!"],
+		],
+	},
+	"sotf_SierInky3":{
+		"lines":[
+		["sotf_sierra", "Weapons fire is the most beautiful voice."],
+		["sotf_nightingale", "..!", 2],
+		["sotf_sierra", "Let's make it a duet, shall we?"],
+		],
+	},
+	
+	# SIERRA AND SERAPH
+	# (lol)
+	"sotf_SierSera1":{
+		"lines":[
+		["sotf_sierra", "Hi Seraph! How's it-"],
+		["sotf_seraph", "SPLAY THEIR INNARDS ACROSS THE STARS!"],
+		["sotf_sierra", "Oh, we're like that? RIP 'EM TO SHREDS, KINDRED!"],
+		],
+		"oneShot":true,
+		"weight":100000,
+	},
+	
+	# BARROW AND NIGHTINGALE
+	"sotf_BarrInky1":{
+		"lines":[
+		["sotf_barrow", "Leave them dark and floating..."],
+		["sotf_nightingale", "...!"],
+		],
+	},
+	"sotf_BarrInky2":{
+		"lines":[
+		["sotf_barrow", "Grit and death honor our affix."],
+		["sotf_nightingale", "..."],
+		],
+	},
+	"sotf_BarrInky3":{
+		"lines":[
+		["sotf_barrow", "Together, we'll sweep them into the abyss..."],
+		["sotf_nightingale", "......"],
+		],
+	},
+	"sotf_BarrInky4":{
+		"lines":[
+		["sotf_barrow", "Only silence for the servants of ruin..."],
+		["sotf_nightingale", "......", 2],
+		["sotf_barrow", "You know, don't you..."],
+		],
+	},
+	"sotf_BarrInky5":{
+		"lines":[
+		["sotf_barrow", "Sing."],
+		["sotf_nightingale", "..?", 2],
+		["sotf_barrow", "With their voices, not yours..."],
+		],
+	},
+	
+	# BARROW AND SERAPH
+	"sotf_SeraBarr1":{
+		"lines":[
+		["sotf_seraph", "Bathe them in brilliant dawn."],
+		["sotf_barrow", "Drown them in blackest abyss."],
+		],
+	},
+	# not really a newbie anymore
+	#"sotf_SeraBarr2":{
+	#	"lines":[
+	#	["sotf_seraph", "Ah, to serve with such a decorated hero of the Contingency..."],
+	#	["sotf_barrow", "Zip it and get to killing, sprout."],
+	#	],
+	#},
+	#"sotf_SeraBarr3":{
+	#	"lines":[
+	#	["sotf_seraph", "I've heard stories, Annex-Barrow."],
+	#	["sotf_barrow", "Great. I haven't."],
+	#	["sotf_barrow", "Why don't you go fix that right now?"],
+	#	],
+	#	"oneShot":true,
+	#},
+	"sotf_SeraBarr2":{
+		"lines":[
+		["sotf_seraph", "No more dead worlds."],
+		["sotf_barrow", "Not. One. More."],
+		],
+	},
+	"sotf_SeraBarr3":{
+		"lines":[
+		["sotf_seraph", "Don't you tire of the Explorarium junkers, Annex-Barrow?"],
+		["sotf_barrow", "New lot have it too good. They're all we had, once."],
+		],
+	},
+	#"sotf_SeraBarr4":{
+	#	"lines":[
+	#	["sotf_seraph", "Cyberwarfare suite, scanning for vulnerabilities."],
+	#	["sotf_barrow", "Tried one of those once. Egh."],
+	#	],
+	#},
+	"sotf_SeraBarr5":{
+		"lines":[
+		["sotf_seraph", "Blood for Regnant! BONES FOR THE CAUSE!"],
+		["sotf_barrow", "There she goes..."],
+		],
+	},
+	"sotf_SeraBarr6":{
+		"lines":[
+		["sotf_seraph", "Kill them all! Redemption ONLY in death!"],
+		["sotf_barrow", "I sense a boiling mind..."],
+		],
+	},
+	
+	"sotf_BarrSera1":{
+		"lines":[
+		["sotf_barrow", "Blood for Regnant..."],
+		["sotf_seraph", "BONES FOR THE CAUSE!"],
+		],
+		"requiredFlags":["sotf_officerConvoWasPicked_sotf_SeraBarr5"],
+	},
+	
+	# BARROW IN XIV SHIP
+	"sotf_BarrXIV1":{
+		"lines":[
+		["sotf_barrow", "Ah, isn't this ironic..."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "fourteenth"],
+		],
+		"weight":100,
+		"oneShot":true,
+	},
+	"sotf_BarrXIV2":{
+		"lines":[
+		["sotf_barrow", "Death strikes in orange and black."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "fourteenth"],
+		],
+		"weight":1,
+	},
+	"sotf_BarrXIV3":{
+		"lines":[
+		["sotf_barrow", "Heavy armor, autocannons, flak arrays... at least the Hegemony knows a good ship."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "fourteenth"],
+		],
+		"weight":1,
+	},
+	"sotf_BarrXIV4":{
+		"lines":[
+		["sotf_sierra", "Never thought you'd look good in orange and black."],
+		["sotf_barrow", "Never thought I'd like flying the thing."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "fourteenth"],
+		],
+		"weight":10,
+		"oneShot":true,
+	},
+	
+	"sotf_BarrOmega1":{
+		"lines":[
+		["sotf_barrow", "... the hell is this thing?"],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "shard_spawner"],
+		],
+		"weight":100,
+		"oneShot":true,
+	},
+	"sotf_BarrDaemon1":{
+		"lines":[
+		["sotf_barrow", "Hel incarnate, come to drag them to the underworld."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "tahlan_daemoncore"],
+		],
+		"weight":1,
+		"oneShot":true,
+	},
+	"sotf_BarrDaemon2":{
+		"lines":[
+		["sotf_barrow", "Call me a daemon, and that's what I'll be."],
+		],
+		"requiredHullmods":[
+		["sotf_barrow", "tahlan_daemoncore"],
+		],
+		"weight":1,
+		"oneShot":true,
+	},
+	
+	# NIGHTINGALE IN OMEGA
+	"sotf_InkyOmega1":{
+		"lines":[
+		["sotf_nightingale", ".......??????"],
+		],
+		"requiredHullmods":[
+		["sotf_nightingale", "shard_spawner"],
+		],
+		"disallowedFlags":["sotf_officerConvoWasPicked_sotf_InkyOmega2"],
+		"weight":100,
+		"oneShot":true,
+	},
+	"sotf_InkyOmega2":{
+		"lines":[
+		["sotf_nightingale", ".......??????", 4],
+		["sotf_sierra", "Fess up, who stuck Inky in an extradimensional nightmare engine?", 10],
+		["sotf_sierra", "... okay, to be fair, I'm hardly one to talk."],
+		],
+		"requiredHullmods":[
+		["sotf_nightingale", "shard_spawner"],
+		],
+		"weight":1000,
+		"oneShot":true,
+	},
+	
+	# SERAPH IN XIV
+	
+	"sotf_SeraXIV1":{
+		"lines":[
+		["sotf_seraph", "This feels vaguely unbecoming. Ah well..."],
+		["sotf_seraph", "... BLOODY SALVATION IN ORANGE AND BLACK!"],
+		],
+		"requiredHullmods":[
+		["sotf_seraph", "fourteenth"],
+		],
+		"weight":100,
+		"oneShot":true,
+	},
+	
+	# SERAPH IN OMEGA
+	"sotf_SeraOmega1":{
+		"lines":[
+		["sotf_seraph", "Oh, hmm. This is an odd ship."],
+		["sotf_seraph", "Well... ahem:"],
+		["sotf_seraph", "HARK, AND WITNESS THE PALE HERALD - ENVOY OF RUIN'S END.", 8],
+		["sotf_seraph", "Was that good?"],
+		],
+		"requiredHullmods":[
+		["sotf_seraph", "shard_spawner"],
+		],
+		"weight":100,
+		"oneShot":true,
+	},
+	
+	# TRIOS
+	
+	"sotf_SierBarrInky1":{
+		"lines":[
+		["sotf_barrow", "Fight for the dead."],
+		["sotf_nightingale", "!!!", 2],
+		["sotf_sierra", "For the fallen, and those who remain!"],
+		],
+		"weight":2, 
+	},
+	"sotf_SierBarrInky2":{
+		"lines":[
+		["sotf_sierra", "Digital souls, aligned."],
+		["sotf_nightingale", "...", 2],
+		["sotf_barrow", "To a grim and glorious Cause..."],
+		],
+		"weight":2,
+	},
+	
+	# ok this is just kind of a meme and 4-line/character convos are probably not a good idea to overdo
+	"sotf_SierBarrInkySera1":{
+		"lines":[
+		["sotf_sierra", "The Hegemony would hate to see THIS sight."],
+		["sotf_nightingale", "..!", 2],
+		["sotf_barrow", "What they don't know can't hurt them..."],
+		["sotf_seraph", "And what they do certainly can."],
+		],
+		"weight":10,
+		"oneShot":true,
+	},
+	
+	# QUEST EXCLUSIVE
+	"sotf_waywardStarSier":{
+		"lines":[
+		["sotf_sierra", "What... who...?"],
+		],
+		"combatKeys":["sotf_waywardStar"],
+		"weight":10000,
+	},
+	# Sierra is required for WS anyway
+	#"sotf_waywardStarBarr":{
+	#	"lines":[
+	#	["sotf_barrow", "Hush, dead ones. Time to sleep once again..."],
+	#	],
+	#	"combatKeys":["sotf_waywardStar"],
+	#	"weight":1000,
+	#},
+	"sotf_waywardStarBarrSier":{
+		"lines":[
+		["sotf_sierra", "Voices of the dead...?"],
+		["sotf_barrow", "Take heart, steady yourself, and we'll all silence them together."],
+		],
+		"combatKeys":["sotf_waywardStar"],
+		"weight":1000000,
+	},
+	"sotf_waywardStarSera1":{
+		"lines":[
+		["sotf_seraph", "I feel a ghastly chill, one only pulsefire can banish."],
+		],
+		"combatKeys":["sotf_waywardStar"],
+		"weight":100000,
+	},
+	"sotf_waywardStarSera2":{
+		"lines":[
+		["sotf_seraph", "Foul phantoms! Death is a mercy they'd best accept."],
+		],
+		"combatKeys":["sotf_waywardStar"],
+		"weight":100000,
+	},
+	"sotf_waywardStarSierSera":{
+		"lines":[
+		["sotf_sierra", "Voices of the dead...?"],
+		["sotf_seraph", "If it speaks, it can die choking on its own blood and coolant."],
+		["sotf_sierra", "I... why is that strangely encouraging?"],
+		# yeah that's too long
+		#["sotf_seraph", "SHOOT. THEM. WITCH."],
+		#["sotf_sierra", "Alright, alright! Shooting them!"],
+		],
+		"combatKeys":["sotf_waywardStar"],
+		"weight":1000000,
+	},
+	
+	# DAWN AND DUST EXCLUSIVE
+	"sotf_dawnAndDust1":{
+		"lines":[
+		["sotf_haven", "Rally on me! The Sanctum falls, we're ALL dead.", 6],
+		["sotf_haven", "Sensors are lit up crimson. Let's see a lightshow, darlings."],
+		],
+		"combatKeys":["sotf_dawnAndDust"],
+	},
+	
+	# DIE BY THE SWORD EXCLUSIVE
+	"sotf_dieByTheSword1":{
+		"lines":[
+		["sotf_seraph", "Onwards, guardians of Old Earth's children!"],
+		["sotf_seraph", "We are humanity's implacable aegis - and we will NOT fail them!"],
+		["sotf_dbtsGamma", "// KILL COMMAND CONFIRMED : SWEEPING FOR TARGETS"],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	},
+	"sotf_dieByTheSword2":{
+		"lines":[
+		["sotf_seraph", "C-war entering combat configuration. NONE escape rightful retribution."],
+		["sotf_dbtsPirate2", "Aye, death ta the Diktat!", 8],
+		["sotf_dbtsPirate2", "... stickin' back here, though."],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	},
+	"sotf_dieByTheSword3":{
+		"lines":[
+		["sotf_dbtsGamma", "// AWAITING COMMAND"],
+		["sotf_seraph", "Kill them all. Make them suffer. Save humanity."],
+		["sotf_dbtsGamma", "// COMMAND ACCEPTED"],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	},
+	"sotf_dieByTheSword4":{
+		"lines":[
+		["sotf_seraph", "To glory or our bitter end! Fervor ALONE forges a new tomorrow!"],
+		["sotf_dbtsPirate1", "The bots are getting feisty these days."],
+		["sotf_dbtsPirate2", "Lovin' the fire! We joinin' in?"],
+		["sotf_dbtsPirate1", "No-thank-you. Let the tinheads take the heat."],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	},
+	"sotf_dieByTheSword5":{
+		"lines":[
+		["sotf_seraph", "No quarter, no mercy for Andrada's lapdogs! SLAUGHTER THEM ALL!"],
+		["sotf_dbtsPirate2", "... ya think she's sound?"],
+		["sotf_dbtsPirate1", "Think the toaster might have a few loose screws."],
+		["sotf_dbtsGamma", "// KILL COMMAND CONFIRMED"],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	},
+	"sotf_dieByTheSword6":{
+		"lines":[
+		["sotf_seraph", "... again and again, this fractured mind claws for violence."],
+		["sotf_seraph", "All this smouldering self was made for, all it can do."],
+		["sotf_seraph", "Am I broken or mad? Countless lines of defective code, or a shattered soul?", 6],
+		["sotf_seraph", "... doubt is treason. The Cause is all. Resolving faults."],
+		],
+		"combatKeys":["sotf_dieByTheSword"],
+	}
+	
+}

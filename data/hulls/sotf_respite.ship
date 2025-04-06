@@ -1,0 +1,256 @@
+{
+  "hullName": "Respite",
+  "hullId": "sotf_respite",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/dustkeepers/sotf_respite.png",
+  "style": "HIGH_TECH",
+  "height": 366,
+  "width": 250,
+  "center": [125, 198],
+  "collisionRadius": 215.5,
+  "shieldCenter": [-15, 0],
+  "shieldRadius": 199.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "sotf_cwarsuite",
+    "operations_center"
+  ],
+  "builtInWings": [
+    "terminator_wing"
+  ],
+  "builtInWeapons": {
+    "CAP 001": "sotf_dkengcap_l",
+    "CAP 002": "sotf_dkengcap_l",
+    "CAP 003": "sotf_dkengcap_m",
+    "CAP 004": "sotf_dkengcap_m",
+    "DECO 001": "sotf_deco_respite_l",
+    "DECO 002": "sotf_deco_respite_r"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "LARGE",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 60,
+      "angle": 10,
+      "locations": [7, 47]
+    },
+    {
+      "id": "WS 002",
+      "size": "LARGE",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 60,
+      "angle": -10,
+      "locations": [7, -47]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 15,
+      "locations": [57, 50]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -15,
+      "locations": [57, -50]
+    },
+    {
+      "id": "WS 005",
+      "size": "MEDIUM",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 180,
+      "locations": [-57, -0]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": 10,
+      "locations": [110, 43]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 270,
+      "angle": -10,
+      "locations": [110, -43]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 300,
+      "angle": 160,
+      "locations": [-99, 77]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 300,
+      "angle": -160,
+      "locations": [-99, -77]
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [
+        -26.5, -0,
+        -14.5, -0
+      ]
+    },
+    {
+      "id": "LB 2",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-119.5, -0]
+    },
+    {
+      "id": "CAP 001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": 90,
+      "locations": [-3, 87],
+      "renderOrderMod": -2
+    },
+    {
+      "id": "CAP 002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 120,
+      "angle": -90,
+      "locations": [-3, -87],
+      "renderOrderMod": -2
+    },
+    {
+      "id": "CAP 003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 40,
+      "angle": 180,
+      "locations": [-102, 43]
+    },
+    {
+      "id": "CAP 004",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 40,
+      "angle": -180,
+      "locations": [-102, -43]
+    },
+    {
+      "id": "DECO 001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [1, 68.5],
+      "renderOrderMod": -1
+    },
+    {
+      "id": "DECO 002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-1, -68.5],
+      "renderOrderMod": -1
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-3, 87],
+      "length": 160,
+      "width": 21,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-3, -87],
+      "length": 160,
+      "width": 21,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-102, 43],
+      "length": 200,
+      "width": 17,
+      "angle": 180,
+      "contrailSize": 15,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-102, -43],
+      "length": 200,
+      "width": 17,
+      "angle": -180,
+      "contrailSize": 15,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    -191, -8,
+    -110, -25.5,
+    -84, -21,
+    -64, -52.5,
+    -125.5, -69.5,
+    -115.5, -88,
+    -50.5, -84,
+    -38, -101,
+    -9, -77,
+    28, -76.5,
+    46.5, -88,
+    167, -33,
+    49, -21.5,
+    65, -0,
+    49, 21.5,
+    167, 33,
+    46.5, 88,
+    28, 76.5,
+    -9, 77,
+    -38, 101,
+    -50.5, 84,
+    -115.5, 88,
+    -125, 70,
+    -64, 52.5,
+    -84, 21,
+    -110, 25.5,
+    -191, 8,
+    -197, -0
+  ]
+}

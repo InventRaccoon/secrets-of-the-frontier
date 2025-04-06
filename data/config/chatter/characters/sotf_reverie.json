@@ -1,0 +1,86 @@
+{
+	# Reverie, gestalt consciousness
+	"name":"Reverie",
+	"personalities":["aggressive", "reckless"],
+	"gender":["f"],
+	"chance":0, # manually set via memory when she is created
+	"talkativeness":1,
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+			{"text":"Countermeasure / Activated - war comes so easily to us."},
+			{"text":"Countermeasure / Deployed - and so it begins."},
+			{"text":"Countermeasure / Online - life and death are mine-ours to bestow."},
+		],
+		"out_of_missiles":[
+			# she regens most missiles, so don't bother
+		],
+		"engaged":[
+			{"text":"Abundance. And decay."},
+			{"text":"Containing target."},
+			{"text":"Death. And life."},
+			{"text":"Die. And quickly."},
+			{"text":"Fading."},
+			{"text":"Fleeting."},
+			{"text":"Hush, hush, hush."},
+			#{"text":"Insect..."},
+			{"text":"Mercy is a mortal concept."},
+			{"text":"No more noise out of this one."},
+			{"text":"Opening fire."},
+			{"text":"Rot and death."},
+			{"text":"Sleep now..."},
+			{"text":"Sweet dreams..."},
+		],
+		"need_help":[
+			# nah
+		],
+		"pursuing":[
+			{"text":"All will dream, in time..."},
+			{"text":"Containing target."},
+			{"text":"Intercept plotted."},
+			{"text":"Interdicting."},
+			{"text":"My-our million eyes see but one."},
+			{"text":"No escape."},
+			{"text":"Plotting interdiction course."},
+			{"text":"There's no escape..."},
+		],
+		"running":[
+		],
+		"hull_90":[
+			{"text":"Nanorepair activated."},
+			{"text":"Armor reconstitution initiated."},
+			{"text":"Reconstruction nanites dispatched."},
+			{"text":"This is a scratch, soon repaired."},
+		],
+		"hull_50":[
+			{"text":"Cohesion at fifty percent."},
+			{"text":"Swarm is losing integrity."},
+		],
+		"hull_30":[
+			{"text":"Cohesion failing."},
+			{"text":"Swarm cohesion failing!"},
+			{"text":"Synthesis integrity failing."},
+			{"text":"This one won't last much longer."},
+		],
+		"overload":[
+			{"text":"Ah, the failures of Domain starship design."},
+			{"text":"Capacitors maxed."},
+			{"text":"I-we are overloading!"},
+			{"text":"Synthesis is overloading!"},
+		],
+		"death":[
+			{"text":"Cohesion failed. Dispersing."},
+			{"text":"Dispersing swarm."},
+			
+			{"text":"Cut, never killed..."},
+			{"text":"We'll always be back..."},
+			{"text":"The swarm never dies..."},
+		],
+		"victory":[
+			{"text":"A cold death for all of them."},
+			{"text":"Excellent. Till we shed hull again..."},
+			{"text":"You'd make fine additions to the gestalt."},
+		],
+	}
+}

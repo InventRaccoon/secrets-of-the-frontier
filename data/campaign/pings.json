@@ -1,0 +1,107 @@
+{
+
+	"sotf_ping_sierra":{
+		"sounds":["default_campaign_ping"],
+		"color":"sierraTextColor",
+		"width":15,
+		"range":800,
+		"duration":3,
+		"invert":false,
+		
+		"num":1,
+		"delay":0.5,	
+	},
+	
+	"sotf_ping_lakemessage":{
+		"sounds":["detected_by_player"],
+		"useFactionColor":false,
+		"width": 5,
+		"range":100,
+		"duration":1,
+		"invert":false,
+		
+		"num":2,
+		"delay":0.25,
+	},
+	
+	"sotf_ping_leadingghost":{
+		"sounds":["detected_by_player"],
+		"useFactionColor":false,
+		"width": 5,
+		"range":100,
+		"duration":1,
+		"alphaMult":0.5f,
+		"invert":true,
+		
+		"num":1,
+		"delay":0.25,
+	},
+
+	"sotf_ping_memoir":{
+		"sounds":["default_campaign_ping", "", "default_campaign_ping"],
+		#"color":"omicronTextColor",
+		"useFactionColor":true,
+		"width":5,
+		"range":3000,
+		"duration":6,
+		"invert":false,
+		
+		"num":1,
+		"delay":48,
+	},
+	
+	"sotf_ping_regnant":{
+		"sounds":["default_campaign_ping", "", "default_campaign_ping"],
+		"color":"omicronTextColor",
+		"width":5,
+		"range":4000,
+		"duration":8,
+		"invert":false,
+		
+		"num":1,
+		"delay":48,
+	},
+	
+	"sotf_ping_courserprotocol":{
+		"sounds":["ui_channel_comm_local"],
+		"color":"omicronTextColor",
+		"width":5,
+		"range":600,
+		"duration":3,
+		"invert":false,
+		
+		"num":5,
+		"delay":5,
+	},
+	
+	"sotf_ping_sensorghost":{
+		"sounds":["detected_by_player"],
+		"useFactionColor":false,
+		"width": 5,
+		"range":100,
+		"duration":1,
+		"alphaMult":0.5f,
+		"invert":false,
+		
+		"num":1,
+		"delay":0.25,
+	},
+
+	"sotf_ping_askoniaprobe":{
+		"sounds":["detected_by_player"],
+		"color":"omicronTextColor",
+		"width":5,
+		"range":100,
+		"duration":1,
+		"alphaMult":0.5f,
+		"invert":false,
+		
+		"num":1,
+		"delay":48,
+	},
+}
+
+
+
+
+

@@ -1,0 +1,21 @@
+{
+	# no prisoners and hate everyone
+    "playableFaction":false,
+    "corvusCompatible":true,
+	
+    "dropPrisoners":false,
+	"allowAgentActions":false,
+    "allowPrisonerActions":false,
+	
+	"hostileToAll":2,
+	"diplomacyPositiveChance":{ "default":0 },
+    "diplomacyNegativeChance":{ "default":0 },
+    "noRandomizeRelations":true,
+    "noSyncRelations":true,
+	# NO SURRENDER / No human rights :(
+	"diplomacyTraits":["stalwart", "monstrous"],
+	# I LOVE MURDER I LOVE MOLOCH I LOVE OMEGA
+	"morality":"evil",
+	
+    "specialForcesMaxFleets":0,
+}

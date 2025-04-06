@@ -1,0 +1,219 @@
+{
+  "hullName": "Bastillon (PX)",
+  "hullId": "sotf_bastillon_aux",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/auxiliaries/sotf_bastillon_aux.png",
+  "style": "LOW_TECH",
+  "height": 140,
+  "width": 164,
+  "center": [82, 61],
+  "collisionRadius": 107,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 107,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "rugged",
+    "sotf_aux_escort",
+	"pointdefenseai"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": 30,
+      "locations": [59, 23]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 180,
+      "angle": -30,
+      "locations": [59, -23]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 120,
+      "locations": [-35, 65]
+    },
+    {
+      "id": "WS 004",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -120,
+      "locations": [-35, -65]
+    },
+    {
+      "id": "WS 005",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -75,
+      "locations": [4, -68]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 75,
+      "locations": [4, 68]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 150,
+      "angle": 30,
+      "locations": [37, 52]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 150,
+      "angle": -30,
+      "locations": [37, -52]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 20,
+      "angle": 0,
+      "locations": [39, 0]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 20,
+      "angle": 55,
+      "locations": [9, 45]
+    },
+    {
+      "id": "WS 011",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 20,
+      "angle": -55,
+      "locations": [9, -44]
+    },
+    {
+      "id": "WS 012",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 20,
+      "angle": 145,
+      "locations": [-44, 49]
+    },
+    {
+      "id": "WS 013",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 20,
+      "angle": 215,
+      "locations": [-44, -49]
+    },
+    {
+      "id": "WS 014",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 150,
+      "angle": 165,
+      "locations": [-48, 23]
+    },
+    {
+      "id": "WS 015",
+      "size": "SMALL",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 150,
+      "angle": 195,
+      "locations": [-49, -23]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-54, 40],
+      "length": 50,
+      "width": 20,
+      "angle": 180,
+      "contrailSize": 56,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-53, -40],
+      "length": 50,
+      "width": 20,
+      "angle": 180,
+      "contrailSize": 56,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-49, 9],
+      "length": 35,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 50,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-49, -9],
+      "length": 35,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 50,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    25, 29,
+    63, 32,
+    69, 17,
+    39, 13,
+    39, -14,
+    69, -17,
+    68, -30,
+    23, -28,
+    46, -51,
+    37, -62,
+    16, -41,
+    9, -42,
+    13, -72,
+    -2, -76,
+    -5, -46,
+    -36, -76,
+    -49, -47,
+    -49, 46,
+    -36, 76,
+    -3, 45,
+    -3, 77,
+    13, 73,
+    8, 43,
+    15, 41,
+    38, 62,
+    48, 52
+  ]
+}

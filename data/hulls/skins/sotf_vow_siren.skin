@@ -1,0 +1,8 @@
+{
+	"baseHullId":"sotf_vow",
+	"skinHullId":"sotf_vow_siren",
+	"removeBuiltInMods":["sotf_sierrasconcord"],
+	"builtInMods":["sotf_sirensconcord"],
+	"addHints":["UNBOARDABLE"],
+	"tags":["no_dealer", "no_autofit", "hide_in_codex"],
+}

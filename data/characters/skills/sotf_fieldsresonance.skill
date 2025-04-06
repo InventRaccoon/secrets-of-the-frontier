@@ -1,0 +1,36 @@
+{
+	"id":"sotf_fieldsresonance",
+	"governingAptitude":"sotf_apt_daydream",
+	"compressHullmods":false,
+	"elite":true,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Speed
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.Helmsmanship$Level2"},
+				# Flat speed
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.Helmsmanship$Level4"},
+				# Maneuverability
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.Helmsmanship$Level1"},
+				# Shield damage taken
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.FieldModulation$Level1"},
+			]
+		},
+		{
+			"name":"Elite",
+			"requiredSkillLevel":2,
+			"effectBasedOnLevel":false,
+			"effects":[
+				# Zero-flux at any level
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.Helmsmanship$Level3"},
+				# Shield hard flux dissipation
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.FieldModulation$Level3"},
+				# Overload duration
+				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.FieldModulation$Level6"},
+			]
+		},
+	],
+}

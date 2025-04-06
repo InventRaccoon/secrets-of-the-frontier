@@ -1,0 +1,34 @@
+{
+  "variantId": "sotf_defender_aux_Escort",
+  "hullId": "sotf_defender_aux",
+  "displayName": "Escort",
+  "goalVariant": true,
+  "fluxCapacitors": 5,
+  "fluxVents": 3,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+    "reinforcedhull",
+    "turretgyros"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "lightdualmg",
+        "WS 003": "lightdualmg"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "vulcan",
+        "WS 004": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

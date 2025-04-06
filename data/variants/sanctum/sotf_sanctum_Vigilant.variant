@@ -1,0 +1,43 @@
+{
+	# same as damaged Rem station but modules are skins with reasonable OP limits (not 1000) bcs it can be player-fitted in Dawn and Dust
+    "displayName": "Vigilant",
+    "fluxCapacitors": 0,
+    "fluxVents": 0,
+    "hullId": "remnant_station2",
+    "hullMods": [],
+    "quality": 0.5,
+    "variantId": "sotf_sanctum_Vigilant",
+    "weaponGroups": [],
+    "modules": [
+    	# top plus armor
+		{"WS 024": "remnant_armour3_Standard"},
+		{"WS 001": "sotf_sanctum_weapon1_Standard"},
+		
+		# bottom right plus armor
+		{"WS 030": "remnant_armour3_Standard"},
+		{"WS 007": "sotf_sanctum_weapon1_Standard"},
+		
+		# bottom left plus armor
+		{"WS 027": "remnant_armour3_Standard"},
+		{"WS 016": "sotf_sanctum_weapon1_Standard"},
+		
+		# bottom PD/shield
+		#{"WS 032": "remnant_shield2_Standard"},
+		
+		# left PD/shield
+		#{"WS 033": "remnant_shield2_Standard"},
+		
+		# right PD/shield
+		#{"WS 034": "remnant_shield2_Standard"},
+		
+		# left side weapon platforms
+		{"WS 036": "sanctum_weapon2_Standard"},
+		
+		# right side weapon platforms
+		{"WS 038": "sanctum_weapon2_Standard"},
+		
+		# hangars
+		{"WS 039": "sotf_sanctum_hangar1_Strike"},
+		#{"WS 040": "remnant_hangar1_Strike"},
+    ],
+}

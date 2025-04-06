@@ -1,0 +1,37 @@
+{
+  "variantId": "sotf_keeper_aux_Strike",
+  "hullId": "sotf_keeper_aux",
+  "displayName": "Strike",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 1,
+  "quality": 0.5,
+  "permaMods": [],
+  "hullMods": [
+	"reinforcedhull",
+	"autorepair"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "vulcan",
+        "WS 003": "vulcan",
+        "WS 004": "vulcan"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "sotf_peon_wing",
+    "sotf_peon_wing"
+  ]
+}

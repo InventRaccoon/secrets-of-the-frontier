@@ -1,0 +1,101 @@
+{
+  "hullName": "Gunnery Bastion",
+  "hullId": "sotf_empl_t2_lt",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/emplacements/sotf_empl_t2_lt.png",
+  "style": "LOW_TECH",
+  "height": 139,
+  "width": 146,
+  "center": [73, 71],
+  "collisionRadius": 115,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 109.5,
+  "viewOffset": 0,
+  "builtInMods": [
+    "axialrotation",
+    "supercomputer",
+    "sotf_noventing",
+    "turretgyros",
+    "missile_reload"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 360,
+      "angle": 0,
+      "locations": [0, -0]
+    },
+    {
+      "id": "WS 002",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 45,
+      "locations": [30, 30]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -45,
+      "locations": [30, -30]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 135,
+      "locations": [-31, 30]
+    },
+    {
+      "id": "WS 005",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -135,
+      "locations": [-31, -30]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [61, -0]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 180,
+      "locations": [-64, -6]
+    }
+  ],
+  "engineSlots": [],
+  "bounds": [
+    43, -57,
+    53, -30.5,
+    65.5, -14.5,
+    65.5, 14.5,
+    53, 30.5,
+    43, 57,
+    0, 66,
+    -44, 55.5,
+    -66.5, 21,
+    -66.5, -21,
+    -44, -55.5,
+    0, -66
+  ]
+}

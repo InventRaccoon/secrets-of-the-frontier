@@ -1,0 +1,81 @@
+{
+    "displayName": "Artillery",
+    "fluxCapacitors": 0,
+    "fluxVents": 48,
+    "goalVariant": true,
+    "hullId": "sotf_anamnesis",
+    "hullMods": [
+        "missleracks",
+        "eccm"
+    ],
+    "permaMods": [],
+    "sMods": [],
+    "variantId": "sotf_anamnesis_Artillery",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 001": "squall",
+                "WS 002": "squall"
+            }
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 007": "harpoonpod",
+                "WS 008": "harpoonpod",
+                "WS 009": "pilum",
+                "WS 010": "pilum"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 005": "autopulse"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 016": "irpulse",
+                "WS 017": "irpulse",
+                "WS 018": "irpulse",
+                "WS 019": "irpulse"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 011": "ioncannon",
+                "WS 012": "irpulse",
+                "WS 013": "irpulse",
+                "WS 014": "irpulse",
+                "WS 015": "irpulse"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 003": "guardian",
+                "WS 004": "guardian"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 020": "pdburst",
+                "WS 021": "pdburst"
+            }
+        }
+    ],
+    "wings": [
+        "flash_wing",
+        "flash_wing",
+        "lux_wing"
+    ]
+}

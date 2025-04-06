@@ -1,0 +1,21 @@
+fieldID,fieldName,fieldType,defaultValue,secondaryValue,fieldDescription,minValue,maxValue,tab
+sotf_lowFreqPromise,Infrequent Discussion,Boolean,false,,"The [A Promise] quest, which kicks off one of SotF's core questlines, has a much smaller [2 percent] chance to begin at bars, rather than being almost guaranteed.
+
+Recommended only for those who've played the questline before, and want to experience it whenever it decides to find them rather than on schedule.",,,
+sotf_noSierraSatbombConseq,Songs and Screams,Boolean,false,,"[Sierra], your AI friend, no longer has a negative reaction to the player's saturation bombardments. May harm characterization, non-canonical.",,,
+sotf_noDKSatbombConseq,"A Little Murder, As A Treat",Boolean,false,,"The [Dustkeeper Contingency] no longer triggers a special ""hatred"" condition when the player performs saturation bombardments. Does not negate the normal reputation penalties from atrocities. May harm characterization, non-canonical.",,,
+sotf_lockoutStarts,Start Requirements,Boolean,true,,"Certain Nexerelin starts require that the player fulfils certain requirements first:
+
+[Banshee's Lost Thread] requires 80 percent or higher in the [Dawn and Dust] mission",,,
+sotf_convoChance,Conversation Chance,Double,0.25,,Chance that certain unique officers will have a brief conversation at the start of a battle.,0,1,
+,,,,,,,,
+sotf_guiltHeader,Guilt Score,Header,Guilt,,,,,Guilt
+sotf_bonusGuilt,Bonus Guilt,Int,0,,"Value added to (or if negative, subtracted from) the player's accumulated guilt value.",-50,50,Guilt
+sotf_hauntedGuilt,The Haunted Starting Guilt,Int,7,,Starting guilt in the [The Haunted] Nexerelin custom start and background.,0,50,Guilt
+sotf_fastDreams,Quicker Torment,Boolean,false,,Makes dreams during [The Haunted] easier to skip through.,,,
+,,,,,,,,
+sotf_guiltInvasionHeader,Adaptive Nanite Swarm,Header,Adaptive Nanite Swarm,,,,,Guilt
+sotf_invasionThreshold,Invasion Threshold,Int,4,,"When total guilt reaches this level, an [adaptive nanite swarm] will begin invading the player's battles to punish them.",0,25,Guilt
+sotf_invasionChance,Base Chance,Double,0.15,,The base chance of being invaded in a given battle.,0,1,Guilt
+sotf_invasionChancePerGuilt,Chance Per Additional Guilt,Double,0.09,,Increase in invasion chance per point of guilt beyond the invasion threshold.,0,1,Guilt
+sotf_madnessThreshold,Madness Threshold,Int,7,,"Guilt threshold at which the player's perception of their hunter changes, becoming more unreliable and ethereal.",0,50,Guilt

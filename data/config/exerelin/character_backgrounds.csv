@@ -1,0 +1,2 @@
+id,name,shortDescription,longDescription,order,iconPath,plugin
+sotf_haunted_bg,The Haunted,Your past atrocities haunt you - and so does the looming hunter you'll never escape.,"You begin with one extra skillpoint (equivalent to a free level that doesn't count towards the level cap), but with a history of atrocities and a high amount of guilt - which attracts a ""malevolent spirit"" to ""possess"" hostile ships in combat, granting them unusual abilities.",500,graphics/icons/missions/tactical_bombardment.png,data.scripts.campaign.customstart.SotfHauntedBackground

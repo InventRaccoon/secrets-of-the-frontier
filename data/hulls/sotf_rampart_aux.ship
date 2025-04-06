@@ -1,0 +1,190 @@
+{
+  "hullName": "Rampart (Aux)",
+  "hullId": "sotf_rampart_aux",
+  "hullSize": "CRUISER",
+  "spriteName": "graphics/ships/auxiliaries/sotf_rampart_aux.png",
+  "style": "LOW_TECH",
+  "height": 190,
+  "width": 197,
+  "center": [101, 97],
+  "collisionRadius": 136,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 136,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "rugged",
+    "sotf_aux_assault"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 000",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 8,
+      "angle": 0,
+      "locations": [70, 71]
+    },
+    {
+      "id": "WS 001",
+      "size": "LARGE",
+      "type": "BALLISTIC",
+      "mount": "HARDPOINT",
+      "arc": 8,
+      "angle": 0,
+      "locations": [70, 29]
+    },
+    {
+      "id": "WS 002",
+      "size": "LARGE",
+      "type": "COMPOSITE",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": -35,
+      "locations": [47, -59]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 90,
+      "locations": [0, 82]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "BALLISTIC",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -90,
+      "locations": [16, -79]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": -35,
+      "locations": [38.5, -80]
+    },
+    {
+      "id": "WS 011",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": -135,
+      "locations": [-38, -70.5]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 135,
+      "locations": [-48, 62.5]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 45,
+      "locations": [17.5, 91]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 0,
+      "locations": [61.5, 49.5]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 15,
+      "angle": 0,
+      "locations": [68, -46.5]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-89, 51],
+      "length": 40,
+      "width": 14,
+      "angle": 180,
+      "contrailSize": 32,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-96, 31],
+      "length": 65,
+      "width": 18,
+      "angle": 180,
+      "contrailSize": 50,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-94, 7],
+      "length": 50,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 38,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-94, -14],
+      "length": 50,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 38,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-96, -39],
+      "length": 65,
+      "width": 18,
+      "angle": 180,
+      "contrailSize": 50,
+      "style": "LOW_TECH"
+    },
+    {
+      "location": [-89, -59],
+      "length": 40,
+      "width": 14,
+      "angle": 180,
+      "contrailSize": 32,
+      "style": "LOW_TECH"
+    }
+  ],
+  "bounds": [
+    69, 84,
+    73, 11,
+    90, 7,
+    89, -38,
+    75, -39,
+    70, -73,
+    44, -79,
+    31, -93,
+    -74, -88,
+    -75, -68,
+    -88, -68,
+    -88, 59,
+    -74, 59,
+    -72, 84,
+    -16, 89,
+    -10, 98,
+    15, 93,
+    56, 91
+  ]
+}

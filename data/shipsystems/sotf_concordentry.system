@@ -1,0 +1,37 @@
+{
+	"id":"sotf_concordentry",
+	"type":"ENGINE_MOD",
+	"aiType":"NONE",
+	
+	"statsScript":"data.shipsystems.scripts.SotfConcordEntryStats",
+	"runScriptWhilePaused":true, # only for the player's ship
+	
+	"phaseHighlight":"_glow1",
+	"phaseDiffuse":"_glow2",
+	
+	"effectColor1":[200,175,255,200],
+	"effectColor2":[200,0,255,120],
+	
+	"engineActivateHiddenNozzles":false,
+	"engineGlowColor":[0,0,0,0],
+	"engineGlowContrailColor":[0,0,0,0],
+	"engineGlowLengthMult":0,
+	"engineGlowWidthMult":0,
+	"engineGlowGlowMult":0,
+	
+	"soundFilterType":"LOWPASS",
+	"soundFilterGain":0.8,
+	"soundFilterGainHF":0.25,
+
+	"clampTurnRateAfter":true,
+	"clampMaxSpeedAfter":true,
+	"alwaysAccelerate":true,
+
+	"useSound":"rifttorpedo_explosion",
+	"deactivateSound":"rifttorpedo_explosion",
+	"outOfUsesSound":"system_phase_cloak_collision",
+	
+	"aiHints":{
+		"averageSpeedIncrease":600,
+	}
+}

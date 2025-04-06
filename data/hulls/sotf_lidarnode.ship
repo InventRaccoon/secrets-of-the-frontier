@@ -1,0 +1,43 @@
+{
+  "bounds": [
+    30,
+    -31.5,
+    -3.5,
+    -31.5,
+    -46.5,
+    -9.5,
+    -46.5,
+    9.5,
+    -3.5,
+    31.5,
+    30,
+    31.5,
+    50.5,
+    -0
+  ],
+  "builtInMods": [
+    "axialrotation",
+    "sotf_noventing"
+  ],
+  "builtInWings": [],
+  "center": [
+    37,
+    49
+  ],
+  "collisionRadius": 62.5,
+  "engineSlots": [],
+  "height": 98,
+  "hullId": "sotf_lidarnode",
+  "hullName": "Emplacement",
+  "hullSize": "FRIGATE",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 62.5,
+  "spriteName": "graphics/ships/emplacements/sotf_lidarnode.png",
+  "style": "MIDLINE",
+  "viewOffset": 0,
+  "weaponSlots": [],
+  "width": 74
+}

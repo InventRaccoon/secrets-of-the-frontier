@@ -1,0 +1,272 @@
+{
+  "hullName": "Covenant",
+  "hullId": "sotf_covenant",
+  "hullSize": "CAPITAL_SHIP",
+  "spriteName": "graphics/ships/sierra/sotf_covenant.png",
+  "style": "SOTF_SIERRA",
+  "height": 334,
+  "width": 332,
+  "center": [166, 172],
+  "collisionRadius": 179.5,
+  "shieldCenter": [6, -0],
+  "shieldRadius": 173,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_sirensconcord",
+    "phasefield",
+	#"ill_advised",
+    "high_maintenance"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "LARGE",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 0,
+      "locations": [29, 30]
+    },
+    {
+      "id": "WS 007",
+      "size": "MEDIUM",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 90,
+      "angle": -10,
+      "locations": [22, -34]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 0,
+      "locations": [73, 22]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -45,
+      "locations": [30, -73]
+    },
+    {
+      "id": "WS 005",
+      "size": "MEDIUM",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 8,
+      "angle": 0,
+      "locations": [90, 57]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [113, 0]
+    },
+    {
+      "id": "WS 006",
+      "size": "MEDIUM",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": 0,
+      "locations": [60, -21]
+    },
+    {
+      "id": "WS 014",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": -110,
+      "locations": [-50, -95.5]
+    },
+    {
+      "id": "WS 013",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": 110,
+      "locations": [-50, 95.5]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 45,
+      "locations": [30, 73]
+    },
+    {
+      "id": "WS 011",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 60,
+      "locations": [21, 113]
+    },
+    {
+      "id": "WS 012",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -60,
+      "locations": [21, -113]
+    },
+    {
+      "id": "WS 015",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": 160,
+      "locations": [-75, 53]
+    },
+    {
+      "id": "WS 016",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": -160,
+      "locations": [-75, -53]
+    },
+    {
+      "id": "WS 002",
+      "size": "LARGE",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": 15,
+      "locations": [-21, 55]
+    },
+    {
+      "id": "WS 003",
+      "size": "LARGE",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 140,
+      "angle": -15,
+      "locations": [-21, -55]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-97, 50],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-97, -50],
+      "length": 25,
+      "width": 6,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-94, 46.5],
+      "length": 25,
+      "width": 6,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-94, -46.5],
+      "length": 25,
+      "width": 6,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-107, 65],
+      "length": 100,
+      "width": 30,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-107, -65],
+      "length": 100,
+      "width": 30,
+      "angle": -180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-93.5, -99],
+      "length": 80,
+      "width": 18,
+      "angle": -180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-93.5, 99],
+      "length": 80,
+      "width": 18,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-88.5, 37],
+      "length": 80,
+      "width": 18,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-88.5, -37],
+      "length": 80,
+      "width": 18,
+      "angle": -180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    }
+  ],
+  "bounds": [
+    161, -24.5,
+    113, 0,
+    161, 24.5,
+    118, 41,
+    89, 64,
+    39, 69.5,
+    44.5, 130,
+    -11.5, 133,
+    -38.5, 108,
+    -79, 117.5,
+    -108.5, 66.5,
+    -87, 27.5,
+    -169, 0,
+    -87, -27.5,
+    -108.5, -66.5,
+    -79, -117.5,
+    -38.5, -108,
+    -11.5, -133,
+    44.5, -130,
+    42, -59.5,
+    93, -58,
+    118, -41
+  ]
+}

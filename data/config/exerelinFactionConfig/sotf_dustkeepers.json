@@ -1,0 +1,24 @@
+{
+	# AI + shadow player = standard Nex integration is kind of... unsuitable?
+	# so no standard diplomacy events
+	# these are also set up with the assumption that Dustkeepers won't ever own a human-populated world
+    "playableFaction":false,
+    "corvusCompatible":true,
+	
+    "dropPrisoners":false,
+	"allowAgentActions":false, # lmao nice try
+    "allowPrisonerActions":false, # not the place
+	
+    "startRelationships":{ "default": -0.4, "player": 0, "independent": 0.3}, # SoTF runs its own relationship setter afterwards so meh
+	"maxRelationships":{ "hegemony":-0.51, "luddic_church":-0.51, "luddic_path":-0.51, "remnant":-0.51},
+	"diplomacyPositiveChance":{ "default":0 },
+    "diplomacyNegativeChance":{ "default":0 },
+    "noRandomizeRelations":true,
+    "noSyncRelations":true,
+	# NO SURRENDER / AI is okay! We are that! / Sneaky mfers / All up in your politics/ No human rights :(
+	"diplomacyTraits":["stalwart", "likes_ai", "lowprofile", "devious", "monstrous"],
+	# are they good? Arguable. They definitely think they are
+	"morality":"good",
+	
+    "specialForcesMaxFleets":0,
+}

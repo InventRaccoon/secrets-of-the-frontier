@@ -1,0 +1,12 @@
+{
+	"id":"automated_ships",
+	"effectGroups":[
+		{
+			"requiredSkillLevel":1,
+			"effectBasedOnLevel":false,
+			"effects":[
+				{"type":"FLEET", "script":"data.scripts.campaign.skills.SotfAutomatedShipsOfficers$SotfLevel1"},
+			]
+		},
+	],
+}

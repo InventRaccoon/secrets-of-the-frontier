@@ -1,0 +1,50 @@
+{
+  "variantId": "sotf_empl_t2_lt_Shredder",
+  "hullId": "sotf_empl_t2_lt",
+  "displayName": "Shredder",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "eccm",
+    "missleracks",
+    "ballistic_rangefinder"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "multineedler"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 006": "breach",
+        "WS 007": "breach"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "heavyneedler",
+        "WS 005": "heavyneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "dualflak",
+        "WS 004": "dualflak"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

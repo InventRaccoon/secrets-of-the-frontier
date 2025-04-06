@@ -1,0 +1,42 @@
+{
+  "variantId": "sotf_pledge_Base",
+  "hullId": "sotf_pledge",
+  "displayName": "Sierra's",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 0,
+  "permaMods": ["glitched_sensors", "comp_structure"],
+  "weaponGroups": [
+	{
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavyneedler"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 009": "reaper"
+      }
+    },
+	{
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "ionpulser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

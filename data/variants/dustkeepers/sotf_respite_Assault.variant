@@ -1,0 +1,61 @@
+{
+  "variantId": "sotf_respite_Assault",
+  "hullId": "sotf_respite",
+  "displayName": "Assault",
+  "goalVariant": true,
+  "fluxCapacitors": 27,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "magazines",
+    "targetingunit",
+    "ecm",
+    "turretgyros"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "autopulse"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "gorgonpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "plasma"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "heavyneedler",
+        "WS 004": "heavyneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "pdburst",
+        "WS 007": "pdburst",
+        "WS 008": "pdburst",
+        "WS 009": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": [
+    "lux_wing"
+  ]
+}

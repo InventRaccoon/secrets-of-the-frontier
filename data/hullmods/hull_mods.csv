@@ -1,0 +1,72 @@
+name,id,tier,rarity,tech/manufacturer,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,short,sModDesc,sprite
+# CONCORDS,,,,,,,,,,,,,,,,,,,
+Sierra's Concord,sotf_sierrasconcord,,,Anomalous Phase-Tech,"sotf_concord, codex_require_related",,,,TRUE,,0,0,0,0,data.hullmods.SotfSierrasConcord,"Blessed by space and stars, this vessel is gifted with passage between dimensions to align the Sector's true fate with its reality. In layman's terms, it is fitted with an exotic ""Concord"" phase system operable only by Sierra, its specialized AI persona.
+
+This ship experiences time at %s the normal rate. Its zero-flux speed bonus is increased by %s. An advanced emitter improves the shield's unfolding rate by %s. Reflexive blast doors negate all crew losses.","Time multiplier, 0-flux boost improved and responsive shields.",,graphics/hullmods/sotf_sierrasconcord.png
+Eidolon's Concord,sotf_eidolonsconcord,,,Anomalous Phase-Tech,"sotf_concord, hide_in_codex",,,,TRUE,,0,0,0,0,data.hullmods.SotfEidolonsConcord,"Augmented for interdimensional skirmishing and piloted by a specialized AI with an unusual connection to phase-space, this ship has ma :::: ::::
+
+{the whispers sing to me as I dance within the folds betwe:::
+:::en dimensions and speak to the ones beyond. 
+       La-la l
+                 a-la-la! 
+won't you dance with me?}
+
+:::: ny edges over tradit:::::
+{data stream corrupted!}
+{oops}",DANCE WITH ME SING WITH ME,,graphics/hullmods/sotf_sierrasconcord.png
+Siren's Concord,sotf_sirensconcord,,,Anomalous Phase-Tech,"sotf_concord, hide_in_codex",,,,TRUE,,0,0,0,0,data.hullmods.SotfSirensConcord,"Augmented for interdimensional skirmishing and piloted by a specialized AI with an unusual connection to phase-space, this ship has many edges over traditional warships.
+
+This ship experiences time at %s the normal rate. Its zero-flux speed bonus is increased by %s. An advanced emitter improves the shield's unfolding rate by %s.","Time multiplier, 0-flux boost improved and responsive shields.",,graphics/hullmods/sotf_sierrasconcord.png
+,,,,,,,,,,,,,,,,,,,
+# CONCORD AUGMENTS,,,,,,,,,,,,,,,,,,,
+Concord - Serenity,sotf_serenity,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, codex_unlockable",Special,10000,,,,5,10,15,25,data.hullmods.SotfSerenity,"This ship's Phase Concord is subject to similar disruption from hard flux as standard phase coils. Additional shielding and insulation around its cables allow it to sustain greater traction during operation.
+
+This augment allows the Concord to handle higher levels of hard flux, increasing the threshold at which speed bottoms out by %s. The base threshold is %s, and the enhanced insulation takes it to %s, causing hard-flux-stress to never reach its most debilitating levels.",Reduces impact of hard flux level on top speed while phased.,,graphics/hullmods/sotf_serenity.png
+Concord - Fervor,sotf_fervor,3,0,Anomalous Phase-Tech,"special, no_build_in, no_drop, no_drop_salvage, phase_brawler, codex_unlockable",Special,10000,,,,10,20,30,50,data.hullmods.SotfFervor,"Enhances the ship's Phase Concord, fitting the core chamber and phaseweb with capacitors that dump generated flux into phase-space to create temporal distortion.
+
+Reduces the phase cloak's activation cost to %s. Increases the soft flux dissipation and weapon recharge rate by %s while phased.
+
+When suffering critical damage that would otherwise destroy or disable the ship, it is able to initiate an emergency dive deep into p-space, immediately retreating from combat but suffering an additional penalty to combat readiness equal to %s its deployment cost. The ship must have enough combat readiness to cover this cost to initiate the dive.
+
+This ship's phase dive does not prevent ships with %s from also initiating phase dives due to the unusual frequencies of the disturbances caused.","Increases flux dissipation and weapon recharge while phased, emergency dive maneuver.",,graphics/hullmods/sotf_fervor.png
+Concord - Wispersong,sotf_wispersong,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,5,12,18,24,data.hullmods.SotfWispersong,"A specially-tuned energy emitter, installed to Sierra's specifications. Triggers in response to brief spacial interference caused by nearby starship reactor detonations, exacerbating the agitation and generating short-lived particles that are attracted to enemy ships.
+
+When a hostile ship is disabled within %s units, it creates %s/%s/%s/%s wisps based on its hull size. Wisps detonate after %s seconds or upon premature destruction. Each wisp discharges energy for %s energy damage and %s EMP every half a second, at the cost of one second of its lifespan.",Creates wisps when nearby ships are destroyed.,,graphics/hullmods/sotf_wispersong.png
+Concord - Soulbond,sotf_soulbond,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,5,12,18,25,data.hullmods.SotfSoulbond,<Description written in script>,Allows this ship and the flagship to travel to each other.,,graphics/hullmods/sotf_soulbond.png
+Concord - Lifedrinker,sotf_lifedrinker,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, hide_in_codex",Special,100000,,,,5,12,18,30,data.hullmods.SotfLifedrinker,"An extensive hull refit package that replaces the exterior armor and shield emitters with a low-volition nanomechanical shell lined with esoteric ""entropic inversion nodes"" that gradually reverse the armor's state of destruction. Inverted entropy can be discharged into surrounding space as a defensive burst.
+
+Removes the ship's shield emitter. The ship passively regenerates %s armor per second, prioritizing the most damaged sections of armor. Increases maximum armor by %. Reflective properties reduce incoming beam damage and EMP damage by %s.
+
+Unfinished content. You're not supposed to see this!",No shield. Armor regenerates and is more resistant.,,graphics/hullmods/sotf_lifedrinker.png
+,,,,,,,,,,,,,,,,,,,
+# DUSTKEEPER AUX,,,,,,,,,,,,,,,,,,,
+Dustkeeper Proxy,sotf_aux_assault,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxAssault,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
+
+Included is an %s or %s, and an improved %s. Individual class-specific upgrade packages may include improvements to hull and armor integrity, reactor specifications and engine performance.
+
+Unlike certain other classes that undergo this upgrade, this drone retains its fearless behavior and will engage with little regard for its own safety.",Added defensive system and overall upgraded specifications.,,graphics/hullmods/sotf_proxy.png
+Dustkeeper Proxy,sotf_aux_escort,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxEscort,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
+
+Included is an %s or %s, and an improved %s. Individual class-specific upgrade packages may include improvements to hull and armor integrity, reactor specifications and engine performance.
+
+This drone also features programming rewrites that result in %s in combat.",Added defensive system and overall upgraded specifications. Less aggressive in combat.,,graphics/hullmods/sotf_proxy.png
+Shock Package,sotf_aux_shock,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxShock,"This drone has undergone extensive modification to serve as a sacrificial shock weapon, more autonomous energy bomb than warship.
+
+Upon reaching maximum flux or falling below %s hull, the drone's reactor enters a self-detonation sequence. This disables all safeties (akin to the %s hullmod) and causes the drone to begin emitting shield-piercing EMP arcs at nearby hostiles, damaging itself in the process.
+
+On destruction, the drone detonates, dealing %s energy damage in a wide radius. All vessels hit by the explosion have their flux increased by %s of their flux capacity, divided equally between soft and hard flux, and are subject to severe EMP damage.","Flies towards enemies, shoots them, then EMPs them and explode.",,graphics/hullmods/sotf_proxy_shock.png
+,,,,,,,,,,,,,,,,,,,
+Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfCyberwarfareSuite,This ship features an extensive suite of computing arrays and electronic warfare systems designed to break into hostile networks and execute cyberwarfare attacks.,"Increases hull integrity, armor, and flux capacity.",,graphics/hullmods/distributed_fire_control.png
+Daydream Synthesizer,sotf_daydream_synthesizer,3,0,Dreaming Gestalt,"req_spaceport, special, no_build_in, no_drop, no_drop_salvage,  codex_unlockable","Special, Requires Dock",,,,,8,16,30,50,data.hullmods.SotfDaydreamSynthesizer,<Description written in script>,A nanite swarm forms a copy of the ship at the start of combat.,,graphics/hullmods/sotf_daydream_synthesizer.png
+Elite Pilots,sotf_elitepilots,,,,,,,,,TRUE,0,0,0,0,data.hullmods.SotfElitePilots,"This fighter's pilot is exceptionally skilled and gains the benefit of non-elite Helmsmanship, Impact Mitigation and Gunnery Implants.",Exceptionally skilled fighter pilot.,,graphics/hullmods/assault_package.png
+,,,,,,,,,,,,,,,,,,,
+Can't Vent,sotf_noventing,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNoVenting,Can't vent.,Can't vent.,,graphics/hullmods/flux_coil_adjunct.png
+Tarnished Fighters,sotf_fighteroverlay,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfFighterOverlay,Applies d-hull overlay to spawned fighters.,Fighters have an overlay.,,graphics/hullmods/flux_coil_adjunct.png
+Nanite-Synthesized,sotf_nanite_synthesized,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNaniteSynthesized,This ship was created by a nanite swarm assembling into the form of a warship.,Ship was synthesized by a nanite swarm.,,
+Phantasmal,sotf_phantasmalship,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfPhantasmalShip,Bound to adjacent realities. How can one kill that which doesn't exist?,"Can't be killed, only banished.",,
+Wisptender,sotf_wisptender,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfWisptender,This one calls out to the wisps and invites them to dance.,Fighter deaths awaken wisps.,,
+Wispblossom,sotf_wispblossom,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfWispblossom,"This one shows grace in its exit, inviting a wisp to take its place.",Create wisps on death.,,
+Wisp,sotf_wisphullmod,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfWispHullmod,This one hears us calling.,This ship is a wisp.,,
+Targeting Supercomputer,sotf_pdsupercomputer,,,,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfPDSupercomputer,"Extends the range of ballistic and energy weapons by %s.
+
+Also increases target-leading accuracy and greatly increases in-combat sensor range.",Greatly extends non-missile weapon range.,,graphics/hullmods/targeting_supercomputer.png

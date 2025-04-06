@@ -1,0 +1,814 @@
+Version 0.15:
+X Major expansion to The Haunted narrative content
+	- Experience dreams at milestone levels
+	- Dreams gradually intensify your guilt as you progress
+	- Added an endgame task upon reaching max level
+	- Dream of somewhere you're meant to be, something you're meant to be, an escape from your torment, an end and a beginning
+X New background/custom start: "Child of the Lake"
+	- Unlocked by completing The Haunted
+	- Trade in your starting skillpoint for an occult technological heirloom who serves you dutifully
+	- His service is remarkably akin to the power of necromancy
+X Added the Light of the Lake, and they who dream
+	- New mission: "Envoy of Elysium", with unique reward (non-Haunted only)
+
+- Adaptive Nanite Swarm invasion proc, ship choice and skill choice RNG are now seeded and cannot be easily savescummed
+- Adaptive Nanite Swarm now gains a fixed set of 7 new nanite-specific skills, rather than 8 normal skills
+	- Skills grant unique benefits: regeneration of hull, armor and missiles, orbiting defense swarm, flux-based ballistic fire rate boost
+	- Unrelated to nanite "trait" skills, which are still 2-3 per fight
+- New nanite traits:
+	X Wyrmfire Executioner (offensive) - hitting a target below 75% hull fires a Dragonfire torpedo at them (30s cooldown per target)
+	X Collar and Contain (hybrid) - designates an area, then causes a lingering quantum disruption within that overloads fighters and ships inside and keeps them overloaded while within it
+	X Tick Tock Tick Tock (hybrid) - brief strong timeflow bonus every 30 seconds
+- Haunted: added an earlygame encounter with Annex-Wendigo, and a possible second, less friendly encounter
+
+X Sierra now spawns as a derelict if destroyed in combat and not recovered
+- Edict Stormblaster now applies hidden bonus vs a certain new vanilla enemy type
+- Cyberwarfare Protocols now unlocked in codex if player has seen Cyberwarfare Suite or has Nightingale/Seraph, and appears in its related entries
+- Derelict Contingent now unlocked in codex if player has Barrow
+- Fixed Sierra's core from A Promise appearing in codex
+
+X Can no longer build orbital habitats in the Abyss
+
+Version 0.14.5b:
+- Cyberwarfare now blocked against a certain vanilla enemy type
+- Fixed accidentally making every single ship in the game Sentinel-automated (WOOPS)
+- Fixed Spirit Ward crashing on some phase ships with built-in weapons or flare launchers
+- Fixed Memoir and an unfinished bit of content appearing in arms dealer bar event
+
+Version 0.14.5a:
+- SiC: Agony's Encore: reduced time mult (3x > 2x), capped duration at 15 seconds
+- Fixed a couple of Dustkeeper portraits rendering incorrectly
+- Fixed crash in Dawn and Dust
+- Fixed "Tend To Our Garden" SiC skill spawning only 1 wisp on frigate kill
+- Fixed typo in "Dance With Me!" SiC skill
+- Fixed Sierra being able to fire some beam weapons while phased
+
+Version 0.14.5:
+- Updated to 0.98a
+- LunaLib is now a requirement for SotF
+
+- Haunted: added dreams at milestone levels (final dream is not implemented), which intensify your guilt
+- The Haunted can now be played without Nexerelin (Lost Thread still requires it)
+- Added new portrait for Adaptive Nanite Swarm
+- Adaptive Nanite Swarm invasion proc, ship choice and skill choice RNG are now seeded and cannot be easily savescummed
+- Can no longer be invaded during special battles in Sierra's questline (e.g A Memory and Wayward Star fights)
+
+- Second in Command integration: completing Wayward Star now unlocks Sierra as an executive officer with a unique "Witchcraft" aptitude
+	- Obtained via conversation once you have Wispersong and Sierra is level 8
+	- Features: Sierra duping, cursed missiles, phasing fighters, magic shields, living dangerously and slaying with style
+- Vow: decreased shield arc (270 > 210)
+- Slightly changed shade of purple of afterimages from Sierra's phase
+- Added a "sotf_becomeHaunted" console command to replicate Haunted background post character creation (do this early in your playthrough)
+- Contact bounties from humans against burnout fleets will note that player rep with Dustkeepers will be unaffected
+- Can no longer exit Omicron lab dialogue before having read both the "Symphony" and "Legacy" notes (thus having learned the most important lore bits)
+- Triggering "that" bit of dialogue with Nightingale now has lingering effects
+- Added some low-chance variances to Mia's Star generation (15% Hallowhall is water world, 15% Desecrator's Rest is lava, 20% replace third stable location with Gate)
+- Reduced "Holdout Forgeship defensive measures" hostile activity progress reduction/gain (6-16 > 5-13)
+- Holdout recruitable Dustkeeper officers: added a second echo (blue, Steady), both slivers are now available at Favorable and both echoes at Friendly. Doubled chance of these officers spawning (50% for one, 25% for another > 100% one, 50% for two)
+- Recreated Dustkeeper portraits in an updated style (Sierra keeps the old style)
+- Warden (PROX) cannot use AAF while Dampered (was: cannot Damper while AAF)
+- Cavalier (PROX) can now use Damper while using Burn Drive and vice versa
+- Added LunaLib toggles to disable Sierra satbomb consequences and, separately, Dustkeeper Hatred
+
+- Fixed issue with map during giving of Lost Thread lead by Inadvertent
+- Fixed Dustkeeper PK reward Anamnesis having ITU illegally smodded, now Reinforced Flux Conduits
+- Fix crash from custom Dustkeeper blueprint raid objective
+- Fixed Hope for Hallowhall raid not falling back properly to LP colonies when no base is found
+- Fixed Wayward Star intel item not properly being removed
+- Fixed reinforcement objective remote AI mechanic considering all ships as player-side for purposes of assigning AI cores
+
+Version 0.14.2c:
+- Hope for Hallowhall: event points for Pather/Diktat kills increased (was 0.125 per FP, now 0.2)
+- Seraph and Blithe's personal fleets will now return to Holdout Forgeship to despawn and await respawn if their flagship is destroyed in a battle
+- Giving the PK to Inadvertent for free now gives -1 Guilt
+- Dear Dotty: Dotty is now banished upon her summoner's retreat
+- Hatred Beyond Death: now gives large damage resistance instead of full damage immunity when the ship decays to 0, as to prevent possible immortality if it doesn't actually die
+- A Trickster's Calling and Leviathan's Bane have additional checks to not work on fighters and modules
+- A Trickster's Calling: removed "Skedaddle" emergency phase because it's janky and I don't like it, will replace with something else sometime, in the meanwhile increased % of missile ammo stolen from 50% to 60%
+- Sources of Guilt reduction (excluding those related to giving away the planetkiller) no longer apply during The Haunted (i.e Alviss wave & making fun of TT scientist - Killa shrine already was this way), effectively limits min guilt to 6
+
+- Fixed Hallowhall Astropolis clearing its storage when restored while there is stuff stored there
+- Fixed Sierra text purplification during Legacy of Hypnos lab dialogue
+
+VERSION 0.14.2b:
+- Renamed both Proxy Assault Package and Escort Package to "Dustkeeper Proxy" with new icon and removed all stat boosts
+- Proxy hullmod is cosmetic on ships that used to have Assault Package
+- Ships that used to have Proxy Escort Package still have its old AI adjustment
+- Removed Proxy Shock Package stat boosts, renamed to "Shock Package", icon is now blue
+- Majorly buffed most Proxy drones' stats (beyond what the packages gave them)
+
+- Warden (PROX): much more hull (~1650 > 2000) and armor (~330 > 450) and top speed (120 > 160) and dissipation (~110 > 120)
+- Defender (PROX): MUCH more flux capacity (750 > 1750) and more dissipation (~110 > 120) and speed (100 > 120), shield efficiency improved (1.2 > 1.0), built-in IPDAI
+- Sentry (PROX): MUCH more flux capacity (750 > 1500), top speed (110 > 135), shield efficiency improved (1.2 > 1.0)
+- Picket (PROX): roughly neutral with previous stats
+
+- Bastillon (PROX): greatly increased hull (4500 > 6000) and armor (550 > 800), increased OP (70 > 75), built-in IPDAI
+- Berserker (PROX): increased hull (~5000 to 7000), dissipation (~250 > 300)
+- Keeper (PROX): improved hull (4250 > 5250) and armor (550 > 750), reduced top speed (65 to 50), increased ordnance points (45 to 55), autofit variants have capacitors replaced by autorepair unit and remainder in vents
+
+- Cavalier (PROX): increased speed (60 > 75), armor (~1100 > 1250)
+- Rampart (PROX): roughly neutral with previous stats, reduced burn speed to 8
+
+- Keeper (and PROX variant): increased hull (4250 to 4750), armor (550 to 650), reduced top speed (65 to 45), fixed description "air superiority" > "space superiority"
+
+- Fixed a single word of Sierra dialogue which was not purple
+
+VERSION 0.14.2a
+- Concord - Soulbond: now negates phase cloak upkeep (no overloading while travelling), using Soulbond can no longer overload Sierra (will leave her with max flux, less 100)
+- Sierra now calls you "captain" initially (was "Commander")
+- Rewrites to post-satbomb bar event to be a bit less sarcastic
+- Minor rewrites to high-rep convo
+- Changed Sierra combat freighter spinout thought to refer to the Shepherd (was: Mudskipper, for some unexplainable reason)
+
+- Can now hand in planetkiller to Inadvertent for money, an Anamnesis or story points
+- Anamnesis side large mounts visually face sideways (was: backwards, actual arcs unchanged)
+- Picket (PROX) designation is now "IED Drone", "Attack" variant renamed to "Sacrificial", now forcibly accelerates during shock sequence
+- Recruiting Seraph now also sets a flag that prevents her fleet from respawning (alongside deleting the script that does so)
+- Can now ask Nightingale or Barrow to "deploy street cred" while being hassled by Seraph
+- Inadvertent now always namedrops Seraph and suggests the player meet with her if they make it to Holdout without being intercepted and hassled
+- Hallowhall now has Poor Light on new campaign start (sorry, all terran-eccentrics are supposed to! Get that lamp going!)
+
+- Abandoning an outpost colony now causes the station to disappear and spawn a stable location in its place
+- Added a warning that upgrading a makeshift habitat into a colony will lose the hazard reduction
+- Reduced maximum size of white dwarfs in the background (to avoid Discord Light Mode-esque flashbang effect)
+- Reinforcement drones from objectives now automatically receive a Search and Destroy command if not player-controllable
+
+- Added some support for Second in Command mod to Banshee's Lost Thread: changed text to mention the executive officer gained and give standard 1 skillpoint
+
+- Fix some checks for "player can use automated ships" requiring specific AS skill, now allow any means of autoship recovery (e.g SiC mod's autoships aptitude)
+- Fix eroneous "turn on transponder" text in Seraph initial hassle if transponder already on
+- Fix non-purple text in Sierra's Remnant station kill thought, post-satbomb bar event, A Memory hint popup
+
+VERSION 0.14.2
+DUSTKEEPERS
+- Hallowhall points for station kill is now based off the station type killed (orbital stations give 60, battlestations give 120)
+- Reduced Hallowhall points for colonizing (150 > 75)
+- Hallowhall points for handing in AI cores is now capped at 240 total
+- Player can now restore Hallowhall's astropolis to function at a high material cost (acts similarly to a Frontier Development outpost but without Cramped Quarters)
+- Inadvertent now offers a Dustkeeper version of the custom production contract "mission"
+- Reduced Dustkeeper faction reputation mult for AI cores (2x > 1x)
+- Seraph's personal fleet now spawns from Holdout, not Hallowhall
+- Pushed Mia's Star random spawn slightly further away from the core, increased radius of hyperspace that is cleared out
+- Added option to mention Diktat commission as Seraph bestows her quest
+- Luddic purifier raid during Hope for Hallowhall now spawns from a LP colony if there are no LP bases in the sector
+- Inadvertent's probe deployment mission now possibly interrupted by Pathers, rather than pirates
+- Dustkeepers are now OK with the player taking over/salvaging objectives at stable locations if they have at least a size 4 colony in that system
+- Generic Dustkeeper recruits now appear in comms directory very frequently while available
+- Reduced the number of gamma cores in player colony Proxy fleets by about half
+- Increased the number of weapons available in Forgeship Surplus by about 3 weapon types per reset
+
+- Dustkeeper warminds will now betray the player in combat versus non-burnout Dustkeepers
+- Dustkeepers have slightly better officer quality and fleets with especially good officers also properly roll for more oldguards (e.g Blithe and Wendigo will have oldguards with some regularity), oldguard ships now use Dustkeeper names (ODS, not DSS)
+- Anamnesis: increased Terminators in wing (2 > 3), engagement range (0 > 4000), reduced refit time (20 > 10), decoy flares from pods now belong to the ship, reduced charge regen time (25s > 20s), drone lifetime (40s > 30s)
+- Cyberwarfare Protocols no longer cools down while overloaded, and cannot be used while overloaded or venting, rewrote skill quote
+- Added Kotter's Cutthroats (from Die By The Sword) as a pirate fleet in Askonia (lol)
+- Demoted Affix-Courser to Annex-Courser (RIP, purely visual tho and for Lore Reasons)
+- Changed Annex-Wendigo's post to match Courser's
+- ODS Northstar II (Barrow's Repose-class) now spawns as a derelict after combat rather than being recovered normally 
+- Repose no longer explodes into little pieces for dramatic effect every time it is disabled
+- Dustkeeper fleets are now pickier about the fights they take (removed "engage at even strength" flag)
+
+SIERRA
+- Added an amusing and kind of pathetic bar event after Sierra abandons your fleet post-satbomb
+- Added a little teaser thing that appears after completing Wayward Star (not retroactive if already completed: can use "sotf_dev wsrm" command)
+- New Sierra convo: "High Rep", which unlocks "Concord - Soulbond"
+	- Kindred souls find themselves drawn together in battle across time and space
+- Concord - Fervor: phase dive no longer interacts with Phase Anchor's once-per-battle dive rule
+- Concord - Wispersong: new icon, old icon now used by Serenity augment
+- Added a couple of variants to Sierra's greetings and "no thoughts" responses
+- New Sierra thoughts: "Fought Burnouts", "Rain"
+- Minor rewriting of the ISS Athena interaction to somewhat lower nonsense phase babble
+- Wayward Star: star system is now called "Wayward Star System" (was: "???"), Vow now starts at 70% CR (was: 50%), intel item now ends after winning the fight
+- Fix Sierra's torpedo hit text popup being too small
+- Player is now asked to confirm if they want to reject Sierra during A Promise
+
+- Dotty's banishment text is now "Dotty was banished" (was: "Figment banished")
+- Reduced Edict Stormblaster value (12500 > 8000) and increased rarity score (2 > 3)
+- Keeper/Cavalier and all Proxy droneships can now be reverse engineered and duplicated using Industrial.Evolution
+
+- Fixed Hallowhall proxy patrol boon removing itself instantly when applied
+- Fixed Inadvertent's probe delivery spawning the probe/unlucky scavenger even when failing it
+- Fixed Mia's Star initial hassle not being disabled on all fleets after player successfully completes it
+- Fixed Wendigo encounter not triggering properly after using Courser Protocol
+- Fixed Eidolon not properly captaining the Vow during Wayward Star
+- Fixed being able to gift markets to Dustkeepers in Nexerelin
+- Fixed Sierra's gate conversation not triggering
+- Fixed Sierra's salary not having proper text colors (quoted non-purple Sierra dialogue? literally unplayable)
+- Fixed broken tooltip for cheated-in Hellion's Hellhide (and generally cleaned up the tooltips of hidden skills)
+- Fixed RAT cores appearing duplicated while handing in cores to Inadvertent
+
+VERSION 0.14.1b
+- Inadvertent's missions now give 30 Hallowhall points on completion (was: 25)
+- Fixed Pather stations not giving Hallowhall points unless they were supporting cells on player colonies - now give a flat 150 points per station killed
+- Fixed issue with Derelict Contingent
+
+VERSION 0.14.1
+Amongst other miscellaneous things:
+
+- Player is now periodically pursued by a certain wintry hunter while Dustkeeper Hatred is active
+- Raiding Holdout returns Remnant/Dustkeeper droneships very, very rarely now, and never station blueprints
+- Can no longer ask Dustkeepers to join a Nexerelin alliance
+- Can now give AI cores from Random Assortment of Things, Tahlan Shipworks or Appro-Light to Inadvertent
+- Add High Gravity to Gor's Little Lie
+
+- Fixed probe naming during Inadvertent's deploy probe missions
+- Fixed Pather bases giving negative Hallowhall points
+- Fixed Diktat kills appearing as Pather kills for Hallowhall points
+- Fixed various dialogue bugs in Hallowhall
+- Fixed Sierra text purplification during lab data convo
+- Fixed broken memory flag from Hallowhall player proxy bonus
+- Fixed Seraph not properly removing her fleet's flagship when recruited, and also respawning when recruited
+- Rescuing Nightingale now properly nulls her fleet to prevent the quest restarting
+
+VERSION 0.14
+NOTICE: Requires a new save or one not already running Secrets of the Frontier (including if you are running the beta release of this update!!!)
+
+- Updated for Starsector 0.97a
+- Added a new main-menu mission, "Die By The Sword", featuring Ardent-Annex-Seraph
+- Added a new quest, "Hope for Hallowhall"
+	- Earn the trust of the holdouts at Mia's Star and their seraphic leader
+- Added a new quest/encounter, "A Lost Thread"
+	- Make a silent friend
+- Added new content to the "Legacy of Hypnos" encounter
+	- Find traces of the truth behind their legacy
+- Added a new encounter during The Usurpers, "Interweaving"
+	- Macario's not the only spider on Sindria...
+- Added a new encounter after trying to use Courser Protocol while hostile to the Dustkeepers
+	- Meet a wintry hunter on tense terms and make amends or be devoured
+
+- Added Respite-class drone battlecruiser - a brutal temporally-enhanced mallet
+- Added Anamnesis-class drone dreadnought - an unyielding drone-slinging aegis
+- They feature a unique Cyberwarfare Suite hullmod, and are only used as Dustkeeper flagships in larger fleets
+- Cyberwarfare Suite: reduces Cyberwarfare Protocols intrusion cooldown by 25% and penetrates 30% of defender's ECM and ECCM bonuses
+- Repose-class: added to Dustkeeper flagship lineup, added Cyberwarfare Suite, small sprite improvements
+
+- Banshee's Lost Thread: replaced 'ODS Death is a Bird Flying' with the ODS Songless, a unique Memoir-class light destroyer, which also has a Cyberwarfare Suite, fix generic name being applied to ship on start, now grants some Dustkeeper reputation from start
+- When playing Banshee's Lost Thread, you can now choose a skill to replace with Automated Ships if you reassign your skills into a build that doesn't have it
+- Nightingale: replaced Combat Endurance with Missile Specialization in default skill loadout, is now Steady rather than Aggressive
+
+- "The Haunted" can now be played in the form of a Nexerelin background
+- New interaction at Killa shrine ossuary (includes option to make The Haunted even harder)
+
+CYBERWARFARE PROTOCOLS (and Jubilant Tech-Siren)
+- Fighter hack effect reworked to just overload and flameout the wing's fighters, reduced cooldown to 20s
+- Now always succeeds except versus Omega (was: 65% chance, increased or decreased based on attacker/defender ECM ratings)
+- Effectiveness of disruption is multiplied by attacker ECM rating and divided by defender ECM rating
+- More effectiveness = longer weapon/engine/system disables and longer overloads
+- Effectiveness is capped between 35% and 200% effectiveness
+- Base ECM rating is now 10
+- I.E. 12 score versus 8 score: 12 / 8 = 1.5 = 150% effectiveness
+- Nerfed all hacks' base strength by ~25%
+- Hack range reduced (1200 > 900) but now scales with bonuses to energy weapon range
+- Cyberwarfare cooldown is now indicated by a pair of cooldown bars next to the ship, rather than the range indicator's opacity
+- Added a unique skill icon
+- Rays/text floaties are now Technology blue
+- Omega ICE now counters intrusions with a backlash that overloads for 1s (officers still learn this is a bad idea and won't do it again)
+- Clarity for integration with Tahlan Shipworks: if player possesses a ship with Daemonic Heart hullmod, Cyberwarfare Protocols notes that it mitigates Hel Scaith remote override attempts against those ships (this effect was implemented a while ago on Tahlan's side - this is just for clarity)
+
+ADAPTIVE NANITE SWARM (aka "Felcesis")
+- Increased guilt buildup from satbombing larger planets (now: 1 for size 3, 2 for size 4-5, 3 for size 6-7, 4 for size 8+)
+- Certain vanilla decisions now slightly affect guilt: taking the alpha core, waving (or not) at Alviss, giving the planetkiller to the Path or the Knights of Ludd (sum total of these decisions does not reach the invasion threshold without satbombing, selling Sierra or doing the Killa interaction, and inversely can't save the Haunted from being hunted)
+- No longer invades during pursuit battles
+- No longer infests enemy ships if they have less than half the fleet point cost of the most powerful enemy ship
+- The nanite swarm now has a more consistent color scheme of dark blue
+- OPTIONAL FOR NOW: Now spawns with a "support" trait in large battles (enemy fleet has at least 250 deployment points worth of ships)
+- Support traits have more wide-reaching (often global) effects that scale better with player/enemy fleet size
+- Elegy of Opis: renamed to "Hatred Beyond Death" (a future update will add 'Elegy of Opis' as a support trait)
+- Hatred Beyond Death: many fixes, cleanups and visual upgrades to "Spite" death-explosion
+- Dear Dotty: severely nerfed Dotty's firepower, range and survivability
+- Hellhide of Hades: Renamed to "Hellion's Hellhide"
+- Hellion's Hellhide: added a bar visual for skinshield integrity, skinshield recharge time reduced (20s from empty to 15s), skinshield recharge now respects time dilation, now creates a distortion effect when skinshield overloads, has EMP arc visual while overloaded, changed popups when used by nanite swarm "skinshield" > "hellhide")
+- Jubilant Tech-Siren: now gives 2/2/3/4 ECM to piloted ship, now weighted slightly more as a general pick than an anti-carrier pick
+- Wispering Grovetender: now somewhat favored versus carrier-heavy fleets
+- Pushed out FP threshold where Fel spawns in a weaker form (50 > 60)
+- Added settings.json entry for when "guilt madness" causes the Adaptive Nanite Swarm to be perceived as Felcesis (default: 7)
+
+NEW ADAPTIVE NANITE TRAITS:
+- HYBRID: A Trickster's Calling - periodically steals missile ammo from enemy ships, emergency phase when reaching half hull
+- DEFENSIVE: Mantle of Thorns - incoming shield damage is reflected as EMP arcs and builds up charge to an EMP discharge
+- DEFENSIVE: In Sacrifice, Meaning - at high flux, transfer a large amount of flux to a nearby ally
+- SUPPORT: Hands of the Drowned - a gravitic minefield assails the player's fleet. Mines add a scaling 10% of soft flux on hit, and pull anything hit towards them
+- SUPPORT: The Perfect Storm - on a 30s repeating timer, ALL player ships/fighters overload or have existing overload extended if they're not venting or phased
+- SUPPORT: reality_breaker - if not destroyed within 6 minutes, crashes the game (only appears if player saved within the last 15 minutes)
+
+- Leviathan's Bane: added cooldown bar, increased Hidecracker hard flux on hit (15% capacity > 20% capacity), hits on shields now instantly overload frigates for 4s and destroyers for 1s, incoming cryoharpoon now causes ships to back off and phase ships to avoid unphasing, added icons to relevant UI statuses and reloading status notes if prey is nearby (triggering the accelerated reload)
+
+- Fleet commanders in main-menu missions now properly apply their fleet-wide skills (e.g Affix-Haven, Feros)
+- Dawn and Dust: added unique Affix-Haven chatter, buffed enemy officers
+- Good Hunting: now has a new objectives/tips list if best-score is above 0, mission now fails if ISS Once in a Lullaby is destroyed
+- Good Hunting: new Warhorn portrait by Quacken
+
+SIERRA
+
+- Made a(nother) pass over some of Sierra's dialogue and chatter to re-align her character away from excitable naivety and towards phlegmatic music witchery (expect her dialogue to generally be calmer, slightly wiser and with more splashes of witchcraft - and fewer exclamation marks!!!!!!)
+- Sierra now calls you "kindred" once she learns you both hear the Music
+- Sierra is now less forgiving of satbombing: 1 second chance for satbombing a size 3, immediately leaves if you do it to a size 4 or larger
+- New conversations/thoughts: "Used Gate", "Moths", "Mudskipper Spinout"
+- Added Dragonfire to list of possible favorite torpedoes
+- Sierra now gets excited when she successfully lands a direct hit with a missile of base damage 1000 or higher (i.e Reaper, Hammer, Atropos)... or apologizes if she friendly fires with one
+- Vow: increased supply/deployment costs (26 > 32)
+- Can no longer install Neural Interface on Sierra's ships (sorry)
+- Sierra's reflexive blast doors now also negate all crew losses on her ships
+- Concord augments no longer appear in the refit screen for non-Concord ships
+- Added info on changing Sierra's personality/ship to her officer tooltip
+- A Promise: reimplemented ship graveyard around ODS Dusklight, made disabled frigate spawn in more convenient places (around planets or stars), reduced Dustkeeper reputation reward (65 > 35)
+- A Memory: Tempest captain now has a fixed set of suitable skills
+- Wayward Star: added a few unique officer chatter convos on combat start, gave Eidolon a custom chatter personality for if enemy combat chatter is enabled, fix The Music continuing to haunt the player after the battle
+- Wayward Star: rewrote some of the Wispmother interaction dialogue so it's clearer that it's never recoverable
+- Sierra (and Project SIREN) now have a selection of relevant admiral skills
+- Sierra's level-up moments are now capped to whatever level they would normally bring her to
+- Added quips when swapping into the old Brilliant version of the Vow from Dawn and Dust (if cheated in)
+
+- Random Assortment of Things crossover: SotF now provides a swap-in line for the Raphael (check it out if you haven't already - a new Sierra destroyer?!)
+
+DUSTKEEPERS
+
+- Added a new, separate Dustkeeper Burnouts faction for rogue fleets, such as Barrow or Dustkeeper burnout bounties, who are hostile to everyone (including Dustkeepers)
+- Increased the number of opportunities to ask about the topics of Dustkeepers and about burnouts - learning about either one adds that faction to the intel screen
+
+- Added Dustkeeper Hatred: the faction whose mission is to preserve life in the Sector now REALLY hates it when you satbomb a size 4+ planet, and become permanently vengeful
+- Dustkeeper warminds can now betray the player during combat under specific circumstances (must have triggered Dustkeeper hatred, must be in a favorable position to do so)
+
+- Courser Protocol escort fleet can no longer choose to join neither side of a battle if Dustkeepers are not sufficiently hostile to the enemy fleet
+- Degraded Instance Chip: renamed item to "Barrow's Instance Chip (Degraded)" and rewrote description to make its purpose somewhat clearer
+- Derelict Contingent now causes Barrow's automated ship multiplier to be reduced by 0.25x per dmod (up to 4) to encourage Repose use over the Sentinelslaught
+- Barrow now starts with Combat Endurance rather than Gunnery Implants (including when fought)
+- The Rust Crows: For clarity, Barrow (D) and his Dustkeeper oldguards now have the same personal version of Derelict Contingent that playerfleet-Barrow later has (Barrow previously had a fleet-wide version), added 100% gamma cores to compensate for the drones no longer having DC
+- Barrow starting relations once restored now Favorable (was Suspicious)
+- NPC Dustkeeper oldguards in normal Dustkeeper fleets are now level 8 and have Derelict Contingent, like Barrow, spawning in highly-dmodded ships
+- Defender (PROX) & Bastillon (PROX) now have less atrocious weapon arcs than their unupgraded versions
+- Renamed Proxy derelict package names (e.g "Assault Package" > "Proxy Assault Package")
+- Fixed Proxy packages adding their armor bonus for DR calculation as a percentage and not flat (was: 25% bonus, now flat 50)
+- Proxy Assault Package: now grants Damage Control's elite effect (can repair still-functional weapons and engines even if they're taking damage)
+- Proxy Escort Package (for Defender, Bastillon, Keeper): increase PD range boost (75 > 100), PD damage bonus (25% > 35%)
+- Picket (PROX): increased hull and armor bonuses (15% & 12% > 25% & 20%), now properly begins sacrifice sequence at max flux, fixed explosion hitting multiple times
+- Added "Proxy Control Node" battle objective (acts like Hyperwave Transmitter but with Dustkeeper Proxy drones), spawns in Hypnos system/Mia's Star
+
+- Burnout bounty fleets now have normal (well, "normal") DK fleet names ("Rogue Splinter" > "Scrutiny's Shard" or "Mythic's Neutron Wyrms")
+- Non-burnout Dustkeepers no longer use phase ships (if added by mods such as Torchships)
+
+- Slightly increased contrast on all portraits of AI characters
+- Instance chips now display a number of stars to indicate their level (1 star for sliver, 2 for echo, 3 for annex)
+- Increased the default delay after officer convo lines (1s per 20 characters > 1s + 1s per 20 characters)
+
+- Certain decisions now raise the player's hidden ethos scores
+
+- Added LunaLib support: most of SotF's settings.json entries will be replaced by the ingame settings menu (in particular, settings for the guilt mechanic)
+- Added officer convo: "Barrow Daemon" (crossover with Tahlan Shipworks)
+- sotf_findsecret command: new argument "athena" (finds Athena wreck, may be useful for random sector)
+- NPC Dustkeeper warminds now have unique Combat Chatter personalities (3 personalities: "Faithful", "Hunter", "Oldguard")
+- Removed crashcode for Starpocalypse's Stingy Recovery setting, as this issue was fixed with Starpocalypse Revengeance 3.0.1
+- Added to list of "guilt-free" factions: Hivers (from Hivers), Enigma (from LOST_SECTOR)
+- More Military Missions: blacklisted all factions except Dustkeeper Burnouts from defense mission (for lore reasons and to not clog the faction list)
+
+- Fixed A Promise failing to begin if there are no independent colonies
+- Fixed a few cases of "years" rather than "cycles"
+- Fixed text and performance issues during A Memory in Nexerelin's random sector
+- Fixed incorrect concord augment quote colors
+- Fixed "retreat" chatter lines being written for the wrong context (was: ship is retreating. now: fleet is retreating)
+
+TACTICAL EXPANSION
+
+- Battle creation plugin updated to include support for the Abyss
+- Removed adjustments to battlespace size based off hyperspace presence and nearby planet presence
+- Battles with 4 or less objectives are now smaller, more akin to vanilla
+- Escape battles are now always fought in a 18k-unit square, like in vanilla
+- Battlespace generation will prioritise placing SoTF objectives in the middle of the two fleets (but, like, for real, this time)
+- Battle creation is now seeded - the battlescape will always be identical when fighting the same fleet with the same number of ships (no save scumming)
+- Objective spawn thresholds based off deployment points pre-modifiers, not post-modifiers (so, e.g, Derelict Operations DP reduction does not reduce objective counts)
+- Emplacements are now outright incapable of capturing their own objective (thank you, new Electronic Warfare effect!)
+- Emplacements now spawn slightly closer to their parent objective (was: 750-850, now 500-650)
+- Emplacements now self-destruct if the side that owns them is in full retreat
+- Hyperwave Transmitter/Network Hub now immediately degrade all drones to 10% CR and cease spawning new waves while their owner's fleet is in full retreat
+- Reinforcement droneships now spawn at 70% CR (was: 50%)
+- Reduced spawn weighting of Fractal Beacons in hypershunt systems (1 > 0.5)
+- Fixed emplacements/siegeworks being twice as common compared to other objectives in the battle size band where both emplacements and siegeworks can spawn (now, both spawn at half frequency)
+- Fixed emplacements/siegeworks spawning in hyperspace
+- Fixed siegeworks' extra radius padding being ignored
+
+- Knights of Ludd mod crossover: added 3 new reinforcer types for each of KoL's secret factions, and allow all normal reinforcers to spawn in their systems
+
+VERSION 0.13.2a
+- Re-enabled GraphicsLib support and requirement
+
+- Officer convo system: added "requires X officer has Y hullmod" requirement
+- Added convos: "Barrow XIV", "Barrow Omega", "Inky Omega" (and variants)
+
+- Adjusted Vow sprite
+- Reduced volume of Concord Shift by about 20%
+
+- Fixed Leviathan's Bane lock sequence progressing while game is paused
+- Fixed Hellhide of Hades missing some sanity checks re: skinshield status
+- Fixed NPE errors with data loading
+- Fixed some officer conversations
+
+VERSION 0.13.2
+- Updated for Starsector 0.96a
+- Temporarily disabled GraphicsLib integration while GLib updates
+
+- Dawn and Dust: CGR Apocalypse Waning is now a Retribution, rather than a Prometheus MKII
+- Good Hunting: Changed flagship s-mod from EMR to Missile Autoloader
+
+- Cyberwarfare (& Jubilant Tech-Siren): added an aura visual that indicates hacking range and rough cooldown
+- Omega are now invulnerable to cyberwarfare (once learned by a cyberwarfare user, they will conserve it for other targets)
+
+- Repose: Integrated Targeting Unit removed as built-in, OP increased to compensate (450 > 475) (this isn't a nerf, it's expanded options)
+- Barrow's captained ship is now temporarily unrestorable by standard restoration and Hull Restoration
+- Repose & Rampart (PROX) now use vanilla Canister Flak, not a custom version
+- Berserker (PROX): added Canister Flak to right-click
+- Sentry (PROX): added built-in Missile Autoloader
+- Dustkeeper NPC warminds now always pick Gunnery Implants as their first skill
+
+- Reverted Sierra to not be considered integrated into her ship
+- Inert Concord ships can now be captained by regular officers (not a good idea, but hey)
+- A Memory: changed ISS Athena variant to keep consistency with Nothing Personal (now "Assault" variant)
+
+- Changed NPC-only skills: no longer "deprecated", now "player-only" as well as "npc-only"
+- However, it appears there was a vanilla change that prevents skills from being unhidden midgame
+- Changed most skill IDs to remove the "_npc" suffix
+
+- Nanite swarm ("Felcesis"): increased maximum FP cap for infested frigates, superfrigates (stronger than Afflictor) are now treated as being 10 FP stronger when picking a ship to infest
+- Leviathan's Bane: Hidecracker cryoharpoon now blows straight through fighters
+
+- Fixed Courser's variant showing up in the Brilliant's autofit choices, adjusted variant for new fighterless Brilliant
+- Fixed Nightingale/Barrow not losing their extra level and skill if integrated and scuttled
+- Fixed Barrow's degraded instance chip not being removed after having him regenerated
+- Fixed Barrow's custom chatter personality not being assigned
+- Fixed Sierra's "killed Barrow" conversation not triggering
+- Fixed inert Concord ships having their CR tooltip become stuck
+- Fixed Hypnos causing a crash if it generated with no orbit
+- Fixed Cyberwarfare (& Jubilant Tech-Siren) working on ship-system drones (e.g those used by stations)
+- Fixed some non-purple text
+- Fixed Dustkeeper Proxy packages showing placeholder text instead of nothing
+
+VERSION 0.13.1
+- Dustkeeper contact bounty: now properly appears only when hostile to Dustkeepers
+- Added an alternative, "burnout" variant of DK bounty that appears when non-hostile, which doesn't penalize Dustkeeper relations
+- Nightingale AS point mult: 2.5x > 2.75x
+- Cyberwarfare (& nanite equivalent) now fires orange beams on a failed intrusion (was: only a text popup)
+- Cyberwarfare: Ill-Advised Modifications now reduces ECM score by 1, ECM resistance now caps at 65% effectiveness against cyberwarfare intrusions
+- Hypnos: slightly increased Rust Crow ship quality (1 less dmod, at cap for Derelict Contingent effect)
+- Hypnos: removed guaranteed recovery from all ships except for the Repose
+- Dustkeeper regular forces: reduced hullmod spam slightly
+- Dustkeeper proxy forces: no longer randomize their variants, now have the same small-weapon availablility boost as the regulars 
+- Added a new Courser dialogue option re: "Banshee"
+- Fixed new Mayfly convo option having incorrect Dustkeeper reputation requirement
+- Fixed Dustkeeper Nexerelin profile not being properly set up (primarily fixes issue of Dustkeepers caring who the player commissions with)
+- Fixed degraded instance chip not dropping if the Repose is recovered
+- Fixed Derelict Contingent tooltip crashing
+- Fixed Dustkeeper warminds (i.e Nightingale & Barrow) keeping their integrated status after their ship is scuttled
+
+- Pledge: Renamed "Sierra's" autofit to "Balanced", added "Tempo" & "Serene" variants using Fervor & Serenity
+- Sierra is now considered to be integrated into her ship
+- Sierra's internal officer core now vanishes in player cargo, rather than being converted into the quest item
+- Concord - Fervor no longer triggers its phase dive when used by ships that don't have Sierra's Concord (i.e non-player Concord ships) as to not spoil the moment
+- Fixed Project SIREN having portrait reassigned
+
+- Nanite trait Wispering Grovetender: Nerfed wisps spawned from ally ships
+- Dear Dotty: Dotty doesn't manifest to help modules or fighters, Fel manifests a slightly weaker Dotty if invading at below max strength
+- Elegy of Opis: Hull restore on first trigger from 35% to 45%
+- Fixed NPE with adaptive nanite trait picker
+
+- Increased extra FP threshold where Emplacement Uplinks begin getting replaced by Siegeworks Uplinks (120 > 150)
+- Fractal Beacon: increased spawn weight in Remnant systems (0.05 > 0.1)
+
+- Fixed objectives with a max FP value treating it as a minimum FP value for spawning
+- Fixed objectives that require specific system themes (i.e all of the special ones) being able to spawn in hyperspace if they have no hyperspace setting
+- Fixed emplacement gamma core not having a AI core ID
+- Fixed T2 gunnery emplacement not having collision and a 0-degree turret arc
+- Fixed typo causing habitat to outpost upgrade not working
+
+VERSION 0.13.0b
+- Cyberwarfare terminator sequence damage: 150% of fighter's hull > 125% of fighter's hull
+- Fighting factions hostile to the Dustkeepers alongside Courser now gives reputation with them and the Contingency
+- Adaptive nanite swarm now scales up its strength during the earlygame
+- "Hellhide" recharge can now be briefly interrupted by damage even during reboot sequence
+- Added missing notes to Derelict Contingent tooltip
+- Adjust mod compat for "Siren"
+- Wayward Star: "no" does That if pressed, in addition to if hovered over
+- Fixed mixed-up naming/pronouns during Sierra betrayal
+- Fixed issues with nanite swarm trait picker
+- Fixed crash from guilt whisper ghost
+- Fixed "Grovetender" semi-recursively raising wisps
+- Fixed some AI core droprates and drop tags
+- Fixed missing years-of-amnesia token when meeting Sierra
+- Fixed some non-purple Sierra dialogue
+- Fixed Vow floating pixels
+- Fixed Fractal Beacon crash
+- Fixed improper formatting in remote_ai_factions.json
+
+VERSION 0.13.0a
+- Banshee's Lost Thread: now start with some heavy machinery
+- Added missing notes to Cyberwarfare Protocols tooltip
+- Added an autofit variant for the Repose
+- Good Hunting: increased size of cryoharpoon
+- Pursuer appearance chance per point of guilt 7% > 9%
+- Fixed dialogue steps in post-Wayward Star conversation bleeding into each other and causing issues
+- Fixed crash due to A Memory hint script
+- Fixed secret hullmod having null stats in description
+- Fixed a couple ships having off-center centers
+- Fixed reinforcement droneships not having owner and ally status assigned correctly
+
+VERSION 0.13
+- Shattered your saves into a fine dust (incompatible with old versions of SotF, but you can still add the mod midsave if you didn't have it before)
+- Changed all internal IDs (prefix from fronsec_/fs_ > sotf_) - will break mod interactions until fixed, changed mod's ID to "secretsofthefrontier"
+
+---
+WATCHER BEYOND THE WALLS
+- The Contingency slumbers... for now...
+- Added two main-menu missions, "Dawn and Dust" and "Good Hunting" as preludes to planned quests "Plausible Deniability" and "The Legacy of Walter Feros"
+
+- Added betrayal. See: Culann (if random sector: random large TT world)
+- Added consequences
+
+- Added an adaptive nanite swarm
+
+- Added "Hypnos"
+
+- Added 2 new special officers
+- Added special skills used by them and other NPCs
+- Added ability for special officers (including Sierra) to occasionally converse with each other at the start of combat akin to Combat Chatter
+
+- Added two new Nexerelin starts: "The Haunted" and "Banshee's Lost Thread" (latter unlocked by getting 80% at Dawn and Dust)
+- The Haunted - gain a bonus skill point, and a relentless nemesis
+- Banshee's Lost Thread - you and your best friend, both with unusual technological expertise
+
+- Added Explorarium ships/fighters ported from Arsenal Expansion, with an ini toggle (has anti-overlap code to remove AE versions from Derelict known ships list)
+- Includes Cavalier cruiser, Keeper carrier, Brattice interceptor, Parapet escort fighter, Peon bomber
+- Cavalier - has Rugged Construction, system changed to Burn Drive, supply costs reduced 18 to 15
+- Keeper - has Rugged Construction, system changed to Fast Missile Racks, supply costs increased 6 to 8
+
+- Added the Proxies
+
+- Mayfly: Added friendship by proxy
+
+Request Assistance:
+- Renamed to Courser Protocol
+- "Adjustments"
+- Now follows player through hyperspace
+- Reduced escort time to 45 days
+- Now joins when fighting SWP's IBB bounty fleets
+
+A Promise:
+- "Adjustments"
+- Lowered level requirement from 7 to 5
+- Quest objects now have high neutrino output, spawn in more obvious places
+
+A Memory: 
+- Sierra's ship always phase dives to retreat if it would be destroyed during A.M., even without Fervor installed or already lost too much CR
+- Friendly Tempest captain always has Combat Endurance
+- Phase stress penalty no longer affects CR but independently cripples ships and their fighters
+- Added an audio and message warning when first selecting a disallowed ship in deployment screen, followed by an extra warning upon actually deploying it
+- Fixed harmonic coil tuning working without actually using the SP option (oops)
+
+Wayward Star:
+- Improved Eidolon's ability to break the dialogue system
+- Removed her fear
+- Improved her ability to playfully turn you into mincemeat
+- "Adjusted" her retinue
+- Improved music playback
+- Star system is now considered "hidden"
+
+Sierra:
+- Has a player-relationship bar with a minor time mult boost while piloting if Cooperative
+- Considered an AI officer under-the-hood (largely cosmetic - ship is still not considered automated and she doesn't affect Automated Ships skill)
+- Sierra: Reckless renamed to Fearless (however, Sierra is still only as aggressive as a Reckless officer, not Reckless+ like an AI core)
+- Now randomly acquires new conversation topics over time (only 3 so far)
+- New set conversations: player-has-ship, player-fought-vanilla-faction
+- Dialogue tuning, added altered "dramatic" battlecry set and Combat Chatter config, used during fights against bosses (Guardian, Zig, Omega, Eidolon, plus any Combat Chatter boss if that mod is installed), overall slightly reduced average excitement level
+- Added minor fluff text when visiting Galatia Academy after a certain interaction
+- Has a 50 credits per month "maintenance fee"
+
+Concord ships:
+- Can now swap Sierra between Concord ships by speaking to her
+- Concord ships that Sierra isn't piloting are rendered largely unusable in combat
+- Pledge is no longer scuttled when receiving the Vow
+
+- Serenity: now increases threshold at which speed bottoms out by 100%, to 150% (hard flux stress never reaches max level), increased OP cost to 10/15 for Pledge/Vow
+- Wispersong: 1/2/3/4 wisps to 1/2/4/6, fixed ship-detection issue when multiple ships use it simultaneously (i.e. during Wayward Star)
+- Wisps ignore anti-PD flares
+- Renamed Anomalous Shift to "Concord Shift"
+- Reduced slow-motion effects of Sierra's Concord and Concord Shift applied to the outside world (91% and 33% speed changed to 100% and 42.5%)
+- i.e Sierra's ships, when piloted by player, are played closer to real-time than previously (should be smoother, faster)
+- Vow: increased OP (150 > 165), slight buffs to acceleration stats
+- "Adjusted" visuals
+
+- Rewrote Sierra chatter code to avoid multi-chatter bug
+- Edict Stormblaster: increased damage (350 > 400), is now known by the Luddic Church
+- Added GraphicsLib requirement
+- Added some console commands, mostly for dev usage and they contain spoilers - but you may find sotf_addAbility [ability id] and sotf_printGuilt useful enough
+
+- Can no longer load the game with WBTW and Starpocalypse's "Stingy Recovery" because the latter breaks the Sierra questline
+
+---
+TACTICAL EXPANSION
+
+- Added objective: Siegeworks Uplink, replaces Emplacement Uplink in larger battles, spawns stronger emplacements
+- Added siegeworks emplacements: Gunnery Bastion, Hangar Bastion   
+- Renamed emplacements: Gun Turret, Autohangar, Lidar Node
+- Updated icon for emplacement objectives
+- Emplacements no longer repair if their owner is in full retreat
+- Gun Turret: halved rotation speed
+
+- Added special objective: Fractal Beacon
+- Reinforcement droneships now receive autofits and some dmods
+- Arma Armatura's strikecraft are no longer spawned as reinforcement ships
+
+- Replaced remote_ai_factions.csv with new remote_ai_factions.json - allows for the number of cores each faction uses to be defined
+- Used said new json to adjust presets - Derelicts no longer use betas but have more gammas, Remnants get an extra beta, etc. Default is now 1 beta, 3 gammas.
+- Now calculates max remote AI captains at start of battle only, not on every ship spawn
+- Automated Ships skill no longer displays "can use remote AI" line if Tactical Expansion is turned off
+- Fixed tech-illiterate enemies gaining player's remote AI captains when player has Automated Ships
+
+MISCELLANEOUS
+- Frontier Development: orbital habitat hazard reduction is now -8% (0.92x multiplier), not flat -10 - equal for 125% hazard worlds, worse for lower, better for higher
+- Fixed a tip being too long
+
+
+VERSION 0.12
+- Added Version Checker support
+
+- Added a little teaser near the lion's heart
+- Added Sierra conversations for people who are bad at budgeting and have questionable choice in literature
+- Pledge: Buffed ordnance points 100 > 105
+- Concord ships now have built-in Phase Field
+- Anomalous Shift now halves shield upkeep while phased, increased speed boost (50% > 75%)
+- Expanded description of Sierra's Concord to explain officer mechanic and ship system
+- Slightly increased lesser wisp hull points
+- Reduced performance impact of dancing ghosts
+- Decreased spawn rate of tour guide ghosts
+- Added some compatibility with modded scanning abilities (e.g Seeker's enhanced neutrino detector)
+- Fixed up Sierra as in-combat officer, reducing jankiness
+- Fixed crash when launching without WBTW module
+
+- Battlespace generation will prioritise placing SoTF objectives in the middle of the two fleets
+- Automated Ships skill now allows for any spare AI cores in cargo to remotely captain spawned droneships (which also allows player to issue them orders). Some NPC factions can also do this, determined by a new remote_ai_factions.csv in config/fronsec.
+- Removed reinforcement objectives from pursuit battles 
+- Fixed turret/bombardier emplacements having hidden flux bars (despite having shields now)
+
+PRERELEASE ELEVEN / 0.11
+- Added "Guilt" stat which increases difficulty when sufficiently accumulated (can be tweaked in settings.json)
+- A Memory: made less unreasonably obscure, added SP option to allow 1 phase frigate wingman
+- Wayward Star: Added "Suffering Mode", fixed boss kiting like a gremlin instead of ordering a FA when almost defeated, ally fleets now allowed
+- Added SFX to wisp spawning
+- Adjusted Pledge premounted weapons (starts with a H. Needler, easier A.M. prep)
+- Added 1 new Sierra thought
+- Sierra is no longer considered "unremovable" to fix some jank (her ship can still only be piloted by her or the player)
+- Upgrading from Pledge to Vow now properly gives bonus XP for installed smods
+- Fixed Omicron not assisting in murdering smugglers, scavengers and other low-impact indie fleets
+- Fixed Omicron's starting relationship being set too low for escort fleet to assist player reliably (one-time fix: rep set to 50 on save load)
+
+- Increased minimum spawn radius for defensive emplacements to reduce cases of them contributing to their own capture
+
+PRERELEASE TEN POINT ONE
+- Vow: 140 OP > 150 OP (compensation for fighter bay loss from AE version)
+- Concord augments now have purple text and concords have purple borders
+- Added guaranteed volatiles to ???
+- Fixed Wispersong AoE improperly rendering
+- Fixed wisps holding fire at high flux
+- Fixed A.M. crash intel crash in random sector
+- Fixed W.S. second-chance derelict spawning on repeat-attempt victory
+- Fixed Vow being unscuttleable until loading a save
+- Reimplemented W.S. instant-battle-end failsafe
+
+- Gunnery emplacement: increased dissipation 150 > 200, added builtin turret gyros, added omni shield
+- Bombardment emplacement: added omni shield, reduced armor/hull 750/7500 > 500/5000, fixed both variants having mines (now 50/50 LRMs/mines split as intended)
+- Emplacement name now includes its type: gunnery, hangar or bombardment. This is also displayed in the objective's description
+- Fixed pursuit battles spawning the escaping and flanking ships too far down
+
+PRERELEASE TEN
+- New sprites for : : : : {thank you, Nes}
+- Sierra's ships are no longer considered phase ships, can now be scuttled and stored (yes, scuttling Sierra will halt her questline until you console-command her back)
+- Added two hullmods, "Concord - Serenity" and "Concord - Fervor" to replace Adaptive Phase Coils and Phase Anchor respectively
+- The existing augment now displays its area of effect in combat, slightly extended range
+- Added a short winddown and cooldown (approx. 0.125s with Field Modulation) to Anomalous Shift for smoother visuals
+- Reimplemented Edict Stormblaster trails
+- Miscellaneous text fixes/changes - better clarity, better flow, better purple
+- Added quest compatibility with Nexerelin random core worlds (works mid-campaign)
+- Increased difficulty of W.S. encounter (improved enemy officer quality and unique ships' power)
+- Fixes for A.M. & W.S. - crash during deployment, being unable to retry after a loss, instant battle ending
+
+- Wasp/Xyphos hangar emplacement replaced with Claw/Longbow (since Xyphos can no longer roam)
+
+PRERELEASE NINE POINT FOUR
+- Fixed bugged station interaction
+
+PRERELEASE NINE POINT THREE
+- Phase madness now kicks in when in hyperspace and near A.M. encounter
+- Anomalous Shift now grants an intrinsic speed boost (+ max value Phase Corps = same as old Phase Mastery), less susceptible to flux
+- Fixed "second chance" derelicts spawning as Nebulas
+- Fixed A Promise being repeatable (again)
+- Improvements to save compatiblility
+- Fixed typos
+
+PRERELEASE NINE HOTFIX #2
+- Watcher Beyond The Walls is now save-compatible
+
+PRERELEASE NINE HOTFIX #1
+- Fixed A Promise being repeatable
+
+PRERELEASE NINE
+- Updated to Starsector 0.95.1a
+
+- Partially implemented Watcher Beyond The Walls module:
+- Added A Promise
+- Added A M    ::::    {data stream corrupted?}
+- Added Wayw    S a  ::::  {data stream corrupted! however will they find me?}
+- Reminder: individual SoTF modules can be toggled in fronsec_settings.ini
+
+- Sierra (compared to Arsenal Expansion 1.5.4a):
+- No longer counts against your officer total
+- Fixed jankiness and duping
+- Custom Combat Chatter integration
+- Has things to say about your accomplishments
+- Accepts constructive criticism about her combat style
+- Added special conversation :)
+- Increased phase madness to    (was: 0)
+
+- Added Edict Stormblaster
+
+Tactical Expansion:
+- Fixed some objective timers running while combat was paused
+- Reinforcement drones no longer take up deployment points
+
+PRERELEASE EIGHT
+- Updated to Starsector 0.95a
+- MagicLib is now a required mod to run Secrets of the Frontier
+
+- Battle objective spawning and emplacement turret variants are now based on mergeable .csv files, allowing for mods to add custom objectives and new turret variants
+Also, feel free to go change them yourselves for a personalized objective experience
+
+- Both objective types now grant a bonus to deployment points when captured (slightly less than a nav buoy or sensor array)
+- Reinforcement objectives now spawn a new wave after 20 seconds, up from 15 seconds
+- Emplacement objectives rework: emplacement no longer spawns on battle start. Emplacement creates a new emplacement on initial capture and after 60 seconds if the old one is destroyed. Emplacements regenerate 0.5% max hull / sec and always have a Gamma Core officer
+- Outposts now receive an 10-point reduction to growth at size 4, which doubles for each subsequent size level
+- Implemented the full release's additions to the ship name pool
+
+- Emplacements will now resist being pushed out of place (top speed, acceleration and decceleration are no longer set to 0)
+- Ship types spawned by objectives will become automatically added to Combat Chatter's no-chatter hull list
+- Fixed outpost colonies missing an icon in the colonies list
+- Fixed potential crash when a reinforcement objective attempts to spawn a ship from a faction without ships of the desired roles (e.g a mod has deleted the Remnant ship list for some reason)
+
+PRERELEASE SEVEN HOTFIX #2
+- Removed context-based derelict ship spawning because it shatters the combat engine into a thousand pieces
+
+PRERELEASE SEVEN HOTFIX
+- Fixed combat not ending in battles where the AI cannot retreat (e.g Remnants)
+- Fixed a crash when a derelict with no weapon mounts spawns
+
+PRERELEASE SEVEN
+- Added context-based derelict ship spawns to combat
+- Outpost colonies now change appearance when they have a battlestation constructed
+- Reinforcement objectives now draw from Derelict and Remnant faction doctrine, rather than hardcoded variant lists (aka better support for mods)
+- Reinforcement ships now immediately drop to 10% CR if they are the only combatants on their side to avoid drawn-out fights
+- Emplacements now have a 20% chance to spawn with a level 3-12 officer
+- Implemented cut-down fronsec_settings.ini to allow for toggling of SotF modules
+- Fixes to reinforcement status messages
+- Disabled anti-ship battery emplacement from spawning until it is less hackjobbed
+
+PRERELEASE SIX
+- Emplacement capture points will now be removed when the emplacement is destroyed
+- When the player has any reinforcement objectives, a status is displayed in the bottom-left showing droneship status or, if applicable, the reinforcement timer
+- Disabled Forwardbase Phoenix for new saves
+
+PRERELEASE FIVE
+- Added more variants to all existing emplacements
+- Added icon for network hub and hyperwave transmitter
+- Standard battles use a proper set of potential objective layouts, 6-objective battles now actually have objectives
+- Miscellaneous improves and fixes - ship name colors, UI icons, turret facing, emplacement misfiring, etc.
+- Reinforcer fixes: fixed counting non-allied objectives for reinforcement cap
+- Fixed Forwardbase Phoenix spawning a lot of times
+- With the Automatic Orders mod, reinforcement ships no longer auto-retreat
+
+PRERELEASE FOUR
+- Emplacements: Added LRM bombardier variant, increased size of standard turret, reduced capture time of emplacements from 10 to 5 seconds, added new icon for emplacement objectives
+- Network Hub/Hyperwave Transmitter: now reinforces your fleet with up to one destroyer if you hold more than 1, halved reinforcement respawn delay
+- Increased hazard reduction of makeshift habitats from 5% to 10%
+- Forwardbase Phoenix's spawn system has all tags cleared (to avoid missions/pirate bases locating there), forwardbase no longer spawns in unpopulated core worlds systems
+- Fixed ID mismatches for remnant network hub
+
+PRERELEASE THREE
+- Updated battle creation with code from Starsector Plus/Nexerelin: More varied battlefield size, changes to objective numbers, jumppoints/multiple planets in backgrounds, etc
+- Added new defensive emplacement: Bombardier, current variant fires anti-ship batteries at nearby ships
+- Hangars: added more variants to ruins hangar, normalized hangars to have integrated targeting unit, fighters no longer suffer debuffs from defective manufactory, labelled normally-manned fighters as drones
+- Normalized defensive emplacement hull/armor at 7500/750
+- Devastator turret: greatly increased range, more consistent shell explosions, no friendly fire
+- Defensive emplacements are set as allies when on player's side (yellow rather than green)
+- Removed flux bar from emplacements
+- Fixed enemy emplacements not launching fighters (for both types, this time)
+- Fixed Forwardbase Phoenix respawning after being destroyed
+
+PRERELEASE TWO
+- Gauss turret now has advanced turret gyros
+- Fixed outposts starting with no spaceport and locked storage
+- Fixed ID mismatch for Devastator turret
+- Fixed turret beam weapons being able to turn while the turret is inactive
+- Fixed enemy turrets not launching fighters
+- Fixed typo in habitat description
+
+PRERELEASE ONE
+Features:
+- Campaign event: Forwardbase Phoenix
+- Campaign feature: Orbital habitats, upgradeable into outpost colonies
+- Campaign feature: New battle objectives: Defensive emplacement, reinforcer
+- Context-based battle objectives (e.g special objectives in systems with survey derelicts)

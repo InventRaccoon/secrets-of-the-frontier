@@ -1,0 +1,280 @@
+{
+	"sotf_apromise_station":{
+		"defaultName":"Anomalous Station", # used if name=null in addCustomEntity()
+		"defaultRadius":45, # used if radius<0 in addCustomEntity()
+		"icon":"graphics/icons/station0.png",
+		"nameInText":"anomalous station",
+		"shortName":"station",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/station_side00.png",
+		"spriteWidth":40,
+		"spriteHeight":40,
+		"detectionRange":2000,
+		"discoverable":true,
+		"discoveryXP":1000,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"nameFont":"graphics/fonts/orbitron20aabold.fnt", # font has to be one of the ones already loaded by the game
+		"nameFontScale":1,
+		"nameAngle":0,
+		"nameColor":[205,155,255,255],
+		"nameShadowColor":[0,0,0,255],
+		"customDescriptionId":"sotf_apromise_station",
+		"interactionImage":"graphics/illustrations/orbital_construction.jpg",
+		"tags":["has_interaction_dialog", "salvageable", "neutrino_high"],
+		"layers":[STATIONS],
+		"pluginClass":"data.scripts.campaign.plugins.apromise.SotfPromiseStationPlugin",
+	},
+	
+	"sotf_apromise_omicron":{
+		"defaultName":"ODS Dusklight XI", # used if name=null in addCustomEntity()
+		"defaultRadius":30, # used if radius<0 in addCustomEntity()
+		"icon":"graphics/icons/entity_hollow.png",
+		"iconColor":[0,255,158,255],
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/ships/remnants/remnant_cruiser1.png",
+		"spriteWidth":12,
+		"spriteHeight":15,
+		"detectionRange":1000,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"nameFont":"graphics/fonts/orbitron20aabold.fnt", # font has to be one of the ones already loaded by the game
+		"nameFontScale":1,
+		"nameAngle":0,
+		"nameColor":[0,255,158,255],
+		"nameShadowColor":[0,0,0,255],
+		"customDescriptionId":"sotf_apromise_omicron",
+		"tags":["has_interaction_dialog", "neutrino_high"],
+		"layers":[STATIONS],
+		"pluginClass":"data.scripts.campaign.plugins.apromise.SotfAPOmiEntityPlugin",
+	},
+	
+	"sotf_apromise_vena":{
+		"defaultName":"Disabled Frigate", # used if name=null in addCustomEntity()
+		"defaultRadius":20, # used if radius<0 in addCustomEntity()
+		"icon":"graphics/icons/fleet0.png",
+		"iconColor":[0,255,158,255],
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/ships/remnants/remnant_frigate1.png",
+		"spriteWidth":10,
+		"spriteHeight":10,
+		"detectionRange":1000,
+		"discoverable":true,
+		"discoveryXP":1000,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"nameFont":"graphics/fonts/orbitron20aabold.fnt", # font has to be one of the ones already loaded by the game
+		"nameFontScale":1,
+		"nameAngle":0,
+		"nameColor":[0,255,158,255],
+		"nameShadowColor":[0,0,0,255],
+		"customDescriptionId":"sotf_apromise_vena",
+		"interactionImage":"graphics/illustrations/space_wreckage.jpg",
+		"tags":["has_interaction_dialog", "neutrino_high"],
+		"layers":[STATIONS],
+		"pluginClass":"data.scripts.campaign.plugins.apromise.SotfAPVenaEntityPlugin",
+	},
+	
+	"sotf_eradfragment":{
+		"defaultName":"Ship Fragment", # used if name=null in addCustomEntity()
+		"defaultRadius":22, # used if radius<0 in addCustomEntity()
+		"icon":"graphics/icons/derelict.png",
+		"nameInText":"ship fragment",
+		"shortName":"fragment",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/sotf_eradicator_fragment.png",
+		"spriteWidth":20,
+		"spriteHeight":20,
+		"detectionRange":1500,
+		"discoverable":true,
+		"discoveryXP":1000,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"nameFont":"graphics/fonts/orbitron20aabold.fnt",
+		"customDescriptionId":"sotf_eradfragment",
+		"interactionImage":"graphics/illustrations/space_wreckage.jpg",
+		"tags":["has_interaction_dialog", "salvageable", "neutrino_low"],
+		"layers":[STATIONS],
+		"pluginClass":"data.scripts.campaign.plugins.waywardstar.SotfReverieMealPlugin",
+	},
+	
+	"sotf_forgeship":{
+		"defaultName":"Dustkeeper Forgeship", # used if name=null in addCustomEntity()
+		"nameInText":"Dustkeeper forgeship",
+		"shortName":"forgeship",
+		"aOrAn":"a",
+		"isOrAre":"is",
+		"defaultRadius":67, # used if radius<0 in addCustomEntity()
+		"customDescriptionId":"sotf_forgeship",
+		"interactionImage":"graphics/illustrations/space_wreckage.jpg",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":32,
+		"iconHeight":32,
+		"sprite":"graphics/stations/survey_mothership.png",
+		"spriteWidth":90,
+		"spriteHeight":90,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station"],
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+	},
+	
+	"sotf_sanctum_station":{
+		"defaultName":"Remnant Nexus", # used if name=null in addCustomEntity()
+		"defaultRadius":65, # used if radius<0 in addCustomEntity()
+		"customDescriptionId":"sotf_sanctum_station",
+		"interactionImage":"graphics/illustrations/orbital.jpg",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":24,
+		"iconHeight":24,
+		"sprite":"graphics/ships/remnants/remnant_station1.png",
+		"spriteWidth":70,
+		"spriteHeight":70,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station"],
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+	},
+	
+	"sotf_wellspring_depot":{
+		"defaultName":"Supply Depot", # used if name=null in addCustomEntity()
+		"defaultRadius":60, # used if radius<0 in addCustomEntity()
+		"customDescriptionId":"sotf_wellspring_depot",
+		"interactionImage":"graphics/illustrations/orbital.jpg",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/station_mining00.png",
+		"spriteWidth":80,
+		"spriteHeight":80,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station"],
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+	},
+	
+	"sotf_askoniaprobe":{
+		"defaultName":"Asteroid", # used if name=null in addCustomEntity()
+		"defaultRadius":20, # used if radius<0 in addCustomEntity()
+		"icon":"graphics/icons/fleet0.png",
+		"iconColor":[0,255,158,255],
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/asteroids/asteroid1.png",
+		"spriteWidth":10,
+		"spriteHeight":10,
+		"detectionRange":150,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":false,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"nameFont":"graphics/fonts/orbitron20aabold.fnt", # font has to be one of the ones already loaded by the game
+		"nameFontScale":1,
+		"nameAngle":0,
+		"nameColor":[0,255,158,255],
+		"nameShadowColor":[0,0,0,255],
+		"customDescriptionId":"sotf_askoniaprobe",
+		"interactionImage":"graphics/illustrations/free_orbit.jpg",
+		"tags":["has_interaction_dialog", "neutrino"],
+		"layers":[TERRAIN_7A],
+		"pluginClass":"data.scripts.campaign.plugins.mayfly.SotfAskoniaProbePulsePlugin",
+	},
+	
+	
+	"sotf_habitat_makeshift":{
+		"baseId":"base_campaign_objective",
+		"defaultName":"Orbital Habitat", # used if name=null in addCustomEntity()
+		"nameInText":"orbital habitat",
+		"shortName":"orbital habitat",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/station_side06.png",
+		"spriteWidth":60,
+		"spriteHeight":60,
+		"customDescriptionId":"sotf_habitat_makeshift",
+		"interactionImage":"graphics/illustrations/orbital_construction.jpg",
+		"tags":["neutrino_high", "objective", "station", "makeshift"],
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+		"pluginClass":"data.scripts.campaign.plugins.frondev.SotfHabitatEntityPlugin",
+	},
+	
+	"sotf_outpost":{
+		"defaultName":"Outpost", # used if name=null in addCustomEntity()
+		"defaultRadius":60, # used if radius<0 in addCustomEntity()
+		"customDescriptionId":"orbital_station_default",
+		"interactionImage":"graphics/illustrations/orbital.jpg",
+		"icon":"graphics/icons/station0.png",
+		"iconWidth":20,
+		"iconHeight":20,
+		"sprite":"graphics/stations/station_side00.png",
+		"spriteWidth":80,
+		"spriteHeight":80,
+		"renderShadow":true,
+		"useLightColor":true,
+		"showInCampaign":true,
+		"showIconOnMap":true,
+		"showNameOnMap":false,
+		"scaleNameWithZoom":false,
+		"scaleIconWithZoom":true,
+		"tags":["station"],
+		"pluginClass":"data.scripts.campaign.plugins.frondev.SotfOutpostPlugin",
+		"layers":[STATIONS], # what layer(s) to render in. See CampaignEngineLayers.java for possible values
+	},
+	
+	"sotf_hypnosLab":{
+		"baseId":"station_research",
+		"defaultName":"Ancient Laboratory",
+		"defaultRadius":55,
+		"sprite":"graphics/stations/sotf_labstation.png",
+		"spriteWidth":50,
+		"spriteHeight":75,
+	},
+	
+	# not actually spawned: just for salvage data override
+	"sotf_hypnosCryo":{
+		"baseId":"derelict_cryosleeper",
+	},
+	
+}

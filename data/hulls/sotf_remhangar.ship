@@ -1,0 +1,147 @@
+{
+  "bounds": [
+    0,
+    73,
+    40,
+    55,
+    40,
+    -55,
+    -1,
+    -72,
+    -39,
+    -52.5,
+    -39,
+    52.5
+  ],
+  "builtInMods": [
+    "targetingunit",
+    "chassis_storage",
+    "axialrotation",
+    "sotf_noventing",
+	"sotf_fighteroverlay"
+  ],
+  "builtInWings": [],
+  "center": [
+    82,
+    56
+  ],
+  "collisionRadius": 100,
+  "engineSlots": [],
+  "height": 108,
+  "hullId": "sotf_remhangar",
+  "hullName": "Module",
+  "hullSize": "DESTROYER",
+  "shieldCenter": [
+    0,
+    -0
+  ],
+  "shieldRadius": 100,
+  "spriteName": "graphics/ships/emplacements/sotf_remhangar.png",
+  "style": "HIGH_TECH",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 50,
+      "arc": 180,
+      "id": "WS 003",
+      "locations": [
+        0,
+        71
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": 10,
+      "arc": 100,
+      "id": "WS 004",
+      "locations": [
+        21,
+        45
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "ENERGY"
+    },
+    {
+      "angle": -10,
+      "arc": 100,
+      "id": "WS 005",
+      "locations": [
+        21,
+        -45
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "ENERGY"
+    },
+    {
+      "angle": -50,
+      "arc": 180,
+      "id": "WS 006",
+      "locations": [
+        0,
+        -71
+      ],
+      "mount": "TURRET",
+      "size": "SMALL",
+      "type": "UNIVERSAL"
+    },
+    {
+      "angle": 0,
+      "arc": 90,
+      "id": "WS 007",
+      "locations": [
+        18,
+        19,
+        7,
+        14,
+        11,
+        6,
+        2,
+        1
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    },
+    {
+      "angle": 0,
+      "arc": 90,
+      "id": "WS 008",
+      "locations": [
+        20,
+        -1,
+        8,
+        -15,
+        10,
+        -5,
+        18,
+        -12
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    },
+    {
+      "angle": 0,
+      "arc": 90,
+      "id": "WS 009",
+      "locations": [
+        20,
+        10,
+        -1,
+        -8,
+        13,
+        13,
+        9,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY"
+    }
+  ],
+  "width": 164
+}

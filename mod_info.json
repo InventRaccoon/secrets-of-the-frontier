@@ -1,0 +1,32 @@
+{
+    "id": "secretsofthefrontier",
+    "name": "Secrets of the Frontier",
+    "author": "Inventor Raccoon",
+    "version": "0.14.5b",
+    "description": "Watch beyond the walls\nDance amongst the void\nDiscover the secrets of the frontier\n\n An in-development campaign mod.",
+    "gameVersion": "0.98a-RC5",
+	"dependencies": [
+        {
+            "id": "lw_lazylib",
+            "name": "LazyLib",
+            #"version": "2.6" # If a specific version or higher is required, include this line
+        },
+		{
+            "id": "shaderLib",
+            "name": "GraphicsLib",
+            #"version": "2.6" # If a specific version or higher is required, #include this line
+        },
+		{
+            "id": "lunalib",
+            "name": "GraphicsLib",
+            #"version": "2.6" # If a specific version or higher is required, #include this line
+        },
+        {
+            "id": "MagicLib",
+            "name": "MagicLib",
+            #"version": "0.32rc2" # If a specific version is NOT required, comment out this line
+        }
+    ],
+    "jars":["jars/secretsofthefrontier.jar"],
+    "modPlugin":"data.scripts.SotfModPlugin"
+}

@@ -1,0 +1,13 @@
+{
+  "displayName": "Fire Support",
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "goalVariant": true,
+  "hullId": "sotf_lidarnode",
+  "hullMods": [],
+  "permaMods": [],
+  "quality": 0,
+  "variantId": "sotf_lidarnode_LRM",
+  "weaponGroups": [],
+  "wings": []
+}

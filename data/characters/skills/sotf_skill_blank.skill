@@ -1,0 +1,7 @@
+{
+	"id":"sotf_skill_blank",
+	"governingAptitude":"combat",
+	"compressHullmods":false,
+	"scope":"PILOTED_SHIP",
+	"effectGroups":[],
+}

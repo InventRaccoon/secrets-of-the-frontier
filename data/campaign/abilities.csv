@@ -1,0 +1,2 @@
+name,id,type,tags,activationDays,activationCooldown,durationDays,deactivationDays,deactivationCooldown,unlockedAtStart,defaultForAIFleet,musicSuppression,uiOn,uiOff,uiLoop,worldOn,worldOff,worldLoop,icon,plugin,ai,desc,sortOrder
+Courser Protocol,sotf_courserprotocol,DURATION,codex_unlockable,0.1,,0,0,180,,,,ui_remote_survey_on,,,,,,graphics/icons/abilities/sotf_courserprotocol.png,data.scripts.campaign.abilities.SotfCourserProtocolAbility,,Call a hunter-killer fleet to escort you.,3000

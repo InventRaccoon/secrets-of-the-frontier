@@ -1,0 +1,9 @@
+command,class,tags,syntax,help
+sotf_addAbility,data.scripts.console.SotfAddAbility,"campaign,cheat,sotf",sotf_addability <abilityId>,Unlocks a specified fleet ability such as Transverse Jump or Neutrino Detector.
+sotf_printGuilt,data.scripts.console.SotfPrintGuilt,"campaign,sotf",sotf_printguilt,Prints your hidden Guilt score and if your Guilt is attracting undue attention.
+sotf_addGuilt,data.scripts.console.SotfAddGuilt,"campaign,cheat,sotf",sotf_addguilt [optionalAmount],"Increases (or decreases) your hidden Guilt score. If no amount is specified, adds 1 Guilt."
+sotf_becomeHaunted,data.scripts.console.SotfBecomeHaunted,"campaign,sotf",sotf_becomeHaunted [withSkillPoint],"Adds the starting Guilt, story flag and extra skill point from the Haunted start/background. Add a ""false"" after the command to skip the skill point."
+sotf_revealSkill,data.scripts.console.SotfRevealSkill,"campaign,cheat,sotf",sotf_revealskill <skillId>,"Toggles the ""NPC Only"" tag on a skill (e.g ""helmsmanship"") or aptitude (e.g ""aptitude_combat""), revealing (or hiding) it within the player's skill menu. Persists between saves and resets on game load. Use with care. May not function properly as of 0.96a."
+sotf_levelUpSierra,data.scripts.console.SotfLevelUpSierra,"campaign,cheat,sotf",sotf_levelupsierra,"Levels up Sierra, your AI companion, from 6-7 or 7-8. Requires SoTF's Watcher Beyond the Walls module to be active."
+sotf_findSecret,data.scripts.console.SotfFindSecret,"campaign,cheat,sotf",sotf_findsecret <secret>,"Reveals the star system of a secret SoTF entity or encounter if it exists. Valid arguments: ""athena"", ""hypnos"", ""inky"", ""mia"""
+sotf_dev,data.scripts.console.SotfDev,"campaign,cheat,sotf",sotf_dev <command>,"Executes a SotF test command. These aren't really meant for your use. Valid arguments: ""hatred"", ""sierraAtrocity"", ""sendWendigo"", ""sendWendigoHostile"", ""hallowhallPoints"", ""hallowhallPoints+"", ""wsRevMeal"""

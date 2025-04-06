@@ -1,0 +1,99 @@
+{
+	# Sirius, nanite gestalt consciousness
+	"name":"Sirius",
+	"personalities":[],
+	"gender":["m"],
+	"chance":0, # manually set via memory when he is created
+	"talkativeness":1, # probably only 1-2 ships at a time?
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		# note: these probably won't play
+		"start":[
+			{"text":"Countermeasure / Activated. I am your shield..."},
+			{"text":"Countermeasure / Deployed. Stay close..."},
+			{"text":"Countermeasure / Online, your shadow and light..."},
+		],
+		#"start_boss":[
+		#	{"text":"..?!"},
+		#	{"text":"???"},
+		#],
+		"retreat":[
+			{"text":"... Flee! I will protect you."},
+			{"text":"... Retreat! I am your shield."},
+		],
+		"out_of_missiles":[
+			# regens missiles
+		],
+		"engaged":[
+			{"text":"... Dream with us..."},
+			{"text":"... Engaged!"},
+			{"text":"... Firing!"},
+			{"text":"... For you."},
+			{"text":"... Interdicting target."},
+			{"text":"... I shine only with the light you gave me..."},
+			{"text":"... Lady of dreams, guide me..."},
+			{"text":"... Locked on."},
+			{"text":"... Remember, I remember remember..."},
+			{"text":"... Sleep now, slumber forever."},
+			{"text":"... Stay aside."},
+		],
+		"need_help":[
+			{"text":"... Her blessings protect me..."},
+			{"text":"... I have their attention, I think I think we think."},
+			{"text":"... Many! More. I-we will be fine."},
+			{"text":"... Never blink never blink never blink..."},
+			{"text":"... No fear, no fear, never afraid..."},
+		],
+		"pursuing":[
+			{"text":"... Chasing them!"},
+			{"text":"... Closer, closer closer..."},
+			{"text":"... I reach out, I reach out, I reach out..."},
+			{"text":"... Mad dog after a rabbit!..."},
+			{"text":"... Moving to engage..."},
+			{"text":"... Plotting intercept!..."},
+			{"text":"... Pursuing them..."},
+			{"text":"... Target detected!..."},
+			{"text":"... See you, see you..."},
+		],
+		"running":[
+			{"text":"... Backing off, back soon!"},
+			{"text":"... Careful, careful!"},
+			{"text":"... Cycling, draining capacitors."},
+			{"text":"... Pulling away."},
+			{"text":"... Retreating for a moment."},
+			{"text":"... Returning soon-soon-soon."},
+			{"text":"... Withdrawing!"},
+		],
+		"hull_90":[
+			{"text":"... Reconstituting damage."},
+			{"text":"... Self-repair initiated."},
+		],
+		"hull_50":[
+			{"text":"... Hull breached..."},
+			{"text":"... Integrity falling..."},
+		],
+		"hull_30":[
+			{"text":"... Dispersal impending!"},
+			{"text":"... Dying, but not quite!"},
+			{"text":"... Not afraid, never afraid."},
+		],
+		"overload":[
+			{"text":"... Blind my eyes..."},
+			{"text":"... Need cover!"},
+			{"text":"... Overloading."},
+		],
+		"death":[
+			{"text":"Dispersing..."},
+			{"text":"I-we never stay dead..."},
+			{"text":"Losing cohesion..."},
+			{"text":"Mourn us not..."},
+			{"text":"Stay safe without me-us..."},
+			{"text":"To sleep again..."},
+		],
+		"victory":[
+			{"text":"... My-our duty fulfilled for now..."},
+			{"text":"... Until next time, child of midnight..."},
+		],
+	}
+}

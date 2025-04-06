@@ -1,0 +1,7 @@
+{
+	"baseHullId":"remnant_station2",
+	"skinHullId":"sotf_sanctum_upgraded",
+	"systemId":"drone_station_high",
+	"builtInMods":["stealth_minefield"],
+	"addHints":["HIDE_IN_CODEX"],
+}

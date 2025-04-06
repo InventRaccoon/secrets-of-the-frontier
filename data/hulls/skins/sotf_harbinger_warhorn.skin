@@ -1,0 +1,8 @@
+{
+	"baseHullId":"harbinger",
+	"skinHullId":"sotf_harbinger_warhorn",
+	#"hullName":"",
+	"hullDesignation":"Preystalker",
+	"descriptionId":"sotf_harbinger_warhorn",
+	"addHints":["HIDE_IN_CODEX"],
+}

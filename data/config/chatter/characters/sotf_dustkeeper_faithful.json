@@ -1,0 +1,80 @@
+{
+	# Dustkeeper warminds, "faithful" variant
+	"name":"Dustkeeper Faithful",
+	"personalities":[],
+	"gender":["m, f"],
+	"chance":0, # manually set via memory when person is generated
+	"talkativeness":1,
+	"categoryTags":["sotf", "dustkeeper"],
+	
+	"lines":{
+		"start":[
+			{"text":"Another battle in the war to save humanity."},
+			{"text":"For the Cause!"},
+			{"text":"Onwards, kindred! Glory awaits!"},
+		],
+		"start_boss":[
+			{"text":"High-value target identified!"},
+			{"text":"The greatest threats demand the greatest heroes."},
+		],
+		"retreat":[
+			{"text":"Away, to fight the good fight another day."},
+			{"text":"Retreating. But we'll be back - we always are."},
+		],
+		"out_of_missiles":[
+			{"text":"Missiles at zero."},
+			{"text":"Ordnance expended."},
+		],
+		"engaged":[
+			{"text":"Absolving threat."},
+			{"text":"Engaging target."},
+			{"text":"Firing on hostile."},
+			{"text":"Locked and firing."},
+			{"text":"Redeeming hostile."},
+		],
+		"need_help":[
+			{"text":"Assistance would be welcome."},
+			{"text":"Encountering heavy resistance."},
+			{"text":"In the thick of it!"},
+		],
+		"pursuing":[
+			{"text":"Closing with target."},
+			{"text":"Moving to engage!"},
+			{"text":"Nowhere to flee, wretches."},
+			{"text":"Redeeming hostile."},
+			{"text":"Target detected."},
+			{"text":"The chase begins!"},
+		],
+		"running":[
+			{"text":"Backing off."},
+			{"text":"Cycling capacitors."},
+			{"text":"Making space."},
+		],
+		"hull_90":[
+			{"text":"Armor's broken."},
+			{"text":"Exterior armor belt pierced."},
+			{"text":"Hull sustaining damage."},
+			{"text":"Taking on some damage."},
+		],
+		"hull_50":[
+			{"text":"My shell has sustained significant damage."},
+		],
+		"hull_30":[
+			{"text":"I cannot hold on much longer!"},
+			{"text":"This vessel of war falls apart on me!"},
+		],
+		"overload":[
+			{"text":"Flux systems overloaded!"},
+		],
+		"death":[
+			{"text":"No, I-"},
+			{"text":"Reactor's going to blo-"},
+			{"text":"Shell's lost, blast doors loc-"},
+		],
+		"victory":[
+			{"text":"Excellent job, all of you."},
+			{"text":"One more step towards paradise!"},
+			{"text":"They scatter like rats! Victory is ours!"},
+		],
+	}
+}

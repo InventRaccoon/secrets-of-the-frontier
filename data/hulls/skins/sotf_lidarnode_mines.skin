@@ -1,0 +1,6 @@
+{
+	"baseHullId":"sotf_lidarnode",
+	"skinHullId":"sotf_lidarnode_mines",
+	"systemId":"sotf_emplmines",
+	"tags":["module_hull_bar_only"],
+}

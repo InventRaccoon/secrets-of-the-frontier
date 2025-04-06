@@ -1,0 +1,61 @@
+{
+  "bounds": [
+    8,
+    8,
+    -8,
+    8,
+    -8,
+    -8,
+    8,
+    -8
+  ],
+  "builtInMods": [
+	"sotf_wisphullmod"
+  ],
+  "builtInWings": [],
+  "center": [
+    16,
+    22
+  ],
+  "collisionRadius": 28,
+  "engineSlots": [
+    {
+      "angle": 180,
+      "contrailSize": 64,
+      "length": 5,
+      "location": [
+        0,
+        2
+      ],
+      "style": "SOTF_WISP",
+      "width": 5
+    }
+  ],
+  "height": 48,
+  "hullId": "sotf_wisp_xo",
+  "hullName": "Wisp",
+  "hullSize": "FIGHTER",
+  "shieldCenter": [
+    0,
+    0
+  ],
+  "shieldRadius": 28,
+  "spriteName": "graphics/ships/nothing.png",
+  "style": "SOTF_SIERRA",
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "angle": 0,
+      "arc": 360,
+      "id": "WS 000",
+      "locations": [
+        0,
+        0
+      ],
+      "mount": "HIDDEN",
+      "size": "SMALL",
+      "type": "UNIVERSAL"
+    }
+  ],
+  "width": 32
+}

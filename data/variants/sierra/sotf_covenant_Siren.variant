@@ -1,0 +1,76 @@
+{
+    "displayName": "Siren's",
+    "fluxCapacitors": 36,
+    "fluxVents": 50,
+    "goalVariant": true,
+    "hullId": "sotf_covenant",
+    "hullMods": [
+        "sotf_fervor",
+        "targetingunit",
+        "sotf_wispersong",
+        "sotf_serenity"
+    ],
+    "permaMods": [
+        "targetingunit",
+        "sotf_wispersong",
+        "sotf_serenity"
+    ],
+    "sMods": [
+        "targetingunit",
+        "sotf_wispersong",
+        "sotf_serenity"
+    ],
+    "variantId": "sotf_covenant_Siren",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "tachyonlance"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {"WS 003": "sotf_edict"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 004": "sabotpod",
+                "WS 005": "sabotpod",
+                "WS 006": "sabotpod"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 002": "mjolnir"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 007": "heavyneedler"}
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 008": "pdburst",
+                "WS 009": "pdburst",
+                "WS 010": "pdburst",
+                "WS 011": "pdburst",
+                "WS 012": "pdburst"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {
+                "WS 013": "pdlaser",
+                "WS 014": "pdlaser",
+                "WS 015": "pdlaser",
+                "WS 016": "pdlaser"
+            }
+        }
+    ]
+}
