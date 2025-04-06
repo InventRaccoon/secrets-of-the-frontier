@@ -262,10 +262,10 @@ public class SotfATrickstersCalling {
 			ship.removeListenerOfClass(SotfSkedaddleScript.class);
 		}
 
-		public void apply(MutableShipStatsAPI stats, ShipAPI.HullSize hullSize, String id, float level) {
+		public void apply(MutableShipStatsAPI stats, HullSize hullSize, String id, float level) {
 			//stats.getBreakProb().modifyMult(id, 0f);
 		}
-		public void unapply(MutableShipStatsAPI stats, ShipAPI.HullSize hullSize, String id) {
+		public void unapply(MutableShipStatsAPI stats, HullSize hullSize, String id) {
 			//stats.getBreakProb().unmodify(id);
 		}
 

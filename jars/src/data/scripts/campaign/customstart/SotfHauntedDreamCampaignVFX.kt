@@ -14,16 +14,16 @@ import org.lwjgl.opengl.GL13
 import org.lwjgl.opengl.GL20
 import java.util.*
 
-class HauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
+class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
 
 
     companion object {
 
         @JvmStatic
-        fun getInstance() : HauntedDreamCampaignVFX {
-            var renderer = LunaCampaignRenderer.getRendererOfClass(HauntedDreamCampaignVFX::class.java) as HauntedDreamCampaignVFX?
+        fun getInstance() : SotfHauntedDreamCampaignVFX {
+            var renderer = LunaCampaignRenderer.getRendererOfClass(SotfHauntedDreamCampaignVFX::class.java) as SotfHauntedDreamCampaignVFX?
             if (renderer == null) {
-                renderer = HauntedDreamCampaignVFX()
+                renderer = SotfHauntedDreamCampaignVFX()
                 LunaCampaignRenderer.addRenderer(renderer)
             }
             return renderer

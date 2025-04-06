@@ -14,16 +14,16 @@ import org.lwjgl.opengl.GL13
 import org.lwjgl.opengl.GL20
 import java.util.*
 
-class ChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
+class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
 
 
     companion object {
 
         @JvmStatic
-        fun getInstance() : ChildOfTheLakeCampaignVFX {
-            var renderer = LunaCampaignRenderer.getRendererOfClass(ChildOfTheLakeCampaignVFX::class.java) as ChildOfTheLakeCampaignVFX?
+        fun getInstance() : SotfChildOfTheLakeCampaignVFX {
+            var renderer = LunaCampaignRenderer.getRendererOfClass(SotfChildOfTheLakeCampaignVFX::class.java) as SotfChildOfTheLakeCampaignVFX?
             if (renderer == null) {
-                renderer = ChildOfTheLakeCampaignVFX()
+                renderer = SotfChildOfTheLakeCampaignVFX()
                 LunaCampaignRenderer.addRenderer(renderer)
             }
             return renderer

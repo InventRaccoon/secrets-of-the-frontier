@@ -87,7 +87,7 @@ public class SotfDustkeeperFleetInflater implements FleetInflater, AutofitPlugin
 	}
 
 	public static class WeaponsForSize {
-		protected Map<WeaponSize, List<AvailableWeapon>> sizeMap = new LinkedHashMap<WeaponAPI.WeaponSize, List<AvailableWeapon>>();
+		protected Map<WeaponSize, List<AvailableWeapon>> sizeMap = new LinkedHashMap<WeaponSize, List<AvailableWeapon>>();
 		public List<AvailableWeapon> getWeapons(WeaponSize size) {
 			List<AvailableWeapon> list = sizeMap.get(size);
 			if (list == null) {
@@ -338,7 +338,7 @@ public class SotfDustkeeperFleetInflater implements FleetInflater, AutofitPlugin
 				dmodRandom = Misc.getRandom(p.seed * extra, 5);
 			}
 
-			List<WeaponSize> sizes = new ArrayList<WeaponAPI.WeaponSize>();
+			List<WeaponSize> sizes = new ArrayList<WeaponSize>();
 			sizes.add(WeaponSize.SMALL);
 			sizes.add(WeaponSize.MEDIUM);
 			sizes.add(WeaponSize.LARGE);
@@ -603,7 +603,7 @@ public class SotfDustkeeperFleetInflater implements FleetInflater, AutofitPlugin
 		variant.addWeapon(slot.getId(), weapon.getId());
 	}
 
-	public List<AutofitPlugin.AvailableFighter> getAvailableFighters() {
+	public List<AvailableFighter> getAvailableFighters() {
 		return fighters;
 	}
 

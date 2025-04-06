@@ -49,14 +49,14 @@ public class SotfGravispatialSurgeSystem extends BaseShipSystemScript {
             return;
         }
 
-        if (state == ShipSystemStatsScript.State.IN && !didDamp) {
+        if (state == State.IN && !didDamp) {
             ship.getVelocity().scale(0.2f);
             didDamp = true;
         }
-        if (state == ShipSystemStatsScript.State.ACTIVE) {
+        if (state == State.ACTIVE) {
             pulseReady = true;
         }
-        if (state == ShipSystemStatsScript.State.OUT) {
+        if (state == State.OUT) {
             stats.getMaxSpeed().unmodify(id); // to slow down ship to its regular top speed while powering drive down
             stats.getAcceleration().unmodify(id);
             didDamp = false;

@@ -16,7 +16,7 @@ import com.fs.starfarer.api.util.DelayedActionScript;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.plugins.wendigo.SotfWendigoEncounterManager;
-import data.scripts.campaign.customstart.HauntedDreamCampaignVFX;
+import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 import data.scripts.dialog.haunted.SotfHauntedDream1;
 import data.scripts.dialog.haunted.SotfHauntedDream2;
 import data.scripts.dialog.haunted.SotfHauntedDream3;
@@ -61,7 +61,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_INTRO, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedIntro"));
 
-            if (!SotfMisc.getHauntedFastDreams()) HauntedDreamCampaignVFX.fadeIn(1f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(1f);
 
             Global.getSector().addScript(new DelayedActionScript(1f) {
                 @Override
@@ -77,7 +77,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_MILE1, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedMilestone1"));
 
-            if (!SotfMisc.getHauntedFastDreams()) HauntedDreamCampaignVFX.fadeIn(0.75f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
 
             Global.getSector().addScript(new DelayedActionScript(0.75f) {
                 @Override
@@ -93,7 +93,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_PENULT, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
 
-            if (!SotfMisc.getHauntedFastDreams()) HauntedDreamCampaignVFX.fadeIn(0.75f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
 
             Global.getSector().addScript(new DelayedActionScript(0.75f) {
                 @Override

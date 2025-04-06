@@ -5,17 +5,11 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.FactionSpecAPI;
 import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
-import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.DelayedActionScript;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
-import data.scripts.campaign.ids.SotfPeople;
-import data.scripts.dialog.SotfGenericDialogScript;
-import data.scripts.dialog.haunted.SotfHauntedDream1;
-import data.scripts.utils.SotfMisc;
 import exerelin.campaign.backgrounds.BaseCharacterBackground;
 import exerelin.utilities.NexFactionConfig;
 
@@ -51,7 +45,7 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
             @Override
             public void doAction() {
 
-                ChildOfTheLakeCampaignVFX.fadeIn(1f);
+                SotfChildOfTheLakeCampaignVFX.fadeIn(1f);
                 Global.getSector().addScript(new DelayedActionScript(1f) {
                     @Override
                     public void doAction() {
@@ -63,7 +57,7 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
                             dialog.setBackgroundDimAmount(0.4f);
                         }
 
-                        ChildOfTheLakeCampaignVFX.fadeOut(1f);
+                        SotfChildOfTheLakeCampaignVFX.fadeOut(1f);
                     }
                 });
 

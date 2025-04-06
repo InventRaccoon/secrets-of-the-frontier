@@ -5,7 +5,7 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
 import com.fs.starfarer.api.impl.campaign.RuleBasedInteractionDialogPluginImpl;
-import data.scripts.campaign.customstart.HauntedDreamCampaignVFX;
+import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 
 import java.util.Map;
 
@@ -87,7 +87,7 @@ public class SotfHauntedDreamBase implements InteractionDialogPlugin {
                 delegate.fireBest(getEndingTrigger());
                 //FireBest.fire(null, dialog, getMemoryMap(), getEndingTrigger());
 
-                HauntedDreamCampaignVFX.fadeOut(0.5f);
+                SotfHauntedDreamCampaignVFX.fadeOut(0.5f);
 
                 break;
             case DISMISS:

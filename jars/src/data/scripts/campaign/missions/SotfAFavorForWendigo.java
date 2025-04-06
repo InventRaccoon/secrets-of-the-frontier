@@ -177,7 +177,7 @@ public class SotfAFavorForWendigo extends HubMissionWithSearch implements FleetE
 		}
 	}
 
-	public java.util.List<CampaignFleetAPI> getStations() {
+	public List<CampaignFleetAPI> getStations() {
 		List<CampaignFleetAPI> stations = new ArrayList<CampaignFleetAPI>();
 		for (StarSystemAPI system : Global.getSector().getStarSystems()) {
 			if (!system.hasTag(Tags.THEME_REMNANT_MAIN)) continue;

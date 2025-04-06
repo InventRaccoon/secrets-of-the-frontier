@@ -40,7 +40,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SotfSierrasConcord extends com.fs.starfarer.api.combat.BaseHullMod
+public class SotfSierrasConcord extends BaseHullMod
 
 {
 

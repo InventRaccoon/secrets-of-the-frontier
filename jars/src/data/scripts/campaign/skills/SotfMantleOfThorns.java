@@ -233,10 +233,10 @@ public class SotfMantleOfThorns {
 
 			info.addPara("Incoming hits on shields store %s of damage taken as charge to a maximum of %s/%s/%s/%s based on hull size", 0f, hc, hc,
 					"" + (int) (ABSORPTION_FRACTION * 100f) + "%",
-					"" + MAX_CHARGE.get(ShipAPI.HullSize.FRIGATE).intValue(),
-					"" + MAX_CHARGE.get(ShipAPI.HullSize.DESTROYER).intValue(),
-					"" + MAX_CHARGE.get(ShipAPI.HullSize.CRUISER).intValue(),
-					"" + MAX_CHARGE.get(ShipAPI.HullSize.CAPITAL_SHIP).intValue());
+					"" + MAX_CHARGE.get(HullSize.FRIGATE).intValue(),
+					"" + MAX_CHARGE.get(HullSize.DESTROYER).intValue(),
+					"" + MAX_CHARGE.get(HullSize.CRUISER).intValue(),
+					"" + MAX_CHARGE.get(HullSize.CAPITAL_SHIP).intValue());
 			info.addPara("At maximum charge, ship's shield begins consuming all charge to rapidly fire shield-piercing EMP arcs at nearby ships and fighters", hc, 0f);
 			info.addPara("Disables \"Crown of Briars\" effect while discharging", hc, 0f);
 			info.addPara("Discharge ends immediately if the ship overloads", hc, 0f);

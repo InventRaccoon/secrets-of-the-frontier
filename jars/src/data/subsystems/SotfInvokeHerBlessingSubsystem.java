@@ -69,7 +69,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
     @Override
     public boolean canActivate() {
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicDecayListener.class)) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class)) {
                 return Misc.getDistance(ship.getLocation(), ship.getShipTarget().getLocation()) <= SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE;
             }
         }
@@ -98,7 +98,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
     @Override
     public void onActivate() {
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicDecayListener.class)) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class)) {
                 EmpArcEntityAPI arc = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                         ship,
                         ship.getShipTarget().getLocation(), null, 10f, Color.DARK_GRAY, Color.WHITE);
@@ -114,7 +114,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
                         lifespanMult = Math.max(1f - (listener.time / listener.lifespan), DREAMEATER_REPAIR_MINIMUM);
                     }
                 } else {
-                    ship.getShipTarget().addListener(new SotfInvokeHerBlessingPlugin.SotfMimicDecayListener(ship.getShipTarget(), haveUpgrade(SotfIDs.COTL_DEATHTHROES)));
+                    ship.getShipTarget().addListener(new SotfMimicDecayListener(ship.getShipTarget(), haveUpgrade(SotfIDs.COTL_DEATHTHROES)));
                 }
 
                 if (haveUpgrade(SotfIDs.COTL_DREAMEATER)) {
@@ -243,8 +243,8 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
         }
         target.getVelocity().scale(MAX_DAMP + (dampScale * (MIN_DAMP - maxDamp)));
 
-        if (target.isFighter() && target.getHullLevel() < COLLAPSE_THRESHOLD && !target.hasListenerOfClass(SotfGravispatialSurgeSystem.SotfFighterGraviticCollapseScript.class)) {
-            target.addListener(new SotfGravispatialSurgeSystem.SotfFighterGraviticCollapseScript(target));
+        if (target.isFighter() && target.getHullLevel() < COLLAPSE_THRESHOLD && !target.hasListenerOfClass(SotfFighterGraviticCollapseScript.class)) {
+            target.addListener(new SotfFighterGraviticCollapseScript(target));
         }
     }
 
@@ -311,7 +311,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
             ShipAPI shipForAlly = Global.getCombatEngine().getFleetManager(0).getShipFor(ally);
             if (shipForAlly == null) continue;
             if (!shipForAlly.isAlive()) continue;
-            if (ally.getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !shipForAlly.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicDecayListener.class)) {
+            if (ally.getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !shipForAlly.hasListenerOfClass(SotfMimicDecayListener.class)) {
                 usedDp += ally.getHullSpec().getSuppliesToRecover();
             }
         }
@@ -356,7 +356,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
             }
         }
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicDecayListener.class)) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class)) {
                 if (Misc.getDistance(ship.getLocation(), ship.getShipTarget().getLocation()) <= SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE) {
                     append = "expire order ready";
                 } else {
