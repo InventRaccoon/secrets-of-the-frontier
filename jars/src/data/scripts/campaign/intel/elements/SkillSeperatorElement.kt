@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11
 import org.magiclib.kotlin.setAlpha
 import java.awt.Color
 
-class SkillSeperatorElement(var color: Color, tooltip: TooltipMakerAPI, var heightOverride: Float = 72f) : LunaElement(tooltip, 1f, 0f) {
+class SkillSeperatorElement(var color: Color, tooltip: TooltipMakerAPI, var heightOverride: Float = 70f) : LunaElement(tooltip, 1f, 0f) {
 
     init {
         enableTransparency = true

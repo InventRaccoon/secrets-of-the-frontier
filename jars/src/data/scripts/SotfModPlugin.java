@@ -33,6 +33,7 @@ import data.scripts.campaign.intel.misc.SotfSierraConvIntel;
 import data.scripts.campaign.intel.misc.SotfDustkeeperHatred;
 import data.scripts.campaign.intel.misc.SotfSiriusIntel;
 import data.scripts.campaign.intel.quests.SotfWaywardStarIntel;
+import data.scripts.campaign.misc.PausedTimeAdvancer;
 import data.scripts.campaign.missions.cb.SotfCBDustkeeper;
 import data.scripts.campaign.missions.cb.SotfCBDustkeeperBurnout;
 import data.scripts.campaign.plugins.SotfAbandonStationPlugin;
@@ -258,6 +259,8 @@ public class SotfModPlugin extends BaseModPlugin {
         // spawn Mia's Star system for Hope for Hallowhall
         SotfGen.trySpawnMia(sector);
         //SotfGen.trySpawnLOTL(sector);
+
+        Global.getSector().addTransientScript(new PausedTimeAdvancer());
     }
 
     public void onEnabled(boolean wasEnabledBefore) {

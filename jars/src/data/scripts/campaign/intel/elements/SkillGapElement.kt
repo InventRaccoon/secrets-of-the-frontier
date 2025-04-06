@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11
 import org.magiclib.kotlin.setAlpha
 import java.awt.Color
 
-class SkillGapElement(var color: Color, tooltip: TooltipMakerAPI, var heightOffset: Float = 72f) : LunaElement(tooltip, 34f, 1f) {
+class SkillGapElement(var color: Color, tooltip: TooltipMakerAPI, var heightOffset: Float = 60f) : LunaElement(tooltip, 34f, 1f) {
 
     var arrowSprite = Global.getSettings().getSprite("graphics/icons/skills/sotf_skill_arrow.png")
 

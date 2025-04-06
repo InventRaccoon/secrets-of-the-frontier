@@ -26,7 +26,7 @@ class AptitudeBackgroundElement(var color: Color, var length: Float, tooltip: To
         GL11.glEnable(GL11.GL_BLEND)
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
 
-        var size = 30f
+        var size = 28f
 
         GL11.glColor4f(color.red / 255f,
             color.green / 255f,

@@ -4,10 +4,8 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
-import com.fs.starfarer.api.impl.MusicPlayerPluginImpl;
 import com.fs.starfarer.api.impl.campaign.RuleBasedInteractionDialogPluginImpl;
-import com.fs.starfarer.api.impl.campaign.rulecmd.FireBest;
-import com.fs.starfarer.api.util.Misc;
+import data.scripts.campaign.customstart.HauntedDreamCampaignVFX;
 
 import java.util.Map;
 
@@ -42,6 +40,8 @@ public class SotfHauntedDreamBase implements InteractionDialogPlugin {
         textPanel = dialog.getTextPanel();
         options = dialog.getOptionPanel();
         visual = dialog.getVisualPanel();
+
+        dialog.setBackgroundDimAmount(0.4f);
 
         playerFleet = Global.getSector().getPlayerFleet();
         dialog.setPromptText("");
@@ -86,6 +86,9 @@ public class SotfHauntedDreamBase implements InteractionDialogPlugin {
                 delegate.init(dialog);
                 delegate.fireBest(getEndingTrigger());
                 //FireBest.fire(null, dialog, getMemoryMap(), getEndingTrigger());
+
+                HauntedDreamCampaignVFX.fadeOut(0.5f);
+
                 break;
             case DISMISS:
                 Global.getSector().setPaused(false);

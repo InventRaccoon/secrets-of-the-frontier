@@ -54,7 +54,7 @@ class SkillWidgetElement(var id: String, var activated: Boolean, var canChangeSt
         //Contrast Mode
 
         if (!canChangeState && !activated) {
-            sprite.color = Color(45, 47, 50)
+            sprite.color = Color(30, 32, 35)
         }
         else if (!activated) {
             sprite.color = Color(130, 135, 140)
