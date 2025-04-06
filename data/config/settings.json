@@ -196,6 +196,10 @@
 			"sotf_spirit_ward_1":"graphics/fx/sotf_spirit_ward_noise1.png",
 			"sotf_spirit_ward_2":"graphics/fx/sotf_spirit_ward_noise2.png",
 			"sotf_spirit_ward_3":"graphics/fx/sotf_spirit_ward_damage.png",
+			
+			"sotf_haunted_dream_noise1":"graphics/fx/sotf_haunted_dream_noise1.png",
+			
+			"sotf_child_of_the_lake_noise1":"graphics/fx/sotf_child_of_the_lake_noise1.png",
 		},
 		"skills":{
 			# COTL upgrades

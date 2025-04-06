@@ -230,6 +230,10 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         }
     }
 
+    init {
+        isImportant = true
+    }
+
     override fun runWhilePaused(): Boolean {
         return true
     }
@@ -327,6 +331,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
         main.addCustom(capacity, opad)
         main.addCustomDoNotSetPosition(skills).position.rightOfTop(capacity, opad)
+        main.addSpacer(capacity.heightSoFar)
 
         val upgrades = main.beginSubTooltip(width * 0.95f)
         upgrades.addSpacer(10f)
@@ -400,9 +405,9 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
         //Setup UI
         var w = 800f
-        var h = 96f
+        var h = 84f
 
-        var backgroundWidth = 1050f
+        var backgroundWidth = 950f
 
         var skillPanel = Global.getSettings().createCustom(w, h, null)
         main.addCustom(skillPanel, 0f)
@@ -429,7 +434,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                 var isFirst = section.skills.last() == skill
                 var isLast = section.skills.last() == skill
 
-                var skillDisplay = SkillWidgetElement(skill.skillId, skill.isActive, section.isTierActive, skill.iconPath, color, skillElement, 72f, 72f)
+                var skillDisplay = SkillWidgetElement(skill.skillId, skill.isActive, section.isTierActive, skill.iconPath, color, skillElement, 60f, 60f)
                 section.skillElements.add(skillDisplay)
                 skillElement.addTooltipToPrevious(SiriusUpgradeTooltipCreator(skill.skillId, skill.skillName, section.isTierActive), TooltipMakerAPI.TooltipLocation.BELOW)
 
