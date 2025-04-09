@@ -11,9 +11,9 @@ class AptitudeWitchcraft : SCBaseAptitudePlugin() {
 
     override fun addCodexDescription(tooltip: TooltipMakerAPI) {
         tooltip.addPara("The Witchcraft aptitude is added by the Secrets of the Frontiers mod. " +
-                "The aptitude provides a variety of benefits, some for sierra herself, some for phase ships and others with a bit of a magical touch. " +
-                "It is acquired by completing the wayward star quest, interacting with both the vow and wispmother wreck, and then starting a dialog with sierra through the contact in the intel screen. ",
-            0f, Misc.getTextColor(), Misc.getHighlightColor(), "Witchcraft", "acquired")
+                "The aptitude allows Sierra to pilot multiple Concord-equipped vessels and provides several exotic boons for high-tech fleets specializing in fast-attack or strike tactics. " +
+                "Acquired by completing the Wayward Star quest, interacting with both Vow and Wispmother wrecks, and then starting a dialog with Sierra through the Contact in the intel screen.",
+            0f, Misc.getTextColor(), Misc.getHighlightColor(), "Witchcraft", "Acquired")
     }
 
     override fun getOriginSkillId(): String {

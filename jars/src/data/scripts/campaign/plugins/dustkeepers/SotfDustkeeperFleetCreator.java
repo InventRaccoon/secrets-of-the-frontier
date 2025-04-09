@@ -5,6 +5,7 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.fleet.ShipRolePick;
 import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflaterParams;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3;
@@ -251,37 +252,74 @@ public class SotfDustkeeperFleetCreator implements CreateFleetPlugin {
 			addCommanderAndOfficers(fleet, params, random);
 		}
 
-		if (fleet.getFlagship() != null) {
-			if (params.flagshipVariantId != null) {
-				fleet.getFlagship().setVariant(Global.getSettings().getVariant(params.flagshipVariantId), false, true);
-			} else if (params.flagshipVariant != null) {
-				fleet.getFlagship().setVariant(params.flagshipVariant, false, true);
-			} else if (getFP(fleet) >= 120) {
-				WeightedRandomPicker<String> flagshipPicker = new WeightedRandomPicker<String>(random);
-				// pick flagships using default variant weights, not the adjusted weights for Dustkeepers
-				// (which are 0 to avoid the ships spawning in the combatCapital role)
-				for (RoleEntryAPI pick : Global.getSettings().getDefaultEntriesForRole("sotf_flagship")) {
-					ShipVariantAPI variant = Global.getSettings().getVariant(pick.getVariantId());
-					if (!fleet.getFaction().knowsShip(variant.getHullSpec().getBaseHullId())) continue;
-					if (params.commander != null) {
-						// don't randomly pick the Repose in fleets who have fixed commanders but not fixed flagships
-						// (mostly so said fixed commanders aren't in charge of a ship that really wants Derelict Contingent)
-						if (pick.getVariantId().contains("repose")) continue;
-					}
-					flagshipPicker.add(pick.getVariantId(), pick.getWeight());
+		ShipVariantAPI flagshipVariant = null;
+		if (params.flagshipVariantId != null) {
+			flagshipVariant = Global.getSettings().getVariant(params.flagshipVariantId);
+		} else if (params.flagshipVariant != null) {
+			flagshipVariant = params.flagshipVariant;
+		} else if (getFP(fleet) >= 120) {
+			WeightedRandomPicker<ShipVariantAPI> flagshipPicker = new WeightedRandomPicker<ShipVariantAPI>(random);
+			// pick flagships using default variant weights, not the adjusted weights for Dustkeepers
+			// (which are 0 to avoid the ships spawning in the combatCapital role)
+			for (RoleEntryAPI pick : Global.getSettings().getDefaultEntriesForRole("sotf_flagship")) {
+				ShipVariantAPI pickVariant = Global.getSettings().getVariant(pick.getVariantId());
+				if (!fleet.getFaction().knowsShip(pickVariant.getHullSpec().getBaseHullId())) continue;
+				if (params.commander != null) {
+					// don't randomly pick the Repose in fleets who have fixed commanders but not fixed flagships
+					// (mostly so said fixed commanders aren't in charge of a ship that really wants Derelict Contingent)
+					if (pickVariant.getHullSpec().getBuiltInMods().contains("rugged")) continue;
 				}
-//				for (ShipRolePick flagshipPick : fleet.getFaction().pickShip("sotf_flagship", new FactionAPI.ShipPickParams())) {
+				flagshipPicker.add(pickVariant, pick.getWeight());
+			}
+			flagshipVariant = flagshipPicker.pick();
+		}
+
+		if (flagshipVariant != null) {
+			FleetMemberAPI newFlagship = Global.getFactory().createFleetMember(FleetMemberType.SHIP, flagshipVariant);
+			newFlagship.setCaptain(fleet.getFlagship().getCaptain());
+			fleet.getFleetData().removeFleetMember(fleet.getFlagship());
+			fleet.getFleetData().addFleetMember(newFlagship);
+			fleet.getFleetData().setFlagship(newFlagship);
+			fleet.getFleetData().sort();
+		}
+
+		/**
+		 * This code below is tainted
+		 * Using setVariant on a ship with modules to turn it into one that doesn't have any
+		 * WILL cause autoresolve to crash if the fleet gets into combat.
+		 * Replaced with previous code section that actually removes the flagship and replaces it afterwards.
+		 */
+//		if (fleet.getFlagship() != null) {
+//			if (params.flagshipVariantId != null) {
+//				fleet.getFlagship().setVariant(Global.getSettings().getVariant(params.flagshipVariantId), false, true);
+//			} else if (params.flagshipVariant != null) {
+//				fleet.getFlagship().setVariant(params.flagshipVariant, false, true);
+//			} else if (getFP(fleet) >= 120) {
+//				WeightedRandomPicker<String> flagshipPicker = new WeightedRandomPicker<String>(random);
+//				// pick flagships using default variant weights, not the adjusted weights for Dustkeepers
+//				// (which are 0 to avoid the ships spawning in the combatCapital role)
+//				for (RoleEntryAPI pick : Global.getSettings().getDefaultEntriesForRole("sotf_flagship")) {
+//					ShipVariantAPI variant = Global.getSettings().getVariant(pick.getVariantId());
+//					if (!fleet.getFaction().knowsShip(variant.getHullSpec().getBaseHullId())) continue;
 //					if (params.commander != null) {
 //						// don't randomly pick the Repose in fleets who have fixed commanders but not fixed flagships
 //						// (mostly so said fixed commanders aren't in charge of a ship that really wants Derelict Contingent)
-//						if (flagshipPick.variantId.contains("repose")) continue;
+//						if (pick.getVariantId().contains("repose")) continue;
 //					}
-//					flagshipPicker.add(flagshipPick.variantId, flagshipPick.weight);
+//					flagshipPicker.add(pick.getVariantId(), pick.getWeight());
 //				}
-				fleet.getFlagship().setVariant(Global.getSettings().getVariant(flagshipPicker.pick()), false, true);
-				fleet.getFlagship().getVariant().addTag(Tags.VARIANT_ALWAYS_RECOVERABLE);
-			}
-		}
+////				for (ShipRolePick flagshipPick : fleet.getFaction().pickShip("sotf_flagship", new FactionAPI.ShipPickParams())) {
+////					if (params.commander != null) {
+////						// don't randomly pick the Repose in fleets who have fixed commanders but not fixed flagships
+////						// (mostly so said fixed commanders aren't in charge of a ship that really wants Derelict Contingent)
+////						if (flagshipPick.variantId.contains("repose")) continue;
+////					}
+////					flagshipPicker.add(flagshipPick.variantId, flagshipPick.weight);
+////				}
+//				fleet.getFlagship().setVariant(Global.getSettings().getVariant(flagshipPicker.pick()), false, true);
+//				fleet.getFlagship().getVariant().addTag(Tags.VARIANT_ALWAYS_RECOVERABLE);
+//			}
+//		}
 
 		if (params.onlyRetainFlagship != null && params.onlyRetainFlagship) {
 			for (FleetMemberAPI curr : fleet.getFleetData().getMembersListCopy()) {

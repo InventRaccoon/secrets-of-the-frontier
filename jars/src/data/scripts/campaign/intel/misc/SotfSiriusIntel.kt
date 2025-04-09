@@ -126,7 +126,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "do not"
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Reflections behave as mimics, but have no lifespan limit, no d-mods, and all of their " +
+                    tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
                             "skills are elite. If \"Perfect Replication\" is active, they spawn with 1-3 s-mods.",
                         0f, gray, Misc.getStoryDarkBrighterColor(), "elite", "s-mods")
                 }
@@ -200,7 +200,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "" + SotfInvokeHerBlessingPlugin.BLESSING_DP_GATE.roundToInt(), "reflection*"
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Reflections have no lifespan limit, no d-mods, and all of their " +
+                    tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
                             "skills are elite. If \"Perfect Replication\" is active, they spawn with 1-3 s-mods.",
                         0f, gray, Misc.getStoryDarkBrighterColor(), "elite", "s-mods")
                 }
@@ -223,7 +223,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "\"Dream Eater\""
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Consuming an echo also triggers \"Shriek of the Damned\" and \"Service Beyond Death\".", gray,
+                    tooltip.addPara("Consuming an echo also triggers \"Shriek of the Damned\" and \"Service Beyond Death\" if active.", gray,
                         0f)
                 }
             }

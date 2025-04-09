@@ -175,7 +175,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
                     Color infestDetectColor = Misc.getNegativeHighlightColor();
                     if (!madness) {
-                        infestDetectColor = new Color(25,215,255,255);
+                        infestDetectColor = new Color(215,235,255,255);
                     }
 
                     SotfNeutrinoLockVisualScript.NeutrinoParams params = new SotfNeutrinoLockVisualScript.NeutrinoParams(engine.getPlayerShip(), ship);
@@ -183,7 +183,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                     engine.addLayeredRenderingPlugin(new SotfNeutrinoLockVisualScript(params));
 
                     String infestDetectedString = getFelInfestString(numFelInvasions, madness);
-                    engine.getCombatUI().addMessage(0, infestDetectedString, infestDetectColor);
+                    engine.getCombatUI().addMessage(0, infestDetectColor, infestDetectedString);
                     messageArray = getFelMessageStrings(madness);
 
                     Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_NUM_FEL_INVASIONS, numFelInvasions + 1);
@@ -297,15 +297,20 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
     // when infestation begins
     private String getFelInfestString(int numInvasions, boolean madness) {
         String infestString = "Caution: extreme neutrino signature detected";
-        if (numInvasions > 1) {
+        if (numInvasions > 1 || madness) {
             if (!madness) {
                 infestString = "Warning: adaptive nanite signature detected!";
             } else {
+                float referenceWeight = 0.03f;
                 WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
-                post.add("Alert: Felcesis is invading the battlespace");
+                post.add("The fog is catching up...");
+                post.add("There's nowhere to hide...");
+                post.add("Your reckoning approaches...");
+                post.add("Your sins are catching up with you...");
                 // the cherry on top of the Dark Souls reference
-                post.add("Invaded by dark spirit Felcesis Thrice-Speared", 0.015f);
-                post.add("Blade of the Darkmoon Felcesis Thrice-Speared summoned by accord", 0.015f);
+                int numNormal = post.getItems().size();
+                post.add("Invaded by dark spirit Felcesis Thrice-Speared", numNormal * (referenceWeight / 2));
+                post.add("Blade of the Darkmoon Felcesis Thrice-Speared summoned by accord", numNormal * (referenceWeight / 2));
                 infestString = post.pick();
             }
         }
@@ -536,7 +541,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
         // HELLION'S HELLHIDE: a generally useful defensive skill
         float hellhideWeight = 0.9f;
-        /// ... but is especially handy on unshielded ships
+        // ... but is especially handy on unshielded ships
         if (!shielded) {
             hellhideWeight += 0.5f;
         }

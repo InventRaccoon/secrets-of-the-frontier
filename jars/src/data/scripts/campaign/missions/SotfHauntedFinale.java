@@ -3,30 +3,40 @@ package data.scripts.campaign.missions;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.campaign.listeners.FleetEventListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.FullName;
+import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.SharedUnlockData;
-import com.fs.starfarer.api.impl.campaign.ids.Conditions;
-import com.fs.starfarer.api.impl.campaign.ids.Factions;
-import com.fs.starfarer.api.impl.campaign.ids.Tags;
+import com.fs.starfarer.api.impl.SimulatorPluginImpl;
+import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
+import com.fs.starfarer.api.impl.campaign.ids.*;
+import com.fs.starfarer.api.impl.campaign.missions.academy.GAProjectZiggurat;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.api.util.WeightedRandomPicker;
 import com.fs.starfarer.combat.entities.terrain.Planet;
 import data.scripts.campaign.ids.SotfIDs;
+import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.utils.SotfMisc;
 
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
+import static com.fs.starfarer.api.impl.campaign.ids.MemFlags.MEMORY_KEY_NO_SHIP_RECOVERY;
 
 /**
  *	LIGHT OF THE LAKE: HAUNTED FINALE
  */
 
-public class SotfHauntedFinale extends HubMissionWithSearch {
+public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEventListener {
 
     public static enum Stage {
         SCENE_OF_THE_CRIME,
@@ -51,7 +61,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
         setStoryMission();
         setRepFactionChangesNone();
         setRepPersonChangesNone();
-        completedKey = "$sotf_haunt_completed"; // this ends the game tho
+        completedKey = "$sotf_haunted_completed"; // this ends the game tho
 
         StarSystemAPI yma =  Global.getSector().getStarSystem("yma");
         for (SectorEntityToken curr : yma.getEntitiesWithTag(Tags.LUDDIC_SHRINE)) {
@@ -77,7 +87,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
         lotl = Global.getSector().getStarSystem("sotf_lotl");
         if (lotl == null) return false;
 
-        if (!setGlobalReference("$sotf_haunt_ref")) return false;
+        if (!setGlobalReference("$sotf_haunted_ref")) return false;
 
         // set our starting, success and failure stages
         setStartingStage(Stage.SCENE_OF_THE_CRIME);
@@ -85,19 +95,138 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
         setNoAbandon();
 
         // set stage transitions when certain global flags are set
-        setStageOnGlobalFlag(Stage.PAY_YOUR_PENANCE, "$sotf_haunt_gotokilla");
-        setStageOnGlobalFlag(Stage.FIND_THE_LIGHT, "$sotf_haunt_gotolotl");
-        setStageOnGlobalFlag(Stage.FACE_YOUR_TORMENTOR, "$sotf_haunt_fightfel");
-        setStageOnGlobalFlag(Stage.ENTER_ELYSIUM, "$sotf_haunt_gotoelysium");
-        setStageOnGlobalFlag(Stage.SACRIFICE_YOURSELF, "$sotf_haunt_sacrifice");
-        setStageOnGlobalFlag(Stage.COMPLETED, "$sotf_haunt_completed");
+        setStageOnGlobalFlag(Stage.PAY_YOUR_PENANCE, "$sotf_haunted_gotokilla");
+        setStageOnGlobalFlag(Stage.FIND_THE_LIGHT, "$sotf_haunted_gotolotl");
+        setStageOnEnteredLocation(Stage.FACE_YOUR_TORMENTOR, lotl);
+        setStageOnGlobalFlag(Stage.ENTER_ELYSIUM, "$sotf_haunted_gotoelysium");
+        setStageOnGlobalFlag(Stage.SACRIFICE_YOURSELF, "$sotf_haunted_sacrifice");
+        setStageOnGlobalFlag(Stage.COMPLETED, "$sotf_haunted_completed");
         return true;
     }
 
-    // 30 day delay before Plausible Deniability can start (give Courser some time to set things up behind the scenes, yknow)
     @Override
     protected void endSuccessImpl(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
 
+    }
+
+    @Override
+    public void acceptImpl(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
+        super.acceptImpl(dialog, memoryMap);
+
+        CampaignFleetAPI fleet = FleetFactoryV3.createEmptyFleet(Factions.NEUTRAL, FleetTypes.PATROL_LARGE, null);
+        fleet.setInflater(null);
+        fleet.setNoFactionInName(true);
+        fleet.setName("Host of the Fallen");
+        fleet.getMemoryWithoutUpdate().set(MEMORY_KEY_NO_SHIP_RECOVERY, true);
+
+        FleetDataAPI fleetData = fleet.getFleetData();
+
+        WeightedRandomPicker<String> corePicker = new WeightedRandomPicker<String>(genRandom);
+        corePicker.add("decisive_battle");
+        corePicker.add("hit_and_run");
+        corePicker.add("unrelenting");
+
+        addFelComposition(fleetData, corePicker.pickAndRemove());
+        addFelComposition(fleetData, corePicker.pickAndRemove());
+
+        fleetData.sort();
+        fleetData.syncIfNeeded();
+        //addFelComposition(fleetData, corePicker.pickAndRemove());
+
+//        WeightedRandomPicker<String> adaptPicker = new WeightedRandomPicker<String>(genRandom);
+//        adaptPicker.add("decisive_battle");
+//        adaptPicker.add("hit_and_run");
+    }
+
+    public void addFelComposition(FleetDataAPI fleetData, String comp) {
+        switch (comp) {
+            case "decisive_battle":
+                addFelMember(fleetData, "onslaught_xiv_Elite", Personalities.AGGRESSIVE, SotfIDs.SKILL_DEARDOTTY);
+
+                addFelMember(fleetData, "dominator_AntiCV", Personalities.AGGRESSIVE);
+                addFelMember(fleetData, "dominator_Assault", Personalities.AGGRESSIVE);
+                addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
+                addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
+
+                addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY, SotfIDs.SKILL_HELLIONSHELLHIDE);
+                addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY, SotfIDs.SKILL_HELLIONSHELLHIDE);
+                addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
+                addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
+                break;
+            case "hit_and_run":
+                addFelMember(fleetData, "sotf_respite_Assault", Personalities.AGGRESSIVE, SotfIDs.SKILL_JUBILANTSIREN);
+
+                addFelMember(fleetData, "aurora_Attack", Personalities.RECKLESS);
+                addFelMember(fleetData, "doom_Strike", Personalities.RECKLESS);
+
+                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_LEVIATHANSBANE);
+                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY);
+
+                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_LEVIATHANSBANE);
+                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                break;
+            case "swarm":
+                addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS);
+
+                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE);
+                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.RECKLESS);
+
+                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
+                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
+                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
+                break;
+            case "unrelenting":
+                addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS);
+
+                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE, SotfIDs.SKILL_JUBILANTSIREN);
+                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_JUBILANTSIREN);
+
+                addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+                break;
+        }
+    }
+
+    public void addFelMember(FleetDataAPI fleetData, String variantId, String personality, String... skills) {
+        FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variantId);
+
+        member.getVariant().setVariantDisplayName(pickOne("Vengeful", "Retributive", "Judgement", "Hateful", "Reckoner", "Scornful"));
+        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+
+        PersonAPI captain = SotfPeople.genFelSubswarm();
+        captain.setPersonality(personality);
+        captain.getStats().setLevel(7 + skills.length);
+        for (String skill : skills) {
+            captain.getStats().setSkillLevel(skill, 2f);
+        }
+        member.setCaptain(captain);
+        fleetData.addFleetMember(member);
+    }
+
+    public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {
+        if (isDone() || result != null) return;
+
+        if (!battle.isPlayerInvolved()) return;
+
+        //CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
+        if (!battle.wasFleetDefeated(fleet, primaryWinner)) {
+            return;
+        }
+
+        getPerson().getMemoryWithoutUpdate().set("$sotf_haunted_gotoelysium", true);
+    }
+
+    public void reportFleetDespawnedToListener(CampaignFleetAPI fleet, CampaignEventListener.FleetDespawnReason reason, Object param) {
+        if (reason == CampaignEventListener.FleetDespawnReason.DESTROYED_BY_BATTLE) {
+            getPerson().getMemoryWithoutUpdate().set("$sotf_haunted_gotoelysium", true);
+        }
     }
 
     // when Call-ing something that isn't a default option for a mission, it'll try and run this method
@@ -146,13 +275,17 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
         Color h = Misc.getHighlightColor();
         Color bad = Misc.getNegativeHighlightColor();
 
+        int storyPointsRequired = 5;
         if (currentStage == Stage.SCENE_OF_THE_CRIME) {
+            storyPointsRequired = 20;
             info.addPara("It's finally time to act on that glimmer of hope.", opad);
             info.addPara(getGoToSystemTextShort(system) + ". Your path began there, and will again.", opad);
         } else if (currentStage == Stage.PAY_YOUR_PENANCE) {
+            storyPointsRequired = 15;
             info.addPara("You need to pay your penance for this to ever end.", opad);
             info.addPara("Go to the Killa Ossuary and find out how to reach the light of the lake.", opad);
         } else if (currentStage == Stage.FIND_THE_LIGHT) {
+            storyPointsRequired = 10;
             info.addPara("The way is clear.", opad);
             info.addPara("The Light of the Lake is directly north of the sector's center.", opad, h, "directly north", "sector's center");
             info.addPara("Prepare yourself.", opad);
@@ -166,6 +299,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
             info.addPara("Take it.", h, opad);
             info.addPara("There is no other way.", bad, opad);
         }
+        info.addPara("\nYou still need a total of %s story points to escape your torment.", opad, Misc.getGrayColor(), Misc.getStoryDarkBrighterColor(), "" + storyPointsRequired);
     }
 
     // short description in popups and the intel entry
@@ -180,7 +314,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch {
             info.addPara("Find your way at Killa's Luddic shrine", tc, pad);
             return true;
         } else if (currentStage == Stage.FIND_THE_LIGHT) {
-            info.addPara("Find the Light of the Lake", tc, pad);
+            info.addPara("Find the Light of the Lake in the northern abyss", tc, pad);
             return true;
         } else if (currentStage == Stage.FACE_YOUR_TORMENTOR) {
             info.addPara("Face your tormentor", tc, pad);

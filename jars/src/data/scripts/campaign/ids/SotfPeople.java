@@ -1118,7 +1118,7 @@ public class SotfPeople {
         person.setGender(Gender.MALE);
         person.setRankId(Ranks.SPACE_CAPTAIN); // "Adaptive Countermeasure"
         person.setPostId(SotfIDs.POST_GESTALT);
-        person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "reverie"));
+        person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "meiryr"));
         person.getName().setFirst("Meiryr, the Ire");
         person.getName().setLast("");
         person.setImportance(PersonImportance.HIGH);
@@ -1135,6 +1135,37 @@ public class SotfPeople {
         person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
         person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
         person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
+
+        person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
+        person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_meiryr");
+        return person;
+    }
+
+    public static PersonAPI genFelSubswarm() {
+        PersonAPI person = Global.getFactory().createPerson();
+        person.setFaction(Factions.NEUTRAL);
+        person.setGender(Gender.ANY);
+        person.setRankId(Ranks.UNKNOWN);
+        person.setPostId(SotfIDs.POST_FEL); // "Vengeful Arbiter"
+        person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "fel"));
+        person.getName().setFirst("Felcesis");
+        person.getName().setLast("Thrice-Speared");
+        person.setImportance(PersonImportance.HIGH);
+
+        // Officer
+        person.setPersonality(Personalities.AGGRESSIVE);
+        //person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true); // probably more dangerous without it
+        person.getStats().setLevel(7);
+        // Unique skills, covering most of the essentials of vanilla combat skills
+        person.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_GUNNERYUPLINK, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_ORDNANCEMASTERY, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
+        person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
+
+        person.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f); // ???
 
         person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
         person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_meiryr");

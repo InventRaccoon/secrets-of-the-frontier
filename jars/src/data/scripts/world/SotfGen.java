@@ -301,8 +301,9 @@ public class SotfGen implements SectorGeneratorPlugin
                 0f, // utilityPts
                 0f // qualityMod
         );
-        params.flagshipVariantId = "venture_pather_Attack";
-        params.maxShipSize = 2;
+        // not allowed to use this variable in any fleet creator I can't control
+        //params.flagshipVariantId = "venture_pather_Attack";
+        params.maxShipSize = 3;
         CampaignFleetAPI patherFleet = FleetFactoryV3.createFleet(params);
         patherFleet.getAI().addAssignmentAtStart(FleetAssignment.ORBIT_AGGRESSIVE, cache, 1000f, "guarding dangerous technology", null);
         // no tithe option

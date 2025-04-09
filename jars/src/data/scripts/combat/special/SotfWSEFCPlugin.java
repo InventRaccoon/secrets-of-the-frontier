@@ -64,8 +64,8 @@ public class SotfWSEFCPlugin extends BaseEveryFrameCombatPlugin {
         }
         if (!reallyStarted) {
             reallyStarted = true;
-            Global.getSoundPlayer().setSuspendDefaultMusicPlayback(true);
-            Global.getSoundPlayer().playCustomMusic(0, 0, "sotf_weightlessthoughts", true);
+            //Global.getSoundPlayer().setSuspendDefaultMusicPlayback(true);
+            //Global.getSoundPlayer().playCustomMusic(0, 0, "sotf_weightlessthoughts", true);
         }
         if (!engine.isPaused()) {
             counter += amount;
@@ -90,9 +90,9 @@ public class SotfWSEFCPlugin extends BaseEveryFrameCombatPlugin {
             }
         }
         if (engine.isCombatOver()) {
-            Global.getSoundPlayer().pauseCustomMusic();
-            Global.getSoundPlayer().setSuspendDefaultMusicPlayback(false);
-            Global.getSoundPlayer().restartCurrentMusic();
+            //Global.getSoundPlayer().pauseCustomMusic();
+            //Global.getSoundPlayer().setSuspendDefaultMusicPlayback(false);
+            //Global.getSoundPlayer().restartCurrentMusic();
         }
     }
 }

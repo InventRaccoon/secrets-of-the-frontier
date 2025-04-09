@@ -4761,8 +4761,10 @@ You have to return.",defaultLeave:Return to your duties,
 # FINALE QUEST,,,,,,
 sotfHFinaleSatbombOpen,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
 $sotf_haunted_stage == SCENE_OF_THE_CRIME
-$id == $sotf_haunted_satbombPlanet",ShowPic bombard_saturation_result,You're here again.,sotfHFinale_satbomb2:Remember,
-sotfHFinaleSatbomb2,DialogOptionSelected,$option == sotfHFinale_satbomb2,,"The memories of this place are fragmented, lost to fervor and then consuming shame. You don't remember the names, just the actions.
+$id == $sotf_haunted_satbombPlanet","ShowDefaultVisual
+SetStoryOption sotfHFinale_satbomb2 5 sotf_haunted_satbombgate leadership ""Remembered your crimes""","You're here again. Weapon impacts still scar the surface of a burned worlds, broken habitats of its settlements stretching up like exposed ribs or ancient bones worn by sand.","sotfHFinale_satbomb2:Remember
+defaultLeave:Leave for now",
+sotfHFinaleSatbomb2,DialogOptionSelected,$option == sotfHFinale_satbomb2,ShowPic bombard_saturation_result,"The memories of this place are fragmented, lost to fervor and then consuming shame. You don't remember the names, just the actions.
 
 It seems so pointless now. Credits gone unpaid. A threat they thought you never truly meant. Numbers, targets. Loyalties were tested. Not enough of them were lacking.
 
@@ -4775,7 +4777,7 @@ You'd attract the wrong kind of attention. How right he was.
 sotfHFinaleSatbomb4,DialogOptionSelected,$option == sotfHFinale_satbomb4,"AddTextSmall ""PAY YOUR PENANCE\nREMEMBER THE DEAD\nAT THE SHRINE TO A MURDERED WORLD"" sotfDaydreamTextColor
 AddText ""You understand.""
 $global.sotf_haunted_gotokilla = true
-Call $global.sotf_haunted_ref updateStage","You remember the key, though you're not quite sure why.",sotfHFinale_satbomb4:Continue,
+Call $global.sotf_haunted_ref updateStage","You remember the key, though you're not quite sure why.","defaultLeave:Leave, your path clear",
 ,,,,,,
 sotfHFinaleVisitShrineOverride,PopulateKillaOptions,"$id == killa
 $tag:luddic_shrine
@@ -4783,10 +4785,49 @@ $tag:luddic_shrine
 !$global.lpp_visitedShrineKilla
 Call $global.sotf_haunted_ref updateData
 $sotf_haunted_stage == PAY_YOUR_PENANCE",# bcs you can't normally visit if you haven't started Pilgrim's Path,,1:lpp_killaVisitStart:Take a shuttle to the Luddic Church beacon,
-sotfHFFinaleShrineOutDone,DialogOptionSelected,"$option == lpp_killaOssuaryOutDone
+sotfHFinaleShrineOutDone,DialogOptionSelected,"$option == lpp_killaOssuaryOutDone
 Call $global.sotf_haunted_ref updateData
-$sotf_haunted_stage == PAY_YOUR_PENANCE score:100",,You are left among the dead. The webs of ash hanging in the air twitch and flow as movement elsewhere in the labyrinth triggers minor fluctuations in the standing electrostatic charge.,sotfHFFinale_shrine1:Brave the ,
-,,,,,,
+$sotf_haunted_stage == PAY_YOUR_PENANCE score:100","SetStoryOption sotfHFinale_shrine1 5 sotf_haunted_shrinegate leadership ""Braved the passages of the Killa shrine""","You are left among the dead. The webs of ash hanging in the air twitch and flow as movement elsewhere in the labyrinth triggers minor fluctuations in the standing electrostatic charge.
+
+You feel a pull towards the labyrinthine passages of the deeper shrine.","sotfHFinale_shrine1:Brave the passages
+lpp_killaShrineStayAWhile:Stay a while
+lpp_killaShrineFirstLeaveStart:Return to your shuttle",
+sotfHFinaleShrineVisitAgain,DialogOptionSelected,"$option == lpp_killaShrineVisitAgain3
+Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == PAY_YOUR_PENANCE score:100","SetStoryOption sotfHFinale_shrine1 5 sotf_haunted_shrinegate leadership ""Braved the passages of the Killa shrine""","Wandering the halls, you eventually encounter the curate sacraria of the ossuary. He is, as before, a man of few words, and greets you with only a nod and the ghost of a sad smile.
+
+You are left among the dead. The webs of ash hanging in the air twitch and flow as movement elsewhere in the labyrinth trigger minor fluctuations in the standing electrostatic charge.
+
+You feel a pull towards the labyrinthine passages of the deeper shrine.","sotfHFinale_shrine1:Brave the passages
+lpp_killaShrineStayAWhile:Stay a while
+lpp_killaShrineLeaveStart:Return to your shuttle",
+sotfHFinaleShrine1,DialogOptionSelected,$option == sotfHFinale_shrine1,,"You follow your heavy heart into the unknown. The bones of the dead line your pilgrimage, and at times you cannot help but count them as if they were your own fault.
+
+There's too many for that.
+
+There is no way to know where you're going, but the path is guided by the prayers in the comms channel and by something nestled there in the hidden crevices of your mind.
+
+Eventually, you find an open chamber, once the crew quarters of a warship. Within, a warped altar, a white spiraling image painted on the back wall, and a holo-display unit flickering between messages.",sotfHFinale_shrine2:Continue,
+sotfHFinaleShrine2,DialogOptionSelected,$option == sotfHFinale_shrine2,"AddTextSmall ""find our light\nshining alone over the water\north- north- north-\ninto the darkness"" sotfDaydreamTextColor
+$global.sotf_haunt_gotolotl = true
+Call $global.sotf_haunted_ref updateStage",,sotfHFinale_shrine3:Continue,
+sotfHFinaleShrine3,DialogOptionSelected,$option == sotfHFinale_shrine3,"AddTextSmall ""what will you find"" sotfDaydreamTextColor",,"sotfHFinale_shrine5:Ignore it, and leave
+sotfHFinale_shrine4a:""An escape.""
+sotfHFinale_shrine4b:""Some way to kill the thing for good.""
+sotfHFinale_shrine4c:""Somewhere I can finally rest.""
+sotfHFinale_shrine4d:""Redemption.""",
+sotfHFinaleShrine4a,DialogOptionSelected,$option == sotfHFinale_shrine4a,"AddTextSmall ""surely"" sotfDaydreamTextColor
+AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
+sotfHFinaleShrine4b,DialogOptionSelected,$option == sotfHFinale_shrine4b,"AddTextSmall ""the only way you could go back"" sotfDaydreamTextColor
+AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
+sotfHFinaleShrine4c,DialogOptionSelected,$option == sotfHFinale_shrine4c,"AddTextSmall ""anywhere, but there most of all"" sotfDaydreamTextColor
+AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
+sotfHFinaleShrine4d,DialogOptionSelected,$option == sotfHFinale_shrine4d,"AddTextSmall ""waits for all who will take it"" sotfDaydreamTextColor
+AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
+sotfHFinaleShrine5,DialogOptionSelected,$option == sotfHFinale_shrine5,,"You leave the strange assembly, the way cleared again.
+
+Retracing your steps and renewed with vigor - and desperation - you snake through the passages and return to the more-travelled area of the ossuary.","lpp_killaShrineStayAWhile:Stay a while
+lpp_killaShrineFirstLeaveStart:Return to your shuttle",
 ,,,,,,
 ,,,,,,
 ,,,,,,

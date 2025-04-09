@@ -73,7 +73,8 @@ public class SotfWSEidolonOpen implements InteractionDialogPlugin {
 
         OptionId option = (OptionId) optionData;
 
-        if (text != null) {
+        // don't print the "no" if it was selected via a key press
+        if (text != null && !option.equals(OptionId.REFUSE)) {
             textPanel.addParagraph(text, Global.getSettings().getColor("buttonText"));
         }
 
@@ -180,6 +181,7 @@ public class SotfWSEidolonOpen implements InteractionDialogPlugin {
                 // they're ghosts
                 enemyFleetTemp.getMemoryWithoutUpdate().set(MEMORY_KEY_NO_SHIP_RECOVERY, true);
                 enemyFleetTemp.getMemoryWithoutUpdate().set("$sotf_WSEidolon", true);
+                enemyFleetTemp.getMemoryWithoutUpdate().set("$combatMusicSetId", "sotf_weightlessthoughts");
 
                 // the Lost One herself
                 FleetMemberAPI vow = Global.getFactory().createFleetMember(FleetMemberType.SHIP, "sotf_vow_eidolon_WS");

@@ -133,6 +133,11 @@ public class SotfEmplacementEffect extends BaseBattleObjectiveEffect {
 				}
 				if (objective.getOwner() == 1 && ship.getOwner() == 0) {
 					//setSide(1);
+//					for (CombatFleetManagerAPI.AssignmentInfo assignment : engine.getFleetManager(0).getTaskManager(false).getAllAssignments().) {
+//						if (assignment.getTarget().equals(ship)) {
+//							engine.getFleetManager(0).getTaskManager(false).removeAssignment(assignment);
+//						}
+//					}
 					engine.removeEntity(ship);
 					replaceTurret();
 				}

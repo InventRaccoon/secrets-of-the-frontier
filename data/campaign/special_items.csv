@@ -1,4 +1,8 @@
-name,id,tags,rarity,base price,stack size,cargo space,icon,sound id,sound id drop,plugin,plugin params,desc,order
-Sierra Core,sotf_sierracore,"mission_item, hide_in_codex",,10000,1000,1,graphics/icons/cargo/sotf_sierracore.png,ui_chip_pickup,ui_alpha_core_drop,com.fs.starfarer.api.campaign.impl.items.GenericSpecialItemPlugin,,"An AI core of unknown design and purpose. Thickly insulated cables are attached, of a make you've never seen before.
+name,id,tags,tech/manufacturer,rarity,base price,stack size,cargo space,baseRaidDanger,icon,sound id,sound id drop,plugin,plugin params,desc,order
+Sierra Core,sotf_sierracore,"mission_item, hide_in_codex",Anomalous Phase-Tech,,10000,1000,1,,graphics/icons/cargo/sotf_sierracore.png,ui_chip_pickup,ui_alpha_core_drop,com.fs.starfarer.api.campaign.impl.items.GenericSpecialItemPlugin,,"An AI core of unknown design and purpose. Thickly insulated cables are attached, of a make you've never seen before.
 
 It gives off a variety of signals. Some are exact matches for those given off by phase technology - anchors, skimmers, weaponry, the sort. The rest are impossible for any sensor packages in your fleet to properly identify, resulting in nonsense readings, unreadable user interfaces and uneasy crew.",0.43
+,,,,,,,,,,,,,,,
+Daydream Analyzer,sotf_daydreamanalyzer,codex_unlockable,Dreaming Gestalt,,20000,1000,1,,graphics/icons/cargo/fragment_fabricator.png,ui_cargo_special_industrial_pickup,ui_cargo_special_industrial_drop,com.fs.starfarer.api.campaign.impl.items.BaseSpecialItemPlugin,,"A black shard of night, gleaming with potential.
+
+The analyzer is comprised of a bound subswarm of high-volition nanites that, together, function as a powerful processing core. Deceptively self-capable - the analyzer dissipates into a black, motile fog in reply to transfer requests and relocates itself without human aid.",

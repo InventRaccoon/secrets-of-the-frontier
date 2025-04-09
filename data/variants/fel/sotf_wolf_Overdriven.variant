@@ -1,0 +1,43 @@
+{
+    "displayName": "Overdriven",
+    "fluxCapacitors": 0,
+    "fluxVents": 9,
+    "goalVariant": false,
+    "hullId": "wolf",
+    "hullMods": [
+        "safetyoverrides",
+        "hardened_subsystems"
+    ],
+    "permaMods": [
+		"adaptiveshields",
+		"extendedshieldemitter",
+		"hardenedshieldemitter",
+    ],
+    "sMods": [
+        "adaptiveshields",
+		"extendedshieldemitter",
+		"hardenedshieldemitter",
+    ],
+    "quality": 0.75,
+    "variantId": "wolf_Overdriven",
+    "weaponGroups": [
+        {
+            "autofire": false,
+            "mode": "LINKED",
+            "weapons": {"WS 004": "heavyblaster"}
+        },
+        {
+            "autofire": false,
+            "mode": "ALTERNATING",
+            "weapons": {
+                "WS 005": "sabot",
+                "WS 006": "sabot"
+            }
+        },
+        {
+            "autofire": true,
+            "mode": "LINKED",
+            "weapons": {"WS 001": "ioncannon"}
+        }
+    ]
+}

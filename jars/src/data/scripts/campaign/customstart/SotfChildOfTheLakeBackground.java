@@ -16,8 +16,8 @@ import exerelin.utilities.NexFactionConfig;
 import static data.scripts.SotfModPlugin.WATCHER;
 
 /**
- *	CHILD OF THE LAKE: You're haunted by a spectre of your mysterious past.
- *  ... and protected by another.
+ *	CHILD OF THE LAKE: Gain an occult technological heirloom who serves you faithfully
+ *  May include necromancy
  */
 
 public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {

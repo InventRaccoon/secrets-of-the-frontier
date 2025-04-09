@@ -83,20 +83,21 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     public static int BASE_DP = 10;
     public static int DP_PER_LEVEL = 3;
 
+    // T1
     public static float MULTIFACTED_MULT = 0.35f;
-
+    // T2
     public static float SHRIEK_RANGE = 1600f;
-
+    // T3
     public static float VIGOR_DURATION = 15f;
     public static float VIGOR_DAMAGE = 0.2f;
     public static float VIGOR_RESIST = 0.2f;
     public static float VIGOR_SPEED = 0.2f;
-
+    // T4
     public static float SIPHON_RANGE = ECHO_CREATION_RANGE;
     public static float SIPHON_PERCENT = 0.35f;
     public static float SIPHON_MIMIC_DR = 0.5f;
     public static float SIPHON_FRAG_DR = 1f;
-
+    // T5
     public static float BLESSING_DP_GATE = 15f;
     public static float DREAMEATER_REPAIR_FRIGATE = 0.06f;
     public static float DREAMEATER_REPAIR_DESTROYER = 0.12f;
@@ -967,6 +968,7 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             }
             damage.getModifier().modifyMult(SotfIDs.COTL_HULLSIPHON, 1f - SIPHON_PERCENT);
 
+            // reduce visual spam if taking multiple instances of damage
             int alpha = 25;
             if (timer > 1) {
                 alpha = 55;

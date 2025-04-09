@@ -26,6 +26,7 @@ X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Derelict Contingent now unlocked in codex if player has Barrow
 - Added some alt dialogue if using Spyglass' codephrase with Imoinu Kato during Usurpers
 - Fixed Sierra's core from A Promise appearing in codex
+- Fixed crash that could happen with Blithe/Wendigo/Seraph fleets from other mods adding moduled capital ships
 
 X Can no longer build orbital habitats in the Abyss
 
