@@ -42,6 +42,7 @@ public class SotfAdvancedCountermeasures {
 	// Attack swarm attack rate multiplier based on hull size
 	public static Map<HullSize, Float> SWARM_ATTACK_RATE_MULT = new HashMap<HullSize, Float>();
 	static {
+		SWARM_ATTACK_RATE_MULT.put(HullSize.DEFAULT, 0.5f);
 		SWARM_ATTACK_RATE_MULT.put(HullSize.FIGHTER, 0.5f);
 		SWARM_ATTACK_RATE_MULT.put(HullSize.FRIGATE, 1f);
 		SWARM_ATTACK_RATE_MULT.put(HullSize.DESTROYER, 1.5f);
@@ -114,18 +115,22 @@ public class SotfAdvancedCountermeasures {
 		public static class SotfNaniteDefenseSwarmScript implements AdvanceableListener {
 
 			protected ShipAPI ship;
+			boolean ranOnce = false;
 
 			IntervalUtil interval = new IntervalUtil(SWARM_ATTACK_RATE, SWARM_ATTACK_RATE + 0.2f);
 			float rate;
 
 			public SotfNaniteDefenseSwarmScript(ShipAPI ship) {
 				this.ship = ship;
-				this.rate = SWARM_ATTACK_RATE_MULT.get(ship.getHullSize());
 			}
 
 			public void advance(float amount) {
 				if (!Global.getCurrentState().equals(GameState.COMBAT)) {
 					return;
+				}
+				if (!ranOnce) {
+					rate = SWARM_ATTACK_RATE_MULT.get(ship.getHullSize());
+					ranOnce = true;
 				}
 				if (amount <= 0f || ship == null) return;
 

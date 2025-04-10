@@ -19,7 +19,7 @@
 		"hardenedshieldemitter",
     ],
     "quality": 0.75,
-    "variantId": "wolf_Overdriven",
+    "variantId": "sotf_wolf_Overdriven",
     "weaponGroups": [
         {
             "autofire": false,

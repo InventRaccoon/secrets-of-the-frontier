@@ -4813,21 +4813,21 @@ There's too many for that.
 There is no way to know where you're going, but the path is guided by the prayers in the comms channel and by something nestled there in the hidden crevices of your mind.
 
 Eventually, you find an open chamber, once the crew quarters of a warship. Within, a warped altar, a white spiraling image painted on the back wall, and a holo-display unit flickering between messages.",sotfHFinale_shrine2:Continue,
-sotfHFinaleShrine2,DialogOptionSelected,$option == sotfHFinale_shrine2,"AddTextSmall ""find our light\nshining alone over the water\north- north- north-\ninto the darkness"" sotfDaydreamTextColor
-$global.sotf_haunt_gotolotl = true
+sotfHFinaleShrine2,DialogOptionSelected,$option == sotfHFinale_shrine2,"AddText ""find our light\nshining alone over the water\nnorth- north- north-\ninto the darkness"" sotfDaydreamTextColor
+$global.sotf_haunted_gotolotl = true
 Call $global.sotf_haunted_ref updateStage",,sotfHFinale_shrine3:Continue,
-sotfHFinaleShrine3,DialogOptionSelected,$option == sotfHFinale_shrine3,"AddTextSmall ""what will you find"" sotfDaydreamTextColor",,"sotfHFinale_shrine5:Ignore it, and leave
+sotfHFinaleShrine3,DialogOptionSelected,$option == sotfHFinale_shrine3,"AddText ""what will you find"" sotfDaydreamTextColor",,"sotfHFinale_shrine5:Ignore it, and leave
 sotfHFinale_shrine4a:""An escape.""
 sotfHFinale_shrine4b:""Some way to kill the thing for good.""
 sotfHFinale_shrine4c:""Somewhere I can finally rest.""
 sotfHFinale_shrine4d:""Redemption.""",
-sotfHFinaleShrine4a,DialogOptionSelected,$option == sotfHFinale_shrine4a,"AddTextSmall ""surely"" sotfDaydreamTextColor
+sotfHFinaleShrine4a,DialogOptionSelected,$option == sotfHFinale_shrine4a,"AddText ""surely"" sotfDaydreamTextColor
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
-sotfHFinaleShrine4b,DialogOptionSelected,$option == sotfHFinale_shrine4b,"AddTextSmall ""the only way you could go back"" sotfDaydreamTextColor
+sotfHFinaleShrine4b,DialogOptionSelected,$option == sotfHFinale_shrine4b,"AddText ""the only way you could go back"" sotfDaydreamTextColor
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
-sotfHFinaleShrine4c,DialogOptionSelected,$option == sotfHFinale_shrine4c,"AddTextSmall ""anywhere, but there most of all"" sotfDaydreamTextColor
+sotfHFinaleShrine4c,DialogOptionSelected,$option == sotfHFinale_shrine4c,"AddText ""anywhere, but there most of all"" sotfDaydreamTextColor
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
-sotfHFinaleShrine4d,DialogOptionSelected,$option == sotfHFinale_shrine4d,"AddTextSmall ""waits for all who will take it"" sotfDaydreamTextColor
+sotfHFinaleShrine4d,DialogOptionSelected,$option == sotfHFinale_shrine4d,"AddText ""waits for all who will take it"" sotfDaydreamTextColor
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
 sotfHFinaleShrine5,DialogOptionSelected,$option == sotfHFinale_shrine5,"AddTextSmall ""You may wish to save your game before heading to the Abyss"" highlight","You leave the strange assembly, the way cleared again.
 
@@ -4849,7 +4849,7 @@ sotfHFinaleFelOCLFallback,OpenCommLink,$entity.sotf_haunted_felFleet score:100,,
 
 With a wince, your comms officer freezes the output and clears the buffer.",cutCommLink:Cut the comm link,
 sotfHFinaleFelDefeated,sotfHauntedBeatFel,,"Highlight ""Elysium""
-$global.sotf_haunt_gotoelysium = true
+$global.sotf_haunted_gotoelysium = true
 Call $global.sotf_haunted_ref updateStage","The last of the nanite-ships dissipates into the void of space, EM-signature fading from sensors.
 
 It's over. It's finally over.
@@ -4858,7 +4858,7 @@ Elysium waits for you.",,
 ,,,,,,
 sotfHauntedElysiumFireOpts,sotfElysium,$global.sotf_hauntedStart,,It's not time yet.,100:defaultLeave:Leave,
 sotfHFinaleElysiumOpts,sotfElysium,"Call $global.sotf_haunted_ref updateData
-$sotf_haunted_stage == GO_TO_ELYSIUM score:10000",,"The world is wreathed in shifting black clouds like skies shrouded in perpetual midnight. Sensors barks orders from aside - after major retuning, they are able to filter out as much of the EM-wash as they can.
+$sotf_haunted_stage == ENTER_ELYSIUM score:10000",,"The world is wreathed in shifting black clouds like skies shrouded in perpetual midnight. Sensors barks orders from aside - after major retuning, they are able to filter out as much of the EM-wash as they can.
 
 ""Nanites,"" a sensors tech confirms, silencing his team. The world is wrapped in writhing bands of nanomachines dozens of kilometres wide. Below, white lights illuminate the vast ice fields of Elysium's dark side.
 
@@ -4873,7 +4873,7 @@ $sotf_haunted_stage == SACRIFICE_YOURSELF score:100000",,,"sotfHFinale_elysiumAg
 sotfHFinaleElysiumSetStoryOpt,sotfHFinaleElysiumStoryOpt,!$sotf_visited,"SetStoryOption sotfHFinale_elysium2 5 sotf_haunted_elysiumgate leadership ""Gathered the courage to visit Elysium""",,,
 sotfHFinaleElysium1,DialogOptionSelected,$option == sotfHFinale_elysium1,"AddTextSmall ""descend alone\nfind your peace\nif you will"" sotfDaydreamTextColor
 AddText ""Data containing an undefined location on Elysium's surface streams in as the transmission drops.""
-$sotf_haunted_allowed
+$sotf_haunted_allowed = true
 FireBest sotfElysium",,,
 sotfHFinaleElysium2,DialogOptionSelected,$option == sotfHFinale_elysium2,$sotf_visited = true,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a growing void in the black clouds. They part in perfect synchronity, as if a single living being.
 
@@ -4894,7 +4894,7 @@ Two other corpses lie on the meeting hall's floor, and as you spy another throug
 sotfHFinaleElysium6,DialogOptionSelected,$option == sotfHFinale_elysium6,"BeginConversation sotf_sirius true true
 FireAll sotfElysiumSiriusOpts","""You, the haunted one,"" he replies, many voices speaking as one. ""Come seeking salvation- hope- a new beginning.""
 
-He sighs. ""Welcome to Elysium- the home of the fallen- brought low, none other to bestow her Blessings but I.""",,
+He sighs. ""Welcome to Elysium- the home of the fallen- brought low, none other to bestow her blessings but I.""",,
 sotfHFinaleSiriusWhoOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWho,,,"sotfHFinale_siriusWho:""Who are you?""",
 sotfHFinaleSiriusWhereOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWhere,,,"sotfHFinale_siriusWhere:""What is this place?""",
 sotfHFinaleSiriusWhatOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWhat,,,"sotfHFinale_siriusWhat:""What happened here?""",
@@ -4923,7 +4923,7 @@ sotfHFinaleSiriusGo,DialogOptionSelected,$option == sotfHFinale_siriusGo,,"You f
 The signage and bleeding-edge equipment betrays the place's original purpose. Temporal Physics, N-Space Resonance. Nanorobotics. Spatial Disruption.
 
 He leads you to a room labelled ""Gestalt Intelligence"".",sotfHFinale_siriusGo2:Enter,
-sotfHFinaleSiriusGo2,DialogOptionSelected,$option == sotfHFinale_siriusGo2,,"Inside, there is a set of medical podbeds lining the back wall, cables running into blinking, humming machinery that consumes most of the rest of the chamber. This place alone is untouched by the havoc that has long claimed the rest of the facility.","sotfHFinale_siriusSacrifice1a:""What are those?""
+sotfHFinaleSiriusGo2,DialogOptionSelected,$option == sotfHFinale_siriusGo2,,"Inside, there is a set of medical podbeds lining the back wall, connected thrice over to blinking, humming machinery that consumes most of the rest of the chamber. This place alone is untouched by the havoc that has long claimed the rest of the facility.","sotfHFinale_siriusSacrifice1:""What are those?""
 sotfHFinale_siriusSacrifice1b:""This is it?""",
 sotfHFinaleSiriusSacrifice1,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
 $global.sotf_haunted_sacrifice = true
@@ -4935,9 +4935,18 @@ Call $global.sotf_haunted_ref updateStage","""They're ascension pods,"" he says,
 sotfHFinale_siriusSacrifice2b:""Is this really the only way?""
 sotfHFinale_siriusSacrifice2c:""This must be a cruel joke.""
 sotfHFinale_siriusSacrifice2d:""And if I don't, it'll keep coming after me? Forever?""
-sotfHFinale_siriusSacrifice3:Make your decision
-sotfHFinale_siriusSacrificeAccept:""I... I'll do it.""
-sotfHFinale_siriusSacrificeDecline:""No. I can't. I won't.""",
+sotfHFinale_siriusSacrifice3:Make your decision",
+sotfHFinaleSiriusSacrifice1b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1b,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
+$global.sotf_haunted_sacrifice = true
+Call $global.sotf_haunted_ref updateStage","He nods. ""I-we have kept the ascension pods functional. They will allow you to shed your mortal form, join your mind with Elysium- with our Dreaming Gestalt.""
+
+""In service to Our Lady, the Daydream, in defense of our world against that which is beyond.""
+
+""Free of its pursuit- your torment- the nightmare, forever more. I promise you this.""","sotfHFinale_siriusSacrifice2a:""Will I die?""
+sotfHFinale_siriusSacrifice2b:""Is this really the only way?""
+sotfHFinale_siriusSacrifice2c:""This must be a cruel joke.""
+sotfHFinale_siriusSacrifice2d:""And if I don't, it'll keep coming after me? Forever?""
+sotfHFinale_siriusSacrifice3:Make your decision",
 sotfHFinaleSiriusSacrifice2a,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2a,RemoveOption sotfHFinale_siriusSacrifice2a,"""In body, yes,"" he admits, voices tinted with regret. ""Your humanity is forfeit.""",,
 sotfHFinaleSiriusSacrifice2b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2b,RemoveOption sotfHFinale_siriusSacrifice2b,"""Maybe those that were once here could have developed some way to defeat it,"" he wonders. ""Some sort of resonance device or electromagnetic weapon.""
 
@@ -4961,34 +4970,44 @@ sotfHFinaleElysiumAgain,DialogOptionSelected,$option == sotfHFinale_elysiumAgain
 Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
 
 You set down again on the landing pad, take the lonesome walk back to the shattered research facility.",sotfHFinale_elysiumAgain2:Enter,
-sotfHFinaleElysiumAgain2,DialogOptionSelected,$option == sotfHFinale_elysiumAgain2,BeginConversation sotf_sirius true true,"The mythic figure of Sirus greetings you inside. ""We greet you again,"" he says solemnly.
+sotfHFinaleElysiumAgain2,DialogOptionSelected,$option == sotfHFinale_elysiumAgain2,"BeginConversation sotf_sirius true true
+SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
+AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","The mythic figure of Sirus greetings you inside. ""We greet you again,"" he says solemnly.
 
 He leads you quietly back to the Gestalt Intelligence chamber, and looks to you for confirmation.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
 sotfHFinale_siriusSacrificeDecline:""I can't do this."" (decline)",
 ,,,,,,
-sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your fleet as you are now.""",,
-sotfHFinaleSacrificeSecondOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeSecond:Tell your officer corps to take charge of the fleet,
-sotfHFinaleSacrificeFarewellsOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeFarewells:Send a message with farewells to your crews,
-sotfHFinaleSacrificeSierraOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeSierra:Request a comm link with Sierra,
+sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,FireAll sotfHFinalePreSacrificeOpts,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your fleet as you are now.""",,
+sotfHFinaleSacrificeSecondOpt,sotfHFinalePreSacrificeOpts,!$sotf_talkedToSecond,,,sotfHFinale_sacrificeSecond:Tell your officer corps to take charge of the fleet,
+sotfHFinaleSacrificeFarewellsOpt,sotfHFinalePreSacrificeOpts,!$sotf_talkedToCrew,,,sotfHFinale_sacrificeFarewells:Send a message with farewells to your crews,
+sotfHFinaleSacrificeSierraOpt,sotfHFinalePreSacrificeOpts,"!$sotf_talkedToSierra
+SotfSierraCMD checkSierra",,,sotfHFinale_sacrificeSierra:Request a comm link with Sierra,
 sotfHFinaleSacrificeReadyOpt,sotfHFinalePreSacrificeOpts,,,,"sotfHFinale_sacrificeReady:""I'm ready.""",
 ,,,,,,
-sotfHFinaleSacrificeSecond,DialogOptionSelected,$option == sotfHFinale_sacrificeSecond,,"You open comms with your officer corps, explain the situation and instruct your second-in-command to take charge of the fleet in your absence.
+sotfHFinaleSacrificeSecond,DialogOptionSelected,$option == sotfHFinale_sacrificeSecond,$sotf_talkedToSecond = true,"You open comms with your officer corps, explain the situation and instruct your second-in-command to take charge of the fleet in your absence.
 
 For a moment, it seems like Ops thinks you're playing some kind of joke on them, and your technology officer is nervously laughing, until the gravity of the situation dawns on them all.
 
 A round of ayes, and your second swears to lead the fleet on like you were still in charge. They agree to do whatever they can to continue your legacy. You think Tech might be crying.","sotfHFinale_sacrificeBack:""Good luck, all of you."" (cut comms)",
-sotfHFinaleSacrificeFarewells,DialogOptionSelected,$option == sotfHFinale_sacrificeFarewells,FireAll sotfHFinalePreSacrificeOpts,"You record a voice message addressed to the crews of your fleet, expressing your thanks for their service and loyalty, and wishing them fortune wherever the spacer's life takes them without you.
+sotfHFinaleSacrificeFarewells,DialogOptionSelected,$option == sotfHFinale_sacrificeFarewells,"$sotf_talkedToCrews = true
+FireAll sotfHFinalePreSacrificeOpts","You record a voice message addressed to the crews of your fleet, expressing your thanks for their service and loyalty, and wishing them fortune wherever the spacer's life takes them without you.
 
 You send it off, and are soon flooded with messages and comms requests. As you're hitting the shutoff, Sirius looks back to you.",,
-sotfHFinaleSacrificeSierra,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra,BeginConversation sotf_sierra false false,"You send a comms request with your hand terminal. She accepts it in milliseconds.
+sotfHFinaleSacrificeSierra,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra,"BeginConversation sotf_sierra true true
+$sotf_talkedToCrews = true
+SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Hey,\"""" ""\""Are you alright down there?\""""","You send a comms request with your hand terminal. She accepts it in milliseconds.
 
 ""Hey,"" she greets you quietly. ""Are you alright down there?""","sotfHFinale_sacrificeSierra2:""Hey. I'm not going to be making it back to the fleet.""
 sotfHFinale_sacrificeSierra2b:""Thanks for everything. Good luck out there, Sierra."" (cut comms)",
-sotfHFinaleSacrificeSierra2b,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2b,,"""What... what does that mean?"" she asks panickedly. ""$playerName, wait-""
+sotfHFinaleSacrificeSierra2b,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2b,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""What... what does that mean?\"""" ""\""$playerName, wait-\"""" ""\""I'll remember you, I swear.\""""","""What... what does that mean?"" she asks panickedly. ""$playerName, wait-""
 
 She quickly gets it out before you can cut her off, her voice tearful. ""I'll remember you, I swear.""","sotfHFinale_sacrificeBack:Nod solemnly, and cut comms",
-sotfHFinaleSacrificeSierra2,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2,,"She's silent a moment. ""What do you mean?"" she asks. ""You're not serious, are you?""",sotfHFinale_sacrificeSierra3:Explain the situation,
-sotfHFinaleSacrificeSierra3,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra3,,"You set out the dilemma that's before you. Sacrifice, or more of this. That you're ready to move on.
+sotfHFinaleSacrificeSierra2,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""What do you mean?\"""" ""\""You're not serious, are you?\""""","She's silent a moment. ""What do you mean?"" she asks. ""You're not serious, are you?""",sotfHFinale_sacrificeSierra3:Explain the situation,
+sotfHFinaleSacrificeSierra3,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra3,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""I... I'm sorry, $playerName. If it means anything, I think you've truly changed, even if it can't erase what you've done.\"""" ""\""Stars be with you,\"""" ""\""In this life, in the next, whoever and whatever you are. We'll remember you.\"""" ""\""I'll remember you,\""""","You set out the dilemma that's before you. Sacrifice, or more of this. You're ready to move on.
 
 She struggles to find the words. ""I... I'm sorry, $playerName. If it means anything, I think you've truly changed, even if it can't erase what you've done.""
 

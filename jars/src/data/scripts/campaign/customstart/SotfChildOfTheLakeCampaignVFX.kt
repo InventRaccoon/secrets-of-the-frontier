@@ -88,7 +88,7 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
     override fun render(layer: CampaignEngineLayers?, viewport: ViewportAPI?) {
 
         if (noise1 == null) {
-            noise1 = Global.getSettings().getSprite("graphics/fx/sotf_haunted_dream_noise1.png")
+            noise1 = Global.getSettings().getSprite("graphics/fx/sotf_child_of_the_lake_noise1.png")
         }
 
         if (shader == null || shader == 0) {

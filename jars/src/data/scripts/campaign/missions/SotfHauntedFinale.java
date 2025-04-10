@@ -96,6 +96,10 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         setSuccessStage(Stage.COMPLETED);
         setNoAbandon();
 
+        makeImportant(planet, "$sotf_haunted", Stage.SCENE_OF_THE_CRIME);
+        makeImportant(killa, "$sotf_haunted", Stage.PAY_YOUR_PENANCE);
+        makeImportant(lotl.getEntityById("sotf_elysium"), "$sotf_haunted", Stage.ENTER_ELYSIUM, Stage.SACRIFICE_YOURSELF);
+
         // set stage transitions when certain global flags are set
         setStageOnGlobalFlag(Stage.PAY_YOUR_PENANCE, "$sotf_haunted_gotokilla");
         setStageOnGlobalFlag(Stage.FIND_THE_LIGHT, "$sotf_haunted_gotolotl");
@@ -155,6 +159,13 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         fleet.getStats().getSensorRangeMod().modifyMult("sotf_fel", 3f);
         fleet.addScript(new SotfFelLeashAssignmentAI(fleet, elysium));
         Misc.addDefeatTrigger(fleet, "sotfHauntedBeatFel");
+
+        Misc.makeImportant(fleet, "$sotf_haunted");
+
+        for (FleetMemberAPI curr : fleet.getFleetData().getMembersListCopy()) {
+            curr.getVariant().addPermaMod(HullMods.AUTOMATED);
+            curr.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+        }
         //addFelComposition(fleetData, corePicker.pickAndRemove());
     }
 
@@ -218,7 +229,6 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variantId);
 
         member.getVariant().setVariantDisplayName(pickOne("Vengeful", "Retributive", "Judgement", "Hateful", "Reckoner", "Scornful"));
-        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
 
         PersonAPI captain = SotfPeople.genFelSubswarm();
         captain.setPersonality(personality);
@@ -272,9 +282,11 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             text.addPara("With " + his + " sacrifice, the story of " + Global.getSector().getPlayerPerson().getNameString() + " has ended.", Misc.getHighlightColor(), Global.getSector().getPlayerPerson().getNameString());
             return true;
         } else if (action.equals("quickLoad")){
+            dialog.dismiss();
             Global.getSector().getCampaignUI().quickLoad();
             return true;
         } else if (action.equals("endTheGame")){
+            dialog.dismiss();
             Global.getSector().getCampaignUI().cmdExitWithoutSaving();
             return true;
         }
@@ -329,7 +341,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
     public boolean addNextStepText(TooltipMakerAPI info, Color tc, float pad) {
         Color h = Misc.getHighlightColor();
         if (currentStage == Stage.SCENE_OF_THE_CRIME) {
-            info.addPara("Return to " +
+            info.addPara("Return to the " +
                     system.getNameWithLowercaseTypeShort(), tc, pad);
             return true;
         } else if (currentStage == Stage.PAY_YOUR_PENANCE) {
