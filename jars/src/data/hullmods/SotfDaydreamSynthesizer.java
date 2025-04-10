@@ -3,6 +3,9 @@ package data.hullmods;
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
+import com.fs.starfarer.api.campaign.CargoAPI;
+import com.fs.starfarer.api.campaign.CargoStackAPI;
+import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
@@ -10,6 +13,7 @@ import com.fs.starfarer.api.impl.campaign.DModManager;
 import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflater;
 import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflaterParams;
 import com.fs.starfarer.api.impl.campaign.ids.HullMods;
+import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
@@ -57,7 +61,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		}
 
 		CombatEngineAPI engine = Global.getCombatEngine();
-		if (Global.getCombatEngine().getCustomData().containsKey(ALREADY_SYNTHESIZED_KEY + "_" + ship.getOriginalOwner())) {
+		if (engine.getCustomData().containsKey(ALREADY_SYNTHESIZED_KEY + "_" + ship.getId())) {
 			return;
 		}
 		if (!ship.isAlive()) return;
@@ -69,7 +73,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			spawnMimic(ship);
 		}
 
-		Global.getCombatEngine().getCustomData().put(ALREADY_SYNTHESIZED_KEY + "_" + ship.getOriginalOwner(), true);
+		engine.getCustomData().put(ALREADY_SYNTHESIZED_KEY + "_" + ship.getId(), true);
 	}
 
 	public void spawnMimic(ShipAPI ship) {
@@ -293,8 +297,8 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 
 		tooltip.addPara("Marks the ship for analysis and replication by a nanomechanical subswarm of the Dreaming Gestalt.", opad);
 
-		tooltip.addPara("At the start of combat, the nanite swarm activates and synthesizes a temporary reflection of the ship, fighting " +
-				"under the captaincy of %s. Ships with a %s of %s or less will spawn an additional reflection.", opad, h, "Reverie, the Daydream", "base deployment point cost", "" + Math.round(TWO_MIMIC_MAXIMUM));
+		tooltip.addPara("Upon deployment, the nanite swarm activates and synthesizes a temporary reflection of the ship, fighting " +
+				"under the captaincy of %s. Ships with a %s of %s or less will spawn an additional reflection.", opad, h, "Reverie, the Voice", "base deployment point cost", "" + Math.round(TWO_MIMIC_MAXIMUM));
 
 		//tooltip.addPara("Mimics have no d-mods, and attempt to replicate the original ship's loadout as closely as possible. " +
 		//		"The subswarm attempts to learn any unknown weapons or fighters, but may be unable to replicate extremely rare and exotic designs.", opad);
@@ -308,8 +312,8 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 						"for each reflection it would spawn on deployment. Each reflection uses deployment points equal to the original ship.", opad, h,
 				"" + Math.round(DEPLOYMENT_COST_BONUS_MULT * 100) + "%");
 
-		tooltip.addPara("Once a ship activates this hullmod, it can't activate for any other ship in the fleet " +
-				"until the next engagement.", opad);
+//		tooltip.addPara("Once a ship activates this hullmod, it can't activate for any other ship in the fleet " +
+//				"until the next engagement.", opad);
 
 		tooltip.addSectionHeading("Ship Synthesis", Alignment.MID, opad);
 		tooltip.addPara("- Only ships with a readily-available blueprint can be replicated, including anything one could reasonably find in Domain-era ruins. Common Domain, " +
@@ -354,10 +358,16 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		tooltip.addSpacer(5f);
 		LabelAPI label = tooltip.addPara("\"" + quote + "\"", lgray, opad);
 		label.italicize();
-		tooltip.addPara("   - Reverie, the Daydream", gray, pad);
+		tooltip.addPara("   - Reverie, the Voice", gray, pad);
 
 		// TODO: list of all compatible ships on F1
 
 		//if (isForModSpec || ship == null) return;
+	}
+
+	@Override
+	public CargoStackAPI getRequiredItem() {
+		return Global.getSettings().createCargoStack(CargoAPI.CargoItemType.SPECIAL,
+				new SpecialItemData(SotfIDs.DAYDREAM_ANALYZER, null), null);
 	}
 }

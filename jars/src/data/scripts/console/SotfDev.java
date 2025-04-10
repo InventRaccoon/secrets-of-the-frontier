@@ -112,6 +112,17 @@ public class SotfDev implements BaseCommand {
 					return CommandResult.SUCCESS;
 				}
 			}
+			else if (args.equals("hfinale")) {
+				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_INTRO, true);
+				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_MILE1, true);
+				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_PENULT, true);
+				int level = Global.getSector().getPlayerPerson().getStats().getLevel();
+				Global.getSector().getPlayerPerson().getStats().setLevel(15);
+				Global.getSector().getPlayerPerson().getStats().addPoints(15 - level);
+				Global.getSector().getPlayerPerson().getStats().addStoryPoints(25);
+				Console.showMessage("The end draws close...");
+				return CommandResult.SUCCESS;
+			}
 			else if (args.equals("cotl")) {
 				CampaignFleetAPI fleet = Global.getSector().getPlayerFleet();
 				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_COTL_START, true);

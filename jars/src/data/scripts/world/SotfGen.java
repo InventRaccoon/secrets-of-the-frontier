@@ -24,6 +24,7 @@ import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.utils.SotfMisc;
 //import data.scripts.world.hwf.SotfHuntingGrounds;
+import data.scripts.world.lotl.SotfLightOfTheLake;
 import data.scripts.world.mia.SotfMiaSystem;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -480,13 +481,13 @@ public class SotfGen implements SectorGeneratorPlugin
         }
     }
 
-//    public static void trySpawnLOTL(SectorAPI sector) {
-//        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
-//        StarSystemAPI lotl = sector.getStarSystem("sotf_lotl");
-//        if (lotl == null) {
-//            new SotfLightOfTheLake().generate(sector);
-//        }
-//    }
+    public static void trySpawnLOTL(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        StarSystemAPI lotl = sector.getStarSystem("sotf_lotl");
+        if (lotl == null) {
+            new SotfLightOfTheLake().generate(sector);
+        }
+    }
 
     // spawn Mayfly's ""asteroid"" in Askonia
     public static void trySpawnMayfly(SectorAPI sector) {

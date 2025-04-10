@@ -222,6 +222,8 @@ public class SotfIDs {
 	public static String RANK_SIRIUS = "sotf_rank_sirius";
 	public static String POST_GESTALT = "sotf_post_gestalt";
 
+	public static String DAYDREAM_ANALYZER = "sotf_daydreamanalyzer";
+
 	public static String COTL_PERFECTREPLICATION = "$sotf_cotl_perfectreplication";
 	public static String COTL_MULTIFACETED = "$sotf_cotl_multifaceted";
 

@@ -48,6 +48,27 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.isFadeIn = false
         }
 
+        // Fade in, but do not set to fully faded-out first
+        @JvmStatic
+        fun fadeInFromCurrent(durationDays: Float) {
+            var renderer = getInstance()
+
+            //renderer.startDelay = 0.05f
+
+            renderer.maxDuration = durationDays
+            //renderer.duration = 0f
+            renderer.isFadeIn = true
+        }
+
+        // Fade out, but do not set to maximum intensity first
+        @JvmStatic
+        fun fadeOutFromCurrent(durationDays: Float) {
+            var renderer = getInstance()
+            renderer.maxDuration = durationDays
+            //renderer.duration = durationDays
+            renderer.isFadeIn = false
+        }
+
     }
 
     @Transient

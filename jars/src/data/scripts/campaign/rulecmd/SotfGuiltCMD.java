@@ -8,6 +8,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.impl.campaign.FleetInteractionDialogPluginImpl;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.FleetTypes;
 import com.fs.starfarer.api.impl.campaign.missions.DelayedFleetEncounter;
@@ -72,6 +73,11 @@ public class SotfGuiltCMD extends BaseCommandPlugin
                 return true;
             case "kickIdolH":
                 SotfMisc.addGuilt(7f);
+                return true;
+            case "showFelPersonVisual":
+                dialog.getInteractionTarget().getMemoryWithoutUpdate().set(FleetInteractionDialogPluginImpl.DO_NOT_AUTO_SHOW_FC_PORTRAIT, true, 0f);
+                dialog.getVisualPanel().showPersonInfo(SotfPeople.getPerson(SotfPeople.FEL), false, false);
+                dialog.getVisualPanel().hideRankNamePost();
                 return true;
             default:
                 return true;

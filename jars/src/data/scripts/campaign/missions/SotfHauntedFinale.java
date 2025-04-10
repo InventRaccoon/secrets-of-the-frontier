@@ -21,8 +21,10 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import com.fs.starfarer.combat.entities.terrain.Planet;
+import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.campaign.plugins.fel.SotfFelLeashAssignmentAI;
 import data.scripts.utils.SotfMisc;
 
 import java.awt.*;
@@ -30,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static com.fs.starfarer.api.impl.campaign.ids.MemFlags.MEMORY_KEY_NO_SHIP_RECOVERY;
+import static com.fs.starfarer.api.impl.campaign.ids.MemFlags.*;
 
 /**
  *	LIGHT OF THE LAKE: HAUNTED FINALE
@@ -113,11 +115,20 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
     public void acceptImpl(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
         super.acceptImpl(dialog, memoryMap);
 
-        CampaignFleetAPI fleet = FleetFactoryV3.createEmptyFleet(Factions.NEUTRAL, FleetTypes.PATROL_LARGE, null);
+        CampaignFleetAPI fleet = FleetFactoryV3.createEmptyFleet(SotfIDs.DREAMING_GESTALT, FleetTypes.PATROL_LARGE, null);
         fleet.setInflater(null);
         fleet.setNoFactionInName(true);
-        fleet.setName("Host of the Fallen");
+        fleet.setName("The Revenant Host");
         fleet.getMemoryWithoutUpdate().set(MEMORY_KEY_NO_SHIP_RECOVERY, true);
+        fleet.getMemoryWithoutUpdate().set(FLEET_IGNORED_BY_OTHER_FLEETS, true);
+        fleet.getMemoryWithoutUpdate().set(FLEET_IGNORES_OTHER_FLEETS, true);
+        fleet.getMemoryWithoutUpdate().set(FLEET_DO_NOT_IGNORE_PLAYER, true);
+        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_HOSTILE, true);
+        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE, true);
+        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_NO_REP_IMPACT, true);
+        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true);
+        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_ALWAYS_PURSUE, true);
+        fleet.getMemoryWithoutUpdate().set("$sotf_haunted_felFleet", true);
 
         FleetDataAPI fleetData = fleet.getFleetData();
 
@@ -128,14 +139,23 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 
         addFelComposition(fleetData, corePicker.pickAndRemove());
         addFelComposition(fleetData, corePicker.pickAndRemove());
+        addFelComposition(fleetData, corePicker.pickAndRemove());
+
+        WeightedRandomPicker<String> adaptPicker = new WeightedRandomPicker<String>(genRandom);
 
         fleetData.sort();
         fleetData.syncIfNeeded();
-        //addFelComposition(fleetData, corePicker.pickAndRemove());
 
-//        WeightedRandomPicker<String> adaptPicker = new WeightedRandomPicker<String>(genRandom);
-//        adaptPicker.add("decisive_battle");
-//        adaptPicker.add("hit_and_run");
+        SectorEntityToken elysium = lotl.getEntityById("sotf_elysium");
+        lotl.addEntity(fleet);
+        fleet.setLocation(elysium.getLocation().x, elysium.getLocation().y + 100f);
+        // make sure they can't be sneaked past
+        fleet.getStats().getFleetwideMaxBurnMod().modifyMult("sotf_fel", 3f);
+        fleet.getStats().getAccelerationMult().modifyMult("sotf_fel", 3f);
+        fleet.getStats().getSensorRangeMod().modifyMult("sotf_fel", 3f);
+        fleet.addScript(new SotfFelLeashAssignmentAI(fleet, elysium));
+        Misc.addDefeatTrigger(fleet, "sotfHauntedBeatFel");
+        //addFelComposition(fleetData, corePicker.pickAndRemove());
     }
 
     public void addFelComposition(FleetDataAPI fleetData, String comp) {
@@ -219,13 +239,11 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         if (!battle.wasFleetDefeated(fleet, primaryWinner)) {
             return;
         }
-
-        getPerson().getMemoryWithoutUpdate().set("$sotf_haunted_gotoelysium", true);
     }
 
     public void reportFleetDespawnedToListener(CampaignFleetAPI fleet, CampaignEventListener.FleetDespawnReason reason, Object param) {
         if (reason == CampaignEventListener.FleetDespawnReason.DESTROYED_BY_BATTLE) {
-            getPerson().getMemoryWithoutUpdate().set("$sotf_haunted_gotoelysium", true);
+
         }
     }
 
@@ -266,6 +284,8 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 
 
     protected void updateInteractionDataImpl() {
+        set("$sotf_haunted_stage", getCurrentStage());
+        set("$sotf_haunted_satbombPlanet", planet.getId());
     }
 
     // description when selected in intel screen
@@ -290,9 +310,11 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             info.addPara("The Light of the Lake is directly north of the sector's center.", opad, h, "directly north", "sector's center");
             info.addPara("Prepare yourself.", opad);
         } else if (currentStage == Stage.FACE_YOUR_TORMENTOR) {
+            storyPointsRequired = 10;
             info.addPara("Your tormentor blocks the way to Elysium.", opad, bad, "tormentor");
             info.addPara("You know what to do.", opad);
         } else if (currentStage == Stage.ENTER_ELYSIUM) {
+            storyPointsRequired = 10;
             info.addPara("Descend to Elysium. Your fate lies there.", opad, h, "Elysium");
         } else if (currentStage == Stage.SACRIFICE_YOURSELF) {
             info.addPara("In the ruined temple of %s, %s offered you a way out.", opad, h, "Elysium", "\"Sirius\"");
@@ -311,19 +333,19 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                     system.getNameWithLowercaseTypeShort(), tc, pad);
             return true;
         } else if (currentStage == Stage.PAY_YOUR_PENANCE) {
-            info.addPara("Find your way at Killa's Luddic shrine", tc, pad);
+            info.addPara("Find your way at Killa's Luddic shrine.", tc, pad);
             return true;
         } else if (currentStage == Stage.FIND_THE_LIGHT) {
-            info.addPara("Find the Light of the Lake in the northern abyss", tc, pad);
+            info.addPara("Find the Light of the Lake in the northern abyss.", tc, pad);
             return true;
         } else if (currentStage == Stage.FACE_YOUR_TORMENTOR) {
-            info.addPara("Face your tormentor", tc, pad);
+            info.addPara("Face your tormentor.", tc, pad);
             return true;
         } else if (currentStage == Stage.ENTER_ELYSIUM) {
-            info.addPara("Descend into Elysium", tc, pad);
+            info.addPara("Descend into Elysium.", tc, pad);
             return true;
         } else if (currentStage == Stage.SACRIFICE_YOURSELF) {
-            info.addPara("Sacrifice, and be absolved", tc, pad);
+            info.addPara("Sacrifice, and be absolved.", tc, pad);
             return true;
         }
         return false;

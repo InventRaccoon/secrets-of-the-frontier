@@ -20,6 +20,7 @@ import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 import data.scripts.dialog.haunted.SotfHauntedDream1;
 import data.scripts.dialog.haunted.SotfHauntedDream2;
 import data.scripts.dialog.haunted.SotfHauntedDream3;
+import data.scripts.dialog.haunted.SotfHauntedDream4;
 import data.scripts.utils.SotfMisc;
 
 import java.util.ArrayList;
@@ -108,6 +109,22 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
         } else if (player.getStats().getLevel() >= 15 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_ULT)) {
             //sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedUltimate"));
+
+            sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
+            //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
+
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
+
+            Global.getSector().addScript(new DelayedActionScript(0.75f) {
+                @Override
+                public void doAction() {
+                    if (SotfMisc.getHauntedFastDreams()) {
+                        Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedUltimate");
+                    } else {
+                        Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream4(), null);
+                    }
+                }
+            });
         }
 
         if (!sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_WARNING)) {

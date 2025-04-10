@@ -18,6 +18,7 @@ X Added the Light of the Lake, and they who dream
 	X Wyrmfire Executioner (offensive) - hitting a target below 75% hull fires a Dragonfire torpedo at them (30s cooldown per target)
 	X Collar and Contain (hybrid) - designates an area, then causes a lingering quantum disruption within that overloads fighters and ships inside and keeps them overloaded while within it
 	X Tick Tock Tick Tock (hybrid) - brief strong timeflow bonus every 30 seconds
+	X Revenant Echo (support) - every 4th ship that dies (allied or enemy) creates an echo. After 20s, echoes turn into a limited-lifespan mimic of the dead ship
 - Haunted: added an earlygame encounter with Annex-Wendigo, and a possible second, less friendly encounter
 
 X Sierra now spawns as a derelict if destroyed in combat and not recovered

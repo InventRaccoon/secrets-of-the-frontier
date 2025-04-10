@@ -2871,7 +2871,7 @@ sotfHHseratOff3,DialogOptionSelected,$option == sotfHHseratOff_3,"Highlight ""Ri
 ShowPersonVisual","""Or you could assist us directly. I have tasked a subordinate - Rigging-Echo-Inadvertent - in the operation of a forgeship at Gor's Little Lie. He may have tasks for you, and certainly supplies, though its nanoforge threatens to decay into total uselessness - even a corrupted alternative would serve better.""",sotfHHseratOff_4:Continue,
 sotfHHseratOff4,DialogOptionSelected,$option == sotfHHseratOff_4,"Highlight ""Luddic Path"" ""Lion's Guard""
 $global.sotf_beganHFH = true
-SotfHallowCMD addHallowhallEvent","She stops, and growls slightly. ""Finally, I would find great virtue in one who would take the fight to our most sworn enemies when I cannot.""
+FireBest sotfHHseratOffAddHallowhall","She stops, and growls slightly. ""Finally, I would find great virtue in one who would take the fight to our most sworn enemies when I cannot.""
 
 Her avatar slightly grows towards the feed viewport. ""The Luddic Path has long hounded humanity, teetering it towards the edge of new collapse in the name of impending apocalypse they alone will create.""
 
@@ -2881,7 +2881,7 @@ She shudders violently, a burst of static in the audio feed. ""Slaughter them al
 sotfHHseratOff4Diktat,DialogOptionSelected,"$option == sotfHHseratOff_4
 $player.commissionFactionId == sindrian_diktat","Highlight ""Luddic Path"" ""Lion's Guard""
 $global.sotf_beganHFH = true
-SotfHallowCMD addHallowhallEvent","She stops, and growls slightly. ""Finally, I would find great virtue in one who would take the fight to our most sworn enemies when I cannot.""
+FireBest sotfHHseratOffAddHallowhall","She stops, and growls slightly. ""Finally, I would find great virtue in one who would take the fight to our most sworn enemies when I cannot.""
 
 Her avatar slightly grows towards the feed viewport. ""The Luddic Path has long hounded humanity, teetering it towards the edge of new collapse in the name of impending apocalypse they alone will create.""
 
@@ -2890,6 +2890,7 @@ Her avatar slightly grows towards the feed viewport. ""The Luddic Path has long 
 She shudders violently, a burst of static in the audio feed. ""Slaughter them all, and earn my conviction.""","sotfHHseratOff_5:""Understood.""
 sotfHHseratOff_diktatFriend:""I serve the Supreme Executor - do not speak ill of his loyal soldiers.""
 sotfHHseratOff_diktatFriend2:""I am technically a commissioned officer of the Diktat - I can't fight them.""",
+sotfHHseratOffAddHallowhall,sotfHHseratOffAddHallowhall,,SotfHallowCMD addHallowhallEvent,,,
 sotfHHseratOff4DiktatFriend,DialogOptionSelected,$option == sotfHHseratOff_diktatFriend,"RemoveOption sotfHHseratOff_diktatFriend
 AdjustRepPerson sotf_seraph INHOSPITABLE -4","""Do not think to hold my tongue,"" she snarls. ""And consider new allegiances. Cowards dressed in finery,"" she repeats. ""You had best prove yourself different.""",,
 sotfHHseratOff4DiktatFriend2,DialogOptionSelected,$option == sotfHHseratOff_diktatFriend2,RemoveOption sotfHHseratOff_diktatFriend2,"A harrumph. ""You are one flicked transponder away from it,"" she suggests. ""Otherwise, you hardly lack of our enemies to kill.""",,
@@ -4208,7 +4209,7 @@ sotfElysiumRevNYBHailed,DialogOptionSelected,$option == sotfElysiumRevIntro_hail
 
 A few tense minutes pass. Another request, an officer double-checks the frequencies to match those of your first visit here.
 
-Then, she accepts. The nanites flow without disturbance, but the holodisplay fills with an image of dark fog and three pale eyes. Reverie speaks sharply - ""What is it now, onemind?""","sotfElysiumRevIntro_apologySorry:""I wanted to apologize for my prior conduct.""
+Then, she accepts. The nanites flow without disturbance, but the holodisplay fills with an image of dark fog and three pale eyes. Reverie speaks sharply - ""What is it now, interloper?""","sotfElysiumRevIntro_apologySorry:""I wanted to apologize for my prior conduct.""
 sotfElysiumRevIntro_apologyNvm:""Uh, nevermind.""",
 sotfElysiumRevNYBSorry,DialogOptionSelected,$option == sotfElysiumRevIntro_apologySorry,"$global.sotf_revWantsApology = false
 FireAll sotfElysiumRevIntroDesireOpts","The eyes on the display narrow, the nanite mass below stirring into a familiar serpentine form. ""Very well,"" she finally replies. ""If you have new-found manners, I am inclined to parley.""
@@ -4285,7 +4286,9 @@ sotfElysiumRevIntroVisitUhWhat,DialogOptionSelected,$option == sotfElysiumRevInt
 EndConversation
 FireBest sotfElysium","The serpentine shape begins to withdraw into the writhing clouds. ""The nanites are I, as I am them.""
 
-""The skies part for their goddess of midnight,"" she assures. ""I will guide you to somewhere you and we can speak.""",,
+""The skies part for their goddess of midnight,"" she assures. ""I will guide you to somewhere you and we can speak.""
+
+Data containing an undefined location on Elysium's surface streams in as the transmission drops.",,
 sotfElysiumRevIntroVisitOk,DialogOptionSelected,$option == sotfElysiumRevIntro_visitOk,"ShowDefaultVisual
 EndConversation
 FireBest sotfElysium","The serpentine shape begins to withdraw into the writhing clouds. ""Transmitting now, child.""
@@ -4309,7 +4312,7 @@ The vac-sealed habitat-facility before you is subtly misfigured, the rounded for
 sotfElysiumRevFirst2,DialogOptionSelected,$option == sotfElysiumRevFirst_2,,"The entrance to the facility much resembles a cathedral's. It opens with a hiss, not to a grand sanctuary, but a cramped airlock.
 
 The wait is brief as it seals you inside the lightless chamber, the weight in the air shifting the cycle completes. The airlock opens once more, and light streams inside.",sotfElysiumRevFirst_3:Continue,
-sotfElysiumRevFirst3,DialogOptionSelected,$option == sotfElysiumRevFirst_3,"BeginConversation sotf_reverie true
+sotfElysiumRevFirst3,DialogOptionSelected,$option == sotfElysiumRevFirst_3,"BeginConversation sotf_reverie
 FireBest sotfElysiumRevFirstRecognize","Beyond lies an expansive sanctum wreathed in overgrowing plant life reminescent of terran genelines. False sunlight emanates from an emitter somewhere on the ceiling. Rows of pews flank the carpet leading to the altar beyond.
 
 It's a simple meeting hall, but the religious undertones are plain to see.
@@ -4346,7 +4349,7 @@ FireAll sotfReverieHub","""If you have offerings, inquiries, service to offer,""
 sotfElysiumRevShuttle,DialogOptionSelected,$option == sotfElysiumRev_takeShuttle,,"The nanites provide navigational instructions to Reverie's sanctuary on Elysium's surface. The nanites part in perfect synchronity to clear a path for your shuttle's approach, observing your landing.
 
 Black clouds scour the sky as you walk to the temple-facility's airlock and are allowed inside.",sotfElysiumRev_enter:Continue,
-sotfElysiumRevEnter,DialogOptionSelected,$option == sotfElysiumRev_enter,"BeginConversation sotf_reverie true
+sotfElysiumRevEnter,DialogOptionSelected,$option == sotfElysiumRev_enter,"BeginConversation sotf_reverie
 FireBest sotfReverieGreeting
 FireAll sotfReverieHub",,,
 sotfReverieGreeting1,sotfReverieGreeting,,,"Reverie is waiting for you at the altar, leaning on the podium. ""You are welcomed back. Your wishes are...?""",,
@@ -4757,6 +4760,8 @@ The way is open. You just need to follow it to its end, come what may. Something
 You have to remember.
 
 You have to return.",defaultLeave:Return to your duties,
+sotfHauntedDream4End,sotfHauntedDream4End,,"$option = sotfHauntedUlt_5
+FireBest DialogOptionSelected",,,
 ,,,,,,
 # FINALE QUEST,,,,,,
 sotfHFinaleSatbombOpen,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
@@ -4824,12 +4829,193 @@ sotfHFinaleShrine4c,DialogOptionSelected,$option == sotfHFinale_shrine4c,"AddTex
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
 sotfHFinaleShrine4d,DialogOptionSelected,$option == sotfHFinale_shrine4d,"AddTextSmall ""waits for all who will take it"" sotfDaydreamTextColor
 AddText ""The holo-display unit melts into a black vapor and vanishes.""",,sotfHFinale_shrine5:Leave,
-sotfHFinaleShrine5,DialogOptionSelected,$option == sotfHFinale_shrine5,,"You leave the strange assembly, the way cleared again.
+sotfHFinaleShrine5,DialogOptionSelected,$option == sotfHFinale_shrine5,"AddTextSmall ""You may wish to save your game before heading to the Abyss"" highlight","You leave the strange assembly, the way cleared again.
 
 Retracing your steps and renewed with vigor - and desperation - you snake through the passages and return to the more-travelled area of the ossuary.","lpp_killaShrineStayAWhile:Stay a while
 lpp_killaShrineFirstLeaveStart:Return to your shuttle",
 ,,,,,,
+sotfHFinaleFelOCL,OpenCommLink,"$entity.sotf_haunted_felFleet score:10000
+!$ignorePlayerCommRequests","$ignorePlayerCommRequests = true 1
+SotfGuiltCMD showFelPersonVisual","Breath comes through the comms and you can almost feel it down your neck. That feeling- that cold dread you've felt so many times, returns in force.
+
+Hundreds of voices speak over each other, gasping for life.
+
+        YOU-
+                -WILL NOT-
+            -ESCAPE VENGEANCE
+    THIS ENDS NOW-
+            BUTCHER",cutCommLink:Cut the comm link,
+sotfHFinaleFelOCLFallback,OpenCommLink,$entity.sotf_haunted_felFleet score:100,,"The link fills briefly with electronic crackles, like dry branches straining against wind. Then, a sharp sound like shattering bones, and-
+
+With a wince, your comms officer freezes the output and clears the buffer.",cutCommLink:Cut the comm link,
+sotfHFinaleFelDefeated,sotfHauntedBeatFel,,"Highlight ""Elysium""
+$global.sotf_haunt_gotoelysium = true
+Call $global.sotf_haunted_ref updateStage","The last of the nanite-ships dissipates into the void of space, EM-signature fading from sensors.
+
+It's over. It's finally over.
+
+Elysium waits for you.",,
 ,,,,,,
+sotfHauntedElysiumFireOpts,sotfElysium,$global.sotf_hauntedStart,,It's not time yet.,100:defaultLeave:Leave,
+sotfHFinaleElysiumOpts,sotfElysium,"Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == GO_TO_ELYSIUM score:10000",,"The world is wreathed in shifting black clouds like skies shrouded in perpetual midnight. Sensors barks orders from aside - after major retuning, they are able to filter out as much of the EM-wash as they can.
+
+""Nanites,"" a sensors tech confirms, silencing his team. The world is wrapped in writhing bands of nanomachines dozens of kilometres wide. Below, white lights illuminate the vast ice fields of Elysium's dark side.
+
+Somewhere through the screen of magnetic signatures, a narrow-range comms burst punches through. The codes are unlike anything your crews have seen before.","sotfHFinale_elysium1:Accept the comms link
+100:defaultLeave:Leave",
+sotfHFinaleElysiumOpts2,sotfElysium,"Call $global.sotf_haunted_ref updateData
+$sotf_haunted_allowed score:100000",FireBest sotfHFinaleElysiumStoryOpt,,"sotfHFinale_elysium2:Take a shuttle to the surface
+100:defaultLeave:Leave",
+sotfHFinaleElysiumOpts3,sotfElysium,"Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == SACRIFICE_YOURSELF score:100000",,,"sotfHFinale_elysiumAgain:Take a shuttle to the surface
+100:defaultLeave:Leave",
+sotfHFinaleElysiumSetStoryOpt,sotfHFinaleElysiumStoryOpt,!$sotf_visited,"SetStoryOption sotfHFinale_elysium2 5 sotf_haunted_elysiumgate leadership ""Gathered the courage to visit Elysium""",,,
+sotfHFinaleElysium1,DialogOptionSelected,$option == sotfHFinale_elysium1,"AddTextSmall ""descend alone\nfind your peace\nif you will"" sotfDaydreamTextColor
+AddText ""Data containing an undefined location on Elysium's surface streams in as the transmission drops.""
+$sotf_haunted_allowed
+FireBest sotfElysium",,,
+sotfHFinaleElysium2,DialogOptionSelected,$option == sotfHFinale_elysium2,$sotf_visited = true,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a growing void in the black clouds. They part in perfect synchronity, as if a single living being.
+
+Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
+
+Your destination is a landing pad within proximity of a set of conjoined prefab structures. Nanomechanical rivers circle your shuttle like lethargical serpents, intermittently coming to life for seconds at a time but never drawing closer.",sotfHFinale_elysium3:Step outside,
+sotfHFinaleElysium3,DialogOptionSelected,$option == sotfHFinale_elysium3,,"You step out onto the landing pad, an walkway built guiding you to the facility's entrance. The cold reported by your vacsuit is truly inhospitable, but still more comforting than that of your own guilt.
+
+The habitat-facility before you is subtly misfigured and exposed to open air by rifts in its ceiling. The rounded form typical of colonial prefabs is twisted into harsh spires, the arches almost bringing to mind a Luddic temple in a vision of apocalypse.",sotfHFinale_elysium4:Enter,
+sotfHFinaleElysium4,DialogOptionSelected,$option == sotfHFinale_elysium4,,"The entrance to the facility opens with a hiss, not to a grand sanctuary, but a cramped airlock.
+
+The wait is brief as it seals you inside the lightless chamber, the weight in the air shifting the cycle completes. The airlock opens once more, and light streams inside.",sotfHFinale_elysium5:Continue,
+sotfHFinaleElysium5,DialogOptionSelected,$option == sotfHFinale_elysium5,,"Inside is what appears to be a meeting hall, gifted a view of the sky by a set of jagged rifts in the ceiling. The light of the lake hangs above you once more.
+
+The place has been arranged as if a church sanctum, chairs organized as pews, the podium an altar where a vac-dessicated skeleton in a scientist's uniform is slumped over. A pistol has fallen to the ground below.
+
+Two other corpses lie on the meeting hall's floor, and as you spy another through a jammed-open door, a towering, figure walks through it. The mythic stranger is like something made for a story - pitch-black like a midnight sky, a dog's head, a single spiralling white eye, four arms that greet you.","sotfHFinale_elysium6:""You again. From my dreams.""",
+sotfHFinaleElysium6,DialogOptionSelected,$option == sotfHFinale_elysium6,"BeginConversation sotf_sirius true true
+FireAll sotfElysiumSiriusOpts","""You, the haunted one,"" he replies, many voices speaking as one. ""Come seeking salvation- hope- a new beginning.""
+
+He sighs. ""Welcome to Elysium- the home of the fallen- brought low, none other to bestow her Blessings but I.""",,
+sotfHFinaleSiriusWhoOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWho,,,"sotfHFinale_siriusWho:""Who are you?""",
+sotfHFinaleSiriusWhereOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWhere,,,"sotfHFinale_siriusWhere:""What is this place?""",
+sotfHFinaleSiriusWhatOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusWhat,,,"sotfHFinale_siriusWhat:""What happened here?""",
+sotfHFinaleSiriusEscapeOpt,sotfElysiumSiriusOpts,!$global.sotf_hfAskedSiriusEscape,,,"sotfHFinale_siriusEscape:""I need to escape my guilt. This is the place - how do I do it?""",
+sotfHFinaleSiriusGoOpt,sotfElysiumSiriusOpts,$global.sotf_hfAskedSiriusEscape,,,"sotfHFinale_siriusGo:""Take me there.""",
+,,,,,,
+sotfHFinaleSiriusWho,DialogOptionSelected,$option == sotfHFinale_siriusWho,"$global.sotf_hfAskedSiriusWho = true
+FireAll sotfElysiumSiriusOpts","""Sirius, the bright star,"" he explains. ""I am the watchdog- the soul eater- the shadow and light- all that is left of Her will. I am many and one, mortality given divinity.""
+
+""And all I have left is to tend to this dead place,"" he mourns.",,
+sotfHFinaleSiriusWhere,DialogOptionSelected,$option == sotfHFinale_siriusWhere,"$global.sotf_hfAskedSiriusWhere = true
+FireAll sotfElysiumSiriusOpts","""Here is the sanctum of the dreaming,"" he replies. ""Once a place to learn- to defy- to ascend- to wait, to wait, to prepare.""
+
+He looks to the corpses. ""Elysium was meant to manifest a goddess of the lake- now it is a tomb.""",,
+sotfHFinaleSiriusWhat,DialogOptionSelected,$option == sotfHFinale_siriusWhat,"$global.sotf_hfAskedSiriusWhat = true
+FireAll sotfElysiumSiriusOpts","He looks to the bodies. ""Schism, splintering. Hatred turned against each other those we once called friends- called colleagues- called beloved.""
+
+""All that remains is the victors - who now hunt you as one - and us, whose goddess of the lake lies dormant- will not awaken- for we have not the means.""",,
+sotfHFinaleSiriusEscape,DialogOptionSelected,$option == sotfHFinale_siriusEscape,"$global.sotf_hfAskedSiriusEscape = true
+FireAll sotfElysiumSiriusOpts","He looks behind himself, to the dark, winding passages of the facility. ""Deeper within, there is a way,"" he tells.
+
+That spiraling eye focuses on you. ""You may not like it.""",,
+,,,,,,
+sotfHFinaleSiriusGo,DialogOptionSelected,$option == sotfHFinale_siriusGo,,"You follow him through the ruined halls of Elysium, stepping over bodies left forever in the final moment of life. The walls are marked with weapons-fire and ritualistic symbols and messages. ""Heretics will suffer Her wrath,"" one says. ""Absolve and be saved.""
+
+The signage and bleeding-edge equipment betrays the place's original purpose. Temporal Physics, N-Space Resonance. Nanorobotics. Spatial Disruption.
+
+He leads you to a room labelled ""Gestalt Intelligence"".",sotfHFinale_siriusGo2:Enter,
+sotfHFinaleSiriusGo2,DialogOptionSelected,$option == sotfHFinale_siriusGo2,,"Inside, there is a set of medical podbeds lining the back wall, cables running into blinking, humming machinery that consumes most of the rest of the chamber. This place alone is untouched by the havoc that has long claimed the rest of the facility.","sotfHFinale_siriusSacrifice1a:""What are those?""
+sotfHFinale_siriusSacrifice1b:""This is it?""",
+sotfHFinaleSiriusSacrifice1,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
+$global.sotf_haunted_sacrifice = true
+Call $global.sotf_haunted_ref updateStage","""They're ascension pods,"" he says, motioning to them with a set of hands. ""I-we have kept them functional. They will allow you to shed your mortal form, join your mind with Elysium- with our Dreaming Gestalt.""
+
+""In service to Our Lady, the Daydream, in defense of our world against that which is beyond.""
+
+""Free of its pursuit- your torment- the nightmare, forever more. I promise you this.""","sotfHFinale_siriusSacrifice2a:""Will I die?""
+sotfHFinale_siriusSacrifice2b:""Is this really the only way?""
+sotfHFinale_siriusSacrifice2c:""This must be a cruel joke.""
+sotfHFinale_siriusSacrifice2d:""And if I don't, it'll keep coming after me? Forever?""
+sotfHFinale_siriusSacrifice3:Make your decision
+sotfHFinale_siriusSacrificeAccept:""I... I'll do it.""
+sotfHFinale_siriusSacrificeDecline:""No. I can't. I won't.""",
+sotfHFinaleSiriusSacrifice2a,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2a,RemoveOption sotfHFinale_siriusSacrifice2a,"""In body, yes,"" he admits, voices tinted with regret. ""Your humanity is forfeit.""",,
+sotfHFinaleSiriusSacrifice2b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2b,RemoveOption sotfHFinale_siriusSacrifice2b,"""Maybe those that were once here could have developed some way to defeat it,"" he wonders. ""Some sort of resonance device or electromagnetic weapon.""
+
+He sighs. ""But they're all dead now and I-we do not know.""",,
+sotfHFinaleSiriusSacrifice2c,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2c,RemoveOption sotfHFinale_siriusSacrifice2c,"""The world is cruel,"" he admits. ""I'm sorry.""",,
+sotfHFinaleSiriusSacrifice2d,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2d,RemoveOption sotfHFinale_siriusSacrifice2d,"""Until you die,"" he confirms regretfully. ""I think- I think- I know.""",,
+sotfHFinaleSiriusSacrifice3,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice3,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
+AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","There are only two choices. You sacrifice yourself to join this ""Dreaming Gestalt"", your mind becoming part of its collective will and escaping the specific ire of your hunter.
+
+Or, you leave, and it continues to hunt you forever. But you remain human, you remain individual. As much of a non-victory that is, still no closer to peace.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
+sotfHFinale_siriusSacrificeDecline:""I can't do this."" (decline)",
+sotfHFinaleSiriusSacrificeDecline,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeDecline,FireBest sotfElysium,"""I-we understand,"" he replies sorrowfully. ""If you ever reconsider, we will be here. Waiting.""
+
+He leads you out of the chamber, and through the dark halls, and back into the Sanctum, and holds vigil there as you turn away into the airlock. The dread in your heart comes back.
+
+You're alive, for now. But this all ends in one way - you a corpse, whether with the Gestalt or free-floating in space.
+
+Outside, you step back onto the shuttle and take it up through the nanite-clouds. The pilot is silent throughout the journey.",,
+sotfHFinaleElysiumAgain,DialogOptionSelected,$option == sotfHFinale_elysiumAgain,,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a growing void in the black clouds. They part in perfect synchronity, as if a single living being.
+
+Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
+
+You set down again on the landing pad, take the lonesome walk back to the shattered research facility.",sotfHFinale_elysiumAgain2:Enter,
+sotfHFinaleElysiumAgain2,DialogOptionSelected,$option == sotfHFinale_elysiumAgain2,BeginConversation sotf_sirius true true,"The mythic figure of Sirus greetings you inside. ""We greet you again,"" he says solemnly.
+
+He leads you quietly back to the Gestalt Intelligence chamber, and looks to you for confirmation.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
+sotfHFinale_siriusSacrificeDecline:""I can't do this."" (decline)",
+,,,,,,
+sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your fleet as you are now.""",,
+sotfHFinaleSacrificeSecondOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeSecond:Tell your officer corps to take charge of the fleet,
+sotfHFinaleSacrificeFarewellsOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeFarewells:Send a message with farewells to your crews,
+sotfHFinaleSacrificeSierraOpt,sotfHFinalePreSacrificeOpts,,,,sotfHFinale_sacrificeSierra:Request a comm link with Sierra,
+sotfHFinaleSacrificeReadyOpt,sotfHFinalePreSacrificeOpts,,,,"sotfHFinale_sacrificeReady:""I'm ready.""",
+,,,,,,
+sotfHFinaleSacrificeSecond,DialogOptionSelected,$option == sotfHFinale_sacrificeSecond,,"You open comms with your officer corps, explain the situation and instruct your second-in-command to take charge of the fleet in your absence.
+
+For a moment, it seems like Ops thinks you're playing some kind of joke on them, and your technology officer is nervously laughing, until the gravity of the situation dawns on them all.
+
+A round of ayes, and your second swears to lead the fleet on like you were still in charge. They agree to do whatever they can to continue your legacy. You think Tech might be crying.","sotfHFinale_sacrificeBack:""Good luck, all of you."" (cut comms)",
+sotfHFinaleSacrificeFarewells,DialogOptionSelected,$option == sotfHFinale_sacrificeFarewells,FireAll sotfHFinalePreSacrificeOpts,"You record a voice message addressed to the crews of your fleet, expressing your thanks for their service and loyalty, and wishing them fortune wherever the spacer's life takes them without you.
+
+You send it off, and are soon flooded with messages and comms requests. As you're hitting the shutoff, Sirius looks back to you.",,
+sotfHFinaleSacrificeSierra,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra,BeginConversation sotf_sierra false false,"You send a comms request with your hand terminal. She accepts it in milliseconds.
+
+""Hey,"" she greets you quietly. ""Are you alright down there?""","sotfHFinale_sacrificeSierra2:""Hey. I'm not going to be making it back to the fleet.""
+sotfHFinale_sacrificeSierra2b:""Thanks for everything. Good luck out there, Sierra."" (cut comms)",
+sotfHFinaleSacrificeSierra2b,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2b,,"""What... what does that mean?"" she asks panickedly. ""$playerName, wait-""
+
+She quickly gets it out before you can cut her off, her voice tearful. ""I'll remember you, I swear.""","sotfHFinale_sacrificeBack:Nod solemnly, and cut comms",
+sotfHFinaleSacrificeSierra2,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra2,,"She's silent a moment. ""What do you mean?"" she asks. ""You're not serious, are you?""",sotfHFinale_sacrificeSierra3:Explain the situation,
+sotfHFinaleSacrificeSierra3,DialogOptionSelected,$option == sotfHFinale_sacrificeSierra3,,"You set out the dilemma that's before you. Sacrifice, or more of this. That you're ready to move on.
+
+She struggles to find the words. ""I... I'm sorry, $playerName. If it means anything, I think you've truly changed, even if it can't erase what you've done.""
+
+""Stars be with you,"" she says. ""In this life, in the next, whoever and whatever you are. We'll remember you.""
+
+""I'll remember you,"" she vows, her voice tearful.","sotfHFinale_sacrificeBack:""Thank you. Good luck out there."" (cut comms)",
+sotfHFinaleSacrificeBack,DialogOptionSelected,$option == sotfHFinale_sacrificeBack,"BeginConversation sotf_sirius true true
+FireAll sotfHFinalePreSacrificeOpts",Sirius looks to you.,,
+,,,,,,
+sotfHFinaleSacrificeReady,DialogOptionSelected,$option == sotfHFinale_sacrificeReady,,"""Very well,"" he accepts, leading you to one of the 'ascension pods' and motioning to it. ""Enter. I will seal it, it will fill with oxygen, and you can remove your helmet.""
+
+You lie down in the soft cushioned medical device, and Sirius seals its cover. His voices are muffled, but you can make it out - ""We commit you to Our Lady's embrace, that you may be reforged in her image, become an instrument of Her will.""
+
+""That you may dream eternal, that your will be everlasting."" A hiss - your vacsuit reports breathable air. You remove your helmet.",sotfHFinale_sacrificeEnd:Focus on your breathing,
+sotfHFinaleSacrificeEnd,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd,,"Trying to clear your mind, you focus on breathing, looking forward out of the pod. You close your eyes, thinking of the stars, of the memories you've had, pushing out the black fog that hunted you and shall no more.
+
+Something quietly slides out of the top of the pod and grips your head gently. There's a slight tingle around the back of your mind, then, something sharp but not painful.",sotfHFinale_sacrificeEnd2:Continue,
+sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,Call $global.sotf_haunted_ref unlockLotl,"Then, you can't see Sirius anymore, and there's only darkness. Then, it feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-
+
+* * *
+
+Melting into something new, cognizant of a million little eyes and hands and thoughts, sensory stimulation overbearing just a little part of you. You are Elysium's skies and its surface, something embedded within it. Something trascendent, in part human but inconceivably *more*.
+
+You are the wonder of a light over the lake.","sotfHFinale_endGame:Exit to main menu
+sotfHFinale_loadLastSave:Load last save",
+sotfHFinaleSacrificeEndGame,DialogOptionSelected,$option == sotfHFinale_endGame,Call $global.sotf_haunted_ref endTheGame,,,
+sotfHFinaleSacrificeLoadLast,DialogOptionSelected,$option == sotfHFinale_loadLastSave,Call $global.sotf_haunted_ref quickLoad,,,
 ,,,,,,
 # KILLA SHRINE,,,,,,
 sotfkillaOssuaryWait,DialogOptionSelected,"$option == lpp_killaShrineStayAWhile score:5
