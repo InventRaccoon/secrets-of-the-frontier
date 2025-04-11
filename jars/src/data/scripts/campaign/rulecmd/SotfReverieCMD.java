@@ -1,4 +1,3 @@
-// checks if we can start A Promise's bar event
 package data.scripts.campaign.rulecmd;
 
 import com.fs.starfarer.api.Global;
@@ -11,11 +10,18 @@ import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.rulecmd.BaseCommandPlugin;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Misc.Token;
+import data.scripts.SotfModPlugin;
+import data.scripts.campaign.customstart.SotfChildOfTheLakeCampaignVFX;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.utils.SotfMisc;
+import org.dark.shaders.util.ShaderLib;
 
 import java.util.List;
 import java.util.Map;
+
+/**
+ * Dreaming Gestalt rulecommands
+ */
 
 public class SotfReverieCMD extends BaseCommandPlugin {
 
@@ -39,15 +45,23 @@ public class SotfReverieCMD extends BaseCommandPlugin {
         TextPanelAPI text = dialog.getTextPanel();
 
         switch (cmd) {
+            case "fadeInCOTLVFX":
+                if (SotfModPlugin.GLIB) {
+                    if (ShaderLib.areShadersAllowed()) {
+                        SotfChildOfTheLakeCampaignVFX.fadeInWhilePaused(1f);
+                    }
+                }
+                return true;
             case "anyShuntLeft":
                 return shuntWithDefendersAvailable();
             case "addDaydreamSynthesizer":
                 Global.getSector().getCharacterData().addHullMod(SotfIDs.HULLMOD_DAYDREAM_SYNTHESIZER);
                 text.setFontSmallInsignia();
                 text.addParagraph("Unlocked hullmod: Daydream Synthesizer", Misc.getPositiveHighlightColor());
-                text.highlightInLastPara(Misc.getHighlightColor(), "Soulbond");
-                text.addParagraph("- Duplicates the ship when combat starts (only triggers once for the entire fleet)", Misc.getHighlightColor());
-                text.addParagraph("- Mimic is a perfect copy, with Reverie as its captain", Misc.getHighlightColor());
+                text.highlightInLastPara(Misc.getHighlightColor(), "Daydream Synthesizer");
+                text.addParagraph("- Duplicates the ship when combat starts, with Reverie as its captain", Misc.getHighlightColor());
+                text.addParagraph("- Triggers twice for low-deployment-cost ships", Misc.getHighlightColor());
+                text.addParagraph("- Requires a Daydream Analyzer to install", Misc.getHighlightColor());
                 text.setFontInsignia();
                 return true;
             default:

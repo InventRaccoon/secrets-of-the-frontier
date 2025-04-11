@@ -352,7 +352,7 @@ public class SotfModPlugin extends BaseModPlugin {
             }
 
             if (!sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class) && sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
-                Global.getSector().getIntelManager().addIntel(new SotfSiriusIntel(), false);
+                sector.getIntelManager().addIntel(new SotfSiriusIntel(), false);
             }
         }
 

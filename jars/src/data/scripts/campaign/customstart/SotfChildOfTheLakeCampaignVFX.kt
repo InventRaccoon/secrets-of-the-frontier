@@ -45,6 +45,15 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.isFadeIn = false
         }
 
+        @JvmStatic
+        fun fadeInWhilePaused(durationDays: Float) {
+            var renderer = getInstance()
+            renderer.evenWhilePaused = true
+            renderer.maxDuration = durationDays
+            renderer.duration = 0f
+            renderer.isFadeIn = true
+        }
+
     }
 
     @Transient
@@ -59,6 +68,7 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
     var duration = 0f;
 
     var isFadeIn = true
+    var evenWhilePaused = false
 
     init {
 
@@ -69,7 +79,7 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
     }
 
     override fun advance(amount: Float) {
-        if (!Global.getSector().isPaused) {
+        if (!Global.getSector().isPaused || evenWhilePaused) {
             if (isFadeIn) {
                 duration += Global.getSector().clock.convertToDays(amount)
             } else {

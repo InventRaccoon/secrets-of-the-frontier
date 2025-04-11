@@ -7,15 +7,23 @@ import com.fs.starfarer.api.campaign.listeners.FleetEventListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.FullName;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.BattleCreationContext;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.SharedUnlockData;
 import com.fs.starfarer.api.impl.SimulatorPluginImpl;
+import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
+import com.fs.starfarer.api.impl.campaign.FleetEncounterContext;
+import com.fs.starfarer.api.impl.campaign.FleetInteractionDialogPluginImpl;
+import com.fs.starfarer.api.impl.campaign.RuleBasedInteractionDialogPluginImpl;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.missions.academy.GAProjectZiggurat;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
+import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
+import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantSeededFleetManager;
+import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -130,7 +138,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_HOSTILE, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_NO_REP_IMPACT, true);
-        fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true);
+        //fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_ALWAYS_PURSUE, true);
         fleet.getMemoryWithoutUpdate().set("$sotf_haunted_felFleet", true);
 
@@ -238,6 +246,44 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         }
         member.setCaptain(captain);
         fleetData.addFleetMember(member);
+    }
+
+    public static class SotfFelFIDConfigGen implements FleetInteractionDialogPluginImpl.FIDConfigGen {
+        public FleetInteractionDialogPluginImpl.FIDConfig createConfig() {
+            FleetInteractionDialogPluginImpl.FIDConfig config = new FleetInteractionDialogPluginImpl.FIDConfig();
+
+//			config.alwaysAttackVsAttack = true;
+//			config.leaveAlwaysAvailable = true;
+            config.showTransponderStatus = false;
+            config.showEngageText = false;
+            config.alwaysPursue = true;
+            config.dismissOnLeave = false;
+            config.impactsAllyReputation = false;
+            config.impactsEnemyReputation = false;
+            //config.lootCredits = false;
+            config.withSalvage = false;
+            //config.showVictoryText = false;
+            config.printXPToDialog = true;
+
+            config.noSalvageLeaveOptionText = "Continue";
+//			config.postLootLeaveOptionText = "Continue";
+//			config.postLootLeaveHasShortcut = false;
+
+            config.delegate = new FleetInteractionDialogPluginImpl.BaseFIDDelegate() {
+                public void postPlayerSalvageGeneration(InteractionDialogAPI dialog, FleetEncounterContext context, CargoAPI salvage) {
+                    new RemnantSeededFleetManager.RemnantFleetInteractionConfigGen().createConfig().delegate.
+                            postPlayerSalvageGeneration(dialog, context, salvage);
+                }
+
+                public void battleContextCreated(InteractionDialogAPI dialog, BattleCreationContext bcc) {
+                    bcc.aiRetreatAllowed = false;
+                    bcc.objectivesAllowed = false;
+                    bcc.fightToTheLast = true;
+                    bcc.enemyDeployAll = true;
+                }
+            };
+            return config;
+        }
     }
 
     public void reportBattleOccurred(CampaignFleetAPI fleet, CampaignFleetAPI primaryWinner, BattleAPI battle) {

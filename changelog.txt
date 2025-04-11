@@ -29,6 +29,7 @@ X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Fixed Sierra's core from A Promise appearing in codex
 - Fixed crash that could happen with Blithe/Wendigo/Seraph fleets from other mods adding moduled capital ships
 
+- Battle objectives csv now has a "flag" column (flag must be set in global sector memory for objective to spawn) and "notFlag" column (flag must not be set for objective to spawn)
 X Can no longer build orbital habitats in the Abyss
 
 Version 0.14.5b:

@@ -881,6 +881,14 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 			boolean should_add_objective = true;
 
 			try {
+				if (row.getString("id").isEmpty()) {
+					continue;
+				}
+			} catch (JSONException ex) {
+				continue;
+			}
+
+			try {
 				if (row.getString("hyperspace").equals("true")) {
 					if (!loc.isHyperspace()) {
 						should_add_objective = false;
@@ -930,13 +938,29 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 			}
 
 			try {
-				int minFP = row.getInt("minFP");
-					if (fpBoth < (maxFPForObj + minFP)) {
-						should_add_objective = false;
-					}
-				} catch (JSONException ex) {
-					log.info("no minFP for objective ID " + row.getString("id"));
+				if (!Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("flag"))) {
+					should_add_objective = false;
 				}
+			} catch (JSONException ex) {
+				log.info("no memory flag check for objective ID " + row.getString("id"));
+			}
+
+			try {
+				if (Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("not_flag"))) {
+					should_add_objective = false;
+				}
+			} catch (JSONException ex) {
+				log.info("no memory flag anti-check for objective ID " + row.getString("id"));
+			}
+
+			try {
+				int minFP = row.getInt("minFP");
+				if (fpBoth < (maxFPForObj + minFP)) {
+					should_add_objective = false;
+				}
+			} catch (JSONException ex) {
+				log.info("no minFP for objective ID " + row.getString("id"));
+			}
 
 			try {
 				int maxFP = row.getInt("maxFP");

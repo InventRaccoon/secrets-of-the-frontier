@@ -15,6 +15,7 @@ import data.scripts.campaign.abilities.SotfCourserProtocolAbility;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.campaign.intel.misc.SotfDustkeeperHatred;
+import data.scripts.campaign.intel.misc.SotfSiriusIntel;
 import data.scripts.campaign.intel.quests.SotfWaywardStarIntel;
 import data.scripts.campaign.missions.hallowhall.SotfHFHDevFactor;
 import data.scripts.campaign.missions.hallowhall.SotfHFHInadMissionCompletedFactor;
@@ -129,6 +130,9 @@ public class SotfDev implements BaseCommand {
 				MemoryAPI char_mem = Global.getSector().getPlayerPerson().getMemoryWithoutUpdate();
 				//char_mem.set(SotfIDs.GUILT_KEY, SotfMisc.getHauntedGuilt());
 				//Global.getSector().addScript(new SotfGenericDialogScript("sotfCOTLIntro"));
+				if (!Global.getSector().getIntelManager().hasIntelOfClass(SotfSiriusIntel.class)) {
+					Global.getSector().getIntelManager().addIntel(new SotfSiriusIntel(), false);
+				}
 				Console.showMessage("Her blessings upon us...");
 				return CommandResult.SUCCESS;
 			}

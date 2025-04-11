@@ -24,6 +24,8 @@ First, second and last columns must be filled. Others are optional.
 - "hyperspace" - true, false, or left blank. If true, objective will only spawn in hyperspace. If false, objective will only spawn in star systems/nebulae. If blank, objective spawns anywhere.
 - "escape" - true, false, or left blank. If true, objective can only spawn in pursuit battles. If false, objective can only spawn in non-pursuit battles. If blank, objective spawns in both battle types.
 - "central_spawn" - true, false or left blank (defaults to false). When the battlespace generator picks out a set of objective types to spawn and locations to spawn them in, it will prioritise placing central-spawn objectives in any locations that are equidistant from each fleet*. Use for objectives that are especially powerful or function best near the action.
+- "flag" - if global memory does NOT contain this memory flag, objective will not spawn. Do NOT prepend $ in the csv
+- "not_flag" - if global memory DOES contain this memory flag, objective will not spawn. Do NOT prepend $ in the csv
 - "minFP" - if player FP + enemy FP < maxNoObjectiveBattleSize (100) + this, objective will not spawn
 - "maxFP" - if player FP + enemy FP > maxNoObjectiveBattleSize (100) + this, objective will not spawn
 - "weight" is weight assigned in the random picker. Vanilla objectives are assumed to have a weight of 1. REQUIRED.

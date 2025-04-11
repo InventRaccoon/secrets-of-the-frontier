@@ -76,6 +76,11 @@
 		"AICoreValueMult":1.5,
 		"AICoreRepMult":1,
 		"buysSurveyData":true,
+		"simulatorData":{
+			"showInSimulator":true,
+			"standardAICores":false,
+			"includeCivShipsWithFaction":true,
+		},
 	},
 	"variantOverrides":{
 		

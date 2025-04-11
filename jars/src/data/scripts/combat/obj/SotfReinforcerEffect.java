@@ -35,7 +35,7 @@ import static data.scripts.campaign.ids.SotfIDs.STAT_PROXY_REINFORCEMENTS;
 
 public class SotfReinforcerEffect extends BaseBattleObjectiveEffect {
 
-	public static final Map<String, String> OBJ_TO_FACTION_MAP = new HashMap<>();
+	public static Map<String, String> OBJ_TO_FACTION_MAP = new HashMap<>();
 	static {
 		OBJ_TO_FACTION_MAP.put(SotfIDs.OBJ_REINFORCER, Factions.DERELICT);
 		OBJ_TO_FACTION_MAP.put(SotfIDs.OBJ_REINFORCER_REM, Factions.REMNANTS);
@@ -489,7 +489,7 @@ public class SotfReinforcerEffect extends BaseBattleObjectiveEffect {
 		return faction;
 	}
 
-	private String pickShip() {
+	protected String pickShip() {
 		FactionAPI faction = pickFaction();
 
 		WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
@@ -504,7 +504,7 @@ public class SotfReinforcerEffect extends BaseBattleObjectiveEffect {
 		return post.pick();
 	}
 
-	private String pickDestroyer() {
+	protected String pickDestroyer() {
 		FactionAPI faction = pickFaction();
 
 		WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();

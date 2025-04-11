@@ -361,7 +361,7 @@ public class SotfOmegaReinforcerEffect extends BaseBattleObjectiveEffect {
 		return faction;
 	}
 
-	private String pickShip() {
+	protected String pickShip() {
 		WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
 		post.add("shard_left_Armorbreaker", 2f);
 		post.add("shard_left_Attack", 0.5f);

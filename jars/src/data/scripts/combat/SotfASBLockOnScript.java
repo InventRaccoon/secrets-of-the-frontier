@@ -165,7 +165,7 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             drone.blockCommandForOneFrame(ShipCommand.TOGGLE_AUTOFIRE);
             drone.blockCommandForOneFrame(ShipCommand.TURN_RIGHT);
             // lidar lasers only have 1 range - increase that so they reach the target
-            drone.getMutableStats().getBeamWeaponRangeBonus().modifyFlat(p.key, Misc.getDistance(drone.getLocation(), p.target.getLocation()) - 1f);
+            drone.getMutableStats().getBeamWeaponRangeBonus().modifyFlat(p.key, Misc.getDistance(drone.getLocation(), p.target.getLocation()) + 50f);
             // need to use the accurate method, otherwise beam is shaky/imprecise
             drone.setFacing(Misc.getAngleInDegreesStrict(drone.getLocation(), p.target.getLocation()));
             // by default, use a pulsing laser until 50% and then switch to a constant one

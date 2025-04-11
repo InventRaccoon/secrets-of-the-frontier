@@ -4989,7 +4989,7 @@ sotfHFinaleSacrificeSecond,DialogOptionSelected,$option == sotfHFinale_sacrifice
 For a moment, it seems like Ops thinks you're playing some kind of joke on them, and your technology officer is nervously laughing, until the gravity of the situation dawns on them all.
 
 A round of ayes, and your second swears to lead the fleet on like you were still in charge. They agree to do whatever they can to continue your legacy. You think Tech might be crying.","sotfHFinale_sacrificeBack:""Good luck, all of you."" (cut comms)",
-sotfHFinaleSacrificeFarewells,DialogOptionSelected,$option == sotfHFinale_sacrificeFarewells,"$sotf_talkedToCrews = true
+sotfHFinaleSacrificeFarewells,DialogOptionSelected,$option == sotfHFinale_sacrificeFarewells,"$sotf_talkedToCrew = true
 FireAll sotfHFinalePreSacrificeOpts","You record a voice message addressed to the crews of your fleet, expressing your thanks for their service and loyalty, and wishing them fortune wherever the spacer's life takes them without you.
 
 You send it off, and are soon flooded with messages and comms requests. As you're hitting the shutoff, Sirius looks back to you.",,
@@ -5022,7 +5022,7 @@ sotfHFinaleSacrificeReady,DialogOptionSelected,$option == sotfHFinale_sacrificeR
 You lie down in the soft cushioned medical device, and Sirius seals its cover. His voices are muffled, but you can make it out - ""We commit you to Our Lady's embrace, that you may be reforged in her image, become an instrument of Her will.""
 
 ""That you may dream eternal, that your will be everlasting."" A hiss - your vacsuit reports breathable air. You remove your helmet.",sotfHFinale_sacrificeEnd:Focus on your breathing,
-sotfHFinaleSacrificeEnd,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd,,"Trying to clear your mind, you focus on breathing, looking forward out of the pod. You close your eyes, thinking of the stars, of the memories you've had, pushing out the black fog that hunted you and shall no more.
+sotfHFinaleSacrificeEnd,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd,SotfReverieCMD fadeInCOTLVFX,"Trying to clear your mind, you focus on breathing, looking forward out of the pod. You close your eyes, thinking of the stars, of the memories you've had, pushing out the black fog that hunted you and shall no more.
 
 Something quietly slides out of the top of the pod and grips your head gently. There's a slight tingle around the back of your mind, then, something sharp but not painful.",sotfHFinale_sacrificeEnd2:Continue,
 sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,Call $global.sotf_haunted_ref unlockLotl,"Then, you can't see Sirius anymore, and there's only darkness. Then, it feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-

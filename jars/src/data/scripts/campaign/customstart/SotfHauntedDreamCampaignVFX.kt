@@ -33,6 +33,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
         fun fadeIn(durationDays: Float) {
             var renderer = getInstance()
 
+            renderer.evenWhilePaused = false
             renderer.startDelay = 0.05f
 
             renderer.maxDuration = durationDays
@@ -43,6 +44,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
         @JvmStatic
         fun fadeOut(durationDays: Float) {
             var renderer = getInstance()
+            renderer.evenWhilePaused = false
             renderer.maxDuration = durationDays
             renderer.duration = durationDays
             renderer.isFadeIn = false
@@ -55,6 +57,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
 
             //renderer.startDelay = 0.05f
 
+            renderer.evenWhilePaused = false
             renderer.maxDuration = durationDays
             //renderer.duration = 0f
             renderer.isFadeIn = true
@@ -64,9 +67,22 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
         @JvmStatic
         fun fadeOutFromCurrent(durationDays: Float) {
             var renderer = getInstance()
+            renderer.evenWhilePaused = false
             renderer.maxDuration = durationDays
             //renderer.duration = durationDays
             renderer.isFadeIn = false
+        }
+
+        @JvmStatic
+        fun fadeInWhilePaused(durationDays: Float) {
+            var renderer = getInstance()
+
+            //renderer.startDelay = 0.05f
+
+            renderer.maxDuration = durationDays
+            //renderer.duration = 0f
+            renderer.evenWhilePaused = true
+            renderer.isFadeIn = true
         }
 
     }
@@ -86,6 +102,8 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
 
     var isFadeIn = true
 
+    var evenWhilePaused = false
+
     init {
 
     }
@@ -95,7 +113,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
     }
 
     override fun advance(amount: Float) {
-        if (!Global.getSector().isPaused) {
+        if (!Global.getSector().isPaused || evenWhilePaused) {
 
             if (startDelay >= 0) {
                 startDelay -= Global.getSector().clock.convertToDays(amount)
