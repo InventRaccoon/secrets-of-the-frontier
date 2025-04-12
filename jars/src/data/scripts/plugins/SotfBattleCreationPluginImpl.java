@@ -938,7 +938,7 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 			}
 
 			try {
-				if (!Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("flag"))) {
+				if (!row.getString("flag").isBlank() && !Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("flag"))) {
 					should_add_objective = false;
 				}
 			} catch (JSONException ex) {
@@ -946,7 +946,7 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 			}
 
 			try {
-				if (Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("not_flag"))) {
+				if (!row.getString("not_flag").isBlank() && Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("not_flag"))) {
 					should_add_objective = false;
 				}
 			} catch (JSONException ex) {

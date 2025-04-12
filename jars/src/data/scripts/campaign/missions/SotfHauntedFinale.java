@@ -171,7 +171,9 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         Misc.makeImportant(fleet, "$sotf_haunted");
 
         for (FleetMemberAPI curr : fleet.getFleetData().getMembersListCopy()) {
-            curr.getVariant().addPermaMod(HullMods.AUTOMATED);
+            if (!Misc.isAutomated(curr)) {
+                curr.getVariant().addPermaMod(HullMods.AUTOMATED);
+            }
             curr.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
         }
         //addFelComposition(fleetData, corePicker.pickAndRemove());

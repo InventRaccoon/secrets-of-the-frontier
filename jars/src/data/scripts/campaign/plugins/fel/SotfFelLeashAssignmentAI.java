@@ -63,11 +63,15 @@ public class SotfFelLeashAssignmentAI extends BaseAssignmentAI {
 			}
 		}
 
+		if (!Misc.getDefeatTriggers(fleet, true).contains("sotfHauntedBeatFel")) {
+			return;
+		}
+
 		boolean showVisual = false;
 		if (Global.getSector().getPlayerFleet() != null) {
 			CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
 			if (playerFleet.getContainingLocation() == fleet.getContainingLocation()) {
-				if (Misc.getDistance(fleet.getLocation(), playerFleet.getLocation()) < 2000) {
+				if (Misc.getDistance(fleet.getLocation(), playerFleet.getLocation()) < 1500) {
 					showVisual = true;
 				}
 			}
@@ -77,23 +81,6 @@ public class SotfFelLeashAssignmentAI extends BaseAssignmentAI {
 		} else {
 			SotfHauntedDreamCampaignVFX.fadeOutFromCurrent(0.5f);
 		}
-	}
-
-	
-	public static void spawnMote(SectorEntityToken from) {
-		if (!from.isInCurrentLocation()) return;
-		
-		float dur = 1f + 2f * (float) Math.random();
-		dur *= 2f;
-		float size = 3f + (float) Math.random() * 5f;
-		size *= 3f;
-		Color color = new Color(255,100,255,175);
-		
-		Vector2f loc = Misc.getPointWithinRadius(from.getLocation(), from.getRadius());
-		Vector2f vel = Misc.getUnitVectorAtDegreeAngle((float) Math.random() * 360f);
-		vel.scale(5f + (float) Math.random() * 10f);
-		Vector2f.add(vel, from.getVelocity(), vel);
-		Misc.addGlowyParticle(from.getContainingLocation(), loc, vel, size, 0.5f, dur, color);
 	}
 }
 

@@ -235,6 +235,8 @@
 			"sotf_ihb_targeter":"graphics/icons/skills/sotf_ihb_targeter.png",
 			"sotf_mimic_expiring":"graphics/icons/danger2.png",
 			"sotf_mimic_vigor":"graphics/icons/tactical/cr_tactical2.png",
+			
+			"sotf_fel_pointer":"graphics/icons/empty_fleet.png",
 		}
 	},
 	

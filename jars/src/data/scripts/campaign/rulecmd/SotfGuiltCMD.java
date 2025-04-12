@@ -17,6 +17,7 @@ import com.fs.starfarer.api.impl.campaign.rulecmd.BaseCommandPlugin;
 import com.fs.starfarer.api.impl.campaign.rulecmd.FireBest;
 import com.fs.starfarer.api.impl.campaign.rulecmd.RemoveShip;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.utils.SotfMisc;
@@ -78,6 +79,9 @@ public class SotfGuiltCMD extends BaseCommandPlugin
                 dialog.getInteractionTarget().getMemoryWithoutUpdate().set(FleetInteractionDialogPluginImpl.DO_NOT_AUTO_SHOW_FC_PORTRAIT, true, 0f);
                 dialog.getVisualPanel().showPersonInfo(SotfPeople.getPerson(SotfPeople.FEL), false, false);
                 dialog.getVisualPanel().hideRankNamePost();
+                return true;
+            case "fadeOutFelVFX":
+                SotfHauntedDreamCampaignVFX.fadeOutFromCurrent(1f);
                 return true;
             default:
                 return true;

@@ -9,6 +9,7 @@ import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetGoal;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
@@ -29,12 +30,17 @@ import data.scripts.campaign.skills.SotfLeviathansBane;
 import data.scripts.campaign.skills.SotfATrickstersCalling;
 import data.scripts.combat.SotfNeutrinoLockVisualScript;
 import data.scripts.utils.SotfMisc;
+import org.lazywizard.lazylib.MathUtils;
+import org.lazywizard.lazylib.ui.FontException;
+import org.lazywizard.lazylib.ui.LazyFont;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static org.lwjgl.opengl.GL11.GL_ONE;
 
 /**
  *	BOUND BY VENGEANCE, BOUND TO SUFFER TOGETHER
@@ -145,8 +151,153 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             int numFelInvasions = 0;
             String[] messageArray = new String[] {"",""};
 
+            protected float fadeIn = 0f;
+            protected float fadeOut = 1f;
+            protected float fadeBounce = 0f;
+            protected boolean bounceUp = true;
+
+            protected SpriteAPI iconSprite = Global.getSettings().getSprite("ui", "sotf_fel_pointer");
+
+            private static LazyFont.DrawableString TODRAW14;
+            private static LazyFont.DrawableString TODRAW10;
+
+            public String threatDetected;
+            public String skillsText;
+
+            public void init(CombatEngineAPI engine) {
+                try {
+                    LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
+                    TODRAW14 = fontdraw.createText();
+                    TODRAW14.setBlendSrc(GL_ONE);
+
+                    fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
+                    TODRAW10 = fontdraw.createText();
+                    TODRAW10.setBlendSrc(GL_ONE);
+
+                } catch (FontException ignored) {
+                }
+
+//                jitter.setUseCircularJitter(true);
+//                jitter.setSetSeedOnRender(false);
+                iconSprite.setSize(35f, 30f);
+                iconSprite.setColor(Misc.setAlpha(Misc.getNegativeHighlightColor(), 155));
+
+                PersonAPI fel = SotfPeople.getPerson(SotfPeople.FEL);
+                skillsText = "";
+
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_HATREDBEYONDDEATH)) {
+                    skillsText += "\nOFF - HATRED BEYOND DEATH - UNDYING RAGE";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_LEVIATHANSBANE)) {
+                    skillsText += "\nOFF - LEVIATHAN'S BANE - ANTI-CAPITAL CANNON";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_JUBILANTSIREN)) {
+                    skillsText += "\nOFF - JUBILANT TECH-SIREN - SHIP/FIGHTER HACKER";
+                }
+
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_ATRICKSTERSCALLING)) {
+                    skillsText += "\nHYB - A TRICKSTER'S CALLING - MISSILE THIEF";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_DEARDOTTY)) {
+                    skillsText += "\nHYB - DEAR DOTTY - ESCORT FIGMENT";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_GROVETENDER)) {
+                    skillsText += "\nHYB - WISPERING GROVETENDER - WISP SUMMONER";
+                }
+
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_HELLIONSHELLHIDE)) {
+                    skillsText += "\nDEF - HELLION'S HELLHIDE - SKINSHIELD";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_INSACRIFICEMEANING)) {
+                    skillsText += "\nDEF - IN SACRIFICE, MEANING - FLUX TRANSFER";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_MANTLEOFTHORNS)) {
+                    skillsText += "\nDEF - MANTLE OF THORNS - VENGEFUL SHIELDS";
+                }
+
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_ELEGYOFOPIS)) {
+                    skillsText += "\nSUP - ELEGY OF OPIS - UNDYING AURA";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_HANDSOFTHEDROWNED)) {
+                    skillsText += "\nSUP - HANDS OF THE DROWNED - GRAVITIC MINES";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_REALITYBREAKER)) {
+                    skillsText += "\nERROR: description(\"reality_breaker\") not found";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_PERFECTSTORM)) {
+                    skillsText += "\nSUP - THE PERFECT STORM - PERIODIC OVERLOAD";
+                }
+            }
+
+            public void renderInUICoords(ViewportAPI viewport) {
+                CombatEngineAPI engine = Global.getCombatEngine();
+                if (!didInitCallout) return;
+                if (ship == null) return;
+                if (engine.getPlayerShip() == null) return;
+                ShipAPI player = engine.getPlayerShip();
+
+                float angle = Misc.getAngleInDegrees(player.getLocation(), ship.getLocation());
+                iconSprite.setAlphaMult(fadeIn * (0.5f + fadeOut * 0.5f));
+                iconSprite.setAngle(angle - 90f);
+                Vector2f pointLoc = MathUtils.getPointOnCircumference(player.getLocation(), player.getShieldRadiusEvenIfNoShield() * 1.2f + 120f, angle);
+                iconSprite.renderAtCenter(viewport.convertWorldXtoScreenX(pointLoc.x), viewport.convertWorldYtoScreenY(pointLoc.y));
+
+                LazyFont.DrawableString toUse = TODRAW14;
+                if (toUse != null) {
+                    float glitchChance = 0.005f;
+//                    toUse.setFontSize(20);
+                    int alpha = Math.round(255 * fadeIn * fadeOut * (1f - (fadeBounce * 0.3f)));
+
+                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.setText(SotfMisc.glitchify(threatDetected, glitchChance));
+                    toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+                    //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+                    toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x), viewport.convertWorldYtoScreenY(player.getLocation().y + player.getShieldRadiusEvenIfNoShield() * 1.25f));
+                    //toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
+
+                    String text = SotfMisc.glitchify("ASSESSING TRAITS:" + skillsText, glitchChance);
+                    //text += ":" + SotfMisc.glitchify(skillsText, glitchChance);
+                    toUse.setText(text);
+                    toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
+                    toUse.setAlignment(LazyFont.TextAlignment.LEFT);
+                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x + player.getShieldRadiusEvenIfNoShield() * 1.25f), viewport.convertWorldYtoScreenY(player.getLocation().y));
+
+                    text = SotfMisc.glitchify("HOST SHIP:\n" + ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
+                    //text += ":\n" + SotfMisc.glitchify(ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
+                    toUse.setText(text);
+                    toUse.setAnchor(LazyFont.TextAnchor.CENTER_RIGHT);
+                    toUse.setAlignment(LazyFont.TextAlignment.RIGHT);
+                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x - player.getShieldRadiusEvenIfNoShield() * 1.25f), viewport.convertWorldYtoScreenY(player.getLocation().y));
+                }
+            }
+
             @Override
             public void advance(float amount, List<InputEventAPI> events) {
+                if (fadeIn <= 1f) fadeIn += amount;
+                if (fadeIn > 1f) fadeIn = 1f;
+
+                if (fadeIn >= 1f) {
+                    if (bounceUp) {
+                        fadeBounce += amount;
+                        if (fadeBounce > 1f) {
+                            bounceUp = false;
+                        }
+                    } else {
+                        fadeBounce -= amount;
+                        if (fadeBounce < 0f) {
+                            bounceUp = true;
+                        }
+                    }
+                }
+
+                if (elapsed > 10f) {
+                    fadeOut -= amount;
+                    if (fadeOut < 0f) {
+                        fadeOut = 0f;
+                    }
+                }
+
                 if (Global.getCombatEngine().isPaused()) return;
 
                 if (!ship.isAlive() || ship.isRetreating()) {
@@ -178,13 +329,19 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                         infestDetectColor = new Color(215,235,255,255);
                     }
 
-                    SotfNeutrinoLockVisualScript.NeutrinoParams params = new SotfNeutrinoLockVisualScript.NeutrinoParams(engine.getPlayerShip(), ship);
-                    params.color = infestDetectColor;
-                    engine.addLayeredRenderingPlugin(new SotfNeutrinoLockVisualScript(params));
+//                    SotfNeutrinoLockVisualScript.NeutrinoParams params = new SotfNeutrinoLockVisualScript.NeutrinoParams(engine.getPlayerShip(), ship);
+//                    params.color = infestDetectColor;
+//                    engine.addLayeredRenderingPlugin(new SotfNeutrinoLockVisualScript(params));
+
+                    threatDetected = getFelUIWarning(numFelInvasions, madness);
+
+                    //engine.addLayeredRenderingPlugin(new SotfFelInvadeUIPlugin(ship, getFelUIWarning(numFelInvasions, madness)));
 
                     String infestDetectedString = getFelInfestString(numFelInvasions, madness);
                     engine.getCombatUI().addMessage(0, infestDetectColor, infestDetectedString);
                     messageArray = getFelMessageStrings(madness);
+
+                    Global.getSoundPlayer().playUISound("sotf_fel_alert", 1f, 1f);
 
                     Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_NUM_FEL_INVASIONS, numFelInvasions + 1);
                 } else if (elapsed < totalTime + 3f){
@@ -348,6 +505,22 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             spawnString = post.pick();
         }
         return spawnString;
+    }
+
+    // when infestation completes, appended to ship name
+    private String getFelUIWarning(int numInvasions, boolean madness) {
+        String warningString = "HIGH ENERGY READING DETECTED";
+        if (madness) {
+            WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
+            post.add("YOU ARE BEING HUNTED", 2f);
+            post.add("IT'S COMING FOR YOU");
+            post.add("NOWHERE TO HIDE");
+            //post.add(" and became a dark spirit", 0.03f * post.getItems().size());
+            warningString = post.pick();
+        } else if (numInvasions > 1) {
+            warningString = "NANITE THREAT DETECTED";
+        }
+        return warningString;
     }
 
     public String[] getFelMessageStrings(boolean madness) {

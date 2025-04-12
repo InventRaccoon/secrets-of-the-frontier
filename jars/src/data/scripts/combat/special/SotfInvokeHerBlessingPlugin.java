@@ -238,6 +238,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             if (otherShip.getVariant().hasHullMod(SotfIDs.PHANTASMAL_SHIP)) continue;
             // have mercy upon me...
             if (otherShip.getHullSpec().hasTag(Tags.MONSTER)) continue;
+            // let's just not, tyvm
+            if (otherShip.getHullSpec().hasTag(Tags.THREAT_FABRICATOR)) continue;
+
             //if (!canBeEchoed(otherShip)) continue;
 
             if (other.getCollisionClass() == CollisionClass.NONE) continue;

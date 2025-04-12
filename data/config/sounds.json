@@ -54,6 +54,10 @@
     [ 
         {"file":"sounds/sfx_misc/sotf_asb_locked.ogg","pitch":1,"volume":0.9},
 	],
+	"sotf_fel_alert":
+    [ 
+        {"file":"sounds/sfx_misc/sotf_fel_alert.ogg","pitch":1,"volume":0.8},
+	],
 	# DO YOU HEAR THEM CALLING
 	"sotf_ghost_playful":
 	[ 

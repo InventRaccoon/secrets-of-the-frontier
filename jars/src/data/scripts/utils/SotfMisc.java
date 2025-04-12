@@ -559,6 +559,18 @@ public class SotfMisc {
         person.getStats().refreshCharacterStatsEffects();
     }
 
+    public static String glitchify(String string, float glitchChance) {
+        StringBuilder text = new StringBuilder();
+        for (char character : string.toCharArray()) {
+            if (character != ' ' && character != '-' && character != ':' && Misc.random.nextFloat() < glitchChance) {
+                text.append("#");
+            } else {
+                text.append(character);
+            }
+        }
+        return text.toString();
+    }
+
     /**
      * Checks if a ship has a standalone blueprint or is in a (commonish) blueprint package
      * @param spec Ship hull to check
