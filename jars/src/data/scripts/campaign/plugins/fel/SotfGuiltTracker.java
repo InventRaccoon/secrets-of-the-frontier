@@ -106,7 +106,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
                     }
                 }
             });
-        } else if (player.getStats().getLevel() >= 15 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_ULT)) {
+        } else if (player.getStats().getLevel() >= 15 && !sector_mem.contains(SotfIDs.MEM_DID_HAUNTED_ULT) && false) {
             //sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedUltimate"));
 

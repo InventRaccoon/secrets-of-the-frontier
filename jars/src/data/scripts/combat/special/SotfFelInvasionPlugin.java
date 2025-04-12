@@ -72,7 +72,6 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         if (engine.isMission()) return;
         if (Global.getCurrentState() == GameState.TITLE) return;
         if (Global.getSector() == null) { return; }
-        if (engine.getFleetManager(FleetSide.PLAYER).getGoal().equals(FleetGoal.ESCAPE)) return;
         if (engine.getFleetManager(FleetSide.ENEMY).getGoal().equals(FleetGoal.ESCAPE)) return;
         if (engine.getCustomData().containsKey(SotfIDs.INVASION_NEVER_KEY)) return;
 
@@ -96,15 +95,20 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
             CampaignFleetAPI enemyFleet = engine.getContext().getOtherFleet();
 
+            if (enemyFleet == null) return;
+
+            if (enemyFleet.getMemoryWithoutUpdate().contains("$sotf_haunted_felFleet")) {
+                engine.addPlugin(new SotfFelBossFightPlugin());
+                return;
+            }
+
+            if (engine.getFleetManager(FleetSide.PLAYER).getGoal().equals(FleetGoal.ESCAPE)) return;
+
             //probInvade = 1f;
 
             // seed the RNG so reloading save doesn't reroll the invasion
-            if (enemyFleet != null) {
-                random = Misc.getRandom(Misc.getSalvageSeed(enemyFleet) *
-                        (long) enemyFleet.getFleetData().getNumMembers(), 17);
-            } else {
-                random = new Random();
-            }
+            random = Misc.getRandom(Misc.getSalvageSeed(enemyFleet) *
+                    (long) enemyFleet.getFleetData().getNumMembers(), 17);
 
             shouldInvade = random.nextFloat() < probInvade;
             if (guilt < threshold) {
@@ -155,6 +159,9 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             protected float fadeOut = 1f;
             protected float fadeBounce = 0f;
             protected boolean bounceUp = true;
+
+            protected float expireFade = 1f;
+            protected boolean expiring = false;
 
             protected SpriteAPI iconSprite = Global.getSettings().getSprite("ui", "sotf_fel_pointer");
 
@@ -237,7 +244,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 ShipAPI player = engine.getPlayerShip();
 
                 float angle = Misc.getAngleInDegrees(player.getLocation(), ship.getLocation());
-                iconSprite.setAlphaMult(fadeIn * (0.5f + fadeOut * 0.5f));
+                iconSprite.setAlphaMult(fadeIn * (0.5f + fadeOut * 0.5f) * expireFade);
                 iconSprite.setAngle(angle - 90f);
                 Vector2f pointLoc = MathUtils.getPointOnCircumference(player.getLocation(), player.getShieldRadiusEvenIfNoShield() * 1.2f + 120f, angle);
                 iconSprite.renderAtCenter(viewport.convertWorldXtoScreenX(pointLoc.x), viewport.convertWorldYtoScreenY(pointLoc.y));
@@ -274,6 +281,14 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
             @Override
             public void advance(float amount, List<InputEventAPI> events) {
+                if (expiring) {
+                    expireFade -= amount;
+                    if (expireFade < 0f) {
+                        expireFade = 0f;
+                        Global.getCombatEngine().removePlugin(this);
+                    }
+                    return;
+                }
                 if (fadeIn <= 1f) fadeIn += amount;
                 if (fadeIn > 1f) fadeIn = 1f;
 
@@ -314,7 +329,8 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                         engine.getCombatUI().addMessage(0, ship,
                                 Misc.getNegativeHighlightColor(), defeatString);
                     }
-                    Global.getCombatEngine().removePlugin(this);
+                    expiring = true;
+                    return;
                 }
 
                 elapsed += amount;
@@ -329,13 +345,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                         infestDetectColor = new Color(215,235,255,255);
                     }
 
-//                    SotfNeutrinoLockVisualScript.NeutrinoParams params = new SotfNeutrinoLockVisualScript.NeutrinoParams(engine.getPlayerShip(), ship);
-//                    params.color = infestDetectColor;
-//                    engine.addLayeredRenderingPlugin(new SotfNeutrinoLockVisualScript(params));
-
                     threatDetected = getFelUIWarning(numFelInvasions, madness);
-
-                    //engine.addLayeredRenderingPlugin(new SotfFelInvadeUIPlugin(ship, getFelUIWarning(numFelInvasions, madness)));
 
                     String infestDetectedString = getFelInfestString(numFelInvasions, madness);
                     engine.getCombatUI().addMessage(0, infestDetectColor, infestDetectedString);
