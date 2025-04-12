@@ -720,6 +720,9 @@ public class SotfPeople {
         //PersonAPI courser = getPerson(COURSER);
 
         //PersonAPI wendigo = getPerson(WENDIGO);
+
+        PersonAPI fel = getPerson(FEL);
+        fel.setFaction(SotfIDs.DREAMING_GESTALT);
     }
 
     // Sierra-Nought-Bravo

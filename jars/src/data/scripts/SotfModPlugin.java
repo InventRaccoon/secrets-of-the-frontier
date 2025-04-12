@@ -258,7 +258,7 @@ public class SotfModPlugin extends BaseModPlugin {
         SotfGen.tryAddKottersCutthroats(sector);
         // spawn Mia's Star system for Hope for Hallowhall
         SotfGen.trySpawnMia(sector);
-        //SotfGen.trySpawnLOTL(sector);
+        SotfGen.trySpawnLOTL(sector);
 
         Global.getSector().addTransientScript(new PausedTimeAdvancer());
     }
