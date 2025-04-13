@@ -1,0 +1,2 @@
+listenerId,listenerClass,priority
+SotfFelCommandListener,data.scripts.combat.special.SotfFelCommandListener,0

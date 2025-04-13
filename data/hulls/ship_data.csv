@@ -15,6 +15,7 @@ Vow,sotf_vow_rem,Cruiser,Anomalous Phase-Tech,sotf_concordshift,16,8000,900,1000
 ,sotf_wisp_watchful,Watchful Wisp,Unknown,,,1500,0,120,,-1,,,325,400,300,600,600,1,NONE,,0,0,0,,,0,0,,,,,,,,,,,,,HIDE_IN_CODEX,,,,,0,,,,
 ,sotf_wispmother,Wispmother,Unknown,recalldevice,12,5000,350,4000,,200,75,2,70,60,25,20,15,500,OMNI,,270,0.4,0.6,,,0,0,0,0,1,0,10,100000,5,15,,,12,12,"UNBOARDABLE, HIDE_IN_CODEX, CARRIER",no_dealer,,,,0,2,2,,
 ,sotf_vow_eidolon,Eidolon,Unknown,sotf_concordshift,22,8000,900,10000,,600,165,,75,55,40,25,35,2000,OMNI,,210,0.4,0.6,0.02,0.04,0,20,120,90,3,22,9,200000,5,20,,,34,34,"UNBOARDABLE, HIDE_IN_CODEX",no_dealer,,,,0.5,2,3,sotf_concordentry,
+,sotf_pact_eidolon,Eidolon,Unknown,sotf_concordshift,15,5000,450,5250,,325,120,,100,105,80,45,70,500,OMNI,,160,0.4,0.6,0.02,0.04,0,10,75,50,2,25,11,135000,5,20,420,0.25,16,16,"UNBOARDABLE, HIDE_IN_CODEX",no_dealer,,,,0.5,2,2,sotf_concordentry,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Rosethorn,sotf_rosethorn,Interdictor,Dreaming Gestalt,sotf_entropiccatalyst,9,2750,450,3750,,300,50,1,145,200,175,90,240,250,OMNI,,300,0.4,0.6,,,0,0,30,50,1,50,10,24000,8,12,300,0.25,9,9,HIDE_IN_CODEX,"no_dealer, restricted",,,,0.5,2,2,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

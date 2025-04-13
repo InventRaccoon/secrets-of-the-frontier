@@ -228,7 +228,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                     continue;
                 }
             }
-            if (otherShip.getDeployCost() == 0) continue;
+            if (otherShip.getFleetMember() != null) {
+                if (otherShip.getFleetMember().getDeploymentPointsCost() == 0) continue;
+            }
             // no recursive resurrection pls
             if (otherShip.getVariant().hasHullMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED)) continue;
             // Yeaaaahhhhh nooooooo

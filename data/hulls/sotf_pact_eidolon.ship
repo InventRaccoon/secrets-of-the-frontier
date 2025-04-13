@@ -1,0 +1,196 @@
+{
+  "hullName": "Pact",
+  "hullId": "sotf_pact_eidolon",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/sierra/sotf_pact.png",
+  "style": "SOTF_SIERRA",
+  "height": 208,
+  "width": 166,
+  "center": [83, 101],
+  "collisionRadius": 130,
+  "shieldCenter": [8, -0],
+  "shieldRadius": 120,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_eidolonsconcord",
+    "phasefield"
+  ],
+  "weaponSlots": [
+    {
+      "id": "WS 000",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [100, 28]
+    },
+    {
+      "id": "WS 001",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [55, -0]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "HARDPOINT",
+      "arc": 5,
+      "angle": 0,
+      "locations": [100, -28]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 135,
+      "angle": 15,
+      "locations": [24, 24]
+    },
+    {
+      "id": "WS 004",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 135,
+      "angle": -15,
+      "locations": [24, -24]
+    },
+    {
+      "id": "WS 005",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 60,
+      "locations": [48, 33]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -60,
+      "locations": [48, -33]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 130,
+      "locations": [-13, 35]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 200,
+      "angle": 230,
+      "locations": [-13, -34]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 4,
+      "angle": 0,
+      "locations": [71, 43]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "MISSILE",
+      "mount": "HARDPOINT",
+      "arc": 4,
+      "angle": 0,
+      "locations": [71, -43]
+    },
+    {
+      "id": "HEX 01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 45,
+      "locations": [7, 34]
+    },
+    {
+      "id": "HEX 02",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -45,
+      "locations": [7, -34]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-56, 22],
+      "length": 60,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-56, -22],
+      "length": 60,
+      "width": 16,
+      "angle": 180,
+      "contrailSize": 60,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-57, -31],
+      "length": 40,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 40,
+      "style": "SOTF_SIERRA"
+    },
+    {
+      "location": [-57, 31],
+      "length": 40,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 40,
+      "style": "SOTF_SIERRA"
+    }
+  ],
+  "bounds": [
+    -99, -2.5,
+    -57, -16.5,
+    -61, -48.5,
+    -20, -51,
+    13, -80,
+    23.5, -74,
+    15, -54.5,
+    25, -43.5,
+    56, -52.5,
+    94.5, -34.5,
+    104, -21,
+    54, -0,
+    104, 21,
+    94.5, 34.5,
+    56, 52.5,
+    25, 43.5,
+    15, 54.5,
+    23.5, 74,
+    13, 80,
+    -20, 51,
+    -61, 48.5,
+    -57, 16.5,
+    -99, 2.5
+  ]
+}

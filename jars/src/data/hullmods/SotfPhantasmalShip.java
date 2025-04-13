@@ -139,6 +139,9 @@ public class SotfPhantasmalShip extends BaseHullMod
                         Global.getCombatEngine().applyDamage(ship, ship.getLocation(), 10000000, DamageType.HIGH_EXPLOSIVE, 0, true, false, null);
                         ship.setHulk(true);
                         ship.removeListener(this);
+                        if (ship.getVariant().hasTag("sotf_remove_from_fleet")) {
+                            ship.getFleetMember().getFleetData().removeFleetMember(ship.getFleetMember());
+                        }
                         //Global.getCombatEngine().removeEntity(ship);
                     }
                 }

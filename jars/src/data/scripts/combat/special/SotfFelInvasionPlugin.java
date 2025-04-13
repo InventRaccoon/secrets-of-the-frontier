@@ -97,6 +97,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
             if (enemyFleet == null) return;
 
+            // add special plugin for Haunted finale boss fight rather than normal invasion mechanics
             if (enemyFleet.getMemoryWithoutUpdate().contains("$sotf_haunted_felFleet")) {
                 engine.addPlugin(new SotfFelBossFightPlugin());
                 return;

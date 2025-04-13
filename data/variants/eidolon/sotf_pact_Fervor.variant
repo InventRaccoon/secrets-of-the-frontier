@@ -1,0 +1,59 @@
+{
+  "variantId": "sotf_pact_eidolon_Fervor",
+  "hullId": "sotf_pact_eidolon",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 10,
+  "fluxVents": 15,
+  "quality": 0,
+  "permaMods": [],
+  "hullMods": [
+    #"sotf_fervor",
+    #"magazines"
+	"fluxbreakers",
+	"sotf_wispersong"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "heavyneedler"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 009": "reaper",
+        "WS 010": "reaper"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "riftlance",
+        "WS 002": "riftlance"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "ionpulser",
+        "WS 004": "cryoblaster"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "irpulse",
+        "WS 006": "irpulse"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

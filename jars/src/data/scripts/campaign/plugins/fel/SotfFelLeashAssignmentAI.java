@@ -50,14 +50,14 @@ public class SotfFelLeashAssignmentAI extends BaseAssignmentAI {
 		
 		if (toGuard != null) {
 			float dist = Misc.getDistance(fleet.getLocation(), toGuard.getLocation());
-			if (dist > toGuard.getRadius() + fleet.getRadius() + 1500 && 
+			if (dist > toGuard.getRadius() + fleet.getRadius() + 2000 &&
 					fleet.getAI().getCurrentAssignmentType() == FleetAssignment.ORBIT_AGGRESSIVE) {
-				fleet.addAssignmentAtStart(FleetAssignment.ORBIT_PASSIVE, toGuard, 1f, null);
+				fleet.addAssignmentAtStart(FleetAssignment.ORBIT_PASSIVE, toGuard, 0.5f, null);
 				CampaignFleetAIAPI ai = fleet.getAI();
 				if (ai instanceof ModularFleetAIAPI) {
 					// needed to interrupt an in-progress pursuit
 					ModularFleetAIAPI m = (ModularFleetAIAPI) ai;
-					m.getStrategicModule().getDoNotAttack().add(m.getTacticalModule().getTarget(), 1f);
+					m.getStrategicModule().getDoNotAttack().add(m.getTacticalModule().getTarget(), 0.5f);
 					m.getTacticalModule().setTarget(null);
 				}
 			}
