@@ -31,6 +31,8 @@ import static com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode.*;
 
 public class SotfCBProjectSiren extends BaseCustomBountyCreator {
 
+	public static String ACCEPTED_KEY = "$sotf_CBProjectSiren_accepted";
+
 	@Override
 	public float getBountyDays() {
 		return CBStats.REMNANT_PLUS_DAYS;
@@ -38,6 +40,8 @@ public class SotfCBProjectSiren extends BaseCustomBountyCreator {
 
 	@Override
 	public float getFrequency(HubMissionWithBarEvent mission, int difficulty) {
+		boolean wasEverAccepted = Global.getSector().getMemoryWithoutUpdate().getBoolean(ACCEPTED_KEY);
+		if (wasEverAccepted) return 0f;
 		if (mission.getPerson().getId().equals(SotfPeople.INADVERTENT) || mission.getPerson().getId().equals(SotfPeople.WENDIGO)) return 0;
 		// Project SIREN faction (usually TT) doesn't offer the bounty themselves
 		if (Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.MEM_BEGAN_PROJECT_SIREN) && !mission.getPerson().getFaction().getId().equals(SotfIDs.MEM_PROJECT_SIREN_FACTION)) {
@@ -48,6 +52,12 @@ public class SotfCBProjectSiren extends BaseCustomBountyCreator {
 		} else {
 			return 0;
 		}
+	}
+
+	@Override
+	public void notifyAccepted(MarketAPI createdAt, HubMissionWithBarEvent mission, CustomBountyData data) {
+		//mission.setNoAbandon();
+		Global.getSector().getMemoryWithoutUpdate().set(ACCEPTED_KEY, true);
 	}
 
 	@Override

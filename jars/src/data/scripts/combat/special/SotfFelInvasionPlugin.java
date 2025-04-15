@@ -202,6 +202,9 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_JUBILANTSIREN)) {
                     skillsText += "\nOFF - JUBILANT TECH-SIREN - SHIP/FIGHTER HACKER";
                 }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_WYRMFIRE)) {
+                    skillsText += "\nOFF - WYRMFIRE EXECUTIONER - DEM FINISHER";
+                }
 
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_ATRICKSTERSCALLING)) {
                     skillsText += "\nHYB - A TRICKSTER'S CALLING - MISSILE THIEF";
@@ -211,6 +214,9 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_GROVETENDER)) {
                     skillsText += "\nHYB - WISPERING GROVETENDER - WISP SUMMONER";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_TICKTOCK)) {
+                    skillsText += "\nHYB - TICK TOCK TICK TOCK - TIMEFLOW SURGE";
                 }
 
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_HELLIONSHELLHIDE)) {

@@ -177,10 +177,12 @@ public class SotfIDs {
 	public static String SKILL_HATREDBEYONDDEATH = "sotf_hatredbeyonddeath";
 	public static String SKILL_LEVIATHANSBANE = "sotf_leviathansbane";
 	public static String SKILL_JUBILANTSIREN = "sotf_jubilantsiren";
+	public static String SKILL_WYRMFIRE = "sotf_wyrmfire";
 	// FEL: HYBRID
 	public static String SKILL_ATRICKSTERSCALLING = "sotf_atricksterscalling";
 	public static String SKILL_DEARDOTTY = "sotf_deardotty";
 	public static String SKILL_GROVETENDER = "sotf_grovetender";
+	public static String SKILL_TICKTOCK = "sotf_ticktock";
 	// FEL: DEFENSIVE
 	public static String SKILL_HELLIONSHELLHIDE = "sotf_hadeshellhide";
 	public static String SKILL_INSACRIFICEMEANING = "sotf_insacrificemeaning";

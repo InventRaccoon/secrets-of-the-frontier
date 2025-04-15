@@ -109,9 +109,9 @@
 	"ranks":{
 		"ranks":{
 			#"spaceLieutenant":{"name":"Apparition"},
-			#"spaceCommander":{"name":"Phantom"},
-			"spaceCaptain":{"name":"Adaptive Countermeasure"},
-			"elder":{"name":"Speaker"},
+			"spaceCommander":{"name":"Ire of the Daydream"}, # meiryr
+			"spaceCaptain":{"name":"Resolve of the Daydream"}, # sirius
+			"elder":{"name":"Voice of the Daydream"}, # reverie
 		},
 		"posts":{
 			#"patrolCommander":{"name":""},

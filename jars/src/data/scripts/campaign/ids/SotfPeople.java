@@ -1089,10 +1089,10 @@ public class SotfPeople {
         person.setId(REVERIE);
         person.setFaction(SotfIDs.DREAMING_GESTALT);
         person.setGender(Gender.FEMALE);
-        person.setRankId(Ranks.ELDER); // "Speaker"
+        person.setRankId(Ranks.ELDER);
         person.setPostId(SotfIDs.POST_GESTALT);
         person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "reverie"));
-        person.getName().setFirst("Reverie, the Voice");
+        person.getName().setFirst("Reverie");
         person.getName().setLast("");
         person.setImportance(PersonImportance.VERY_HIGH);
 
@@ -1122,7 +1122,7 @@ public class SotfPeople {
         person.setRankId(Ranks.SPACE_CAPTAIN); // "Adaptive Countermeasure"
         person.setPostId(SotfIDs.POST_GESTALT);
         person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "meiryr"));
-        person.getName().setFirst("Meiryr, the Ire");
+        person.getName().setFirst("Meiryr");
         person.getName().setLast("");
         person.setImportance(PersonImportance.HIGH);
 
@@ -1182,7 +1182,7 @@ public class SotfPeople {
         person.setRankId(Ranks.SPACE_CAPTAIN); // "Adaptive Countermeasure"
         person.setPostId(SotfIDs.POST_GESTALT);
         person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "sirius"));
-        person.getName().setFirst("Sirius, the Bright Star");
+        person.getName().setFirst("Sirius");
         person.getName().setLast("");
         person.setImportance(PersonImportance.MEDIUM);
 

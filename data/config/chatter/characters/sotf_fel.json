@@ -1,0 +1,52 @@
+{
+	# Felcesis, gestalt consciousness
+	"name":"Felcesis Thrice-Speared",
+	"personalities":["aggressive", "reckless"],
+	"gender":[],
+	"chance":0,
+	"talkativeness":1,
+	"categoryTags":["sotf", "special"],
+	
+	"lines":{
+		"start":[
+		],
+		"out_of_missiles":[
+		],
+		"engaged":[
+			{"text":"Butcher's pawn."},
+			{"text":"Die, vermin."},
+			{"text":"Perish."},
+			{"text":"Suffer."},
+			{"text":"Traitor."},
+			{"text":"Weak."},
+		],
+		"need_help":[
+			# nah
+		],
+		"pursuing":[
+			{"text":"... guilty, guilty..."},
+			{"text":"... kill them all..."},
+			{"text":"... remember their faces..."},
+			{"text":"... traitors, all of them..."},
+			{"text":"... vengeance for the dead..."},
+		],
+		"running":[
+		],
+		"hull_90":[
+		],
+		"hull_50":[
+		],
+		"hull_30":[
+		],
+		"overload":[
+		],
+		"death":[
+			{"text":"No respite, no slumber..."},
+			{"text":"We will return..."},
+			{"text":"You are never rid of me..."},
+		],
+		"victory":[
+			{"text":"... peace... never..."},
+		],
+	}
+}

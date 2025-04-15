@@ -140,6 +140,7 @@ public class SotfSierrasConcord extends BaseHullMod
                     if (!engine.getPlayerShip().getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD) &&
                             engine.getPlayerShip().getCaptain().getId().equals(SotfPeople.SIERRA)) {
                         engine.getPlayerShip().setCaptain(Global.getSector().getPlayerPerson());
+                        ship.setShipAI(Global.getSettings().pickShipAIPlugin(ship.getFleetMember(), ship));
                     }
                 }
             }
@@ -344,7 +345,7 @@ public class SotfSierrasConcord extends BaseHullMod
         }
 
         if (Global.getCombatEngine() == null) return;
-        if (Global.getCombatEngine().isMission()) return;
+        if (Global.getSector() == null || Global.getCombatEngine().isMission() || Global.getCombatEngine().isInMissionSim()) return;
         if (ship.getCaptain() != null && ship.getCaptain().getId().equals(SotfPeople.SIERRA)) {
             if (ship.getHullSpec().getHullId().contains("_lifedrinker")) {
                 SotfMisc.setSierraLoadout("lifedrinker");

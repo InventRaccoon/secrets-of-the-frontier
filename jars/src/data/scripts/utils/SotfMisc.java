@@ -257,6 +257,7 @@ public class SotfMisc {
      */
     public static void setSierraLoadout(String type) {
         PersonAPI sierra = SotfPeople.getPerson(SotfPeople.SIERRA);
+        if (sierra == null) return;
         int sierra_level = sierra.getStats().getLevel();
         int oneOrTwo = 1;
         // although her loadout should generally not be ever set if using these alt mechanics

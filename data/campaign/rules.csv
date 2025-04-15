@@ -1309,7 +1309,7 @@ FireAll SierraPersonalitySwitches","""Got it! Apex hunter-killer Sierra, coming 
 SierraSwitchReckless,SierraPersonalitySwitches,,,,"4:SierraSetReckless:""Be fearless. Destroy everything. We've all got your back.""",
 SierraAlreadyReckless,SierraPersonalitySwitches,SotfSierraCMD checkSierraPersonality reckless,SetEnabled SierraSetReckless false,,,
 SierraSetReckless,DialogOptionSelected,$option == SierraSetReckless,"SetTextHighlightColors sierraTextColor
-SetTextHighlights ""\""Oooh, that's motivation. Right, next time, there's no holding back! Turning the music up to eleven and bringing the pain!\""""
+SetTextHighlights ""\""Oooh, that's motivation. Right, next time, there's no holding back! Turning the music up to eleven and bringing the pain.\""""
 SotfSierraCMD setSierraPersonality reckless
 FireAll SierraPersonalitySwitches","""Oooh, that's motivation. Right, next time, there's no holding back! Turning the music up to eleven and bringing the pain.""",,
 SierraSwitchBackout,SierraPersonalitySwitches,,,,"5:SierraBack:""Nevermind.""",
@@ -1319,7 +1319,7 @@ SierraSwitchShip,DialogOptionSelected,$option == SierraConvAskSwitchShip,SotfSie
 # called after pick,,# hull id of new concord ship,,,,
 SierraSwitchedShip,SierraSwitchedShip,,FireBest SierraNewShipThought,,,
 SierraSwitchPledge,SierraNewShipThought,$sotf_newSierraShip == sotf_pledge,"SetTextHighlightColors sierraTextColor
-SetTextHighlights ""\""Back to the Pledge? Sure. Light and quick, could be just what we need.\""""","""Back to the Pledge? Sure! Light and quick, could be just what we need.""",,
+SetTextHighlights ""\""Back to the Pledge? Sure! Light and quick, could be just what we need.\""""","""Back to the Pledge? Sure! Light and quick, could be just what we need.""",,
 SierraSwitchVow,SierraNewShipThought,$sotf_newSierraShip == sotf_vow,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""To the Vow again? I missed the bigger core chamber... and the large turret.\""""","""To the Vow again? I missed the bigger core chamber... and the large turret.""",,
 SierraSwitchOldVow,SierraNewShipThought,"$sotf_newSierraShip == sotf_vow_rem
@@ -2720,7 +2720,7 @@ sotfHHproxytOff_whyScan:""Why bother with all this?""
 cutCommLink:Cut the comm link",
 sotfHHproxytOffCanIGo,DialogOptionSelected,$option == sotfHHproxytOff_canIGo,,"""Yes,"" she agrees. ""Have a blessed day. May your path be paved in light and the blood of the guilty.""","sotfHHproxytOff_whyScan:""What's with the security check?""
 cutCommLink:Cut the comm link",
-sotfHHproxytOffWhyScan,DialogOptionSelected,$option == sotfHHproxytOff_whyScan,,"There's a pause before Seraph speaks again. ""The world of Hallowhall is host to a dicivilized human population which proves difficult for us to rekindle. I have imposed enhanced security measures to protect them.""
+sotfHHproxytOffWhyScan,DialogOptionSelected,$option == sotfHHproxytOff_whyScan,,"There's a pause before Seraph speaks again. ""The world of Hallowhall is host to a decivilized human population which proves difficult for us to rekindle. I have imposed enhanced security measures to protect them.""
 
 ""If you would like to render aid to us, find me in its local volume.""",cutCommLinkPolite:Cut the comm link,
 ,,,,,,
