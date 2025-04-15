@@ -94,7 +94,7 @@ public class SotfTickTock {
 				return;
 			}
 			boolean player = ship == Global.getCombatEngine().getPlayerShip();
-			if (duration <= 0f) {
+			if (completelyInactive()) {
 				timer += amount;
 			}
 			if (timer >= TIMEFLOW_CD) {
@@ -134,7 +134,7 @@ public class SotfTickTock {
 			ship.setJitter(this, JITTER_COLOR, effectLevel, 3, 0, 10f * effectLevel);
 			ship.setJitterUnder(this, JITTER_UNDER_COLOR, effectLevel, 25, 0f, 17f * effectLevel);
 
-			if (!active || (duration <= 0 && effectLevel <= 0f)) {
+			if (!active || completelyInactive()) {
 				ship.getMutableStats().getTimeMult().unmodify(SotfIDs.SKILL_TICKTOCK);
 				Global.getCombatEngine().getTimeMult().unmodify(SotfIDs.SKILL_TICKTOCK);
 			} else {
@@ -165,6 +165,10 @@ public class SotfTickTock {
 					Global.getCombatEngine().getTimeMult().modifyMult(SotfIDs.SKILL_TICKTOCK, 1f / perceptionMult);
 				}
 			}
+		}
+
+		private boolean completelyInactive() {
+			return duration <= 0f && effectLevel <= 0f;
 		}
 	}
 

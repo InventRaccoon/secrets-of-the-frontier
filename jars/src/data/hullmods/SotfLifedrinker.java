@@ -102,6 +102,7 @@ public class SotfLifedrinker extends SotfBaseConcordAugment {
         tooltip.addPara("Also adjusts Sierra's skill loadout to favor short-range shieldless brawling and heightened durability.", opad);
 
         PersonAPI sierra = SotfPeople.getPerson(SotfPeople.SIERRA);
+        if (sierra == null) return;
 
         float colW = width * 0.4f;
         tooltip.beginTable(Misc.getBasePlayerColor(), Misc.getDarkPlayerColor(), Misc.getBrightPlayerColor(),
@@ -138,11 +139,11 @@ public class SotfLifedrinker extends SotfBaseConcordAugment {
 //        tooltip.addPara("   - Sierra-Nought-Bravo", gray, opad);
 
         LabelAPI label = tooltip.addPara(
-                " \"Blood flows from your lashes~\n" +
+                " Blood flows from your lashes~\n" +
                 "   My tormentor, so sweet~\n" +
                 "     Salt of tears like honey~\n" +
                 "       Soak a lifedrinker's\n" +
-                "         Lips and feet~\""
+                "         Lips and feet~"
                 ,
                 SotfMisc.getSierraColor().darker(), opad);
         label.italicize();

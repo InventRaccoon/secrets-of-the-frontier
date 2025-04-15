@@ -15,12 +15,12 @@ X Added the Light of the Lake, and they who dream
 	- Skills grant unique benefits: regeneration of hull, armor and missiles, orbiting defense swarm, flux-based ballistic fire rate boost
 	- Unrelated to nanite "trait" skills, which are still 2-3 per fight
 - New nanite traits:
-	X Wyrmfire Executioner (offensive) - hitting a target below 75% hull fires a Dragonfire torpedo at them (30s cooldown per target)
+	X Wyrmfire Executioner (offensive) - missile hits against targets below 75% hull fires a Dragonfire torpedo at them, twice vs capitals (30s cooldown per target)
 	- Tick Tock Tick Tock (hybrid) - brief strong timeflow bonus every 30 seconds
 	X ??? (defensive) - gain a ring of shield drones that block incoming damage
 	X Elegy of Opis (support) - every 3rd enemy ship that dies will first enter an undying rage ala Hatred Beyond Death's first stage
 	X Revenant Echo (support) - every 4th ship that dies (allied or enemy) creates an echo. After 20s, echoes turn into a limited-lifespan mimic of the dead ship
-X Enabled nanite support traits
+X Re-enabled nanite support traits by default
 - Haunted: added an earlygame encounter with Annex-Wendigo, and a possible second, less friendly encounter
 
 X Sierra now spawns as a derelict if destroyed in combat and not recovered

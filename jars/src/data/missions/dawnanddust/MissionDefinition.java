@@ -44,7 +44,7 @@ public class MissionDefinition implements MissionDefinitionPlugin {
 		// Sierra
 		FleetMemberAPI flagship = api.addToFleet(FleetSide.PLAYER, "sotf_vow_rem_Sierras", FleetMemberType.SHIP, "Voidwitch",true);
 		PersonAPI sierra = SotfPeople.genSierra(7);
-		sierra.getStats().setSkillLevel(SotfIDs.SKILL_TICKTOCK, 2); // for testing
+		sierra.getStats().setSkillLevel(SotfIDs.SKILL_WYRMFIRE, 2); // for testing
 		flagship.setCaptain(sierra);
 		flagship.getCrewComposition().setCrew(0);
 		flagship.getRepairTracker().setCR(0.85f);

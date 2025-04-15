@@ -729,6 +729,9 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         float grovetenderWeight = 0.8f;
         grovetenderWeight += (carrierFP / totalFP) * 0.4f;
 
+        // TICK TICK TICK TOCK: pretty generically useful
+        float ticktockWeight = 1f;
+
         // HELLION'S HELLHIDE: a generally useful defensive skill
         float hellhideWeight = 0.9f;
         // ... but is especially handy on unshielded ships
@@ -788,6 +791,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         hybridPicker.add(SotfIDs.SKILL_ATRICKSTERSCALLING, tricksterWeight);
         hybridPicker.add(SotfIDs.SKILL_DEARDOTTY, dottyWeight);
         hybridPicker.add(SotfIDs.SKILL_GROVETENDER, grovetenderWeight);
+        hybridPicker.add(SotfIDs.SKILL_TICKTOCK, ticktockWeight);
 
         // DEFENSIVE
         defensivePicker.add(SotfIDs.SKILL_HELLIONSHELLHIDE, hellhideWeight);
