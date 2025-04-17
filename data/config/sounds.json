@@ -91,6 +91,12 @@
         {"file":"sounds/sfx_misc/sotf_invokeherblessing.ogg","pitch":1.25,"volume":0.9},
 	],
 	
+	# Wyrmfire Executioner trigger
+	"sotf_wyrmfire_execute":
+	[
+	{"file":"sounds/sfx_misc/sotf_wyrmfire_execute.ogg","pitch":1.2,"volume":1},
+	],
+	
 	# PERFECT STORM SKILL
 	"sotf_perfectstorm_blast":
 	[

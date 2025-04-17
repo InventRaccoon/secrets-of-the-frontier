@@ -56,7 +56,7 @@
 	#"venatorTextColor":[255,0,0,255],
 	"nearBlackTextColor":[5,5,5,75],
 	"sotfSpyglassColor":[255,50,85,255],
-	"sotfGestaltColor":[255,255,255,255],
+	"sotfDaydreamTextColor":[215,235,255,255],
 	
 	"plugins":{
 		"SotfCampaignPluginImpl":"data.scripts.campaign.plugins.SotfCampaignPluginImpl",
@@ -236,6 +236,7 @@
 			"sotf_mimic_expiring":"graphics/icons/danger2.png",
 			"sotf_mimic_vigor":"graphics/icons/tactical/cr_tactical2.png",
 			
+			"sotf_skull_icon":"graphics/icons/skills/sotf_skull.png",
 			"sotf_fel_pointer":"graphics/icons/empty_fleet.png",
 		}
 	},

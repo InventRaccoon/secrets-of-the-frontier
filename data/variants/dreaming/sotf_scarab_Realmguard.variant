@@ -1,0 +1,48 @@
+{
+  "variantId": "sotf_scarab_Realmguard",
+  "hullId": "scarab",
+  "displayName": "Realmguard",
+  "goalVariant": false,
+  "fluxCapacitors": 2,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardened_subsystems",
+    "fluxdistributor",
+    "hardenedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "amblaster"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 002": "atropos",
+        "WS 003": "atropos"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "irpulse"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 010": "sotf_lethargy"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

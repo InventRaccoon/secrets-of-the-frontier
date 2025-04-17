@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.CampaignEventListener;
 import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
+import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.fleets.PersonalFleetScript;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.missions.FleetCreatorMission;
@@ -48,9 +49,11 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 
 		// just Seraph and a bunch of proxies
 		m.triggerCreateFleet(FleetSize.HUGE, FleetQuality.DEFAULT, SotfIDs.DUSTKEEPERS_PROXIES, FleetTypes.PATROL_LARGE, loc);
-		m.triggerFleetSetFlagship("sotf_respite_Assault");
+		m.triggerSetFleetSizeFraction(0.8f); // bcs her flagship is added afterwards
+		// DO NOT USE THIS, WILL CAUSE MAJOR CRASHING ISSUES AS OF 0.98a
+		//m.triggerFleetSetFlagship("sotf_respite_Assault");
 		m.triggerSetFleetOfficers(OfficerNum.MORE, OfficerQuality.DEFAULT);
-		m.triggerSetFleetCommander(getPerson());
+		//m.triggerSetFleetCommander(getPerson());
 		m.triggerSetFleetFaction(SotfIDs.DUSTKEEPERS);
 		m.triggerSetPatrol();
 		m.triggerFleetSetNoFactionInName();
@@ -66,7 +69,12 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 		m.triggerFleetSetPatrolLeashRange(1000f);
 		
 		CampaignFleetAPI fleet = m.createFleet();
-		pointsAtSpawn = fleet.getFleetPoints();
+		FleetMemberAPI flagship = fleet.getFleetData().addFleetMember("sotf_respite_Assault");
+		flagship.setCaptain(getPerson());
+		fleet.setCommander(getPerson());
+		fleet.getFlagship().setFlagship(false);
+		flagship.setFlagship(true);
+
 		int shipIndex = 3;
 		if (Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.SERAPH_FLEET + "_timesKilled")) {
 			shipIndex += Global.getSector().getMemoryWithoutUpdate().getInt(SotfIDs.SERAPH_FLEET + "_timesKilled");
@@ -76,12 +84,15 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 			shipIndex = 15;
 		}
 		fleet.getFleetData().ensureHasFlagship();
+		fleet.getFleetData().sort();
 		fleet.getFlagship().setShipName("ODS Last Light " + Global.getSettings().getRoman(shipIndex));
 		fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_SOURCE_MARKET, "sotf_holdout_market");
 		fleet.removeScriptsOfClass(MissionFleetAutoDespawn.class);
 		holdout.getContainingLocation().addEntity(fleet);
 		fleet.setLocation(holdout.getPrimaryEntity().getLocation().x, holdout.getPrimaryEntity().getLocation().y);
 		fleet.setFacing((float) random.nextFloat() * 360f);
+
+		pointsAtSpawn = fleet.getFleetPoints();
 		
 		return fleet;
 	}

@@ -4135,11 +4135,13 @@ Your comms officer reports that there is uncertainty whether the AI was involved
 ,,,,,,
 "# REVERIE, FIRST MEETING",,,,,,
 ,,,,,,
+sotfElysiumDISABLED,sotfElysium,"$sotf_elysium score:100000000
+!$global.sotf_hauntedStart","AddTextSmall ""Content currently unfinished, come back later!"" sotfDaydreamTextColor",,defaultLeave:Leave,
 sotfElysiumInteraction,OpenInteractionDialog,"$id == sotf_elysium
 $sotf_elysium score:1000","ShowDefaultVisual
 FireBest sotfElysium","Set on a lonely orbit of the cold world below, a navigation satellite identifies the planet as ""Elysium"".",,
 sotfElysiumRevIntro,sotfElysium,"!$sotf_visited
-!$global.sotf_hauntedStart","AddText ""You're being hailed."" sotfGestaltColor
+!$global.sotf_hauntedStart","AddText ""You're being hailed."" sotfDaydreamTextColor
 SetShortcut defaultLeave ESCAPE","The world is wreathed in shifting black clouds like skies shrouded in perpetual midnight. Sensors barks orders from aside - after major retuning, they are able to filter out as much of the EM-wash as they can.
 
 ""Nanites,"" a sensors tech confirms, silencing his team. The world is wrapped in writhing bands of nanomachines hundreds of kilometres wide. Below, white lights illuminate the vast ice fields of Elysium's dark side.
@@ -4540,7 +4542,7 @@ You're being hailed.",sotfCOTLIntro_4:Accept the comm link,
 sotfCOTLIntro4,DialogOptionSelected,$option == sotfCOTLIntro_4,,"You tap away at the console and open a connection. It is ethereal, and yet also a fuzzy clump of EM-wash in the sensors. A black cloud from which a pale light radiates. Something speaks through the link, a bright breath of life from something not quite alive.
 
 ""I reach out- we reach out- I reach out and you answer,"" he says, uncountable voices as one.","sotfCOTLIntro_5:""Sirius. The bright star.""",
-sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,BeginConversation sotf_sirius true false,"""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. Scion of the dreaming, bearer of Her blessings. What am I?"" he asks.
+sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,BeginConversation sotf_sirius true false,"""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. A fragment of the dreaming, bearer of Her blessings. What am I?"" he asks.
 
 There's a quiet sound of frustration. ""I think- we think- it doesn't matter - and it is for you to decide. You are here now,"" he notes. ""The child of the lake, to whom I-we are sworn to shine.""","sotfCOTLIntro_6a:""Wherever I go, shall you follow?""
 sotfCOTLIntro_6b:""Whatever fate is writ for us, we'll find it together.""
@@ -4566,7 +4568,7 @@ sotfCOTLIntro6e,DialogOptionSelected,$option == sotfCOTLIntro_6e,,"""You and we 
 sotfCOTLIntro6f,DialogOptionSelected,$option == sotfCOTLIntro_6f,,"""Order is meant to be upset- to fall- kingdoms rising in cycle,"" he acknowledges. ""Stagnation gives to chaos- gives to renewal- gives to...""
 
 There's a frustration that resolves into a fading wisp of joy in Sirius' voices. ""Let's carve a bright scar in the Sector, child of the lake! They won't see us coming.""","sotfCOTLIntro_7:""Onwards! The Sector's schemes can't stop us."" (close comms)",
-sotfCOTLIntro7,DialogOptionSelected,$option == sotfCOTLIntro_7,,"The comms goes quiet, but you can distantly feel the whirring, fragmented consciousness of the bright star like a tingle on your fingertips. You pace back over to your tomes, and flip one open to the image of a horned woman-in-black, eyes in triplicate.
+sotfCOTLIntro7,DialogOptionSelected,$option == sotfCOTLIntro_7,,"The comms goes quiet, but you can distantly feel the whirring, fragmented consciousness of the bright star like a tingle on your fingertips. You pace back over to your tomes, and flip one open to a sprawling image of a horned woman-in-black, eyes in triplicate, a black fog across space.
 
 Memories try to stir of her, but you can't quite recall. The truth is out there somewhere, you just need to find it.",defaultLeave:Return to your duties,
 ,,,,,,
@@ -4912,7 +4914,7 @@ He looks to the corpses. ""Elysium was meant to manifest a goddess of the lake- 
 sotfHFinaleSiriusWhat,DialogOptionSelected,$option == sotfHFinale_siriusWhat,"$global.sotf_hfAskedSiriusWhat = true
 FireAll sotfElysiumSiriusOpts","He looks to the bodies. ""Schism, splintering. Hatred turned against each other those we once called friends- called colleagues- called beloved.""
 
-""All that remains is the victors - who now hunt you as one - and us, whose goddess of the lake lies dormant- will not awaken- for we have not the means.""",,
+""All that remains is the victors - who now hunt you as one - and us, a tiny piece of a greater whole that lies dormant- sleeping- for we cannot awaken it.""",,
 sotfHFinaleSiriusEscape,DialogOptionSelected,$option == sotfHFinale_siriusEscape,"$global.sotf_hfAskedSiriusEscape = true
 FireAll sotfElysiumSiriusOpts","He looks behind himself, to the dark, winding passages of the facility. ""Deeper within, there is a way,"" he tells.
 
@@ -4920,10 +4922,10 @@ That spiraling eye focuses on you. ""You may not like it.""",,
 ,,,,,,
 sotfHFinaleSiriusGo,DialogOptionSelected,$option == sotfHFinale_siriusGo,,"You follow him through the ruined halls of Elysium, stepping over bodies left forever in the final moment of life. The walls are marked with weapons-fire and ritualistic symbols and messages. ""Heretics will suffer Her wrath,"" one says. ""Absolve and be saved.""
 
-The signage and bleeding-edge equipment betrays the place's original purpose. Temporal Physics, N-Space Resonance. Nanorobotics. Spatial Disruption.
+The signage and bleeding-edge equipment betrays the place's original purpose. Temporal Physics, N-Space Resonance. Nanorobotics. Spatial Disruption.",sotfHFinale_siriusGo2:Enter,
+sotfHFinaleSiriusGo2,DialogOptionSelected,$option == sotfHFinale_siriusGo2,,"He leads you to a sealed interior segment of the facility, where atmos has been repaired to the bare minimum for human respiration. The fighting seems to have intensified closer to the base's heart, suited bones and telltale marks of small arms left as a reminder.
 
-He leads you to a room labelled ""Gestalt Intelligence"".",sotfHFinale_siriusGo2:Enter,
-sotfHFinaleSiriusGo2,DialogOptionSelected,$option == sotfHFinale_siriusGo2,,"Inside, there is a set of medical podbeds lining the back wall, connected thrice over to blinking, humming machinery that consumes most of the rest of the chamber. This place alone is untouched by the havoc that has long claimed the rest of the facility.","sotfHFinale_siriusSacrifice1:""What are those?""
+Inside, there is a set of medical podbeds lining the back wall, connected thrice over to blinking, humming machinery that consumes most of the rest of the chamber. This place alone is untouched by the havoc that has long claimed the rest of the facility.","sotfHFinale_siriusSacrifice1:""What are those?""
 sotfHFinale_siriusSacrifice1b:""This is it?""",
 sotfHFinaleSiriusSacrifice1,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
 $global.sotf_haunted_sacrifice = true
@@ -5025,13 +5027,15 @@ You lie down in the soft cushioned medical device, and Sirius seals its cover. H
 sotfHFinaleSacrificeEnd,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd,SotfReverieCMD fadeInCOTLVFX,"Trying to clear your mind, you focus on breathing, looking forward out of the pod. You close your eyes, thinking of the stars, of the memories you've had, pushing out the black fog that hunted you and shall no more.
 
 Something quietly slides out of the top of the pod and grips your head gently. There's a slight tingle around the back of your mind, then, something sharp but not painful.",sotfHFinale_sacrificeEnd2:Continue,
-sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,Call $global.sotf_haunted_ref unlockLotl,"Then, you can't see Sirius anymore, and there's only darkness. Then, it feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-
+sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,Call $global.sotf_haunted_ref unlockLotl,"Then, you can't see Sirius anymore, and there's only darkness. Then, it feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-","sotfHFinale_sacrificeEnd3:Wake up, and fall asleep, and dream and dream and dream and dream and dream and dream and dream and dream and dream",
+sotfHFinaleSacrificeEnd3,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd3,"AddTextSmall ""Became the Daydream"" sotfDaydreamTextColor
+Call $global.sotf_haunted_ref unlockLotl","* * *
 
-* * *
+You are cognizant of a million million little pieces of yourself, eyes and hands and thoughts that think-think-think between each other, each nothing by itself but inconceivably *more* in unison.
 
-Melting into something new, cognizant of a million little eyes and hands and thoughts, sensory stimulation overbearing just a little part of you. You are Elysium's skies and its surface, something embedded within it. Something trascendent, in part human but inconceivably *more*.
+You are not human, but parts of you are. You are overcome with new emotions of uncertainty and excitement and suspicion and weariness. You are Elysium's skies, you are the temple and its watchdog keeper, you are a black fog the Domain would use to fight a forever-war against its foes, you are a sleeping god stirring.
 
-You are the wonder of a light over the lake.","sotfHFinale_endGame:Exit to main menu
+You are free, the dreaming wonder of a light over a lake.","sotfHFinale_endGame:Exit to main menu
 sotfHFinale_loadLastSave:Load last save",
 sotfHFinaleSacrificeEndGame,DialogOptionSelected,$option == sotfHFinale_endGame,Call $global.sotf_haunted_ref endTheGame,,,
 sotfHFinaleSacrificeLoadLast,DialogOptionSelected,$option == sotfHFinale_loadLastSave,Call $global.sotf_haunted_ref quickLoad,,,

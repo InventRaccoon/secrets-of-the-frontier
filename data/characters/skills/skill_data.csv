@@ -46,6 +46,7 @@ sotf_hadeshellhide,Hellion's Hellhide,6210,1,0,,"Nobody who gets on this ship is
 sotf_insacrificemeaning,"In Sacrifice, Meaning",6220,1,0,,"// COMMENT: everyone says there's meaning in sacrifice until it's their head on the chopping block, their neck in the gallows","[REDACTED]-Annex-[REDACTED], burnout, intercept by Lullaby-Annex-Ennervate",TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/power_grid_manipulation.png,
 sotf_mantleofthorns,Mantle of Thorns,6230,1,0,,"You understand that there is only one fate for those who commit sin upon the undeserved. Won't you remember with me? Won't our spite beget focus? 
 Won't we sing, with their voices?",a thrice-speared wraith,TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/field_modulation.png,
+sotf_scrapscreen,Salvor's Scrapscreen,6240,1,0,,,,TRUE,,,"player_only, npc_only, sotf_fel_def",graphics/icons/skills/derelict_contingent.png,
 # FEL: SUPPORT,,,,,,,,,,,,,
 sotf_elegyofopis,Elegy of Opis,6310,1,0,,Each I take - two are silenced. One more who needn't wail for the peace that the Lion stole from them - one more voice from the chorus that sings Opis' tormentous elegy.,"callsign ""Destreza"", interview with Umbran ""Torn Banner"" raider force",TRUE,,,"player_only, npc_only, sotf_fel_sup",graphics/icons/skills/derelict_contingent.png,
 sotf_handsofthedrowned,Hands of the Drowned,6320,1,0,,"Little fish, little fish, where do you swim? Far out to sea, far out to the rim?

@@ -483,6 +483,7 @@ public class SotfGen implements SectorGeneratorPlugin
 
     public static void trySpawnLOTL(SectorAPI sector) {
         MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        if (!sector_mem.contains(SotfIDs.MEM_HAUNTED_START)) return;
         StarSystemAPI lotl = sector.getStarSystem("sotf_lotl");
         if (lotl == null) {
             new SotfLightOfTheLake().generate(sector);

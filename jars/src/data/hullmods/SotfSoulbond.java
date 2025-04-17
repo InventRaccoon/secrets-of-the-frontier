@@ -65,9 +65,6 @@ public class SotfSoulbond extends SotfBaseConcordAugment
         Color gray = Misc.getGrayColor();
         Color sc = SotfMisc.getSierraColor();
 
-        if (Global.getSettings().getCurrentState() == GameState.TITLE) return; // not in Dawn and Dust refit
-        if (isForModSpec || ship == null) return;
-
         tooltip.addPara("An exotic spatial shunt installed into the ship's phase web, harmonized with an " +
                 "accompanying spatial anchor installed in the fleet's flagship. Activation distorts and " +
                 "collapses p-space to interdimensionally drag the shunt to the anchor, or vice versa.", opad);
@@ -83,11 +80,14 @@ public class SotfSoulbond extends SotfBaseConcordAugment
                 "and be dragged towards Sierra's ship before exiting phase nearby.", opad);
 
         tooltip.addSectionHeading("Notes", Alignment.MID, opad);
-        if (SotfMisc.isSecondInCommandEnabled()) {
-            if (SCUtils.getPlayerData().isSkillActive("sotf_dance_between_realms")) {
-                tooltip.addPara("- Does not function with imprints from Dance Between Realms; requires Sierra herself be piloting the other ship.", pad, sc, "Dance Between Realms");
+        if (Global.getSector() != null && !isForModSpec && ship != null) {
+            if (SotfMisc.isSecondInCommandEnabled()) {
+                if (SCUtils.getPlayerData().isSkillActive("sotf_dance_between_realms")) {
+                    tooltip.addPara("- Does not function with imprints from Dance Between Realms; requires Sierra herself be piloting the other ship.", pad, sc, "Dance Between Realms");
+                }
             }
         }
+
         tooltip.addPara("- Capital ships cannot be dragged with this subsystem.", opad, new Color[]{h, bad}, "Capital ships", "cannot be dragged");
         tooltip.addPara("- Cannot be used if Sierra's ship is also the flagship.", pad);
         tooltip.addPara("- On activation, Sierra's ship builds hard flux equal to %s of its base flux capacity (%s flux).", pad, h,
@@ -97,9 +97,9 @@ public class SotfSoulbond extends SotfBaseConcordAugment
 
         LabelAPI label = tooltip.addPara(
                 "   Where I go, won't you still follow?~\n" +
-                "   Into the darkness, into the hollow?~\n" +
-                "   No tides nor winds to unite us,\n" +
-                "   My soul still yearns for you~", SotfMisc.getSierraColor().darker(), opad);
+                        "   Into the darkness, into the hollow?~\n" +
+                        "   No tides nor winds to unite us,\n" +
+                        "   My soul still yearns for you~", SotfMisc.getSierraColor().darker(), opad);
         label.italicize();
         tooltip.addPara("   - Sierra-Nought-Bravo, \"Soulbond\" lyrical excerpt", gray, opad);
     }

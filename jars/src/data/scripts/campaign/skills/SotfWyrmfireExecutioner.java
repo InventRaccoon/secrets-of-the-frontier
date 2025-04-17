@@ -9,23 +9,30 @@ import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
 import com.fs.starfarer.api.combat.listeners.DamageDealtModifier;
-import com.fs.starfarer.api.combat.listeners.DamageListener;
+import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
+import com.fs.starfarer.api.impl.combat.RiftCascadeEffect;
+import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
 import com.fs.starfarer.api.impl.combat.dem.DEMScript;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
+import com.fs.starfarer.api.util.IntervalUtil;
+import com.fs.starfarer.api.util.JitterUtil;
 import com.fs.starfarer.api.util.Misc;
-import data.scripts.campaign.ids.SotfIDs;
-import data.scripts.combat.SotfRingTimerVisualScript;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.Iterator;
 
 public class SotfWyrmfireExecutioner {
 
 	// time between timeflow activations
 	public static float EXECUTE_THRESHOLD = 0.75f;
 	public static float EXECUTE_CD = 30f;
+
+	public static Color COLOR = new Color(255,85,110);
+	public static Color COLOR_2 = new Color(255,110,85);
 
 	public static class TheAxeDrops extends BaseSkillEffectDescription implements AfterShipCreationSkillEffect {
 
@@ -72,11 +79,49 @@ public class SotfWyrmfireExecutioner {
 		protected float effectLevel = 0f;
 		protected float duration = 0f;
 		protected boolean active = false;
+		IntervalUtil interval = new IntervalUtil(0.075f, 0.125f);
+
 		public SotfTheAxeDropsListener(ShipAPI ship) {
 			this.ship = ship;
 		}
 
 		public void advance(float amount) {
+			ArrayList<ShipAPI> executables = findExecutablesFor(ship);
+
+			interval.advance(amount / ship.getMutableStats().getTimeMult().getModifiedValue());
+			if (interval.intervalElapsed()) {
+				CombatEngineAPI engine = Global.getCombatEngine();
+
+				Color c = RiftLanceEffect.getColorForDarkening(COLOR_2);
+				c = Misc.setAlpha(c, 75);
+				float baseDuration = 2f;
+				for (ShipAPI toSmoke : executables) {
+					Vector2f vel = new Vector2f(toSmoke.getVelocity());
+					float size = toSmoke.getCollisionRadius() * 0.2f;
+					for (int i = 0; i < 4; i++) {
+						Vector2f point = new Vector2f(toSmoke.getShieldCenterEvenIfNoShield());
+						point = Misc.getPointWithinRadiusUniform(point, toSmoke.getCollisionRadius() * 0.1f, Misc.random);
+						float dur = baseDuration + baseDuration * (float) Math.random();
+						float nSize = size;
+						Vector2f pt = Misc.getPointWithinRadius(point, nSize * 0.5f);
+						Vector2f v = Misc.getUnitVectorAtDegreeAngle((float) Math.random() * 360f);
+						v.scale(nSize + nSize * (float) Math.random() * 0.5f);
+						v.scale(0.2f);
+						Vector2f.add(vel, v, v);
+
+						float maxSpeed = nSize * 1.5f * 0.2f;
+						float minSpeed = nSize * 1f * 0.2f;
+						float overMin = v.length() - minSpeed;
+						if (overMin > 0) {
+							float durMult = 1f - overMin / (maxSpeed - minSpeed);
+							if (durMult < 0.1f) durMult = 0.1f;
+							dur *= 0.5f + 0.5f * durMult;
+						}
+						engine.addNegativeNebulaParticle(pt, v, nSize, 2f,
+								0.5f / dur, 0f, dur, c);
+					}
+				}
+			}
 		}
 
 		@Override
@@ -90,7 +135,7 @@ public class SotfWyrmfireExecutioner {
             if (targetShip.hasListenerOfClass(SotfTheAxeDropsCDListener.class)) {
 				return null;
 			}
-			if (targetShip.isFighter() || targetShip.isHulk() || targetShip.getOwner() == ship.getOwner()) {
+			if (targetShip.isFighter() || targetShip.isHulk() || targetShip.getOwner() == ship.getOwner() || shieldHit) {
 				return null;
 			}
 			if ((target.getHitpoints() / target.getMaxHitpoints()) <= EXECUTE_THRESHOLD) {
@@ -110,9 +155,40 @@ public class SotfWyrmfireExecutioner {
 					Global.getCombatEngine().addPlugin(script);
 				}
 				targetShip.addListener(new SotfTheAxeDropsCDListener(targetShip));
-				targetShip.getFluxTracker().showOverloadFloatyIfNeeded("Wyrmfire Execute!", new Color(255,85,110), 10f, true);
+				targetShip.getFluxTracker().showOverloadFloatyIfNeeded("Wyrmfire Execute!", COLOR, 10f, true);
+				Global.getSoundPlayer().playSound("sotf_wyrmfire_execute", 1f, 1f, targetShip.getLocation(), targetShip.getVelocity());
+				Global.getCombatEngine().addLayeredRenderingPlugin(new SotfFadingSkullVisual(targetShip));
 			}
 			return null;
+		}
+
+		// find a valid Wispersong hulk for a ship and invalidate far-away ships from future checks by that ship
+		public ArrayList<ShipAPI> findExecutablesFor(ShipAPI ship) {
+			float range = 2000f;
+			Vector2f from = ship.getLocation();
+
+			Iterator<Object> iter = Global.getCombatEngine().getAllObjectGrid().getCheckIterator(from,
+					range * 2f, range * 2f);
+			int owner = ship.getOwner();
+
+			ArrayList<ShipAPI> list = new ArrayList<>();
+
+			while (iter.hasNext()) {
+				Object o = iter.next();
+				if (!(o instanceof ShipAPI)) continue;
+				ShipAPI other = (ShipAPI) o;
+				if (other.getOwner() == owner) continue;
+
+				ShipAPI otherShip = (ShipAPI) other;
+				if (otherShip.isHulk()) continue;
+				if (otherShip.isPiece()) continue;
+				if (otherShip.hasListenerOfClass(SotfTheAxeDropsCDListener.class)) continue;
+				if (otherShip.getHitpoints() / otherShip.getMaxHitpoints() > EXECUTE_THRESHOLD) continue;
+				if (otherShip.isFighter()) continue;
+
+				list.add(otherShip);
+			}
+			return list;
 		}
 	}
 
@@ -129,6 +205,67 @@ public class SotfWyrmfireExecutioner {
 				ship.removeListener(this);
 			}
 		}
+	}
+
+	public static class SotfFadingSkullVisual extends BaseCombatLayeredRenderingPlugin {
+
+		protected SpriteAPI sprite = Global.getSettings().getSprite("ui", "sotf_skull_icon");
+		public ShipAPI ship;
+		float duration = 0.5f;
+		float fade = 1f;
+		float fadeIn = 0f;
+		protected JitterUtil jitter = new JitterUtil();
+
+		public SotfFadingSkullVisual(ShipAPI ship) {
+			this.ship = ship;
+			jitter.setUseCircularJitter(true);
+			jitter.setSetSeedOnRender(false);
+			sprite.setNormalBlend();
+			sprite.setColor(COLOR_2);
+			sprite.setSize(ship.getShieldRadiusEvenIfNoShield() * 0.8f, ship.getShieldRadiusEvenIfNoShield() * 0.8f);
+		}
+
+		public float getRenderRadius() {
+			return ship.getShieldRadiusEvenIfNoShield();
+		}
+
+		@Override
+		public EnumSet<CombatEngineLayers> getActiveLayers() {
+			return EnumSet.of(CombatEngineLayers.JUST_BELOW_WIDGETS);
+		}
+
+		public void render(CombatEngineLayers layer, ViewportAPI viewport) {
+			if (layer == CombatEngineLayers.JUST_BELOW_WIDGETS) {
+				sprite.setAlphaMult(fade * fadeIn * 0.5f);
+				jitter.render(sprite, entity.getLocation().x, entity.getLocation().y, 20f - (20f * fade), 5);
+				//sprite.renderAtCenter(entity.getLocation().x, entity.getLocation().y);
+			}
+		}
+
+		public void init(CombatEntityAPI entity) {
+			super.init(entity);
+			entity.getLocation().set(ship.getShieldCenterEvenIfNoShield());
+		}
+
+		public void advance(float amount) {
+			if (duration > 0f) {
+				duration -= amount;
+			} else {
+				fade -= amount;
+			}
+			if (fadeIn < 1f) {
+				fadeIn += amount * 4f;
+				if (fadeIn > 1f) fadeIn = 1f;
+			}
+			if (fade < 0f) fade = 0f;
+			if (ship == null) return;
+			entity.getLocation().set(ship.getShieldCenterEvenIfNoShield().x, ship.getShieldCenterEvenIfNoShield().y);
+		}
+
+		public boolean isExpired() {
+			return fade <= 0f;
+		}
+
 	}
 
 }

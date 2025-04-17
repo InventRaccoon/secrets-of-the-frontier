@@ -1,0 +1,14 @@
+{
+  "variantId": "sotf_scrapdrone_Debris",
+  "hullId": "sotf_scrapdrone",
+  "displayName": "",
+  "goalVariant": false,
+  "fluxCapacitors": 0,
+  "fluxVents": 0,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [],
+  "modules": [],
+  "wings": []
+}

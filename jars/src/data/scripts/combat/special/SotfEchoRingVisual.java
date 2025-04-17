@@ -14,7 +14,6 @@ import java.util.EnumSet;
 
 public class SotfEchoRingVisual extends BaseCombatLayeredRenderingPlugin {
 
-
     protected SpriteAPI atmosphereTex;
     public SotfInvokeHerBlessingEchoScript echo;
     protected int segments;

@@ -16,6 +16,7 @@ sotf_terminator_anamnesis,drone_terminator,"no_drop, no_sell, high, codex_requir
 sotf_dotty_wing,sotf_dotty_gh,"no_drop, no_sell, high, attack_at_an_angle, hide_in_codex",3,,6,0,V,500,400,,1,INTERCEPTOR,Escort,30,100000,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 # SCRIPTED,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+sotf_scrapscreen_wing,sotf_scrapdrone_Debris,"no_drop, no_sell, restricted, hide_in_codex",0,0,,99,V,100000,300,,1,SUPPORT,Ablative Armor,99,10,,,,,,,,,,,,,
 sotf_lidardrone_wing,sotf_lidardrone_Variant,"no_drop, no_sell, restricted, hide_in_codex",3,0,,99,V,100000,300,,1,FIGHTER,Targeting,99,100000,,,,,,,,,,,,,
 sotf_wasp_dronestrike_wing,wasp_Interceptor,"auto_fighter, no_drop, no_sell, rapid_reform, independent_of_carrier, restricted, hide_in_codex",3,,5,99,CLAW,100000,200,700,6,INTERCEPTOR,Interceptor Drone,5,6000,,,,,,,,,,,,,
 sotf_spark_dronestrike_wing,spark_Interceptor,"auto_fighter, no_drop, no_sell, rapid_reform, independent_of_carrier, restricted, hide_in_codex",3,,4,99,CLAW,100000,200,750,5,INTERCEPTOR,Interceptor Drone,5,6000,,,,,,,,,,,,,

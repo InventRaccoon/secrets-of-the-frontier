@@ -187,6 +187,7 @@ public class SotfIDs {
 	public static String SKILL_HELLIONSHELLHIDE = "sotf_hadeshellhide";
 	public static String SKILL_INSACRIFICEMEANING = "sotf_insacrificemeaning";
 	public static String SKILL_MANTLEOFTHORNS = "sotf_mantleofthorns";
+	public static String SKILL_SCRAPSCREEN = "sotf_scrapscreen";
 	// FEL: SUPPORT
 	public static String SKILL_ELEGYOFOPIS = "sotf_elegyofopis";
 	public static String SKILL_HANDSOFTHEDROWNED = "sotf_handsofthedrowned";

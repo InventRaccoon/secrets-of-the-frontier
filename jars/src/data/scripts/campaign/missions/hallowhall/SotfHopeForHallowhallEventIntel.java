@@ -329,9 +329,11 @@ public class SotfHopeForHallowhallEventIntel extends BaseEventIntel implements F
 					float opad = 10f;
 					
 					if (esd.id == Stage.PROXY_CODE_INJECTOR) {
-						tooltip.addTitle("Proxy broadcast code injector");
+						tooltip.addTitle("Proxy Broadcast Code Injector");
 					} else if (esd.id == Stage.PROXY_PATROLS) {
-						tooltip.addTitle("Proxy drone patrols");
+						tooltip.addTitle("Proxy Drone Patrols");
+					} else if (esd.id == Stage.RAIDERS && progress <= REVEAL_2) {
+						tooltip.addTitle("Hostile Attention");
 					} else if (esd.id == Stage.RECRUIT_SERAPH) {
 						tooltip.addTitle("Ardent Oathkeeper");
 					}

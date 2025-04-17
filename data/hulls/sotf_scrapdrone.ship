@@ -1,0 +1,22 @@
+{
+  "hullName": "Debris",
+  "hullId": "sotf_scrapdrone",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/drones/sotf_scraphide_debris.png",
+  "style": "LOW_TECH",
+  "height": 33,
+  "width": 33,
+  "center": [16, 17],
+  "collisionRadius": 21.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 20.5,
+  "viewOffset": 0,
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    13, -13,
+    -13, -13,
+    -13, 13,
+    13, 13
+  ]
+}
