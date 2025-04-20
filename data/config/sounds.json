@@ -32,6 +32,15 @@
     [ 
         {"file":"sounds/sfx_wpn_energy/sotf_edict_fire.ogg","pitch":1,"volume":1},
 	],
+	# LETHARGY
+	"sotf_lethargy_fire":
+	[
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_01.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_02.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_03.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_04.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_05.ogg","pitch":1.00,"volume":0.5},
+	],
 	# ASB impact
 	"sotf_impact_heavy":
     [ 

@@ -79,11 +79,21 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
     }
 
     override fun advance(amount: Float) {
-        if (!Global.getSector().isPaused || evenWhilePaused) {
+        if (!Global.getSector().isPaused) {
             if (isFadeIn) {
                 duration += Global.getSector().clock.convertToDays(amount)
             } else {
                 duration -= Global.getSector().clock.convertToDays(amount)
+                if (duration <= 0) {
+                    LunaCampaignRenderer.removeRenderer(this)
+                }
+            }
+        }
+        if (evenWhilePaused) {
+            if (isFadeIn) {
+                duration += amount
+            } else {
+                duration -= amount
                 if (duration <= 0) {
                     LunaCampaignRenderer.removeRenderer(this)
                 }

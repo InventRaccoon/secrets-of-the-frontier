@@ -73,8 +73,7 @@ public class SotfRealityBreaker {
 			if (!ship.isAlive() || ship.isFighter()) {
 				return;
 			}
-			// timer goes slower while player is phased: does not go faster if only Fel is phased
-			timer += amount * Math.min(Global.getCombatEngine().getTimeMult().getModifiedValue(), 1f);
+			timer += amount / ship.getMutableStats().getTimeMult().getModifiedValue();
 			float left = TIME_LIMIT - timer;
 
 			String status = "Detected spacial destabilization";

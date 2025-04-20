@@ -129,6 +129,7 @@ public class SotfDearDotty {
                     dotty.setName("Dotty");
                     dotty.setCollisionClass(CollisionClass.FIGHTER);
                     dotty.setInvalidTransferCommandTarget(true);
+                    dotty.addListener(new SotfDottyListener(ship, dotty));
 
                     fadingIn = true;
                 }
@@ -196,24 +197,34 @@ public class SotfDearDotty {
         }
     }
 
+    // tracks when Dotty should respawn
+    public static class SotfDottyListener implements AdvanceableListener {
+        public ShipAPI ship; // not the ship with the listener but Dotty's summoner
+        public ShipAPI dotty;
+
+        public SotfDottyListener(ShipAPI ship, ShipAPI dotty) {
+            this.ship = ship;
+            this.dotty = dotty;
+        }
+
+        public void advance(float amount) {
+            if (Global.getCombatEngine().isEntityInPlay(ship)) {
+                return;
+            }
+            Global.getCombatEngine().applyDamage(dotty, dotty.getLocation(), 10000000,
+                    DamageType.HIGH_EXPLOSIVE, 0, true, false, null);
+            dotty.removeListener(this);
+        }
+    }
+
     // applies a tracker to damaged ships so that they increment the Dotty bond on death
-    // also tracks when Dotty needs to despawn
-    public static class SotfDottyBondTracker implements AdvanceableListener, DamageDealtModifier {
+    public static class SotfDottyBondTracker implements DamageDealtModifier {
         public ShipAPI ship;
         public ShipAPI dotty;
 
         public SotfDottyBondTracker(ShipAPI ship, ShipAPI dotty) {
             this.ship = ship;
             this.dotty = dotty;
-        }
-
-        public void advance(float amount) {
-            if (dotty == null) return;
-            if (ship != null && ship.isAlive()) {
-                return;
-            }
-            Global.getCombatEngine().applyDamage(dotty, dotty.getLocation(), 10000000,
-                    DamageType.HIGH_EXPLOSIVE, 0, true, false, null);
         }
 
         @Override

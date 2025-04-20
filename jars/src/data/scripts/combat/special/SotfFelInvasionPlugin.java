@@ -220,13 +220,16 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 }
 
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_HELLIONSHELLHIDE)) {
-                    skillsText += "\nDEF - HELLION'S HELLHIDE - SKINSHIELD";
+                    skillsText += "\nDEF - HELLION'S HELLHIDE - MITIGATING SKINSHIELD";
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_INSACRIFICEMEANING)) {
                     skillsText += "\nDEF - IN SACRIFICE, MEANING - FLUX TRANSFER";
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_MANTLEOFTHORNS)) {
                     skillsText += "\nDEF - MANTLE OF THORNS - VENGEFUL SHIELDS";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_SCRAPSCREEN)) {
+                    skillsText += "\nDEF - SALVOR'S SCRAPSCREEN - ORBITING DEBRIS";
                 }
 
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_ELEGYOFOPIS)) {
@@ -613,7 +616,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 preyFP += enemy.getFleetPointCost();
             }
 
-            // missile users: anything that the game things can effectively use Missile Specialization
+            // missile users: anything that the game thinks can effectively use Missile Specialization
             if (pref.toString().contains("YES_MISSILE")) {
                 missileFP += enemy.getFleetPointCost();
             }
@@ -696,6 +699,12 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         WeightedRandomPicker<String> hybridPicker = new WeightedRandomPicker<String>(random);
         WeightedRandomPicker<String> supportPicker = new WeightedRandomPicker<String>(random);
 
+        // HATRED BEYOND DEATH: generally requires Fel to be near enemy ships, so not on backline carriers
+        float hatredWeight = 1f;
+        if (nonCombatCarrier) {
+            hatredWeight *= 0f;
+        }
+
         // JUBILANT TECH-SIREN: a generally useful offensive skill
         float sirenWeight = 0.75f;
         // ... but best if there's enemy fighters to hack
@@ -708,6 +717,12 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         // LEVIATHAN'S BANE: Based on how much of the player fleet the Hidecracker can fire at
         // Very likely to be picked against capspam and similar comps, or if Fel picks a frigate against top-heavy fleets, or vs stations
         float leviathanWeight = 0f + (4f * (preyFP / totalFP));
+
+        // WYRMFIRE EXECUTIONER: Only if we have missiles to trigger it with
+        float wyrmfireWeight = 1f;
+        if (!pref.toString().contains("YES_MISSILE")) {
+            wyrmfireWeight = 0f;
+        }
 
         // A TRICKSTER'S CALLING: Requires that Fel uses missiles, and requires that there be people to steal from
         float tricksterWeight = 0.75f + (0.75f * (missileFP / totalFP));
@@ -751,10 +766,10 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             thornsWeight = 0f;
         }
 
-        // HATRED BEYOND DEATH: generally requires Fel to be near enemy ships, so not on backline carriers
-        float hatredWeight = 1f;
-        if (nonCombatCarrier) {
-            hatredWeight *= 0f;
+        // SALVOR'S SCRAPSCREEN: thematic and handy on shieldless ships
+        float scrapscreenWeight = 0.65f;
+        if (noDefense) {
+            scrapscreenWeight = 1.5f;
         }
 
         // HANDS OF THE DROWNED: always OK except if we're fighting alongside a station with mines
@@ -786,6 +801,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         offensivePicker.add(SotfIDs.SKILL_HATREDBEYONDDEATH, hatredWeight);
         offensivePicker.add(SotfIDs.SKILL_LEVIATHANSBANE, leviathanWeight);
         offensivePicker.add(SotfIDs.SKILL_JUBILANTSIREN, sirenWeight);
+        offensivePicker.add(SotfIDs.SKILL_WYRMFIRE, wyrmfireWeight);
 
         // HYBRID
         hybridPicker.add(SotfIDs.SKILL_ATRICKSTERSCALLING, tricksterWeight);
@@ -797,6 +813,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         defensivePicker.add(SotfIDs.SKILL_HELLIONSHELLHIDE, hellhideWeight);
         defensivePicker.add(SotfIDs.SKILL_INSACRIFICEMEANING, sacrificeWeight);
         defensivePicker.add(SotfIDs.SKILL_MANTLEOFTHORNS, thornsWeight);
+        defensivePicker.add(SotfIDs.SKILL_SCRAPSCREEN, scrapscreenWeight);
 
         // SUPPORT
         // TODO: change Elegy of Opis to support trait pool once reworked

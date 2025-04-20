@@ -34,11 +34,16 @@ import data.scripts.campaign.skills.SotfPolarizedNanorepair;
 import data.scripts.combat.special.SotfFelInvasionPlugin;
 import data.scripts.utils.SotfMisc;
 import data.subsystems.SotfNaniteDronesSubsystem;
+import org.lazywizard.lazylib.ui.FontException;
+import org.lazywizard.lazylib.ui.LazyFont;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static data.scripts.combat.special.SotfInvokeHerBlessingPlugin.UI_COLOR;
+import static org.lwjgl.opengl.GL11.GL_ONE;
 
 public class SotfDaydreamSynthesizer extends BaseHullMod {
 
@@ -151,14 +156,30 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		float fadeInTime;
 		float angle;
 
+		public String spawnText = "DEPLOYING COUNTERMEASURE";
+
 		IntervalUtil interval = new IntervalUtil(0.075f, 0.125f);
+
+		private static LazyFont.DrawableString TODRAW14;
+		private static LazyFont.DrawableString TODRAW10;
 
 		public SotfDaydreamFadeinPlugin(ShipAPI ship, float fadeInTime, float angle) {
 			this.ship = ship;
 			this.fadeInTime = fadeInTime;
 			this.angle = angle;
-		}
 
+			try {
+				LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
+				TODRAW14 = fontdraw.createText();
+				TODRAW14.setBlendSrc(GL_ONE);
+
+				fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
+				TODRAW10 = fontdraw.createText();
+				TODRAW10.setBlendSrc(GL_ONE);
+
+			} catch (FontException ignored) {
+			}
+		}
 
 		@Override
 		public void advance(float amount, List<InputEventAPI> events) {
@@ -168,7 +189,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 
 			CombatEngineAPI engine = Global.getCombatEngine();
 
-			float progress = (elapsed) / fadeInTime;
+			float progress = Math.max(0f, (elapsed) / fadeInTime);
 			if (progress > 1f) progress = 1f;
 
 			ship.setExtraAlphaMult2(progress);
@@ -243,6 +264,29 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 				ship.setCollisionClass(CollisionClass.SHIP);
 				ship.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
 				engine.removePlugin(this);
+			}
+		}
+
+		@Override
+		public void renderInUICoords(ViewportAPI viewport) {
+			super.renderInUICoords(viewport);
+
+			float progress = Math.max(0f, elapsed - 2f);
+			if (progress > 1f) progress = 1f;
+
+			LazyFont.DrawableString toUse = TODRAW14;
+			if (toUse != null) {
+				int alpha = Math.round(255 - (255 * progress));
+
+				String text = spawnText;
+
+				//TODRAW14.setFontSize(28);
+				toUse.setBaseColor(Misc.setBrightness(UI_COLOR, alpha));
+				toUse.setText(text);
+				toUse.setAnchor(LazyFont.TextAnchor.BOTTOM_CENTER);
+				toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+				toUse.draw(viewport.convertWorldXtoScreenX(ship.getShieldCenterEvenIfNoShield().x),
+						viewport.convertWorldYtoScreenY(ship.getShieldCenterEvenIfNoShield().y + ship.getShieldRadiusEvenIfNoShield() + 50f));
 			}
 		}
 	}

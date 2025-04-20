@@ -12,9 +12,9 @@
 				# OP spent = dissipation
 				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.OrdnanceExpertise$Level1"},
 				# Ballistic damage dealt
-				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.BallisticMastery$Level1"},
+				#{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.BallisticMastery$Level1"},
 				# Energy flux usage
-				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.EnergyWeaponMastery$Level2"},
+				#{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.EnergyWeaponMastery$Level2"},
 			]
 		},
 		{

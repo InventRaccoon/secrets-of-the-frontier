@@ -64,6 +64,9 @@ public class SotfReverieCMD extends BaseCommandPlugin {
                 text.addParagraph("- Requires a Daydream Analyzer to install", Misc.getHighlightColor());
                 text.setFontInsignia();
                 return true;
+            case "showElysium":
+                dialog.getVisualPanel().showLargePlanet(Global.getSector().getEntityById("sotf_elysium"));
+                return true;
             default:
                 return true;
         }

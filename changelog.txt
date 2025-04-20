@@ -1,18 +1,16 @@
 Version 0.15:
-X Expansion to The Haunted narrative content
+- Expansion to The Haunted narrative content
 	- Spookier dreams
 	- Added an endgame task upon reaching max level
 	- Dream of somewhere you're meant to be, something you're meant to be, an escape from your torment, an end and a beginning
 X New background/custom start: "Child of the Lake"
 	- Unlocked by completing The Haunted endgame task
 	- Trade in your starting skillpoint for an occult technological heirloom who serves you dutifully
-	- His service is remarkably akin to the power of necromancy
-X Added the Light of the Lake, and they who dream
-	- New mission: "Envoy of Elysium", with unique reward (non-Haunted only)
+	- Necromancer gameplay with unique pseudo-aptitude for upgrading your special ability
 
 - Adaptive Nanite Swarm invasion proc, ship choice and skill choice RNG are now seeded and cannot be easily savescummed
 - Adaptive Nanite Swarm now gains a fixed set of 7 new nanite-specific skills, rather than 8 normal skills
-	- Skills grant unique benefits: regeneration of hull, armor and missiles, orbiting defense swarm, flux-based ballistic fire rate boost
+	- Skills grant generically useful buffs but also unique benefits: regeneration of hull, armor and missiles, orbiting defense swarm, flux-based ballistic fire rate boost
 	- Unrelated to nanite "trait" skills, which are still 2-3 per fight
 - New nanite traits:
 	- Wyrmfire Executioner (offensive) - missile hits against targets below 50% hull fires a Dragonfire torpedo at them, twice vs capitals (30s cooldown per target)
@@ -21,16 +19,22 @@ X Added the Light of the Lake, and they who dream
 	X Elegy of Opis (support) - every 3rd enemy ship that dies will first enter an undying rage ala Hatred Beyond Death's first stage
 	X Heretic Echoes (support) - every 4th ship that dies (allied or enemy) creates an echo. After 20s, echoes turn into a limited-lifespan mimic of the dead ship
 X Re-enabled nanite support traits by default
+- Perfect Storm and Hands of the Drowned skills are no longer effected by nanite swarm's timeflow boosts
 - Haunted: added an earlygame encounter with Annex-Wendigo, and a possible second, less friendly encounter
 
 X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Increased CR per deployment of Sierra's ships (Pledge 15% > 25%, Vow 20% > 30%), supplies to recover unchanged
 - Edict Stormblaster now applies hidden bonus vs a certain new vanilla enemy type
 - Cyberwarfare Protocols now unlocked in codex if player has seen Cyberwarfare Suite or has Nightingale/Seraph, and appears in its related entries
+- Cyberwarfare Suite: reduced cooldown to compensate for no longer being spammable with Temporal Shell (45 > 35 for ship hack, 20 > 15 for fighter hack)
 - Derelict Contingent now unlocked in codex if player has Barrow
 - Added some alt dialogue if using Spyglass' codephrase with Imoinu Kato during Usurpers
+- Fixed some skill cooldowns being effected twice by the ship's time multipliers, e.g Cyberwarfare
 - Fixed Sierra's core from A Promise appearing in codex
 - Fixed crash that could happen with Blithe/Wendigo/Seraph fleets from other mods adding moduled capital ships
+- Fixed ASB lidar beams being affected by ECM range penalty
+- Fixed Leviathan's Bane range being too short to reach very-far targets (increased 20000 > 50000)
+- Fixed crash when hovering WIP Lifedrinker hullmod
 
 - Battle objectives csv now has a "flag" column (flag must be set in global sector memory for objective to spawn) and "notFlag" column (flag must not be set for objective to spawn)
 X Can no longer build orbital habitats in the Abyss

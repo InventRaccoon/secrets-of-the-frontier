@@ -35,7 +35,7 @@ When a hostile ship is disabled within %s units, it creates %s/%s/%s/%s wisps ba
 Concord - Soulbond,sotf_soulbond,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,5,12,18,25,data.hullmods.SotfSoulbond,<Description written in script>,Allows this ship and the flagship to travel to each other.,,graphics/hullmods/sotf_soulbond.png
 Concord - Lifedrinker,sotf_lifedrinker,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, hide_in_codex",Special,100000,,,,5,12,18,30,data.hullmods.SotfLifedrinker,"An extensive hull refit package that replaces the exterior armor and shield emitters with a low-volition nanomechanical shell lined with esoteric ""entropic inversion nodes"" that gradually reverse the armor's state of destruction. Inverted entropy can be discharged into surrounding space as a defensive burst.
 
-Removes the ship's shield emitter. The ship passively regenerates %s armor per second, prioritizing the most damaged sections of armor. Increases maximum armor by %. Reflective properties reduce incoming beam damage and EMP damage by %s.
+Removes the ship's shield emitter. The ship passively regenerates %s armor per second, prioritizing the most damaged sections of armor. Increases maximum armor by %s. Reflective properties reduce incoming beam damage and EMP damage by %s.
 
 Unfinished content. You're not supposed to see this!",No shield. Armor regenerates and is more resistant.,,graphics/hullmods/sotf_lifedrinker.png
 ,,,,,,,,,,,,,,,,,,,

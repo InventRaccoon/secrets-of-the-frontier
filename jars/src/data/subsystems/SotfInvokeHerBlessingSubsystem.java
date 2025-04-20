@@ -69,7 +69,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
     @Override
     public boolean canActivate() {
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class)) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.getShipTarget().hasListenerOfClass(SotfMimicDecayListener.class) && ship.getShipTarget().isAlive()) {
                 return Misc.getDistance(ship.getLocation(), ship.getShipTarget().getLocation()) <= SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE;
             }
         }
@@ -98,7 +98,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicSubsystem {
     @Override
     public void onActivate() {
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class)) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class) && ship.isAlive()) {
                 EmpArcEntityAPI arc = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                         ship,
                         ship.getShipTarget().getLocation(), null, 10f, Color.DARK_GRAY, Color.WHITE);

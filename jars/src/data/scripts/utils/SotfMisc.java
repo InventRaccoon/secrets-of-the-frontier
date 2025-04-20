@@ -350,6 +350,14 @@ public class SotfMisc {
         return lockoutStarts;
     }
 
+    public static boolean getHFinaleHardMode() {
+        boolean hard = false;
+        if (Global.getSettings().getModManager().isModEnabled("lunalib")) {
+            hard = LunaSettings.getBoolean("secretsofthefrontier", "sotf_hfinaleHardMode");
+        }
+        return hard;
+    }
+
     // retrieve player Guilt score
     public static float getPlayerGuilt() {
         return Global.getSector().getPlayerPerson().getMemoryWithoutUpdate().getFloat(SotfIDs.GUILT_KEY)
@@ -599,6 +607,19 @@ public class SotfMisc {
             }
         }
         return false;
+    }
+
+    /**
+     * Picks one string from the provided list
+     * @param options
+     * @return
+     */
+    public static String pickOne(String ... options) {
+        WeightedRandomPicker<String> picker = new WeightedRandomPicker<String>(Misc.random);
+        for (String option : options) {
+            picker.add(option);
+        }
+        return picker.pick();
     }
 
     /**

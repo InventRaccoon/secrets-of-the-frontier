@@ -66,7 +66,7 @@ public class SotfDreamEaterSubsystem extends MagicSubsystem {
     @Override
     public boolean canActivate() {
         if (echo == null) return false;
-        return Misc.getDistance(ship.getLocation(), echo.loc) <= SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE;
+        return Misc.getDistance(ship.getLocation(), echo.loc) <= SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE && !echo.fading;
     }
 
     @Override
@@ -90,6 +90,7 @@ public class SotfDreamEaterSubsystem extends MagicSubsystem {
     @Override
     public void onActivate() {
         if (echo == null) return;
+        if (echo.fading) return;
 
         EmpArcEntityAPI arc = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                 ship,
@@ -100,19 +101,19 @@ public class SotfDreamEaterSubsystem extends MagicSubsystem {
         Global.getSoundPlayer().playSound("mote_attractor_impact_damage", 1, 1f, echo.loc, new Vector2f());
 
         float percentHeal = 0.06f;
-        String wingId = "sotf_sbd_wing_frigate";
+        String wingId = "sotf_sbd_frig_wing";
         switch (echo.hullSize) {
             case DESTROYER:
                 percentHeal = SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_DESTROYER;
-                wingId = "sotf_sbd_wing_des";
+                wingId = "sotf_sbd_des_wing";
                 break;
             case CRUISER:
                 percentHeal = SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_CRUISER;
-                wingId = "sotf_sbd_wing_cru";
+                wingId = "sotf_sbd_cru_wing";
                 break;
             case CAPITAL_SHIP:
                 percentHeal = SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_CAPITAL;
-                wingId = "sotf_sbd_wing_cap";
+                wingId = "sotf_sbd_cap_wing";
                 break;
         }
         ship.setHitpoints(Math.min(ship.getHitpoints() + (ship.getMaxHitpoints() * percentHeal), ship.getMaxHitpoints()));
@@ -134,7 +135,7 @@ public class SotfDreamEaterSubsystem extends MagicSubsystem {
         if (haveUpgrade(SotfIDs.COTL_SERVICEBEYONDDEATH)) {
             Global.getCombatEngine().addPlugin(
                     new SotfNaniteSynthesized.NaniteShipFadeInPlugin(wingId,
-                            ship, 0.25f, 1f, echo.angle));
+                            ship, echo.loc, 0.25f, 1f, echo.angle));
         }
 
         // disintegrate the hulk and its pieces if they're still around

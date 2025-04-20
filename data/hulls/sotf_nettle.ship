@@ -1,0 +1,57 @@
+{
+  "hullName": "Nettle",
+  "hullId": "sotf_nettle",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/dreaming/sotf_nettle.png",
+  "style": "HIGH_TECH",
+  "height": 25,
+  "width": 22,
+  "center": [11, 13],
+  "collisionRadius": 20.5,
+  "shieldCenter": [1, -0],
+  "shieldRadius": 19,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 0,
+      "locations": [3, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-9, -0],
+      "length": 15,
+      "width": 5,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-2, 6],
+      "length": 10,
+      "width": 5,
+      "angle": 160,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-2, -6],
+      "length": 10,
+      "width": 5,
+      "angle": -160,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    -11, -3,
+    7, -8,
+    7, 8,
+    -11, 3
+  ]
+}

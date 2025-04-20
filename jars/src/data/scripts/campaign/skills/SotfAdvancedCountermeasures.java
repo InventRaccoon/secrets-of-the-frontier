@@ -32,12 +32,12 @@ public class SotfAdvancedCountermeasures {
 	public static float EW_PENALTY_MULT = 0.5f;
 
 	public static Color SWARM_ATTACK_COLOR = new Color(100,255,205);
-	public static float SWARM_ATTACK_RANGE = 400f;
-	public static float SWARM_ATTACK_DAMAGE = 50f;
-	public static float SWARM_ATTACK_EMP = 50f;
+	public static float SWARM_ATTACK_RANGE = 500f;
+	public static float SWARM_ATTACK_DAMAGE = 40f;
+	public static float SWARM_ATTACK_EMP = 40f;
 	public static DamageType SWARM_ATTACK_DAMAGE_TYPE = DamageType.FRAGMENTATION;
 	// delay between shots for a frigate
-	public static float SWARM_ATTACK_RATE = 2f;
+	public static float SWARM_ATTACK_RATE = 2.5f;
 
 	// Attack swarm attack rate multiplier based on hull size
 	public static Map<HullSize, Float> SWARM_ATTACK_RATE_MULT = new HashMap<HullSize, Float>();
@@ -45,9 +45,9 @@ public class SotfAdvancedCountermeasures {
 		SWARM_ATTACK_RATE_MULT.put(HullSize.DEFAULT, 0.5f);
 		SWARM_ATTACK_RATE_MULT.put(HullSize.FIGHTER, 0.5f);
 		SWARM_ATTACK_RATE_MULT.put(HullSize.FRIGATE, 1f);
-		SWARM_ATTACK_RATE_MULT.put(HullSize.DESTROYER, 1.5f);
-		SWARM_ATTACK_RATE_MULT.put(HullSize.CRUISER, 2f);
-		SWARM_ATTACK_RATE_MULT.put(HullSize.CAPITAL_SHIP, 3f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.DESTROYER, 1.25f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.CRUISER, 1.5f);
+		SWARM_ATTACK_RATE_MULT.put(HullSize.CAPITAL_SHIP, 2f);
 	}
 
 	public static class ECCM implements ShipSkillEffect {
@@ -109,7 +109,7 @@ public class SotfAdvancedCountermeasures {
 			initElite(stats, skill);
 
 			info.addPara("Deploys an orbiting defense swarm to protect the ship with energy beams", hc, 0f);
-			info.addPara("Each fighter craft deployed also gains its own swarm", hc, 0f);
+			info.addPara("Swarm becomes inactive while overloaded or actively venting", hc, 0f);
 		}
 
 		public static class SotfNaniteDefenseSwarmScript implements AdvanceableListener {
@@ -132,12 +132,16 @@ public class SotfAdvancedCountermeasures {
 					rate = SWARM_ATTACK_RATE_MULT.get(ship.getHullSize());
 					ranOnce = true;
 				}
-				if (amount <= 0f || ship == null) return;
+				if (amount <= 0f || ship == null || ship.isFighter()) return;
 
 				RoilingSwarmEffect swarm = RoilingSwarmEffect.getSwarmFor(ship);
 				// create a swarm for non-nanite-synthesized ships, i.e. for Fel
 				if (swarm == null) {
 					swarm = SotfNaniteSynthesized.SotfNaniteSynthesizedListener.createSwarmFor(ship);
+				}
+
+				if (ship.getFluxTracker().isOverloadedOrVenting()) {
+					return;
 				}
 
 				interval.advance(amount * rate);
@@ -171,12 +175,15 @@ public class SotfAdvancedCountermeasures {
 						SWARM_ATTACK_DAMAGE_TYPE,
 						SWARM_ATTACK_EMP,
 						rate,
+						0.5f,
 						ship
 				);
 
 				pick.flash();
 				pick.flash.forceIn();
 				pick.flash.setDurationOut(0.25f);
+
+				Global.getSoundPlayer().playSound("sotf_lethargy_fire", 1f, 0.5f, pick.loc, pick.vel);
 
 //				float thickness = 30f;
 //				//Color color = weapon.getSpec().getGlowColor();

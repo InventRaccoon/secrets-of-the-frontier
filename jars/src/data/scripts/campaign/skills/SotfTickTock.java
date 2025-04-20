@@ -102,6 +102,7 @@ public class SotfTickTock {
 				active = true;
 				effectLevel = 0f;
 				duration = TIMEFLOW_DURATION + TIMEFLOW_RAMP;
+				Global.getSoundPlayer().playSound("system_temporalshell", 1f, 1f, ship.getLocation(), ship.getVelocity());
 			}
 
 			if (!ship.getCustomData().containsKey(TIMER_KEY)) {

@@ -127,7 +127,6 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
             fadeOut -= amount * 3f;
             if (fadeOut <= 0f) {
                 fadeOut = 0f;
-                Global.getCombatEngine().removePlugin(this);
             }
         }
 
@@ -245,9 +244,9 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
         }
         if (ship.getCaptain() != null) {
             if (ship.getCaptain().getId().equals(SotfPeople.NIGHTINGALE)) {
-                return "Silenced again, little failure.";
+                return "Silenced again.";
             } else if (ship.getCaptain().getId().equals(SotfPeople.SERAPH)) {
-                return "The wretched thing finds peace just as you shall.";
+                return "She finds peace just as you shall.";
             } else if (ship.getCaptain().getId().equals(SotfPeople.BARROW)) {
                 return "The blackguard found his grave.";
             }

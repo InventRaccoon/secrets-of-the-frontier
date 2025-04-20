@@ -2,20 +2,17 @@
 package data.scripts.weapons;
 
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.impl.combat.ShockRepeaterOnFireEffect;
+import com.fs.starfarer.api.util.Pair;
 import org.lazywizard.lazylib.CollisionUtils;
 import org.lazywizard.lazylib.MathUtils;
-import org.lazywizard.lazylib.VectorUtils;
 import org.lazywizard.lazylib.combat.CombatUtils;
 import org.lwjgl.util.vector.Vector2f;
 import org.magiclib.plugins.MagicFakeBeamPlugin;
-import org.magiclib.util.MagicFakeBeam;
 
 import java.awt.*;
 import java.util.List;
 
 import static org.magiclib.util.MagicFakeBeam.getCollisionPointOnCircumference;
-import static org.magiclib.util.MagicFakeBeam.getShipCollisionPoint;
 
 public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
 
@@ -50,10 +47,11 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
      */
     public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width,
                                         float full, float fading, float impactSize, Color core, Color fringe,
-                                        float normalDamage, DamageType type, float emp, float dampMult, ShipAPI source) {
+                                        float normalDamage, DamageType type, float emp, float dampMult, float dampVsShields, ShipAPI source) {
 
         CombatEntityAPI theTarget = null;
         float damage = normalDamage;
+        boolean shieldHit = false;
 
         //default end point
         Vector2f end = MathUtils.getPoint(from, range, angle);
@@ -67,9 +65,6 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                 if (e.getCollisionClass() == CollisionClass.NONE) {
                     continue;
                 }
-
-                //damage can be reduced against some modded ships
-                float newDamage = normalDamage;
 
                 Vector2f col = new Vector2f(1000000, 1000000);
                 //ignore everything but ships...
@@ -90,14 +85,10 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                         ShipAPI s = (ShipAPI) e;
 
                         //find the collision point with shields/hull
-                        Vector2f hitPoint = getShipCollisionPoint(from, end, s, angle);
-                        if (hitPoint != null) {
-                            col = hitPoint;
-                        }
-
-                        //check for modded ships with damage reduction
-                        if (s.getHullSpec().getBaseHullId().startsWith("exigency_")) {
-                            newDamage = normalDamage / 2;
+                        Pair<Vector2f, Boolean> hitPair = getShipCollisionPoint(from, end, s, angle);
+                        if (hitPair.one != null) {
+                            col = (Vector2f) hitPair.one;
+                            shieldHit = hitPair.two;
                         }
                     }
                 } else
@@ -124,7 +115,6 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                                 MathUtils.getDistanceSquared(from, col) < MathUtils.getDistanceSquared(from, end)) {
                     end = col;
                     theTarget = e;
-                    damage = newDamage;
                 }
             }
 
@@ -182,6 +172,9 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                         slowdown = 0.15f;
                     }
                 }
+                if (!shieldHit) {
+                    slowdown *= dampVsShields;
+                }
                 theTarget.getVelocity().scale(1f - (slowdown * dampMult));
             }
 
@@ -192,7 +185,51 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
     }
 
     public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width, float full, float fading, float impactSize, Color core, Color fringe, float normalDamage, DamageType type, float emp, ShipAPI source) {
-        lethargyFakeBeam(engine, from, range, angle, width, full, fading, impactSize, core, fringe, normalDamage, type, emp, 1f, source);
+        lethargyFakeBeam(engine, from, range, angle, width, full, fading, impactSize, core, fringe, normalDamage, type, emp, 1f, 0.5f, source);
+    }
+
+    // return the collision point of segment segStart to segEnd and a ship (will consider shield).
+    // if segment can not hit the ship, will return null.
+    // if segStart hit the ship, will return segStart.
+    // if segStart hit the shield, will return segStart.
+    // RACCOON: returns as a pair, the point hit and whether it was a shield impact
+    public static Pair<Vector2f, Boolean> getShipCollisionPoint(Vector2f segStart, Vector2f segEnd, ShipAPI ship, float aim) {
+
+        // if target can not be hit, return null
+        if (ship.getCollisionClass() == CollisionClass.NONE) {
+            return new Pair<>(null, false);
+        }
+        ShieldAPI shield = ship.getShield();
+
+        // Check hit point when shield is off.
+        if (shield == null || shield.isOff()) {
+            return new Pair<>(CollisionUtils.getCollisionPoint(segStart, segEnd, ship), false);
+        } // If ship's shield is on, thing goes complicated...
+        else {
+
+            Vector2f circleCenter = shield.getLocation();
+            float circleRadius = shield.getRadius();
+            //the beam already start within the shield radius:
+            if (MathUtils.isPointWithinCircle(segStart, circleCenter, circleRadius)) {
+                if (shield.isWithinArc(segStart)) {
+                    return new Pair<>(MathUtils.getPoint(segStart, 15, aim), true);
+                } else {
+                    return new Pair<>(CollisionUtils.getCollisionPoint(segStart, segEnd, ship), false);
+                }
+            } else //the beam start from outside:
+            {
+                Vector2f tmp1 = getCollisionPointOnCircumference(segStart, segEnd, circleCenter, circleRadius);
+                if (tmp1 != null && shield.isWithinArc(tmp1)) {
+                    return new Pair<>(MathUtils.getPoint(tmp1, 1, aim), true);
+                } else {
+                    return new Pair<>(MathUtils.getPoint(
+                            CollisionUtils.getCollisionPoint(segStart, segEnd, ship),
+                            1,
+                            aim
+                    ), false);
+                }
+            }
+        }
     }
 
 }

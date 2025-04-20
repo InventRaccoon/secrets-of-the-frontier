@@ -34,8 +34,8 @@ import java.util.List;
 public class SotfCyberwarfare {
 
     public static float RANGE = 900f;
-    public static float HACK_COOLDOWN = 45f;
-    public static float FIGHTER_HACK_COOLDOWN = 20f;
+    public static float HACK_COOLDOWN = 35f;
+    public static float FIGHTER_HACK_COOLDOWN = 15f;
     public static float OVERRIDE_DURATION = 15f;
     public static float TSEQ_DAMAGE = 1.25f; // energy damage = fighter's max hull * this
 
@@ -256,7 +256,7 @@ public class SotfCyberwarfare {
                 canCooldown = false;
             }
 
-            float timeMult = (Global.getCombatEngine().getTimeMult().getModifiedValue() * ship.getMutableStats().getTimeMult().getModifiedValue());
+            float timeMult = Global.getCombatEngine().getTimeMult().getModifiedValue();
             if (canCooldown) {
                 internalCDTimer -= amount * timeMult;
             }
@@ -814,7 +814,7 @@ public class SotfCyberwarfare {
                 canCooldown = false;
             }
 
-            float timeMult = (Global.getCombatEngine().getTimeMult().getModifiedValue() * ship.getMutableStats().getTimeMult().getModifiedValue());
+            float timeMult = Global.getCombatEngine().getTimeMult().getModifiedValue();
             if (canCooldown) {
                 internalCDTimer -= amount * timeMult;
             }

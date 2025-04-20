@@ -68,44 +68,24 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                     String wing_id;
                     switch (ship.getHullSize().ordinal() - 1) {
                         case 2:
-                            wing_id = "sotf_sbd_wing_des";
+                            wing_id = "sotf_sbd_des_wing";
                             break;
                         case 3:
-                            wing_id = "sotf_sbd_wing_cru";
+                            wing_id = "sotf_sbd_cru_wing";
                             break;
                         case 4:
-                            wing_id = "sotf_sbd_wing_cap";
+                            wing_id = "sotf_sbd_cap_wing";
                             break;
                         default:
-                            wing_id = "sotf_sbd_wing_frigate";
+                            wing_id = "sotf_sbd_frig_wing";
                             break;
                     }
                     Global.getCombatEngine().addPlugin(
                             new NaniteShipFadeInPlugin(wing_id,
-                                    ship, 0.5f + (ship.getHullSize().ordinal() / 2f), 0.5f, ship.getFacing()));
+                                    ship, ship.getLocation(), 0.5f + (ship.getHullSize().ordinal() / 2f), 0.5f, ship.getFacing()));
                 }
                 startedFadingOut = true;
             }
-
-            RoilingSwarmEffect swarm = RoilingSwarmEffect.getSwarmFor(ship);
-            if (swarm == null) {
-                swarm = createSwarmFor(ship);
-            }
-
-            if (ship.isFighter()) return;
-
-            boolean playerShip = Global.getCurrentState() == GameState.COMBAT &&
-                    Global.getCombatEngine() != null && Global.getCombatEngine().getPlayerShip() == ship;
-
-
-            RoilingSwarmEffect.RoilingSwarmParams params = swarm.getParams();
-            params.baseMembersToMaintain = (int) ship.getMutableStats().getDynamic().getValue(
-                    Stats.FRAGMENT_SWARM_SIZE_MOD, getBaseSwarmSize(ship.getHullSize()));
-            params.memberRespawnRate = getBaseSwarmRespawnRateMult(ship.getHullSize()) *
-                    ship.getMutableStats().getDynamic().getValue(Stats.FRAGMENT_SWARM_RESPAWN_RATE_MULT);
-
-            params.maxNumMembersToAlwaysRemoveAbove = (int) (params.baseMembersToMaintain * 1.5f);
-            params.initialMembers = params.baseMembersToMaintain;
 
             // anti-mind-control
             if ((ship.getOwner() == 0 || ship.getOwner() == 1) && ship.getOwner() != ship.getOriginalOwner()) {
@@ -182,6 +162,26 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                     }
                 }
             }
+
+            if (ship.isFighter()) return;
+
+            RoilingSwarmEffect swarm = RoilingSwarmEffect.getSwarmFor(ship);
+            if (swarm == null) {
+                swarm = createSwarmFor(ship);
+            }
+
+            boolean playerShip = Global.getCurrentState() == GameState.COMBAT &&
+                    Global.getCombatEngine() != null && Global.getCombatEngine().getPlayerShip() == ship;
+
+
+            RoilingSwarmEffect.RoilingSwarmParams params = swarm.getParams();
+            params.baseMembersToMaintain = (int) ship.getMutableStats().getDynamic().getValue(
+                    Stats.FRAGMENT_SWARM_SIZE_MOD, getBaseSwarmSize(ship.getHullSize()));
+            params.memberRespawnRate = getBaseSwarmRespawnRateMult(ship.getHullSize()) *
+                    ship.getMutableStats().getDynamic().getValue(Stats.FRAGMENT_SWARM_RESPAWN_RATE_MULT);
+
+            params.maxNumMembersToAlwaysRemoveAbove = (int) (params.baseMembersToMaintain * 1.5f);
+            params.initialMembers = params.baseMembersToMaintain;
         }
 
         public static RoilingSwarmEffect createSwarmFor(ShipAPI ship) {
@@ -195,10 +195,10 @@ public class SotfNaniteSynthesized extends BaseHullMod {
             params.spriteKey = "sotf_naniteswarm_sheet";
             params.memberExchangeClass = NANITE_SWARM_EXCHANGE_CLASS;
             params.maxSpeed = ship.getMaxSpeedWithoutBoost() +
-                    Math.max(ship.getMaxSpeedWithoutBoost() * 0.25f + 50f, 100f) +
+                    Math.max(ship.getMaxSpeedWithoutBoost() * 0.25f + 50f, 100f) + 100f +
                     ship.getMutableStats().getZeroFluxSpeedBoost().getModifiedValue();
 
-            params.springStretchMult = 0.5f;
+            params.springStretchMult = 3f;
             params.baseSpriteSize = 30f / mult;
 
             params.flashProbability = 0.5f;
@@ -383,17 +383,18 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
         String variantId;
         ShipAPI source;
+        Vector2f location;
         float delay;
         float fadeInTime;
         float angle;
 
-        public NaniteShipFadeInPlugin(String variantId, ShipAPI source, float delay, float fadeInTime, float angle) {
+        public NaniteShipFadeInPlugin(String variantId, ShipAPI source, Vector2f location, float delay, float fadeInTime, float angle) {
             this.variantId = variantId;
             this.source = source;
+            this.location = location;
             this.delay = delay;
             this.fadeInTime = fadeInTime;
             this.angle = angle;
-
         }
 
 
@@ -412,14 +413,14 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 //					loc = Misc.getPointWithinRadius(loc, source.getCollisionRadius() * 0.25f);
                 Vector2f loc = Misc.getUnitVectorAtDegreeAngle(angle);
                 loc.scale(source.getCollisionRadius() * 0.1f);
-                Vector2f.add(loc, source.getLocation(), loc);
+                Vector2f.add(loc, location, loc);
                 CombatFleetManagerAPI fleetManager = engine.getFleetManager(source.getOriginalOwner());
                 boolean wasSuppressed = fleetManager.isSuppressDeploymentMessages();
                 fleetManager.setSuppressDeploymentMessages(true);
                 if (variantId.endsWith("_wing")) {
                     FighterWingSpecAPI spec = Global.getSettings().getFighterWingSpec(variantId);
                     ships = new ShipAPI[spec.getNumFighters()];
-                    PersonAPI captain = SotfPeople.genSirius(true);
+                    PersonAPI captain = SotfPeople.genSirius(false);
                     ShipAPI leader = engine.getFleetManager(source.getOriginalOwner()).spawnShipOrWing(variantId, loc, facing, 0f, captain);
                     for (int i = 0; i < ships.length; i++) {
                         ships[i] = leader.getWing().getWingMembers().get(i);
@@ -435,9 +436,11 @@ public class SotfNaniteSynthesized extends BaseHullMod {
 
                     if (Global.getCombatEngine().isInCampaign() || Global.getCombatEngine().isInCampaignSim()) {
                         FactionAPI faction = Global.getSector().getFaction(SotfIDs.DREAMING_GESTALT);
-                        if (faction != null) {
+                        if (faction != null && !ships[i].isFighter()) {
                             String name = faction.pickRandomShipName();
                             ships[i].setName(name);
+                        } else {
+                            ships[i].setName("");
                         }
                     }
                 }

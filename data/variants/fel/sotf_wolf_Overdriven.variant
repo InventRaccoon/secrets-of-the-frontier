@@ -1,6 +1,7 @@
 {
+	# cheated Wolf loadout bcs Wolves suck lol
     "displayName": "Overdriven",
-    "fluxCapacitors": 0,
+    "fluxCapacitors": 5,
     "fluxVents": 9,
     "goalVariant": false,
     "hullId": "wolf",
@@ -10,11 +11,6 @@
     ],
     "permaMods": [
 		"adaptiveshields",
-		"extendedshieldemitter",
-		"hardenedshieldemitter",
-    ],
-    "sMods": [
-        "adaptiveshields",
 		"extendedshieldemitter",
 		"hardenedshieldemitter",
     ],

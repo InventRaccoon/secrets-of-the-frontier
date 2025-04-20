@@ -28,8 +28,8 @@ import java.util.Iterator;
 public class SotfWyrmfireExecutioner {
 
 	// time between timeflow activations
-	public static float EXECUTE_THRESHOLD = 0.75f;
-	public static float EXECUTE_CD = 30f;
+	public static float EXECUTE_THRESHOLD = 0.5f;
+	public static float EXECUTE_CD = 60f;
 
 	public static Color COLOR = new Color(255,85,110);
 	public static Color COLOR_2 = new Color(255,110,85);

@@ -27,6 +27,7 @@ public class SotfPolarizedNanorepair {
 	public static float TOTAL_REGEN_MAX_HULL = 2000f;
 	public static float TOTAL_REGEN_MAX_HULL_FRACTION = 0.5f;
 
+	// nvm this crap is too complicated
 //	public static float ARMOR_REGEN_RATE = 0.1f;
 //	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 900f;
 //	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 1.25f;
@@ -41,14 +42,14 @@ public class SotfPolarizedNanorepair {
 //	// flux level at which shieldless nonphase ships are always considered to be
 //	public static float NON_SHIELD_FLUX_LEVEL = 0.5f;
 
-	public static float ARMOR_REGEN_RATE = 0.04f;
+	public static float ARMOR_REGEN_RATE = 0.02f;
 	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 650f;
-	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 1f;
+	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 0.8f;
 
 	public static class Desc implements DescriptionSkillEffect {
 		public String getString() {
-			return "\n\n*Ships without a shield or a phase cloak are treated as always having " + (int) NON_SHIELD_FLUX_LEVEL +
-					"% hard flux.\nNormally, a damaged but functional module will not be repaired until 5 seconds have passed " +
+			return "\n*Ships without a shield or a phase cloak are treated as always having " + (int) NON_SHIELD_FLUX_LEVEL +
+					"% hard flux. Normally, a damaged but functional module will not be repaired until 5 seconds have passed " +
 					"without it taking damage.";
 		}
 		public Color[] getHighlightColors() {
@@ -90,7 +91,7 @@ public class SotfPolarizedNanorepair {
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%"
 //			);
-			info.addPara("Repair up to %s of armor per second; maximum total repair is " +
+			info.addPara("Repair up to %s of armor rating per second; maximum total repair is " +
 							"the higher of %s armor points or %s of maximum armor", 0f, hc, hc,
 					"" + Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE * 100f) + "%",
 					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
@@ -115,7 +116,6 @@ public class SotfPolarizedNanorepair {
 			float maxArmor = ship.getArmorGrid().getArmorRating();
 			limit = Math.max(TOTAL_ARMOR_REGEN_MAX_POINTS, TOTAL_ARMOR_REGEN_MAX_FRACTION * maxArmor);
 
-			// Share these keys
 			repKey1 = "sotf_polarizednanorepair_armor_ " + ship.getId() + "_repaired";
 			float r1 = getRepaired(repKey1);
 

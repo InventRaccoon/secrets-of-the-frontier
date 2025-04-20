@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin.ListInfoMode
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin
 import com.fs.starfarer.api.impl.campaign.skills.CombatEndurance
+import com.fs.starfarer.api.loading.FighterWingSpecAPI
 import com.fs.starfarer.api.ui.Alignment
 import com.fs.starfarer.api.ui.CustomPanelAPI
 import com.fs.starfarer.api.ui.SectorMapAPI
@@ -23,7 +24,6 @@ import data.scripts.campaign.skills.SotfAdvancedCountermeasures
 import data.scripts.campaign.skills.SotfPolarizedNanorepair
 import data.scripts.combat.special.SotfInvokeHerBlessingPlugin
 import data.subsystems.SotfInvokeHerBlessingSubsystem
-import data.subsystems.SotfNaniteDronesSubsystem
 import lunalib.lunaUI.elements.LunaElement
 import java.awt.Color
 import kotlin.math.roundToInt
@@ -108,17 +108,28 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         gray, 0f)
                 }
 
-                SotfIDs.COTL_SERVICEBEYONDDEATH -> tooltip.addPara("When a mimic is destroyed, it splits into a wing of Thorn-class heavy interceptors, armed with an " +
-                        "energy-based autolance that slows targets on hit.",
-                    0f, h, "destroyed", "Thorn-class heavy interceptors")
+                SotfIDs.COTL_SERVICEBEYONDDEATH -> {
+                    val frigWing = Global.getSettings().getFighterWingSpec("sotf_sbd_frig_wing")
+                    val desWing = Global.getSettings().getFighterWingSpec("sotf_sbd_des_wing")
+                    val cruWing = Global.getSettings().getFighterWingSpec("sotf_sbd_cru_wing")
+                    val capWing = Global.getSettings().getFighterWingSpec("sotf_sbd_cap_wing")
+                    tooltip.addPara("When a mimic is %s, it splits into a wing of %s/%s/%s/%s %s, each armed with an " +
+                            "energy-based autolance that slows targets on hit. The wing fights autonomously until destroyed.",
+                        0f, h, "destroyed", frigWing.numFighters.toString(), desWing.numFighters.toString(),
+                        cruWing.numFighters.toString(), capWing.numFighters.toString(), "Nettle-class interceptors")
+                }
 
                 // TIER 3
 
                 SotfIDs.COTL_EVERYROSEITSTHORNS -> {
+//                    tooltip.addPara(
+//                        "Spawn two Rosethorn-class frigate reflections* at the start of combat, light interdictors " +
+//                                "equipped with a Resonance Catalyst system that severely impairs high-grade shields and phase cloaks.",
+//                        0f, h, "Rosethorn-class", "reflections*", "Resonance Catalyst"
+//                    )
                     tooltip.addPara(
-                        "Spawn two Rosethorn-class frigate reflections* at the start of combat, light interdictors " +
-                                "equipped with an Resonance Catalyst system that severely impairs high-grade shields and phase cloaks.",
-                        0f, h, "Rosethorn-class", "reflections*", "Resonance Catalyst"
+                        "Spawn two Scarab-class frigate reflections* at the start of combat.",
+                        0f, h, "Scarab-class", "reflections*"
                     )
                     tooltip.addSpacer(opad)
                     tooltip.addPara(
@@ -162,7 +173,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(CombatEndurance.REGEN_RATE * 100f) + "%",
                         "" + CombatEndurance.TOTAL_REGEN_MAX_POINTS.roundToInt() + "",
                         "" + (CombatEndurance.TOTAL_REGEN_MAX_HULL_FRACTION * 100f).roundToInt() + "%")
-                    tooltip.addPara("    - Regenerate up to %s of armor per second; maximum total repair is " +
+                    tooltip.addPara("    - Repair up to %s of armor per second; maximum total repair is " +
                             "the higher of %s armor points or %s of maximum armor",
                         0f,
                         Misc.getHighlightColor(),
@@ -193,10 +204,11 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
                 // TIER 5
 
-                SotfIDs.COTL_BLESSINGOFTHELAKE -> {
+                SotfIDs.COTL_BLESSINGOFTHEDAYDREAM -> {
                     tooltip.addPara(
                         "Mimics with a base deployment point cost of %s or higher spawn as a reflection*. " +
-                                "This upgrade can't create a second reflection until the first is destroyed.",
+                                "This upgrade can't create a second reflection until the first is destroyed or is " +
+                                "manually set to expire.",
                         0f, h, "" + SotfInvokeHerBlessingPlugin.BLESSING_DP_GATE.roundToInt(), "reflection*"
                     )
                     tooltip.addSpacer(opad)
@@ -219,7 +231,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                     tooltip.addSpacer(opad)
                     tooltip.addPara(
                         "Also gain a \"Dream Eater\" subsystem that can be used on ship echoes to consume them and " +
-                                "repair the flagship as if it were a full-lifespan mimic.",
+                                "repair the flagship as if they were a full-lifespan mimic.",
                         0f, h, "\"Dream Eater\""
                     )
                     tooltip.addSpacer(opad)
@@ -322,7 +334,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
             "2x", "2x", "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfInvokeHerBlessingPlugin.OVERCLOCK_MIN_RATE) + "x"
         )
         capacity.addSpacer(10f)
-        capacity.addPara("- Sirius' safety interlocks have been disabled and he can replicate all ship designs with almost no exception.",
+        capacity.addPara("Sirius' safety interlocks have been disabled and he can replicate all ship designs with very few exceptions.",
             Misc.getGrayColor(), 0f
         )
         capacity.heightSoFar = skills.heightSoFar
@@ -375,7 +387,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         sections.add(s4)
 
         var s5 = SiriusSkillSection(playerLevel >= 15, "technology4")
-        addToSection(s5, SotfIDs.COTL_BLESSINGOFTHELAKE, "Blessing of the Lake")
+        addToSection(s5, SotfIDs.COTL_BLESSINGOFTHEDAYDREAM, "Blessing of the Daydream")
         addToSection(s5, SotfIDs.COTL_DREAMEATER, "Dream Eater")
         sections.add(s5)
 
@@ -552,15 +564,17 @@ class SotfSiriusIntel : BaseIntelPlugin() {
     override fun getIntelTags(map: SectorMapAPI?): Set<String>? {
         val tags = super.getIntelTags(map)
         tags.add(Tags.INTEL_IMPORTANT)
+        tags.add(Tags.INTEL_STORY)
+        tags.add(SotfIDs.DREAMING_GESTALT)
         return tags
     }
 
     override fun getSortString(): String? {
-        return "Boons of the Lake"
+        return "Boons of the Daydream"
     }
 
     override fun getName(): String? {
-        return "Boons of the Lake"
+        return "Boons of the Daydream"
     }
 
     override fun getFactionForUIColors(): FactionAPI {

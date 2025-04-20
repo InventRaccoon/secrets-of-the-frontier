@@ -31,6 +31,8 @@ import org.lwjgl.util.vector.Vector2f;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_ENCOUNTER_MYSTERIOUS_AGGRO;
+import static com.fs.starfarer.api.impl.MusicPlayerPluginImpl.MUSIC_SET_MEM_KEY;
 import static com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator.random;
 import static com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.*;
 
@@ -487,6 +489,8 @@ public class SotfGen implements SectorGeneratorPlugin
         StarSystemAPI lotl = sector.getStarSystem("sotf_lotl");
         if (lotl == null) {
             new SotfLightOfTheLake().generate(sector);
+        } else {
+            lotl.getEntityById("sotf_elysium").getMemoryWithoutUpdate().set(MUSIC_SET_MEM_KEY, MUSIC_ENCOUNTER_MYSTERIOUS_AGGRO);
         }
     }
 

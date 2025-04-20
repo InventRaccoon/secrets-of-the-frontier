@@ -17,7 +17,7 @@
 			"effectBasedOnLevel":false,
 			"effects":[
 				# Armor damage taken
-				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.ImpactMitigation$Level2"},
+				#{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.ImpactMitigation$Level2"},
 				# +armor effectiveness based on flux level
 				{"type":"SHIP", "script":"com.fs.starfarer.api.impl.campaign.skills.PolarizedArmor$Level2"},
 				# Repairs while under fire

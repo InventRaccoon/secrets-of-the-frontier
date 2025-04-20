@@ -5,6 +5,7 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
@@ -143,6 +144,7 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             fleetManager.setSuppressDeploymentMessages(true);
 
             drone = engine.getFleetManager(p.owner).spawnShipOrWing(p.lidarId, firingLocation, Misc.getAngleInDegrees(firingLocation, p.target.getLocation()));
+            drone.getMutableStats().getDynamic().getMod(Stats.ELECTRONIC_WARFARE_PENALTY_MOD).modifyMult("sotf_ecmimmune", 0f);
             drone.setAlly(true);
             drone.getFleetMember().setAlly(true);
             drone.setCollisionClass(CollisionClass.NONE);

@@ -127,7 +127,7 @@ public class SotfHandsOfTheDrowned {
 				}
 			}
 
-			data.tracker.advance(amount);
+			data.tracker.advance(amount / ship.getMutableStats().getTimeMult().getModifiedValue());
 			if (!data.tracker.intervalElapsed()) return;
 
 			WeightedRandomPicker<IncomingMine> picker = new WeightedRandomPicker<IncomingMine>();

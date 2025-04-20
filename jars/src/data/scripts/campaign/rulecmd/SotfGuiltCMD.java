@@ -81,7 +81,7 @@ public class SotfGuiltCMD extends BaseCommandPlugin
                 dialog.getVisualPanel().hideRankNamePost();
                 return true;
             case "fadeOutFelVFX":
-                SotfHauntedDreamCampaignVFX.fadeOutFromCurrent(1f);
+                SotfHauntedDreamCampaignVFX.fadeOut(1f);
                 return true;
             default:
                 return true;

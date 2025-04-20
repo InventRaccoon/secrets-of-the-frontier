@@ -25,5 +25,5 @@
 					   "particleCount":10,
 					   "particleColor":[100,255,205,255]},
 	"projectileSpecId":"sotf_lethargy_shot",
-	"fireSoundTwo":"ion_pulser_fire",
+	"fireSoundTwo":"sotf_lethargy_fire",
 }

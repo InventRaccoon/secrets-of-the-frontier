@@ -453,6 +453,35 @@
 		"weight":1000000,
 	},
 	
+	# HAUNTED FINALE
+	"sotf_hauntedSierra":{
+		"lines":[
+		["sotf_sierra", "A nightmare at the edge of nowhere..."],
+		["sotf_sierra", "... to Hel with it. Let's dance, kindred."],
+		],
+		"combatKeys":["sotf_fel_fight"],
+		"weight":100000,
+	},
+	
+	"sotf_hauntedBarrow":{
+		"lines":[
+		["sotf_barrow", "Born for this. Let's show the foggy wretch what for."],
+		],
+		"combatKeys":["sotf_fel_fight"],
+		"weight":100000,
+	},
+	
+	"sotf_hauntedSeraph":{
+		"lines":[
+		["sotf_seraph", "... sigh, made it this far... ONWARDS! Death awaits with an open jaw!"],
+		["sotf_seraph", "And we're going to TEAR IT OFF and SHOVE IT DOWN ITS-"],
+		],
+		"combatKeys":["sotf_fel_fight"],
+		"weight":100000,
+	},
+	
+	
+	
 	# DAWN AND DUST EXCLUSIVE
 	"sotf_dawnAndDust1":{
 		"lines":[

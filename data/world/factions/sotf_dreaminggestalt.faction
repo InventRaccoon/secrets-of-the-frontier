@@ -33,6 +33,9 @@
 		"future":1,
 		"myth":1,
 	},
+	"music":{
+		"encounter_hostile":"music_encounter_mysterious",
+	},
 	"portraits":{
 		"standard_male":[
 			"graphics/portraits/characters/sotf_meiryr.png",

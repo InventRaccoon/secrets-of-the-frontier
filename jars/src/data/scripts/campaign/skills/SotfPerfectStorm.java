@@ -120,7 +120,7 @@ public class SotfPerfectStorm {
 			Global.getCombatEngine().maintainStatusForPlayerShip(TIMER_KEY, "graphics/icons/hullsys/emp_emitter.png",
 					"Perfect Storm", status, true);
 
-			float timeMult = Global.getCombatEngine().getTimeMult().getModifiedValue();
+			float timeMult = Global.getCombatEngine().getTimeMult().getModifiedValue() / ship.getMutableStats().getTimeMult().getModifiedValue();
 			timer -= amount * timeMult;
 			if (timer < 0) {
 				timer = 0;

@@ -11,12 +11,14 @@ import com.fs.starfarer.api.impl.campaign.intel.misc.FleetLogIntel;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.campaign.fleet.CampaignFleet;
 import data.scripts.campaign.abilities.SotfCourserProtocolAbility;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.campaign.intel.misc.SotfDustkeeperHatred;
 import data.scripts.campaign.intel.misc.SotfSiriusIntel;
 import data.scripts.campaign.intel.quests.SotfWaywardStarIntel;
+import data.scripts.campaign.missions.SotfHauntedFinale;
 import data.scripts.campaign.missions.hallowhall.SotfHFHDevFactor;
 import data.scripts.campaign.missions.hallowhall.SotfHFHInadMissionCompletedFactor;
 import data.scripts.campaign.missions.hallowhall.SotfHopeForHallowhallEventIntel;
@@ -122,6 +124,16 @@ public class SotfDev implements BaseCommand {
 				Global.getSector().getPlayerPerson().getStats().addPoints(15 - level);
 				Global.getSector().getPlayerPerson().getStats().addStoryPoints(25);
 				Console.showMessage("The end draws close...");
+				return CommandResult.SUCCESS;
+			}
+			else if (args.equals("hfinfel")) {
+				for (CampaignFleetAPI fleet : Global.getSector().getStarSystem("sotf_lotl").getFleets()) {
+					if (!fleet.isPlayerFleet()) {
+						fleet.despawn();
+					}
+				}
+				SotfHauntedFinale.spawnFleet();
+				Console.showMessage("Respawned Fel fleet, let's try again!");
 				return CommandResult.SUCCESS;
 			}
 			else if (args.equals("cotl")) {

@@ -23,8 +23,11 @@ import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantSeededFleetManager;
+import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.BaseSalvageSpecial;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
+import com.fs.starfarer.api.impl.campaign.shared.WormholeManager;
 import com.fs.starfarer.api.impl.campaign.world.TTBlackSite;
+import com.fs.starfarer.api.loading.VariantSource;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -130,6 +133,12 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
     public void acceptImpl(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
         super.acceptImpl(dialog, memoryMap);
 
+
+
+        //addFelComposition(fleetData, corePicker.pickAndRemove());
+    }
+
+    public static void spawnFleet() {
         CampaignFleetAPI fleet = FleetFactoryV3.createEmptyFleet(SotfIDs.DREAMING_GESTALT, FleetTypes.PATROL_LARGE, null);
         fleet.setInflater(null); // no autofit tyvm
         fleet.setNoFactionInName(true);
@@ -149,16 +158,17 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 
         if (!SotfMisc.isSecondInCommandEnabled()) {
             PersonAPI fel = fleet.getCommander();
-            fel.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS, 1f);
-            fel.getStats().setSkillLevel(Skills.FLUX_REGULATION, 1f);
-            fel.getStats().setSkillLevel(Skills.PHASE_CORPS, 1f);
-            fel.getStats().setSkillLevel(Skills.WOLFPACK_TACTICS, 1f);
-            fel.getStats().setSkillLevel(Skills.CARRIER_GROUP, 1f);
+            // yeah this is probably too much
+//            fel.getStats().setSkillLevel(Skills.COORDINATED_MANEUVERS, 1f);
+//            fel.getStats().setSkillLevel(Skills.FLUX_REGULATION, 1f);
+//            fel.getStats().setSkillLevel(Skills.PHASE_CORPS, 1f);
+//            fel.getStats().setSkillLevel(Skills.WOLFPACK_TACTICS, 1f);
+//            fel.getStats().setSkillLevel(Skills.CARRIER_GROUP, 1f);
         }
 
         FleetDataAPI fleetData = fleet.getFleetData();
 
-        WeightedRandomPicker<String> corePicker = new WeightedRandomPicker<String>(genRandom);
+        WeightedRandomPicker<String> corePicker = new WeightedRandomPicker<String>(Misc.random);
         corePicker.add("decisive_battle");
         corePicker.add("hit_and_run");
         corePicker.add("unrelenting");
@@ -175,128 +185,81 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             Global.getSector().getCampaignUI().addMessage("Fel core comp picks: " + pick1 + " + " + pick2 + " + " + "pick3");
         }
 
-        WeightedRandomPicker<String> adaptPicker = new WeightedRandomPicker<String>(genRandom);
-
-        CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
-        float playerCombatFP = 0.01f; // just to avoid divide by zero :)
-        float playerCruiserFP = 0f;
-        float playerCapitalFP = 0f;
-        float playerCarrierFP = 0f;
-
-        float omegaWeight = 0f;
-
-        for (FleetMemberAPI member : playerFleet.getFleetData().getMembersListCopy()) {
-            if (member.isCivilian()) continue;
-            playerCombatFP += member.getFleetPointCost();
-            if (member.isCruiser()) playerCruiserFP += member.getFleetPointCost();
-            if (member.isCapital()) playerCapitalFP += member.getFleetPointCost();
-
-            float carrierBays = member.getHullSpec().getHullSize().ordinal() - 1;
-            if (member.isCapital()) carrierBays++;
-            playerCarrierFP += (member.getFleetPointCost() * ((float) member.getNumFlightDecks() / carrierBays));
-
-            // two can play at that game
-            if (member.getHullSpec().hasTag(Tags.OMEGA)) {
-                omegaWeight = 99999f;
-            }
-        }
-
-        float eidolonWeight = 0.01f; // so she gets picked if everything else is 0
-        if (SotfMisc.playerHasSierra()) eidolonWeight = 1f;
-
-        float preyFP = playerCruiserFP + playerCapitalFP;
-        float anticapitalWeight = (2f * (preyFP / playerCombatFP));
-
-        float pdWeight = playerCarrierFP / playerCombatFP;
-
-        adaptPicker.add("omega", omegaWeight);
-        adaptPicker.add("eidolon", eidolonWeight);
-        adaptPicker.add("capital_hunters", anticapitalWeight);
-        adaptPicker.add("pointdefense", pdWeight);
-
-        String adaptPick = adaptPicker.pickAndRemove();
-        addFelComposition(fleetData, adaptPick);
-
-        if (Global.getSettings().isDevMode()) {
-            Global.getSector().getCampaignUI().addMessage("Fel adaptive pick: " + adaptPick);
-        }
-
         fleetData.sort();
         fleetData.syncIfNeeded();
 
+        LocationAPI lotl = Global.getSector().getStarSystem("sotf_lotl");
         SectorEntityToken elysium = lotl.getEntityById("sotf_elysium");
         lotl.addEntity(fleet);
         fleet.setLocation(elysium.getLocation().x, elysium.getLocation().y + 100f);
-        // make sure they can't be sneaked past
+        // make sure they can't be sneaked past although you do need to fight them anyway
         fleet.getStats().getFleetwideMaxBurnMod().modifyMult("sotf_fel", 3f);
         fleet.getStats().getAccelerationMult().modifyMult("sotf_fel", 3f);
-        fleet.getStats().getSensorRangeMod().modifyMult("sotf_fel", 3f);
+        fleet.getStats().getSensorRangeMod().modifyMult("sotf_fel", 2f);
         fleet.addScript(new SotfFelLeashAssignmentAI(fleet, elysium));
         fleet.getMemoryWithoutUpdate().set(MemFlags.FLEET_INTERACTION_DIALOG_CONFIG_OVERRIDE_GEN,
                 new SotfFelFIDConfigGen());
+        CargoAPI extraLoot = Global.getFactory().createCargo(true);
+        SpecialItemData item = WormholeManager.createWormholeAnchor("sotf_lotl", "sotf_styx", "Styx");
+        extraLoot.addSpecial(item, 1f);
+        BaseSalvageSpecial.addExtraSalvage(fleet, extraLoot);
         Misc.addDefeatTrigger(fleet, "sotfHauntedBeatFel");
 
         Misc.makeImportant(fleet, "$sotf_haunted");
-
-        for (FleetMemberAPI curr : fleet.getFleetData().getMembersListCopy()) {
-            curr.getRepairTracker().setCR(curr.getRepairTracker().getMaxCR());
-            if (curr.getHullSpec().hasTag(Tags.OMEGA)) continue;
-            if (curr.getHullId().contains("eidolon")) {
-                curr.getVariant().addPermaMod(SotfIDs.PHANTASMAL_SHIP);
-                continue;
-            }
-            if (!Misc.isAutomated(curr)) {
-                curr.getVariant().addPermaMod(HullMods.AUTOMATED);
-            }
-            curr.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
-        }
-        //addFelComposition(fleetData, corePicker.pickAndRemove());
     }
 
-    public void addFelComposition(FleetDataAPI fleetData, String comp) {
+    public static void addFelComposition(FleetDataAPI fleetData, String comp) {
+        boolean hard = SotfMisc.getHFinaleHardMode();
         switch (comp) {
             case "decisive_battle":
-                addFelMember(fleetData, "onslaught_xiv_Elite", Personalities.AGGRESSIVE, SotfIDs.SKILL_DEARDOTTY, SotfIDs.SKILL_HELLIONSHELLHIDE);
+                addFelMember(fleetData, "onslaught_xiv_Elite", Personalities.AGGRESSIVE, SotfIDs.SKILL_DEARDOTTY);
 
-                addFelMember(fleetData, "dominator_AntiCV", Personalities.AGGRESSIVE);
-                addFelMember(fleetData, "dominator_Assault", Personalities.AGGRESSIVE);
-                addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
-                addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
+                addFelMember(fleetData, "dominator_Assault", Personalities.AGGRESSIVE, SotfIDs.SKILL_SCRAPSCREEN);
+                //addFelMember(fleetData, "dominator_Assault", Personalities.AGGRESSIVE);
+                addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS, SotfIDs.SKILL_WYRMFIRE);
+                //addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
 
                 addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY, SotfIDs.SKILL_HELLIONSHELLHIDE);
-                addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY, SotfIDs.SKILL_HELLIONSHELLHIDE);
-                addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
-                addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
+                //addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY);
+                addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY, SotfIDs.SKILL_MANTLEOFTHORNS);
+                //addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
+
+                if (hard) {
+                    addFelMember(fleetData, "dominator_AntiCV", Personalities.AGGRESSIVE);
+                    addFelMember(fleetData, "mora_Torpedo", Personalities.CAUTIOUS);
+                    addFelMember(fleetData, "enforcer_XIV_Elite", Personalities.STEADY);
+                    addFelMember(fleetData, "manticore_Balanced", Personalities.STEADY);
+                }
                 break;
             case "hit_and_run":
                 addFelMember(fleetData, "sotf_respite_Assault", Personalities.AGGRESSIVE, SotfIDs.SKILL_JUBILANTSIREN);
 
-                addFelMember(fleetData, "aurora_Attack", Personalities.RECKLESS, SotfIDs.SKILL_ATRICKSTERSCALLING);
-                addFelMember(fleetData, "doom_Strike", Personalities.RECKLESS);
+                //addFelMember(fleetData, "aurora_Attack", Personalities.RECKLESS, SotfIDs.SKILL_ATRICKSTERSCALLING);
+                //addFelMember(fleetData, "doom_Strike", Personalities.AGGRESSIVE, SotfIDs.SKILL_ATRICKSTERSCALLING);
+                addFelMember(fleetData, "fury_Attack", Personalities.AGGRESSIVE, SotfIDs.SKILL_ATRICKSTERSCALLING);
 
-                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_LEVIATHANSBANE);
-                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY);
+                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_TICKTOCK);
+                addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_INSACRIFICEMEANING);
 
                 addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_LEVIATHANSBANE);
                 addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
                 addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
-                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
-                break;
-            case "swarm":
-                addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS);
-
-                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE);
-                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.RECKLESS);
-
-                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
-                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
-                addFelMember(fleetData, "sotf_sentry_aux_Threat", Personalities.STEADY);
+                //addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                if (hard) {
+                    addFelMember(fleetData, "aurora_Attack", Personalities.RECKLESS, SotfIDs.SKILL_TICKTOCK);
+                    addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                }
                 break;
             case "unrelenting":
-                addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS, SotfIDs.SKILL_HELLIONSHELLHIDE);
+                //addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS, SotfIDs.SKILL_SCRAPSCREEN);
 
-                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE);
-                addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_JUBILANTSIREN);
+                //addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE);
+                if (!hard) {
+                    addFelMember(fleetData, "eradicator_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_WYRMFIRE);
+                } else {
+                    // no shield shunt
+                    addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_WYRMFIRE);
+                }
 
                 addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
                 addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
@@ -305,6 +268,11 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
                 addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
                 addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
+
+                if (hard) {
+                    addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS, SotfIDs.SKILL_SCRAPSCREEN);
+                    addFelMember(fleetData, "sotf_eradicator_Overdriven", Personalities.AGGRESSIVE);
+                }
                 break;
             // ADAPTIVE PICKS
             case "omega":
@@ -315,18 +283,24 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 break;
             case "capital_hunters":
                 addFelMember(fleetData, "hyperion_Attack", Personalities.AGGRESSIVE, SotfIDs.SKILL_LEVIATHANSBANE);
-                addFelMember(fleetData, "hyperion_Strike", Personalities.AGGRESSIVE, SotfIDs.SKILL_LEVIATHANSBANE);
+                if (hard) {
+                    addFelMember(fleetData, "hyperion_Strike", Personalities.AGGRESSIVE, SotfIDs.SKILL_LEVIATHANSBANE);
+                }
+                //addFelMember(fleetData, "hyperion_Strike", Personalities.AGGRESSIVE, SotfIDs.SKILL_LEVIATHANSBANE);
                 break;
             case "pointdefense":
-                addFelMember(fleetData, "sotf_anubis_PD", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER, SotfIDs.SKILL_MANTLEOFTHORNS);
-                addFelMember(fleetData, "omen_PD", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER);
-                addFelMember(fleetData, "omen_PD", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER);
+                addFelMember(fleetData, "anubis_Standard", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER, SotfIDs.SKILL_MANTLEOFTHORNS);
+                if (hard) {
+                    addFelMember(fleetData, "omen_PD", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER);
+                    addFelMember(fleetData, "omen_PD", Personalities.STEADY, SotfIDs.SKILL_GROVETENDER);
+                }
                 break;
         }
     }
 
-    public void addFelMember(FleetDataAPI fleetData, String variantId, String personality, String... skills) {
+    public static void addFelMember(FleetDataAPI fleetData, String variantId, String personality, String... skills) {
         FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variantId);
+        boolean hard = SotfMisc.getHFinaleHardMode();
 
         if (variantId.contains("tesseract")) {
             PersonAPI captain = Misc.getAICoreOfficerPlugin(Commodities.OMEGA_CORE).createPerson(Commodities.OMEGA_CORE, Factions.OMEGA, Misc.random);
@@ -340,13 +314,19 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             PersonAPI captain = SotfPeople.getPerson(SotfPeople.EIDOLON);
             member.setCaptain(captain);
             member.setShipName("Pact");
+            member.getVariant().addPermaMod(SotfIDs.PHANTASMAL_SHIP);
             fleetData.addFleetMember(member);
             // hack: delete from fleet if banished bcs phantasmal ships sometimes don't die properly
             member.getVariant().addTag("sotf_delete_from_fleet");
             return;
         }
 
-        member.getVariant().setVariantDisplayName(pickOne("Vengeful", "Retributive", "Judgement", "Hateful", "Reckoner", "Scornful"));
+        if (!Misc.isAutomated(member)) {
+            member.getVariant().addPermaMod(HullMods.AUTOMATED);
+        }
+        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+
+        member.getVariant().setVariantDisplayName(SotfMisc.pickOne("Vengeful", "Retributive", "Judgement", "Hateful", "Reckoner", "Scornful"));
 
         PersonAPI captain = SotfPeople.genFelSubswarm();
         captain.setPersonality(personality);
@@ -354,6 +334,23 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         for (String skill : skills) {
             captain.getStats().setSkillLevel(skill, 2f);
         }
+        if (!hard) {
+            // mine spam/temp shell spam is very rough
+            if (variantId.contains("doom") || variantId.contains("respite")) {
+                captain.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 0f);
+            }
+            // this shit sure doesn't FEEL like a glass cannon
+            if (variantId.contains("respite")) {
+                captain.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 0f);
+                captain.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1f);
+            }
+            // bruh die already pls I beg you
+            if (variantId.contains("mora") || variantId.contains("onslaught") || variantId.contains("dominator")) {
+                captain.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 0f);
+            }
+        }
+        member.setVariant(member.getVariant().clone(), false, false);
+        member.getVariant().setSource(VariantSource.REFIT);
         member.setCaptain(captain);
         fleetData.addFleetMember(member);
     }
@@ -367,17 +364,9 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             config.showTransponderStatus = false;
             config.showEngageText = false;
             config.alwaysPursue = true;
-            config.dismissOnLeave = false;
             config.impactsAllyReputation = false;
             config.impactsEnemyReputation = false;
-            //config.lootCredits = false;
-            config.withSalvage = false;
-            //config.showVictoryText = false;
             config.printXPToDialog = true;
-
-            config.noSalvageLeaveOptionText = "Continue";
-//			config.postLootLeaveOptionText = "Continue";
-//			config.postLootLeaveHasShortcut = false;
 
             config.delegate = new FleetInteractionDialogPluginImpl.BaseFIDDelegate() {
                 public void postPlayerSalvageGeneration(InteractionDialogAPI dialog, FleetEncounterContext context, CargoAPI salvage) {
@@ -387,7 +376,6 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 
                 public void battleContextCreated(InteractionDialogAPI dialog, BattleCreationContext bcc) {
                     bcc.aiRetreatAllowed = false;
-                    bcc.objectivesAllowed = false;
                     bcc.fightToTheLast = true;
                     bcc.enemyDeployAll = true;
                 }
@@ -435,7 +423,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 his = "their";
             }
 
-            text.addPara("With " + his + " sacrifice, the story of " + Global.getSector().getPlayerPerson().getNameString() + " has ended.", Misc.getHighlightColor(), Global.getSector().getPlayerPerson().getNameString());
+            //text.addPara("With " + his + " sacrifice, the story of " + Global.getSector().getPlayerPerson().getNameString() + " has ended.", Misc.getHighlightColor(), Global.getSector().getPlayerPerson().getNameString());
             return true;
         } else if (action.equals("quickLoad")){
             dialog.dismiss();
@@ -476,7 +464,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             storyPointsRequired = 10;
             info.addPara("The way is clear.", opad);
             info.addPara("The Light of the Lake is directly north of the sector's center.", opad, h, "directly north", "sector's center");
-            info.addPara("Prepare yourself.", opad);
+            info.addPara("Prepare yourself.", bad, opad);
         } else if (currentStage == Stage.FACE_YOUR_TORMENTOR) {
             storyPointsRequired = 10;
             info.addPara("Your tormentor blocks the way to Elysium.", opad, bad, "tormentor");

@@ -2,9 +2,9 @@
     "id": "secretsofthefrontier",
     "name": "Secrets of the Frontier",
     "author": "Inventor Raccoon",
-    "version": "0.14.5b",
+    "version": "0.15",
     "description": "Watch beyond the walls\nDance amongst the void\nDiscover the secrets of the frontier\n\n An in-development campaign mod.",
-    "gameVersion": "0.98a-RC5",
+    "gameVersion": "0.98a-RC8",
 	"dependencies": [
         {
             "id": "lw_lazylib",

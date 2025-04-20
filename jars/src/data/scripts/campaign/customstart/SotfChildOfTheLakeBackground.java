@@ -11,6 +11,7 @@ import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.DelayedActionScript;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
+import data.scripts.utils.SotfMisc;
 import exerelin.campaign.backgrounds.BaseCharacterBackground;
 import exerelin.utilities.NexFactionConfig;
 
@@ -23,14 +24,51 @@ import static data.scripts.SotfModPlugin.WATCHER;
 
 public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
 
+    private final boolean unlocked;
+
+    public SotfChildOfTheLakeBackground(){
+        unlocked = SharedUnlockData.get().getSet("sotf_persistent").contains("sotf_haunted_completed") || !SotfMisc.getLockoutStarts();
+    }
+
     @Override
     public float getOrder() {
-        return 100;
+        if (!unlocked) return 10000;
+        return 101;
     }
 
     @Override
     public boolean shouldShowInSelection(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
-        return WATCHER && SharedUnlockData.get().getSet("sotf_persistent").contains("sotf_haunted_completed");
+        return WATCHER;
+        //return WATCHER && SharedUnlockData.get().getSet("sotf_persistent").contains("sotf_haunted_completed");
+    }
+
+    @Override
+    public boolean canBeSelected(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
+        return unlocked;
+    }
+
+    @Override
+    public void canNotBeSelectedReason(TooltipMakerAPI tooltip, FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
+        if (!unlocked) tooltip.addPara("[LOCKED]", Misc.getNegativeHighlightColor(), 0f);
+    }
+
+    @Override
+    public String getTitle(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
+        if (!unlocked) return spec.title + " [LOCKED]";
+        return spec.title;
+    }
+
+    @Override
+    public String getShortDescription(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
+        if (!unlocked) return "Complete \"The Haunted\" to unlock this background.";
+        return spec.shortDescription;
+    }
+
+    @Override
+    public String getLongDescription(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
+        if (!unlocked) return "An endgame task will be given at level 15 during the Haunted: complete it and unlock this " +
+                "background.";
+        return spec.longDescription;
     }
 
     public void onNewGameAfterTimePass(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
@@ -39,7 +77,12 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
         MemoryAPI char_mem = Global.getSector().getPlayerPerson().getMemoryWithoutUpdate();
         //char_mem.set(SotfIDs.GUILT_KEY, SotfMisc.getHauntedGuilt());
         //Global.getSector().addScript(new SotfGenericDialogScript("sotfCOTLIntro"));
-        Global.getSector().getPlayerPerson().getStats().addPoints(-1);
+        if (Global.getSector().getPlayerPerson().getStats().getPoints() > 0) {
+            Global.getSector().getPlayerPerson().getStats().addPoints(-1);
+        } else if (!Global.getSector().getPlayerPerson().getStats().getSkillsCopy().isEmpty()) {
+            String skill = Global.getSector().getPlayerPerson().getStats().getSkillsCopy().get(0).getSkill().getId();
+            Global.getSector().getPlayerPerson().getStats().setSkillLevel(skill, 0);
+        }
 
         //Intro
         Global.getSector().addScript(new DelayedActionScript(0.25f) {
@@ -70,13 +113,14 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
     @Override
     public void addTooltipForSelection(TooltipMakerAPI tooltip, FactionSpecAPI factionSpec, NexFactionConfig factionConfig, Boolean expanded) {
         super.addTooltipForSelection(tooltip, factionSpec, factionConfig, expanded);
-
-        tooltip.addSpacer(10f);
-        tooltip.addPara("Trade in your starting skill point for the Invoke Her Blessing subsystem. You can use it on " +
-                "an echo left by a destroyed ship in combat to order Sirius, your fell protector, to fashion a mimic in its image and take command of it.", 10f,
-                Misc.getTextColor(), Misc.getHighlightColor(), "Invoke Her Blessing", "echo", "Sirius");
-        tooltip.addPara("As you level up, Invoke Her Blessing becomes more powerful and you unlock the ability to " +
-                "select special upgrades for Sirius.", 10f, Misc.getHighlightColor(), "level up", "becomes more powerful", "special upgrades");
+        if (unlocked) {
+            tooltip.addSpacer(10f);
+            tooltip.addPara("Trade in your starting skill point for the Invoke Her Blessing subsystem. You can use it on " +
+                            "an echo left by a destroyed ship in combat to order Sirius, your fell protector, to fashion a mimic in its image and take command of it.", 10f,
+                    Misc.getTextColor(), Misc.getHighlightColor(), "Invoke Her Blessing", "echo", "Sirius");
+            tooltip.addPara("As you level up, Invoke Her Blessing becomes more powerful and you unlock the ability to " +
+                    "select special upgrades for Sirius.", 10f, Misc.getHighlightColor(), "level up", "becomes more powerful", "special upgrades");
+        }
     }
 
     @Override
@@ -88,7 +132,7 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
         tooltip.addSectionHeading("Sirius", Alignment.MID, opad);
 
         tooltip.addPara("See the %s intel entry for detailed information on Sirius' abilities, " +
-                "skills and upgrades.", opad, Misc.getHighlightColor(), "\"Boons of the Lake\"");
+                "skills and upgrades.", opad, Misc.getHighlightColor(), "\"Boons of the Daydream\"");
 
 //        PersonAPI sirius = SotfPeople.getPerson(SotfPeople.SIRIUS_MIMIC);
 //

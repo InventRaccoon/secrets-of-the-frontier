@@ -202,23 +202,23 @@
 			"sotf_child_of_the_lake_noise1":"graphics/fx/sotf_child_of_the_lake_noise1.png",
 		},
 		"skills":{
-			# COTL upgrades
+			# COTL upgrades, must match memory flag minus the $ prefix
 			"sotf_cotl_perfectreplication":"graphics/icons/skills/daydream/sotf_perfectreplication2.png",
-			"sotf_cotl_multifaceted":"graphics/icons/skills/daydream/sotf_missilereplication.png",
+			"sotf_cotl_multifaceted":"graphics/icons/skills/daydream/sotf_multifaceted.png",
 			
 			"sotf_cotl_enhancedcountermeasures":"graphics/icons/skills/daydream/sotf_advancedcountermeasures.png",
-			"sotf_cotl_shriekofthedamned":"graphics/icons/skills/daydream/sotf_gunneryuplink.png",
+			"sotf_cotl_shriekofthedamned":"graphics/icons/skills/daydream/sotf_shriekofthedamned.png",
 			"sotf_cotl_servicebeyonddeath":"graphics/icons/skills/daydream/sotf_servicebeyonddeath.png",
 			
-			"sotf_cotl_everyroseitsthorns":"graphics/icons/skills/daydream/sotf_advancedcountermeasures.png",
-			"sotf_cotl_unlivingvigor":"graphics/icons/skills/daydream/sotf_fieldsresonance.png",
-			"sotf_cotl_deaththroes":"graphics/icons/skills/daydream/sotf_polarizednanorepair.png",
+			"sotf_cotl_everyroseitsthorns":"graphics/icons/skills/daydream/sotf_everyroseitsthorns.png",
+			"sotf_cotl_unlivingvigor":"graphics/icons/skills/daydream/sotf_unlivingvigor.png",
+			"sotf_cotl_deaththroes":"graphics/icons/skills/daydream/sotf_deaththroes.png",
 			
 			"sotf_cotl_reconstitution":"graphics/icons/skills/daydream/sotf_polarizednanorepair.png",
-			"sotf_cotl_hullsiphon":"graphics/icons/skills/daydream/sotf_ordnancemastery.png",
+			"sotf_cotl_hullsiphon":"graphics/icons/skills/daydream/sotf_hullsiphon.png",
 			
-			"sotf_cotl_blessingofthelake":"graphics/icons/skills/daydream/sotf_gunneryuplink.png",
-			"sotf_cotl_dreameater":"graphics/icons/skills/daydream/sotf_fieldsresonance.png",
+			"sotf_cotl_blessingofthedaydream":"graphics/icons/skills/daydream/sotf_blessingofthedaydream.png",
+			"sotf_cotl_dreameater":"graphics/icons/skills/daydream/sotf_dreameater.png",
 			
 			"sotf_naniteswarm_sheet":"graphics/ships/dreaming/sotf_naniteswarm_sheet.png",
 		},

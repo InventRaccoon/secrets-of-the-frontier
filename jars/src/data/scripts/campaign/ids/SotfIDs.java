@@ -241,7 +241,7 @@ public class SotfIDs {
 	public static String COTL_RECONSTITUTION = "$sotf_cotl_reconstitution";
 	public static String COTL_HULLSIPHON = "$sotf_cotl_hullsiphon";
 
-	public static String COTL_BLESSINGOFTHELAKE = "$sotf_cotl_blessingofthelake";
+	public static String COTL_BLESSINGOFTHEDAYDREAM = "$sotf_cotl_blessingofthedaydream";
 	public static String COTL_DREAMEATER = "$sotf_cotl_dreameater";
 
 	public static String ASB_TARGET = "$sotf_asbTarget";
