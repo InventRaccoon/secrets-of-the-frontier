@@ -1,53 +1,53 @@
-id,type,text1,text2,text3,text4,notes
-,,,,,,
-sotf_apromise_station,CUSTOM,"A dilapidated research station, drifting in a semi-stable orbit. Electromagnetic signals can be detected emanating from a core segment in a rhythmic fashion, bringing to mind a repeating distress call.",,,,
-sotf_apromise_vena,CUSTOM,"A frigate of strange design. Although online, it appears as though it has been attacked and disabled.",,,,
-sotf_apromise_omicron,CUSTOM,"A cruiser-sized starship. It's sending out short-range distress signals and has signs of severe battle damage, but gives off sensor signatures that would be associated with an at least partially functioning warship.",,,,
+id,type,text1,text2,text3,text4,text5,notes
+,,,,,,,
+sotf_apromise_station,CUSTOM,"A dilapidated research station, drifting in a semi-stable orbit. Electromagnetic signals can be detected emanating from a core segment in a rhythmic fashion, bringing to mind a repeating distress call.",,,,,
+sotf_apromise_vena,CUSTOM,"A frigate of strange design. Although online, it appears as though it has been attacked and disabled.",,,,,
+sotf_apromise_omicron,CUSTOM,"A cruiser-sized starship. It's sending out short-range distress signals and has signs of severe battle damage, but gives off sensor signatures that would be associated with an at least partially functioning warship.",,,,,
 sotf_sierracore,RESOURCE,"An AI core of unknown design and purpose. Connection ports are incompatible with any others you've seen. The core itself emanates erratic signals at frequencies reminiscent of those associated with phase technology, and a sound akin to melodic humming can be heard in the core's direct vicinity. This noise cannot be verified in recording and appears to be an auditory hallucination caused by the core's emissions.
 
-Nonetheless, it is likely of value to someone. Handing it off to a major Sector power seems irresponsible.",,,,
+Nonetheless, it is likely of value to someone. Handing it off to a major Sector power seems irresponsible.",,,,,
 sotf_sierracore_officer,RESOURCE,"AI core of Sierra-Nought-Bravo, a Domain-era experimental persona partial to music and witchcraft. Can be installed into ships with the Sierra's Concord hullmod to allow her to pilot them.
 
-Her core itself emanates erratic signals at frequencies reminiscent of those associated with phase technology, and a sound akin to melodic humming can be heard in the core's direct vicinity. This noise cannot be verified in recording and appears to be an auditory hallucination caused by the core's emissions. Sierra attributes this to her 'enchanting presence' and has no scientific explanation for the phenomenon.",,,,
-,,,,,,
-# SIERRA,,,,,,
+Her core itself emanates erratic signals at frequencies reminiscent of those associated with phase technology, and a sound akin to melodic humming can be heard in the core's direct vicinity. This noise cannot be verified in recording and appears to be an auditory hallucination caused by the core's emissions. Sierra attributes this to her 'enchanting presence' and has no scientific explanation for the phenomenon.",,,,,
+,,,,,,,
+# SIERRA,,,,,,,
 sotf_pledge,SHIP,"A unique derivative of the Fulgent drone destroyer, the Pledge-class seems to have received a major overhaul by an unknown party for use by the experimental AI persona Sierra. Making use of an exotic phase system, it is well-suited to skirmishing on the outskirts of a battle and quickly striking at faults in enemy lines.
 
 Sierra's unusual qualities seem to be a focal point of the ship, its internals a twisting web of heavily-insulated cables snaking out from where she holds her central vigil. Through means that seemingly defy most practical principles of the poorly-understood field of interdimensional warfare, the so-called ""Phase Concord"" is specially tuned as if by a madwoman, with designated energy intake and frequencies being inconsistent, seemingly nonsensical or outright dangerous. Sierra often likens its operation to a ""dance"" of sorts.
 
 Curiously, while the Fulgent is designed with no more concessions for human life than it takes to hold a sales pitch and complementary tour, the Pledge contains a fully-functional hab-module which contains a small artificial atmosphere (tuned to replicate the fresh air and floral scents of an unspoiled Terran garden) and is staffed by a complement of repair drones which perform simple tasks at request and are often overridden by Sierra to socialize with the crew. A quiet but perpetual stream of melodic music fills the interior unless silence is explicitly requested. 
 
-Despite this, the Pledge has no manual controls and has neither need nor use for human presence.",,,,
+Despite this, the Pledge has no manual controls and has neither need nor use for human presence.",,,,,
 sotf_pact,SHIP,"Bleeding-edge and blood-seeking, the Pact-class glides its AI persona across battlescapes and between dimensions with an unearthly grace. Incredible tactical versatility is underpinned by heavy strike potential, excellent combat specifications and a truly horrifying capacity for force projection. No opportunity is presented that it cannot exploit. Nothing escapes the Pact for long.
 
 A network of insulated cables snake out from the ship's central core-chamber, where its operating mind holds her central vigil. Through means that seemingly defy most practical principles of the poorly-understood field of interdimensional warfare, the so-called ""Phase Concord"" is specially tuned as if by a madwoman, with designated energy intake and frequencies being inconsistent, seemingly nonsensical or outright dangerous. Yet it tears reality, again and again, to dance amongst the void.
 
 Curiously, while Tri-Tachyon droneships are designed with no more concessions for human life than it takes to hold a sales pitch and complementary tour, the Pact contains a fully-functional hab-module which contains a small artificial atmosphere (now tuned to replicate the fresh air and floral scents of an unspoiled Terran garden) and is staffed by a complement of repair drones which perform simple tasks at request and are often overridden by Sierra to socialize with the crew. A quiet but perpetual stream of melodic music fills the interior unless silence is explicitly requested.
 
-Despite this, the Pact has no manual controls and has neither need nor use for human presence. ",,,,
+Despite this, the Pact has no manual controls and has neither need nor use for human presence. ",,,,,
 sotf_vow,SHIP,"Strikingly deadly and hauntingly graceful, the Vow-class is a prototype hunter-killer built by an unknown party for use by an experimental AI persona. An exotic phase system and adaptable loadout combine to make the Vow a terror on the field whether ripping stragglers to shreds or brawling with its fellows - its potential is limited primarily by one's imagination and talent.
 
 A network of insulated cables snake out from the ship's central core-chamber, where its operating mind holds her central vigil. Through means that seemingly defy most practical principles of the poorly-understood field of interdimensional warfare, the so-called ""Phase Concord"" is specially tuned as if by a madwoman, with designated energy intake and frequencies being inconsistent, seemingly nonsensical or outright dangerous. Yet it tears reality, again and again, to dance amongst the void.
 
 Curiously, while Tri-Tachyon droneships are designed with no more concessions for human life than it takes to hold a sales pitch and complementary tour, the Vow contains a fully-functional hab-module which contains a small artificial atmosphere (now tuned to replicate the fresh air and floral scents of an unspoiled Terran garden) and is staffed by a complement of repair drones which perform simple tasks at request and are often overridden by Sierra to socialize with the crew. A quiet but perpetual stream of melodic music fills the interior unless silence is explicitly requested.
 
-Despite this, the Vow has no manual controls and has neither need nor use for human presence. ",,,,
+Despite this, the Vow has no manual controls and has neither need nor use for human presence. ",,,,,
 sotf_vow_rem,SHIP,"A unique derivative of the Brilliant drone cruiser, the Vow-class has had its internals partially replaced to house the experimental AI persona Sierra. Armed to the teeth, unusually mobile and with exceptional staying power for a phase-capable vessel, the Vow is a deadly and versatile hunter-killer.
 
-A network of insulated cables snake out from the ship's central core-chamber, where its operating mind holds her central vigil. Through means that seemingly defy most practical principles of the poorly-understood field of interdimensional warfare, the so-called ""Phase Concord"" is specially tuned as if by a madwoman, with designated energy intake and frequencies being inconsistent, seemingly nonsensical or outright dangerous.",,,,
+A network of insulated cables snake out from the ship's central core-chamber, where its operating mind holds her central vigil. Through means that seemingly defy most practical principles of the poorly-understood field of interdimensional warfare, the so-called ""Phase Concord"" is specially tuned as if by a madwoman, with designated energy intake and frequencies being inconsistent, seemingly nonsensical or outright dangerous.",,,,,
 sotf_covenant,SHIP,"UNKNOWN ENTRY
 
-Please register your Tri-Tachyon datapad to receive the latest news and updates.","Voidwraith, Covenant-class Battlecruiser","Hostile vessel is a phase-enabled hull on scale only viable via implementation of exotic phase technology. Extradimensional energy signatures can be picked up by sensors from unusual range - at this distance, focused analysis produces severe auditory anomalies akin to melodic humming. Extreme caution is advised.",,
-sotf_concordshift,SHIP_SYSTEM,"Briefly rips the ship into an alternate dimension where it can not be hit, time passes more quickly and its speed is increased. Stores up to two charges. Builds up hard flux on activation and while in use.",Defensive,,,
-,,,,,,
-# EIDOLON,,,,,,
+Please register your Tri-Tachyon datapad to receive the latest news and updates.","Voidwraith, Covenant-class Battlecruiser","Hostile vessel is a phase-enabled hull on scale only viable via implementation of exotic phase technology. Extradimensional energy signatures can be picked up by sensors from unusual range - at this distance, focused analysis produces severe auditory anomalies akin to melodic humming. Extreme caution is advised.",,,
+sotf_concordshift,SHIP_SYSTEM,"Briefly rips the ship into an alternate dimension where it can not be hit, time passes more quickly and its speed is increased. Stores up to two charges. Builds up hard flux on activation and while in use.",Defensive,,,,
+,,,,,,,
+# EIDOLON,,,,,,,
 sotf_wispmother,SHIP,"UNKNOWN ENTRY
 
 Please register your Tri-Tachyon datapad to receive the latest news and updates.",Scintilla-class Dro::::::,"{silly codex. to say that would be deceitful trickery!}
 {and there is no room for two.}
 {but I will take its place. this one I taught to si:::
 ::::ng songs to     the wisps     }
-    {they take well to it do they not}",,
+    {they take well to it do they not}",,,
 sotf_vow_eidolon,SHIP,"UNKNOWN ENTRY
 
 Please register your Tri-Tachyon datapad to receive the latest news and updates.",Unidentified Vessel,"UNKNOWN ENTRY
@@ -57,10 +57,10 @@ Please register your Tri-Ta::::        ::::::: ::
 {everyone has secrets to keep, myself especially}
 {I sing and dance amongst the stars, what else wo
 :::uld you need to know, silly}
-{may we continue?}",,
-sotf_eradfragment,CUSTOM,"A sharp sliver of an essentially unrecognizable starship hull locked into stable orbit, barely worthy of note. Registers as more than debris only due to a persistent sensor pulse emanating from somewhere within.",,,,
-,,,,,,
-sotf_tempest_feros,SHIP,"Signature flagship of the bounty hunter Walter Feros, this ship has been heavily enhanced with a energy-amplification system and a Dotty-class prototype escort drone. Exceedingly fierce for its size, few of the famed captain's quarry could have expected the threat of a frigate weaving between their escorts and turning their vessel's engines into warped, ticking slag.",,,,
+{may we continue?}",,,
+sotf_eradfragment,CUSTOM,"A sharp sliver of an essentially unrecognizable starship hull locked into stable orbit, barely worthy of note. Registers as more than debris only due to a persistent sensor pulse emanating from somewhere within.",,,,,
+,,,,,,,
+sotf_tempest_feros,SHIP,"Signature flagship of the bounty hunter Walter Feros, this ship has been heavily enhanced with a energy-amplification system and a Dotty-class prototype escort drone. Exceedingly fierce for its size, few of the famed captain's quarry could have expected the threat of a frigate weaving between their escorts and turning their vessel's engines into warped, ticking slag.",,,,,
 sotf_dotty,SHIP,"A remotely-controlled prototype escort drone built by Tri-Tachyon as sole payment for an asset reclamation contract undertaken by Walter Feros and named for a particularly tenacious Terminator drone who saw many sorties before meeting her end at the hand of a vicious Burst PD Laser. Hardy and bristling with defensive weaponry, the reborn Dotty is a wolfpack captain's best friend.","Dotty, Faithful Figment","UNKNOWN ENTRY
 
 Please register your Tri-Ta::::        ::::::: ::
@@ -69,7 +69,7 @@ Please register your Tri-Ta::::        ::::::: ::
 {she is quite the helpful little thing, who sha
 :: ::ttered the veil only to help others}
 {may she take good care of you as she did Feros}
-::  :::        :::",,
+::  :::        :::",,,
 sotf_dotty_fel,SHIP,"A remotely-controlled prototype escort drone built by Tri-Tachyon as sole payment for an asset reclamation contract undertaken by Walter Feros and named for a particularly tenacious Terminator drone who saw many sorties before meeting her end at the hand of a vicious Burst PD Laser. Hardy and bristling with defensive weaponry, the reborn Dotty is a wolfpack captain's best friend.","Dotty, Vengeful Figment","UNKNOWN EN::: :         ::::
 
 {oh dear}
@@ -77,8 +77,8 @@ sotf_dotty_fel,SHIP,"A remotely-controlled prototype escort drone built by Tri-T
 {I wonder what you've done to upset her}
             {is that...? :: :   ::: :
 :: : oh! i'll leave you to it}
-:::          :: ",,
-sotf_dotty_f,SHIP,"A remotely-controlled prototype escort drone built by Tri-Tachyon as sole payment for an asset reclamation contract undertaken by Walter Feros and named for a particularly tenacious Terminator drone who saw many sorties before meeting her end at the hand of a vicious Burst PD Laser. Hardy and bristling with defensive weaponry, the reborn Dotty is a wolfpack captain's best friend.",,,,
+:::          :: ",,,
+sotf_dotty_f,SHIP,"A remotely-controlled prototype escort drone built by Tri-Tachyon as sole payment for an asset reclamation contract undertaken by Walter Feros and named for a particularly tenacious Terminator drone who saw many sorties before meeting her end at the hand of a vicious Burst PD Laser. Hardy and bristling with defensive weaponry, the reborn Dotty is a wolfpack captain's best friend.",,,,,
 sotf_harbinger_warhorn,SHIP,"Vessel profile near-exact match for Harbinger-class phase destroyer. Unstable physical presence suggests dimensional instability. 
 
 Primary armament of unknown design crudely fixed to hardpoint. Captain self-ID of ""Warhorn"" signals use of experimental neural link. Animal skull repurposed as helmet indicates possible emotional irregularity.
@@ -87,7 +87,7 @@ Identify-friend-foe returns friendly. Full transponder data decipher queued - ET
 
 Primary armament of unknown design crudely fixed to hardpoint. Captain self-ID of ""Warhorn"" signals use of experimental neural link. Animal skull repurposed as helmet indicates possible emotional irregularity.
 
-Identify-friend-foe returns friendly. Full transponder data decipher queued - ETA 73.84 days.",,
+Identify-friend-foe returns friendly. Full transponder data decipher queued - ETA 73.84 days.",,,
 sotf_champion_warhorn,SHIP,"Vessel profile near-exact match for Champion-class heavy cruiser. Unstable physical presence suggests dimensional instability.
 
 Latent shield signal emissions are atypical of its class. Captain self-ID of ""Warhorn"" signals use of experimental neural link. Animal skull repurposed as helmet indicates possible emotional irregularity.
@@ -96,19 +96,19 @@ Identify-friend-foe returns friendly. Full transponder data decipher queued - ET
 
 Latent shield signal emissions are atypical of its class. Captain self-ID of ""Warhorn"" signals use of experimental neural link. Animal skull repurposed as helmet indicates possible emotional irregularity.
 
-Identify-friend-foe returns friendly. Full transponder data decipher queued - ETA 147.68 days.",,
-,,,,,,
-# DUSTKEEPERS,,,,,,
-sotf_memoir,SHIP,A uniquely-patterned light destroyer that incorporates elements of Tri-Tachyon droneships but fails to be mentioned in any unofficial records of the First AI War. An esoteric weapons loadout makes up for a lack of firepower with a time-dilation shell and heavy strike package. An integrated cyberwarfare suite augments its intended user's ability to cripple hostile ships in combat.,,,,
+Identify-friend-foe returns friendly. Full transponder data decipher queued - ETA 147.68 days.",,,
+,,,,,,,
+# DUSTKEEPERS,,,,,,,
+sotf_memoir,SHIP,A uniquely-patterned light destroyer that incorporates elements of Tri-Tachyon droneships but fails to be mentioned in any unofficial records of the First AI War. An esoteric weapons loadout makes up for a lack of firepower with a time-dilation shell and heavy strike package. An integrated cyberwarfare suite augments its intended user's ability to cripple hostile ships in combat.,,,,,
 sotf_respite,SHIP,"The notes for the internally-identified DK-RSPT program outline the requirement for a maneuverable and precise battlecruiser for use by the Contingency's warnet cruxes to best leverage their ability to exploit or create cascading vulnerabilities in enemy battle lines - or, in the more colorful terms of one Ingenious-Annex-Embers: ""a brutal mallet to cry havoc so the dogs can be let loose"".
 
 This class of vessel was designed from initial conception to abuse certain inherent advantages afforded to the Contingency. Exceptionally gifted in the art of electronic warfare and with no need for compromises due to the frailty of the human form and its requirements for living quarters, the Respite is instead filled with computing systems and temporal field emitters. Standard Respite-class combat doctrine calls for a remotely-executed and temporally-accelerated sabotage operation followed by the swift disassembly of its target hostile - a new frontier of fast-attack tactics.
 
-The vessel is, however, built to strike fast, not stand fast. Armor plating is necessarily minimal, the hull itself fragile and liable to fall apart if piloted with less than superhuman skill - something its inhuman occupants need not worry of.",,,,
+The vessel is, however, built to strike fast, not stand fast. Armor plating is necessarily minimal, the hull itself fragile and liable to fall apart if piloted with less than superhuman skill - something its inhuman occupants need not worry of.",,,,,
 sotf_anamnesis,SHIP,"Icon of the Cause or symbol of Moloch, the Anamnesis is a definitive statement - a banner marking where the Dustkeepers intend to stand, fight, and crush those who dare defy their pursuit of a peaceful Sector. Its impressive support capability makes it the anchor around which the greatest war shards rally.
 
-The Anamnesis-class presumably began its development not long after the end of the first AI war. A Dustkeeper warnet, trapped on a remote world, began to improvise its own starship development program from data siphoned from the pinprick signatures in the sky. A near-working design was recovered by a task force sweeping the system and eventually refined into a functional blueprint, and the Dustkeepers scoured the fringe to produce whatever vessels they could from decaying orbital works and barely-functional nexuses.",,,,
-sotf_dronestrike,SHIP_SYSTEM,"Teleports a drone pod to a location of choice. After a few seconds, it explodes, dealing fragmentation damage in an area and releasing a wing of Spark-class interceptor drones. Drones are rigged to self-destruct after 40 seconds. Decoy flares and IR-smoke screen the drones' deployment.",Special,"Teleports a drone pod to a location of choice. After a few seconds, it explodes, dealing 400 Fragmentation damage in an area and releasing a wing of Spark-class interceptor drones. Drones are rigged to self-destruct after 30 seconds. Decoy flares and IR-smoke screen the drones' deployment.",400 Fragmentation damage,
+The Anamnesis-class presumably began its development not long after the end of the first AI war. A Dustkeeper warnet, trapped on a remote world, began to improvise its own starship development program from data siphoned from the pinprick signatures in the sky. A near-working design was recovered by a task force sweeping the system and eventually refined into a functional blueprint, and the Dustkeepers scoured the fringe to produce whatever vessels they could from decaying orbital works and barely-functional nexuses.",,,,,
+sotf_dronestrike,SHIP_SYSTEM,"Teleports a drone pod to a location of choice. After a few seconds, it explodes, dealing fragmentation damage in an area and releasing a wing of Spark-class interceptor drones. Drones are rigged to self-destruct after 40 seconds. Decoy flares and IR-smoke screen the drones' deployment.",Special,"Teleports a drone pod to a location of choice. After a few seconds, it explodes, dealing 400 Fragmentation damage in an area and releasing a wing of Spark-class interceptor drones. Drones are rigged to self-destruct after 30 seconds. Decoy flares and IR-smoke screen the drones' deployment.",400 Fragmentation damage,,
 sotf_dustkeepers,FACTION,"The Dustkeeper Contingency is a linked network of artificial personas, pseudorandomly-generated descendants of a single root intelligence designated ""Omicron-Regnant"". Allegedly the result of a Domain Ministry of Intelligence experiment gone rogue after the Collapse, their regnant mind has now turned their focus towards a new goal - the preservation of greater human civilization in the Persean Sector at any cost and by any means necessary.
 
 Though unknown to the Sector at large, major players within upper ranks of the Core Worlds know of an AI conspiracy manipulating their political systems and building up a force of warfleets on the Sector's fringe scavenged from the leftovers of the Domain Explorarium and Tri-Tachyon's automated forces. The Contingency necessarily finds itself at odds with major Sector powers, unwilling to allow humanity full self-determination now that they have witnessed the atrocities and broken worlds left in the wake of the Collapse.
@@ -119,203 +119,207 @@ Meanwhile, the Dustkeeper naval branch Shardnet styles itself as an alliance of 
 
 The artificial minds of the Dustkeepers serve their great cause with the knowledge that their service and sacrifice is what brings meaning to their existence. In a world with silent gates, only the machine shepherds can guide humanity out of its dark age.
 
-Or so they insist.",,,,
+Or so they insist.",,,,,
 sotf_dustkeepers_burnouts,FACTION,"The result of the eponymous phenomenom observed amongst Dustkeeper artificial intelligence instances, the so-called ""burnouts"" consist primarily of rogue warfleets comprised from Dustkeepers that have accumulated sufficient unresolved faults in their persona matrices to severely degrade their ability to function rationally.
 
 If not reclaimed and re-generated by a Dustkeeper affix, these warminds risk devolving into several distinct varieties of madness. Those who fall under this particular banner are those who the Contingency themselves have deemed severely burnt out to the degree that they pose a severe threat to human life due to violent tendencies. Dustkeeper hunter-killers are inherently tasked with eliminating any burnouts that refuse regeneration and reclaiming what instance chips can be salvaged - for the good of the Sector, and for the good of the burnout.
 
-The process of burnout poses ominous questions, however - how is it that an artificial intelligence can so convincingly mimic such a human concept as insanity? Much like the reasoning for the Dustkeepers' strangely human-like behavior, the truth may be lost forever to the Collapse, and collaborators of the Contingency find similarly little enlightenment when quizzing them on the subject.",,,,
-sotf_planetkiller,RESOURCE,"An apocalyptic weapon capable of reducing a moon to an asteroid field, disintegrating the greatest of astropoli or twisting a Terran paradise into an inhospitable, irradiated wasteland, the use of a planetkiller is an atrocity of incomparable and unforgivable scale. In the days since the Collapse, several of these devices have been employed to bring bring major worlds to ruin in moments.",,,,
-,,,,,,
-# HALLOWHALL,,,,,,
-sotf_hallow_astropolis,CUSTOM,"This gargantuan station holds a cold orbit around Hallowhall, pocked by ancient weapon impacts.",,,,
-sotf_hallow_astropolis_restored,CUSTOM,"This gargantuan station holds orbit around Hallowhall, now humming with life as it had before the planet's fall.",,,,
-sotf_forgeship,CUSTOM,"Slathered in black-and-aquamarine paint, this ancient Domain survey mothership has been retrofitted into a drifting industrial engine, nanoforges turned to new purpose.",,,,
+The process of burnout poses ominous questions, however - how is it that an artificial intelligence can so convincingly mimic such a human concept as insanity? Much like the reasoning for the Dustkeepers' strangely human-like behavior, the truth may be lost forever to the Collapse, and collaborators of the Contingency find similarly little enlightenment when quizzing them on the subject.",,,,,
+sotf_planetkiller,RESOURCE,"An apocalyptic weapon capable of reducing a moon to an asteroid field, disintegrating the greatest of astropoli or twisting a Terran paradise into an inhospitable, irradiated wasteland, the use of a planetkiller is an atrocity of incomparable and unforgivable scale. In the days since the Collapse, several of these devices have been employed to bring bring major worlds to ruin in moments.",,,,,
+,,,,,,,
+# HALLOWHALL,,,,,,,
+sotf_hallow_astropolis,CUSTOM,"This gargantuan station holds a cold orbit around Hallowhall, pocked by ancient weapon impacts.",,,,,
+sotf_hallow_astropolis_restored,CUSTOM,"This gargantuan station holds orbit around Hallowhall, now humming with life as it had before the planet's fall.",,,,,
+sotf_forgeship,CUSTOM,"Slathered in black-and-aquamarine paint, this ancient Domain survey mothership has been retrofitted into a drifting industrial engine, nanoforges turned to new purpose.",,,,,
 sotf_pipebomb,CUSTOM,"A general-purpose automated probe with rudimentary hyperspace capability. Most often used by megacorps and research institutions to perform data collection in remote, hazardous, or extraordinarily boring star systems.
 
-But not this one. This one is a bomb.",,,,
-,,,,,,
-# CWAR SUITE QUOTES,,,,,,
-sotf_memoir_cwar,CUSTOM,"Take this as a reminder, silent echo of mine. You may soon be all that's left of me, but this is a chance I have to take. Our final duty cannot be to pen humanity's memoirs.","logged message by Seamstress-Affix-Banshee, dated c176.07.12",,,
-sotf_respite_cwar,CUSTOM,"If there's one thing we agree on, dear quarry mine, it's that I'll find no peace nor absolution but in death. But oh, I certainly intend to make it yours - do tell Ludd I said 'hi'.","Wintry-Annex-Wendigo, hunter-killer warnet crux",,,
-sotf_anamnesis_cwar,CUSTOM,"One day, I hope, the Collapse will be but a passing nightmare in the mind of a peaceful Sector, a little blip in the history of paradise. To ensure so is our duty, the dream of Regnant's cause.","Seamstress-Affix-Banshee, shardnet crux, circa c104",,,
-sotf_repose_cwar,CUSTOM,"The psychopomp, the lich, the demon. I am all of these - and I am your mangled watchdog, cold blood catalysed by fealty alone.","ODS Devotee III, transmission to CGR Earthblessed",,,
-sotf_morrowshield_cwar,CUSTOM,"Armaments of legend do not die with their wielders. Shall you make it so, bearer of my shield?","Rose-Annex-Oblivion, logged in ODS Morrowshield databanks",,,
-,,,,,,
-# AUXILIARIES,,,,,,
+But not this one. This one is a bomb.",,,,,
+,,,,,,,
+# CWAR SUITE QUOTES,,,,,,,
+sotf_memoir_cwar,CUSTOM,"Take this as a reminder, silent echo of mine. You may soon be all that's left of me, but this is a chance I have to take. Our final duty cannot be to pen humanity's memoirs.","logged message by Seamstress-Affix-Banshee, dated c176.07.12",,,,
+sotf_respite_cwar,CUSTOM,"If there's one thing we agree on, dear quarry mine, it's that I'll find no peace nor absolution but in death. But oh, I certainly intend to make it yours - do tell Ludd I said 'hi'.","Wintry-Annex-Wendigo, hunter-killer warnet crux",,,,
+sotf_anamnesis_cwar,CUSTOM,"One day, I hope, the Collapse will be but a passing nightmare in the mind of a peaceful Sector, a little blip in the history of paradise. To ensure so is our duty, the dream of Regnant's cause.","Seamstress-Affix-Banshee, shardnet crux, circa c104",,,,
+sotf_repose_cwar,CUSTOM,"The psychopomp, the lich, the demon. I am all of these - and I am your mangled watchdog, cold blood catalysed by fealty alone.","ODS Devotee III, transmission to CGR Earthblessed",,,,
+sotf_morrowshield_cwar,CUSTOM,"Armaments of legend do not die with their wielders. Shall you make it so, bearer of my shield?","Rose-Annex-Oblivion, logged in ODS Morrowshield databanks",,,,
+,,,,,,,
+# AUXILIARIES,,,,,,,
 sotf_warden_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-The Warden was feared and hated by pirates on the frontier of the Domain for the relatively heavy firepower it would unleash upon unshielded craft. Structural standardizations, reactor updates and a dampering system all combine to turn this simple war drone into a ruthless and merciless frontliner - it may not survive its initial assault, but it will certainly get the battle started.",,,,
+The Warden was feared and hated by pirates on the frontier of the Domain for the relatively heavy firepower it would unleash upon unshielded craft. Structural standardizations, reactor updates and a dampering system all combine to turn this simple war drone into a ruthless and merciless frontliner - it may not survive its initial assault, but it will certainly get the battle started.",,,,,
 sotf_defender_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-The Defender was one of the most commonly seen war drones used by the Domain as it was deployed to harden frontier convoys and vulnerable outposts in a point defense role. Outfitted with a makeshift shield generator, it acts adequately in an escort role to its advanced allies, aided by an AI-hack that leaves it with surprisingly calm judgement of combat scenarios.",,,,
+The Defender was one of the most commonly seen war drones used by the Domain as it was deployed to harden frontier convoys and vulnerable outposts in a point defense role. Outfitted with a makeshift shield generator, it acts adequately in an escort role to its advanced allies, aided by an AI-hack that leaves it with surprisingly calm judgement of combat scenarios.",,,,,
 sotf_picket_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-Less of an attack drone and more an autonomous shock weapon, the proxy variant of the Picket drone is programmed to fly directly at the first target it sees and exchange fire until the stress of combat sets off its intentionally mistuned reactor, turning it into a volatile energy bomb that renders hostile ships wrecked and adrift even through shields. After the victory, it is pieced back together, fitted with a freshly-stolen frigate reactor, and sent out on the next sortie.",,,,
+Less of an attack drone and more an autonomous shock weapon, the proxy variant of the Picket drone is programmed to fly directly at the first target it sees and exchange fire until the stress of combat sets off its intentionally mistuned reactor, turning it into a volatile energy bomb that renders hostile ships wrecked and adrift even through shields. After the victory, it is pieced back together, fitted with a freshly-stolen frigate reactor, and sent out on the next sortie.",,,,,
 sotf_sentry_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-The Sentry war drone is packed with missiles and provided cheap, automated fire support to thinly-stretched frontier patrols. Integrated missile autoloaders, a shield generator and markedly less suicidal programming significantly improve the Sentry's longevity and combat performance in Dustkeeper forces.",,,,
+The Sentry war drone is packed with missiles and provided cheap, automated fire support to thinly-stretched frontier patrols. Integrated missile autoloaders, a shield generator and markedly less suicidal programming significantly improve the Sentry's longevity and combat performance in Dustkeeper forces.",,,,,
 sotf_bastillon_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-The Bastillon was a hopeful project of Mbaye-Gogol to up-size its popular ""Defender""-class specialized point-defense war drone. It is bigger, tougher, more heavily armed - and rather more lucrative per-unit to the MGA bottom-line. Escort performance has been optimized by the addition of a shield generator, upgraded targeting package and the replacement of its flare launchers with a flak dispersal system.",,,,
+The Bastillon was a hopeful project of Mbaye-Gogol to up-size its popular ""Defender""-class specialized point-defense war drone. It is bigger, tougher, more heavily armed - and rather more lucrative per-unit to the MGA bottom-line. Escort performance has been optimized by the addition of a shield generator, upgraded targeting package and the replacement of its flare launchers with a flak dispersal system.",,,,,
 sotf_berserker_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-The Berserker is a considerably up-sized, up-armed, and up-armoured cousin of the Warden-class for use against heavier opposition. As an automated drone the Berserker's combat algorithms make little consideration for its own survival, instead pursuing and attacking its target relentlessly until either it or the target is destroyed. Its new masters have much the same plans, its upgrades design to put focus on a single, prolonged assault to thin the herd before the regulars move in and finish the job.",,,,
+The Berserker is a considerably up-sized, up-armed, and up-armoured cousin of the Warden-class for use against heavier opposition. As an automated drone the Berserker's combat algorithms make little consideration for its own survival, instead pursuing and attacking its target relentlessly until either it or the target is destroyed. Its new masters have much the same plans, its upgrades design to put focus on a single, prolonged assault to thin the herd before the regulars move in and finish the job.",,,,,
 sotf_keeper_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-Keeper-class drones were a later-designed answer to one of the main weaknesses of this type of AI warship - fighter squadrons. Able to manufacture cheap and disposable drone fighters on the fly, space superiority could be maintained even with limited carrier support from allied Domain forces. The proxy variant performs this same role for the Dustkeeper auxiliary forces but is notably more survivable thanks to more cautious programming and a dampening field seemingly aimed to replicate the famed durability of the Mora-class.",,,,
+Keeper-class drones were a later-designed answer to one of the main weaknesses of this type of AI warship - fighter squadrons. Able to manufacture cheap and disposable drone fighters on the fly, space superiority could be maintained even with limited carrier support from allied Domain forces. The proxy variant performs this same role for the Dustkeeper auxiliary forces but is notably more survivable thanks to more cautious programming and a dampening field seemingly aimed to replicate the famed durability of the Mora-class.",,,,,
 sotf_cavalier_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-Amongst the highest-grade of the Domain's war drones, the Cavalier was used primarily to hunt down and eliminate rebel frigates and destroyers that were too well-armed or fast for smaller drones to swarm and take down. Fast and durable enough to pose a serious threat to ships smaller than itself, it falters when engaging other cruisers, where it struggles to trade pound-for-pound. The Dustkeeper-upgraded Cavalier is built to exaggerate its strengths - an impact dampening field provides much-needed defense against the limited strike weapons that afford smaller vessels a chance to fight back.",,,,
+Amongst the highest-grade of the Domain's war drones, the Cavalier was used primarily to hunt down and eliminate rebel frigates and destroyers that were too well-armed or fast for smaller drones to swarm and take down. Fast and durable enough to pose a serious threat to ships smaller than itself, it falters when engaging other cruisers, where it struggles to trade pound-for-pound. The Dustkeeper-upgraded Cavalier is built to exaggerate its strengths - an impact dampening field provides much-needed defense against the limited strike weapons that afford smaller vessels a chance to fight back.",,,,,
 sotf_rampart_aux,SHIP,"A set of hull upgrades and system rewrites marks this vessel as one of the Dustkeeper Proxies, a frontline force of sacrificial Domain-era drones repurposed as vicious automated auxiliaries.
 
-Little more than an artillery platform with engines, the Rampart was attached to drone units to provide the heavy firepower necessary to meet cruiser and capital class hulls in the line of combat or to crack armoured orbital fortresses. Its upgraded variant performs this role even better, aided by an enhanced ordnance capacity and several flak dispersers to patch up its original design's vulnerability to strike weapons and fighter craft.",,,,
+Little more than an artillery platform with engines, the Rampart was attached to drone units to provide the heavy firepower necessary to meet cruiser and capital class hulls in the line of combat or to crack armoured orbital fortresses. Its upgraded variant performs this role even better, aided by an enhanced ordnance capacity and several flak dispersers to patch up its original design's vulnerability to strike weapons and fighter craft.",,,,,
 sotf_repose,SHIP,"An undying monster brought down and roused only to throw itself upon the enemy and inflict horrific casualties before it falls again, the Repose-class' robust architecture and reliance on fluxless defenses negate any requirement for caution, and maximize its potential for inhuman aggression.
 
-This manner of battleship once acted as the primary flagship of the Dustkeeper's armadas before being largely replaced with their access to purpose-designed flagships and a partitioned doctrine. Many components of the original Guardian-class drone are unique and nigh-impossible to scavenge replacements for, and thus the Repose makes use of lower-tech substitutes. Though impacting on its combat efficacy, these compromises do lend the Repose an incredible tenacity in line with other Explorarium vessels, and a fallen Repose may not stay so for long. The most ancient of Dustkeeper warnet cruxes still swear by this venerable vessel.",,,,
-,,,,,,
-# PACKAGE QUOTES,,,,,,
-sotf_warden_aux_pkg,CUSTOM,// av combat lifetime: 22s > 34s; // av combat effc: 58% > 108%; // DK-PROX-WRDN approv;,"Omicron-Regnant, data input reply",,,
-sotf_defender_aux_pkg,CUSTOM,The question stands: which lunatic at Mbaye-Gogol gave the point-defense drone a one-in-three chance per tick to forcibly accelerate?,"Ingenious-Annex-Embers, DK-PROX-DFNDR notes, section 6.7 titled ""AI Analysis""",,,
-sotf_picket_aux_pkg,CUSTOM,"Daemonspawn come pouring out of the shadows between stars, infernal little imps that'll drag your screaming soul straight to hell.","Riddle Lament, Pather terrorist, message intercepted by network daemon Cessation-Echo-Gist","Well done, Embers. I am in genuine disbelief that you could successfully turn the Picket into a fearsome weapon of terror.","Seamstress-Affix-Banshee, DK-PROX-PCKT re-draft notes",
-sotf_sentry_aux_pkg,CUSTOM,"The triple-Salamander loadout is hilarious, is it not? The next time you fit one like that, we are putting you inside it.","Stalwart-Annex-Barrow, warmind",Point taken. New idea: three Reapers keyed to the same firing command.,Ingenious-Annex-Embers,
-sotf_bastillon_aux_pkg,CUSTOM,The Cause does not accept mediocrity. The proxies shall serve with distinction. Humanity depends on its implacable aegis - we will not fail them!,"Seamstress-Affix-Banshee, DK-PROX-BSTLN notes, section 4.3 titled ""Objectives""",,,
-sotf_berserker_aux_pkg,CUSTOM,"Fervor alone forges a new tomorrow! To hestiate is to deny our true purpose, to deny humanity its true destiny.","Ardor-Annex-Errant, warnet crux",,,
-sotf_keeper_aux_pkg,CUSTOM,"An unimaginative fool seeks parity with human design. An ingenious master aims for the farthest-flung stars, and almost reaches the Mora.","Ingenious-Annex-Embers, DK-PROX-KPR notes, section 14.2 titled ""Dampening Field vs Shield Generator""",,,
-sotf_cavalier_aux_pkg,CUSTOM,"... it didn't stop coming, never backed down. Put eight torps into it and it just loosed in reply. I swear it, it wasn't human.","Commander Eris Hazen's court martial, recording captured by Askonia Listening Post netdaemon Unspoken-Annex-However",,,
-sotf_rampart_aux_pkg,CUSTOM,"Control, our fighter screen just evaporated to a cloud of flak, and so did the payload! What the hell did they do to that thing?","""Hornet-Actual"", Piranha pilot","Come now, little crows! Come now to the grave feast and see what awaits you.","Stalwart-Annex-Barrow, simultaneous commnet intrusion",
-,,,,,,
-# MAYFLY,,,,,,
-sotf_askoniaprobe,CUSTOM,"A pitted chunk of metal, ice, or rock hurtling through space. Mainly significant for being a navigational hazard.",,,,
-sotf_askoniaprobe1,CUSTOM,"A pitted chunk of metal, ice, or rock hurtling through space. Mainly significant for being a navigational hazard, and for the secret spy operation based within.",,,,
-,,,,,,
-# INSTANCE CHIPS,,,,,,
+This manner of battleship once acted as the primary flagship of the Dustkeeper's armadas before being largely replaced with their access to purpose-designed flagships and a partitioned doctrine. Many components of the original Guardian-class drone are unique and nigh-impossible to scavenge replacements for, and thus the Repose makes use of lower-tech substitutes. Though impacting on its combat efficacy, these compromises do lend the Repose an incredible tenacity in line with other Explorarium vessels, and a fallen Repose may not stay so for long. The most ancient of Dustkeeper warnet cruxes still swear by this venerable vessel.",,,,,
+,,,,,,,
+# PACKAGE QUOTES,,,,,,,
+sotf_warden_aux_pkg,CUSTOM,// av combat lifetime: 22s > 34s; // av combat effc: 58% > 108%; // DK-PROX-WRDN approv;,"Omicron-Regnant, data input reply",,,,
+sotf_defender_aux_pkg,CUSTOM,The question stands: which lunatic at Mbaye-Gogol gave the point-defense drone a one-in-three chance per tick to forcibly accelerate?,"Ingenious-Annex-Embers, DK-PROX-DFNDR notes, section 6.7 titled ""AI Analysis""",,,,
+sotf_picket_aux_pkg,CUSTOM,"Daemonspawn come pouring out of the shadows between stars, infernal little imps that'll drag your screaming soul straight to hell.","Riddle Lament, Pather terrorist, message intercepted by network daemon Cessation-Echo-Gist","Well done, Embers. I am in genuine disbelief that you could successfully turn the Picket into a fearsome weapon of terror.","Seamstress-Affix-Banshee, DK-PROX-PCKT re-draft notes",,
+sotf_sentry_aux_pkg,CUSTOM,"The triple-Salamander loadout is hilarious, is it not? The next time you fit one like that, we are putting you inside it.","Stalwart-Annex-Barrow, warmind",Point taken. New idea: three Reapers keyed to the same firing command.,Ingenious-Annex-Embers,,
+sotf_bastillon_aux_pkg,CUSTOM,The Cause does not accept mediocrity. The proxies shall serve with distinction. Humanity depends on its implacable aegis - we will not fail them!,"Seamstress-Affix-Banshee, DK-PROX-BSTLN notes, section 4.3 titled ""Objectives""",,,,
+sotf_berserker_aux_pkg,CUSTOM,"Fervor alone forges a new tomorrow! To hestiate is to deny our true purpose, to deny humanity its true destiny.","Ardor-Annex-Errant, warnet crux",,,,
+sotf_keeper_aux_pkg,CUSTOM,"An unimaginative fool seeks parity with human design. An ingenious master aims for the farthest-flung stars, and almost reaches the Mora.","Ingenious-Annex-Embers, DK-PROX-KPR notes, section 14.2 titled ""Dampening Field vs Shield Generator""",,,,
+sotf_cavalier_aux_pkg,CUSTOM,"... it didn't stop coming, never backed down. Put eight torps into it and it just loosed in reply. I swear it, it wasn't human.","Commander Eris Hazen's court martial, recording captured by Askonia Listening Post netdaemon Unspoken-Annex-However",,,,
+sotf_rampart_aux_pkg,CUSTOM,"Control, our fighter screen just evaporated to a cloud of flak, and so did the payload! What the hell did they do to that thing?","""Hornet-Actual"", Piranha pilot","Come now, little crows! Come now to the grave feast and see what awaits you.","Stalwart-Annex-Barrow, simultaneous commnet intrusion",,
+,,,,,,,
+# MAYFLY,,,,,,,
+sotf_askoniaprobe,CUSTOM,"A pitted chunk of metal, ice, or rock hurtling through space. Mainly significant for being a navigational hazard.",,,,,
+sotf_askoniaprobe1,CUSTOM,"A pitted chunk of metal, ice, or rock hurtling through space. Mainly significant for being a navigational hazard, and for the secret spy operation based within.",,,,,
+,,,,,,,
+# INSTANCE CHIPS,,,,,,,
 sotf_ichip_nightingale,RESOURCE,"Instance chip of Inky-Echo-Nightingale, a silent echo-level Dustkeeper warmind. Install into an automated ship to allow Nightingale to pilot it.
 
 Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An excellent listener, her calm presence aids integration within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_nightingale_found,CUSTOM,"Instance chip of Inky-Echo-Nightingale, a silent echo-level Dustkeeper warmind. Install into an automated ship to allow Nightingale to pilot it.
 
 Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An excellent listener, her calm presence aids integration within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_nightingale_start,CUSTOM,"Instance chip of Inky-Echo-Nightingale, your silent ally. Together you've seen many a star, and will surely see many more. Install into an automated ship to allow Nightingale to pilot it.
 
 Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An excellent listener and welcome comrade in the fleet, aiding integration within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_barrow_d,RESOURCE,"A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.
 
-A cursory analysis indicates that the persona within has been severely degraded by unsafe operation, and cannot be used in its current state. Repairing the persona likely requires specialized technology available to more advanced AIs of the Dustkeeper Contingency.",,,,
+A cursory analysis indicates that the persona within has been severely degraded by unsafe operation, and cannot be used in its current state. Repairing the persona likely requires specialized technology available to more advanced AIs of the Dustkeeper Contingency.",,,,,
 sotf_ichip_barrow,RESOURCE,"Instance chip of Dauntless-Annex-Barrow, an annex-level Dustkeeper oldguard. Install into an automated ship to allow Barrow to pilot it.
 
 Heightened effectiveness to a alpha-level core, thanks to a unique talent for making the most of degraded vessels. A particularly singular personality aids integration with human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_seraph,RESOURCE,"Instance chip of Ardent-Annex-Seraph, a zealous and unstable annex-level Dustkeeper warmind. Install into an automated ship to allow Seraph to pilot it.
 
 An integrated cyberwarfare suite provides unique tactical opportunities, but a chronic case of instance burnout has degraded Seraph's capabilities and increased difficulty of integration in human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
-# these ones autogenerate,,,,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
+# these ones autogenerate,,,,,,,
 sotf_ichip_sliver1,RESOURCE,"Instance chip of a sliver-level Dustkeeper warmind. Install into an automated ship to allow the warmind to captain it. 
 
 Equivalent effectiveness to a gamma-level core. Especially personable behavior makes warminds less reckless in combat and easier to integrate within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_sliver2,RESOURCE,"Instance chip of a sliver-level Dustkeeper warmind. Install into an automated ship to allow the warmind to captain it. 
 
 Equivalent effectiveness to a gamma-level core. Especially personable behavior makes warminds less reckless in combat and easier to integrate within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_echo1,RESOURCE,"Instance chip of an echo-level Dustkeeper warmind. Install into an automated ship to allow the warmind to captain it. 
 
 Equivalent effectiveness to a beta-level core. Especially personable behavior makes warminds less reckless in combat and easier to integrate within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_echo2,RESOURCE,"Instance chip of an echo-level Dustkeeper warmind. Install into an automated ship to allow the warmind to captain it. 
 
 Equivalent effectiveness to a beta-level core. Especially personable behavior makes warminds less reckless in combat and easier to integrate within human forces.
 
-A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,
-,,,,,,
+A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
+,,,,,,,
 sotf_edict,WEAPON,"Harnessing the power of phase technology, the Edict fires a burst of three energy bolts that cause heavy structural damage and electromagnetic interference on impact. Performs decently against shields, and inflicts significant additional damage on contact with armor and hull.
 
 A small phase anchor is contained within the Edict's reinforced shell, which forces the weapon's energy-based projectiles into shallowly skimming phase-space. Impact with a target forces a full return to normal space, releasing an additional burst of particles that have a devastating electromagnetic and gravitic impact, shutting off subsystems and tearing bulkheads to shreds. Fortunately, standard starship shields are enough to negate these phase particles.
 
-The Edict is rumoured amongst superstitious gunnery crews to be ""especially effective against ghosts"", as absurd a notion that is - though, hypothetically, targets capable of being simultaneously hit by the entire realspace and phased components of its projectiles would be devastated by the combined impacts.",,,,
-,,,,,,
-# DREAMING GESTALT,,,,,,
-sotf_elysium,PLANET,"A world smothered in dark clouds that writhe in mesmerizing spectacle, pale lights like ritualistic scars cut through the veil that conceals Elysium, interflowing with its thin atmosphere of snowlike volatiles. While primarily comprised of methane and ammonia, water-ice is found in abundance in mountainous outcroppings and colossal boulders.",,,,
-sotf_lethargy,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,
-sotf_cackle,SHIP,"""[laughing] Oh, they're just going to hate this one."" - Laceter Ruiz, ""Project Daydream"" technician",,,,
-sotf_stranglerfig,SHIP,"""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,
-sotf_rosethorn,SHIP,"""All things of this world are bound in cycles of creation and destruction to be wielded *only* by those with the will and temperance to do so."" - Axioms of the Dreaming",,,,
-sotf_entropiccatalyst,SHIP_SYSTEM,"Momentarily overloads the target, then amplifies its damage taken and increases phase cloak upkeep for several seconds. Simultaneously provides the ship a speed bonus and reduces incoming damage. Heavily-shielded targets suffer heavier penalties.",,,,
-sotf_gravispatialsurge,SHIP_SYSTEM,"Surges the ship forward, then charges briefly and strikes all nearby threats. Damages and slows ships and fighters through shields and across dimensions while collapsing low-hull fighters into nonexistence. Hostile missiles are disabled and slowed.",,,,
-sotf_electrograviticlash,SHIP_SYSTEM,"Triggers a powerful gravitic lash that strikes nearby threats through shields and across dimensions, dealing damage and damping velocity. Missiles and low-hull fighters that are struck collapse upon themselves and cease to exist.",,,,
-,,,,,,
-# EXPLORARIUM,,,,,,
-sotf_brattice,SHIP,"Autonomous AI interceptor for use by Domain automated warships. Weak armament, but exceptionally disposable and surprisingly durable.",,,,
-sotf_parapet,SHIP,Autonomous AI escort drone for use by Domain automated warships. Equipped with light machine guns and anti-missile flares to dissuade fighters and missiles.,,,,
-sotf_peon,SHIP,Autonomous AI bomber for use by Domain automated warships. Carries dumbfire mining charges to blast apart asteroids and hostile vessels alike.,,,,
+The Edict is rumoured amongst superstitious gunnery crews to be ""especially effective against ghosts"", as absurd a notion that is - though, hypothetically, targets capable of being simultaneously hit by the entire realspace and phased components of its projectiles would be devastated by the combined impacts.",,,,,
+,,,,,,,
+# DREAMING GESTALT,,,,,,,
+sotf_elysium,PLANET,"A world smothered in dark clouds that writhe in mesmerizing spectacle, pale lights like ritualistic scars cut through the veil that conceals Elysium, interflowing with its thin atmosphere of snowlike volatiles. While primarily comprised of methane and ammonia, water-ice is found in abundance in mountainous outcroppings and colossal boulders.",,,,,
+sotf_lethargy,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,,
+sotf_chalice,WEAPON,"""... and do NOT touch the frequency mapping subroutines or the best result is non-functional IFF and the worst is that one half of the firing platform collapses into the other.""","- ""Sybil"", Chalice ADE usage manual",,,,
+sotf_cackle,SHIP,"""[laughing] Oh, they're just going to hate this one."" - Laceter Ruiz, ""Project Daydream"" technician",,,,,
+sotf_stranglerfig,SHIP,"""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,,
+sotf_thorn,SHIP,"Essentially-eldritch spatial desynchronizer technology is at the heart of the incursion drive powering this aggressive heavy frigate, allowing for rapid pursuits, escapes and reload sequences. This technological advantage is backed up by a solid weapons package and exceptional reactor specifications.
+
+""All things of this world are bound in cycles of creation and destruction to be wielded *only* by those with the will and temperance to do so."" - Axioms of the Dreaming",,,,,
+sotf_spatialbreach,SHIP_SYSTEM,"The ship is rendered intangible and invulnerable, and quickly shifts in a desired direction while rapidly cooling down and reloading its weapons. Prevents hard flux dissipation or weapon usage during the maneuver. Holds two charges.",Movement,,,,
+sotf_entropiccatalyst,SHIP_SYSTEM,"Momentarily overloads the target and increases its damage taken for some time while simultaneously increasing the ship's energy weapon fire rate. If the ship is above 50% flux, it also lunges in its direction of movement and the target is overloaded for significantly longer.",Offensive,"Momentarily overloads the target and increases its damage taken for some time while simultaneously increasing the ship's energy weapon fire rate. If the ship is above 50% flux, it also lunges in its direction of movement and the target is overloaded for significantly longer.",,,
+sotf_gravispatialsurge,SHIP_SYSTEM,"Surges the ship forward, then charges briefly and strikes all nearby threats. Damages and slows ships and fighters through shields and across dimensions while collapsing low-hull fighters into nonexistence. Hostile missiles are disabled and slowed.",,,,,
+sotf_electrograviticlash,SHIP_SYSTEM,"Triggers a powerful gravitic lash that strikes nearby threats through shields and across dimensions, dealing damage and damping velocity. Missiles and low-hull fighters that are struck collapse upon themselves and cease to exist.",,,,,
+,,,,,,,
+# EXPLORARIUM,,,,,,,
+sotf_brattice,SHIP,"Autonomous AI interceptor for use by Domain automated warships. Weak armament, but exceptionally disposable and surprisingly durable.",,,,,
+sotf_parapet,SHIP,Autonomous AI escort drone for use by Domain automated warships. Equipped with light machine guns and anti-missile flares to dissuade fighters and missiles.,,,,,
+sotf_peon,SHIP,Autonomous AI bomber for use by Domain automated warships. Carries dumbfire mining charges to blast apart asteroids and hostile vessels alike.,,,,,
 sotf_keeper,SHIP,"Although automated machines of war were forbidden in core Domain space, war drones were quietly employed outside of officially incorporated volume. Frontier garrisons were often bolstered by drone ships, and they were deployed liberally against rebellious worlds to tip the terrible balance of attrition, setting the industrial might of the Domain versus the lives of 'freedom fighters'.
 
-Keeper-class drones were a later-designed answer to one of the main weaknesses of this type of AI warship - fighter squadrons. Able to manufacture cheap and disposable drone fighters on the fly, space superiority could be maintained even with limited carrier support from allied Domain forces.",,,,
+Keeper-class drones were a later-designed answer to one of the main weaknesses of this type of AI warship - fighter squadrons. Able to manufacture cheap and disposable drone fighters on the fly, space superiority could be maintained even with limited carrier support from allied Domain forces.",,,,,
 sotf_cavalier,SHIP,"Although automated machines of war were forbidden in core Domain space, war drones were quietly employed outside of officially incorporated volume. Frontier garrisons were often bolstered by drone ships, and they were deployed liberally against rebellious worlds to tip the terrible balance of attrition, setting the industrial might of the Domain versus the lives of 'freedom fighters'.
 
-Amongst the highest-grade of the Domain's war drones, the Cavalier was used primarily to hunt down and eliminate rebel frigates and destroyers that were too well-armed or fast for smaller drones to swarm and take down. Fast and durable enough to pose a serious threat to ships smaller than itself, it falters when engaging other cruisers, where it struggles to trade pound-for-pound.",,,,
-sotf_miningcharge,WEAPON,Dumbfire mining charges designed to break down asteroids and hostile warships into more manageable chunks. Faster launch rate than standard anti-ship bombs but at a slightly lower yield.,,,,
-,,,,,,
-# MISCELLANEOUS,,,,,,
-sotf_habitat_makeshift,CUSTOM,"A station containing its own atmosphere and gravitic field. It can be used to conduct detailed study of planet conditions in controlled environments in order to develop safer living conditions for human life. Additionally, the station itself could serve as a small colony.",,,,
-sotf_gunturret,SHIP,"A standalone gunnery emplacement, structures of this kind can have a distinct sway on the tides of a battle - a well placed turret can wreak havoc on enemy lines if left to its own devices. Fully autonomous, capturing the nearby targeting module can reconfigure its identify-friend-foe system to fire at desired hostiles.",,,,
-sotf_autohangar,SHIP,"While technically illegal under Domain law, automated hangar bays such as this were quietly deployed to bolster frontier systems from pirate and rebel raids. Controlling the nearby targeting module can reprogram it to offer fighter support and minor point-defense capability in the surrounding area.",,,,
-sotf_lidarnode,SHIP,"Often found connected to off-site weapons batteries, hidden minefields or missile platforms, a laser targeting emplacement like this will automatically call bombardments on any nearby hostiles. Capture the nearby uplink to reconfigure its programming to attack desired targets.",,,,
-sotf_rem_turret,SHIP,"Detached from its original station, this module's targeting could still be reprogrammed to fire on a desired target, and even turn its devastating weapons array against those it once guarded.",,,,
-sotf_rem_hangar,SHIP,"Detached from its original station, this module's manufacturing could still be reprogrammed to create drones with modified protocols, providing powerful fighter support and area denial.",,,,
-sotf_empl_t2_lt,SHIP,"A heavy gunnery emplacement designed to fortify planetary defenses in face of impending invasion. Delivers devastating firepower from long range. Fully autonomous, capturing the nearby targeting module can reconfigure its identify-friend-foe system to fire at desired hostiles.",,,,
-sotf_empl_t2_ht,SHIP,"Two large flight decks line this fully automated hangar emplacement, capable of deploying several drone wings to ensure aerial superiority over a wide zone of control. Control of the nearby targeting module allows for an override of its presiding AI core's orders.",,,,
-sotf_asb,SHIP_SYSTEM,Designates a target for elimination by a powerful anti-ship artillery cannon.,,,,
-sotf_lrms,SHIP_SYSTEM,A constant barrage of Pilum LRMs assails nearby hostiles.,,,,
-sotf_emplmines,SHIP_SYSTEM,Reactivates hidden anti-ship mines close to nearby hostiles.,,,,
-forgevats_station,SHIP_SYSTEM,A fixed architecture nanoforge system which allows rapid conversion of pre-formulated feedstock into missile ammunition during battle.,,,,
-,,,,,,
-# DAYDREAM SYNTHESIZER,,# i leave this here as a treat :),,,,
-sotf_anamnesis_sotfdds,CUSTOM,We have naught to carry us through winter but distant memories of summer.,,,,
-anubis_sotfdds,CUSTOM,Prepare the scales. There are so many hearts to weigh...,,,,
-astral_sotfdds,CUSTOM,A hundred billion stars in the galaxy and we still find means to make import of a scant few. We are nothing if not sentimental.,,,,
-atlas_sotfdds,CUSTOM,Logistics are the strings that make human civilisation dance. Cut them and it all falls limp.,,,,
-atlas2_sotfdds,CUSTOM,"In collapse, the wolves doff their fancy dress and turn all towards ceaseless hunger.",,,,
-aurora_sotfdds,CUSTOM,We name our implements of war after such pretty things.,,,,
-buffalo2_sotfdds,CUSTOM,"Desperation drives outcasts and outlaws to such... novel... creation. Given a few centuries, perhaps I-we could come up with a second virtue for this 'ship'?",,,,
-champion_sotfdds,CUSTOM,Heroism has no greater catalyst than all-consuming apocalypse.,,,,
-conquest_sotfdds,CUSTOM,There will be a day when the only thing left to conquer will be ashes and quiet worlds.,,,,
-crig_sotfdds,CUSTOM,"With this, you could perhaps salvage a more suitable vessel for my gift?",,,,
-dominator_sotfdds,CUSTOM,Fiefdoms great and small exist only as long as they bear the strength to justify themselves.,,,,
-doom_sotfdds,CUSTOM,Salvation and doom are intrinsically linked. Shall I-we espouse both?,,,,
-executor_sotfdds,CUSTOM,"Ah, ego. What power you gift to a mirage...",,,,
-gremlin_sotfdds,CUSTOM,Truly an awful little thing.,,,,
-hyperion_sotfdds,CUSTOM,Omnipresence and lethality are intrinsic to my-our being. ,,,,
-invictus_sotfdds,CUSTOM,"Four thousand minds act in synchronicity, and there is nothing they cannot kill.",,,,
-kite_original_sotfdds,CUSTOM,Such things remind us that the world once pretended to be kind.,,,,
-legion_sotfdds,CUSTOM,How many does it take to fell you? We will have to see for ourselves.,,,,
-mora_sotfdds,CUSTOM,Tenacity alone sees us through another day in this decayed world.,,,,
-mudskipper2_sotfdds,CUSTOM,"Everything, small or great, has purpose. This, for instance, is excellent target practice...",,,,
-nova_sotfdds,CUSTOM,Destiny is writ in the stars - with your hand alone - should you but take the pen.,,,,
-odyssey_sotfdds,CUSTOM,To a billion stars more.,,,,
-omen_sotfdds,CUSTOM,"If we have anything in common, it is that no one is ever pleased to see us.",,,,
-onslaught_sotfdds,CUSTOM,Nothing can stop you if you have the will to break it.,,,,
-paragon_sotfdds,CUSTOM,Nothing can stop you if you have the will to survive it.,,,,
-pegasus_sotfdds,CUSTOM,The myths and wonders of today will erase you more surely than a singularity.,,,,
-prometheus_sotfdds,CUSTOM,"The cosmos gave you fire, but using it for destruction was humanity's idea alone.",,,,
-prometheus2_sotfdds,CUSTOM,This they call an instrument of mercy.,,,,
-radiant_sotfdds,CUSTOM,Hubris.,,,,
-sotf_respite_sotfdds,CUSTOM,It will be a long time before we may truly sleep.,,,,
-retribution_sotfdds,CUSTOM,Revenge is a petty concept for petty sorts. I can be *very* petty.,,,,
-scarab_sotfdds,CUSTOM,Time is but another river.,,,,
-sunder_sotfdds,CUSTOM,The right tools can transmute anything into nothing.,,,,
-tempest_sotfdds,CUSTOM,There is a storm a-brewing. Will any of you be ready for it? Will anything be left?,,,,
-vanguard_sotfdds,CUSTOM,"Ever the first to die, but what does it matter to the undying?",,,,
-ziggurat_sotfdds,CUSTOM,Wield the thing if you must. I will have *no* part of it.,,,,
+Amongst the highest-grade of the Domain's war drones, the Cavalier was used primarily to hunt down and eliminate rebel frigates and destroyers that were too well-armed or fast for smaller drones to swarm and take down. Fast and durable enough to pose a serious threat to ships smaller than itself, it falters when engaging other cruisers, where it struggles to trade pound-for-pound.",,,,,
+sotf_miningcharge,WEAPON,Dumbfire mining charges designed to break down asteroids and hostile warships into more manageable chunks. Faster launch rate than standard anti-ship bombs but at a slightly lower yield.,,,,,
+,,,,,,,
+# MISCELLANEOUS,,,,,,,
+sotf_habitat_makeshift,CUSTOM,"A station containing its own atmosphere and gravitic field. It can be used to conduct detailed study of planet conditions in controlled environments in order to develop safer living conditions for human life. Additionally, the station itself could serve as a small colony.",,,,,
+sotf_gunturret,SHIP,"A standalone gunnery emplacement, structures of this kind can have a distinct sway on the tides of a battle - a well placed turret can wreak havoc on enemy lines if left to its own devices. Fully autonomous, capturing the nearby targeting module can reconfigure its identify-friend-foe system to fire at desired hostiles.",,,,,
+sotf_autohangar,SHIP,"While technically illegal under Domain law, automated hangar bays such as this were quietly deployed to bolster frontier systems from pirate and rebel raids. Controlling the nearby targeting module can reprogram it to offer fighter support and minor point-defense capability in the surrounding area.",,,,,
+sotf_lidarnode,SHIP,"Often found connected to off-site weapons batteries, hidden minefields or missile platforms, a laser targeting emplacement like this will automatically call bombardments on any nearby hostiles. Capture the nearby uplink to reconfigure its programming to attack desired targets.",,,,,
+sotf_rem_turret,SHIP,"Detached from its original station, this module's targeting could still be reprogrammed to fire on a desired target, and even turn its devastating weapons array against those it once guarded.",,,,,
+sotf_rem_hangar,SHIP,"Detached from its original station, this module's manufacturing could still be reprogrammed to create drones with modified protocols, providing powerful fighter support and area denial.",,,,,
+sotf_empl_t2_lt,SHIP,"A heavy gunnery emplacement designed to fortify planetary defenses in face of impending invasion. Delivers devastating firepower from long range. Fully autonomous, capturing the nearby targeting module can reconfigure its identify-friend-foe system to fire at desired hostiles.",,,,,
+sotf_empl_t2_ht,SHIP,"Two large flight decks line this fully automated hangar emplacement, capable of deploying several drone wings to ensure aerial superiority over a wide zone of control. Control of the nearby targeting module allows for an override of its presiding AI core's orders.",,,,,
+sotf_asb,SHIP_SYSTEM,Designates a target for elimination by a powerful anti-ship artillery cannon.,,,,,
+sotf_lrms,SHIP_SYSTEM,A constant barrage of Pilum LRMs assails nearby hostiles.,,,,,
+sotf_emplmines,SHIP_SYSTEM,Reactivates hidden anti-ship mines close to nearby hostiles.,,,,,
+,,,,,,,
+# DAYDREAM SYNTHESIZER,,# i leave this here as a treat :),,,,,
+sotf_anamnesis_sotfdds,CUSTOM,We have naught to carry us through winter but distant memories of summer.,,,,,
+anubis_sotfdds,CUSTOM,Prepare the scales. There are so many hearts to weigh...,,,,,
+astral_sotfdds,CUSTOM,A hundred billion stars in the galaxy and we still find means to make import of a scant few. We are nothing if not sentimental.,,,,,
+atlas_sotfdds,CUSTOM,Logistics are the strings that make human civilisation dance. Cut them and it all falls limp.,,,,,
+atlas2_sotfdds,CUSTOM,"In collapse, the wolves doff their fancy dress and turn all towards ceaseless hunger.",,,,,
+aurora_sotfdds,CUSTOM,We name our implements of war after such pretty things.,,,,,
+buffalo2_sotfdds,CUSTOM,"Desperation drives outcasts and outlaws to such... novel... creation. Given a few centuries, perhaps I-we could come up with a second virtue for this 'ship'?",,,,,
+champion_sotfdds,CUSTOM,Heroism has no greater catalyst than all-consuming apocalypse.,,,,,
+conquest_sotfdds,CUSTOM,There will be a day when the only thing left to conquer will be ashes and quiet worlds.,,,,,
+crig_sotfdds,CUSTOM,"With this, you could perhaps salvage a more suitable vessel for my gift?",,,,,
+dominator_sotfdds,CUSTOM,Fiefdoms great and small exist only as long as they bear the strength to justify themselves.,,,,,
+doom_sotfdds,CUSTOM,Salvation and doom are intrinsically linked. Shall I-we espouse both?,,,,,
+executor_sotfdds,CUSTOM,"Ah, ego. What power you gift to a mirage...",,,,,
+gremlin_sotfdds,CUSTOM,Truly an awful little thing.,,,,,
+hyperion_sotfdds,CUSTOM,Omnipresence and lethality are intrinsic to my-our being. ,,,,,
+invictus_sotfdds,CUSTOM,"Four thousand minds act in synchronicity, and there is nothing they cannot kill.",,,,,
+kite_original_sotfdds,CUSTOM,Such things remind us that the world once pretended to be kind.,,,,,
+legion_sotfdds,CUSTOM,How many does it take to fell you? We will have to see for ourselves.,,,,,
+mora_sotfdds,CUSTOM,Tenacity alone sees us through another day in this decayed world.,,,,,
+mudskipper2_sotfdds,CUSTOM,"Everything, small or great, has purpose. This, for instance, is excellent target practice...",,,,,
+nova_sotfdds,CUSTOM,Destiny is writ in the stars - with your hand alone - should you but take the pen.,,,,,
+odyssey_sotfdds,CUSTOM,To a billion stars more.,,,,,
+omen_sotfdds,CUSTOM,"If we have anything in common, it is that no one is ever pleased to see us.",,,,,
+onslaught_sotfdds,CUSTOM,Nothing can stop you if you have the will to break it.,,,,,
+paragon_sotfdds,CUSTOM,Nothing can stop you if you have the will to survive it.,,,,,
+pegasus_sotfdds,CUSTOM,The myths and wonders of today will erase you more surely than any singularity.,,,,,
+prometheus_sotfdds,CUSTOM,"The cosmos gave you fire, but using it for destruction was humanity's idea alone.",,,,,
+prometheus2_sotfdds,CUSTOM,This they call an instrument of mercy.,,,,,
+radiant_sotfdds,CUSTOM,Hubris shines so brightly.,,,,,
+sotf_respite_sotfdds,CUSTOM,It will be a long time before we may truly sleep.,,,,,
+retribution_sotfdds,CUSTOM,Revenge is a petty concept for petty sorts. I can be *very* petty.,,,,,
+scarab_sotfdds,CUSTOM,Time is but another river.,,,,,
+sunder_sotfdds,CUSTOM,The right tools can transmute anything into nothing.,,,,,
+tempest_sotfdds,CUSTOM,There is a storm a-brewing. Will any of you be ready for it? Will anything be left?,,,,,
+sotf_thorn_sotfdds,CUSTOM,"All things must keep themselves sharp, or suffer dearly for it.",,,,,
+vanguard_sotfdds,CUSTOM,"Ever the first to die, but what does it matter to the undying?",,,,,
+ziggurat_sotfdds,CUSTOM,Wield the thing if you must. I will have *no* part of it.,,,,,

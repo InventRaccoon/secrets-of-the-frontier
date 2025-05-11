@@ -59,7 +59,7 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 	
 	@Override
 	public EnumSet<CombatEngineLayers> getActiveLayers() {
-		return EnumSet.of(CombatEngineLayers.ABOVE_PARTICLES_LOWER);
+		return EnumSet.of(CombatEngineLayers.ABOVE_PARTICLES);
 	}
 
 	public void advance(float amount) {

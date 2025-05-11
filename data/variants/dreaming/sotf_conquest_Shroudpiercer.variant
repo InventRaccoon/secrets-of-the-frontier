@@ -1,0 +1,81 @@
+{
+  "variantId": "sotf_conquest_Shroudpiercer",
+  "hullId": "conquest",
+  "displayName": "Shroudpiercer",
+  "goalVariant": false,
+  "fluxCapacitors": 44,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 011": "gauss",
+        "WS 012": "gauss"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "squall",
+        "WS 002": "squall"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 019": "sabotpod",
+        "WS 020": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 013": "devastator",
+        "WS 014": "devastator",
+        "WS 017": "flak",
+        "WS 018": "flak"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 015": "hveldriver",
+        "WS 016": "hveldriver"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "taclaser",
+        "WS 006": "taclaser",
+        "WS 008": "taclaser",
+        "WS 009": "taclaser",
+        "WS 010": "taclaser",
+        "WS 023": "taclaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "pdburst",
+        "WS 005": "pdburst",
+        "WS 007": "pdburst",
+        "WS 022": "heavyburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

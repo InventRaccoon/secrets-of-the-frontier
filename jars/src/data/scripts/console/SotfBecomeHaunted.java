@@ -5,6 +5,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.utils.SotfMisc;
+import data.scripts.world.SotfGen;
 import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
@@ -24,7 +25,7 @@ public class SotfBecomeHaunted implements BaseCommand {
 			// Return the 'wrong context' result, this will alert the player by playing a special sound
 			return CommandResult.WRONG_CONTEXT;
 		}
-		Global.getSector().getMemoryWithoutUpdate().set("$sotf_hauntedStart", true);
+		Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_HAUNTED_START, true);
 		SotfMisc.addGuilt(SotfMisc.getHauntedGuilt());
 		boolean addSkillPoint = true;
 		if (!args.isEmpty()) {
@@ -33,6 +34,7 @@ public class SotfBecomeHaunted implements BaseCommand {
 			}
 		}
 		if (addSkillPoint) Global.getSector().getPlayerPerson().getStats().addPoints(1);
+		SotfGen.trySpawnLOTL(Global.getSector());
 		return CommandResult.SUCCESS;
 	}
 }

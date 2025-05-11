@@ -1,12 +1,12 @@
 {
 	"id":"sotf_dreaminggestalt",
-	"color":[235,245,255,255],
-	"baseUIColor":[235,245,255,255],
+	"color":[215,235,255,255],
+	"baseUIColor":[215,235,255,255],
 	
-	"secondaryUIColor":[100,100,100,255],
+	"secondaryUIColor":[90,100,110,255],
 	"secondarySegments":3,
-	"darkUIColor":[60,67,75,175],
-	"gridUIColor":[110,115,120,75],
+	"darkUIColor":[55,70,85,175],
+	"gridUIColor":[100,115,130,75],
 	#"brightUIColor":[203,245,255,255],
 	
 	"showInIntelTab":false,

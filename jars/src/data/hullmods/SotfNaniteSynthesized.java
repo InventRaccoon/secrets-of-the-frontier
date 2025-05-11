@@ -11,6 +11,7 @@ import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
+import com.fs.starfarer.api.impl.combat.threat.FragmentSwarmHullmod;
 import com.fs.starfarer.api.impl.combat.threat.RoilingSwarmEffect;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.loading.FighterWingSpecAPI;
@@ -87,8 +88,10 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                 startedFadingOut = true;
             }
 
+            ship.setInvalidTransferCommandTarget(true);
+
             // anti-mind-control
-            if ((ship.getOwner() == 0 || ship.getOwner() == 1) && ship.getOwner() != ship.getOriginalOwner()) {
+            if ((ship.getOwner() == 0 || ship.getOwner() == 1) && ship.getOwner() != ship.getOriginalOwner() && !ship.getHullSpec().getHullId().contains("mess")) {
                 ship.setOwner(ship.getOriginalOwner());
             }
 
@@ -104,7 +107,7 @@ public class SotfNaniteSynthesized extends BaseHullMod {
             // ship and weapons are darkened
             for (ShipAPI toJitter : shipAndModules) {
                 toJitter.getSpriteAPI().setColor(JITTER_COLOR);
-                for (WeaponAPI weapon : ship.getAllWeapons()) {
+                for (WeaponAPI weapon : toJitter.getAllWeapons()) {
                     if (weapon.getSprite() != null) {
                         weapon.getSprite().setColor(JITTER_COLOR.brighter());
                     }
@@ -120,11 +123,10 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                         }
                     }
                 }
-            }
-
-            ship.getEngineController().fadeToOtherColor("sotf_nanitesynthesized", COLOR_STRONGER, Misc.setAlpha(COLOR_STRONGER, 25), 1f, 0.9f);
-            if (ship.getShield() != null) {
-                ship.getShield().setInnerColor(Misc.setAlpha(COLOR_STRONGER, 125));
+                toJitter.getEngineController().fadeToOtherColor("sotf_nanitesynthesized", COLOR_STRONGER, Misc.setAlpha(COLOR_STRONGER, 25), 1f, 0.9f);
+                if (toJitter.getShield() != null) {
+                    toJitter.getShield().setInnerColor(Misc.setAlpha(COLOR_STRONGER, 125));
+                }
             }
 
             // nanite fog effect
@@ -218,8 +220,10 @@ public class SotfNaniteSynthesized extends BaseHullMod {
             params.spawnOffsetMult = 0.33f;
             params.spawnOffsetMultForInitialSpawn = 1f;
 
+
             params.baseMembersToMaintain = Math.round(getBaseSwarmSize(ship.getHullSize()) * mult);
             params.memberRespawnRate = getBaseSwarmRespawnRateMult(ship.getHullSize());
+
             params.maxNumMembersToAlwaysRemoveAbove = params.baseMembersToMaintain * 2;
 
             //params.offsetRerollFractionOnMemberRespawn = 0.05f;
@@ -233,6 +237,15 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                 if (w.usesAmmo() && w.getSpec().hasTag(Tags.FRAGMENT_GLOW)) {
                     glowWeapons.add(w);
                 }
+            }
+
+            if (ship.getHullSpec().hasTag(Tags.THREAT)) {
+                params.baseMembersToMaintain = FragmentSwarmHullmod.getBaseSwarmSize((ship.getHullSize()));
+                params.memberRespawnRate = FragmentSwarmHullmod.getBaseSwarmRespawnRateMult(ship.getHullSize());
+                params.memberExchangeClass = FragmentSwarmHullmod.STANDARD_SWARM_EXCHANGE_CLASS;
+                params.baseSpriteSize = 20f;
+                params.flashRadius = 120f;
+                params.springStretchMult = 10f;
             }
 
             return new RoilingSwarmEffect(ship, params) {
@@ -282,18 +295,23 @@ public class SotfNaniteSynthesized extends BaseHullMod {
     }
 
     public void applyEffectsToFighterSpawnedByShip(ShipAPI fighter, ShipAPI ship, String id) {
-        // Fighters are also nanomechanical
-        fighter.getVariant().addMod(id);
-        if (!fighter.getVariant().getDisplayName().contains("Drone")) {
-            fighter.getVariant().setVariantDisplayName(fighter.getVariant().getDisplayName() + " Drone");
+        fighter.getSpriteAPI().setColor(JITTER_COLOR);
+        fighter.addListener(new SotfNaniteSynthesizedListener(fighter));
+        if (!fighter.getVariant().hasHullMod(SotfIDs.HULLMOD_DAYDREAM_HULL)) {
+            fighter.setExtraOverlay(Global.getSettings().getSpriteName("misc", "sotf_overlay_nanitesynthesized"));
+            fighter.setExtraOverlayMatchHullColor(false);
+            fighter.setExtraOverlayShadowOpacity(0.5f);
         }
     }
 
     public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
+        ship.getSpriteAPI().setColor(JITTER_COLOR);
         ship.addListener(new SotfNaniteSynthesizedListener(ship));
-        ship.setExtraOverlay(Global.getSettings().getSpriteName("misc", "sotf_overlay_nanitesynthesized"));
-        ship.setExtraOverlayMatchHullColor(false);
-        ship.setExtraOverlayShadowOpacity(0.5f);
+        if (!ship.getVariant().hasHullMod(SotfIDs.HULLMOD_DAYDREAM_HULL)) {
+            ship.setExtraOverlay(Global.getSettings().getSpriteName("misc", "sotf_overlay_nanitesynthesized"));
+            ship.setExtraOverlayMatchHullColor(false);
+            ship.setExtraOverlayShadowOpacity(0.5f);
+        }
     }
 
     public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
@@ -302,6 +320,13 @@ public class SotfNaniteSynthesized extends BaseHullMod {
         stats.getMaxCrewMod().modifyMult(id, 0f);
         // so it doesn't break before it fades away
         stats.getBreakProb().modifyMult(id, 0f);
+        if (stats.getFleetMember() != null) {
+            if (stats.getFleetMember().getCaptain() != null) {
+                if (stats.getFleetMember().getCaptain().getId().contains(SotfPeople.SIRIUS)) {
+                    stats.getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
+                }
+            }
+        }
     }
 
     public static EveryFrameCombatPlugin createNaniteFadeOutPlugin(final ShipAPI ship, final float fadeOutTime, boolean withSmoke) {
@@ -420,7 +445,7 @@ public class SotfNaniteSynthesized extends BaseHullMod {
                 if (variantId.endsWith("_wing")) {
                     FighterWingSpecAPI spec = Global.getSettings().getFighterWingSpec(variantId);
                     ships = new ShipAPI[spec.getNumFighters()];
-                    PersonAPI captain = SotfPeople.genSirius(false);
+                    PersonAPI captain = SotfPeople.genSirius(true);
                     ShipAPI leader = engine.getFleetManager(source.getOriginalOwner()).spawnShipOrWing(variantId, loc, facing, 0f, captain);
                     for (int i = 0; i < ships.length; i++) {
                         ships[i] = leader.getWing().getWingMembers().get(i);

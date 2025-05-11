@@ -8,6 +8,13 @@
 			"className":"data.scripts.campaign.customstart.SotfHauntedStart",
 		},
 		{
+			"id":"sotf_COTLStart",
+			"name":"Child of the Lake",
+			"difficulty":"Esoteric",
+			"desc":"You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your flesh in twisting jagged patterns, and marks your journey like fading stardust in the night sky.\n\nPerhaps your past lies out there, somewhere on a midnight lake.\n\nBegin with a few advanced frigates and trade in your starting skill point for the ability to invoke your stalwart protector, Sirius, to mimic the fallen and fight by your side.",
+			"className":"data.scripts.campaign.customstart.SotfChildOfTheLakeStart",
+		},
+		{
 			"id":"sotf_DustkeeperStart",
 			"name":"Banshee's Lost Thread",
 			"difficulty":"Easy",

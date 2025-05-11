@@ -92,7 +92,7 @@ public class SotfAMemoryEFCPlugin extends BaseEveryFrameCombatPlugin {
                 }
             }
             // do we smell a cheater? I DON'T THINK SO, PAL
-            if (ship.getOwner() == 0 && !ship.getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD) && !ship.getVariant().hasTag("sotf_amemory_immunity") && !ship.isFighter() && ship != tuned) {
+            if (ship.getOwner() == 0 && !ship.isShuttlePod() && !ship.getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD) && !ship.getVariant().hasTag("sotf_amemory_immunity") && !ship.isFighter() && ship != tuned) {
                 ship.setDefenseDisabled(true);
                 ship.setShipSystemDisabled(true);
                 ship.getMutableStats().getBallisticWeaponDamageMult().modifyMult("sotf_AMPhaseStress", 0.5f);

@@ -154,7 +154,9 @@ public class SotfWSWinPlugin implements InteractionDialogPlugin {
                 DerelictShipEntityPlugin dsep2 = (DerelictShipEntityPlugin) wispmother.getCustomPlugin();
 
                 // the veil falters
-                SotfWaywardStarIntel.addReveriesMeal(playerFleet.getStarSystem());
+                if (!Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.MEM_HAUNTED_START)) {
+                    SotfWaywardStarIntel.addReveriesMeal(playerFleet.getStarSystem());
+                }
 
                 if (Global.getSector().getIntelManager().hasIntelOfClass(SotfWaywardStarIntel.class)) {
                     SotfWaywardStarIntel ws = (SotfWaywardStarIntel) Global.getSector().getIntelManager().getFirstIntel(SotfWaywardStarIntel.class);

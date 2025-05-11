@@ -16,6 +16,7 @@ import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.SalvageSpecialAssigner;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
+import com.fs.starfarer.api.impl.hullmods.Automated;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.scripts.SotfModPlugin;
@@ -35,6 +36,7 @@ public class SotfMisc {
 
     public static Color SIERRA_COLOR = Global.getSettings().getFactionSpec(SotfIDs.SIERRA_FACTION).getBaseUIColor();
     public static Color SYMPHONY_COLOR = Global.getSettings().getFactionSpec(SotfIDs.SYMPHONY).getBaseUIColor();
+    public static Color DAYDREAM_COLOR = Global.getSettings().getFactionSpec(SotfIDs.DREAMING_GESTALT).getBaseUIColor();
 
     public static boolean getLockoutStarts() {
         boolean lockoutStarts = Global.getSettings().getBoolean("sotf_lockoutStarts");
@@ -137,6 +139,19 @@ public class SotfMisc {
             Misc.setSalvageSpecial(ship, creator.createSpecial(ship, null));
         }
         return ship;
+    }
+
+    // check if player has Sierra in their fleet
+    public static boolean playerHasNoAutoPenaltyShip() {
+        boolean has = false;
+        if (Global.getSector().getPlayerFleet() != null) {
+            for (FleetMemberAPI member : Global.getSector().getPlayerFleet().getFleetData().getMembersListCopy()) {
+                if (Misc.isAutomated(member) && Automated.isAutomatedNoPenalty(member)) {
+                    return true;
+                }
+            }
+        }
+        return has;
     }
 
     // check if player has Sierra in their fleet

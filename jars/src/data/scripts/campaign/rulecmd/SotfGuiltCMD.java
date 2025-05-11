@@ -57,8 +57,17 @@ public class SotfGuiltCMD extends BaseCommandPlugin
             case "addHalfGuilt":
                 SotfMisc.addGuilt(0.5f);
                 return true;
+            case "add2Guilt":
+                SotfMisc.addGuilt(2);
+                return true;
             case "milestoneGuilt":
                 SotfMisc.addGuilt(3.5f);
+                return true;
+            case "addSierraShipGuilt":
+                SotfMisc.addGuilt(8f);
+                return true;
+            case "addSierraCoreGuilt":
+                SotfMisc.addGuilt(5f);
                 return true;
             case "removeHalfGuilt":
                 SotfMisc.addGuilt(-0.5f);
@@ -68,6 +77,9 @@ public class SotfGuiltCMD extends BaseCommandPlugin
                 return true;
             case "remove2Guilt":
                 SotfMisc.addGuilt(-2f);
+                return true;
+            case "remove3Guilt":
+                SotfMisc.addGuilt(-3f);
                 return true;
             case "kickIdol":
                 SotfMisc.addGuilt(3f);

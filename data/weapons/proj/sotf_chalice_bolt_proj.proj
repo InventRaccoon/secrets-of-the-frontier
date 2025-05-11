@@ -1,0 +1,17 @@
+{
+	"id":"sotf_chalice_bolt_proj",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":30.0,
+	"width":10.0,
+	"fadeTime":0.25,
+	#"fringeColor":[180,255,75,255],
+	"fringeColor":[105,255,195,255],
+	"coreColor":[190,255,210,200],
+	"textureType":"SMOOTH",  # only needed for BEAM spawnType
+	#"textureType":["graphics/fx/emp_arcs.png","graphics/fx/emp_arcs.png"],
+	"textureScrollSpeed":-256.0,
+	"pixelsPerTexel":1.0
+}

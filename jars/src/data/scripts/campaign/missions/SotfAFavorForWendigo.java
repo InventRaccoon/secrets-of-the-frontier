@@ -134,7 +134,9 @@ public class SotfAFavorForWendigo extends HubMissionWithSearch implements FleetE
 		Color h = Misc.getHighlightColor();
 		if (currentStage == Stage.KILL) {
 			info.addPara("Destroy a fully-operational Remnant Nexus.", opad);
-			info.addPara("Wintry-Annex-Wendigo last saw one in the " + system.getNameWithLowercaseTypeShort() + ", though you need not destroy it specifically.", opad);
+			info.addPara("Wintry-Annex-Wendigo last saw one in the " + system.getNameWithLowercaseTypeShort() + ", " +
+					"though you need not destroy it specifically. Fully-operational stations are located in systems " +
+					"with high-danger (red) warning beacons.", opad);
 		} else if (currentStage == Stage.FAILED) {
 			info.addPara("You are now being hunted by Wintry-Annex-Wendigo, and can expect to meet them the next time you visit the sector's fringe systems.", opad);
 		}

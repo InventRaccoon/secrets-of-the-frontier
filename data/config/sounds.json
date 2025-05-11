@@ -41,6 +41,37 @@
 		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_04.ogg","pitch":1.00,"volume":0.5},
 		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_05.ogg","pitch":1.00,"volume":0.5},
 	],
+	# BALEFIRE
+	"sotf_balefire_fire":
+	[
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.02,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.04,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.06,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.08,"volume":0.5},
+	],
+	# CHALICE
+	"sotf_chalice_bolt_fire":
+	[
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":0.9,"volume":0.4},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":0.95,"volume":0.4},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.00,"volume":0.4},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.05,"volume":0.4},
+		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.1,"volume":0.4},
+	],
+	# GIGACANNON
+	"sotf_chalice_mine_windup":
+	[
+		{"file":"sounds/sfx_wpn_energy/gigacannon_charge_01.ogg","pitch":1.25,"volume":0.35},
+	],
+	"sotf_hypnogagicincursion_activate":
+	[
+		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":0.9,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":0.95,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.00,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.05,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.1,"volume":1},
+	],
 	# ASB impact
 	"sotf_impact_heavy":
     [ 
@@ -114,5 +145,40 @@
 	"sotf_perfectstorm_loop":
 	[
 	{"file":"sounds/sfx_skills/sotf_perfectstorm_loop.ogg","pitch":1,"volume":1},
-	]
+	],
+	
+	#collapseopen ENGINES	
+	
+	# Engines
+	# played when engines are being used - depending on ship style and size
+	# For example - a "new" frigate would play the third sound listed, at volume 0.6
+
+	"engine_loop":{
+		"SOTF_SIERRA":{"sounds":[10,11,12,13,14], "pitch":1, "volume":1},
+		"SOTF_DAYDREAM":{"sounds":[10,11,12,13,14], "pitch":1, "volume":1},	
+	},
+
+	"engine_accelerate":{ # played when ship receives an "engine boost" from having zero flux 
+		"SOTF_SIERRA":{"sounds":[0,1,2], "pitch":1, "volume":1},
+		"SOTF_DAYDREAM":{"sounds":[0,1,2], "pitch":1, "volume":1},		
+	},
+
+#collapseclose
+
+	# Shields and related
+	"shield_burnout":{ # played when a ship overloads
+		"SOTF_SIERRA":{"sounds":[0], "pitch":1, "volume":1},
+		"SOTF_DAYDREAM":{"sounds":[0], "pitch":1, "volume":1},
+	},
+	
+	# Similar setup to engine loop - defines which of the two sounds to use, and
+	# what pitch/volume to use them at, depending on ship style and size
+	"shield_lower":{
+		"SOTF_SIERRA":{"sounds":[0,1,2], "pitch":1, "volume":0.75},
+		"SOTF_DAYDREAM":{"sounds":[0,1,2], "pitch":1, "volume":0.75},
+	},
+	"shield_raise":{
+		"SOTF_SIERRA":{"sounds":[0,1,2], "pitch":1, "volume":0.75},
+		"SOTF_DAYDREAM":{"sounds":[0,1,2], "pitch":1, "volume":0.75},
+	},
 }

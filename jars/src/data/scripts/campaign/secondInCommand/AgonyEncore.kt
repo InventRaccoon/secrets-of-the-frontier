@@ -25,8 +25,8 @@ class AgonyEncore : SCBaseSkillPlugin() {
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
         tooltip.addPara("Disabling or destroying an opposing ship provides a temporary increase in timeflow", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("   - Upon triggering, the ships timeflow is doubled for 10 seconds", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "doubled", "10")
-        tooltip.addPara("   - Defeating another ship while active adds an additional 10 seconds to the current timer, up to 15", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "10", "15")
+        tooltip.addPara("   - Upon triggering, the ships timeflow is doubled for 5/7/8/10 seconds, based on the target's hull size", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "doubled", "10")
+        tooltip.addPara("   - Defeating another ship while active adds an additional 5/7/8/10 seconds to the current timer, up to 15", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "10", "15")
         tooltip.addPara("   - Only the ship dealing the killing blow receives the effect", 0f, Misc.getTextColor(), Misc.getHighlightColor())
 
         tooltip.addSpacer(10f)
@@ -48,9 +48,9 @@ class AgonyEncore : SCBaseSkillPlugin() {
     }
 
     //Added through WitchcraftKillingBlowHandler
-    class AgonyEncoreListener(var ship: ShipAPI) : AdvanceableListener {
+    class AgonyEncoreListener(var ship: ShipAPI, var time: Float) : AdvanceableListener {
 
-        var duration = 10.1f
+        var duration = time
         var inTimer = 0f
 
         override fun advance(amount: Float) {

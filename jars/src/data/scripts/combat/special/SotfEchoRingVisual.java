@@ -39,6 +39,7 @@ public class SotfEchoRingVisual extends BaseCombatLayeredRenderingPlugin {
     public void render(CombatEngineLayers layer, ViewportAPI viewport) {
         if (echo == null) return;
         if (echo.fade <= 0) return;
+        if (!Global.getCombatEngine().isUIShowingHUD()) return;
 
         if (layer == CombatEngineLayers.ABOVE_SHIPS_LAYER) {
             renderRing(echo.loc.x, echo.loc.y, echo.shieldRadius, 8f, 0.75f * echo.fade, segments, atmosphereTex, echo.color, false, false);
@@ -73,6 +74,8 @@ public class SotfEchoRingVisual extends BaseCombatLayeredRenderingPlugin {
         if (alwaysFull) {
             totalArc = 1f;
         }
+        if (totalArc > 1f) totalArc = 1f;
+        if (totalArc < 0f) totalArc = 0f;
         float endDeg = totalArc * 360f;
 
         float startRad = (float) Math.toRadians(startDeg);

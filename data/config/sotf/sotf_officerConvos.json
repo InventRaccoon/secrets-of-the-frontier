@@ -481,6 +481,30 @@
 	},
 	
 	
+	# COTL
+	"sotf_siriSier1":{
+		"lines":[
+		["sotf_sierra", "Sirius! It's time for some necromancy."],
+		["sotf_sirius", "... It's not... readying subswarms- necromancy- countermeasures."],
+		],
+		"weight":100000,
+		"oneShot":true,
+	},
+	
+	"sotf_siriBarr1":{
+		"lines":[
+		["sotf_sirius", "... countermeasures ready- waiting- watching..."],
+		["sotf_barrow", "Stack up the hulks and rouse the hound of ill omen."],
+		],
+	},
+	
+	"sotf_siriSeraph1":{
+		"lines":[
+		["sotf_seraph", "Tear them apart! Leave only scraps for the black fog."],
+		["sotf_sirius", "... Preparing for her wake."],
+		],
+	},
+	
 	
 	# DAWN AND DUST EXCLUSIVE
 	"sotf_dawnAndDust1":{

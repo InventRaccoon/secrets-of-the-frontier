@@ -2,9 +2,11 @@
 package data.scripts;
 
 import com.fs.starfarer.api.BaseModPlugin;
+import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.PluginPick;
 import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.campaign.listeners.ListenerManagerAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.ShipAIConfig;
@@ -12,6 +14,9 @@ import com.fs.starfarer.api.combat.ShipAIPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.SharedUnlockData;
+import com.fs.starfarer.api.impl.campaign.enc.AbyssalNoEPEC;
+import com.fs.starfarer.api.impl.campaign.enc.EncounterManager;
 import com.fs.starfarer.api.impl.campaign.ghosts.SensorGhostManager;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.intel.events.EventFactor;
@@ -19,9 +24,12 @@ import com.fs.starfarer.api.impl.campaign.intel.events.HostileActivityEventIntel
 import com.fs.starfarer.api.impl.campaign.missions.cb.MilitaryCustomBounty;
 import com.fs.starfarer.api.impl.campaign.rulecmd.Nex_TransferMarket;
 import com.fs.starfarer.api.impl.codex.CodexDataV2;
+import com.fs.starfarer.api.impl.codex.CodexEntryV2;
 import com.fs.starfarer.api.impl.codex.CodexUnlocker;
 import com.fs.starfarer.api.loading.Description;
 import com.fs.starfarer.api.loading.FighterWingSpecAPI;
+import com.fs.starfarer.api.ui.TooltipMakerAPI;
+import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.SotfHostileActivityFactorManager;
 import data.scripts.campaign.SotfPlayerColonyScriptManager;
 import data.scripts.campaign.codex.SotfCodexUnlocker;
@@ -187,13 +195,6 @@ public class SotfModPlugin extends BaseModPlugin {
         }
         Global.getSettings().getDescription(SotfIDs.NIGHTINGALE_CHIP, Description.Type.RESOURCE).setText1(nightingaleDesc.getText1());
 
-        // add Project SIREN & Dustkeeper bounty to the list of potential military bounties
-        MilitaryCustomBounty.CREATORS.add(new SotfCBProjectSiren());
-        MilitaryCustomBounty.CREATORS.add(new SotfCBDustkeeper());
-        MilitaryCustomBounty.CREATORS.add(new SotfCBDustkeeperBurnout());
-        // add Fel whisper ghost to list of potential sensor ghosts
-        SensorGhostManager.CREATORS.add(new SotfFelWhisperGhostCreator());
-
         // Dustkeepers automatically learn any auto fighters that mercenaries use (e.g Wasp)
         for (FighterWingSpecAPI wingSpec : Global.getSettings().getAllFighterWingSpecs()) {
             if (wingSpec.hasTag(Tags.AUTOMATED_FIGHTER) && wingSpec.hasTag("merc") && !sector.getFaction(SotfIDs.DUSTKEEPERS).knowsFighter(wingSpec.getId())) {
@@ -239,6 +240,11 @@ public class SotfModPlugin extends BaseModPlugin {
             SotfPeople.setInstanceChipDescription(SotfIDs.ECHO_CHIP_2, SotfPeople.getPerson(SotfPeople.ECHO_2));
         }
 
+        if (sector_mem.contains(SotfIDs.MEM_COTL_START)) {
+            sector.getPlayerFaction().addKnownShip("sotf_thorn", false);
+            sector.getPlayerFaction().addKnownWeapon("sotf_lethargy", false);
+        }
+
         // Midsave Alteration Corner 2: Electric Boogaloo
         // This code only exists to perform fixes on existing saves - these have effectively no effect on new saves
         // TODO: Delete all of this on each savebreaking update
@@ -261,14 +267,24 @@ public class SotfModPlugin extends BaseModPlugin {
         SotfGen.trySpawnLOTL(sector);
 
         Global.getSector().addTransientScript(new PausedTimeAdvancer());
-    }
 
-    public void onEnabled(boolean wasEnabledBefore) {
-        SectorAPI sector = Global.getSector();
-        if (!wasEnabledBefore) {
-            SotfGen.initFactionRelationships(sector);
+        if (!Global.getSector().getFaction(SotfIDs.SYMPHONY).isHostileTo(Factions.OMEGA)) {
+            SotfGen.initFactionRelationships(Global.getSector());
         }
     }
+
+//    public void onEnabled(boolean wasEnabledBefore) {
+//        SectorAPI sector = Global.getSector();
+//        if (!wasEnabledBefore) {
+//            SotfGen.initFactionRelationships(sector);
+//        }
+//    }
+
+    // this needs to run early to avoid oddness re: relationship reset when resigning commissions
+    public void onNewGame() {
+        SotfGen.initFactionRelationships(Global.getSector());
+    }
+
     protected void addScriptsIfNeeded() {
         SectorAPI sector = Global.getSector();
         ListenerManagerAPI listeners = sector.getListenerManager();
@@ -324,6 +340,13 @@ public class SotfModPlugin extends BaseModPlugin {
             // Guilt gain on atrocity, and Haunted dreams
             if (!sector.hasScript(SotfGuiltTracker.class)) {
                 sector.addScript(new SotfGuiltTracker());
+            } else if (!sector.getListenerManager().hasListenerOfClass(SotfGuiltTracker.class)) {
+                for (EveryFrameScript script : sector.getScripts()) {
+                    if (script instanceof SotfGuiltTracker) {
+                        sector.getListenerManager().addListener(script);
+                        break;
+                    }
+                }
             }
 
             // Dustkeeper bonuses and etc
@@ -489,6 +512,13 @@ public class SotfModPlugin extends BaseModPlugin {
          } catch (IOException | JSONException e) {
              Global.getLogger(SotfModPlugin.class).log(Level.ERROR, "Failed to load sotf_settings.ini!" + e.getMessage());
          }
+
+         MilitaryCustomBounty.CREATORS.add(new SotfCBProjectSiren());
+         MilitaryCustomBounty.CREATORS.add(new SotfCBDustkeeper());
+         MilitaryCustomBounty.CREATORS.add(new SotfCBDustkeeperBurnout());
+         // add Fel whisper ghost to list of potential sensor ghosts
+         SensorGhostManager.CREATORS.add(new SotfFelWhisperGhostCreator());
+
          // no longer required as of Starpocalypse Revengeance 3.0.1
 //         if (Global.getSettings().getModManager().isModEnabled("starpocalypse") && MOD_WARNINGS && WATCHER) {
 //             try {
@@ -533,12 +563,27 @@ public class SotfModPlugin extends BaseModPlugin {
                 CodexDataV2.getHullmodEntryId(HullMods.ECCM),
                 CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
         );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getCommodityEntryId(SotfIDs.NIGHTINGALE_CHIP),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getCommodityEntryId(SotfIDs.SERAPH_CHIP),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
         for (String dmod : SotfCyberwarfare.VULNERABLE_DMODS) {
             CodexDataV2.makeRelated(
                     CodexDataV2.getHullmodEntryId(dmod),
                     CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
             );
         }
+
+        // Derelict Contingent
+        CodexDataV2.makeRelated(
+                CodexDataV2.getCommodityEntryId(SotfIDs.BARROW_CHIP),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_DERELICTCONTINGENTP)
+        );
+
         // Proxy ships with original versions
         CodexDataV2.makeRelated(
                 CodexDataV2.getShipEntryId("sotf_picket_prox"),
@@ -575,7 +620,12 @@ public class SotfModPlugin extends BaseModPlugin {
                 CodexDataV2.getShipEntryId("sotf_cavalier_prox"),
                 CodexDataV2.getSkillEntryId("sotf_cavalier")
         );
-
+        // instance chips
+        CodexDataV2.makeRelated(
+                CodexDataV2.getCommodityEntryId(SotfIDs.NIGHTINGALE_CHIP),
+                CodexDataV2.getCommodityEntryId(SotfIDs.BARROW_CHIP),
+                CodexDataV2.getCommodityEntryId(SotfIDs.SERAPH_CHIP)
+        );
     }
 
     @Override

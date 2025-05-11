@@ -18,6 +18,8 @@ import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithTriggers.Of
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
 import data.scripts.campaign.ids.SotfIDs;
 
+import static data.scripts.SotfModPlugin.WATCHER;
+
 /**
  *	Regular faction custom bounties vs Dustkeepers (player is not hostile to Dustkeepers edition)
  */
@@ -26,6 +28,7 @@ public class SotfCBDustkeeperBurnout extends BaseCustomBountyCreator {
 	
 	@Override
 	public float getFrequency(HubMissionWithBarEvent mission, int difficulty) {
+		if (!WATCHER) return 0;
 		// only if player is not hostile to Dustkeepers
 		if (Global.getSector().getFaction(SotfIDs.DUSTKEEPERS).isAtBest(Factions.PLAYER, RepLevel.HOSTILE)) {
 			return 0;

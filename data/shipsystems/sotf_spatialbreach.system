@@ -1,0 +1,38 @@
+{
+	"id":"sotf_spatialbreach",
+	"type":"STAT_MOD",
+    "aiType":"CUSTOM",
+	"aiScript":"data.shipsystems.scripts.ai.SotfHypnagogicIncursionAI",
+	
+	"statsScript":"data.shipsystems.SotfHypnagogicIncursionScript",
+	"runScriptWhileIdle":true,
+	"blockActionsWhileChargingDown":true,
+	
+	"jitterColor":[115,255,215,35],
+	#"jitterColor":[255,100,255,150],
+	"jitterCopies":10,
+	"jitterRange":0,
+	"jitterRangeRadiusFraction":0.5,
+	
+	"engineGlowColor":[0,0,0,0],
+	"engineGlowContrailColor":[0,0,0,0],
+	"engineGlowLengthMult":1,
+	"engineGlowWidthMult":1,
+	"engineGlowGlowMult":2,
+	
+	"soundFilterType":"LOWPASS",
+	"soundFilterGain":0.8,
+	"soundFilterGainHF":0.25,
+	
+	"clampMaxSpeedAfter":true,
+	
+	"useSound":"sotf_hypnogagicincursion_activate",
+	#"deactivateSound":"riftcascade_windup",
+	"outOfUsesSound":"gun_out_of_ammo",
+	
+	"aiHints":{
+		"activeSpeedIncrease":125,
+		"burstMovementPotential":0,
+		"averageSpeedIncrease":80,
+	}
+}

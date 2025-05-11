@@ -151,6 +151,7 @@ public class SotfIDs {
 	public static String HULLMOD_LIFEDRINKER = "sotf_lifedrinker";
 	public static String HULLMOD_WITCHBLADE = "sotf_witchblade";
 	public static String HULLMOD_DAYDREAM_SYNTHESIZER = "sotf_daydream_synthesizer";
+	public static String HULLMOD_DAYDREAM_HULL = "sotf_daydreamhull";
 	public static String HULLMOD_NANITE_SYNTHESIZED = "sotf_nanite_synthesized";
 
 	public static final String TAG_INERT = "sotf_inert";
@@ -226,6 +227,8 @@ public class SotfIDs {
 	public static String POST_GESTALT = "sotf_post_gestalt";
 
 	public static String DAYDREAM_ANALYZER = "sotf_daydreamanalyzer";
+
+	public static String COTL_AUTOPILOT = "$sotf_cotl_autopilot";
 
 	public static String COTL_PERFECTREPLICATION = "$sotf_cotl_perfectreplication";
 	public static String COTL_MULTIFACETED = "$sotf_cotl_multifaceted";

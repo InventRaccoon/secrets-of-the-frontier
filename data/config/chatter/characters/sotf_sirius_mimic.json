@@ -9,11 +9,11 @@
 	
 	"lines":{
 		# note: these probably won't play
-		"start":[
-			{"text":"Countermeasure / Activated. I am your shield..."},
-			{"text":"Countermeasure / Deployed. Stay close..."},
-			{"text":"Countermeasure / Online, your shadow and light..."},
-		],
+		#"start":[
+		#	#{"text":"Countermeasure / Activated. I am your shield..."},
+		#	#{"text":"Countermeasure / Deployed. Stay close..."},
+		#	#{"text":"Countermeasure / Online, your shadow and light..."},
+		#],
 		#"start_boss":[
 		#	{"text":"..?!"},
 		#	{"text":"???"},

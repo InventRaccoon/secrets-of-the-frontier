@@ -13,6 +13,7 @@
   "hardpointOffsets": [36.5, 0],
   "hardpointAngleOffsets":[0],
   "barrelMode":"LINKED",
+  "unaffectedByProjectileSpeedBonuses":true,
   "animationType": "GLOW_AND_FLASH",
   "muzzleFlashSpec":{"length":60.0,
 					   "spread":30.0,

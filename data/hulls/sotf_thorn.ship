@@ -1,0 +1,159 @@
+{
+  "hullName": "Thorn",
+  "hullId": "sotf_thorn",
+  "hullSize": "FRIGATE",
+  "spriteName": "graphics/ships/dreaming/sotf_thorn.png",
+  "style": "SOTF_DAYDREAM",
+  "height": 150,
+  "width": 110,
+  "center": [55, 80],
+  "collisionRadius": 86.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 83,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_daydreamhull"
+  ],
+  "builtInWeapons": {
+    "LWING": "sotf_deco_thorn_lwing",
+    #"MSL 01": "sotf_thornmicromissiles",
+    #"MSL 02": "sotf_thornmicromissiles",
+    "RWING": "sotf_deco_thorn_rwing"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "MEDIUM",
+      "type": "UNIVERSAL",
+      "mount": "TURRET",
+      "arc": 45,
+      "angle": 0,
+      "locations": [32, -0]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [48, 12]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": -0,
+      "locations": [48, -12]
+    },
+    {
+      "id": "WS 004",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": 60,
+      "locations": [14, 19]
+    },
+    {
+      "id": "WS 005",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -60,
+      "locations": [14, -19]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 180,
+      "locations": [-20, -0]
+    },
+    {
+      "id": "LWING",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-13, 37],
+      "renderOrderMod": -1
+    },
+    {
+      "id": "RWING",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 0,
+      "angle": 0,
+      "locations": [-13, -37],
+      "renderOrderMod": -1
+    },
+    {
+      "id": "MSL 01",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 60,
+      "locations": [-3, 32]
+    },
+    {
+      "id": "MSL 02",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -60,
+      "locations": [-3, -32]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-55, -0],
+      "length": 45,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-40, 24],
+      "length": 40,
+      "width": 10,
+      "angle": 175,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-40, -24],
+      "length": 40,
+      "width": 10,
+      "angle": -175,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    }
+  ],
+  "bounds": [
+    -49, -10.5,
+    -68, -18,
+    -42, -18,
+    -34.5, -36.5,
+    16.5, -38.5,
+    60.5, -24,
+    38, -0,
+    60.5, 24,
+    16.5, 38.5,
+    -34.5, 36.5,
+    -42, 18,
+    -68, 18,
+    -49, 10.5,
+    -57, -0
+  ]
+}

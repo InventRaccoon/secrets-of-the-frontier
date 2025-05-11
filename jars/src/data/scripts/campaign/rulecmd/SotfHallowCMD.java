@@ -21,6 +21,7 @@ import com.fs.starfarer.api.util.Misc.Token;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import data.scripts.campaign.missions.hallowhall.SotfHopeForHallowhallEventIntel;
+import data.scripts.utils.SotfMisc;
 import data.scripts.world.mia.SotfPersonalFleetSeraph;
 
 import java.awt.*;
@@ -83,7 +84,9 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				text.setFontInsignia();
 				return true;
 			case "noMoretOff":
-				for (CampaignFleetAPI fleet : Misc.getFleetsInOrNearSystem(playerFleet.getStarSystem())) {
+				StarSystemAPI system = playerFleet.getStarSystem();
+				if (system == null) system = Global.getSector().getStarSystem("sotf_mia");
+				for (CampaignFleetAPI fleet : Misc.getFleetsInOrNearSystem(system)) {
 					fleet.getMemoryWithoutUpdate().set("$hassleComplete", true);
 					fleet.getMemoryWithoutUpdate().unset(MemFlags.WILL_HASSLE_PLAYER);
 				}
@@ -134,6 +137,7 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				FleetMemberAPI copy = Global.getFactory().createFleetMember(FleetMemberType.SHIP, flagship.getVariant());
 				playerFleet.getFleetData().addFleetMember(copy);
 				copy.setCaptain(seraph);
+				copy.setShipName(flagship.getShipName());
 				seraph.setPostId(Ranks.POST_OFFICER);
 
 				// clear admiral skills because they count against the number of skills they can pick
@@ -174,7 +178,7 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				AddShip.addShipGainText(member, dialog.getTextPanel());
 				return true;
 			case "hasAutomated":
-				return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE);
+				return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE) || SotfMisc.playerHasNoAutoPenaltyShip();
 			default:
 				return true;
 		}

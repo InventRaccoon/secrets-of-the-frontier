@@ -4,19 +4,19 @@
   "hullSize": "FIGHTER",
   "spriteName": "graphics/ships/drones/sotf_scraphide_debris.png",
   "style": "LOW_TECH",
-  "height": 33,
-  "width": 33,
-  "center": [16, 17],
-  "collisionRadius": 21.5,
+  "height": 66,
+  "width": 66,
+  "center": [32, 33],
+  "collisionRadius": 42,
   "shieldCenter": [0, -0],
-  "shieldRadius": 20.5,
+  "shieldRadius": 41,
   "viewOffset": 0,
   "weaponSlots": [],
   "engineSlots": [],
   "bounds": [
-    13, -13,
-    -13, -13,
-    -13, 13,
-    13, 13
+    26, -26,
+    -26, -26,
+    -26, 26,
+    26, 26
   ]
 }

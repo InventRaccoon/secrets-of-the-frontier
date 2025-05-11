@@ -947,8 +947,12 @@ public class SotfPeople {
             level = "annex";
             equiv = "alpha";
         }
+        String an = "a";
+        if (level.equals("echo")) {
+            an = "an";
+        }
         Global.getSettings().getDescription(commodityId, Description.Type.RESOURCE).setText1(
-                "Instance chip of a " + level + "-level Dustkeeper warmind. Install into an automated ship to allow " + suffix + " to captain it.\n\n" +
+                "Instance chip of " + person.getNameString() + ", " + an + " " + level + "-level Dustkeeper warmind. Install into an automated ship to allow " + suffix + " to captain it.\n\n" +
                 "Equivalent effectiveness to a " + equiv + "-level core. Especially personable behavior makes warminds less reckless in combat and " +
                         "easier to integrate within human forces.\n\n" +
                 "A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a " +
@@ -1199,6 +1203,7 @@ public class SotfPeople {
             person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
             person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
             person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
+            person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_sirius");
         } else {
             person.setId(SIRIUS_MIMIC);
             person.setPersonality(Personalities.RECKLESS);
@@ -1211,9 +1216,9 @@ public class SotfPeople {
             person.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1);
             person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 1);
             person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_FEARLESS, true);
+            person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_sirius_mimic");
         }
 
-        person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_sirius");
         return person;
     }
 }

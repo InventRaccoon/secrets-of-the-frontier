@@ -119,6 +119,7 @@ public class SotfDev implements BaseCommand {
 				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_INTRO, true);
 				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_MILE1, true);
 				Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_DID_HAUNTED_PENULT, true);
+				Global.getSector().getMemoryWithoutUpdate().unset(SotfIDs.MEM_DID_HAUNTED_ULT);
 				int level = Global.getSector().getPlayerPerson().getStats().getLevel();
 				Global.getSector().getPlayerPerson().getStats().setLevel(15);
 				Global.getSector().getPlayerPerson().getStats().addPoints(15 - level);

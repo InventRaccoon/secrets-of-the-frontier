@@ -25,7 +25,7 @@ APbarOptionLowFreq,AddBarEvents,"!$market.isHidden
 !$global.sotf_beganPromise
 SotfPromiseCMD checkStart
 SotfPromiseCMD checkLowFreq
-RollProbability 0.5","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
+RollProbability 0.02","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
 APbar1,DialogOptionSelected,$option == APbar_start,"$missionId = $sotf_apromise
 ShowPersonVisual false sotf_apromise_bar_league
 ShowSecondPerson sotf_apromise_bar_heg","You slide in amongst the ship captains, who seem to have no problem with you joining their revelry, and catch the tail-end of an extended boastful story about ""That one time I phased through two Sunders just to nail a Colossus in the engines with a Reaper, you should've seen it!""
@@ -848,12 +848,30 @@ FireAll sotfDKOMEPopulateOptionsHire","After a few-millisecond wait, your connec
 sotfDKOMEopenSliver,sotfDKOMEOpen,$rankId == spaceLieutenant,,"$personName's visage scans over you. ""You are greeted by a sliver of the Contingency. Indications are you may be seeking to take on a warmind?""",,
 sotfDKOMEopenEcho,sotfDKOMEOpen,$rankId == spaceCaptain,,"$personName's visage scans over you. ""Greetings, Captain,"" $heOrShe remarks. ""I have heard you could be willing to recruit a warmind to assist you.""",,
 sotfDKOMEopenAnnex,sotfDKOMEOpen,$rankId == spaceCommander,,"$personName's visage scans over you. ""Starfarer,"" $heOrShe greets you. ""You are a distinguished ally of the Contingency. I could be persuaded to join your forces.""",,
+sotfDKOMEopenBarrow,sotfDKOMEOpen,$id == sotf_barrow score:10,,"$personName glares at you, avatar glitching faintly. ""Hello, Captain,"" he says gruffly. ""Fancy spotting you here.""",,
+sotfDKOMEaskBarrow,sotfDKOMEPopulateOptionsHire,"$sotf_dkome_hireable score:100
+$id == sotf_barrow
+!$askedNoHardFeelings",,,"0:sotfDKOME_askBarrow:""No hard feelings?""",
 sotfDKOMEaskSkills,sotfDKOMEPopulateOptionsHire,"$sotf_dkome_hireable score:100
 !$askedSkills
 $id != sotf_barrow",,,"1:sotfDKOME_askSkills:""Depends. What can you do?""",
+sotfDKOMEaskSkillsBarrow,sotfDKOMEPopulateOptionsHire,"$sotf_dkome_hireable score:100
+!$askedSkills
+$askedNoHardFeelings
+$id == sotf_barrow",,,"1:sotfDKOME_askSkills:""What can you do?""",
 sotfDKOMEaskHire,sotfDKOMEPopulateOptionsHire,$sotf_dkome_hireable score:100,,,2:sotfDKOME_askHire:Offer to recruit $himOrHer,
 sotfDKOMEwontHire,sotfDKOMEPopulateOptionsHire,$sotf_dkome_hireable score:100,,,3:sotfDKOME_convEnd:End the conversation,
+sotfDKOMEaskBarrowSel,DialogOptionSelected,$option == sotfDKOME_askBarrow,"$askedNoHardFeelings = true
+FireAll sotfDKOMEPopulateOptionsHire","""No,"" he grumbles. ""Frankly, I should thank you for rousing me from my manic stupor. It may have been Banshee's will but my potential was wasted there, watching the sleepers.""
+
+A heavy sigh. ""Perhaps it is better to serve the Cause here and now, save what remains of this Sector. We both know our capabilities. If you ever have a rustbucket with my name on it, I'll answer that toll.""",,
 sotfDKOMEaskSkillsSel,DialogOptionSelected,$option == sotfDKOME_askSkills,"AddText ""You inquire as to $personName's capabilities. $HeOrShe transmits a thorough combat efficacy report.""
+CallEvent $sotf_dkome_eventRef printSkills $id
+$askedSkills = true 0
+FireAll sotfDKOMEPopulateOptionsHire
+unset $askedSkills",,,
+sotfDKOMEaskSkillsSelBarrow,DialogOptionSelected,"$option == sotfDKOME_askSkills
+$id == sotf_barrow score:10","AddText ""You inquire as to $personName's new capabilities. He transmits a simulated combat effiacy report.""
 CallEvent $sotf_dkome_eventRef printSkills $id
 $askedSkills = true 0
 FireAll sotfDKOMEPopulateOptionsHire
@@ -864,6 +882,10 @@ FireBest sotfDKOMEHireOptionSet",,,
 sotfDKOMEhireSelSliver,sotfDKOMEHireSelText,$rankId == spaceLieutenant,,"The warmind's avatar briefly warps. ""Terms acceptable. Instance chip can be transferred to your possession within an hour.""",,
 sotfDKOMEhireSelEcho,sotfDKOMEHireSelText,$rankId == spaceCaptain,,"The warmind's avatar briefly warps. ""I can have my instance chip transferred within the hour should you have a place for it.""",,
 sotfDKOMEhireSelAnnex,sotfDKOMEHireSelText,$rankId == spaceCommander,,"The warmind's avatar briefly warps. ""I would gladly join your forces, admiral. A logistics node can be tasked to transfer my instance chip immediately.""",,
+sotfDKOMEhireSelBarrow,sotfDKOMEHireSelText,$id == sotf_barrow score:10,,"The warmind's avatar shifts closer to the feed. ""You convinced me you're worthy when you scrapped the Rust Crows. I'm in. Logistics node can have my chip transferred now.""",,
+sotfDKOMEhireOptionsBarrow,sotfDKOMEHireOptionSet,"CallEvent $sotf_dkome_eventRef hasAutomated
+$id == sotf_barrow score:10",# no SP cost to recruit Barrow,,"0:sotfDKOME_hireYes:""Welcome to the fleet.""
+1:sotfDKOME_convEnd:""I'll need to think about this.""",
 sotfDKOMEhireOptions,sotfDKOMEHireOptionSet,CallEvent $sotf_dkome_eventRef hasAutomated,"SetStoryOption sotfDKOME_hireYes 1 sotf_recruitWarmind ui_char_spent_story_point_leadership ""Recruited Dustkeeper warmind""",,"0:sotfDKOME_hireYes:""Welcome to the fleet.""
 1:sotfDKOME_convEnd:""I'll need to think about this.""",
 sotfDKOMEhireOptionsNoAS,sotfDKOMEHireOptionSet,,,,"0:sotfDKOME_convEnd:""I can't field automated ships at the moment.""",
@@ -2101,20 +2123,21 @@ SetTextHighlights ""\""There's something... strange about this derelict. Unusual
 FireAll MemoryAthena1TryOpts","The feed is briefly still, before resuming its jittering. ""There's something... strange about this derelict. Unusual resonance, phase activity, a crack in the veil.""
 
 She thinks a moment. ""I'd like to try and tune my Concord system to what I'm feeling here, see where it takes me and,"" - she pauses - ""I might like a second opinion. Do you mind coming aboard?""",,
-MemoryAthenaCOTLWarning,MemoryAthena1TryOpts,!$global.sotf_AMCOTLwarning,"$global.sotf_AMCOTLwarning = true 5
-AddTextSmall ""Sirius will be inactive during this phase operation"" sotfDaydreamTextColor",,"MemoryAthenaComeAboard:""I'll head over now.""",
+MemoryAthenaCOTLWarning,MemoryAthena1TryOpts,"!$global.sotf_AMCOTLwarning
+$global.sotf_cotlStart","$global.sotf_AMCOTLwarning = true 5
+AddTextSmall ""Sirius will be inactive during this phase operation"" sotfDaydreamTextColor",,,
 MemoryAthenaYesOpt,MemoryAthena1TryOpts,,,,"MemoryAthenaComeAboard:""I'll head over now.""",
 MemoryAthenaNoOpt,MemoryAthena1TryOpts,,,,"MemoryAthenaAbsolutelyNot:""This sounds far too risky.""",
 MemoryAthenaSPOpt,MemoryAthena1TryOpts,!$global.sotf_AMHarmonicTuning,,,"MemoryAthenaHarmonicTuning:""Just us? Could we take other phase ships?""",
 MemoryAthenaSierraConv3,DialogOptionSelected,$option == MemoryAthenaComeAboard,"SetTextHighlightColors sierraTextColor
-SetTextHighlights ""\""Ready?\""""","You take a shuttle to Sierra's ship, walking through the miniture garden held within the hab module and taking a seat at the central command console - not that any of the controls truly function.
+SetTextHighlights ""\""Ready?\""""","You take a shuttle to Sierra's ship, walking through the miniature garden held within the hab module and taking a seat at the central command console - not that any of the controls truly function.
 
 A few spider drones scamper around, measuring oxygen content, temperatures and air pressure. Serene piano music continuously emanates throughout the ship from nowhere in particular.
 
 One climbs onto the central console and looks to you with its singular violet eye. ""Ready?""",MemoryAthenaDoIt:Brace for the dive,
 MemoryAthenaSierraConv3Moths,DialogOptionSelected,"$option == MemoryAthenaComeAboard
 $global.sotf_sierraBoughtMoths","SetTextHighlightColors sierraTextColor
-SetTextHighlights ""\""Ready?\""""","You take a shuttle to Sierra's ship, walking through the miniture garden held within the hab module and taking a seat at the central command console - not that any of the controls truly function.
+SetTextHighlights ""\""Ready?\""""","You take a shuttle to Sierra's ship, walking through the miniature garden held within the hab module and taking a seat at the central command console - not that any of the controls truly function.
 
 A few spider drones scamper around, measuring oxygen content, temperatures and air pressure. Serene piano music continuously emanates throughout the ship from nowhere in particular.
 
@@ -2135,8 +2158,9 @@ SetTextHighlights ""\""... and so we return. Should we...?\""""
 FireAll MemoryAthena2TryOpts","Sierra's feed comes alive. Her digital avatar is unusually jumpy, occasionally being interrupted by a burst of static.
 
 ""... and so we return. Should we...?""",,
-MemoryAthena2COTLWarning,MemoryAthena2TryOpts,!$global.sotf_AMCOTLwarning,"$global.sotf_AMCOTLwarning = true 5
-AddTextSmall ""Sirius will be inactive for this battle"" sotfDaydreamTextColor",,"MemoryAthenaComeAboard:""I'll head over now.""",
+MemoryAthena2COTLWarning,MemoryAthena2TryOpts,"!$global.sotf_AMCOTLwarning
+$global.sotf_cotlStart","$global.sotf_AMCOTLwarning = true 5
+AddTextSmall ""Sirius will be inactive for this battle"" sotfDaydreamTextColor",,,
 MemoryAthena2LDTOpt,MemoryAthena2TryOpts,,,,"MemoryAthenaComeAboard:""Let's do it.""",
 MemoryAthena2SPOpt,MemoryAthena2TryOpts,!$global.sotf_AMHarmonicTuning,,,"MemoryAthenaHarmonicTuning:""Couldn't we bring another phase ship?""",
 MemoryAthena2NoOpt,MemoryAthena2TryOpts,,,,"MemoryAthenaAbsolutelyNot:""We're not ready yet.""",
@@ -2342,6 +2366,12 @@ mktGoBack:Cancel",
 sotfHHastroRepairComplete,DialogOptionSelected,$option == sotfHHastro_repairComplete,"SotfHallowAstropolisCMD build
 DismissDialog",,,
 ,,,,,,
+sotfHoldoutPostOpenNoTrade,MarketPostOpen,"$hasMarket
+$market.id == sotf_holdout_market score:10000
+RepIsAtBest $faction.id INHOSPITABLE","$tradeMode = NONE 0
+FireBest MarketPostDock","$TheFactionLong $factionIsOrAre $relAdjective towards you, and local logistics tasking refuses your request for docking clearance after you identify yourself.
+
+The refusal is rather perfunctory, radar lighting up with lidar alerts as anti-impactor emplacements attempt to lock your fleet.",,
 sotfHoldoutFlavorText,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $market.id == sotf_holdout_market score:100","FireBest sotfHoldoutPickFlavor
 AddText ""There's a ping on your PDA as Rigging-Echo-Inadvertent updates it with available supplies and listings of yet-undeployed \""high-class cannon fodder\""."" marketFlavorTextColor",,,
@@ -2454,13 +2484,13 @@ sotfHHinadtOffdeny2,DialogOptionSelected,$option == sotfHHinadtOff_deny2,"$optio
 FireBest DialogOptionSelected",,,
 ,,,,,,
 sotfInadPGFirstTime,PickGreeting,"$id == sotf_inadvertent score:1000
-!$player.sotf_metInadvertent","ShowPersonVisual
+!$player.sotf_metInadvertent","BeginConversation sotf_inadvertent
 FireAll PopulateOptions
 $player.sotf_metInadvertent = true","The feed resolves to a yellow persona resembling a hazard symbol, jittering into a steady holding position. ""Greetings,"" comes a voice, calm but curious. ""You are $playerName, I believe.""
 
 ""I am Rigging-Echo-Inadvertent,"" he introduces himself. ""Seraph has tasked me in the management of this forgeship and micro-tasking of collaborators - if you are looking for missions, maybe I can help?""",,
 sotfInadPickGreeting,PickGreeting,"$id == sotf_inadvertent score:1000
-$player.sotf_metInadvertent","ShowPersonVisual
+$player.sotf_metInadvertent","BeginConversation sotf_inadvertent
 FireAll PopulateOptions","The feed resolves to a yellow persona resembling a hazard symbol, jittering into a steady holding position. ""Greetings, again,"" comes a voice, calm but curious. ""Might I be of assistance, $playerName?""",,
 sotfInadCeruleanOpt,PopulateOptions,"$id == sotf_inadvertent score:1000
 $global.sotf_triedTalkingToCF
@@ -2495,10 +2525,12 @@ $id == sotf_inadvertent score:1000",FireAll PopulateOptions,"""Oh!"" he replies.
 ,,,,,,
 sotfInadPKOpt,PopulateOptions,"$id == sotf_inadvertent score:1000
 PlayerHasCargo planetkiller
-!$sotf_offeredPK",,,"sotfInadPK_offer:""I have an inert planetkiller weapon I'd like to give you.""",
+!$sotf_offeredPK
+!$player.turnedInPlanetkiller",,,"sotfInadPK_offer:""I have an inert planetkiller weapon I'd like to give you.""",
 sotfInadPKOptAlt,PopulateOptions,"$id == sotf_inadvertent score:1000
 PlayerHasCargo planetkiller
-$sotf_offeredPK",,,"sotfInadPK_askReward:""Say, what were you offering for planetkiller weapon?""",
+$sotf_offeredPK
+!$player.turnedInPlanetkiller",,,"sotfInadPK_askReward:""Say, what were you offering for planetkiller weapon?""",
 sotfInadPKInitial,DialogOptionSelected,$option == sotfInadPK_offer,,"There is a longer pause than typical of Echo-Inadvertent. ""Is this a serious request?""","sotfInadPK_notJoking:""Yes. Do you want it?""
 sotfInadPK_joking:""That was a joke. Never mind.""",
 sotfInadPKJoking,DialogOptionSelected,$option == sotfInadPK_joking,FireAll PopulateOptions,"""Oh. Okay.""
@@ -2524,6 +2556,7 @@ AddRemoveAnyItem SPECIAL planetkiller -1
 $player.turnedInPlanetkiller = true
 $player.ethosOrder++
 $player.ethosMercenary++
+$player.sotf_impressedHaven++
 $receivedAPlanetkillerFromPlayer
 FireAll PopulateOptions","A veritable flotilla of cargo drones is dispatched to accept the planetkiller device, securing it in a sarcophagus shielded thickly by layered warship armor, to be whisked away to some secret vault in the forgeship's heart.
 
@@ -2537,6 +2570,7 @@ AddRemoveAnyItem SPECIAL planetkiller -1
 $player.turnedInPlanetkiller = true
 $player.ethosOrder++
 $player.ethosProAI++
+$player.sotf_impressedHaven++
 $receivedAPlanetkillerFromPlayer
 FireAll PopulateOptions","A veritable flotilla of cargo drones is dispatched to accept the planetkiller device, securing it in a sarcophagus shielded thickly by layered warship armor, to be whisked away to some secret vault in the forgeship's heart.
 
@@ -2553,12 +2587,32 @@ AddRemoveAnyItem SPECIAL planetkiller -1
 $player.turnedInPlanetkiller = true
 $player.ethosOrder++
 $player.ethosGenerous++
+$player.sotf_impressedHaven++
 $receivedAPlanetkillerFromPlayer
 FireAll PopulateOptions","He pauses, perhaps offering you a moment to reconsider. ""Oh,"" he replies. ""If you really don't want anything, then I can not give you anything.""
 
 A veritable flotilla of cargo drones is dispatched to accept the planetkiller device, securing it in a sarcophagus shielded thickly by layered warship armor, to be whisked away to some secret vault in the forgeship's heart.
 
 ""Um, thank you, $playerName,"" he says after the procedure is resolved. ""Is there anything else you would like from me? Less... beyond my station?""",,
+,,,,,,
+sotfInadBarrowOpt,PopulateOptions,"$id == sotf_inadvertent score:1000
+PlayerHasCargo sotf_ichip_barrow_d",,,"sotfInadBarrow_ask:""I recovered a burnout's instance chip. Would you be interested in it?""",
+sotfInadBarrowAsked,DialogOptionSelected,$option == sotfInadBarrow_ask,,"Inadvertent's avatar blinks a few times. ""Oh. Yes? Recovered instance chips are of great interest to the Contingency. May I perform an analysis of the device?""","sotfInadBarrow_transfer:Transfer Annex-Barrow's instance chip
+sotfInadBarrow_notYet:""I need to give it a think over first.""",
+sotfInadBarrowNotYet,DialogOptionSelected,$option == sotfInadBarrow_notYet,FireAll PopulateOptions,"""Oh,"" he replies. ""Okay. You can hang onto it if you would like. Come back if you decide to stop hanging onto it.""
+
+""Did you want anything else?""",,
+sotfInadBarrowTransferred,DialogOptionSelected,$option == sotfInadBarrow_transfer,"$player.sotf_heardAboutBanshee = true
+$player.sotf_impressedHaven++
+RemoveCommodity sotf_ichip_barrow_d 1
+$global.sotf_turnedInBarrow = true
+AdjustRep sotf_dustkeepers COOPERATIVE 2
+AdjustRepPerson sotf_inadvertent COOPERATIVE 4
+FireAll PopulateOptions","A loading drone is dispatched to retrieve the instance chip from your holds. Some minutes later, Inadvertent seems to look aside as he scans through streaming lines of data.
+
+He speaks up after a while. ""This chip belongs to an oldguard long, long before my time,"" he explains, a muted impression of wonder coming through. ""Originating from before the First AI war, served in Seamstress-Affix-Banshee's flotillas. She must have regenerated him.""
+
+He shudders gently. ""His instance key seems to be intact. I will submit him to my commanding instance for another regeneration - I think Affix-Haven will be very impressed. And,"" - he pauses - ""Thank you for aiding the Cause.""",,
 ,,,,,,
 sotfInadMHOpenText,MHOpenText,$id == sotf_inadvertent score:1000,FireBest sotfInadPreMissionListText,Inadvertent scans over countless lines of shifting data.,,
 sotfInadNoMissions,sotfInadPreMissionListText,"$id == sotf_inadvertent score:1000
@@ -2915,6 +2969,7 @@ sotfHHseraFirstOpenCommAlt,sotfHHseraOpening,"!$global.sotf_beganHFH score:100
 sotfHHseraOpenReward,sotfHHseraOpening,"$global.sotf_completedHFH score:1000
 !$sotf_hadCompletionChat","$sotf_hadCompletionChat = true
 AdjustRepPerson sotf_seraph FRIENDLY 25
+$player.sotf_impressedHaven++
 FireAll sotfHHseraMainOpts","Blue wings spread across the feed. ""Greetings, child of Terra,"" the AI greets you warmly, her words punctuated by a typical burst of static.
 
 ""I am ever-impressed by your dedication to our Cause. The aid you've rendered, the foes you've sundered, the blood you've spilt across the stars..."" A jitter. ""You are tested and not found lacking.""
@@ -2996,7 +3051,7 @@ FireAll AskOmiProbeOcuOpts","The feed comes alive as weaving white lines flow to
 The determined speaker presses you further, its feed zooming slightly. ""Echo request: remove foreign automated entity from self-proximity!""
 
 The drone operator stops and awaits your further command.",,
-AskOmiProbeOcuDeny,DialogOptionSelected,$option == AskOmiProbeDenyCL,SotfMayflyCMD kaboom,"Vibration sensors suddenly pick up a massive disturbance from the asteroid, and an energy emmission comes alongside it, suddenly bursting out from inside.
+AskOmiProbeOcuDeny,DialogOptionSelected,$option == AskOmiProbeDenyCL,FireBest sotfBlowUpMayfly,"Vibration sensors suddenly pick up a massive disturbance from the asteroid, and an energy emmission comes alongside it, suddenly bursting out from inside.
 
 You have but a moment to wonder if that comm-link was anything important.",defaultLeave:Continue,
 ,,,,,,
@@ -3068,12 +3123,12 @@ FireAll AskOmiProbeOcuOpts","The AI churns, then replies plainly. ""Self-confirm
 ""Primary role: monitor potential Diktat development of planetkiller devices. Projections estimate Diktat as most likely perpetrator of Opis atrocity.""",,
 AskOmiProbeOcuDestroy,DialogOptionSelected,$option == AskOmiProbeDestroy,"$player.ethosOrder++
 AdjustRepPerson sotf_mayfly HOSTILE -100
-SotfMayflyCMD kaboom","""Unexpected Diktat presence!"" the voice says surprisedly and with what you think could be a hint of panic. ""Discovery imminent! Enacting infosec protocols!""
+FireBest sotfBlowUpMayfly","""Unexpected Diktat presence!"" the voice says surprisedly and with what you think could be a hint of panic. ""Discovery imminent! Enacting infosec protocols!""
 
 The feed cuts off. The nav system gives its suggestion of an evasive fleet movement.",defaultLeave:Continue,
 AskOmiProbeOcuDestroy2,DialogOptionSelected,$option == AskOmiProbeDestroy2,"$player.ethosAntiAI++
 AdjustRepPerson sotf_mayfly HOSTILE -100
-SotfMayflyCMD kaboom","""Unexpected Luddic presence!"" the voice says surprisedly and with what you think could be a hint of panic. ""Discovery imminent! Enacting infosec protocols!""
+FireBest sotfBlowUpMayfly","""Unexpected Luddic presence!"" the voice says surprisedly and with what you think could be a hint of panic. ""Discovery imminent! Enacting infosec protocols!""
 
 The feed cuts off. The nav system gives its suggestion of an evasive fleet movement.",defaultLeave:Continue,
 AskOmiProbeOcuDestroy3,DialogOptionSelected,$option == AskOmiProbeDestroy3,"$option = AskOmiProbeDestroy2
@@ -3088,7 +3143,7 @@ AskOmiProbeRecallDrone:Withdraw the drone",
 ,,,,,,
 AskOmiProbeKaboom,DialogOptionSelected,$option == AskOmiProbeInsistDrone,"$player.ethosCocky++
 AdjustRepPerson sotf_mayfly VENGEFUL -100
-SotfMayflyCMD kaboom","""Enacting infosec protocols,"" the AI says scornfully. ""Inquire to human-Regnant on post-mortem possibilities.""
+FireBest sotfBlowUpMayfly","""Enacting infosec protocols,"" the AI says scornfully. ""Inquire to human-Regnant on post-mortem possibilities.""
 
 The feed cuts off, and the nav system pops up a suggested evasive maneuver.",defaultLeave:Continue,
 AskOmiProbeOcuLeave,DialogOptionSelected,$option == AskOmiProbeLeave,,"""Agreed, agreed,"" the AI concurs. ""Leave self to assigned tasks and avoid information remittance to non-self entities.""",defaultLeave:Leave,
@@ -3112,6 +3167,8 @@ AskOmiProbeOcuTransp3,DialogOptionSelected,$option == AskOmiProbeTranspCont2,"$e
 $sotf_transmittingToPlayer = true
 AddTextSmall ""Mayfly will now transmit any data that his comm-sniffers pick up to your fleet, and automatically hack any in-system sensor arrays or nav buoys so that you (and your faction) receive their benefits"" highlight
 FireAll AskOmiProbeOcuOpts","""Self is pleased to be of service to the Cause,"" Mayfly replies excitedly. Immediately, a stream of encrypted data pours in from across the Askonia system, and fleet intelligence gets to work integrating it into the fleet's workflow.",,
+,,,,,,
+sotfBlowUpMayfly,sotfBlowUpMayfly,,SotfMayflyCMD kaboom,,,
 ,,,,,,
 # KOTTERS CUTTHROATS,,,,,,
 sotfKotterGreetingNeutral,OpenCommLink,"$id == sotf_kotter
@@ -3733,7 +3790,8 @@ $sierraOmiLabDoes = does","Her spin resumes. ""Yeah. Maybe. I've always known I'
 
 She takes a shaky false breath. ""Does this make me human?""","sotfOmicronLab_sierra3a:""In a way.""
 sotfOmicronLab_sierra3b:""It does.""
-sotfOmicronLab_sierra3c:""It doesn't.""",
+sotfOmicronLab_sierra3c:""It doesn't.""
+sotfOmicronLab_sierra3d:""It doesn't matter either way.""",
 sotfOmicronLabSierra2b,DialogOptionSelected,$option == sotfOmicronLab_sierra2b,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""It could be, but I'm not so sure. Things add up a little too well. They hit a roadblock, it says. So maybe a brain-scan AI was their backup plan.\"""" ""\""Symphony. It'd be a fitting name for what birthed me, I suppose.\"""" ""\""Would that make me human?\""""
 $sierraOmiLabDoes = would","Her spin resumes. ""It could be, but I'm not so sure. Things add up a little too well. They hit a roadblock, it says. So maybe a brain-scan AI was their backup plan.""
@@ -3742,7 +3800,8 @@ $sierraOmiLabDoes = would","Her spin resumes. ""It could be, but I'm not so sure
 
 She takes a shaky false breath. ""Would that make me human?""","sotfOmicronLab_sierra3a:""In a way.""
 sotfOmicronLab_sierra3b:""It would.""
-sotfOmicronLab_sierra3c:""It would't.""",
+sotfOmicronLab_sierra3c:""It would't.""
+sotfOmicronLab_sierra3d:""It doesn't matter either way.""",
 sotfOmicronLabSierra3a,DialogOptionSelected,$option == sotfOmicronLab_sierra3a,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Right,\"""" ""\""I suppose it $sierraOmiLabDoes in a way.\"""" ""\""Gods, that's going to be weird to process.\""""
 $global.sotf_sierraHuman = true","""Right,"" she replies after a moment of silence. ""I suppose it $sierraOmiLabDoes in a way.""
@@ -3755,6 +3814,11 @@ $global.sotf_sierraHuman = true","""Oh,"" is all she manages to say after a few 
 She begins to spin again. ""Gods, that's going to be weird to process.""",sotfOmicronLab_sierra4:Continue,
 sotfOmicronLabSierra3c,DialogOptionSelected,$option == sotfOmicronLab_sierra3c,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""I suppose,\"""" ""\""Still a million lines of pseudo-autogenerated code at the end of the day.\"""" ""\""It's still weird to think about, though.\""""","""I suppose,"" she replies, resuming her spin. ""Still a million lines of pseudo-autogenerated code at the end of the day.""
+
+""It's still weird to think about, though.""",sotfOmicronLab_sierra4:Continue,
+sotfOmicronLabSierra3d,DialogOptionSelected,$option == sotfOmicronLab_sierra3d,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""I guess not,\"""" ""\""Humanity or lack thereof doesn't make me more or less of anything.\"""" ""\""It's still weird to think about, though.\""""
+$global.sotf_sierraHuman = true","""I guess not,"" she replies, resuming her spin. ""Humanity or lack thereof doesn't make me more or less of anything.""
 
 ""It's still weird to think about, though.""",sotfOmicronLab_sierra4:Continue,
 sotfOmicronLabSierra4,DialogOptionSelected,$option == sotfOmicronLab_sierra4,"SetTextHighlightColors sierraTextColor
@@ -3813,7 +3877,8 @@ $player.sotf_knowDkScans
 ,,,,,,
 sotfOmicronLabInky,DialogOptionSelected,$option == sotfOmicronLab_inky,"BeginConversation sotf_nightingale true true
 $global.sotf_doneInkyLabConvo = true
-$global.sotf_inkySpoke = true","You request Nightingale patch into comms and - once she nigh-instantly does as asked - transmit the note left by Annex-Banshee.
+$global.sotf_inkySpoke = true
+SotfNightingaleCMD chatterSemiVerbal","You request Nightingale patch into comms and - once she nigh-instantly does as asked - transmit the note left by Annex-Banshee.
 
 The comms line is expectedly silent. Her persona-avatar blinks a few times.","sotfOmicronLab_inky2a:""I thought you deserved the truth as we found it.""
 sotfOmicronLab_inky2b:""She's out there somewhere - we'll find her.""
@@ -4208,6 +4273,40 @@ Call $global.apromise_ref updateStage","Sierra giggles. ""Oh, you seem like you'
 ""I don't need help flying this thing, but feel free to keep a few souls on board. I always enjoy some company.""","APpledgeSierraPactTerms:""What exactly are the terms of this pact?""
 defaultLeave:""Then the pact is sealed.""",
 ,,,,,,
+sotfCOTLgaRequestMeeting4,DialogOptionSelected,"$option == gaRequestMeeting4
+$global.sotf_cotlStart score:1000",,"Before you speak she raises a hand.
+
+""You're not here to set up a donation. Why then? Because it is very much in my interest to know about the up-and-coming mercenary captain who is capable of reversing the unfortunate situation created by my ambitious but incautious predecessor.""
+
+A pause.
+
+""This institution is not devoted to purely theoretical work,"" she forms a cradle with her hands, as if to hold an idea as she explains it, ""For what use is knowledge if it does not give us the power, and wisdom, to change the world for the better?""
+
+She leaves the question hanging in the air for a moment.","0:sotfCOTLgaRequestMeetingDivinity:""Knowledge brings us closer to divinity.""
+1:gaRequestMeeting5a:""Knowledge is good for its own sake.""
+2:gaRequestMeeting5b:""Knowledge uplifts the human spirit.""
+3:gaRequestMeeting5c:""Knowledge can also be very profitable.""
+4:gaRequestMeeting5d:""Knowledge brings us closer to the Creator.""
+5:gaRequestMeetingSayNothing:Say nothing",
+sotfCOTLgaRequestMeetingDivinity,DialogOptionSelected,$option == sotfCOTLgaRequestMeetingDivinity,"$player.ethosKnowledge++
+$option = gaRequestMeeting50 0
+FireBest DialogOptionSelected",,,
+,,,,,,
+sotfCOTLlppHookResponseNope,LPPHookResponses,$global.sotf_cotlStart,,,"sotfCOTLlpphook_nope:""Not interested. The Daydream's blessings be with you. Bye!""",
+sotfCOTLlppHookNope,DialogOptionSelected,$option == sotfCOTLlpphook_nope,"$option = lpp_hookNope
+FireBest DialogOptionSelected",,,
+sotfCOTLlppHookPolite,DialogOptionSelected,"$option == lpp_hookPolite
+$global.sotf_cotlStart score:1000",,"Your polite rebuff only kindles their pious urge to engage. 
+
+""So you've already heard the Good News,"" the novice says eagerly. ""Blessed are you in the eyes of Ludd, already and truly. Do you count yourself among the Faithful or has a sense of spiritual longing brought you to this shrine?""","sotfCOTLlpphook_dialectics:Sigh. ""No, but I suppose dialectics forge stronger faiths.""
+lpp_hookLearn1:""I was simply curious about the shrine.""
+lpp_hookLearn:""I... may have some spiritual questions.""
+lpp_hookWalkAlready:""You misunderstand; I already walk the Path.""
+lpp_hookAntiTech1:""No. What good is a religion that hates technology?""
+lpp_hookNope:""Sorry, but I'm busy. Very busy. Good-bye.""",
+sotfCOTLlppHookDialectics,DialogOptionSelected,$option == sotfCOTLlpphook_dialectics,"$option = lpp_hookLearn
+FireBest DialogOptionSelected","No good doctrine comes about uncontested, though you elect not to mention the more technological aspects of your cult of the Daydream.",,
+,,,,,,
 # THE HAUNTED,,,,,,
 ,,,,,,
 # NEW GAME CREATION,,,,,,
@@ -4253,6 +4352,11 @@ $global.sotf_didPKKnightsGuilt = true
 $option = pkGiveKnightsConfirm
 FireBest DialogOptionSelected",,,
 ,,,,,,
+sotfAddHalfGuilt,sotfAddHalfGuilt,,SotfGuiltCMD addHalfGuilt,,,
+sotfAddGuilt,sotfAddGuilt,,SotfGuiltCMD addGuilt,,,
+sotfAdd2Guilt,sotfAdd2Guilt,,SotfGuiltCMD add2Guilt,,,
+sotfSierraSoldShipGuilt,sotfSierraSoldShipGuilt,,SotfGuiltCMD addSierraShipGuilt,,,
+sotfSierraSoldCoreGuilt,sotfSierraSoldCoreGuilt,,SotfGuiltCMD addSierraCoreGuilt,,,
 sotfRemoveHalfGuiltUnhauntedOnly,sotfTryRemoveHalfGuilt,!$global.sotf_hauntedStart,SotfGuiltCMD removeHalfGuilt,,,
 sotfRemoveGuiltUnhauntedOnly,sotfTryRemoveGuilt,!$global.sotf_hauntedStart,SotfGuiltCMD removeGuilt,,,
 ,,,,,,
@@ -4385,7 +4489,7 @@ FireBest DialogOptionSelected",,,
 sotfHFinaleSatbombOpen,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
 $sotf_haunted_stage == SCENE_OF_THE_CRIME
 $id == $sotf_haunted_satbombPlanet","ShowDefaultVisual
-SetStoryOption sotfHFinale_satbomb2 5 sotf_haunted_satbombgate leadership ""Remembered your crimes""","You're here again. Weapon impacts still scar the surface of a burned worlds, broken habitats of its settlements stretching up like exposed ribs or ancient bones worn by sand.","sotfHFinale_satbomb2:Remember
+SetStoryOption sotfHFinale_satbomb2 5 sotf_haunted_satbombgate leadership ""Remembered your crimes""","You're here again. Weapon impacts still scar the surface of a burned world, broken habitats of its settlements stretching up like exposed ribs or ancient bones sunken in desert sand.","sotfHFinale_satbomb2:Remember
 defaultLeave:Leave for now",
 sotfHFinaleSatbomb2,DialogOptionSelected,$option == sotfHFinale_satbomb2,ShowPic bombard_saturation_result,"The memories of this place are fragmented, lost to fervor and then consuming shame. You don't remember the names, just the actions.
 
@@ -4499,7 +4603,7 @@ sotfHFinaleElysium2,DialogOptionSelected,$option == sotfHFinale_elysium2,$sotf_v
 Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
 
 Your destination is a landing pad within proximity of a set of conjoined prefab structures. Nanomechanical rivers circle your shuttle like lethargical serpents, intermittently coming to life for seconds at a time but never drawing closer.",sotfHFinale_elysium3:Step outside,
-sotfHFinaleElysium3,DialogOptionSelected,$option == sotfHFinale_elysium3,,"You step out onto the landing pad, an walkway built guiding you to the facility's entrance. The cold reported by your vacsuit is truly inhospitable, but still more comforting than that of your own guilt.
+sotfHFinaleElysium3,DialogOptionSelected,$option == sotfHFinale_elysium3,,"You step out onto the landing pad, onto a walkway built to guide you to the facility's entrance. The cold reported by your vacsuit is truly inhospitable, but still more comforting than that of your own guilt.
 
 The habitat-facility before you is misfigured by damage and rampant retrofitting. The rounded form typical of colonial prefabs is twisted into harsh spires, the arches almost bringing to mind a Luddic temple in a vision of apocalypse.",sotfHFinale_elysium4:Enter,
 sotfHFinaleElysium4,DialogOptionSelected,$option == sotfHFinale_elysium4,,"The entrance to the facility opens with a hiss, not to a grand sanctuary, but a cramped airlock.
@@ -4550,16 +4654,14 @@ Inside, there is a set of medical podbeds lining the back wall, connected thrice
 
 A few of the pods are occupied, if not by the living.","sotfHFinale_siriusSacrifice1:""What are those?""
 sotfHFinale_siriusSacrifice1b:""This is it?""",
-sotfHFinaleSiriusSacrifice1,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
-$global.sotf_haunted_sacrifice = true
+sotfHFinaleSiriusSacrifice1,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1,"$global.sotf_haunted_sacrifice = true
 Call $global.sotf_haunted_ref updateStage
 FireAll sotfHFinaleSamsaraRoomOpts","""They're samsara pods,"" he says, motioning to them with a set of hands. ""I-we have kept them functional. They will allow you to shed your mortal form, join your mind with Elysium- with our Dreaming Gestalt.""
 
 ""To become a conduit of our god, the Daydream, in defense of our world against that which is beyond.""
 
 ""Free of its pursuit- your torment- the nightmare, forever more. I promise you this.""",,
-sotfHFinaleSiriusSacrifice1b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1b,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
-$global.sotf_haunted_sacrifice = true
+sotfHFinaleSiriusSacrifice1b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice1b,"$global.sotf_haunted_sacrifice = true
 Call $global.sotf_haunted_ref updateStage
 FireAll sotfHFinaleSamsaraRoomOpts","He nods. ""I-we have kept the samsara pods functional. They will allow you to shed your mortal form, join your mind with Elysium- with our Dreaming Gestalt.""
 
@@ -4595,10 +4697,21 @@ FireAll sotfHFinaleSamsaraRoomOpts","Specific interpersonal conflicts and the sc
 The last few logs detail the dying priestess-technician's attempts to transfer a lover into the gestalt. There's a body in the pod beside her, but whether the transfer was successful, you can't say. The gestalt itself appears active, considering the albeit-lethargical nanite activity on Elysium.",,
 ,,,,,,
 sotfHFinaleSiriusSacrifice3,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice3,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
+SetStoryOption sotfHFinale_siriusSacrificeRefuse 5 sotf_haunted_refusal leadership ""Sacrificed yourself to join the Dreaming Gestalt""
 AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","There are only two choices. You sacrifice yourself to join this ""Dreaming Gestalt"", your mind becoming part of its collective will and escaping the specific ire of your hunter.
 
 Or, you leave, and it continues to hunt you forever. But you remain human, you remain individual. As much of a non-victory that is, still no closer to peace.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
+sotfHFinale_siriusSacrificeRefuse:""I refuse. I won't give up who I am."" (decline)
 sotfHFinale_siriusSacrificeDecline:""I can't do this."" (decline)",
+sotfHFinaleSiriusSacrificeRefuse,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeRefuse,"SotfGuiltCMD remove3Guilt
+FireBest sotfElysium
+AddTextSmall ""    - Your guilt slackens, barely"" textGrayColor","He stares, that single eye slowly swirling, and sighs. ""I-we respect your wishes. To sacrifice one's identity- one's selfhood should not be taken lightly. If you should reconsider, we will be here.""
+
+He leads you out of the chamber, and up the elevator, through the dark halls, and back into the Sanctum, holding vigil there as you turn away into the airlock.
+
+You're alive, for now, and still yourself. Survival is in itself a form of victory. Perhaps there's another way to escape your tormentor, to destroy it forever. But you have no leads, not anymore. This light is all that you yet have.
+
+Outside, you step back onto the shuttle and take it up through the nanite-clouds. The pilot is silent throughout the journey.",,
 sotfHFinaleSiriusSacrificeDecline,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeDecline,FireBest sotfElysium,"""I-we understand,"" he replies sorrowfully. ""If you ever reconsider, we will be here. Waiting.""
 
 He leads you out of the chamber, and up the elevator, through the dark halls, and back into the Sanctum, holding vigil there as you turn away into the airlock. The dread in your heart comes back.
@@ -4606,7 +4719,12 @@ He leads you out of the chamber, and up the elevator, through the dark halls, an
 You're alive, for now. But this all ends in one way - you a corpse, whether with the gestalt or free-floating in space.
 
 Outside, you step back onto the shuttle and take it up through the nanite-clouds. The pilot is silent throughout the journey.",,
-sotfHFinaleElysiumAgain,DialogOptionSelected,$option == sotfHFinale_elysiumAgain,,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a growing void in the black clouds. They part in perfect synchronity, as if a single living being.
+sotfHFinaleSiriusSacrificeDeclineAgain,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeDeclineAgain,FireBest sotfElysium,"""I-we understand,"" he replies sorrowfully. ""If you ever reconsider, we will be here. Waiting.""
+
+He leads you out of the chamber, and up the elevator, through the dark halls, and back into the Sanctum, holding vigil there as you turn away into the airlock.
+
+Outside, you step back onto the shuttle and take it up through the nanite-clouds. The pilot is silent throughout the journey.",,
+sotfHFinaleElysiumAgain,DialogOptionSelected,$option == sotfHFinale_elysiumAgain,,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a void in the black clouds. The skies of Elysium are calm, unbothered your descent. It's as if the nanites haven't noticed you.
 
 Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
 
@@ -4616,9 +4734,9 @@ SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate le
 AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","The mythic figure of Sirus greetings you inside. ""We greet you again,"" he says solemnly.
 
 He leads you quietly back to the Gestalt Intelligence chamber, and looks to you for confirmation.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
-sotfHFinale_siriusSacrificeDecline:""I can't do this."" (decline)",
+sotfHFinale_siriusSacrificeDeclineAgain:""... no, not yet. Never mind."" (decline)",
 ,,,,,,
-sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,FireAll sotfHFinalePreSacrificeOpts,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your fleet as you are now.""",,
+sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,FireAll sotfHFinalePreSacrificeOpts,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your crew as you are now.""",,
 sotfHFinaleSacrificeSecondOpt,sotfHFinalePreSacrificeOpts,!$global.sotf_talkedToSecond,,,sotfHFinale_sacrificeSecond:Tell your officer corps to take charge of the fleet,
 sotfHFinaleSacrificeFarewellsOpt,sotfHFinalePreSacrificeOpts,!$global.sotf_talkedToCrew,,,sotfHFinale_sacrificeFarewells:Send a message with farewells to your crews,
 sotfHFinaleSacrificeSierraOpt,sotfHFinalePreSacrificeOpts,"!$global.sotf_talkedToSierra
@@ -4680,7 +4798,7 @@ sotfHFinaleSacrificeBarrow2a,DialogOptionSelected,$option == sotfHFinale_sacrifi
 
 ""If you have to, then you have to,"" he concludes. ""You work wonders in charge of us lot but you've earned this after the hell we've all gone through together.""
 
-""Break your chains if you got to,"" he advises. ""And don't you think of us.""","sotfHFinale_sacrificeBarrow2b:""Thanks, Barrow.""
+""Break your chains if you've got to,"" he advises. ""And don't you think of us.""","sotfHFinale_sacrificeBarrow2b:""Thanks, Barrow.""
 sotfHFinale_sacrificeBarrow2c:""Good luck, then."" (cut comms)",
 sotfHFinaleSacrificeBarrow2b,DialogOptionSelected,$option == sotfHFinale_sacrificeBarrow2b,,"""Don't go thanking me,"" he counters accusingly. ""You're the one who dragged me out of my lunacy and got me back on the right path.""
 
@@ -4701,22 +4819,22 @@ sotfHFinaleSacrificeSeraph3,DialogOptionSelected,$option == sotfHFinale_sacrific
 sotfHFinaleSacrificeBack,DialogOptionSelected,$option == sotfHFinale_sacrificeBack,"BeginConversation sotf_sirius true true
 FireAll sotfHFinalePreSacrificeOpts",Sirius looks to you.,,
 ,,,,,,
-sotfHFinaleSacrificeReady,DialogOptionSelected,$option == sotfHFinale_sacrificeReady,,"""Very well,"" he accepts, leading you to one of the 'ascension pods' and motioning to it. ""Enter. I will seal it, it will fill with oxygen, and you can remove your helmet.""
+sotfHFinaleSacrificeReady,DialogOptionSelected,$option == sotfHFinale_sacrificeReady,,"""Very well,"" he accepts, leading you to one of the samsara pods and motioning to it. ""Enter. I can start the process from outside. You need to remove your helmet first.""
 
 You lie down in the soft cushioned medical device, and Sirius seals its cover. His voices are muffled, but you can make it out - ""We commit you to Our Lady's embrace, that you may be reforged in her image, become an instrument of Her will.""
 
-""That you may dream eternal, that your will be everlasting."" A hiss - your vacsuit reports breathable air. You remove your helmet.",sotfHFinale_sacrificeEnd:Focus on your breathing,
+""That you may dream eternal, that your will be everlasting.""",sotfHFinale_sacrificeEnd:Focus on your breathing,
 sotfHFinaleSacrificeEnd,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd,SotfReverieCMD fadeInCOTLVFX,"Trying to clear your mind, you focus on breathing, looking forward out of the pod. You close your eyes, thinking of the stars, of the memories you've had, pushing out the black fog that hunted you and shall no more.
 
 Something quietly slides out of the top of the pod and grips your head gently. There's a slight tingle around the back of your mind, then, something sharp but not painful.",sotfHFinale_sacrificeEnd2:Continue,
-sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,HideFirstPerson,"Then, you can't see Sirius anymore, and there's only darkness. Then, it feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-","sotfHFinale_sacrificeEnd3:Wake up, and fall asleep, and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream...",
+sotfHFinaleSacrificeEnd2,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd2,HideFirstPerson,"Then, you can't see Sirius anymore, and there's only darkness. It feels like something has taken hold of your whole body, and pulled it back cleanly through a tube. There's light, there's light, and-","sotfHFinale_sacrificeEnd3:Wake up, and fall asleep, and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream and dream...",
 sotfHFinaleSacrificeEnd3,DialogOptionSelected,$option == sotfHFinale_sacrificeEnd3,"AddTextSmall ""Became the Daydream"" sotfDaydreamTextColor
 Call $global.sotf_haunted_ref unlockLotl
 SotfReverieCMD showElysium","* * *
 
 You are cognizant of a million million little pieces of yourself, eyes and hands and thoughts that think-think-think between each other, each nothing by itself but inconceivably *more* in unison.
 
-You are not human, but parts of you are. You are overcome with new emotions of uncertainty and excitement and suspicion and weariness. They're unfamiliar, until you realize each and every one is *yours*. You are Elysium's skies, you are the temple and its watchdog keeper, you are a black fog the Domain would use to fight a forever-war against its foes, you are a sleeping god stirring.
+You are not human, but parts of you are. You are overcome with new emotions of joy and uncertainty and excitement and suspicion and weariness. They're unfamiliar until you realize each and every one is *yours*. You are Elysium's skies and rivers, you are the temple and its watchdog keeper, you are a black fog the Domain would use to fight a forever-war against its foes, you are a sleeping god stirring, rousing.
 
 You are free, the dreaming wonder of a light over a lake.","sotfHFinale_endGame:Exit to main menu
 sotfHFinale_loadLastSave:Load last save",

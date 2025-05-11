@@ -3,8 +3,8 @@
 	"specClass":"projectile",
 	"type":"MISSILE",
 	"size":"SMALL",
-	"turretSprite":"graphics/weapons/resonator_turret_base.png",
-	"hardpointSprite":"graphics/weapons/resonator_hardpoint_base.png",
+	"turretSprite":"",
+	"hardpointSprite":"",
 	# glow sprites?
 	#"glowColor":[235,255,215,255],
 	"hardpointOffsets":[0,0],

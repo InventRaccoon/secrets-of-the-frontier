@@ -8,9 +8,12 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.listeners.ColonyPlayerHostileActListener;
+import com.fs.starfarer.api.campaign.listeners.CurrentLocationChangedListener;
 import com.fs.starfarer.api.campaign.listeners.FleetInflationListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Items;
+import com.fs.starfarer.api.impl.campaign.rulecmd.AddRemoveCommodity;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.MarketCMD;
 import com.fs.starfarer.api.util.DelayedActionScript;
 import com.fs.starfarer.api.util.Misc;
@@ -30,10 +33,11 @@ import java.util.List;
  * Tracks guilt gain from atrocities and handles the dreams during The Haunted
  */
 
-public class SotfGuiltTracker extends BaseCampaignEventListener implements EveryFrameScript, ColonyPlayerHostileActListener, FleetInflationListener {
+public class SotfGuiltTracker extends BaseCampaignEventListener implements EveryFrameScript, ColonyPlayerHostileActListener, FleetInflationListener, CurrentLocationChangedListener {
 
     // so we know if Reality Breaker is OK to use
     public float timeSinceSave = 0f;
+    public boolean havePlanetkiller = false;
 
     // no guilt buildup for these ones - factions who don't really have civilians to satbomb
     public static List<String> GUILTY_FACTIONS = new ArrayList<>();
@@ -48,6 +52,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
 
     public SotfGuiltTracker() {
         super(true);
+        Global.getSector().getListenerManager().addListener(this);
     }
 
     public void advance(float amount) {
@@ -69,6 +74,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
                         Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedIntro");
+                        SotfHauntedDreamCampaignVFX.fadeOut(0.5f);
                     } else {
                         Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream1(), null);
                     }
@@ -85,6 +91,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
                         Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedMilestone1");
+                        SotfHauntedDreamCampaignVFX.fadeOut(0.5f);
                     } else {
                         Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream2(), null);
                     }
@@ -101,6 +108,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
                         Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedPenultimate");
+                        SotfHauntedDreamCampaignVFX.fadeOut(0.5f);
                     } else {
                         Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream3(), null);
                     }
@@ -120,6 +128,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
                         Misc.showRuleDialog(Global.getSector().getPlayerFleet(), "sotfHauntedUltimate");
+                        SotfHauntedDreamCampaignVFX.fadeOut(0.5f);
                     } else {
                         Global.getSector().getCampaignUI().showInteractionDialog(new SotfHauntedDream4(), null);
                     }
@@ -178,4 +187,27 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
         }
     }
 
+    @Override
+    public void reportCurrentLocationChanged(LocationAPI prev, LocationAPI curr) {
+        if (prev instanceof StarSystemAPI system) {
+            if (system.hasBlackHole()) {
+                if (havePlanetkiller &&
+                        !(Global.getSector().getPlayerFleet().getCargo().getQuantity(CargoAPI.CargoItemType.SPECIAL,
+                                new SpecialItemData(Items.PLANETKILLER, null)) >= 1f) &&
+                        !Global.getSector().getPlayerPerson().getMemoryWithoutUpdate().contains("$turnedInPlanetkiller")
+                )
+                {
+                    SotfMisc.addGuilt(-1.5f);
+                    if (Global.getSettings().isDevMode()) {
+                        Global.getSector().getCampaignUI().addMessage("DEV: Gave PK black hole guilt reduction");
+                    }
+                }
+            }
+        }
+        if (Global.getSector().getPlayerFleet().getCargo().getQuantity(CargoAPI.CargoItemType.SPECIAL, new SpecialItemData(Items.PLANETKILLER, null)) > 0f) {
+            havePlanetkiller = true;
+        } else {
+            havePlanetkiller = false;
+        }
+    }
 }

@@ -1,0 +1,79 @@
+{
+  "variantId": "sotf_paragon_Realmguard",
+  "hullId": "paragon",
+  "displayName": "Realmguard",
+  "goalVariant": false,
+  "fluxCapacitors": 34,
+  "fluxVents": 50,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "stabilizedshieldemitter",
+    "hardenedshieldemitter",
+    "fluxdistributor",
+    "magazines",
+    "advancedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "plasma",
+        "WS 002": "plasma"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 012": "reaper",
+        "WS 014": "reaper",
+        "WS 018": "reaper",
+        "WS 020": "reaper"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {}
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 005": "gravitonbeam",
+        "WS 006": "gravitonbeam",
+        "WS 009": "gravitonbeam",
+        "WS 010": "gravitonbeam",
+        "WS 013": "taclaser",
+        "WS 015": "taclaser",
+        "WS 019": "taclaser",
+        "WS 021": "taclaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "heavyneedler",
+        "WS 008": "heavyneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "guardian",
+        "WS 004": "guardian",
+        "WS 011": "pdlaser",
+        "WS 016": "pdlaser",
+        "WS 017": "pdlaser",
+        "WS 022": "pdlaser",
+        "WS 023": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

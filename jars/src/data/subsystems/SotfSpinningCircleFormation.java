@@ -19,7 +19,7 @@ import java.util.Map;
 public class SotfSpinningCircleFormation extends DroneFormation {
 
     private float currentRotation = MathUtils.getRandomNumberInRange(30f, 90f);
-    public float rotationSpeed = 0.6f;
+    public float rotationSpeed = 0.3f;
 
     public void advance(ShipAPI ship, Map<ShipAPI, ? extends PIDController> drones, float amount) {
         float angleIncrease = 360 / drones.size();

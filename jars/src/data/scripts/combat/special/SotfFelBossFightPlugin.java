@@ -172,12 +172,14 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
             toUse.setAnchor(LazyFont.TextAnchor.BOTTOM_CENTER);
             //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
             toUse.setAlignment(LazyFont.TextAlignment.CENTER);
-            toUse.draw(
-                    viewport.convertWorldXtoScreenX(player.getLocation().x - 40f),
+            Vector2f pos = new Vector2f(viewport.convertWorldXtoScreenX(player.getLocation().x - 40f),
                     viewport.convertWorldYtoScreenY(
                             player.getLocation().y + offset + (player.getShieldRadiusEvenIfNoShield() * 1.25f)
-                    )
-            );
+                    ));
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos.x + 1, pos.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+            toUse.draw(pos);
             //toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
 
             String text = SotfMisc.glitchify("ASSESSING TRAITS:\n// error 702, try again?\n// error 702, try again?\n// error 702, try again?\n// error 702, try again?", glitchChance);
@@ -185,21 +187,30 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
             toUse.setText(text);
             toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
             toUse.setAlignment(LazyFont.TextAlignment.LEFT);
-            toUse.draw(
-                    viewport.convertWorldXtoScreenX(
+            pos = new Vector2f(viewport.convertWorldXtoScreenX(
                     player.getLocation().x - offset + player.getShieldRadiusEvenIfNoShield() * 1.25f),
-                    viewport.convertWorldYtoScreenY(player.getLocation().y - 15f)
+                    viewport.convertWorldYtoScreenY(player.getLocation().y - 15f
+                    )
             );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos.x + 1, pos.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+            toUse.draw(pos);
 
             text = SotfMisc.glitchify("HOST SHIP: // error 703\nDIE FOR YOUR CRIMES\nMAY AGONY BE YOUR FINAL EMBRACE", glitchChance);
             //text += ":\n" + SotfMisc.glitchify(ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
             toUse.setText(text);
             toUse.setAnchor(LazyFont.TextAnchor.CENTER_RIGHT);
             toUse.setAlignment(LazyFont.TextAlignment.RIGHT);
-            toUse.draw(
+            pos = new Vector2f(
                     viewport.convertWorldXtoScreenX(player.getLocation().x - player.getShieldRadiusEvenIfNoShield() * 1.25f),
-                    viewport.convertWorldYtoScreenY(player.getLocation().y - offset)
+                    viewport.convertWorldYtoScreenY(player.getLocation().y - offset
+                    )
             );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos.x + 1, pos.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+            toUse.draw(pos);
         }
     }
 

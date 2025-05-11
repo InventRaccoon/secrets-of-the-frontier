@@ -9,6 +9,9 @@
 		"sotf_sentry_aux_Strike":3,
 		
 		"sotf_defender_aux_Escort":10,
+		
+		"sotf_thorn_Gatekeeper":5,
+		"sotf_thorn_Unmaker":5,
 	},
 	"combatSmall":{
 		# Proxy ships aren't used in standard roles by Dustkeepers, since they're non-priority
@@ -23,6 +26,10 @@
 		"sotf_picket_aux_Attack":10,
 		
 		"sotf_defender_aux_Escort":10,
+		
+		"sotf_thorn_Gatekeeper":4,
+		"sotf_thorn_Watcher":4,
+		"sotf_thorn_Unmaker":3,
 	},
 	
 	"combatMedium":{

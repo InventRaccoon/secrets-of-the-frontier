@@ -192,8 +192,6 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			float progress = Math.max(0f, (elapsed) / fadeInTime);
 			if (progress > 1f) progress = 1f;
 
-			ship.setExtraAlphaMult2(progress);
-
 			if (progress < 0.5f) {
 				ship.blockCommandForOneFrame(ShipCommand.ACCELERATE);
 				ship.blockCommandForOneFrame(ShipCommand.TURN_LEFT);
@@ -210,14 +208,19 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			ship.setHoldFireOneFrame(true);
 			ship.setHoldFire(true);
 
+			List<ShipAPI> shipAndModules = ship.getChildModulesCopy();
+			shipAndModules.add(ship);
+			for (ShipAPI toFade : shipAndModules) {
+				toFade.setExtraAlphaMult2(progress);
 
-			ship.setCollisionClass(CollisionClass.NONE);
-			ship.getMutableStats().getHullDamageTakenMult().modifyMult("ShardSpawnerInvuln", 0f);
-			if (progress < 0.5f) {
-				ship.getVelocity().set(new Vector2f());
-			} else if (progress > 0.75f) {
-				ship.setCollisionClass(CollisionClass.SHIP);
-				ship.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
+				toFade.setCollisionClass(CollisionClass.NONE);
+				toFade.getMutableStats().getHullDamageTakenMult().modifyMult("ShardSpawnerInvuln", 0f);
+				if (progress < 0.5f) {
+					toFade.getVelocity().set(new Vector2f());
+				} else if (progress > 0.75f) {
+					toFade.setCollisionClass(CollisionClass.SHIP);
+					toFade.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
+				}
 			}
 
 			float jitterRange = 1f - progress;
@@ -259,10 +262,12 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			}
 
 			if (elapsed > fadeInTime) {
-				ship.setAlphaMult(1f);
-				ship.setHoldFire(false);
-				ship.setCollisionClass(CollisionClass.SHIP);
-				ship.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
+				for (ShipAPI toFade : shipAndModules) {
+					toFade.setAlphaMult(1f);
+					toFade.setHoldFire(false);
+					toFade.setCollisionClass(CollisionClass.SHIP);
+					toFade.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
+				}
 				engine.removePlugin(this);
 			}
 		}
@@ -281,12 +286,15 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 				String text = spawnText;
 
 				//TODRAW14.setFontSize(28);
-				toUse.setBaseColor(Misc.setBrightness(UI_COLOR, alpha));
 				toUse.setText(text);
 				toUse.setAnchor(LazyFont.TextAnchor.BOTTOM_CENTER);
 				toUse.setAlignment(LazyFont.TextAlignment.CENTER);
-				toUse.draw(viewport.convertWorldXtoScreenX(ship.getShieldCenterEvenIfNoShield().x),
-						viewport.convertWorldYtoScreenY(ship.getShieldCenterEvenIfNoShield().y + ship.getShieldRadiusEvenIfNoShield() + 50f));
+				Vector2f pos = new Vector2f(viewport.convertWorldXtoScreenX(ship.getShieldCenterEvenIfNoShield().x),
+				viewport.convertWorldYtoScreenY(ship.getShieldCenterEvenIfNoShield().y + ship.getShieldRadiusEvenIfNoShield() + 50f));
+				toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+				toUse.draw(pos.x + 1, pos.y - 1);
+				toUse.setBaseColor(Misc.setBrightness(UI_COLOR, alpha));
+				toUse.draw(pos);
 			}
 		}
 	}

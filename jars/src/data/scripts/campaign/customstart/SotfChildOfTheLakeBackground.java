@@ -66,7 +66,7 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
 
     @Override
     public String getLongDescription(FactionSpecAPI factionSpec, NexFactionConfig factionConfig) {
-        if (!unlocked) return "An endgame task will be given at level 15 during the Haunted: complete it and unlock this " +
+        if (!unlocked) return "An endgame task will be given at level 15 during The Haunted: complete it to unlock this " +
                 "background.";
         return spec.longDescription;
     }
@@ -120,6 +120,9 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
                     Misc.getTextColor(), Misc.getHighlightColor(), "Invoke Her Blessing", "echo", "Sirius");
             tooltip.addPara("As you level up, Invoke Her Blessing becomes more powerful and you unlock the ability to " +
                     "select special upgrades for Sirius.", 10f, Misc.getHighlightColor(), "level up", "becomes more powerful", "special upgrades");
+            tooltip.addSpacer(10f);
+            tooltip.addPara("Also gain access to several advanced blueprints designed by the Cult of the Daydream.", 10f,
+                    Misc.getTextColor(), SotfMisc.DAYDREAM_COLOR, "Cult of the Daydream");
         }
     }
 
@@ -132,7 +135,7 @@ public class SotfChildOfTheLakeBackground extends BaseCharacterBackground {
         tooltip.addSectionHeading("Sirius", Alignment.MID, opad);
 
         tooltip.addPara("See the %s intel entry for detailed information on Sirius' abilities, " +
-                "skills and upgrades.", opad, Misc.getHighlightColor(), "\"Boons of the Daydream\"");
+                "skills and upgrades.", opad, SotfMisc.DAYDREAM_COLOR, "\"Boons of the Daydream\"");
 
 //        PersonAPI sirius = SotfPeople.getPerson(SotfPeople.SIRIUS_MIMIC);
 //

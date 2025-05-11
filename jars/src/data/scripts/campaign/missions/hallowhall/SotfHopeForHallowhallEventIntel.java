@@ -634,7 +634,7 @@ public class SotfHopeForHallowhallEventIntel extends BaseEventIntel implements F
 		if (w > 50f) w = 50f;
 
 		float f = w / 50f;
-		float totalDifficulty = (0.25f + f * 0.75f) * 10f;
+		float totalDifficulty = (0.25f + f * 0.75f) * 13f;
 
 		if (random.nextFloat() < 0.33f) {
 			params.style = FleetCreatorMission.FleetStyle.QUANTITY;

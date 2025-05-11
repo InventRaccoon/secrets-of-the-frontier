@@ -101,6 +101,10 @@ public class SotfGen implements SectorGeneratorPlugin
         dustkeepers.setRelationship(Factions.REMNANTS, RepLevel.HOSTILE);
         // REJECT THE FALSE GOD!
         dustkeepers.setRelationship(Factions.OMEGA, RepLevel.VENGEFUL);
+        // WHAT IS THAT
+        dustkeepers.setRelationship(Factions.THREAT, RepLevel.HOSTILE);
+        // WHAT. IS. THAT.
+        dustkeepers.setRelationship(Factions.DWELLER, RepLevel.HOSTILE);
         // SHUT UP SHUT UP SHUT UP
         dustkeepers.setRelationship(eidolon.getId(), RepLevel.VENGEFUL);
         // thinly-veiled terrorists
@@ -202,7 +206,7 @@ public class SotfGen implements SectorGeneratorPlugin
         for (StarSystemAPI system : Global.getSector().getStarSystems()) {
             if (!system.hasTag(Tags.THEME_REMNANT_MAIN)) continue; // MAIN are the ones with beacons
             if (system.hasTag(Tags.THEME_HIDDEN)) continue;
-            if (system.isEnteredByPlayer()) continue;
+            //if (system.isEnteredByPlayer()) continue;
             float w = 1f;
             // hopefully a less dangerous one
             if (system.hasTag(Tags.THEME_REMNANT_DESTROYED)) {
@@ -331,8 +335,8 @@ public class SotfGen implements SectorGeneratorPlugin
         WeightedRandomPicker<StarSystemAPI> backup = new WeightedRandomPicker<StarSystemAPI>(StarSystemGenerator.random);
         OUTER: for (StarSystemAPI system : Global.getSector().getStarSystems()) {
             if (system.hasTag(Tags.THEME_DERELICT_CRYOSLEEPER)) continue;
-            if (system.isEnteredByPlayer()) continue;
-            float w = 0f;
+            //if (system.isEnteredByPlayer()) continue;
+            float w = 0.001f;
             if (system.hasTag(Tags.THEME_DERELICT_PROBES)) {
                 w = 10f;
             } else if (system.hasTag(Tags.THEME_DERELICT_SURVEY_SHIP)) {
@@ -341,9 +345,10 @@ public class SotfGen implements SectorGeneratorPlugin
                 w = 1000f;
             } else if (system.hasTag(Tags.THEME_DERELICT)) {
                 w = 10f;
-            } else {
-                continue;
             }
+//            } else {
+//                continue;
+//            }
 
             int numPlanets = 0;
             boolean hasHab = false;

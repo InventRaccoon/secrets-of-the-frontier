@@ -36,10 +36,12 @@ public class SotfASBEveryFrameScript extends BaseEveryFrameCombatPlugin {
 				} else if (passedNearTarget) {
 					passedByTarget = true;
 				}
-				Global.getCombatEngine().getFogOfWar(target.getOwner()).revealAroundPoint(target,
-						shot.getLocation().x,
-						shot.getLocation().y,
-						400f);
+				if (target.getOwner() == 0 || target.getOwner() == 1) {
+					Global.getCombatEngine().getFogOfWar(target.getOwner()).revealAroundPoint(target,
+							shot.getLocation().x,
+							shot.getLocation().y,
+							400f);
+				}
 				if (!passedByTarget && !target.equals(Global.getCombatEngine().getPlayerShip())) {
 					//target.getAIFlags().setFlag(ShipwideAIFlags.AIFlags.HAS_INCOMING_DAMAGE);
 					if (target.getShield() != null) {

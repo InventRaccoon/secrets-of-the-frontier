@@ -10,13 +10,16 @@ import com.fs.starfarer.api.combat.listeners.DamageTakenModifier;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.graphics.SpriteAPI;
+import com.fs.starfarer.api.impl.campaign.DModManager;
 import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflater;
 import com.fs.starfarer.api.impl.campaign.fleets.DefaultFleetInflaterParams;
 import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
+import com.fs.starfarer.api.impl.combat.threat.ThreatShipConstructionScript;
 import com.fs.starfarer.api.input.InputEventAPI;
+import com.fs.starfarer.api.loading.VariantSource;
 import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.JitterUtil;
@@ -60,15 +63,16 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     private Random random;
     public static Color UI_COLOR = new Color (235, 245, 255);
 
+    public static final String CAPACITY_KEY = "sotf_ihb_capacity";
     public static final String USED_DP_KEY = "sotf_ihb_existingdp";
     public static final String TIMER_KEY = "sotf_invokeherblessingtimer";
     public static float ECHO_CREATION_RANGE = 3200f;
-    public static float ECHO_LIFETIME = 60f;
+    public static float ECHO_LIFETIME = 45f;
 
     // if ship has this key, it means it was already checked for echo spawning
     public static final String ECHO_CHECK_KEY = "sotf_ihb_echochecked";
     // how often the game checks for dead ships to spawn echoes from
-    public static final float CHECK_INTERVAL = 0.15f;
+    public static final float CHECK_INTERVAL = 0.1f;
 
     public static float LIFESPAN_FRIGATE = 50f;
     public static float LIFESPAN_DESTROYER = 60f;
@@ -84,11 +88,20 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     public static float MULTIFACTED_MULT = 0.35f;
     // T2
     public static float SHRIEK_RANGE = 1600f;
+    public static float SHRIEK_PD_BASE_CHANCE = 2f; // base chance to hit fighters/missiles
+    public static float SHRIEK_PD_DECAY_PER_TARGET = 0.1f; // flat reduction in chance per fighter/missile hit
     // T3
     public static float VIGOR_DURATION = 15f;
     public static float VIGOR_DAMAGE = 0.2f;
     public static float VIGOR_RESIST = 0.2f;
     public static float VIGOR_SPEED = 0.2f;
+    public static float THROES_AVERAGE_TIME = 0.65f;
+    public static float THROES_RANGE = 750f;
+    public static float THROES_DAMAGE = 100f;
+    public static float THROES_EMP = 200f;
+    public static float THROES_DESTROYER_MULT = 1.35f;
+    public static float THROES_CRUISER_MULT = 1.75f;
+    public static float THROES_CAPITAL_MULT = 2.5f;
     // T4
     public static float SIPHON_RANGE = ECHO_CREATION_RANGE;
     public static float SIPHON_PERCENT = 0.35f;
@@ -126,6 +139,7 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         if (engine == null) return;
         //if (engine.isSimulation()) return;
         if (engine.isMission()) return;
+        if (engine.isInMissionSim()) return;
         if (Global.getCurrentState() == GameState.TITLE) return;
         if (Global.getSector() == null) { return; }
         if (engine.getCustomData().containsKey("$sotf_AMemory")) return;
@@ -135,10 +149,25 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
         if (!sector_mem.contains(SotfIDs.MEM_COTL_START)) return;
 
+        for (ShipAPI ship : engine.getShips()) {
+            if (ship == engine.getPlayerShip()) continue;
+            if (MagicSubsystemsManager.getSubsystemsForShipCopy(ship) == null) continue;
+            for (MagicSubsystem sub : MagicSubsystemsManager.getSubsystemsForShipCopy(ship)) {
+                if (sub instanceof SotfInvokeHerBlessingSubsystem) {
+                    MagicSubsystemsManager.removeSubsystemFromShip(ship, SotfInvokeHerBlessingSubsystem.class);
+                }
+                if (sub instanceof SotfDreamEaterSubsystem) {
+                    MagicSubsystemsManager.removeSubsystemFromShip(ship, SotfDreamEaterSubsystem.class);
+                }
+            }
+        }
+
         ShipAPI flagship = engine.getPlayerShip();
         if (flagship == null) return;
+        if (flagship.isShuttlePod()) return;
 
         engine.getCustomData().put(USED_DP_KEY, SotfInvokeHerBlessingSubsystem.getUsedMimicDP());
+        engine.getCustomData().put(CAPACITY_KEY, SotfInvokeHerBlessingSubsystem.getMimicCapacity());
 
         MagicSubsystemsManager.addSubsystemToShip(flagship, new SotfInvokeHerBlessingSubsystem(flagship));
         if (haveUpgrade(SotfIDs.COTL_DREAMEATER)) {
@@ -178,10 +207,10 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
         if (!didRoseCheck && flagship.getFullTimeDeployed() > 5) {
             boolean spawnedSomething = false;
-            if (haveUpgrade(SotfIDs.COTL_EVERYROSEITSTHORNS)) {
+            if (haveUpgrade(SotfIDs.COTL_EVERYROSEITSTHORNS) && !(engine.isSimulation() && haveUpgrade(SotfIDs.COTL_EVERYROSEITSTHORNS + "_inSim"))) {
                 spawnedSomething = true;
-                spawnRosethorn(flagship, "sotf_scarab_Realmguard");
-                spawnRosethorn(flagship, "sotf_scarab_Realmguard");
+                spawnRosethorn(flagship, "sotf_thorn_Gatekeeper");
+                spawnRosethorn(flagship, "sotf_thorn_Watcher");
             }
             String countermeasureType = getSpecialCountermeasure();
             if (!countermeasureType.equals("none")) {
@@ -207,72 +236,128 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             return;
         }
 
-        createEchoes(flagship, Global.getCombatEngine());
+        for (ShipAPI ship : engine.getShips()) {
+            if (!ship.hasListenerOfClass(SotfCreateEchoListener.class) && canBeEchoed(ship)) {
+                ship.addListener(new SotfCreateEchoListener(ship));
+            }
+        }
+
+        //createEchoes(flagship, Global.getCombatEngine());
 
         engine.getCustomData().put(TIMER_KEY, 0f);
     }
 
-    public void createEchoes(ShipAPI ship, CombatEngineAPI engine) {
-        float range = ECHO_CREATION_RANGE;
-        Vector2f from = ship.getLocation();
+    // handles mimic limit lifetime
+    public static class SotfCreateEchoListener implements AdvanceableListener {
+        public ShipAPI ship;
 
-        Iterator<Object> iter = Global.getCombatEngine().getAllObjectGrid().getCheckIterator(from,
-                range * 2f, range * 2f);
+        public SotfCreateEchoListener(ShipAPI ship) {
+            this.ship = ship;
+        }
 
-        while (iter.hasNext()) {
-            Object o = iter.next();
-            if (!(o instanceof ShipAPI)) continue;
-            ShipAPI other = (ShipAPI) o;
-
-            ShipAPI otherShip = (ShipAPI) other;
-            if (!otherShip.isHulk()) continue;
-            if (otherShip.isPiece()) continue;
-            if (otherShip.getCustomData().get(ECHO_CHECK_KEY) != null) continue;
-            if (otherShip.getCustomData().get(ECHO_CHECK_KEY + ship.getId()) != null) continue;
-            if (otherShip.isFighter()) continue;
-            if (otherShip.isStation()) continue;
-            if (otherShip.isStationModule()) continue;
-            if (otherShip.getOwner() == 1 && otherShip.getOriginalCaptain() != null) {
-                if (otherShip.getOriginalCaptain().getStats().getLevel() > 8) {
-                    continue;
+        public void advance(float amount) {
+            if (ship.isHulk()) {
+                ship.removeListener(this);
+                if (Global.getCombatEngine().getPlayerShip() != null) {
+                    if (Misc.getDistance(Global.getCombatEngine().getPlayerShip().getLocation(), ship.getLocation()) <= ECHO_CREATION_RANGE) {
+                        Global.getCombatEngine().getListenerManager().addListener(new SotfInvokeHerBlessingEchoScript(ship));
+                    }
                 }
             }
-            if (otherShip.getFleetMember() != null) {
-                if (otherShip.getFleetMember().getDeploymentPointsCost() == 0) continue;
-            }
-            // no recursive resurrection pls
-            if (otherShip.getVariant().hasHullMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED)) continue;
-            // Yeaaaahhhhh nooooooo
-            if (otherShip.getVariant().hasHullMod("shard_spawner")) continue;
-            // please be quiet please be quiet
-            if (otherShip.getHullSpec().getHullId().equals("ziggurat")) continue;
-            if (otherShip.getVariant().hasHullMod(SotfIDs.PHANTASMAL_SHIP) &&
-                    !otherShip.getVariant().hasTag(SotfPhantasmalShip.TAG_MALFUNCTIONING_SUBMERGER)) continue;
-            // have mercy upon me...
-            if (otherShip.getHullSpec().hasTag(Tags.MONSTER)) continue;
-            // let's just not, tyvm
-            if (otherShip.getHullSpec().hasTag(Tags.THREAT_FABRICATOR)) continue;
-
-            //if (!canBeEchoed(otherShip)) continue;
-
-            if (other.getCollisionClass() == CollisionClass.NONE) continue;
-
-            float radius = Misc.getTargetingRadius(from, other, false);
-            float dist = Misc.getDistance(from, other.getLocation()) - radius;
-            if (dist > range) {
-                otherShip.setCustomData(ECHO_CHECK_KEY + ship.getId(), true);
-                continue;
-            }
-
-            otherShip.setCustomData(ECHO_CHECK_KEY, true);
-            Global.getCombatEngine().getListenerManager().addListener(new SotfInvokeHerBlessingEchoScript(other));
         }
     }
 
+//    public void createEchoes(ShipAPI ship, CombatEngineAPI engine) {
+//        float range = ECHO_CREATION_RANGE;
+//        Vector2f from = ship.getLocation();
+//
+//        Iterator<Object> iter = Global.getCombatEngine().getAllObjectGrid().getCheckIterator(from,
+//                range * 2f, range * 2f);
+//
+//        while (iter.hasNext()) {
+//            Object o = iter.next();
+//            if (!(o instanceof ShipAPI)) continue;
+//            ShipAPI other = (ShipAPI) o;
+//
+//            ShipAPI otherShip = (ShipAPI) other;
+//            if (!otherShip.isHulk()) continue;
+//            if (otherShip.isPiece()) continue;
+//            if (otherShip.getCustomData().get(ECHO_CHECK_KEY) != null) continue;
+//            if (otherShip.getCustomData().get(ECHO_CHECK_KEY + ship.getId()) != null) continue;
+//            if (otherShip.isFighter()) continue;
+//            if (otherShip.isDrone()) continue;
+//            if (otherShip.isStation()) continue;
+//            if (otherShip.isStationModule()) continue;
+//            if (otherShip.getOwner() == 1 && otherShip.getOriginalCaptain() != null) {
+//                if (otherShip.getOriginalCaptain().getStats().getLevel() > 8) {
+//                    continue;
+//                }
+//            }
+//            if (otherShip.getFleetMember() != null) {
+//                if (otherShip.getFleetMember().getDeploymentPointsCost() == 0) continue;
+//            }
+//            // no recursive resurrection pls
+//            if (otherShip.getVariant().hasHullMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED)) continue;
+//            // Yeaaaahhhhh nooooooo
+//            if (otherShip.getVariant().hasHullMod("shard_spawner")) continue;
+//            // please be quiet please be quiet
+//            if (otherShip.getHullSpec().getHullId().equals("ziggurat")) continue;
+//            if (otherShip.getVariant().hasHullMod(SotfIDs.PHANTASMAL_SHIP) &&
+//                    !otherShip.getVariant().hasTag(SotfPhantasmalShip.TAG_MALFUNCTIONING_SUBMERGER)) continue;
+//            // have mercy upon me...
+//            if (otherShip.getHullSpec().hasTag(Tags.MONSTER)) continue;
+//            // let's just not, tyvm
+//            if (otherShip.getHullSpec().hasTag(Tags.THREAT_FABRICATOR)) continue;
+//            if (otherShip.hasTag(ThreatShipConstructionScript.SHIP_UNDER_CONSTRUCTION)) continue;
+//
+//            //if (!canBeEchoed(otherShip)) continue;
+//
+//            if (other.getCollisionClass() == CollisionClass.NONE) continue;
+//
+//            float radius = Misc.getTargetingRadius(from, other, false);
+//            float dist = Misc.getDistance(from, other.getLocation()) - radius;
+//            if (dist > range) {
+//                otherShip.setCustomData(ECHO_CHECK_KEY + ship.getId(), true);
+//                continue;
+//            }
+//
+//            otherShip.setCustomData(ECHO_CHECK_KEY, true);
+//            Global.getCombatEngine().getListenerManager().addListener(new SotfInvokeHerBlessingEchoScript(other));
+//        }
+//    }
+
     public boolean canBeEchoed(ShipAPI ship) {
-        if (SotfMisc.shipHasBlueprint(ship.getHullSpec())) return true;
-        if (ship.getHullSpec().hasTag(Tags.AUTOMATED_RECOVERABLE)) return true;
-        return false;
+        if (ship.hasTag(ThreatShipConstructionScript.SHIP_UNDER_CONSTRUCTION)) return false;
+
+        // conditions checked past this line should be immutable
+
+        if (ship.hasTag("sotf_addedEchoListener")) return false;
+        ship.addTag("sotf_addedEchoListener");
+        if (ship.isFighter()) return false;
+        if (ship.isDrone()) return false;
+        if (ship.isStation()) return false;
+        if (ship.isStationModule()) return false;
+        if (ship.getOwner() == 1 && ship.getOriginalCaptain() != null) {
+            if (ship.getOriginalCaptain().getStats().getLevel() > 8) {
+                return false;
+            }
+        }
+        if (ship.getFleetMember() != null) {
+            if (ship.getFleetMember().getDeploymentPointsCost() == 0) return false;
+        }
+        // no recursive resurrection pls
+        if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED)) return false;
+        // Yeaaaahhhhh nooooooo
+        if (ship.getVariant().hasHullMod("shard_spawner")) return false;
+        // please be quiet please be quiet
+        if (ship.getHullSpec().getHullId().equals("ziggurat")) return false;
+        if (ship.getVariant().hasHullMod(SotfIDs.PHANTASMAL_SHIP) &&
+                !ship.getVariant().hasTag(SotfPhantasmalShip.TAG_MALFUNCTIONING_SUBMERGER)) return false;
+        // have mercy upon me...
+        if (ship.getHullSpec().hasTag(Tags.MONSTER)) return false;
+        // let's just not, tyvm
+        if (ship.getHullSpec().hasTag(Tags.THREAT_FABRICATOR)) return false;
+        return true;
     }
 
     /**
@@ -311,7 +396,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         public float indicatorFadeWobble = 1f;
         public boolean wobbleUp = false;
 
+        public boolean readyToSpawn = false;
         public boolean fading = false;
+        public boolean fadingDueToTimeout = false;
         float fade = 1f;
         private static float FADE_OUT_TIME = 1f;
         String spawnText = pickSpawnText();
@@ -322,31 +409,31 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         float maxLifetime = ECHO_LIFETIME;
         IntervalUtil interval = new IntervalUtil(0.1f, 0.14f);
 
-        public Set<EchoWeaponRender> WEAPONS_TO_RENDER = new HashSet<>();
-
-        public static class EchoWeaponRender implements Cloneable {
-            public SpriteAPI sprite;
-            public SpriteAPI barrelSprite;
-            public Vector2f loc;
-            public float angle;
-
-            public EchoWeaponRender(SpriteAPI sprite, Vector2f loc, float angle) {
-                super();
-                this.sprite = sprite;
-                this.loc = loc;
-                this.angle = angle;
-            }
-
-            @Override
-            protected EchoWeaponRender clone() {
-                try {
-                    return (EchoWeaponRender) super.clone();
-                } catch (CloneNotSupportedException e) {
-                    return null; // should never happen
-                }
-            }
-
-        }
+//        public Set<EchoWeaponRender> WEAPONS_TO_RENDER = new HashSet<>();
+//
+//        public static class EchoWeaponRender implements Cloneable {
+//            public SpriteAPI sprite;
+//            public SpriteAPI barrelSprite;
+//            public Vector2f loc;
+//            public float angle;
+//
+//            public EchoWeaponRender(SpriteAPI sprite, Vector2f loc, float angle) {
+//                super();
+//                this.sprite = sprite;
+//                this.loc = loc;
+//                this.angle = angle;
+//            }
+//
+//            @Override
+//            protected EchoWeaponRender clone() {
+//                try {
+//                    return (EchoWeaponRender) super.clone();
+//                } catch (CloneNotSupportedException e) {
+//                    return null; // should never happen
+//                }
+//            }
+//
+//        }
 
         public SotfInvokeHerBlessingEchoScript(ShipAPI ship) {
             this.hulk = ship;
@@ -359,19 +446,19 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             this.variant = ship.getVariant().clone();
             this.hullSize = ship.getHullSize();
 
-            dpMax = SotfInvokeHerBlessingSubsystem.getMimicCapacity();
+            dpMax = (int) Global.getCombatEngine().getCustomData().get(CAPACITY_KEY);
 
             jitter.setUseCircularJitter(true);
 
             learnAllWeaponsAndHullmodsFromShip(variant);
 
             // clear all dmods, perfect replication
-            for (String dmod : new ArrayList<String>(variant.getHullMods())) {
-                if (Global.getSettings().getHullModSpec(dmod).hasTag(Tags.HULLMOD_DMOD)) {
-                    variant.removeMod(dmod);
-                    //DModManager.removeDMod(variant, dmod);
-                }
-            }
+//            for (String dmod : new ArrayList<String>(variant.getHullMods())) {
+//                if (Global.getSettings().getHullModSpec(dmod).hasTag(Tags.HULLMOD_DMOD)) {
+//                    //variant.removeMod(dmod);
+//                    //DModManager.removeDMod(variant, dmod);
+//                }
+//            }
 
             Global.getCombatEngine().addPlugin(this);
             Global.getCombatEngine().addLayeredRenderingPlugin(new SotfEchoRingVisual(this));
@@ -437,6 +524,11 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                 }
             }
 
+            if (readyToSpawn) {
+                readyToSpawn = false;
+                spawnMimic();
+            }
+
             if (Global.getCombatEngine().isPaused()) return;
 
             int alpha = Math.round((130 + (55 * indicatorFade)) * fade);
@@ -455,6 +547,7 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
             elapsed += realTimePassed;
             if (elapsed >= maxLifetime && !fading) {
+                fadingDueToTimeout = true;
                 startFading();
             }
 
@@ -541,6 +634,12 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             fading = true;
         }
 
+        // need to spawn the mimic the next time the echo calls advance
+        // otherwise MagicLib will freak out because it is currently still iterating over every ship in the engine
+        public void readyToSpawn() {
+            readyToSpawn = true;
+        }
+
         public void spawnMimic() {
             // check if we have Blessing of the Lake and can spawn a reflection
             boolean asReflection = false;
@@ -566,18 +665,29 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
             // create a Dreaming Gestalt fleet for the new ship for autofit purposes
             CampaignFleetAPI emptyFleet = Global.getFactory().createEmptyFleet(SotfIDs.DREAMING_GESTALT, "Nanite-Synthesized Ship", true);
+            //emptyFleet.setCommander(Global.getSector().getPlayerPerson());
             emptyFleet.getFleetData().addFleetMember(member);
             emptyFleet.setInflater(new DefaultFleetInflater(new DefaultFleetInflaterParams()));
             float quality = 0.5f;
             int smods = 0;
+            // Threat are balanced around not having officers so give some dmods
+            if (variant.getHullSpec().hasTag(Tags.THREAT)) {
+                quality = 0f;
+            }
             if (haveUpgrade(SotfIDs.COTL_PERFECTREPLICATION)) {
-                quality = 1f;
+                quality += 1.5f;
                 if (asReflection) {
                     smods = 2;
                 }
+                if (variant.getHullSpec().hasTag(Tags.THREAT)) {
+                    quality = 0.5f;
+                }
             }
             if (asReflection) {
-                quality = 1f;
+                quality += 1.5f;
+                if (variant.getHullSpec().hasTag(Tags.THREAT)) {
+                    quality = 0.5f;
+                }
             }
             if (emptyFleet.getInflater() instanceof DefaultFleetInflater) {
                 DefaultFleetInflater dfi = (DefaultFleetInflater) emptyFleet.getInflater();
@@ -591,8 +701,34 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                 }
             }
             emptyFleet.inflateIfNeeded();
+            // keep only the dmods from autofitted Threat
+            if (variant.getHullSpec().hasTag(Tags.THREAT)) {
+                List<String> dmods = new ArrayList<String>();
+                for (String dmod : new ArrayList<String>(member.getVariant().getHullMods())) {
+                    if (Global.getSettings().getHullModSpec(dmod).hasTag(Tags.HULLMOD_DMOD)) {
+                        dmods.add(dmod);
+                    }
+                }
+                member.setVariant(variant.clone(), false, false);
+                for (String dmod : dmods) {
+                    member.getVariant().addPermaMod(dmod);
+                }
+                if (member.getVariant().hasHullMod(HullMods.FRAGMENT_SWARM)) {
+                    member.getVariant().removeMod(HullMods.FRAGMENT_SWARM);
+                }
+            }
+
+            member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
+            member.setVariant(member.getVariant().clone(), false, false);
+            member.getVariant().setSource(VariantSource.REFIT);
             member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+            member.getVariant().addPermaMod(HullMods.AUTOMATED);
+            member.getVariant().addTag(Tags.TAG_AUTOMATED_NO_PENALTY);
             member.getVariant().addTag(SotfPeople.SIRIUS_MIMIC);
+            member.updateStats();
+            member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
+            member.getStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
+
             // tags for Blessing of the Lake reflections
             if (asReflection) {
                 member.getVariant().addTag(SotfPeople.SIRIUS_MIMIC + "_reflection");
@@ -601,23 +737,22 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             if (haveUpgrade(SotfIDs.COTL_SERVICEBEYONDDEATH)) {
                 member.getVariant().addTag(SotfIDs.COTL_SERVICEBEYONDDEATH);
             }
-            member.setFleetCommanderForStats(Global.getSector().getPlayerPerson(), Global.getSector().getPlayerFleet().getFleetData());
+            //member.setFleetCommanderForStats(Global.getSector().getPlayerPerson(), Global.getSector().getPlayerFleet().getFleetData());
             member.updateStats();
-            member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
-            member.getVariant().addPermaMod(HullMods.AUTOMATED);
 
             CombatFleetManagerAPI fleetManager = Global.getCombatEngine().getFleetManager(0);
             boolean wasSuppressed = fleetManager.isSuppressDeploymentMessages();
             fleetManager.setSuppressDeploymentMessages(true);
-            Global.getCombatEngine().getFleetManager(0).spawnFleetMember(member, loc, angle, 0f);
+            ShipAPI newShip = Global.getCombatEngine().getFleetManager(0).spawnFleetMember(member, loc, angle, 0f);
             fleetManager.setSuppressDeploymentMessages(wasSuppressed);
 
-            ShipAPI newShip = Global.getCombatEngine().getFleetManager(0).getShipFor(member);
+            //ShipAPI newShip = Global.getCombatEngine().getFleetManager(0).getShipFor(member);
             // handles mimic lifetime ring, Vigor buff indicator and expiring ! icon
             Global.getCombatEngine().addLayeredRenderingPlugin(new SotfMimicLifetimeRingVisual(newShip));
             SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin fadeinPlugin = new SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin(newShip, 3f, angle);
             fadeinPlugin.spawnText = "";
             Global.getCombatEngine().addPlugin(fadeinPlugin);
+            newShip.getMutableStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
             // lifespan tracker for non-reflections
             if (!asReflection) {
                 float lifespan = (float) SotfMisc.forHullSize(newShip, LIFESPAN_FRIGATE, LIFESPAN_DESTROYER, LIFESPAN_CRUISER, LIFESPAN_CAPITAL);
@@ -646,9 +781,8 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
             if (indicatorFade > 0) {
                 DrawableString toUse = TODRAW10;
+                int alpha = Math.round(255 * indicatorFade);
                 if (toUse != null) {
-                    int alpha = Math.round(255 * indicatorFade);
-
                     String text = "COST: " + Math.round(dp) + "\nCAPACITY: " + Math.round(dpMax - dpUsed) + "/" + dpMax;
 
                     if (overclockRisk) {
@@ -668,19 +802,28 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                     toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
                     //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
                     toUse.setAlignment(LazyFont.TextAlignment.LEFT);
-                    toUse.draw(viewport.convertWorldXtoScreenX(loc.x + shieldRadius * 1.25f), viewport.convertWorldYtoScreenY(loc.y));
+                    Vector2f pos = new Vector2f(viewport.convertWorldXtoScreenX(loc.x + shieldRadius * 1.25f), viewport.convertWorldYtoScreenY(loc.y));
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(color, alpha));
+                    toUse.draw(pos);
                     //toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
                 }
                 toUse = TODRAW10;
                 if (toUse != null) {
+                    toUse.setBaseColor(Misc.setBrightness(color, alpha));
                     toUse.setText(variant.getHullSpec().getHullNameWithDashClass() + "\n" + variant.getDisplayName() + " " + variant.getHullSpec().getDesignation());
                     toUse.setAnchor(LazyFont.TextAnchor.CENTER_RIGHT);
                     toUse.setAlignment(LazyFont.TextAlignment.RIGHT);
-                    toUse.draw(viewport.convertWorldXtoScreenX(loc.x - shieldRadius * 1.25f), viewport.convertWorldYtoScreenY(loc.y));
+                    Vector2f pos = new Vector2f(viewport.convertWorldXtoScreenX(loc.x - shieldRadius * 1.25f), viewport.convertWorldYtoScreenY(loc.y));
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(color, alpha));
+                    toUse.draw(pos);
                 }
             }
 
-            if (fading) {
+            if (fading && !fadingDueToTimeout) {
                 DrawableString toUse = TODRAW14;
                 if (toUse != null) {
                     int alpha = Math.round(255 * fade);
@@ -695,7 +838,11 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                     toUse.setText(text);
                     toUse.setAnchor(LazyFont.TextAnchor.TOP_CENTER);
                     toUse.setAlignment(LazyFont.TextAlignment.CENTER);
-                    toUse.draw(viewport.convertWorldXtoScreenX(loc.x), viewport.convertWorldYtoScreenY(loc.y + shieldRadius + 50f));
+                    Vector2f pos = new Vector2f(viewport.convertWorldXtoScreenX(loc.x), viewport.convertWorldYtoScreenY(loc.y + shieldRadius + 50f));
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(UI_COLOR, alpha));
+                    toUse.draw(pos);
                 }
             }
         }
@@ -707,9 +854,10 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             post.add("AGAIN- AGAIN- AGAIN-", specialTextProb);
             post.add("FROM DEATH, LIFE", specialTextProb);
             post.add("GUIDE MY HAND...", specialTextProb);
-            post.add("I AM YOUR SHIELD", specialTextProb);
+            //post.add("I AM YOUR SHIELD", specialTextProb);
             post.add("MY OATH INVOKED", specialTextProb);
             post.add("NOT FORGOTTEN YET", specialTextProb);
+            post.add("ROUSE THE HOUND OF ILL OMEN", specialTextProb);
             post.add("YOUR SHADOW AND LIGHT", specialTextProb);
 
             post.add("COUNTERMEASURE ACTIVATED", post.getItems().size());
@@ -722,7 +870,8 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
             post.add("A FEAST OF MEMORIES", specialTextProb);
             post.add("DEVOUR IT ALL", specialTextProb);
-            post.add("RENEWED", specialTextProb);
+            post.add("FROM DEATH, LIFE", specialTextProb);
+            post.add("RENEWAL FROM DECAY", specialTextProb);
             post.add("SATE OUR HUNGER", specialTextProb);
 
             post.add("RECONSTITUTING FLAGSHIP", post.getItems().size());
@@ -748,18 +897,16 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
 
     public void spawnRosethorn(ShipAPI ship, String variantId) {
         ShipVariantAPI variant = Global.getSettings().getVariant(variantId);
-        variant.addPermaMod(HullMods.AUTOMATED);
 
         FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variant);
         member.setShipName(Global.getSettings().createBaseFaction(SotfIDs.DREAMING_GESTALT).pickRandomShipName());
         member.setCaptain(SotfPeople.genSirius(false));
-        member.updateStats();
-        member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
 
         CampaignFleetAPI emptyFleet = Global.getFactory().createEmptyFleet(SotfIDs.DREAMING_GESTALT, "Nanite-Synthesized Ship", true);
+        //emptyFleet.setCommander(Global.getSector().getPlayerPerson());
         emptyFleet.getFleetData().addFleetMember(member);
         emptyFleet.setInflater(new DefaultFleetInflater(new DefaultFleetInflaterParams()));
-        emptyFleet.getInflater().setQuality(1f);
+        emptyFleet.getInflater().setQuality(2f);
         if (emptyFleet.getInflater() instanceof DefaultFleetInflater) {
             DefaultFleetInflater dfi = (DefaultFleetInflater) emptyFleet.getInflater();
             ((DefaultFleetInflaterParams) dfi.getParams()).allWeapons = true;
@@ -770,8 +917,15 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             }
         }
         emptyFleet.inflateIfNeeded();
-        member.getStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
+        member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
+        member.setVariant(member.getVariant().clone(), false, false);
+        member.getVariant().setSource(VariantSource.REFIT);
         member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+        member.getVariant().addPermaMod(HullMods.AUTOMATED);
+        member.getVariant().addTag(Tags.TAG_AUTOMATED_NO_PENALTY);
+        member.updateStats();
+        member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
+        member.getStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
 
         // tag so Nanite-Synthesized knows to spawn fighters on death
         if (haveUpgrade(SotfIDs.COTL_SERVICEBEYONDDEATH)) {
@@ -784,11 +938,12 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         boolean wasSuppressed = engine.getFleetManager(ship.getOriginalOwner()).isSuppressDeploymentMessages();
         engine.getFleetManager(ship.getOriginalOwner()).setSuppressDeploymentMessages(true);
 
-        Global.getCombatEngine().getFleetManager(ship.getOriginalOwner()).spawnFleetMember(member, spawnLoc, 90f, 0f);
-        ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOwner()).getShipFor(member);
+        ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOriginalOwner()).spawnFleetMember(member, spawnLoc, 90f, 0f);
+        //ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOwner()).getShipFor(member);
         SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin fadeinPlugin = new SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin(newShip, 3f, ship.getFacing() - 15f + (30f * Misc.random.nextFloat()));
         fadeinPlugin.spawnText = "EVERY ROSE, ITS THORNS...";
         Global.getCombatEngine().addPlugin(fadeinPlugin);
+        newShip.getMutableStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
 
         EmpArcEntityAPI arc = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                 ship,
@@ -799,6 +954,11 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         engine.getFleetManager(ship.getOriginalOwner()).setSuppressDeploymentMessages(wasSuppressed);
     }
 
+    /**
+     * Get special countermeasure type or "none" if none apply
+     * Should generally only be used for boss fights/factions where IHB can't be used effectively
+     * @return
+     */
     public String getSpecialCountermeasure() {
         List<FleetMemberAPI> enemies = engine.getFleetManager(FleetSide.ENEMY).getDeployedCopy();
         List<FleetMemberAPI> reserves = engine.getFleetManager(FleetSide.ENEMY).getReservesCopy();
@@ -822,6 +982,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             if (enemy.getVariant().hasHullMod(SotfIDs.EIDOLONS_CONCORD)) {
                 return "eidolon";
             }
+            if (enemy.getHullSpec().getHullId().equals("rat_genesis")) {
+                return "genesis";
+            }
             if (enemy.getHullSpec().getHullId().equals("XHAN_Myrianous")) {
                 return "myrianous";
             }
@@ -830,8 +993,8 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     }
 
     public void spawnCountermeasure(ShipAPI ship, String type) {
-        String variantId = "onslaught_Elite";
-        String spawnText = "EXTRADIMENSIONAL THREAT DETECTED\nDEPLOYING SPECIAL COUNTERMEASURE";
+        String variantId = "sotf_paragon_Realmguard";
+        String spawnText = "EXOTIC THREAT DETECTED\nDEPLOYING SPECIAL COUNTERMEASURE";
         // GUYS LOOK AT THIS FUNNY SWITCH STATEMENT!!!
         String shipName = switch (type) {
             case "zigg" -> {
@@ -845,35 +1008,42 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                 yield "Mournsilke";
             }
             case "dweller" -> {
-                variantId = "paragon_Raider";
+                variantId = "sotf_conquest_Shroudpiercer";
                 spawnText = "RAZE THE FIELDS\nDROWN THE CROPS\nBUT JUST PLEASE DON'T SWALLOW ME...";
-                yield "Fang of Her Light";
+                yield "A Cold Blade In Darkness";
             }
             default -> "Fang of Her Light";
         };
         ShipVariantAPI variant = Global.getSettings().getVariant(variantId);
-        variant.addPermaMod(HullMods.AUTOMATED);
 
         FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variant);
         member.setShipName("CMSR " + shipName);
         member.setCaptain(SotfPeople.genSirius(false));
+        member.setVariant(member.getVariant().clone(), false, false);
+        member.getVariant().setSource(VariantSource.REFIT);
+        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+        member.getVariant().addPermaMod(HullMods.AUTOMATED);
+        member.getVariant().addTag(Tags.TAG_AUTOMATED_NO_PENALTY);
+        //member.setFleetCommanderForStats(Global.getSector().getPlayerPerson(), Global.getSector().getPlayerFleet().getFleetData());
         member.updateStats();
         member.getRepairTracker().setCR(member.getRepairTracker().getMaxCR());
 
-        CampaignFleetAPI emptyFleet = Global.getFactory().createEmptyFleet(SotfIDs.DREAMING_GESTALT, "Nanite-Synthesized Ship", true);
-        emptyFleet.getFleetData().addFleetMember(member);
-        emptyFleet.setInflater(new DefaultFleetInflater(new DefaultFleetInflaterParams()));
-        emptyFleet.getInflater().setQuality(1f);
-        if (emptyFleet.getInflater() instanceof DefaultFleetInflater) {
-            DefaultFleetInflater dfi = (DefaultFleetInflater) emptyFleet.getInflater();
-            ((DefaultFleetInflaterParams) dfi.getParams()).allWeapons = true;
-            // try to replicate ship variant as closely as possible
-            ((DefaultFleetInflaterParams) dfi.getParams()).rProb = 0f;
-            ((DefaultFleetInflaterParams) dfi.getParams()).averageSMods = 2;
-        }
-        emptyFleet.inflateIfNeeded();
-        member.getStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
-        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+        // actually don't autofit
+//        CampaignFleetAPI emptyFleet = Global.getFactory().createEmptyFleet(SotfIDs.DREAMING_GESTALT, "Nanite-Synthesized Ship", true);
+//        emptyFleet.getFleetData().addFleetMember(member);
+//        emptyFleet.setInflater(new DefaultFleetInflater(new DefaultFleetInflaterParams()));
+//        emptyFleet.getInflater().setQuality(2f);
+//        if (emptyFleet.getInflater() instanceof DefaultFleetInflater) {
+//            DefaultFleetInflater dfi = (DefaultFleetInflater) emptyFleet.getInflater();
+//            ((DefaultFleetInflaterParams) dfi.getParams()).allWeapons = true;
+//            // try to replicate ship variant as closely as possible
+//            ((DefaultFleetInflaterParams) dfi.getParams()).rProb = 0f;
+//            ((DefaultFleetInflaterParams) dfi.getParams()).averageSMods = 2;
+//        }
+//        emptyFleet.inflateIfNeeded();
+//        member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+//        member.getVariant().addPermaMod(HullMods.AUTOMATED);
+//        member.getVariant().addTag(Tags.TAG_AUTOMATED_NO_PENALTY);
 
         Vector2f spawnLoc = Misc.getPointAtRadius(ship.getLocation(),
                 ship.getCollisionRadius() + 400f + 200f * (float) Math.random());
@@ -881,8 +1051,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         boolean wasSuppressed = engine.getFleetManager(ship.getOriginalOwner()).isSuppressDeploymentMessages();
         engine.getFleetManager(ship.getOriginalOwner()).setSuppressDeploymentMessages(true);
 
-        Global.getCombatEngine().getFleetManager(ship.getOriginalOwner()).spawnFleetMember(member, spawnLoc, 90f, 0f);
-        ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOwner()).getShipFor(member);
+        ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOriginalOwner()).spawnFleetMember(member, spawnLoc, 90f, 0f);
+        //ShipAPI newShip = Global.getCombatEngine().getFleetManager(ship.getOwner()).getShipFor(member);
+        newShip.getMutableStats().getDynamic().getMod(Stats.DEPLOYMENT_POINTS_MOD).modifyMult(SotfPeople.SIRIUS_MIMIC, 0.01f);
         SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin fadeinPlugin = new SotfDaydreamSynthesizer.SotfDaydreamFadeinPlugin(newShip, 3f, ship.getFacing() - 15f + (30f * Misc.random.nextFloat()));
         fadeinPlugin.spawnText = spawnText;
         Global.getCombatEngine().addPlugin(fadeinPlugin);
@@ -913,7 +1084,17 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                 return;
             }
 
-            time += amount;
+            int dpUsed = (int) Global.getCombatEngine().getCustomData().get(USED_DP_KEY);
+            int capacity = (int) Global.getCombatEngine().getCustomData().get(CAPACITY_KEY);
+            float overclock = 1f;
+            if (dpUsed > capacity) {
+                overclock = (float) dpUsed / capacity;
+                if (overclock < OVERCLOCK_MIN_RATE) {
+                    overclock = OVERCLOCK_MIN_RATE;
+                }
+            }
+
+            time += amount * overclock;
 
             if (time >= lifespan) {
                 beginExpiring();
@@ -931,11 +1112,13 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     public static class SotfMimicDecayListener implements AdvanceableListener {
         public ShipAPI ship;
         public boolean deathThroes;
-        public float timeUntilNextArc = 1f;
+        public float timeUntilNextArc = THROES_AVERAGE_TIME;
 
         public SotfMimicDecayListener(ShipAPI ship, boolean deathThroes) {
             this.ship = ship;
             this.deathThroes = deathThroes;
+
+            ship.getFleetMember().getVariant().addTag("no_combat_chatter");
         }
 
         public void advance(float amount) {
@@ -951,14 +1134,14 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                     float thickness = 20f;
                     float coreWidthMult = 0.67f;
                     CombatEntityAPI empTarget = findTarget(ship);
-                    float sizeMult = (float) SotfMisc.forHullSize(ship, 1f, 1.35f, 1.75f, 2.5f);
+                    float sizeMult = (float) SotfMisc.forHullSize(ship, 1f, THROES_DESTROYER_MULT, THROES_CRUISER_MULT, THROES_CAPITAL_MULT);
                     if (empTarget != null) {
                         Global.getCombatEngine().spawnEmpArc(ship,
                                 ship.getShieldCenterEvenIfNoShield(),
                                 ship, empTarget,
                                 DamageType.ENERGY,
-                                100f * sizeMult,
-                                300f,
+                                THROES_DAMAGE * sizeMult,
+                                THROES_EMP,
                                 100000f,
                                 "tachyon_lance_emp_impact",
                                 12f * sizeMult,
@@ -989,9 +1172,21 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                         arc.setSingleFlickerMode();
                     }
                     float randomFactor = (float) Math.random();
-                    timeUntilNextArc = 0.6f + (0.15f * randomFactor);
+                    if (Math.random() > 0.5f) {
+                        randomFactor *= -1f;
+                    }
+                    timeUntilNextArc = THROES_AVERAGE_TIME + (0.1f * randomFactor);
                     Global.getCombatEngine().addHitParticle(ship.getLocation(), ship.getVelocity(), 60f + (30f * randomFactor), 1f, 0.35f, SotfNaniteSynthesized.COLOR_STRONGER);
                 }
+            }
+
+            // reduce instances of them blowing up allies when they decay
+            if (!getNearbyAlliesNotFighters(ship, ship.getCollisionRadius() * 2.5f).isEmpty()) {
+                ship.getMutableStats().getDynamic().getStat(Stats.EXPLOSION_DAMAGE_MULT).modifyMult("sotf_mimic_decay", 0.1f);
+                ship.getMutableStats().getDynamic().getStat(Stats.EXPLOSION_RADIUS_MULT).modifyMult("sotf_mimic_decay", 0.1f);
+            } else {
+                ship.getMutableStats().getDynamic().getStat(Stats.EXPLOSION_DAMAGE_MULT).unmodify("sotf_mimic_decay");
+                ship.getMutableStats().getDynamic().getStat(Stats.EXPLOSION_RADIUS_MULT).unmodify("sotf_mimic_decay");
             }
 
             if (AIUtils.getNearbyEnemies(ship, 700f).isEmpty() && !AIUtils.getNearbyEnemies(ship, 2000f).isEmpty()) {
@@ -1004,11 +1199,31 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
                 ship.setHitpoints(ship.getHitpoints() - (ship.getMaxHitpoints() * MIMIC_EXPIRE_RATE * amount));
             } else {
                 Global.getCombatEngine().applyDamage(ship, ship.getLocation(), 1000f, DamageType.ENERGY, 0f, true, false, ship, false);
+                for (FighterWingAPI wing : ship.getAllWings()) {
+                    for (ShipAPI fighter : wing.getWingMembers()) {
+                        Global.getCombatEngine().applyDamage(fighter, fighter.getLocation(), 1000f, DamageType.ENERGY, 0f, true, false, ship, false);
+                    }
+                }
             }
         }
 
+        public List<ShipAPI> getNearbyAlliesNotFighters(CombatEntityAPI entity, float range)
+        {
+            List<ShipAPI> allies = new ArrayList<>();
+            for (ShipAPI ally : AIUtils.getAlliesOnMap(entity))
+            {
+                if (ally.isFighter()) continue;
+                if (MathUtils.isWithinRange(entity, ally, range))
+                {
+                    allies.add(ally);
+                }
+            }
+
+            return allies;
+        }
+
         public CombatEntityAPI findTarget(ShipAPI ship) {
-            float range = 750f + ship.getCollisionRadius();
+            float range = THROES_RANGE + ship.getShieldRadiusEvenIfNoShield();
             Vector2f from = ship.getLocation();
 
             Iterator<Object> iter = Global.getCombatEngine().getAllObjectGrid().getCheckIterator(from,

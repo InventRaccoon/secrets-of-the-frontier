@@ -45,10 +45,11 @@
 	
 	"designTypeColors":{
 		"Anomalous Phase-Tech":[205,155,255,255],
-		"Dreaming Gestalt":[255,255,255,255],
 		"Dustkeeper Contingency":[20,255,178,255],
 		"Dustkeeper Proxies":[20,255,178,155],
 		"Symphony":[205,155,255,255],
+		"Dreaming Gestalt":[215,235,255,255],
+		"Cult of the Daydream":[215,235,255,255],
 	},
 	
 	"sierraTextColor":[205,155,255,255],
@@ -171,6 +172,8 @@
 		"fx":{
 			"sotf_trail_weave":"graphics/fx/sotf_contrail_weave.png",
 			"sotf_soulbond_beam":"graphics/fx/beam_weave_core.png",
+			"sotf_whirl_1":"graphics/fx/sotf_whirl_1.png",
+			"sotf_whirl_2":"graphics/fx/sotf_whirl_2.png",
 			# 0.95.1a - non-right-click phase cloaks need glows manually loaded
 			#"sotf_syzygy_highlight":"graphics/ships/sierra/sotf_syzygy_glow1.png",
 			#"sotf_syzygy_diffuse":"graphics/ships/sierra/sotf_syzygy_glow2.png",
@@ -192,6 +195,8 @@
 			
 			"sotf_covenant_highlight":"graphics/ships/sierra/sotf_pledge_glow1.png",
 			"sotf_covenant_diffuse":"graphics/ships/sierra/sotf_pledge_glow2.png",
+			
+			"sotf_thorn_glow":"graphics/ships/dreaming/sotf_thorn_glow.png",
 			
 			"sotf_spirit_ward_1":"graphics/fx/sotf_spirit_ward_noise1.png",
 			"sotf_spirit_ward_2":"graphics/fx/sotf_spirit_ward_noise2.png",

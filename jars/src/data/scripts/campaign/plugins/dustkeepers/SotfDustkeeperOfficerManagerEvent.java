@@ -22,6 +22,7 @@ import com.fs.starfarer.api.util.TimeoutTracker;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.utils.SotfMisc;
 import org.apache.log4j.Logger;
 
 import java.awt.*;
@@ -83,7 +84,7 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 		if (market.isPlanetConditionMarketOnly()) return;
 		if (!market.isInEconomy()) return;
 		if (!market.getFactionId().equals(SotfIDs.DUSTKEEPERS)) return;
-		if (Global.getSector().getFaction(SotfIDs.DUSTKEEPERS).getRelationshipLevel(Factions.PLAYER).isAtBest(RepLevel.FAVORABLE)) return;
+		//if (Global.getSector().getFaction(SotfIDs.DUSTKEEPERS).getRelationshipLevel(Factions.PLAYER).isAtBest(RepLevel.FAVORABLE)) return;
 		
 		pruneFromRemovedMarkets();
 		
@@ -122,6 +123,10 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 	
 	public void advance(float amount) {
 		float days = Global.getSector().getClock().convertToDays(amount);
+
+		if (Global.getSettings().isDevMode()) {
+			days *= 15f;
+		}
 		
 		recentlyChecked.advance(days);
 		
@@ -209,9 +214,9 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 		}
 
 		// only if player has beaten him and turned in his chip to Haven
-		//if (Global.getSector().getMemoryWithoutUpdate().contains("sotf_turnedInBarrow")) {
-		//	picker.add(SotfPeople.BARROW);
-		//}
+		if (Global.getSector().getMemoryWithoutUpdate().contains("$sotf_turnedInBarrow")) {
+			picker.add(SotfPeople.BARROW, 10f);
+		}
 
 		for (String potential : picker.clone().getItems()) {
 			if (Global.getSector().getMemoryWithoutUpdate().contains("$sotf_dkomeHired_" + potential)) {
@@ -299,7 +304,7 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 				Global.getSector().getMemoryWithoutUpdate().set("$sotf_dkomeHired_" + officer.person.getId(), true);
 			}
 		} else if (action.equals("hasAutomated")) {
-			return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE);
+			return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE) || SotfMisc.playerHasNoAutoPenaltyShip();
 		}
 		
 		return true;

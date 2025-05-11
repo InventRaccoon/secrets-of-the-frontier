@@ -48,9 +48,7 @@ public class SotfPolarizedNanorepair {
 
 	public static class Desc implements DescriptionSkillEffect {
 		public String getString() {
-			return "\n*Ships without a shield or a phase cloak are treated as always having " + (int) NON_SHIELD_FLUX_LEVEL +
-					"% hard flux. Normally, a damaged but functional module will not be repaired until 5 seconds have passed " +
-					"without it taking damage.";
+			return "\n*Considers shieldless, cloakless ships as 50% hard flux. Typically, there is a 5 second delay on repairing damaged modules.";
 		}
 		public Color[] getHighlightColors() {
 			Color h = Misc.getHighlightColor();

@@ -12,6 +12,7 @@ import com.fs.starfarer.api.ui.Alignment;
 import com.fs.starfarer.api.ui.LabelAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.combat.CombatEngine;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.combat.SotfAuraVisualScript;
 import data.scripts.utils.SotfMisc;
@@ -34,6 +35,9 @@ public class SotfSoulbond extends SotfBaseConcordAugment
         }
 
         CombatEngineAPI engine = Global.getCombatEngine();
+//        CombatEngine combatEngine = (CombatEngine) engine;
+//        combatEngine.add
+
         if (engine.getPlayerShip() == null) {
             return;
         }
@@ -90,8 +94,13 @@ public class SotfSoulbond extends SotfBaseConcordAugment
 
         tooltip.addPara("- Capital ships cannot be dragged with this subsystem.", opad, new Color[]{h, bad}, "Capital ships", "cannot be dragged");
         tooltip.addPara("- Cannot be used if Sierra's ship is also the flagship.", pad);
-        tooltip.addPara("- On activation, Sierra's ship builds hard flux equal to %s of its base flux capacity (%s flux).", pad, h,
-                "" + (int) (SotfSoulbondSubsystem.FLUX_BUILDUP_PERCENT * 100f) + "%", "" + (int) (SotfSoulbondSubsystem.FLUX_BUILDUP_PERCENT * ship.getHullSpec().getFluxCapacity()));
+        if (ship != null) {
+            tooltip.addPara("- On activation, Sierra's ship builds hard flux equal to %s of its base flux capacity (%s flux).", pad, h,
+                    "" + (int) (SotfSoulbondSubsystem.FLUX_BUILDUP_PERCENT * 100f) + "%", "" + (int) (SotfSoulbondSubsystem.FLUX_BUILDUP_PERCENT * ship.getHullSpec().getFluxCapacity()));
+        } else {
+            tooltip.addPara("- On activation, Sierra's ship builds hard flux equal to %s of its base flux capacity.", pad, h,
+                    "" + (int) (SotfSoulbondSubsystem.FLUX_BUILDUP_PERCENT * 100f) + "%");
+        }
         tooltip.addPara("- Must recharge for %s between uses.", pad, h, "" + (int) SotfSoulbondSubsystem.BASE_COOLDOWN + " seconds");
         //tooltip.addPara("- Brief temporal distortion causes both ships to experience time more slowly for a few seconds at the sequence's end", pad, h, "experience time more slowly");
 

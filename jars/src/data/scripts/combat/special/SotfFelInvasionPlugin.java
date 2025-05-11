@@ -251,6 +251,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 if (!didInitCallout) return;
                 if (ship == null) return;
                 if (engine.getPlayerShip() == null) return;
+                if (!engine.isUIShowingHUD()) return;
                 ShipAPI player = engine.getPlayerShip();
 
                 float angle = Misc.getAngleInDegrees(player.getLocation(), ship.getLocation());
@@ -265,12 +266,18 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 //                    toUse.setFontSize(20);
                     int alpha = Math.round(255 * fadeIn * fadeOut * (1f - (fadeBounce * 0.3f)));
 
-                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
                     toUse.setText(SotfMisc.glitchify(threatDetected, glitchChance));
                     toUse.setAnchor(LazyFont.TextAnchor.CENTER);
                     //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
                     toUse.setAlignment(LazyFont.TextAlignment.CENTER);
-                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x), viewport.convertWorldYtoScreenY(player.getLocation().y + player.getShieldRadiusEvenIfNoShield() * 1.25f));
+                    Vector2f pos = new Vector2f(
+                            viewport.convertWorldXtoScreenX(player.getLocation().x),
+                            viewport.convertWorldYtoScreenY(player.getLocation().y + player.getShieldRadiusEvenIfNoShield() * 1.25f)
+                    );
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.draw(pos);
                     //toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
 
                     String text = SotfMisc.glitchify("ASSESSING TRAITS:" + skillsText, glitchChance);
@@ -278,14 +285,28 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                     toUse.setText(text);
                     toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
                     toUse.setAlignment(LazyFont.TextAlignment.LEFT);
-                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x + player.getShieldRadiusEvenIfNoShield() * 1.25f), viewport.convertWorldYtoScreenY(player.getLocation().y));
+                    pos = new Vector2f(
+                            viewport.convertWorldXtoScreenX(player.getLocation().x + player.getShieldRadiusEvenIfNoShield() * 1.25f),
+                            viewport.convertWorldYtoScreenY(player.getLocation().y)
+                    );
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.draw(pos);
 
                     text = SotfMisc.glitchify("HOST SHIP:\n" + ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
                     //text += ":\n" + SotfMisc.glitchify(ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
                     toUse.setText(text);
                     toUse.setAnchor(LazyFont.TextAnchor.CENTER_RIGHT);
                     toUse.setAlignment(LazyFont.TextAlignment.RIGHT);
-                    toUse.draw(viewport.convertWorldXtoScreenX(player.getLocation().x - player.getShieldRadiusEvenIfNoShield() * 1.25f), viewport.convertWorldYtoScreenY(player.getLocation().y));
+                    pos = new Vector2f(
+                            viewport.convertWorldXtoScreenX(player.getLocation().x - player.getShieldRadiusEvenIfNoShield() * 1.25f),
+                            viewport.convertWorldYtoScreenY(player.getLocation().y)
+                    );
+                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                    toUse.draw(pos.x + 1, pos.y - 1);
+                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.draw(pos);
                 }
             }
 
@@ -914,7 +935,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             if (valid_member.isFrigate() && memberFleetPointValue >= 12) {
                 memberFleetPointValue += 10f;
             }
-            if (memberFleetPointValue < (highest * 0.5f)) continue;
+            if (memberFleetPointValue < (highest * 0.8f)) continue;
             picker.add(valid_member, memberFleetPointValue * memberFleetPointValue);
         }
         host = picker.pick();

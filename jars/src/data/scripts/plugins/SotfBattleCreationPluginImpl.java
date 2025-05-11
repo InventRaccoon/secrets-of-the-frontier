@@ -938,16 +938,24 @@ public class SotfBattleCreationPluginImpl implements BattleCreationPlugin {
 			}
 
 			try {
-				if (!row.getString("flag").isBlank() && !Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("flag"))) {
-					should_add_objective = false;
+				if (!row.getString("flag").isBlank()) {
+					for (String flag : row.getString("flag").split("(, *)")) {
+						if (!Global.getSector().getMemoryWithoutUpdate().contains("$" + flag)) {
+							should_add_objective = false;
+						}
+					}
 				}
 			} catch (JSONException ex) {
 				log.info("no memory flag check for objective ID " + row.getString("id"));
 			}
 
 			try {
-				if (!row.getString("not_flag").isBlank() && Global.getSector().getMemoryWithoutUpdate().contains("$" + row.getString("not_flag"))) {
-					should_add_objective = false;
+				if (!row.getString("not_flag").isBlank()) {
+					for (String flag : row.getString("not_flag").split("(, *)")) {
+						if (Global.getSector().getMemoryWithoutUpdate().contains("$" + flag)) {
+							should_add_objective = false;
+						}
+					}
 				}
 			} catch (JSONException ex) {
 				log.info("no memory flag anti-check for objective ID " + row.getString("id"));

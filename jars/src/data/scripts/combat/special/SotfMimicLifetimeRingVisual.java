@@ -48,6 +48,7 @@ public class SotfMimicLifetimeRingVisual extends BaseCombatLayeredRenderingPlugi
 
     public void render(CombatEngineLayers layer, ViewportAPI viewport) {
         if (ship == null) return;
+        if (!Global.getCombatEngine().isUIShowingHUD()) return;
 
         if (layer == CombatEngineLayers.ABOVE_SHIPS_LAYER) {
             renderRing(ship.getLocation().x, ship.getLocation().y, ship.getShieldRadiusEvenIfNoShield() + 30f, 8f, 0.75f * ship.getExtraAlphaMult2() * fade, segments, atmosphereTex, SotfNaniteSynthesized.COLOR, false, false);

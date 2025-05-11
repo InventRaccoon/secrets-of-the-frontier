@@ -114,6 +114,13 @@ public class SotfOfficerConvoPlugin extends BaseEveryFrameCombatPlugin {
         for (SotfOfficerConvoData data : SotfModPlugin.CONVERSATIONS) {
             boolean canAdd = true;
             for (String id : data.officers) {
+                // specialcase for Sirius
+                if (id.equals(SotfPeople.SIRIUS) && engine.isInCampaign()) {
+                    MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
+                    if (sector_mem.contains(SotfIDs.MEM_COTL_START)) {
+                        continue;
+                    }
+                }
                 if (!officerIds.contains(id)) {
                     canAdd = false;
                     break;
@@ -170,6 +177,11 @@ public class SotfOfficerConvoPlugin extends BaseEveryFrameCombatPlugin {
         for (String id : data.officers) {
             if (!map.containsKey(id)) {
                 for (FleetMemberAPI member : engine.getFleetManager(0).getDeployedCopy()) {
+                    // specialcase for Sirius: doesn't chat with a ship
+                    if (id.equals(SotfPeople.SIRIUS)) {
+                        map.put(id, null);
+                        continue;
+                    }
                     if (member.getCaptain() != null) {
                         if (!member.getCaptain().isDefault() && member.getCaptain().getId().equals(id)) {
                             map.put(id, engine.getFleetManager(0).getShipFor(member));
@@ -188,6 +200,13 @@ public class SotfOfficerConvoPlugin extends BaseEveryFrameCombatPlugin {
                 params.colors.put(colorsPos, SotfMisc.getSierraColor());
                 params.classColorOverride.put(colorsPos, true);
                 params.classColorOverrides.put(colorsPos, SotfMisc.getSierraColor());
+            }
+            if (id.equals(SotfPeople.SIRIUS)) {
+                params.colors.put(colorsPos, Global.getSettings().getFactionSpec(SotfIDs.DREAMING_GESTALT).getColor());
+                // specialcase for Sirius: no ship used
+                params.siriusOverride.put(colorsPos, true);
+                params.classColorOverride.put(colorsPos, true);
+                params.classColorOverrides.put(colorsPos, Global.getSettings().getFactionSpec(SotfIDs.DREAMING_GESTALT).getColor());
             }
             colorsPos++;
         }

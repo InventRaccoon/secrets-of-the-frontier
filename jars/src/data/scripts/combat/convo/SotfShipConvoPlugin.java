@@ -28,9 +28,11 @@ public class SotfShipConvoPlugin extends BaseEveryFrameCombatPlugin {
         public List<String> strings;
         public List<Float> delays;
         public Map<Integer, Color> colors = new HashMap<>();
-        public Map<Integer, Boolean> shipClass = new HashMap<>();;
-        public Map<Integer, Boolean> classColorOverride = new HashMap<>();;
-        public Map<Integer, Color> classColorOverrides = new HashMap<>();;
+        public Map<Integer, Boolean> shipClass = new HashMap<>();
+        public Map<Integer, Boolean> classColorOverride = new HashMap<>();
+        public Map<Integer, Color> classColorOverrides = new HashMap<>();
+
+        public Map<Integer, Boolean> siriusOverride = new HashMap<>();
 
         public SotfShipConvoParams() {
         }
@@ -65,6 +67,27 @@ public class SotfShipConvoPlugin extends BaseEveryFrameCombatPlugin {
         progress += amount * engine.getTimeMult().getModifiedValue();
 
         if (progress < currDelay) return;
+
+        // specialcased for Sirius bcs he doesn't have a ship
+        if (p.siriusOverride.get(stage) != null && p.siriusOverride.get(stage)) {
+            Color shipNameColor = Misc.getPositiveHighlightColor();
+            if (p.classColorOverride.get(stage) != null && p.classColorOverride.get(stage)) {
+                shipNameColor = p.classColorOverrides.get(stage);
+            }
+            Color textColor = p.colors.get(stage);
+            if (textColor == null) textColor = Misc.getTextColor();
+
+            engine.getCombatUI().addMessage(0, shipNameColor, "Sirius: ", textColor, "\"" + p.strings.get(stage) + "\"");
+
+            currDelay = p.delays.get(stage);
+            progress = 0;
+            stage++;
+            if ((stage + 1) > p.ships.size()) {
+                progress = -99999f;
+                engine.removePlugin(this);
+            }
+            return;
+        }
 
         ShipAPI ship = p.ships.get(stage);
         if (ship == null || !ship.isAlive()) {

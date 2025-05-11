@@ -1,0 +1,45 @@
+{
+  "variantId": "sotf_thorn_Gatekeeper",
+  "hullId": "sotf_thorn",
+  "displayName": "Gatekeeper",
+  "goalVariant": true,
+  "fluxCapacitors": 6,
+  "fluxVents": 10,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "phasebeam"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 006": "gorgon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "lightneedler",
+        "WS 003": "lightneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "sotf_lethargy",
+        "WS 005": "sotf_lethargy"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -18,6 +18,7 @@ import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySp
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.utils.SotfMisc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class SotfNightingaleCMD extends BaseCommandPlugin
             case "checkLostThreadMissionStart":
                 return inkyFleet != null;
             case "hasAutomated":
-                return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE);
+                return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE) || SotfMisc.playerHasNoAutoPenaltyShip();
             case "chatterSemiVerbal":
                 inky.getMemoryWithoutUpdate().set("$chatterChar", "sotf_nightingale_2");
                 return true;

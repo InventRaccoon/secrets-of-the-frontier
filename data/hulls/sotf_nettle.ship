@@ -11,6 +11,9 @@
   "shieldCenter": [1, -0],
   "shieldRadius": 19,
   "viewOffset": 0,
+  "builtInMods": [
+    "sotf_daydreamhull"
+  ],
   "weaponSlots": [
     {
       "id": "WS 001",

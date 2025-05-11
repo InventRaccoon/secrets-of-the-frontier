@@ -1,0 +1,51 @@
+{
+	"id":"sotf_chalice_proxmine_proj",
+	"specClass":"missile",	
+	"missileType":"PHASE_MINE",
+	"sprite":"graphics/fx/empty.png",
+	"size":[4,4],	
+	"center":[2,2],
+	"collisionRadius":14,
+	"collisionClass":"MISSILE_NO_FF",
+	"explosionColor":[180,255,50,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":80, # purely visual
+	"alwaysAccelerate":true,
+	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"noEngineGlowTime":0, # time spent without the engine glow being rendered
+	"fadeTime":0.5, # fadeout duration
+	#"glowColor":[180,255,0,125],
+	"glowColor":[105,255,195,125],
+	"engineSpec":{
+				  #"turnAcc":150,
+				  #"turnRate":70,
+				  #"acc":200,
+				  #"dec":100},
+				  "turnAcc":50,
+				  "turnRate":35,
+				  "acc":150,
+				  "dec":125},
+	"behaviorSpec":{"behavior":"PROXIMITY_FUSE",
+					"range":250,
+					"slowToMaxSpeed":false,
+					"delay":2,
+					"pingSound":"sound_none",
+					"pingColor":[105,255,195,255],
+					"pingRadius":450,
+					"pingDuration":0.25,
+					"windupSound":"sotf_chalice_mine_windup",
+					"windupDelay":1,
+					"explosionSpec":{"duration":0.1f,
+									 "radius":250,
+									 "coreRadius":200, # full damage within core radius
+									 "collisionClass":MISSILE_FF,
+									 "collisionClassByFighter":MISSILE_FF,
+									 "particleSizeMin":3.0,
+									 "particleSizeRange":3.0,
+									 "particleDuration":1,
+									 "particleCount":200,
+									 "particleColor":[75,215,155,255],
+									 "explosionColor":[75,215,155,255],
+									 "useDetailedExplosion":true,
+									 "sound":"unstable_fragment_explosion"},
+					}
+}

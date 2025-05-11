@@ -39,7 +39,7 @@ Removes the ship's shield emitter. The ship passively regenerates %s armor per s
 
 Unfinished content. You're not supposed to see this!",No shield. Armor regenerates and is more resistant.,,graphics/hullmods/sotf_lifedrinker.png
 ,,,,,,,,,,,,,,,,,,,
-# DUSTKEEPER AUX,,,,,,,,,,,,,,,,,,,
+# DUSTKEEPERS,,,,,,,,,,,,,,,,,,,
 Dustkeeper Proxy,sotf_aux_assault,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxAssault,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
 
 Included is an %s or %s, and an improved %s. Individual class-specific upgrade packages may include improvements to hull and armor integrity, reactor specifications and engine performance.
@@ -55,14 +55,22 @@ Shock Package,sotf_aux_shock,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,
 Upon reaching maximum flux or falling below %s hull, the drone's reactor enters a self-detonation sequence. This disables all safeties (akin to the %s hullmod) and causes the drone to begin emitting shield-piercing EMP arcs at nearby hostiles, damaging itself in the process.
 
 On destruction, the drone detonates, dealing %s energy damage in a wide radius. All vessels hit by the explosion have their flux increased by %s of their flux capacity, divided equally between soft and hard flux, and are subject to severe EMP damage.","Flies towards enemies, shoots them, then EMPs them and explode.",,graphics/hullmods/sotf_proxy_shock.png
-,,,,,,,,,,,,,,,,,,,
 Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfCyberwarfareSuite,This ship features an extensive suite of computing arrays and electronic warfare systems designed to break into hostile networks and execute cyberwarfare attacks.,"Increases hull integrity, armor, and flux capacity.",,graphics/hullmods/distributed_fire_control.png
+,,,,,,,,,,,,,,,,,,,
+# DREAMING GESTALT,,,,,,,,,,,,,,,,,,,
 Daydream Synthesizer,sotf_daydream_synthesizer,3,0,Dreaming Gestalt,"req_spaceport, special, no_build_in, no_drop, no_drop_salvage,  codex_unlockable, restricted","Special, Requires Dock",,,,,8,16,30,50,data.hullmods.SotfDaydreamSynthesizer,<Description written in script>,A nanite swarm forms a copy of the ship at the start of combat.,,graphics/hullmods/sotf_daydream_synthesizer.png
-Elite Pilots,sotf_elitepilots,,,,,,,,,TRUE,0,0,0,0,data.hullmods.SotfElitePilots,"This fighter's pilot is exceptionally skilled and gains the benefit of non-elite Helmsmanship, Impact Mitigation and Gunnery Implants.",Exceptionally skilled fighter pilot.,,graphics/hullmods/assault_package.png
+Daydream Systems,sotf_daydreamhull,,,Cult of the Daydream,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfDaydreamHull,"Designed as part of an enigmatic exotic-warfare program intended to combat extradimensional threats, specialized fields tuning algorithms reduce harm from certain harmful phenomena and emanations.
+
+Decreases EMP damage taken by %s. Reduces the chance of shields being pierced by weapons such as the Ion Beam by %s.
+
+Also %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Resistant to EMP effects.,,graphics/hullmods/sotf_daydreamhull.png
+Nanite-Synthesized,sotf_nanite_synthesized,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNaniteSynthesized,This ship was created by a nanite swarm assembling into the form of a warship.,Ship was synthesized by a nanite swarm.,,
+,,,,,,,,,,,,,,,,,,,
+Elite Pilots,sotf_elitepilots,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfElitePilots,"This fighter's pilot is exceptionally skilled and gains the benefit of non-elite Helmsmanship, Impact Mitigation and Gunnery Implants.",Exceptionally skilled fighter pilot.,,graphics/hullmods/assault_package.png
 ,,,,,,,,,,,,,,,,,,,
 Can't Vent,sotf_noventing,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNoVenting,Can't vent.,Can't vent.,,graphics/hullmods/flux_coil_adjunct.png
 Tarnished Fighters,sotf_fighteroverlay,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfFighterOverlay,Applies d-hull overlay to spawned fighters.,Fighters have an overlay.,,graphics/hullmods/flux_coil_adjunct.png
-Nanite-Synthesized,sotf_nanite_synthesized,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNaniteSynthesized,This ship was created by a nanite swarm assembling into the form of a warship.,Ship was synthesized by a nanite swarm.,,
+Volition Swarm,sotf_volitionswarm,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfVolitionSwarm,This ship is a volition swarm.,Volition swarm.,,
 Phantasmal,sotf_phantasmalship,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfPhantasmalShip,Bound to adjacent realities. How can one kill that which doesn't exist?,"Can't be killed, only banished.",,
 Wisptender,sotf_wisptender,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfWisptender,This one calls out to the wisps and invites them to dance.,Fighter deaths awaken wisps.,,
 Wispblossom,sotf_wispblossom,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfWispblossom,"This one shows grace in its exit, inviting a wisp to take its place.",Create wisps on death.,,

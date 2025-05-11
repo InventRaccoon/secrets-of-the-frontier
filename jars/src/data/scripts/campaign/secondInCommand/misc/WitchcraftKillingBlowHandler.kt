@@ -38,11 +38,19 @@ class WitchcraftKillingBlowHandler : DamageListener {
 
             if (data.isSkillActive("sotf_agony_encore")) {
 
+                var count = when(target.hullSize) {
+                    ShipAPI.HullSize.FRIGATE -> 5f
+                    ShipAPI.HullSize.DESTROYER -> 7f
+                    ShipAPI.HullSize.CRUISER -> 8f
+                    ShipAPI.HullSize.CAPITAL_SHIP -> 10f
+                    else -> 0f
+                }
+
                 var listener = source.getListeners(AgonyEncore.AgonyEncoreListener::class.java).firstOrNull()
                 if (listener == null) {
-                    source.addListener(AgonyEncore.AgonyEncoreListener(source))
+                    source.addListener(AgonyEncore.AgonyEncoreListener(source, count))
                 } else {
-                    listener.duration = min(15f, listener.duration + 10f);
+                    listener.duration = min(15f, listener.duration + count);
                 }
 
             } else if (data.isSkillActive("sotf_tend_to_our_garden")) {

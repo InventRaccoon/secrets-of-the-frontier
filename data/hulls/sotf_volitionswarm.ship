@@ -1,0 +1,26 @@
+{
+  "hullName": "Volition Swarm",
+  "hullId": "sotf_volitionswarm",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/nothing.png",
+  "style": "HIGH_TECH",
+  "builtInMods": [
+        "sotf_volitionswarm",
+		"vastbulk"
+   ],
+  "height": 8,
+  "width": 8,
+  "center": [4, 4],
+  "collisionRadius": 10.5,
+  "shieldCenter": [0, -0],
+  "shieldRadius": 10,
+  "viewOffset": 0,
+  "weaponSlots": [],
+  "engineSlots": [],
+  "bounds": [
+    3, -3,
+    -3, -3,
+    -3, 3,
+    3, 3
+  ]
+}

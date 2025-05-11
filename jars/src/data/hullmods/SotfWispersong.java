@@ -120,7 +120,7 @@ public class SotfWispersong extends SotfBaseConcordAugment
         LabelAPI label = tooltip.addPara("\"Life and death are siblings in cycle. Where there is one, the other will follow.\"", SotfMisc.getSierraColor().darker(), opad);
         label.italicize();
         tooltip.addPara("   - Sierra-Nought-Bravo", gray, opad);
-        label = tooltip.addPara("\"The Spacial Agitation Resonator intentionally damages the fabric of reality in order to " +
+        label = tooltip.addPara("\"The Spatial Agitation Resonator intentionally damages the fabric of reality in order to " +
                 "generate autonomous and possibly sentient EM-anomalies hell-bent on their own violent proliferation. I " +
                 "refuse to refer to it by a designation incorporating a pun, but she can call it whatever she wants as long as she's the one with " +
                 "the arcane nightmare machine strapped to her liver.\"", gray, opad);

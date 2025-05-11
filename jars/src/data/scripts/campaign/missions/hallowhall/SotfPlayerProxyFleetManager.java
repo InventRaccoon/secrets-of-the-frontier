@@ -56,6 +56,7 @@ public class SotfPlayerProxyFleetManager implements RouteManager.RouteFleetSpawn
 	public void advance(float amount) {
 		if (market == null) return;
 
+		if (!market.getFactionId().equals(Factions.PLAYER)) return;
 		if (!market.hasSpaceport()) return;
 
 		float days = Global.getSector().getClock().convertToDays(amount);

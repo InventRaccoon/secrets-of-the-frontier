@@ -7,6 +7,7 @@ import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketConditionAPI;
 import com.fs.starfarer.api.impl.campaign.econ.BaseMarketConditionPlugin;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -33,7 +34,8 @@ public class SotfProxyPatrolsCondition extends BaseMarketConditionPlugin {
 
 	@Override
 	public void advance(float amount) {
-		if (market.getFaction().isAtBest(SotfIDs.DUSTKEEPERS, RepLevel.HOSTILE) || market.getSize() < 4) {
+		if (market.getFaction().isAtBest(SotfIDs.DUSTKEEPERS, RepLevel.HOSTILE) || market.getSize() < 4
+				|| !market.getFactionId().equals(Factions.PLAYER)) {
 			market.removeSpecificCondition(condition.getIdForPluginModifications());
 			return;
 		}

@@ -8,6 +8,7 @@ import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.impl.campaign.shared.WormholeManager;
 import com.fs.starfarer.api.impl.campaign.terrain.HyperspaceAbyssPluginImpl;
+import data.scripts.campaign.ids.SotfIDs;
 
 import java.awt.*;
 import java.util.Random;
@@ -63,11 +64,13 @@ public class SotfLightOfTheLake {
 
 		StarSystemGenerator.addStableLocations(system, 1);
 
-		for (SectorEntityToken curr : system.getEntitiesWithTag(Tags.STABLE_LOCATION)) {
-			SpecialItemData item = WormholeManager.createWormholeAnchor("sotf_lotl", "sotf_acheron", "Acheron");
-			JumpPointAPI wormhole = WormholeManager.get().addWormhole(item, curr, null);
-			wormhole.getMemoryWithoutUpdate().unset(JumpPointInteractionDialogPluginImpl.UNSTABLE_KEY);
-			break;
+		if (!Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.MEM_HAUNTED_START)) {
+			for (SectorEntityToken curr : system.getEntitiesWithTag(Tags.STABLE_LOCATION)) {
+				SpecialItemData item = WormholeManager.createWormholeAnchor("sotf_lotl", "sotf_acheron", "Acheron");
+				JumpPointAPI wormhole = WormholeManager.get().addWormhole(item, curr, null);
+				wormhole.getMemoryWithoutUpdate().unset(JumpPointInteractionDialogPluginImpl.UNSTABLE_KEY);
+				break;
+			}
 		}
 
 		system.autogenerateHyperspaceJumpPoints(true, true);

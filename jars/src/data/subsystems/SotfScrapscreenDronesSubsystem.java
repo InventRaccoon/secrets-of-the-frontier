@@ -16,15 +16,15 @@ import org.magiclib.subsystems.drones.MagicDroneSubsystem;
  */
 public class SotfScrapscreenDronesSubsystem extends MagicDroneSubsystem {
 
-    public static int DRONES_FRIGATE = 12;
-    public static int DRONES_DESTROYER = 16;
-    public static int DRONES_CRUISER = 18;
-    public static int DRONES_CAPITAL = 28;
+//    public static int DRONES_FRIGATE = 12;
+//    public static int DRONES_DESTROYER = 16;
+//    public static int DRONES_CRUISER = 18;
+//    public static int DRONES_CAPITAL = 28;
 
-//    public static int DRONES_FRIGATE = 6;
-//    public static int DRONES_DESTROYER = 8;
-//    public static int DRONES_CRUISER = 10;
-//    public static int DRONES_CAPITAL = 12;
+    public static int DRONES_FRIGATE = 6;
+    public static int DRONES_DESTROYER = 8;
+    public static int DRONES_CRUISER = 10;
+    public static int DRONES_CAPITAL = 12;
 
     public SotfScrapscreenDronesSubsystem(ShipAPI ship) {
         super(ship);
@@ -53,13 +53,13 @@ public class SotfScrapscreenDronesSubsystem extends MagicDroneSubsystem {
     @Override
     public float getBaseChargeRechargeDuration() {
         if (ship.isDestroyer()) {
-            return 7f;
+            return 8f;
         } else if (ship.isCruiser()) {
-            return 6f;
+            return 7f;
         } else if (ship.isCapital()) {
-            return 5f;
+            return 6f;
         }
-        return 8f;
+        return 9f;
     }
 
     @Override
@@ -78,6 +78,7 @@ public class SotfScrapscreenDronesSubsystem extends MagicDroneSubsystem {
         sprite.setTexHeight(0.25f);
         sprite.setTexX(i * 0.25f);
         sprite.setTexY(j * 0.25f);
+        sprite.setSize(64f, 64f);
         fighter.setSprite(sprite);
 
         return fighter;
@@ -148,7 +149,7 @@ public class SotfScrapscreenDronesSubsystem extends MagicDroneSubsystem {
 
     @Override
     public DroneFormation getDroneFormation() {
-        return new SotfSpinningCircleFormation();
+        return new SotfScrapscreenFormation();
         //return new HoveringFormation();
     }
 }

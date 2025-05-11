@@ -112,7 +112,7 @@ public class SotfMiaSystem {
 		SectorEntityToken astropolis = system.addCustomEntity("sotf_hallowhall_astropolis",
 				"Abandoned Astropolis", "station_side06", Factions.NEUTRAL);
 
-		astropolis.setCircularOrbitPointingDown(planet2, 45, 300, 50);
+		astropolis.setCircularOrbitPointingDown(planet2, 45, 300, 90);
 
 		Misc.setAbandonedStationMarket("sotf_hallow_astropolis_market", astropolis);
 		astropolis.setCustomDescriptionId("sotf_hallow_astropolis");

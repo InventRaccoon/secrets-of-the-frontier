@@ -18,10 +18,12 @@ import org.dark.shaders.distortion.RippleDistortion;
 import org.lazywizard.lazylib.FastTrig;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
+import org.magiclib.subsystems.CombatUI;
 import org.magiclib.subsystems.MagicSubsystem;
 import org.magiclib.subsystems.MagicSubsystemsManager;
 import org.magiclib.util.MagicAnim;
 import org.magiclib.util.MagicRender;
+import org.magiclib.util.MagicTxt;
 
 import java.awt.*;
 import java.util.List;
@@ -531,5 +533,61 @@ public class SotfSoulbondSubsystem extends MagicSubsystem {
                 ship.removeListener(this);
             }
         }
+    }
+
+    @Override
+    public void drawHUDBar(ViewportAPI viewport, Vector2f rootLoc, Vector2f barLoc, boolean displayAdditionalInfo, float longestNameWidth) {
+        String nameText = getDisplayText();
+        String keyText = getKeyText();
+
+        if (!displayAdditionalInfo && !keyText.equals(BLANK_KEY)) {
+            nameText = MagicTxt.getString("subsystemNameWithKeyText", nameText, keyText);
+        }
+
+        boolean displayStateText = true;
+        if (requiresTarget()) {
+            if (ship.getShipTarget() == null) {
+                displayStateText = false;
+            } else if (targetOnlyEnemies() && ship.getOwner() == ship.getShipTarget().getOwner()) {
+                displayStateText = false;
+            } else if (calcRange() >= 0 && MathUtils.getDistance(ship, ship.getShipTarget()) > calcRange()) {
+                displayStateText = false;
+            }
+        }
+
+        if (getFluxCostFlatOnActivation() > 0f) {
+            if (ship.getFluxTracker().getCurrFlux() + getFluxCostFlatOnActivation() >= ship.getFluxTracker().getMaxFlux()) {
+                displayStateText = false;
+            }
+        }
+
+        if (getFluxCostPercentOnActivation() > 0f) {
+            if (ship.getFluxTracker().getCurrFlux() + getFluxCostPercentOnActivation() * ship.getHullSpec().getFluxCapacity() >= ship.getFluxTracker().getMaxFlux()) {
+                displayStateText = false;
+            }
+        }
+
+        String stateText = getStateText();
+        if (!displayStateText) {
+            stateText = null;
+        }
+
+        float additionalBarPadding = Math.max(0f, longestNameWidth - CombatUI.STATUS_BAR_PADDING);
+        CombatUI.drawSubsystemStatus(
+                ship,
+                getBarFill(),
+                nameText,
+                getHUDColor(),
+                getExtraInfoText(),
+                getExtraInfoColor(),
+                stateText,
+                keyText,
+                getBriefText(),
+                displayAdditionalInfo,
+                getNumHUDBars(),
+                barLoc,
+                additionalBarPadding,
+                rootLoc
+        );
     }
 }

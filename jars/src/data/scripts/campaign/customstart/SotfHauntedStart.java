@@ -69,8 +69,6 @@ public class SotfHauntedStart extends CustomStart {
         addFleetMember("hound_d_pirates_Shielded", dialog, data, tempFleet, "none");
         addFleetMember("mudskipper2_Hellbore", dialog, data, tempFleet, "bait");
 
-        data.getStartingCargo().getCredits().add(10000);
-        AddRemoveCommodity.addCreditsGainText(10000, dialog.getTextPanel());
         MutableCharacterStatsAPI stats = data.getPerson().getStats();
         stats.addPoints(2);
 
@@ -85,8 +83,8 @@ public class SotfHauntedStart extends CustomStart {
         dialog.getTextPanel().highlightInLastPara(Misc.getHighlightColor(), "bonus skill point");
         dialog.getTextPanel().setFontInsignia();
 
-        data.getStartingCargo().getCredits().add(15000);
-        AddRemoveCommodity.addCreditsGainText(15000, dialog.getTextPanel());
+        data.getStartingCargo().getCredits().add(25000);
+        AddRemoveCommodity.addCreditsGainText(25000, dialog.getTextPanel());
 
         tempFleet.getFleetData().setSyncNeeded();
         tempFleet.getFleetData().syncIfNeeded();
