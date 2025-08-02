@@ -52,7 +52,7 @@ public class SotfReverieCMD extends BaseCommandPlugin {
                     }
                 }
                 return true;
-            case "cotlHardeMode":
+            case "cotlHardMode":
                 SotfMisc.addGuilt(30);
                 Global.getSector().getPlayerStats().addPoints(1);
                 return true;
