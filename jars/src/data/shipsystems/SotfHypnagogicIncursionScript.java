@@ -18,8 +18,8 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 
 
 	public static float SHIP_ALPHA_MULT = 0.25f;
-	public static float RELOAD_MULT = 15f;
-	public static float DISSIPATION_MULT = 3f;
+	public static float RELOAD_MULT = 10f;
+	public static float DISSIPATION_MULT = 2f;
 
 	public static final float MAX_TURN_BONUS = 50f;
 	public static final float TURN_ACCEL_BONUS = 50f;
@@ -167,14 +167,15 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 			ship.setCollisionClass(CollisionClass.NONE);
 			stats.getHullDamageTakenMult().modifyMult(id, 0f);
 			stats.getArmorDamageTakenMult().modifyMult(id, 0f);
+			stats.getShieldDamageTakenMult().modifyMult(id, 0f);
 			stats.getEmpDamageTakenMult().modifyMult(id, 0f);
 
-			stats.getFluxDissipation().modifyMult(id, DISSIPATION_MULT * effectLevel);
-			stats.getBallisticAmmoRegenMult().modifyMult(id, RELOAD_MULT * effectLevel);
-			stats.getEnergyAmmoRegenMult().modifyMult(id, RELOAD_MULT * effectLevel);
-			stats.getBallisticRoFMult().modifyMult(id, RELOAD_MULT * effectLevel);
-			stats.getEnergyRoFMult().modifyMult(id, RELOAD_MULT * effectLevel);
-			stats.getMissileRoFMult().modifyMult(id, RELOAD_MULT * effectLevel);
+			stats.getFluxDissipation().modifyMult(id, 1f + ((DISSIPATION_MULT - 1f) * effectLevel));
+			stats.getBallisticAmmoRegenMult().modifyMult(id, 1f + ((RELOAD_MULT - 1f) * effectLevel));
+			stats.getEnergyAmmoRegenMult().modifyMult(id, 1f + ((RELOAD_MULT - 1f) * effectLevel));
+			stats.getBallisticRoFMult().modifyMult(id, 1f + ((RELOAD_MULT - 1f) * effectLevel));
+			stats.getEnergyRoFMult().modifyMult(id, 1f + ((RELOAD_MULT - 1f) * effectLevel));
+			stats.getMissileRoFMult().modifyMult(id, 1f + ((RELOAD_MULT - 1f) * effectLevel));
 		}
 
 		if (state == State.IDLE) {
@@ -185,6 +186,7 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 
 				stats.getHullDamageTakenMult().unmodify(id);
 				stats.getArmorDamageTakenMult().unmodify(id);
+				stats.getShieldDamageTakenMult().unmodify(id);
 				stats.getEmpDamageTakenMult().unmodify(id);
 
 				stats.getFluxDissipation().unmodify(id);

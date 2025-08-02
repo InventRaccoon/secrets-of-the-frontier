@@ -33,8 +33,8 @@ public class SotfAdvancedCountermeasures {
 
 	public static Color SWARM_ATTACK_COLOR = new Color(100,255,205);
 	public static float SWARM_ATTACK_RANGE = 500f;
-	public static float SWARM_ATTACK_DAMAGE = 40f;
-	public static float SWARM_ATTACK_EMP = 40f;
+	public static float SWARM_ATTACK_DAMAGE = 75f;
+	public static float SWARM_ATTACK_EMP = 50f;
 	public static DamageType SWARM_ATTACK_DAMAGE_TYPE = DamageType.FRAGMENTATION;
 	// delay between shots for a frigate
 	public static float SWARM_ATTACK_RATE = 2.5f;
@@ -117,7 +117,7 @@ public class SotfAdvancedCountermeasures {
 			protected ShipAPI ship;
 			boolean ranOnce = false;
 
-			IntervalUtil interval = new IntervalUtil(SWARM_ATTACK_RATE, SWARM_ATTACK_RATE + 0.2f);
+			IntervalUtil interval = new IntervalUtil(SWARM_ATTACK_RATE - 0.1f, SWARM_ATTACK_RATE + 0.1f);
 			float rate;
 
 			public SotfNaniteDefenseSwarmScript(ShipAPI ship) {
@@ -165,7 +165,7 @@ public class SotfAdvancedCountermeasures {
 						pick.loc,
 						Misc.getDistance(pick.loc, target.getLocation()),
 						Misc.getAngleInDegrees(pick.loc, target.getLocation()),
-						5,
+						6,
 						0.05f,
 						0.15f,
 						8,

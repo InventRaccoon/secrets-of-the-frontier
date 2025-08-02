@@ -35,11 +35,20 @@
 	# LETHARGY
 	"sotf_lethargy_fire":
 	[
-		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_01.ogg","pitch":1.00,"volume":0.5},
-		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_02.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_01.ogg","pitch":0.96,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_02.ogg","pitch":0.98,"volume":0.5},
 		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_03.ogg","pitch":1.00,"volume":0.5},
-		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_04.ogg","pitch":1.00,"volume":0.5},
-		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_05.ogg","pitch":1.00,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_04.ogg","pitch":1.02,"volume":0.5},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_05.ogg","pitch":1.04,"volume":0.5},
+	],
+	# RECKONER
+	"sotf_autolance_fire":
+	[
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_01.ogg","pitch":0.86,"volume":0.6},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_02.ogg","pitch":0.88,"volume":0.6},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_03.ogg","pitch":0.90,"volume":0.6},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_04.ogg","pitch":0.92,"volume":0.6},
+		{"file":"sounds/sfx_wpn_energy/ir_pulse_laser_fire_05.ogg","pitch":0.94,"volume":0.6},
 	],
 	# BALEFIRE
 	"sotf_balefire_fire":
@@ -59,18 +68,30 @@
 		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.05,"volume":0.4},
 		{"file":"sounds/sfx_wpn_energy/burst_pd_fire_01.ogg","pitch":1.1,"volume":0.4},
 	],
-	# GIGACANNON
 	"sotf_chalice_mine_windup":
 	[
 		{"file":"sounds/sfx_wpn_energy/gigacannon_charge_01.ogg","pitch":1.25,"volume":0.35},
 	],
-	"sotf_hypnogagicincursion_activate":
+	# MERCY
+	"sotf_mercy_fire":
 	[
-		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":0.9,"volume":1},
-		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":0.95,"volume":1},
-		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.00,"volume":1},
-		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.05,"volume":1},
-		{"file":"sounds/sfx_systems/sotf_hypnogagicincursion.ogg","pitch":1.1,"volume":1},
+		{"file":"sounds/sfx_wpn_energy/tachyon_lance_fire_01.ogg","pitch":1.35,"volume":1.0},
+	],
+	# DRONE LAUNCHERS
+	"sotf_barbmount_fire":
+	[
+		{"file":"sounds/sfx_systems/fighter_launch.ogg","pitch":0.96,"volume":0.5},
+		{"file":"sounds/sfx_systems/fighter_launch.ogg","pitch":0.98,"volume":0.5},
+		{"file":"sounds/sfx_systems/fighter_launch.ogg","pitch":1,"volume":0.5},
+	],
+	# HYPNAGOGIC INCURSION
+	"sotf_hypnagogicincursion_activate":
+	[
+		{"file":"sounds/sfx_systems/sotf_hypnagogicincursion.ogg","pitch":0.9,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnagogicincursion.ogg","pitch":0.95,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnagogicincursion.ogg","pitch":1.00,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnagogicincursion.ogg","pitch":1.05,"volume":1},
+		{"file":"sounds/sfx_systems/sotf_hypnagogicincursion.ogg","pitch":1.1,"volume":1},
 	],
 	# ASB impact
 	"sotf_impact_heavy":
@@ -146,6 +167,11 @@
 	[
 	{"file":"sounds/sfx_skills/sotf_perfectstorm_loop.ogg","pitch":1,"volume":1},
 	],
+	
+	"explosion_ship":{ # when a fighter or ship explodes
+		"SOTF_SIERRA":{"sounds":[0,1,2,3], "pitch":1.0, "volume":1},
+		"SOTF_DAYDREAM":{"sounds":[0,1,2,3], "pitch":1.0, "volume":1},
+	},
 	
 	#collapseopen ENGINES	
 	

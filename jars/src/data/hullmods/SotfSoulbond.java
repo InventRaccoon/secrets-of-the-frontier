@@ -111,5 +111,7 @@ public class SotfSoulbond extends SotfBaseConcordAugment
                         "   My soul still yearns for you~", SotfMisc.getSierraColor().darker(), opad);
         label.italicize();
         tooltip.addPara("   - Sierra-Nought-Bravo, \"Soulbond\" lyrical excerpt", gray, opad);
+
+        tooltip.setBgAlpha(0.9f);
     }
 }

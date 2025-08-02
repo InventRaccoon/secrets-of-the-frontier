@@ -538,8 +538,8 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         String spawnString = "'s adaptive nanite infestation has subsided";
         if (guilt >= SotfMisc.getGuiltMadnessThreshold()) {
             WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
-            post.add("Felcesis was temporarily banished");
-            post.add("Felcesis was defeated for now");
+            post.add("Felcesis was banished... for now");
+            post.add("Felcesis was defeated... for now");
             post.add("Felcesis was bound once again");
             post.add("Felcesis will return to hunt you again");
             post.add("Felcesis has indicted you", 0.03f * post.getItems().size());
@@ -670,10 +670,12 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         fel.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 2);
         fel.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
 
-        // if small fleet, remove swarm PD and hull/armor regen
-        if (totalFP < 60f) {
+        // if small fleet, remove swarm PD and hull/armor regen and some defensive skills
+        if (totalFP < 75f) {
             fel.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 1);
+            fel.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 1);
             fel.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1);
+            fel.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 1);
         }
 
         OfficerManagerEvent.SkillPickPreference pref = FleetFactoryV3.getSkillPrefForShip(member);
@@ -703,7 +705,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         }
 
         // earlygame, remove 1 defensive trait
-        if (totalFP < 60f) {
+        if (totalFP < 75f) {
             total -= 1;
             numDefensive -= 1;
         }
@@ -755,11 +757,16 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         // Hybrid skill - she's good at both fire support and PD
         float dottyWeight = 1f;
         // Dotty spawns slightly weaker during the earlygame
-        if (totalFP < 60f || !member.isCapital()) {
-            fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 99999f);
-        } else {
-            fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);
+//        if (totalFP < 60f || !member.isCapital()) {
+//            fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 99999f);
+//        } else {
+//            fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);
+//        }
+        // do not spawn Dotty during earlygame, she is too high a force multiplier
+        if (totalFP < 75f) {
+            dottyWeight = 0f;
         }
+        fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);
 
         // WISPERING GROVETENDER: performs somewhat better versus enemy fighters
         float grovetenderWeight = 0.8f;

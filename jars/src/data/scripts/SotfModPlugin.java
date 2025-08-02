@@ -56,6 +56,7 @@ import data.scripts.campaign.plugins.wendigo.SotfWendigoEncounterManager;
 import data.scripts.campaign.skills.SotfCyberwarfare;
 import data.scripts.combat.convo.SotfOfficerConvoPlugin.SotfOfficerConvoData;
 import data.scripts.combat.obj.SotfReinforcerEffect.SotfFactionRemoteAIData;
+import data.scripts.utils.SotfMisc;
 import data.scripts.world.SotfGen;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -241,13 +242,40 @@ public class SotfModPlugin extends BaseModPlugin {
         }
 
         if (sector_mem.contains(SotfIDs.MEM_COTL_START)) {
-            sector.getPlayerFaction().addKnownShip("sotf_thorn", false);
-            sector.getPlayerFaction().addKnownWeapon("sotf_lethargy", false);
+            SotfMisc.ensurePlayerKnowsShip("sotf_thorn");
+
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_lethargy");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_reckoner");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_mercy");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_chalice");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_barbmount");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_barbrail");
+            SotfMisc.ensurePlayerKnowsWeapon("sotf_nettlerail");
+
+            SotfMisc.ensurePlayerKnowsFighter("sotf_barb_wing");
+            SotfMisc.ensurePlayerKnowsFighter("sotf_nettle_wing");
         }
 
         // Midsave Alteration Corner 2: Electric Boogaloo
         // This code only exists to perform fixes on existing saves - these have effectively no effect on new saves
         // TODO: Delete all of this on each savebreaking update
+
+        // fix "member has too many statuses for its number of modules" bug
+        StarSystemAPI mia = sector.getStarSystem("sotf_mia");
+        if (mia != null) {
+            for (CampaignFleetAPI fleet : mia.getFleets()) {
+                for (FleetMemberAPI member : fleet.getFleetData().getMembersListCopy()) {
+                    if (member.isFighterWing()) continue;
+                    float num = member.getStatus().getNumStatuses();
+
+                    if (num - 1f > member.getVariant().getModuleSlots().size() && num > 1f) {
+                        // NUKE IT FROM ORBIT
+                        // IT'S THE ONLY WAY TO BE SURE
+                        fleet.despawn();
+                    }
+                }
+            }
+        }
 
         // End midsave alteration corner
 
@@ -549,6 +577,16 @@ public class SotfModPlugin extends BaseModPlugin {
                 CodexDataV2.getSkillEntryId(SotfIDs.SKILL_POLARIZEDNANOREPAIR),
                 CodexDataV2.getSkillEntryId(SotfIDs.SKILL_SPATIALEXPERTISE)
         );
+        // Drone launchers
+        CodexDataV2.makeRelated(
+                CodexDataV2.getWeaponEntryId("sotf_barbmount"),
+                CodexDataV2.getWeaponEntryId("sotf_barbrail"),
+                CodexDataV2.getFighterEntryId("sotf_barb_wing")
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getWeaponEntryId("sotf_nettlerail"),
+                CodexDataV2.getFighterEntryId("sotf_nettle_wing")
+        );
         // CWAR
         CodexDataV2.makeRelated(
                 CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_CWARSUITE),
@@ -626,6 +664,36 @@ public class SotfModPlugin extends BaseModPlugin {
                 CodexDataV2.getCommodityEntryId(SotfIDs.BARROW_CHIP),
                 CodexDataV2.getCommodityEntryId(SotfIDs.SERAPH_CHIP)
         );
+    }
+
+    @Override
+    public void onCodexDataGenerated() {
+        // make the single Barb not appear in related entries
+        CodexDataV2.makeUnrelated(
+                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
+                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
+        );
+        CodexDataV2.makeUnrelated(
+                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
+                CodexDataV2.getHullmodEntryId("flarelauncher_single")
+        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
+//                CodexDataV2.getWeaponEntryId("sotf_lethargy_f")
+//        );
+
+        CodexDataV2.makeUnrelated(
+                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
+        );
+        CodexDataV2.makeUnrelated(
+                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+                CodexDataV2.getHullmodEntryId("flarelauncher_fighter")
+        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+//                CodexDataV2.getWeaponEntryId("sotf_lethargy_f")
+//        );
     }
 
     @Override

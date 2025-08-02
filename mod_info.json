@@ -18,7 +18,7 @@
         },
 		{
             "id": "lunalib",
-            "name": "GraphicsLib",
+            "name": "LunaLib",
             #"version": "2.6" # If a specific version or higher is required, #include this line
         },
         {

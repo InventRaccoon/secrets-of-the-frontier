@@ -6,10 +6,12 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
+import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.ui.LabelAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.utils.SotfMisc;
 import data.shipsystems.scripts.SotfConcordShiftStats;
 
@@ -23,6 +25,23 @@ public class SotfSerenity extends SotfBaseConcordAugment {
         stats.getDynamic().getMod(
                 Stats.PHASE_CLOAK_FLUX_LEVEL_FOR_MIN_SPEED_MOD).modifyPercent(id, FLUX_THRESHOLD_INCREASE_PERCENT);
     }
+
+//    @Override
+//    public boolean isApplicableToShip(ShipAPI ship) {
+//        if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_FERVOR)) return false;
+//        return shipHasOtherModInCategory(ship, spec.getId(), "sotf_concord");
+//    }
+//
+//    @Override
+//    public String getUnapplicableReason(ShipAPI ship) {
+//        if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_FERVOR)) {
+//            return "Incompatible with Concord - Fervor";
+//        }
+//        if (!shipHasOtherModInCategory(ship, spec.getId(), "sotf_concord")) {
+//            return "Requires a Phase Concord";
+//        }
+//        return super.getUnapplicableReason(ship);
+//    }
 
     public String getDescriptionParam(int index, ShipAPI.HullSize hullSize) {
         if (index == 0) return "" + (int) Math.round(FLUX_THRESHOLD_INCREASE_PERCENT) + "%";

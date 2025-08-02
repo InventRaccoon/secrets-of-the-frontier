@@ -17,6 +17,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 import com.fs.starfarer.api.impl.combat.CRPluginImpl;
+import com.fs.starfarer.api.impl.combat.threat.EnergyLashActivatedSystem;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
@@ -344,6 +345,10 @@ public class SotfCyberwarfare {
                 if (target.getSystem().isOutOfAmmo()) {
                     systemWeight = 0f;
                 }
+                // screw you, Doom
+                if (target.getSystem().getId().contains("mine")) {
+                    systemWeight += 2f;
+                }
                 hackPicker.add("system", systemWeight);
             }
             if (hackPicker.isEmpty()) {
@@ -495,7 +500,7 @@ public class SotfCyberwarfare {
                                 Misc.getDistance(from, targetWeapon.getLocation()),
                                 Color.WHITE,
                                 Misc.getNegativeHighlightColor());
-                        targetWeapon.disable();
+                        targetWeapon.disable(false);
                     }
                     break;
                 case "engines":
@@ -525,13 +530,13 @@ public class SotfCyberwarfare {
                                     HACK_COLOR);
                             disabledSoFar += contrib;
                             disabledAnEngine = true;
-                            engine.disable();
+                            engine.disable(false);
                         }
                     }
                     if (!disabledAnEngine) {
                         for (ShipEngineControllerAPI.ShipEngineAPI engine : engines) {
                             if (engine.isDisabled()) continue;
-                            engine.disable();
+                            engine.disable(false);
                             break;
                         }
                     }

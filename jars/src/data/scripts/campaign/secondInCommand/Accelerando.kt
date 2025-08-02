@@ -18,8 +18,8 @@ class Accelerando : SCBaseSkillPlugin() {
 
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
-        tooltip.addPara("+30%% increase to the ships speed while venting", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("+10%% increase to the ships active vent rate", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("+30% increase to the ships speed while venting", Misc.getHighlightColor(), 0f)
+        tooltip.addPara("+10% increase to the ships active vent rate", Misc.getHighlightColor(), 0f)
 
         tooltip.addSpacer(10f)
 

@@ -47,7 +47,7 @@ public class SotfHopeForHallowhallEventIntel extends BaseEventIntel implements F
 	public static int PROGRESS_2 = 350;
 	public static int PROGRESS_3 = 450;
 
-	public static int FP_PER_POINT = 5;
+	public static int FP_PER_POINT = 6;
 	public static float POINTS_FOR_PATHER_BASE_PER_FP = 0.6f;
 	public static int POINTS_FOR_NANOFORGE = 120;
 	public static int POINTS_PER_INAD_MISSION = 30;
@@ -55,7 +55,7 @@ public class SotfHopeForHallowhallEventIntel extends BaseEventIntel implements F
 	public static int POINTS_PER_HALLOWHALL_SIZE = 75;
 	public static int POINTS_FOR_ASTROPOLIS = 50;
 
-	public static int POINTS_FOR_RAID_DEFEATED = 75;
+	public static int POINTS_FOR_RAID_DEFEATED = 25;
 
 	public static int MAX_POINTS_FROM_CORES = 240;
 

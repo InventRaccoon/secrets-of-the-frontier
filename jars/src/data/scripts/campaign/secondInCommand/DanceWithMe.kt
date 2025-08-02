@@ -33,7 +33,7 @@ class DanceWithMe : SCBaseSkillPlugin() {
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
         tooltip.addPara("Fighters deployed from your fleet receive the \"Concord Shift\" subsystem", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("   - The subsystem moves the fighter in to phase space and increases its speed", 0f, Misc.getTextColor(), Misc.getHighlightColor())
+        tooltip.addPara("   - The subsystem moves the fighter into phase space and increases its speed", 0f, Misc.getTextColor(), Misc.getHighlightColor())
         tooltip.addPara("   - It is only active for a very short duration and recharges every 14 seconds", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "very short", "14")
         tooltip.addPara("   - Fighters will phase to avoid fire and to return quickly to their carrier", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "defensive")
 

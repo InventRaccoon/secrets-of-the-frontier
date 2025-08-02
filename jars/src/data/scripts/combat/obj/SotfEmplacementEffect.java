@@ -280,7 +280,7 @@ public class SotfEmplacementEffect extends BaseBattleObjectiveEffect {
 		}
 		engine.getFleetManager(objective.getOwner()).setSuppressDeploymentMessages(false);
 		// Delete the emplacement from the owner's deployed ship list
-		//com.fs.starfarer.combat.CombatFleetManager realMan = (com.fs.starfarer.combat.CombatFleetManager) engine.getFleetManager(objective.getOwner());
+		engine.getFleetManager(objective.getOwner()).removeDeployed(ship, false);
 	}
 
 	private Color getBlueprintColor() {

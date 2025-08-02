@@ -62,6 +62,10 @@ public class SotfAuxShock extends SotfBaseAuxPackage {
 		}
 
 		public void advance(float amount) {
+			if (ship.getShipAI() != null) {
+				ship.getAIFlags().setFlag(ShipwideAIFlags.AIFlags.DO_NOT_BACK_OFF, 10000f);
+				ship.getAIFlags().setFlag(ShipwideAIFlags.AIFlags.DO_NOT_BACK_OFF_EVEN_WHILE_VENTING, 10000f);
+			}
 			if (!sacrificing) {
 				// random sparking while not yet sacrificing
 				timeUntilNextBlink -= amount;
@@ -144,10 +148,6 @@ public class SotfAuxShock extends SotfBaseAuxPackage {
 						config.personalityOverride = Personalities.RECKLESS;
 
 						ship.setShipAI(Global.getSettings().createDefaultShipAI(ship, config));
-						if (ship.getShipAI() != null) {
-							ship.getAIFlags().setFlag(ShipwideAIFlags.AIFlags.DO_NOT_BACK_OFF, 10000f);
-							ship.getAIFlags().setFlag(ShipwideAIFlags.AIFlags.DO_NOT_BACK_OFF_EVEN_WHILE_VENTING, 10000f);
-						}
 					}
 				}
 

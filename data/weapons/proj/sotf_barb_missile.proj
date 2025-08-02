@@ -1,0 +1,16 @@
+{
+	"id":"sotf_barb_missile",
+	"specClass":"missile",	
+	"missileType":"MISSILE",
+	"sprite":"graphics/ships/dreaming/sotf_barb.png",
+	"size":[20,30],	
+	"center":[10,15],
+	"collisionRadius":16,
+	"collisionClass":"MISSILE_NO_FF",
+	"explosionColor":[255,50,50,0],  # purely visual, will get a white additively blended core on top of this color
+	"explosionRadius":0, # purely visual
+	"engineSpec":{"turnAcc":1,
+				  "turnRate":1,
+				  "acc":1,
+				  "dec":1},
+}

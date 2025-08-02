@@ -1,7 +1,7 @@
 {
 	"id":"sotf_chalice_boltlauncher",  # this id must match what's in the spreadsheet
 	"specClass":"projectile",
-	"type":"MISSILE",
+	"type":"ENERGY",
 	"size":"LARGE",
 	"turretSprite":"graphics/weapons/light_pulse_laser_turret_base.png",
 	"turretGlowSprite":"graphics/weapons/light_pulse_laser_turret_glow.png",

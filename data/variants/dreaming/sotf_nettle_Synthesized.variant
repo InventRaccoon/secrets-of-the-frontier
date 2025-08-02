@@ -1,15 +1,14 @@
 {
   "variantId": "sotf_nettle_Synthesized",
   "hullId": "sotf_nettle",
-  "displayName": "Interceptor",
+  "displayName": "Assault Drone",
   "goalVariant": false,
   "fluxCapacitors": 0,
   "fluxVents": 0,
   "quality": 1,
   "permaMods": [],
   "hullMods": [
-    "turretgyros",
-    "advancedshieldemitter",
+	"sotf_daydreamhull",
     "no_weapon_flux",
 	"sotf_nanite_synthesized"
   ],
@@ -18,7 +17,22 @@
       "autofire": false,
       "mode": "LINKED",
       "weapons": {
-        "WS 001": "sotf_lethargy"
+        "WS 001": "lightdualmg"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "sotf_lethargy_f"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 003": "swarmer_fighter",
+        "WS 004": "swarmer_fighter"
       }
     }
   ],

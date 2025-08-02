@@ -4,4 +4,4 @@ sotf_haunted_bg,The Haunted,Your past atrocities haunt you - and so does the loo
 Includes special story content and unlocks a new background on completion.",500,graphics/icons/missions/tactical_bombardment.png,data.scripts.campaign.customstart.SotfHauntedBackground
 sotf_cotl_bg,Child of the Lake,"An uncertain past brings you an unusual protector and exotic, almost occult strength.","You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your journey like fading stardust in the night sky and marks your skin in winding patterns. In your dreams you speak to a single bright star in the sky who follows you into the waking, your faithful protector.
 
-Perhaps your past lies out there, somewhere on a midnight lake.",500,graphics/icons/missions/sotf_lotl.png,data.scripts.campaign.customstart.SotfChildOfTheLakeBackground
+Perhaps your past lies out there, somewhere on a midnight lake.",501,graphics/icons/missions/sotf_lotl.png,data.scripts.campaign.customstart.SotfChildOfTheLakeBackground

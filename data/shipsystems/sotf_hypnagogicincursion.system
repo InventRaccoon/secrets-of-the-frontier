@@ -1,5 +1,5 @@
 {
-	"id":"sotf_spatialbreach",
+	"id":"sotf_hypnagogicincursion",
 	"type":"STAT_MOD",
     "aiType":"CUSTOM",
 	"aiScript":"data.shipsystems.scripts.ai.SotfHypnagogicIncursionAI",
@@ -26,7 +26,7 @@
 	
 	"clampMaxSpeedAfter":true,
 	
-	"useSound":"sotf_hypnogagicincursion_activate",
+	"useSound":"sotf_hypnagogicincursion_activate",
 	#"deactivateSound":"riftcascade_windup",
 	"outOfUsesSound":"gun_out_of_ammo",
 	

@@ -6,6 +6,8 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
 import com.fs.starfarer.api.impl.campaign.RuleBasedInteractionDialogPluginImpl;
 import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
+import data.scripts.campaign.ids.SotfIDs;
+import lunalib.lunaSettings.LunaSettings;
 
 import java.util.Map;
 
@@ -110,6 +112,7 @@ public class SotfHauntedDreamBase implements InteractionDialogPlugin {
 
     public void addLine(String text, int atStage, float delayAfter) {
         if (stage == atStage && counter >= 0) {
+            delayAfter = delayAfter / LunaSettings.getFloat(SotfIDs.SOTF, "sotf_dreamSpeed");
             stage++;
             textPanel.addPara(text);
             counter = 0 - delayAfter;

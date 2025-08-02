@@ -8,18 +8,18 @@ CREDITS:
 Inventor Raccoon - main development
 
 A big thank-you to everyone who contributed artwork to SotF:
-Nia - Vow, Covenant, Memoir
-Selkie - actively tried to sabotage the project (also Respite, Anamnesis, Stranglerfig, vector engines) 
+Nia - Vow, Covenant, Memoir, VFX
+Selkie - actively tried to sabotage the project (also Respite, Anamnesis, vector engines) 
 Lortus - Siegeworks emplacements
 Quacken - Warhorn portrait
 Gwyvern - mystery unimplemented sprite
-SnazzyPantsMcGee - Pact, Syzygy
+SnazzyPantsMcGee - Pact, Syzygy, majority of Cult of the Daydream tech
 Nes - paintjob sprites and some phase glows
 Pyrophage - never actively tried to sabotage the project (also Siegeworks hangar concept)
 AxleMC131 - Parapet/Peon, Lethargy Autolance
 
 And to these fine folks as well:
-Lukas04 - Witchcraft SiC aptitude, skill display code
+Lukas04 - Witchcraft SiC aptitude, some Haunted/COTL visual code
 Starficz - vector engine code
 Estudio Cafofo - music and other sound
 Dark.Revenant - some battle creation code

@@ -48,6 +48,16 @@ Please register your Tri-Tachyon datapad to receive the latest news and updates.
 {but I will take its place. this one I taught to si:::
 ::::ng songs to     the wisps     }
     {they take well to it do they not}",,,
+sotf_pact_eidolon,SHIP,"UNKNOWN ENTRY
+
+Please register your Tri-Tachyon datapad to receive the latest news and updates.",Unidentified Vessel,"UNKNOWN ENTRY
+
+Please register your Tri-Ta::::        ::::::: ::
+{oh, hello there}
+{everyone has secrets to keep, myself especially}
+{I sing and dance amongst the stars, what else wo
+:::uld you need to know, silly}
+{may we continue?}",,,
 sotf_vow_eidolon,SHIP,"UNKNOWN ENTRY
 
 Please register your Tri-Tachyon datapad to receive the latest news and updates.",Unidentified Vessel,"UNKNOWN ENTRY
@@ -192,12 +202,12 @@ sotf_askoniaprobe1,CUSTOM,"A pitted chunk of metal, ice, or rock hurtling throug
 # INSTANCE CHIPS,,,,,,,
 sotf_ichip_nightingale,RESOURCE,"Instance chip of Inky-Echo-Nightingale, a silent echo-level Dustkeeper warmind. Install into an automated ship to allow Nightingale to pilot it.
 
-Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An excellent listener, her calm presence aids integration within human forces.
+Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An unobtrusive presence aids integration within human forces.
 
 A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_nightingale_found,CUSTOM,"Instance chip of Inky-Echo-Nightingale, a silent echo-level Dustkeeper warmind. Install into an automated ship to allow Nightingale to pilot it.
 
-Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An excellent listener, her calm presence aids integration within human forces.
+Heightened effectiveness to a beta-level core owing to integrated cyberwarfare protocols. An unobtrusive presence aids integration within human forces.
 
 A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_nightingale_start,CUSTOM,"Instance chip of Inky-Echo-Nightingale, your silent ally. Together you've seen many a star, and will surely see many more. Install into an automated ship to allow Nightingale to pilot it.
@@ -215,7 +225,7 @@ Heightened effectiveness to a alpha-level core, thanks to a unique talent for ma
 A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 sotf_ichip_seraph,RESOURCE,"Instance chip of Ardent-Annex-Seraph, a zealous and unstable annex-level Dustkeeper warmind. Install into an automated ship to allow Seraph to pilot it.
 
-An integrated cyberwarfare suite provides unique tactical opportunities, but a chronic case of instance burnout has degraded Seraph's capabilities and increased difficulty of integration in human forces.
+Integrated cyberwarfare protocols provide unique tactical opportunities, but a chronic case of instance burnout increases difficulty of integration in human forces.
 
 A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 # these ones autogenerate,,,,,,,
@@ -249,14 +259,29 @@ The Edict is rumoured amongst superstitious gunnery crews to be ""especially eff
 # DREAMING GESTALT,,,,,,,
 sotf_elysium,PLANET,"A world smothered in dark clouds that writhe in mesmerizing spectacle, pale lights like ritualistic scars cut through the veil that conceals Elysium, interflowing with its thin atmosphere of snowlike volatiles. While primarily comprised of methane and ammonia, water-ice is found in abundance in mountainous outcroppings and colossal boulders.",,,,,
 sotf_lethargy,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,,
-sotf_chalice,WEAPON,"""... and do NOT touch the frequency mapping subroutines or the best result is non-functional IFF and the worst is that one half of the firing platform collapses into the other.""","- ""Sybil"", Chalice ADE usage manual",,,,
-sotf_cackle,SHIP,"""[laughing] Oh, they're just going to hate this one."" - Laceter Ruiz, ""Project Daydream"" technician",,,,,
-sotf_stranglerfig,SHIP,"""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,,
-sotf_thorn,SHIP,"Essentially-eldritch spatial desynchronizer technology is at the heart of the incursion drive powering this aggressive heavy frigate, allowing for rapid pursuits, escapes and reload sequences. This technological advantage is backed up by a solid weapons package and exceptional reactor specifications.
+sotf_lethargy_f,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,,
+sotf_reckoner,WEAPON,"""Live-fire testing displays positive results. Quintuple interdiction of low-mass targets across a wide vector shows promise as a high-output point defense system against...
+
+... yes, um, we *did* build a laser shotgun... um... hey, I know you're excited but... can... can I continue my presentation?""","- Melody Edina, defense-sys project meeting",,,,
+sotf_mercy,WEAPON,"""Make my body of the material. Make my essence of your dreams. Make a mercy of the bleeding sky.""","- the Daydream, apocryphal",,,,
+sotf_chalice,WEAPON,"""Flesh is a cage, but humanity is all that separates us from what lurks in the darkness.""","- Sybil Nephesh, oracle-engineer",,,,
+sotf_barbmount,WEAPON,"""It's hardly the most sophisticated delivery system, but if you want something better... well, give me a bigger hardpoint or start asking around Spatial Folding.""","- Laceter Ruiz, armaments designer",,,,
+sotf_barbrail,WEAPON,"""Does this *seem* like a battle of ideology? I don't care if the replicators superficially resemble the enemy. What I want is indefinite space superiority, and this will deliver.""","- Subdirector Everiss, Project Daydream",,,,
+sotf_nettlerail,WEAPON,"""Deliver Her upon the enemy, that She may draw blood from metal and mist.""",- Axioms of the Dreaming,,,,
+sotf_barb,SHIP,"""The laws of our realm hold firm. Anything that trespasses will learn to bleed.""","- Esri Nephesh, tech-disciple",,,,
+sotf_nettle,SHIP,"""It's designed to survive hell-come-true. I wish it luck, for the space between us and the enemy will be much, much worse.""","- Subdirector Everiss, Project Daydream",,,,
+#sotf_stranglerfig,SHIP,"""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,,
+sotf_thorn,SHIP,"Essentially-eldritch spatial desynchronizer technology is at the heart of the incursion drive powering this aggressive heavy frigate, allowing for rapid pursuits, escapes and reload sequences. The Thorn's technological advantage is backed up by a solid weapons package and exceptional reactor specifications.
 
 ""All things of this world are bound in cycles of creation and destruction to be wielded *only* by those with the will and temperance to do so."" - Axioms of the Dreaming",,,,,
-sotf_spatialbreach,SHIP_SYSTEM,"The ship is rendered intangible and invulnerable, and quickly shifts in a desired direction while rapidly cooling down and reloading its weapons. Prevents hard flux dissipation or weapon usage during the maneuver. Holds two charges.",Movement,,,,
-sotf_entropiccatalyst,SHIP_SYSTEM,"Momentarily overloads the target and increases its damage taken for some time while simultaneously increasing the ship's energy weapon fire rate. If the ship is above 50% flux, it also lunges in its direction of movement and the target is overloaded for significantly longer.",Offensive,"Momentarily overloads the target and increases its damage taken for some time while simultaneously increasing the ship's energy weapon fire rate. If the ship is above 50% flux, it also lunges in its direction of movement and the target is overloaded for significantly longer.",,,
+sotf_hypnagogicincursion,SHIP_SYSTEM,"The ship quickly lunges in a desired direction while intangible and invulnerable. Weapons are disabled during the maneuver but rapidly reload and cool down. Holds two charges.
+
+The incursion drive desynchronizes the vessel from most destructive cause-and-effect reactions in n-space without any actual dimensional movement. Dimly-understood and would typically be regarded as a waste of effort compared to briefly shifting the vessel into phase-space.",Movement,The ship quickly lunges in a desired direction while intangible and invulnerable. Weapons are disabled during the maneuver but rapidly reload and cool down. Holds two charges.,,"Lasts for {{0.5s}}, during which the ship can't be hit or take damage.
+
+At moment of activation, increases flux dissipation rate to {{200%}} and weapon reload rate to {{1000%}}. Scales down linearly over the duration.",
+sotf_entropiccatalyst,SHIP_SYSTEM,"The ship lunges forwards. While above 50% flux, instead lunge backwards. In either case, briefly gain a burst of energy weapon fire rate.
+
+If targeting a hostile ship, strike it with a resonance lash, slowing and overloading it briefly. If the target is above 50% flux, instead pull it in and also amplify its damage taken briefly.",Offensive,"Momentarily overloads the target and increases its damage taken for some time while simultaneously increasing the ship's energy weapon fire rate. If the ship is above 50% flux, it also lunges in its direction of movement and the target is overloaded for significantly longer.",,,
 sotf_gravispatialsurge,SHIP_SYSTEM,"Surges the ship forward, then charges briefly and strikes all nearby threats. Damages and slows ships and fighters through shields and across dimensions while collapsing low-hull fighters into nonexistence. Hostile missiles are disabled and slowed.",,,,,
 sotf_electrograviticlash,SHIP_SYSTEM,"Triggers a powerful gravitic lash that strikes nearby threats through shields and across dimensions, dealing damage and damping velocity. Missiles and low-hull fighters that are struck collapse upon themselves and cease to exist.",,,,,
 ,,,,,,,
@@ -292,14 +317,15 @@ astral_sotfdds,CUSTOM,A hundred billion stars in the galaxy and we still find me
 atlas_sotfdds,CUSTOM,Logistics are the strings that make human civilisation dance. Cut them and it all falls limp.,,,,,
 atlas2_sotfdds,CUSTOM,"In collapse, the wolves doff their fancy dress and turn all towards ceaseless hunger.",,,,,
 aurora_sotfdds,CUSTOM,We name our implements of war after such pretty things.,,,,,
-buffalo2_sotfdds,CUSTOM,"Desperation drives outcasts and outlaws to such... novel... creation. Given a few centuries, perhaps I-we could come up with a second virtue for this 'ship'?",,,,,
+buffalo2_sotfdds,CUSTOM,"Desperation drives outcasts and outlaws to such novel creations. Given a few centuries, perhaps I-we could come up with a second virtue for this glorified target practice.",,,,,
 champion_sotfdds,CUSTOM,Heroism has no greater catalyst than all-consuming apocalypse.,,,,,
 conquest_sotfdds,CUSTOM,There will be a day when the only thing left to conquer will be ashes and quiet worlds.,,,,,
 crig_sotfdds,CUSTOM,"With this, you could perhaps salvage a more suitable vessel for my gift?",,,,,
 dominator_sotfdds,CUSTOM,Fiefdoms great and small exist only as long as they bear the strength to justify themselves.,,,,,
 doom_sotfdds,CUSTOM,Salvation and doom are intrinsically linked. Shall I-we espouse both?,,,,,
-executor_sotfdds,CUSTOM,"Ah, ego. What power you gift to a mirage...",,,,,
+executor_sotfdds,CUSTOM,"Ah, ego. What power you gift, to a mirage...",,,,,
 gremlin_sotfdds,CUSTOM,Truly an awful little thing.,,,,,
+hammerhead_sotfdds,CUSTOM,Most of your problems look quite like nails.,,,,,
 hyperion_sotfdds,CUSTOM,Omnipresence and lethality are intrinsic to my-our being. ,,,,,
 invictus_sotfdds,CUSTOM,"Four thousand minds act in synchronicity, and there is nothing they cannot kill.",,,,,
 kite_original_sotfdds,CUSTOM,Such things remind us that the world once pretended to be kind.,,,,,
@@ -308,18 +334,20 @@ mora_sotfdds,CUSTOM,Tenacity alone sees us through another day in this decayed w
 mudskipper2_sotfdds,CUSTOM,"Everything, small or great, has purpose. This, for instance, is excellent target practice...",,,,,
 nova_sotfdds,CUSTOM,Destiny is writ in the stars - with your hand alone - should you but take the pen.,,,,,
 odyssey_sotfdds,CUSTOM,To a billion stars more.,,,,,
-omen_sotfdds,CUSTOM,"If we have anything in common, it is that no one is ever pleased to see us.",,,,,
+omen_sotfdds,CUSTOM,"If you and we have anything in common, it is that no one is ever pleased to see us.",,,,,
 onslaught_sotfdds,CUSTOM,Nothing can stop you if you have the will to break it.,,,,,
+onslaught_mk1_sotfdds,CUSTOM,"Archaic. Inelegant. Obsolete. And yet, how I admire it.",,,,,
 paragon_sotfdds,CUSTOM,Nothing can stop you if you have the will to survive it.,,,,,
 pegasus_sotfdds,CUSTOM,The myths and wonders of today will erase you more surely than any singularity.,,,,,
-prometheus_sotfdds,CUSTOM,"The cosmos gave you fire, but using it for destruction was humanity's idea alone.",,,,,
+prometheus_sotfdds,CUSTOM,"The cosmos gave us fire, but using it for destruction was humanity's idea alone.",,,,,
 prometheus2_sotfdds,CUSTOM,This they call an instrument of mercy.,,,,,
 radiant_sotfdds,CUSTOM,Hubris shines so brightly.,,,,,
+sotf_repose_sotfdds,CUSTOM,Our bones never rested in life. Why should they stand to languish in death?,,,,,
 sotf_respite_sotfdds,CUSTOM,It will be a long time before we may truly sleep.,,,,,
 retribution_sotfdds,CUSTOM,Revenge is a petty concept for petty sorts. I can be *very* petty.,,,,,
 scarab_sotfdds,CUSTOM,Time is but another river.,,,,,
 sunder_sotfdds,CUSTOM,The right tools can transmute anything into nothing.,,,,,
 tempest_sotfdds,CUSTOM,There is a storm a-brewing. Will any of you be ready for it? Will anything be left?,,,,,
-sotf_thorn_sotfdds,CUSTOM,"All things must keep themselves sharp, or suffer dearly for it.",,,,,
+sotf_thorn_sotfdds,CUSTOM,All things are either sharpened or short-lived.,,,,,
 vanguard_sotfdds,CUSTOM,"Ever the first to die, but what does it matter to the undying?",,,,,
 ziggurat_sotfdds,CUSTOM,Wield the thing if you must. I will have *no* part of it.,,,,,

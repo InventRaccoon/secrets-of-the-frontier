@@ -1,6 +1,7 @@
 // Lethargy onfire, fake beam weapon
 package data.scripts.weapons;
 
+import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.util.Pair;
 import org.lazywizard.lazylib.CollisionUtils;
@@ -10,11 +11,19 @@ import org.lwjgl.util.vector.Vector2f;
 import org.magiclib.plugins.MagicFakeBeamPlugin;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.magiclib.util.MagicFakeBeam.getCollisionPointOnCircumference;
 
 public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
+
+    public static Map<String, Float> DAMP_VALUE = new HashMap<>();
+    static {
+        DAMP_VALUE.put("sotf_lethargy", 1f);
+        DAMP_VALUE.put("sotf_lethargy_f", 0.5f);
+    }
 
     public void onFire(DamagingProjectileAPI projectile, WeaponAPI weapon, CombatEngineAPI engine) {
         float disperseMult = (float) Math.random();
@@ -37,6 +46,8 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                 projectile.getDamageAmount(),
                 weapon.getDamageType(),
                 projectile.getEmpAmount(),
+                DAMP_VALUE.get(weapon.getId()),
+                0.5f,
                 weapon.getShip()
         );
     }
@@ -122,26 +133,40 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
             if (theTarget != null) {
 
                 // RACCOON: SPLIT DAMAGE WOO
-                engine.applyDamage(
-                        theTarget,
-                        end,
-                        damage / 2,
-                        type,
-                        emp,
-                        false,
-                        false,
-                        source
-                );
-                engine.applyDamage(
-                        theTarget,
-                        end,
-                        damage / 2,
-                        type,
-                        0f,
-                        false,
-                        true,
-                        source
-                );
+                if (shieldHit) {
+                    engine.applyDamage(
+                            theTarget,
+                            end,
+                            damage / 2,
+                            type,
+                            emp,
+                            false,
+                            false,
+                            source
+                    );
+                    engine.applyDamage(
+                            theTarget,
+                            end,
+                            damage / 2,
+                            type,
+                            0f,
+                            false,
+                            true,
+                            source
+                    );
+                } else {
+                    // do it as 1 hit: otherwise severely reduces the beam's armor pen
+                    engine.applyDamage(
+                            theTarget,
+                            end,
+                            damage,
+                            type,
+                            emp,
+                            false,
+                            false,
+                            source
+                    );
+                }
                 //impact flash
                 engine.addHitParticle(
                         end,
@@ -180,7 +205,9 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
 
             //Add the beam to the plugin
             //public static void addBeam(float duration, float fading, float width, Vector2f from, float angle, float length, Color core, Color fringe)
-            MagicFakeBeamPlugin.addBeam(full, fading, width, from, angle, MathUtils.getDistance(from, end) + 10, core, fringe);
+            float length = MathUtils.getDistance(from, end);
+            from = MathUtils.getPoint(from, length * 0.01f, angle);
+            MagicFakeBeamPlugin.addBeam(full, fading, width, from, angle, length - (length * 0.01f), core, fringe);
         }
     }
 
@@ -199,6 +226,8 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
         if (ship.getCollisionClass() == CollisionClass.NONE) {
             return new Pair<>(null, false);
         }
+        // make sure ship bounds are correctly updated before we do this because CollisionUtils may fail to do so
+        ship.getExactBounds().update(ship.getLocation(), ship.getFacing());
         ShieldAPI shield = ship.getShield();
 
         // Check hit point when shield is off.

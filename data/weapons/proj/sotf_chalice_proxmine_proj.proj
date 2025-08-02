@@ -35,8 +35,8 @@
 					"windupSound":"sotf_chalice_mine_windup",
 					"windupDelay":1,
 					"explosionSpec":{"duration":0.1f,
-									 "radius":250,
-									 "coreRadius":200, # full damage within core radius
+									 "radius":350,
+									 "coreRadius":300, # full damage within core radius
 									 "collisionClass":MISSILE_FF,
 									 "collisionClassByFighter":MISSILE_FF,
 									 "particleSizeMin":3.0,

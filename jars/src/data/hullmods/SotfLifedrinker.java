@@ -148,6 +148,8 @@ public class SotfLifedrinker extends SotfBaseConcordAugment {
                 SotfMisc.getSierraColor().darker(), opad);
         label.italicize();
         tooltip.addPara("   - \"Lifedrinker\" lyrical excerpt submitted to Epiphany inquisitor", gray, opad);
+
+        tooltip.setBgAlpha(0.9f);
     }
 
 }

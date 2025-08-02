@@ -100,6 +100,8 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
 
     var startDelay = 0.05f
 
+    var fallback = 0f;
+
     var isFadeIn = true
 
     var evenWhilePaused = false
@@ -113,6 +115,11 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
     }
 
     override fun advance(amount: Float) {
+        fallback += amount
+        if (fallback > 30f) {
+            duration = 0f
+            LunaCampaignRenderer.removeRenderer(this)
+        }
         if (!Global.getSector().isPaused) {
 
             if (startDelay >= 0) {

@@ -3,7 +3,7 @@ Concord Shift,sotf_concordshift,,,,,,,,2,0.1,0.2,3,0.25,0.25,,,TRUE,TRUE,TRUE,,,
 Interdimensional Entry,sotf_concordentry,1,,,,,,,,,0.2,,0.2,2,TRUE,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,,restricted,graphics/icons/hullsys/phase_cloak.png
 Catalytic Scourge,sotf_entropiccatalyst,,,,,,0.2,,,,0.5,10,1,10,,,,,,,,,,,,"restricted, offensive",graphics/icons/hullsys/entropy_amplifier.png
 Gravitic Surge,sotf_gravispatialsurge,1,,,,,,,2,0.1,0.4,0.4,0.25,0.5,,,,,,,TRUE,TRUE,,,,"restricted, movement",graphics/icons/hullsys/burn_drive.png
-Hypnagogic Incursion,sotf_spatialbreach,,,,,,0.05,,2,0.35,0,0.05,0.5,0.5,,,TRUE,,TRUE,,,,,TRUE,,"restricted, movement",graphics/icons/hullsys/displacer.png
+Hypnagogic Incursion,sotf_hypnagogicincursion,,,,,,0.05,,2,0.25,0,0.05,0.5,0.5,,,TRUE,,TRUE,,,,,TRUE,,"restricted, movement",graphics/icons/hullsys/displacer.png
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Drone Strike,sotf_dronestrike,,,,,,0.05,,2,0.05,0.5,,0.25,1,,,,,,,,,,,,offensive,graphics/icons/hullsys/interdictor_array.png
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,

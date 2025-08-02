@@ -84,9 +84,9 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_MILE1, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedMilestone1"));
 
-            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(1.5f);
 
-            Global.getSector().addScript(new DelayedActionScript(0.75f) {
+            Global.getSector().addScript(new DelayedActionScript(1.5f) {
                 @Override
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
@@ -101,9 +101,9 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_PENULT, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
 
-            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(1.5f);
 
-            Global.getSector().addScript(new DelayedActionScript(0.75f) {
+            Global.getSector().addScript(new DelayedActionScript(1.5f) {
                 @Override
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {
@@ -121,9 +121,9 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
             sector_mem.set(SotfIDs.MEM_DID_HAUNTED_ULT, true);
             //Global.getSector().addScript(new SotfGenericDialogScript("sotfHauntedPenultimate"));
 
-            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(0.75f);
+            if (!SotfMisc.getHauntedFastDreams()) SotfHauntedDreamCampaignVFX.fadeIn(1.5f);
 
-            Global.getSector().addScript(new DelayedActionScript(0.75f) {
+            Global.getSector().addScript(new DelayedActionScript(1.5f) {
                 @Override
                 public void doAction() {
                     if (SotfMisc.getHauntedFastDreams()) {

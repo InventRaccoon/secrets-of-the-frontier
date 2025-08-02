@@ -445,6 +445,18 @@ public class SotfMisc {
         addGuilt(amount, 999f);
     }
 
+    public static float getCOTLDPPenaltyPercent() {
+        return LunaSettings.getFloat(SotfIDs.SOTF, "sotf_cotlDPPenaltyPercent");
+    }
+
+    public static int getCOTLBaseDP() {
+        return LunaSettings.getInt(SotfIDs.SOTF, "sotf_cotlBaseCapacity");
+    }
+
+    public static int getCOTLDPPerLevel() {
+        return LunaSettings.getInt(SotfIDs.SOTF, "sotf_cotlCapacityPerLevel");
+    }
+
     // turns a gamma/beta/alpha into an equivalent-level Dustkeeper instance
     public static void dustkeeperifyAICore(PersonAPI person, String forcedPrefix, String forcedInfex, String forcedSuffix) {
         PersonAPI temp = null;
@@ -595,6 +607,24 @@ public class SotfMisc {
         return text.toString();
     }
 
+    public static void ensurePlayerKnowsShip(String id) {
+        if (!Global.getSector().getPlayerFaction().knowsShip(id)) {
+            Global.getSector().getPlayerFaction().addKnownShip(id, false);
+        }
+    }
+
+    public static void ensurePlayerKnowsWeapon(String id) {
+        if (!Global.getSector().getPlayerFaction().knowsWeapon(id)) {
+            Global.getSector().getPlayerFaction().addKnownWeapon(id, false);
+        }
+    }
+
+    public static void ensurePlayerKnowsFighter(String id) {
+        if (!Global.getSector().getPlayerFaction().knowsFighter(id)) {
+            Global.getSector().getPlayerFaction().addKnownFighter(id, false);
+        }
+    }
+
     /**
      * Checks if a ship has a standalone blueprint or is in a (commonish) blueprint package
      * @param spec Ship hull to check
@@ -646,8 +676,30 @@ public class SotfMisc {
      * @param capital
      * @return
      */
-    public static Object forHullSize(ShipAPI ship, Object frigate, Object destroyer, Object cruiser, Object capital) {
+    public static Object forShipsHullSize(ShipAPI ship, Object frigate, Object destroyer, Object cruiser, Object capital) {
         switch (ship.getHullSize().ordinal() - 1) {
+            case 2:
+                return destroyer;
+            case 3:
+                return cruiser;
+            case 4:
+                return capital;
+            default:
+                return frigate;
+        }
+    }
+
+    /**
+     * Returns one of the given arguments based on the target's hull size
+     * @param size Hull size in question
+     * @param frigate
+     * @param destroyer
+     * @param cruiser
+     * @param capital
+     * @return
+     */
+    public static Object forHullSize(ShipAPI.HullSize size, Object frigate, Object destroyer, Object cruiser, Object capital) {
+        switch (size.ordinal() - 1) {
             case 2:
                 return destroyer;
             case 3:
@@ -691,6 +743,30 @@ public class SotfMisc {
         ship.getArmorGrid().setArmorValue(mostDamaged.getX(), mostDamaged.getY(), left + repaired);
         Global.getCombatEngine().addFloatingDamageText(ship.getArmorGrid().getLocation(mostDamaged.getX(), mostDamaged.getY()), repaired, Misc.MOUNT_SYNERGY, ship, ship);
         return repaired;
+    }
+
+    public static void repairEvenly(ShipAPI ship, float percentHeal) {
+        float repairAmount = ship.getArmorGrid().getMaxArmorInCell() * percentHeal;
+
+        final float[][] grid = ship.getArmorGrid().getGrid();
+        final float max = ship.getArmorGrid().getMaxArmorInCell();
+
+        for (int x = 0; x < grid.length; x++)
+        {
+            for (int y = 0; y < grid[0].length; y++)
+            {
+                if (grid[x][y] < max)
+                {
+                    float cur = grid[x][y];
+                    float repairable = Math.min(max - cur, repairAmount);
+                    ship.getArmorGrid().setArmorValue(x, y, cur + repairable);
+                    //ship.getArmorGrid().setArmorValue(x, y, max);
+                }
+            }
+        }
+
+        ship.syncWithArmorGridState();
+        ship.syncWeaponDecalsWithArmorDamage();
     }
 
     public static boolean isSecondInCommandEnabled() {

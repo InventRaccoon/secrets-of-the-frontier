@@ -21,7 +21,9 @@ import data.scripts.campaign.intel.misc.elements.SkillWidgetElement
 import data.scripts.campaign.skills.SotfAdvancedCountermeasures
 import data.scripts.campaign.skills.SotfPolarizedNanorepair
 import data.scripts.combat.special.SotfInvokeHerBlessingPlugin
+import data.scripts.utils.SotfMisc
 import data.subsystems.SotfInvokeHerBlessingSubsystem
+import lunalib.lunaSettings.LunaSettings.getFloat
 import lunalib.lunaUI.elements.LunaElement
 import java.awt.Color
 import kotlin.math.roundToInt
@@ -57,7 +59,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                     tooltip.addSpacer(opad)
                     tooltip.addPara("Mimics typically spawn with 2-3 d-mods. Some later upgrades spawn special " +
                             "\"reflections\" with improved quality - this upgrade grants them 1-3 s-mods instead.",
-                        gray, 0f)
+                        0f, gray, Misc.getStoryDarkBrighterColor(), "s-mods")
                 }
 
                 SotfIDs.COTL_MULTIFACETED -> tooltip.addPara("Increases mimic capacity by an additional %s.",
@@ -96,14 +98,15 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
                 SotfIDs.COTL_SHRIEKOFTHEDAMNED -> {
                     tooltip.addPara(
-                        "When Sirius creates an echo, he also releases a %s against all nearby hostile ships within " +
+                        "When Sirius creates a mimic, he also releases a %s against all nearby hostile ships within " +
                                 "%s units and up to %s fighters and missiles within that range. Hits %s " +
-                                "and %s. Deals %s damage and %s, heightened versus smaller targets. Low-hull fighters " +
-                                "that are struck %s into non-existence.",
+                                "and %s. Deals %s and %s damage and %s, heightened versus smaller targets.",
                         0f, h, "gravitic strike", "" + SotfInvokeHerBlessingPlugin.SHRIEK_RANGE.roundToInt(),
                         "" + (SotfInvokeHerBlessingPlugin.SHRIEK_PD_BASE_CHANCE /
                                 SotfInvokeHerBlessingPlugin.SHRIEK_PD_DECAY_PER_TARGET).roundToInt(),
-                        "through shields", "across dimensions", "fragmentation", "damps velocity", "collapse"
+                        "through shields", "across dimensions",
+                        "" + SotfInvokeHerBlessingPlugin.SHRIEK_DAMAGE_PER_SHIP.roundToInt() + " fragmentation",
+                        "" + SotfInvokeHerBlessingPlugin.SHRIEK_EMP_PER_SHIP.roundToInt() + " EMP", "damps velocity"
                     )
                     tooltip.addSpacer(opad)
                     tooltip.addPara("Hovering over an echo shows the range of the gravitic strike.",
@@ -115,10 +118,24 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                     val desWing = Global.getSettings().getFighterWingSpec("sotf_sbd_des_wing")
                     val cruWing = Global.getSettings().getFighterWingSpec("sotf_sbd_cru_wing")
                     val capWing = Global.getSettings().getFighterWingSpec("sotf_sbd_cap_wing")
-                    tooltip.addPara("When a mimic is %s, it splits into a wing of %s/%s/%s/%s %s, each armed with an " +
-                            "energy-based autolance that slows targets on hit. The wing fights autonomously until destroyed.",
-                        0f, h, "destroyed", frigWing.numFighters.toString(), desWing.numFighters.toString(),
-                        cruWing.numFighters.toString(), capWing.numFighters.toString(), "Nettle-class interceptors")
+                    tooltip.addPara("When a mimic is %s, it splits into a wing of %s that seek out and attack hostiles autonomously.",
+                        0f, h, "destroyed", "fighter drones")
+                    tooltip.addSpacer(opad)
+                    tooltip.addPara("Frigates and destroyers create a wing of %s/%s %s, highly mobile and armed with " +
+                            "an energy-based autolance that slows targets on hit.",
+                        0f, h, frigWing.numFighters.toString(), desWing.numFighters.toString(),
+                        "Barb-class attack drones")
+                    tooltip.addSpacer(opad)
+                    tooltip.addPara("Cruisers and capital ships create a wing of %s/%s %s, durable heavy fighters that " +
+                            "can bombard larger ships while dispersing flares.",
+                        0f, h, cruWing.numFighters.toString(), capWing.numFighters.toString(),
+                        "Nettle-class assault drones")
+                    // this technically works but you can't click them so no point
+//                    val entries = LinkedHashSet<String>()
+//                    entries.add(CodexDataV2.getFighterEntryId("sotf_barb_wing"))
+//                    entries.add(CodexDataV2.getWeaponEntryId("sotf_barbmount"))
+//                    tooltip.addCodexEntries("Codex entries", entries, true, opad)
+                    tooltip.codexEntryId = CodexDataV2.getFighterEntryId("sotf_barb_wing")
                 }
 
                 // TIER 3
@@ -126,8 +143,8 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                 SotfIDs.COTL_EVERYROSEITSTHORNS -> {
                     tooltip.addPara(
                        "Create a pair of Thorn-class frigate reflections* at the start of combat, high-grade heavy frigates " +
-                                "with exceptional mobility. Use F2 to see the Thorn's codex entry.",
-                        0f, h, "Thorn-class", "reflections*", "F2"
+                                "with exceptional mobility. Press [F2] to see the Thorn's codex entry.",
+                        0f, h, "Thorn-class", "reflections*", "[F2]"
                     )
 //                    tooltip.addPara(
 //                        "Spawn two Scarab-class frigate reflections* at the start of combat.",
@@ -135,8 +152,8 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 //                    )
                     tooltip.addSpacer(opad)
                     tooltip.addPara(
-                        "Reflections created by this upgrade do not count against Sirius' mimic capacity.",
-                        0f, h, "do not"
+                        "Reflections created by this upgrade consume mimic capacity.",
+                        0f, h, "consume mimic capacity"
                     )
                     tooltip.addSpacer(opad)
                     tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
@@ -154,14 +171,22 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         "" + (SotfInvokeHerBlessingPlugin.VIGOR_SPEED * 100f * 2f).roundToInt() + "%",
                         "" + (SotfInvokeHerBlessingPlugin.VIGOR_RESIST * 100f).roundToInt() + "%"
                     )
+                    tooltip.addSpacer(opad)
+                    tooltip.addPara(
+                        "Additionally, reduces mimics' formation time from %s seconds to %s seconds, reducing their initial period of " +
+                                "vulnerability.",
+                        0f, h, "" + (SotfInvokeHerBlessingPlugin.ECHO_FADE_IN_TIME).roundToInt(),
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfInvokeHerBlessingPlugin.ECHO_FADE_IN_TIME /
+                                SotfInvokeHerBlessingPlugin.VIGOR_FADE_SPEED)
+                    )
                 }
 
                 SotfIDs.COTL_DEATHTHROES -> {
-                    tooltip.addPara("While %s, mimics release a %s approximately every %s seconds at a hostile within %s, " +
-                            "dealing %s %s damage, %s %s and %s. Deals %s/%s/%s/%s damage based on hull size.",
+                    tooltip.addPara("While %s, mimics release a %s approximately every %s seconds at a hostile within %s units, " +
+                            "dealing %s %s damage, %s %s and %s the target's velocity. Deals %s/%s/%s/%s damage based on the mimic's hull size.",
                         0f, h, "expiring", "gravitic strike", Misc.getRoundedValue(SotfInvokeHerBlessingPlugin.THROES_AVERAGE_TIME), "" + SotfInvokeHerBlessingPlugin.THROES_RANGE.toInt(), "" + SotfInvokeHerBlessingPlugin.THROES_DAMAGE.toInt(),
                         "energy", "" + SotfInvokeHerBlessingPlugin.THROES_EMP.toInt(), "EMP",
-                        "damp targets' velocity", "100%", "" + (SotfInvokeHerBlessingPlugin.THROES_DESTROYER_MULT * 100f).roundToInt() + "%",
+                        "damping", "100%", "" + (SotfInvokeHerBlessingPlugin.THROES_DESTROYER_MULT * 100f).roundToInt() + "%",
                         "" + (SotfInvokeHerBlessingPlugin.THROES_CRUISER_MULT * 100f).roundToInt() + "%",
                         "" + (SotfInvokeHerBlessingPlugin.THROES_CAPITAL_MULT * 100f).roundToInt() + "%")
                 }
@@ -182,15 +207,20 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(CombatEndurance.REGEN_RATE * 100f) + "%",
                         "" + CombatEndurance.TOTAL_REGEN_MAX_POINTS.roundToInt() + "",
                         "" + (CombatEndurance.TOTAL_REGEN_MAX_HULL_FRACTION * 100f).roundToInt() + "%")
-                    tooltip.addPara("    - Repair up to %s of armor per second; maximum total repair is " +
-                            "the higher of %s armor points or %s of maximum armor",
+                    tooltip.addPara("    - Repair all damaged armor sections by %s/%s/%s/%s of their maximum armor per second, based on hull size",
                         0f,
                         Misc.getHighlightColor(),
-                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE * 100f) + "%",
-                        "" + SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_POINTS.roundToInt() + "",
-                        "" + (SotfPolarizedNanorepair.TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f).roundToInt() + "%"
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_FRIGATE * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_DESTROYER * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_CRUISER * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_CAPITAL * 100f) + "%"
                     )
                     tooltip.codexEntryId = CodexDataV2.getSkillEntryId(SotfIDs.SKILL_POLARIZEDNANOREPAIR)
+                    tooltip.addSpacer(opad)
+                    tooltip.addPara(
+                        "Polarized Nanorepair repairs the armor of non-reflection mimics at %s the rate.",
+                        0f, h, "300%"
+                    )
                 }
 
                 SotfIDs.COTL_HULLSIPHON -> {
@@ -229,9 +259,10 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
                 SotfIDs.COTL_DREAMEATER -> {
                     tooltip.addPara(
-                        "Prematurely expiring a mimic also repairs %s of the flagship's hull and armor based on " +
-                                "the mimic's size. Repair is reduced proportional to the mimic's spent lifespan, to " +
-                                "a minimum of %s of the base value.",
+                        "Prematurely expiring a mimic also repairs %s of the flagship's maximum hull based on " +
+                                "the mimic's size and repairs all damaged armor sections by the same percentage of " +
+                                "their maximum strength. Repair is reduced proportional to the mimic's spent " +
+                                "lifespan, to a minimum of %s of the base value.",
                         0f, h, "" + (SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_FRIGATE * 100f).roundToInt() + "%/" +
                             (SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_DESTROYER * 100f).roundToInt() + "%/" +
                                 (SotfInvokeHerBlessingPlugin.DREAMEATER_REPAIR_CRUISER * 100f).roundToInt() + "%/" +
@@ -245,8 +276,11 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "\"Dream Eater\""
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Consuming an echo also triggers \"Shriek of the Damned\" and \"Service Beyond Death\" if active.", gray,
-                        0f)
+                    tooltip.addPara("Consuming an echo also triggers \"Shriek of the Damned\" and " +
+                            "\"Service Beyond Death\" if active. If \"Death Throes\" is active, create a short-lived " +
+                            "nanite swarm that seeks out and assails hostiles with gravitic strikes.", 0f, gray,
+                        Global.getSettings().getColor("sotfDaydreamTextColor").darker(), "\"Shriek of the Damned\"",
+                        "\"Service Beyond Death\"", "\"Death Throes\"")
                 }
             }
         }
@@ -287,6 +321,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         val bg = factionForUIColors.darkUIColor
         val b = factionForUIColors.brightUIColor
         val h = Misc.getHighlightColor()
+        val bad = Misc.getNegativeHighlightColor()
 
         val sirius = SotfPeople.getPerson(SotfPeople.SIRIUS_MIMIC)
 
@@ -305,7 +340,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         capacity.addSpacer(10f)
         capacity.addPara("- Gain the %s subsystem in combat. Allied and enemy ships destroyed within %s range " +
                 "of the flagship leave an %s for %s seconds. Using the subsystem on an echo orders Sirius to create " +
-                "a %s that fights for your fleet.", 0f, h,
+                "a %s that fights for your fleet. Mimics are refit using your known blueprints and faction doctrine.", 0f, h,
             "\"Invoke Her Blessing\"",
             "" + SotfInvokeHerBlessingPlugin.ECHO_CREATION_RANGE.roundToInt(),
             "echo",
@@ -313,47 +348,98 @@ class SotfSiriusIntel : BaseIntelPlugin() {
             "mimic"
         )
         capacity.addSpacer(10f)
-        capacity.addPara("- Mimics have a lifespan of %s/%s/%s/%s seconds based on their hull size, after " +
-                "which they lose %s of their maximum hull per second.", 0f, h,
-            "" + SotfInvokeHerBlessingPlugin.LIFESPAN_FRIGATE.roundToInt(),
-            "" + SotfInvokeHerBlessingPlugin.LIFESPAN_DESTROYER.roundToInt(),
-            "" + SotfInvokeHerBlessingPlugin.LIFESPAN_CRUISER.roundToInt(),
-            "" + SotfInvokeHerBlessingPlugin.LIFESPAN_CAPITAL.roundToInt(),
-            "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
-        )
+        if (SotfInvokeHerBlessingPlugin.LIFESPAN_PER_HULL_SIZE) {
+            capacity.addPara("- Mimics have a lifespan of %s/%s/%s/%s seconds based on their hull size, after " +
+                    "which they lose %s of their maximum hull per second.", 0f, h,
+                "" + SotfInvokeHerBlessingPlugin.LIFESPAN_FRIGATE.roundToInt(),
+                "" + SotfInvokeHerBlessingPlugin.LIFESPAN_DESTROYER.roundToInt(),
+                "" + SotfInvokeHerBlessingPlugin.LIFESPAN_CRUISER.roundToInt(),
+                "" + SotfInvokeHerBlessingPlugin.LIFESPAN_CAPITAL.roundToInt(),
+                "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
+            )
+        } else {
+            capacity.addPara(
+                "- Mimics have a lifespan of %s seconds (increased to %s seconds once you reach level %s), after " +
+                        "which they lose %s of their maximum hull per second.", 0f, h,
+                "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN.roundToInt(),
+                "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN_INCREASED.roundToInt(),
+                "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN_INCREASE_LEVEL,
+                "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
+            )
+        }
         capacity.addSpacer(10f)
-        capacity.addPara("- Mimics created with Invoke Her Blessing do not count against the fleet's deployment " +
-                "point limit.", 0f
-        )
+        val damagePenalty = getFloat(SotfIDs.SOTF, "sotf_cotlMimicDamagePenalty")!!
+        val damageTakenPenalty = getFloat(SotfIDs.SOTF, "sotf_cotlMimicDamageTakenPenalty")!!
+        if (damagePenalty < 1f || damageTakenPenalty > 1f) {
+            if (damagePenalty < 1f && damageTakenPenalty > 1f) {
+                capacity.addPara(
+                    "- Mimics created with Invoke Her Blessing do not count against the fleet's deployment point limit, " +
+                            "deal %s less damage, refit fighters %s slower and take %s more damage.", 0f, bad,
+                    "" + ((1f - damagePenalty) * 100f).roundToInt() + "%",
+                    "" + ((1f - damagePenalty) * 100f).roundToInt() + "%",
+                    "" + ((damageTakenPenalty - 1f) * 100f).roundToInt() + "%"
+                )
+            } else if (damagePenalty < 1f) {
+                capacity.addPara(
+                    "- Mimics created with Invoke Her Blessing do not count against the fleet's deployment point limit, deal %s less damage and refit fighters %s slower.", 0f, bad,
+                    "" + ((1f - damagePenalty) * 100f).roundToInt() + "%",
+                    "" + ((1f - damagePenalty) * 100f).roundToInt() + "%"
+                )
+            } else {
+                capacity.addPara(
+                    "- Mimics created with Invoke Her Blessing do not count against the fleet's deployment point limit but take %s more damage.", 0f, bad,
+                    "" + ((damageTakenPenalty - 1f) * 100f).roundToInt() + "%"
+                )
+            }
+        } else {
+            capacity.addPara(
+                "- Mimics created with Invoke Her Blessing do not count against the fleet's deployment point limit.", 0f
+            )
+        }
         capacity.addSpacer(10f)
         capacity.addPara("- Sirius has a maximum mimic capacity of %s deployment points, increased to %s with " +
                 "the %s upgrade (base value of %s; increased by %s for each level you gain)", 0f, h,
             "" + SotfInvokeHerBlessingSubsystem.getMimicCapacityTheoretical(false),
             "" + SotfInvokeHerBlessingSubsystem.getMimicCapacityTheoretical(true),
             "\"Multifaceted\"",
-            "" + SotfInvokeHerBlessingPlugin.BASE_DP,
-            "" + SotfInvokeHerBlessingPlugin.DP_PER_LEVEL
+            "" + SotfMisc.getCOTLBaseDP(),
+            "" + SotfMisc.getCOTLDPPerLevel()
         )
         capacity.addSpacer(10f)
         capacity.addPara("- Expiring mimics and those created by means other than Invoke Her Blessing do not count " +
                 "against Sirius' capacity.", 0f
         )
         capacity.addSpacer(10f)
-        capacity.addPara("- Exceeding Sirius' capacity causes mimics to decay proportionally more quickly (at %s " +
-                "the limit, mimics decay %s as quickly - minimum %s multiplier while overclocked)", 0f, h,
-            "2x", "2x", "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfInvokeHerBlessingPlugin.OVERCLOCK_MIN_RATE) + "x"
+//        capacity.addPara("- Exceeding Sirius' capacity induces %s, causing mimics to decay proportionally more quickly (at %s " +
+//                "the limit, mimics decay %s as quickly - minimum %s multiplier while overclocked)", 0f, h,
+//            "overclock", "3x", "3x", "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfInvokeHerBlessingPlugin.OVERCLOCK_MIN_RATE) + "x"
+//        )
+        capacity.addPara("- Exceeding Sirius' capacity induces %s in all limited-lifespan mimics. Overclock increases lifespan " +
+                "decay rate to %s. However, it also increases damage dealt by %s, top speed by %s, maneuverability by %s and total " +
+                "flux dissipation by %s.", 0f, arrayOf(bad, bad, h, h, h, h),
+            "overclock", "" + (SotfInvokeHerBlessingPlugin.OVERCLOCK_MIN_RATE * 100f).roundToInt() + "%",
+            "" + (SotfInvokeHerBlessingPlugin.OVERCLOCK_DAMAGE * 100f).roundToInt() + "%",
+            "" + (SotfInvokeHerBlessingPlugin.OVERCLOCK_SPEED * 100f).roundToInt() + "%",
+            "" + (SotfInvokeHerBlessingPlugin.OVERCLOCK_SPEED * 100f * 2f).roundToInt() + "%",
+            "" + (SotfInvokeHerBlessingPlugin.OVERCLOCK_DISSIPATION * 100f).roundToInt() + "%"
         )
         capacity.addSpacer(10f)
-        capacity.addPara("Sirius' safety interlocks have been disabled and he can replicate all ship designs with very few exceptions.",
+        capacity.addPara("- Target a limited-lifespan mimic with %s and use the subsystem on it to " +
+                "prematurely expire it and free up capacity for new mimics.", 0f, h, "[R]"
+        )
+        capacity.addSpacer(10f)
+        capacity.addPara("Sirius' safety interlocks have been disabled and he can replicate almost all ship designs, excluding " +
+                "extradimensional or non-mechanical threats. He will synthesize a large countermeasure-vessel to assist " +
+                "against most non-replicable hostiles.",
             Misc.getGrayColor(), 0f
         )
         var autopilotToggleText = "Autopilot usage of IHB (disabled)"
         if (haveUpgrade(SotfIDs.COTL_AUTOPILOT)) {
             autopilotToggleText = "Autopilot usage of IHB (enabled)"
         }
-        val autopilotToggle = capacity.addButton(autopilotToggleText, "autopilot", c, bg, Alignment.MID, CutStyle.TL_BR, 250f, 30f, 10f)
+        capacity.addButton(autopilotToggleText, "autopilot", c, bg, Alignment.MID, CutStyle.TL_BR, 250f, 30f, 10f)
         capacity.addTooltipToPrevious(SotfAutopilotTooltipCreator(), TooltipLocation.RIGHT)
-        capacity.heightSoFar = skills.heightSoFar
+        //capacity.heightSoFar = skills.heightSoFar
 
         main.endSubTooltip()
 
@@ -362,7 +448,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         main.addSpacer(capacity.heightSoFar)
 
         val upgrades = main.beginSubTooltip(width * 0.95f)
-        upgrades.addSpacer(10f)
+        //upgrades.addSpacer(10f)
         upgrades.addSectionHeading("Her Boons For The Worthy", c, bg, Alignment.MID, opad).position.setXAlignOffset(0f)
         upgrades.addPara("- Unlock a new tier of upgrades when you reach levels 3/6/9/12/15.", opad, h, "3", "6", "9", "12", "15")
         upgrades.addPara("- Can only pick 1 upgrade from each tier, but they can be reassigned freely.", opad, h, "1", "reassigned")
@@ -616,6 +702,8 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                 tooltip.addSpacer(opad)
                 tooltip.addPara("This tier is not unlocked yet.", 0f, Misc.getNegativeHighlightColor(), Misc.getNegativeHighlightColor())
             }
+            // tooltip can display over intel tags which makes it visually noisy
+            tooltip.setBgAlpha(0.94f)
         }
     }
 
@@ -699,7 +787,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         return false
     }
 
-    // don't show unless a Concord ship is in our fleet
+    // don't show unless COTL
     override fun isHidden(): Boolean {
         return !Global.getSector().memoryWithoutUpdate.contains(SotfIDs.MEM_COTL_START)
     }

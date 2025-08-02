@@ -1,0 +1,68 @@
+{
+  "id":"sotf_reckoner",
+  "specClass":"projectile",
+  #"everyFrameEffect":"data.scripts.weapons.SotfReckonerEffect",
+  "projectileSpecId":"sotf_reckoner_shot",
+  "type": "ENERGY",
+  "size": "MEDIUM",
+  "turretSprite": "graphics/weapons/sotf_autolance_turret.png",
+  "turretGlowSprite": "graphics/weapons/sotf_autolance_turret_glow.png",
+  "hardpointSprite": "graphics/weapons/sotf_autolance_hardpoint.png",
+  "hardpointGlowSprite": "graphics/weapons/sotf_autolance_hardpoint_glow.png",
+  "glowColor": [
+    100,
+    255,
+    205,
+    255
+  ],
+  "turretOffsets": [
+    15,
+    0,
+    13,
+    6,
+    13,
+    -6,
+    8,
+    4,
+    8,
+    -4
+  ],
+  "turretAngleOffsets": [
+    0,
+    5,
+    -5,
+    10,
+    -10
+  ],
+  "hardpointOffsets": [
+    15.5,
+    0,
+    13.5,
+    6,
+    13.5,
+    -6,
+    8.5,
+    4,
+    8.5,
+    -4
+  ],
+  "hardpointAngleOffsets": [
+    0,
+    5,
+    -5,
+    10,
+    -10
+  ],
+  "barrelMode": "LINKED",
+  "animationType":"GLOW_AND_FLASH",
+  "muzzleFlashSpec":{"length":10.0,
+					   "spread":5.0,
+					   "particleSizeMin":12.0,
+					   "particleSizeRange":15.0,
+					   "particleDuration":0.12,
+					   "particleCount":10,
+					   "particleColor":[100,255,205,255]},
+	"interruptibleBurst":false,
+	"autocharge": true,
+	"fireSoundTwo": "sotf_autolance_fire"
+}

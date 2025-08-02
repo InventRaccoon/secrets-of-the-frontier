@@ -27,12 +27,12 @@ public class SotfConcordShiftStats extends BaseShipSystemScript {
 	
 	public static final float SHIP_ALPHA_MULT = 0.25f;
 	public static final float VULNERABLE_FRACTION = 0f;
-	public static float BASE_FLAT_SPEED_BOOST = 75f;
+	public static float BASE_FLAT_SPEED_BOOST = 50f;
 	
 	public static final float MAX_TIME_MULT = 3f;
 	public static boolean FLUX_LEVEL_AFFECTS_SPEED = true;
-	public static float MIN_SPEED_MULT = 0.65f;
-	public static float BASE_FLUX_LEVEL_FOR_MIN_SPEED = 0.75f;
+	public static float MIN_SPEED_MULT = 0.5f;
+	public static float BASE_FLUX_LEVEL_FOR_MIN_SPEED = 0.65f;
 
 	// no, ship-system scripts are not one-per-spec like hullmods are
 	//private List<ShipAPI> have_phased = new ArrayList<>();

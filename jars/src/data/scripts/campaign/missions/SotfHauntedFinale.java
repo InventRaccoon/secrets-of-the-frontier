@@ -71,6 +71,8 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
     // Light of the Lake
     protected StarSystemAPI lotl;
 
+    protected boolean noYma = false;
+
     // run when the bar event starts / when we ask a contact about the mission
     protected boolean create(MarketAPI createdAt, boolean barEvent) {
         setName("The Light of the Lake");
@@ -80,11 +82,15 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         completedKey = "$sotf_haunted_completed"; // this ends the game tho
 
         StarSystemAPI yma =  Global.getSector().getStarSystem("yma");
-        for (SectorEntityToken curr : yma.getEntitiesWithTag(Tags.LUDDIC_SHRINE)) {
-            killa = curr;
-            break;
+        if (yma != null) {
+            for (SectorEntityToken curr : yma.getEntitiesWithTag(Tags.LUDDIC_SHRINE)) {
+                killa = curr;
+                break;
+            }
+            if (killa == null) noYma = true;
+        } else {
+            noYma = true;
         }
-        if (killa == null) return false;
 
         resetSearch();
         preferSystemTags(ReqMode.NOT_ANY, Tags.THEME_REMNANT_MAIN, Tags.THEME_REMNANT_SECONDARY);
@@ -306,6 +312,9 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variantId);
         boolean hard = SotfMisc.getHFinaleHardMode();
 
+        member.setVariant(member.getVariant().clone(), false, false);
+        member.getVariant().setSource(VariantSource.REFIT);
+
         if (variantId.contains("tesseract")) {
             PersonAPI captain = Misc.getAICoreOfficerPlugin(Commodities.OMEGA_CORE).createPerson(Commodities.OMEGA_CORE, Factions.OMEGA, Misc.random);
             member.setCaptain(captain);
@@ -341,7 +350,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         if (!hard) {
             // mine spam/temp shell spam is very rough
             if (variantId.contains("doom") || variantId.contains("respite")) {
-                captain.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 0f);
+                captain.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 1f);
             }
             if (variantId.contains("doom")) {
                 captain.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1f);
@@ -356,8 +365,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 //                captain.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 0f);
 //            }
         }
-        member.setVariant(member.getVariant().clone(), false, false);
-        member.getVariant().setSource(VariantSource.REFIT);
+        member.updateStats();
         member.setCaptain(captain);
         fleetData.addFleetMember(member);
     }
@@ -418,7 +426,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
             text.setFontSmallInsignia();
             if (SharedUnlockData.get().addToSet("sotf_persistent", "sotf_haunted_completed")) {
                 SharedUnlockData.get().saveIfNeeded();
-                text.addParagraph("Unlocked \"Child of the Lake\" background.", Misc.getHighlightColor());
+                text.addParagraph("Unlocked \"Child of the Lake\" custom start", Misc.getHighlightColor());
             }
             text.setFontInsignia();
 
@@ -449,6 +457,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
     protected void updateInteractionDataImpl() {
         set("$sotf_haunted_stage", getCurrentStage());
         set("$sotf_haunted_satbombPlanet", planet.getId());
+        set("$sotf_haunted_noYma", noYma);
     }
 
     // description when selected in intel screen

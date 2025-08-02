@@ -26,9 +26,13 @@ class TheWitheringHex : SCBaseSkillPlugin() {
 
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
-        tooltip.addPara("Missile hits against armor or hull apply \"Hex\" to their targets", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("Missile hits against armor or hull apply \"Hex\" to their targets*", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
         tooltip.addPara("   - Hex applies damage over time on the impacted location for 7 seconds", 0f, Misc.getTextColor(), Misc.getHighlightColor(),  "7")
-        tooltip.addPara("   - Deals 20%% of the missiles base damage over the duration, split between energy and emp damage", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "20%", "energy", "emp" )
+        tooltip.addPara("   - Deals 10%% of the missiles base damage over the duration as energy damage, and 20%% as EMP damage", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "10%", "energy", "20%", "EMP" )
+
+        tooltip.addSpacer(10f)
+
+        tooltip.addPara("*DEM missiles do not apply Hex.", Misc.getGrayColor(), 0f)
 
         tooltip.addSpacer(10f)
 
@@ -55,10 +59,14 @@ class TheWitheringHex : SCBaseSkillPlugin() {
 
         override fun modifyDamageDealt(param: Any?, target: CombatEntityAPI?, damage: DamageAPI?, point: Vector2f?, shieldHit: Boolean): String? {
 
-            if (target !is ShipAPI || param !is MissileAPI || shieldHit) {
+            if (target !is ShipAPI || param !is DamagingProjectileAPI || shieldHit) {
                 return null
             }
             if (target.isHulk || !target.isAlive) return null
+
+            if (param !is MissileAPI && !param.isFromMissile) {
+                return null
+            }
 
             var missile = param as MissileAPI
 
@@ -71,7 +79,7 @@ class TheWitheringHex : SCBaseSkillPlugin() {
             var offset = Vector2f.sub(point, target.getLocation(), Vector2f())
             offset = Misc.rotateAroundOrigin(offset, -target.getFacing())
 
-            var mult = 0.2f
+            var mult = 0.3f
 
             hexListener.effects.add(HexEffectListener.HexEffect(missile.weapon?.ship, offset, missile.baseDamageAmount * mult, 7f, IntervalUtil(0.25f, 0.25f), IntervalUtil(0.2f, 0.25f)))
 
@@ -104,8 +112,8 @@ class TheWitheringHex : SCBaseSkillPlugin() {
 
                 effect.interval.advance(amount)
                 if (effect.interval.intervalElapsed()) {
-                    var dam = effect.damage / effect.duration * effect.interval.maxInterval * 0.5f
-                    var emp = dam
+                    var dam = effect.damage / effect.duration * effect.interval.maxInterval / 3
+                    var emp = dam * 2f
 
                     Global.getCombatEngine().applyDamage(target, loc, dam, DamageType.ENERGY, emp, true, true, effect.ship)
                 }

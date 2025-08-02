@@ -55,6 +55,12 @@ public class SotfCodexUnlocker implements FleetEventListener, CodexEventListener
 		if (SharedUnlockData.get().isPlayerAwareOfHullmod(SotfIDs.HULLMOD_CWARSUITE)) {
 			SharedUnlockData.get().reportPlayerAwareOfSkill(SotfIDs.SKILL_CYBERWARFARE, true);
 		}
+		if (SharedUnlockData.get().isPlayerAwareOfWeapon("sotf_barbmount") || SharedUnlockData.get().isPlayerAwareOfWeapon("sotf_barbrail")) {
+			SharedUnlockData.get().reportPlayerAwareOfFighter("sotf_barb_wing", true);
+		}
+		if (SharedUnlockData.get().isPlayerAwareOfWeapon("sotf_nettlerail")) {
+			SharedUnlockData.get().reportPlayerAwareOfFighter("sotf_nettle_wing", true);
+		}
 
 		if (Global.getCurrentState() != GameState.CAMPAIGN) return;
 		

@@ -12,11 +12,14 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.CharacterCreationData;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.SharedUnlockData;
 import com.fs.starfarer.api.impl.campaign.ids.*;
 import com.fs.starfarer.api.impl.campaign.rulecmd.BaseCommandPlugin;
 import com.fs.starfarer.api.impl.campaign.rulecmd.NGCAddStandardStartingScript;
 import com.fs.starfarer.api.impl.campaign.tutorial.CampaignTutorialScript;
+import com.fs.starfarer.api.util.DelayedActionScript;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.campaign.customstart.SotfChildOfTheLakeCampaignVFX;
 import data.scripts.campaign.customstart.SotfNightingaleNameFixer;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
@@ -69,6 +72,48 @@ public class SotfNGCCMD extends BaseCommandPlugin
                         MemoryAPI char_mem = Global.getSector().getPlayerPerson().getMemoryWithoutUpdate();
                         char_mem.set(SotfIDs.GUILT_KEY, SotfMisc.getHauntedGuilt());
                         char_mem.set(MemFlags.PLAYER_ATROCITIES, 4f);
+                    }
+                });
+                return true;
+            case "cotlUnlocked":
+                return SharedUnlockData.get().getSet("sotf_persistent").contains("sotf_haunted_completed") || !SotfMisc.getLockoutStarts();
+            case "cotlSmallText":
+                dialog.getTextPanel().setFontSmallInsignia();
+                dialog.getTextPanel().addParagraph("Gained \"Invoke Her Blessing\"", Misc.getPositiveHighlightColor());
+                dialog.getTextPanel().highlightInLastPara(SotfMisc.DAYDREAM_COLOR, "\"Invoke Her Blessing\"");
+                dialog.getTextPanel().addParagraph("    - Use on echoes left by destroyed ships to create a mimic that fights for you", SotfMisc.DAYDREAM_COLOR);
+                dialog.getTextPanel().addParagraph("    - Choose from upgrades as you level", SotfMisc.DAYDREAM_COLOR);
+                dialog.getTextPanel().addParagraph("Learned \"Cult of the Daydream\" ships and weapons blueprints", Misc.getPositiveHighlightColor());
+                dialog.getTextPanel().highlightInLastPara(SotfMisc.DAYDREAM_COLOR, "\"Cult of the Daydream\"");
+                return true;
+            case "cotlStartingScript":
+                data.addScriptBeforeTimePass(new Script() {
+                    public void run() {
+                        Global.getSector().getMemoryWithoutUpdate().set(SotfIDs.MEM_COTL_START, true);
+                    }
+                });
+                data.addScript(new Script() {
+                    public void run() {
+                        Global.getSector().addScript(new DelayedActionScript(0.25f) {
+                            @Override
+                            public void doAction() {
+                                SotfChildOfTheLakeCampaignVFX.fadeIn(1f);
+                                Global.getSector().addScript(new DelayedActionScript(1f) {
+                                    @Override
+                                    public void doAction() {
+                                        CampaignFleetAPI pf = Global.getSector().getPlayerFleet();
+                                        Misc.showRuleDialog(pf, "sotfCOTLIntro");
+
+                                        InteractionDialogAPI dialog = Global.getSector().getCampaignUI().getCurrentInteractionDialog();
+                                        if (dialog != null) {
+                                            dialog.setBackgroundDimAmount(0.4f);
+                                        }
+
+                                        SotfChildOfTheLakeCampaignVFX.fadeOut(1f);
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
                 return true;

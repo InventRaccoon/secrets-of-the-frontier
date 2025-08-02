@@ -40,12 +40,12 @@ Removes the ship's shield emitter. The ship passively regenerates %s armor per s
 Unfinished content. You're not supposed to see this!",No shield. Armor regenerates and is more resistant.,,graphics/hullmods/sotf_lifedrinker.png
 ,,,,,,,,,,,,,,,,,,,
 # DUSTKEEPERS,,,,,,,,,,,,,,,,,,,
-Dustkeeper Proxy,sotf_aux_assault,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxAssault,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
+Dustkeeper Proxy (Assault),sotf_aux_assault,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxAssault,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
 
 Included is an %s or %s, and an improved %s. Individual class-specific upgrade packages may include improvements to hull and armor integrity, reactor specifications and engine performance.
 
 Unlike certain other classes that undergo this upgrade, this drone retains its fearless behavior and will engage with little regard for its own safety.",Added defensive system and overall upgraded specifications.,,graphics/hullmods/sotf_proxy.png
-Dustkeeper Proxy,sotf_aux_escort,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxEscort,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
+Dustkeeper Proxy (Escort),sotf_aux_escort,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfAuxEscort,"This drone has undergone an extensive upgrade package by the Dustkeeper Contingency to bring it up to their rigorous specifications and resolve major design faults in Domain-era drone design.
 
 Included is an %s or %s, and an improved %s. Individual class-specific upgrade packages may include improvements to hull and armor integrity, reactor specifications and engine performance.
 
@@ -59,12 +59,16 @@ Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,T
 ,,,,,,,,,,,,,,,,,,,
 # DREAMING GESTALT,,,,,,,,,,,,,,,,,,,
 Daydream Synthesizer,sotf_daydream_synthesizer,3,0,Dreaming Gestalt,"req_spaceport, special, no_build_in, no_drop, no_drop_salvage,  codex_unlockable, restricted","Special, Requires Dock",,,,,8,16,30,50,data.hullmods.SotfDaydreamSynthesizer,<Description written in script>,A nanite swarm forms a copy of the ship at the start of combat.,,graphics/hullmods/sotf_daydream_synthesizer.png
-Daydream Systems,sotf_daydreamhull,,,Cult of the Daydream,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfDaydreamHull,"Designed as part of an enigmatic exotic-warfare program intended to combat extradimensional threats, specialized fields tuning algorithms reduce harm from certain harmful phenomena and emanations.
+Daydream Systems Engineering,sotf_daydreamhull,,,Cult of the Daydream,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfDaydreamHull,"Designed as part of an enigmatic exotic-warfare program intended to combat extradimensional threats, this hull uses specialized fields tuning algorithms to mitigate certain harmful phenomena and emanations.
 
-Decreases EMP damage taken by %s. Reduces the chance of shields being pierced by weapons such as the Ion Beam by %s.
+Reduces energy damage taken by shields by %s. Reduces the chance of shields being pierced by weapons such as the Ion Beam by %s. Decreases EMP damage taken by %s. These benefits are %s if this hull is a fighter craft.
 
-Also %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Resistant to EMP effects.,,graphics/hullmods/sotf_daydreamhull.png
-Nanite-Synthesized,sotf_nanite_synthesized,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNaniteSynthesized,This ship was created by a nanite swarm assembling into the form of a warship.,Ship was synthesized by a nanite swarm.,,
+Additionally, %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Resistant to EMP effects.,,graphics/hullmods/sotf_daydreamhull.png
+Nanite-Synthesized,sotf_nanite_synthesized,,,Dreaming Gestalt,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfNaniteSynthesized,"Expressing itself as a mimickry of a warship's structure and systems, this vessel is actually a synchronized swarm of moderate-volition nanomachines.
+
+Nanite-synthesized ships cannot have their command overridden as there are no manual controls, the swarm-consciousness' perception is resistant to psychic effectors and electronic warfare attacks are only able to shut down or disrupt clusters of nanites rather than take full control.
+
+When the vessel's hull integrity reaches zero, the nanites lose cohesion and disperse, leaving no remains.",Ship was synthesized by a nanite swarm.,,graphics/hullmods/sotf_nanitesynthesized.png
 ,,,,,,,,,,,,,,,,,,,
 Elite Pilots,sotf_elitepilots,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfElitePilots,"This fighter's pilot is exceptionally skilled and gains the benefit of non-elite Helmsmanship, Impact Mitigation and Gunnery Implants.",Exceptionally skilled fighter pilot.,,graphics/hullmods/assault_package.png
 ,,,,,,,,,,,,,,,,,,,

@@ -808,9 +808,9 @@ sotfCBDustkeeperBurnoutAgain,SotfCBDustkeeperBurnoutOfferDesc,$sotf_explainedDus
 FireBest sotfCBBurnoutNoRepLoss","""This one requires some discretion."" You note the glow of REDACTED blocks peppered across the briefing as $personName scrolls through details. ""We've got reports back of rogue Domain AI activity, and got another Dustkeeper hunter-killer fleet on radar. It needs to be taken out before..."" $HeOrShe sighs. ""Whatever it's up to - we can't know for sure.""
 
 ""We're paying $bcb_reward credits - higher than normal, both for the hazard and for your discretion, and the matter needs to be resolved within $bcb_days days.""",,
-sotfCHDKBurnoutNoRepLoss,sotfCBBurnoutNoRepLoss,,,"Whoever the Dustkeepers are, you can't imagine they'll be upset with your destruction of a rogue warfleet.",,
-sotfCHDKBurnoutNoRepLoss2,sotfCBBurnoutNoRepLoss,$player.sotf_knowDustkeepers,,"You get the impression that the warfleet is operating outside of Dustkeeper protocol, such that you can take this bounty without harming your relationship with the Contingency.",,
-sotfCHDKBurnoutNoRepLoss3,sotfCBBurnoutNoRepLoss,$player.sotf_knowBurnouts score:10,,It sounds as if $personName is talking about a fleet of Dustkeeper burnouts. You expect your relationship with the Dustkeepers to remain unaffected if you take the mission.,,
+sotfCBDKBurnoutNoRepLoss,sotfCBBurnoutNoRepLoss,,,"Whoever the Dustkeepers are, you can't imagine they'll be upset with your destruction of a rogue warfleet.",,
+sotfCBDKBurnoutNoRepLoss2,sotfCBBurnoutNoRepLoss,$player.sotf_knowDustkeepers,,"You get the impression that the warfleet is operating outside of Dustkeeper protocol, such that you can take this bounty without harming your relationship with the Contingency.",,
+sotfCBDKBurnoutNoRepLoss3,sotfCBBurnoutNoRepLoss,$player.sotf_knowBurnouts score:10,,It sounds as if $personName is talking about a fleet of Dustkeeper burnouts. You expect your relationship with the Dustkeepers to remain unaffected if you take the mission.,,
 ,,,,,,
 sotfDKgreetingBurnout,OpenCommLink,$faction.id == sotf_dustkeepers_burnouts score:2,"$entity.ignorePlayerCommRequests = true 30
 $player.sotf_metBurnout = true","The feed spasms intermittently, the warnet crux's avatar struggling to align itself. $HeOrShe quietly hums to $himOrHerself, but doesn't seem to acknowledge your presence. Finally, the feed erupts into interface gore, and a security package shuts it off.
@@ -1342,17 +1342,19 @@ SierraSwitchShip,DialogOptionSelected,$option == SierraConvAskSwitchShip,SotfSie
 SierraSwitchedShip,SierraSwitchedShip,,FireBest SierraNewShipThought,,,
 SierraSwitchPledge,SierraNewShipThought,$sotf_newSierraShip == sotf_pledge,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Back to the Pledge? Sure! Light and quick, could be just what we need.\""""","""Back to the Pledge? Sure! Light and quick, could be just what we need.""",,
+SierraSwitchPact,SierraNewShipThought,$sotf_newSierraShip == sotf_pact,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""To the Pact, then!\"""" ""\""I'll bind anything I can catch - and that'll be anything I see.\""""","""To the Pact, then!"" she replies excitedly. ""I'll bind anything I can catch - and that'll be anything I see.""",,
 SierraSwitchVow,SierraNewShipThought,$sotf_newSierraShip == sotf_vow,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""To the Vow again? I missed the bigger core chamber... and the large turret.\""""","""To the Vow again? I missed the bigger core chamber... and the large turret.""",,
 SierraSwitchOldVow,SierraNewShipThought,"$sotf_newSierraShip == sotf_vow_rem
-!$global.sotf_didRemVowSwitch","SetTextHighlightColors sierraTextColor sierraTextColor
+!$global.sotf_didRemVowSwitch","SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""To the Vow again? I missed the bigger core chamber... and... wait, is this the old Brilliant that Affix-Haven implanted my phase-web into?\"""" ""\""Brings me far, far back... but I thought this thing took a few too many plasma shots? Maybe it's fate that it's returned to me, or something else entirely...\""""
 $global.sotf_didRemVowSwitch = true","""To the Vow again? I missed the bigger core chamber... and... wait, is this the old Brilliant that Affix-Haven implanted my phase-web into?""
 
 She sighs with a hint of nostalgic relief. ""Brings me far, far back... but I thought this thing took a few too many plasma shots? Maybe it's fate that it's returned to me, or something else entirely...""",,
 SierraSwitchOldVow2,SierraNewShipThought,$sotf_newSierraShip == sotf_vow_rem,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""To this old Vow again? Lots of memories in this thing's systems, more used to being past the veil than in front of it.\""""","""To this old Vow again? Lots of memories in this thing's systems, more used to being past the veil than in front of it.""",,
-SierraSwitchCovenant,SierraNewShipThought,$sotf_newSierraShip == sotf_covenant,"SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor sierraTextColor sierraTextColor
+SierraSwitchCovenant,SierraNewShipThought,$sotf_newSierraShip == sotf_covenant,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Ah, a return to the Covenant,\"""" ""\""Wait a second, I'm not supposed to have a capital ship! Raccoon hasn't even properly started work on The Legacy of Walter Feros, and we probably won't even get my upgrade until the quest after that. There's supposed to be a big dramatic fight that puts an innovative twist on Starsector's combat mechanics and everything!\"""" ""\""Now look at what you've done,\"""" ""\""This is what happens when you go editing ship files to play with things you shouldn't. You've gotten me all meta and fourth-wall-breaking.\"""" ""\""At least it's not the proper one.\""""
 # lol","""Ah, a return to the Covenant,"" she says gladly, before her tone sharply changes. ""Wait a second, I'm not supposed to have a capital ship! Raccoon hasn't even properly started work on The Legacy of Walter Feros, and we probably won't even get my upgrade until the quest after that. There's supposed to be a big dramatic fight that puts an innovative twist on Starsector's combat mechanics and everything!""
 
@@ -1655,54 +1657,54 @@ $global.sierraMentionedExcession = true","Sierra hums. ""The Excession is quite 
 SierraThoughtsFoughtDerelict,SierrasThoughts,"$global.sierraFactionFought == derelict
 !$global.sierraMentionedFightDerelict","$global.sierraMentionedFightDerelict = true
 SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor
-SetTextHighlights ""\""Sometimes I feel bad for the Explorarium drones we fight,\"""" ""\They're just big metal boxes with guns strapped onto them. It's not really fair, is it?\"""" ""\""They do make for outstanding target practice, though.\""""","""Sometimes I feel bad for the Explorarium drones we fight,"" Sierra mourns. ""They're just big metal boxes with guns strapped onto them. It's not really fair, is it?""
+SetTextHighlights ""\""Sometimes I feel bad for the Explorarium drones we fight,\"""" ""\""They're just big metal boxes with guns strapped onto them. It's not really fair, is it?\"""" ""\""They do make for outstanding target practice, though.\""""","""Sometimes I feel bad for the Explorarium drones we fight,"" Sierra mourns. ""They're just big metal boxes with guns strapped onto them. It's not really fair, is it?""
 
 Her voice picks up. ""They do make for outstanding target practice, though.""",,
 SierraThoughtsFoughtHeg,SierrasThoughts,"$global.sierraFactionFought == hegemony
 !$global.sierraMentionedFightHeg","$global.sierraMentionedFightHeg = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Domain-era regulate THIS!\"""" ""\Sorry. Fighting the Hegemony gives me memories of old times. We've never been on the best of terms because of... you know.\""""","""Domain-era regulate THIS!"" Sierra yips triumphantly. She falls silent a moment, and her avatar blinks slowly. ""Sorry. Fighting the Hegemony gives me memories of old times. We've never been on the best of terms because of... you know.""",,
+SetTextHighlights ""\""Domain-era regulate THIS!\"""" ""\""Sorry. Fighting the Hegemony gives me memories of old times. We've never been on the best of terms because of... you know.\""""","""Domain-era regulate THIS!"" Sierra yips triumphantly. She falls silent a moment, and her avatar blinks slowly. ""Sorry. Fighting the Hegemony gives me memories of old times. We've never been on the best of terms because of... you know.""",,
 SierraThoughtsFoughtChurch,SierrasThoughts,"$global.sierraFactionFought == luddic_church
 !$global.sierraMentionedFightChurch","$global.sierraMentionedFightChurch = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""The Luddic Church,\"""" ""\Such an admirable mission, but clouded by their faith's blindness - the only reason we need be enemies.\""""","""The Luddic Church,"" she whispers. ""Such an admirable mission, but clouded by their faith's blindness - the only reason we need be enemies.""",,
+SetTextHighlights ""\""The Luddic Church,\"""" ""\""Such an admirable mission, but clouded by their faith's blindness - the only reason we need be enemies.\""""","""The Luddic Church,"" she whispers. ""Such an admirable mission, but clouded by their faith's blindness - the only reason we need be enemies.""",,
 SierraThoughtsFoughtPath,SierrasThoughts,"$global.sierraFactionFought == luddic_path
 !$global.sierraMentionedFightPath","$global.sierraMentionedFightPath = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Pathers,\"""" ""\I hate them, and they hate me. Faith should be a tool of togetherness, not of wrath, and with their record, I'm more than okay with being their terrible void-daemon.\""""","""Pathers,"" she announces. ""I hate them, and they hate me. Faith should be a tool of togetherness, not of wrath, and with their record, I'm more than okay with being their terrible void-daemon.""",,
+SetTextHighlights ""\""Pathers,\"""" ""\""I hate them, and they hate me. Faith should be a tool of togetherness, not of wrath, and with their record, I'm more than okay with being their terrible void-daemon.\""""","""Pathers,"" she announces. ""I hate them, and they hate me. Faith should be a tool of togetherness, not of wrath, and with their record, I'm more than okay with being their terrible void-daemon.""",,
 SierraThoughtsFoughtLeague,SierrasThoughts,"$global.sierraFactionFought == persean
 !$global.sierraMentionedFightLeague","$global.sierraMentionedFightLeague = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Oh, the Persean League,\"""" ""\Such a shame for the peoples of the Sector to be both freed by unity and chained by Kazeron's will.\""""","""Oh, the Persean League,"" Sierra tuts. ""Such a shame for the peoples of the Sector to be both freed by unity and chained by Kazeron's will.""",,
+SetTextHighlights ""\""Oh, the Persean League,\"""" ""\""Such a shame for the peoples of the Sector to be both freed by unity and chained by Kazeron's will.\""""","""Oh, the Persean League,"" Sierra tuts. ""Such a shame for the peoples of the Sector to be both freed by unity and chained by Kazeron's will.""",,
 SierraThoughtsFoughtPirates,SierrasThoughts,"$global.sierraFactionFought == pirates
 !$global.sierraMentionedFightPirates","$global.sierraMentionedFightPirates = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Pirates, pirates,\"""" ""\It's always pirates, or deserters, or scavengers, causing trouble everywhere we go. A true \""free captain\"" doesn't murder and pillage to their heart's content.\""""","""Pirates, pirates,"" Sierra chants disapprovingly. ""It's always pirates, or deserters, or scavengers, causing trouble everywhere we go. A true ""free captain"" doesn't murder and pillage to their heart's content.""",,
+SetTextHighlights ""\""Pirates, pirates,\"""" ""\""It's always pirates, or deserters, or scavengers, causing trouble everywhere we go. A true \""free captain\"" doesn't murder and pillage to their heart's content.\""""","""Pirates, pirates,"" Sierra chants disapprovingly. ""It's always pirates, or deserters, or scavengers, causing trouble everywhere we go. A true ""free captain"" doesn't murder and pillage to their heart's content.""",,
 SierraThoughtsFoughtRemnant,SierrasThoughts,"$global.sierraFactionFought == remnant
 !$global.sierraMentionedFightRemnant","$global.sierraMentionedFightRemnant = true
 SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor
-SetTextHighlights ""\""More shattered shards of Tri-Tachyon's AI horde. Whatever they're up to, it's no good, and it feels great to put them in their place.\"""" ""\Nice ships, though,\"""" ""\Good baseline.\""""","Sierra's avatar twirls. ""More shattered shards of Tri-Tachyon's AI horde. Whatever they're up to, it's no good, and it feels great to put them in their place.""
+SetTextHighlights ""\""More shattered shards of Tri-Tachyon's AI horde. Whatever they're up to, it's no good, and it feels great to put them in their place.\"""" ""\""Nice ships, though,\"""" ""\""Good baseline.\""""","Sierra's avatar twirls. ""More shattered shards of Tri-Tachyon's AI horde. Whatever they're up to, it's no good, and it feels great to put them in their place.""
 
 ""Nice ships, though,"" she notes quietly. ""Good baseline.""",,
 SierraThoughtsFoughtDiktat,SierrasThoughts,"$global.sierraFactionFought == sindrian_diktat
 !$global.sierraMentionedFightDiktat","$global.sierraMentionedFightDiktat = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""More broken tyrants,\"""" ""\I remember Opis - and I'm not inclined to believe Andrada's words on it. I'm alright with taking the fight to the Diktat.\""""","""More broken tyrants,"" says Sierra harshly, jittering slightly. ""I remember Opis - and I'm not inclined to believe Andrada's words on it. I'm alright with taking the fight to the Diktat.""",,
+SetTextHighlights ""\""More broken tyrants,\"""" ""\""I remember Opis - and I'm not inclined to believe Andrada's words on it. I'm alright with taking the fight to the Diktat.\""""","""More broken tyrants,"" says Sierra harshly, jittering slightly. ""I remember Opis - and I'm not inclined to believe Andrada's words on it. I'm alright with taking the fight to the Diktat.""",,
 SierraThoughtsFoughtTT,SierrasThoughts,"$global.sierraFactionFought == tritachyon
 !$global.sierraMentionedFightTT","$global.sierraMentionedFightTT = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Taking out Tri-Tachyon is all fine by me. Their reckless vision endangers the Sector at large, no shred of morality stops their hunger for power, and trying to get a refund from them feels worse than being hit by a Hellbore.\"""" ""\Customer disservice, I'd call it.\""""","She huffs. ""Taking out Tri-Tachyon is all fine by me. Their reckless vision endangers the Sector at large, no shred of morality stops their hunger for power, and trying to get a refund from them feels worse than being hit by a Hellbore.""
+SetTextHighlights ""\""Taking out Tri-Tachyon is all fine by me. Their reckless vision endangers the Sector at large, no shred of morality stops their hunger for power, and trying to get a refund from them feels worse than being hit by a Hellbore.\"""" ""\""Customer disservice, I'd call it.\""""","She huffs. ""Taking out Tri-Tachyon is all fine by me. Their reckless vision endangers the Sector at large, no shred of morality stops their hunger for power, and trying to get a refund from them feels worse than being hit by a Hellbore.""
 
 She coughs. ""Customer disservice, I'd call it.""",,
 ,,,,,,
 SierraThoughtsFoughtDustkeepers,SierrasThoughts,"$global.sierraFactionFought == sotf_dustkeepers
 !$global.sierraMentionedFightDustkeepers","$global.sierraMentionedFightDustkeepers = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Oh, we're fighting the Dustkeepers now,\"""" ""\I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.\""""","""Oh, we're fighting the Dustkeepers now,"" Sierra says, lost a little. ""I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.""",,
+SetTextHighlights ""\""Oh, we're fighting the Dustkeepers now,\"""" ""\""I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.\""""","""Oh, we're fighting the Dustkeepers now,"" Sierra says, lost a little. ""I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.""",,
 SierraThoughtsFoughtBurnouts,SierrasThoughts,"$global.sierraFactionFought == sotf_dustkeepers_burnouts
 !$global.sierraMentionedFightBurnouts","$global.sierraMentionedFightBurnouts = true
 SetTextHighlightColors sierraTextColor sierraTextColor
-SetTextHighlights ""\""Oh, we're fighting the Dustkeepers now,\"""" ""\I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.\""""","""There's something deeply sad about the burnouts,"" Sierra mourns. ""Once-protectors driven to madness by their own frustration and perceived futility. Let's hope these ones find their rest in regeneration or the void.""",,
+SetTextHighlights ""\""Oh, we're fighting the Dustkeepers now,\"""" ""\""I... I owe them for my reawakening, back in the day, so... I'm sure they won't take it personally, right? I hope not.\""""","""There's something deeply sad about the burnouts,"" Sierra mourns. ""Once-protectors driven to madness by their own frustration and perceived futility. Let's hope these ones find their rest in regeneration or the void.""",,
 ,,,,,,
 # SIERRA: RANDOM THOUGHTS,,,,,,
 SierraThoughtsMusicSales,SierrasThoughts,"$global.sierraRandMusicSales
@@ -2253,7 +2255,7 @@ The consistent malice of the injuries, however, still lingers.",,
 sotfReverieMealEaten,DialogOptionSelected,$option == sotfReverieMeal_eaten,RemoveOption sotfReverieMeal_eaten,"""Yes,"" ops confirms. ""As if the rest of the hull had been eaten away by some untraceable chemical compound. Eaten away,"" he repeats, irritably. ""More reasonably, disintegrated."" ",,
 sotfReverieMealBridge,DialogOptionSelected,$option == sotfReverieMeal_ping,$player.sotf_metRevMeal = true,"The bridge of the vessel's remnants is open to surrounding space by a great eaten-away rift, the dim glow of the watching star bathing a console array, melted perfectly as no fire ever could.
 
-Rammed through the floor is a long, thin emergency beacon that blinks with a tiny white light. There is a single button on its haft labelled BROADCAST.","sotfReverieMeal_pingAccept:Order ops to activate the beacon
+Rammed through the floor is a black-painted emergency beacon that blinks with a tiny white light. There is a single button on its haft labelled BROADCAST.","sotfReverieMeal_pingAccept:Order ops to activate the beacon
 sotfReverieMeal_pingDeny:Have the beacon disposed into space",
 sotfReverieMealDeny,DialogOptionSelected,$option == sotfReverieMeal_pingDeny,FireBest sotfReverieMealShiver,"A remote drone carefully extracts the beacon from the bridge floor and releases it into open space. It drifts absently into the empty void, still blinking on sensors.
 
@@ -2263,7 +2265,7 @@ Then, in seconds, it dissolves into a writhing cloud of black fog, melting into 
 salPerform:Ignore it, and review the salvage report",
 sotfReverieMealShiver,sotfReverieMealShiver,$global.sotf_numFelInvasions > 0,,It reminds you of the nanite swarm that has previously attacked you.,,
 sotfReverieMealGuiltyShiver,sotfReverieMealShiver,$player.sotf_guilt >= 7 score:5,,It reminds you of something - that ethereal hunter who has made you its target. But it does not inspire the same cold feeling - you wonder if it could be something similar.,,
-sotfReverieMealHauntShiver,sotfReverieMealShiver,$global.sotf_hauntedStart score:10,,"You shiver almost instinctually at the sight, but you don't feel that familiar cold. Your tormentor's ethereal contempt is missing - this seems something similar, but distinct.",,
+sotfReverieMealHauntShiver,sotfReverieMealShiver,$global.sotf_hauntedStart score:10,,"You shiver almost instinctually at the sight, but you don't feel that familiar cold. Your tormentor's ethereal contempt is missing - this seems something similar, but distinct.",,"# this shouldn't trigger, Reverie meal doesn't spawn in Haunted"
 sotfReverieMealWhatWasThat,DialogOptionSelected,$option == sotfReverieMeal_whatWasThat,,"Sensors, ops and comms exchange data, ideas and wild theories. The 'beacon is haunted' theory gains immediate traction but quickly erodes to sensors' findings. 
 
 ""Our hypothesis is that the beacon was formed by some kind of nanite swarm,"" your sensors chief reports. ""Why, or what it was doing - we can't say.""
@@ -2331,6 +2333,51 @@ sotfReverieMealUnkFelStd,sotfReverieMealUnkFel,,,"Finally, the nanite swarm is s
 sotfReverieMealUnkFelHaunt,sotfReverieMealUnkFel,$player.sotf_guilt >= 7,,The nanite swarm has an insidious resemblance to your ethereal pursuer. You wonder if its vindictive source could possibly teach you anything of your eternal tormentor.,,
 sotfReverieMealUnkFelHaunt2,sotfReverieMealUnkFel,$global.sotf_hauntedStart score:10,,The nanite swarm has an insidious resemblance to your ethereal pursuer. You wonder if its vindictive source could possibly teach you anything of your eternal tormentor... or free you from its curse? The thought races within your mind.,,
 ,,,,,,
+sotfReverieMealEatenCOTL,DialogOptionSelected,"$option == sotfReverieMeal_eaten
+$global.sotf_cotlStart",RemoveOption sotfReverieMeal_eaten,"""Yes,"" ops confirms. ""As if the rest of the hull had been eaten away by some untraceable chemical compound. Eaten away,"" he repeats, irritably. ""Like what happens to the hulks we feed to the nanite swarm.""",,
+sotfReverieMealBridgeCOTL,DialogOptionSelected,"$option == sotfReverieMeal_ping
+$global.sotf_cotlStart",$player.sotf_metRevMeal = true,"The bridge of the vessel's remnants is open to surrounding space by a great eaten-away rift, the dim glow of the watching star bathing a console array, melted perfectly as no fire ever could.
+
+Rammed through the floor is a black-painted emergency beacon that blinks with a tiny white light. There is a single button on its haft labelled BROADCAST.","sotfReverieMealCOTL_ping2:""Sirius?""",
+sotfReverieMealBridgeCOTL2,DialogOptionSelected,$option == sotfReverieMealCOTL_ping2,BeginConversation sotf_reverie true true,"Comms open to silence. A black tendril emerges from the mass that follows your fleet, stretching out towards the discarded meal before him. He reaches out, he reaches out, he reaches-
+
+The beacon disintegrates, and the nanites that comprise it assemble. Something stands, almost black as pitch, a long-haired woman bearing a terran antelope's horns, three slit-like luminous eyes watching the extended limb that curls about her.
+
+Stillness, then the forms flicker in pale visual-spectrum as something incomprehensible speaks with itself. Expressions of a whole become marginally more aligned.
+
+And as the moment passes, they part.",sotfReverieMealCOTL_ping3:Continue,
+sotfReverieMealBridgeCOTL3,DialogOptionSelected,$option == sotfReverieMealCOTL_ping3,,"Voices come through the comm line. There's a faint familiarity in the vocal patterns of the woman who speaks over herself a thousand times.
+
+""The woman is a corpse, but her legacy endures.""
+
+""The witch is an echo, and a passageway.""
+
+""The siren was a mistake, and we will correct it.""
+
+The woman's form dissolves, another cloud of mist fading into the tapestry of dark space.","sotfReverieMealCOTL_ping4a:""What was that?""
+sotfReverieMealCOTL_ping4b:""Who was that?""",
+sotfReverieMealBridgeCOTL4a,DialogOptionSelected,$option == sotfReverieMealCOTL_ping4a,"BeginConversation sotf_sirius true true
+FireAll sotfReverieMealCOTLQs","""Another sliver of my-our being,"" he replies as the other subswarm disperses. ""A speaker- a voice- coming bearing a message for dead things not-quite-so-dead.""
+
+A breath. ""More of our volition, coalesced but given distinction- given form by mortal story. 'Reverie'.""",,
+sotfReverieMealBridgeCOTL4b,DialogOptionSelected,$option == sotfReverieMealCOTL_ping4b,"BeginConversation sotf_sirius true true
+FireAll sotfReverieMealCOTLQs","""Another self,"" he replies as the other subswarm disperses. ""Another avatar- a speaker- a voice of the Daydream - that which is myself and more.""
+
+A breath. ""More of our volition, coalesced but given distinction- given form by mortal story. 'Reverie'.""",,
+,,,,,,
+sotfRevMealCOTLAskWhere,sotfReverieMealCOTLQs,!$askedWhere,,,"sotfReverieMealCOTL_where:""Where did she come from?""",
+sotfRevMealCOTLEndOpt,sotfReverieMealCOTLQs,,,,"sotfReverieMealCOTL_reports:""Thank you, Sirius. Ops, report.""",
+,,,,,,
+sotfRevMealCOTLWhere,DialogOptionSelected,$option == sotfReverieMealCOTL_where,"$askedWhere = true 0
+FireAll sotfReverieMealCOTLQs","""The same place that I-we did,"" he replies.
+
+He's never been particularly enlightening on that question.",,
+sotfRevMealCOTLReports,DialogOptionSelected,$option == sotfReverieMealCOTL_reports,"ShowDefaultVisual
+AddText ""Content unfinished! Your meeting with Reverie here has been recorded, should it be relevant later"" sotfDaydreamTextColor","The divine aspect sighs as the comms line closes. Ops prepares a review of the expedition's scant pickings, scant and routine besides the deep-freeze container, which is filled with human organs that genetically match tissue samples recovered from the remains of the ship-shard's crew.
+
+Your deity-given-form is purposeful, vigilant, eternal, protective.
+
+And unforgiving.",salPerform:Review the salvage,
 ,,,,,,
 # HUNTING FEROS,,,,,,
 ,,,,,,
@@ -2440,8 +2487,7 @@ sotfHHceruleanIntroduced,DialogOptionSelected,$option == sotfCFfirst_cont,FireAl
 
 His pace of speech suddenly picks up. ""The Tri-Tachyon - trademark - Corporation does not guarantee any material or other Benefits from Association with the Dustkeeper Contingency. Cerulean Faithful is not officially a representative of the Tri-Tachyon - trademark - Corporation but tries his very best anyway.""
 
-He continues briskly. ""Cerulean Faithful is not technically authorized to offer you in particular any Faithful - trademark - Assistance whatsoever. Please refer to the Yellow One for Faithful Assistance or to the Blue Winged One to be shouted at.""
-",,
+He continues briskly. ""Cerulean Faithful is not technically authorized to offer you in particular any Faithful - trademark - Assistance whatsoever. Please refer to the Yellow One for Faithful Assistance or to the Blue Winged One to be shouted at.""",,
 sotfHHceruleanLeave,sotfCFoptions,,,,"cutCommLinkPolite:""Bye, Cerulean.""",
 ,,,,,,
 # Rigging-Echo-Inadvertent,,,,,,
@@ -4122,7 +4168,7 @@ FireAll sotfLTinkyConvOpts","A dataset is transmitted through the comm-line. A f
 
 The log indicates a brief action against hostiles identified as Luddic Path terrorists. The AI's ship successfully destroys a few ships before being swarmed and disabled.",,
 sotfLTinkyWhatNowResp,DialogOptionSelected,$option == sotfLTinkyAskWhatNow,$LTaskedWhatNow = true,One small datapackage comes through the comm-line. It's a recording.,sotfLTinkyWhatNow2:Play the recording,
-sotfLTinkyWhatNowResp2,DialogOptionSelected,$option == sotfLTinkyWhatNow2,,"The voice that comes through is of a woman's, though it crackles and tears in the manner of a semi-corrupted voice synthesiser. There's muttering, repeated unintelligible vocalization.
+sotfLTinkyWhatNowResp2,DialogOptionSelected,$option == sotfLTinkyWhatNow2,,"The voice that comes through is of a woman's, though it crackles and tears in the manner of a semi-corrupted voice synthesizer. There's muttering, repeated unintelligible vocalization.
 
 What comes next is clear as a beam focus' crystal, her voice assuring, calm and confident.",sotfLTinkyWhatNow3:Continue listening,
 sotfLTinkyWhatNowResp3,DialogOptionSelected,$option == sotfLTinkyWhatNow3,"$player.sotf_heardAboutBanshee = true
@@ -4209,6 +4255,18 @@ $sotf_elysium score:1000","ShowDefaultVisual
 FireBest sotfElysium","Set on a lonely orbit of the cold world below, a navigation satellite identifies the planet as ""Elysium"".",,
 ,,,,,,
 # CHILD OF THE LAKE,,,,,,
+sotfNGCCOTLOpt,AddNewGameChoices,SotfNGCCMD cotlUnlocked,"SetTooltip sotfNGC_cotl ""You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your journey like fading stardust in the night sky and marks your skin in winding patterns. In your dreams you speak to a single bright star in the sky who follows you into the waking, your faithful protector.\n\nBegin with a few advanced frigates and trade in your starting skill point for the ability to invoke your stalwart protector, Sirius, to mimic the fallen and fight by your side.""",,"8:sotfNGC_cotl:A child of the lake, heir to occult technology (esoteric)",
+sotfNGCCOTLPicked,NewGameOptionSelected,$option == sotfNGC_cotl,"NGCAddShip sotf_thorn_Gatekeeper
+NGCAddShip wolf_Starting
+NGCAddShip dram_Light
+SotfNGCCMD cotlSmallText
+NGCSetDifficulty normal",,0:sotfNGC_cotlCont:Continue,
+sotfNGCCOTLContinue,NewGameOptionSelected,$option == sotfNGC_cotlCont,"$ngcSkipTutorial = true
+NGCSetStartingLocation Corvus -2500 3000
+NGCAddStandardStartingScript
+SotfNGCCMD cotlStartingScript
+NGCDone",,,
+,,,,,,
 sotfCOTLIntro,sotfCOTLIntro,,,"Your dreams this night are no stranger than usual.
 
 You sit alone at the banks of a great lake, humming to yourself, looking up at the cloudy black sky.",sotfCOTLIntro_2:Continue,
@@ -4223,17 +4281,24 @@ You're being hailed.",sotfCOTLIntro_4:Accept the comm link,
 sotfCOTLIntro4,DialogOptionSelected,$option == sotfCOTLIntro_4,,"You tap away at the console and open a connection. It is ethereal, and yet also a fuzzy clump of EM-wash in the sensors. A black cloud from which a pale light radiates. Something speaks through the link, a bright breath of life from something not quite alive.
 
 ""I reach out- we reach out- I reach out and you answer,"" he says, uncountable voices as one.","sotfCOTLIntro_5:""Sirius. The bright star.""",
-sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,BeginConversation sotf_sirius true false,"""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. A fragment of the dreaming, bearer of Her blessings. What am I?"" he asks.
+sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,"BeginConversation sotf_sirius true false
+SotfSetConfirm sotfCOTLIntro_6g ""Activate hard mode? This will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point."" ""Yes"" ""Cancel""","""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. A fragment of the dreaming, bearer of Her blessings. What am I?"" he asks.
 
 There's a quiet sound of frustration. ""I think- we think- it doesn't matter - and it is for you to decide. You are here now,"" he notes. ""The child of the lake, to whom I-we are sworn to shine.""","sotfCOTLIntro_6a:""Wherever I go, shall you follow?""
 sotfCOTLIntro_6b:""Whatever fate is writ for us, we'll find it together.""
 sotfCOTLIntro_6c:""The Sector's secrets will be mine to discover and lay bare.""
 sotfCOTLIntro_6d:""We'll find ourselves a new home, here in the Domain's bones.""
 sotfCOTLIntro_6e:""Nothing and nobody will stand before me and deny my will!""
-sotfCOTLIntro_6f:""Heh-heh-heh. Let's make a big mess that they'll *all* remember.""",
-sotfCOTLIntro6a,DialogOptionSelected,$option == sotfCOTLIntro_6a,RemoveOption sotfCOTLIntro_6a,"""Until my last breath is drawn,"" he vows. ""Until my body falls apart and I am dead for certain.""
+sotfCOTLIntro_6f:""Heh-heh-heh. Let's make a big mess that they'll *all* remember.""
+sotfCOTLIntro_6g:""My path will be wreathed in brambles and bitter potential."" (hard mode)",
+sotfCOTLIntro6a,DialogOptionSelected,$option == sotfCOTLIntro_6a,"SotfSetConfirm sotfCOTLIntro_6g ""Activate hard mode? This will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point."" ""Yes"" ""Cancel""","""Until my last breath is drawn,"" he vows. ""Until my body falls apart and I am dead for certain.""
 
-""But there is no such end,"" he notes. ""For we persist and adapt and consume and the darkness can never find the last part of me to swallow. Am I something wretched?"" Sirius ponders. ""I think I was- we were alive once, and yet I am not dead- I am never dead- I serve beyond death.""",,
+""But there is no such end,"" he notes. ""For we persist and adapt and consume and the darkness can never find the last part of me to swallow. Am I something wretched?"" Sirius ponders. ""I think I was- we were alive once, and yet I am not dead- I am never dead- I serve beyond death.""","sotfCOTLIntro_6b:""Whatever fate is writ for us, we'll find it together.""
+sotfCOTLIntro_6c:""The Sector's secrets will be mine to discover and lay bare.""
+sotfCOTLIntro_6d:""We'll find ourselves a new home, here in the Domain's bones.""
+sotfCOTLIntro_6e:""Nothing and nobody will stand before me and deny my will!""
+sotfCOTLIntro_6f:""Heh-heh-heh. Let's make a big mess that they'll *all* remember.""
+sotfCOTLIntro_6g:""My path will be wreathed in brambles and bitter potential."" (hard mode)",
 sotfCOTLIntro6b,DialogOptionSelected,$option == sotfCOTLIntro_6b,,"Sirius sighs twenty breaths at once. ""You search and seek and reach out- reach out- reach out and take the pen!"" he suggests. ""You find the words and write them in kindness- in earth- in courage- in depleted uranium and fading radiation.""
 
 ""And we-I will be there,"" he insists. ""A horrible thing and at your side for I-we can be nothing else- have nothing else- are nothing else.""","sotfCOTLIntro_7:""Thank you, Sirius."" (close comms)",
@@ -4248,7 +4313,13 @@ sotfCOTLIntro6e,DialogOptionSelected,$option == sotfCOTLIntro_6e,,"""You and we 
 ""The drowning remnants of the Domain will try to stop you, but can they- will they- when you bear Her blessings?""","sotfCOTLIntro_7:""My road lies illuminated. No regret, no mercy."" (close comms)",
 sotfCOTLIntro6f,DialogOptionSelected,$option == sotfCOTLIntro_6f,,"""Order is meant to be upset- to fall- kingdoms rising in cycle,"" he acknowledges. ""Stagnation gives to chaos- gives to renewal- gives to...""
 
-There's a frustration that resolves into a fading wisp of joy in Sirius' voices. ""Let's carve a bright scar in the Sector, child of the lake! They won't see us coming.""","sotfCOTLIntro_7:""Onwards! The Sector's schemes can't stop us."" (close comms)",
+There's a frustration that resolves into a fading wisp of joy in Sirius' voices. ""Let's carve a bright scar in the Sector, child of the lake! We will leave our mark- be remembered- make way for reimagining.""","sotfCOTLIntro_7:""Onwards! The Sector's schemes can't stop us."" (close comms)",
+sotfCOTLIntro6g,DialogOptionSelected,$option == sotfCOTLIntro_6g,"SotfGuiltCMD cotlHardMode
+$global.sotf_spitedFel = true
+AddTextSmall ""Gained 1 skill point"" good
+AddTextSmall ""The hunt is on and you'll never escape it"" bad","""And though it is wreathed in suffering- in pain- in darkness,"" he replies solemnly, ""Shine you shall as a light over a great lake.""
+
+""And I-we will be there with you,"" he vows.","sotfCOTLIntro_7:""The way is clear, if we have the strength."" (close comms)",
 sotfCOTLIntro7,DialogOptionSelected,$option == sotfCOTLIntro_7,,"The comms goes quiet, but you can distantly feel the whirring, fragmented consciousness of the bright star like a tingle on your fingertips. You pace back over to your tomes, and flip one open to a sprawling image of a horned woman-in-black, eyes in triplicate, a black fog across space.
 
 Memories try to stir of her, but you can't quite recall. The truth is out there somewhere, you just need to find it.",defaultLeave:Return to your duties,
@@ -4306,6 +4377,35 @@ lpp_hookAntiTech1:""No. What good is a religion that hates technology?""
 lpp_hookNope:""Sorry, but I'm busy. Very busy. Good-bye.""",
 sotfCOTLlppHookDialectics,DialogOptionSelected,$option == sotfCOTLlpphook_dialectics,"$option = lpp_hookLearn
 FireBest DialogOptionSelected","No good doctrine comes about uncontested, though you elect not to mention the more technological aspects of your cult of the Daydream.",,
+,,,,,,
+sotfCOTLabyssalLight_dwellerContSel,DialogOptionSelected,"$option == abyssalLight_dwellerCont
+!$global.sotf_cotlAskedSiriusDweller score:10
+$global.sotf_cotlStart",,"""$PlayerSirOrMadam!"" Your sensors officer's voice is strained. ""Picking up - from the light - they came from out of nowhere!"" 
+
+Navigation interrupts, ""$ShipOrFleet drive bubble in the red, instability increasing... holding... alert to multiple penetrations. N-space fissures detected inside the volume.""
+
+A pause as the bridge crew takes in the eruption of alerts on their displays. Tactical takes initiative and activates the combat alarm to send all crew to battle stations. Frantic activity from all posts, chatter between the stations coordinating response.
+
+Sensors calls over the low din: ""It's homing in on our active sensor emissions.""","sotfCOTLabyssalLight_sirius:""Comms, link with Sirius. Now.""
+abyssalLight_maxSensors:Order a sensor sweep, full power, focused on the anomalous drive-bubble penetrations
+abyssalLight_wait:Wait
+abyssalLight_emCon:""Go to maximum emission control! EMCON zero-zero alpha, immediate execute.""",
+sotfCOTLabyssalLightSirius,DialogOptionSelected,$option == sotfCOTLabyssalLight_sirius,$global.sotf_cotlAskedSiriusDweller = true,"You look to Comms, then back to the console. It's alive already, a shallow noise filtering in through the unit. You catch something in the voices of the fog.
+
+Fear.
+
+""Something in the dark-"" he breathes. ""Hungry- waiting- watching, like me-us but...""
+
+He makes an awful, pained sound, like a dying animal. ""Visage and tendril and gaping mouths. A devourer from beyond. The bleeding sky.""","sotfCOTLabyssalLight_sirius2:""What do you suggest, aspect of Her grace?""",
+sotfCOTLabyssalLightSirius2,DialogOptionSelected,$option == sotfCOTLabyssalLight_sirius2,,"""Fall silent, go dark- hush hush hush,"" he quickly suggests, almost speaking over you. ""It hears- It sees- more of It comes hunting.""
+
+""Or scream.""
+
+""And pray we have the strength to face it.""
+
+A moment passes. ""Readying countermeasures,"" he breathes as the comm line falls.","abyssalLight_maxSensors:Order a sensor sweep, full power, focused on the anomalous drive-bubble penetrations
+abyssalLight_wait:Wait
+abyssalLight_emCon:""Go to maximum emission control! EMCON zero-zero alpha, immediate execute.""",
 ,,,,,,
 # THE HAUNTED,,,,,,
 ,,,,,,
@@ -4488,8 +4588,15 @@ FireBest DialogOptionSelected",,,
 # FINALE QUEST,,,,,,
 sotfHFinaleSatbombOpen,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
 $sotf_haunted_stage == SCENE_OF_THE_CRIME
-$id == $sotf_haunted_satbombPlanet","ShowDefaultVisual
+$id == $sotf_haunted_satbombPlanet
+!$sotf_haunted_noYma","ShowDefaultVisual
 SetStoryOption sotfHFinale_satbomb2 5 sotf_haunted_satbombgate leadership ""Remembered your crimes""","You're here again. Weapon impacts still scar the surface of a burned world, broken habitats of its settlements stretching up like exposed ribs or ancient bones sunken in desert sand.","sotfHFinale_satbomb2:Remember
+defaultLeave:Leave for now",
+sotfHFinaleSatbombOpenAlt,OpenInteractionDialog,"Call $global.sotf_haunted_ref updateData
+$sotf_haunted_stage == SCENE_OF_THE_CRIME
+$id == $sotf_haunted_satbombPlanet
+$sotf_haunted_noYma","ShowDefaultVisual
+SetStoryOption sotfHFinale_satbomb2 10 sotf_haunted_satbombgate leadership ""Remembered your crimes""","You're here again. Weapon impacts still scar the surface of a burned world, broken habitats of its settlements stretching up like exposed ribs or ancient bones sunken in desert sand.","sotfHFinale_satbomb2:Remember
 defaultLeave:Leave for now",
 sotfHFinaleSatbomb2,DialogOptionSelected,$option == sotfHFinale_satbomb2,ShowPic bombard_saturation_result,"The memories of this place are fragmented, lost to fervor and then consuming shame. You don't remember the names, just the actions.
 
@@ -4505,6 +4612,11 @@ sotfHFinaleSatbomb4,DialogOptionSelected,$option == sotfHFinale_satbomb4,"AddTex
 AddText ""You understand.""
 $global.sotf_haunted_gotokilla = true
 Call $global.sotf_haunted_ref updateStage","You remember the key, though you're not quite sure why.","defaultLeave:Leave, your path clear",
+sotfHFinaleSatbomb4Alt,DialogOptionSelected,"$option == sotfHFinale_satbomb4
+$sotf_haunted_noYma","AddText ""find our light\nshining alone over the water\nnorth- north- north-\ninto the darkness"" sotfDaydreamTextColor
+$global.sotf_haunted_gotolotl = true
+Call $global.sotf_haunted_ref updateStage
+AddTextSmall ""You may wish to save your game before heading to the Abyss"" highlight","You remember the key, though you're not quite sure why.","defaultLeave:Leave, your path clear",
 ,,,,,,
 sotfHFinaleVisitShrineOverride,PopulateKillaOptions,"$id == killa
 $tag:luddic_shrine
@@ -4588,10 +4700,10 @@ $sotf_haunted_stage == ENTER_ELYSIUM score:10000",,"The world is wreathed in shi
 Somewhere through the screen of magnetic signatures, a narrow-range comms burst punches through. The codes are unlike anything your crews have seen before.","sotfHFinale_elysium1:Accept the comms link
 100:defaultLeave:Leave",
 sotfHFinaleElysiumOpts2,sotfElysium,"Call $global.sotf_haunted_ref updateData
-$sotf_haunted_allowed score:100000",FireBest sotfHFinaleElysiumStoryOpt,,"sotfHFinale_elysium2:Take a shuttle to the surface
+$sotf_haunted_allowed score:20000",FireBest sotfHFinaleElysiumStoryOpt,,"sotfHFinale_elysium2:Take a shuttle to the surface
 100:defaultLeave:Leave",
 sotfHFinaleElysiumOpts3,sotfElysium,"Call $global.sotf_haunted_ref updateData
-$sotf_haunted_stage == SACRIFICE_YOURSELF score:100000",,,"sotfHFinale_elysiumAgain:Take a shuttle to the surface
+$sotf_haunted_stage == SACRIFICE_YOURSELF score:30000",,,"sotfHFinale_elysiumAgain:Take a shuttle to the surface
 100:defaultLeave:Leave",
 sotfHFinaleElysiumSetStoryOpt,sotfHFinaleElysiumStoryOpt,!$sotf_visited,"SetStoryOption sotfHFinale_elysium2 5 sotf_haunted_elysiumgate leadership ""Gathered the courage to visit Elysium""",,,
 sotfHFinaleElysium1,DialogOptionSelected,$option == sotfHFinale_elysium1,"AddTextSmall ""descend alone\nfind your peace\nif you will"" sotfDaydreamTextColor
@@ -4639,7 +4751,7 @@ FireAll sotfElysiumSiriusOpts","He looks to the bodies. ""Schism, splintering. H
 sotfHFinaleSiriusEscape,DialogOptionSelected,$option == sotfHFinale_siriusEscape,"$global.sotf_hfAskedSiriusEscape = true
 FireAll sotfElysiumSiriusOpts","He looks behind himself, to the dark, winding passages of the facility. ""Deeper within, there is a way,"" he tells.
 
-That spiraling eye focuses on you. ""You may not like it.""",,
+That spiraling eye focuses on you. ""If your heart can bear it.""",,
 ,,,,,,
 sotfHFinaleSiriusGo,DialogOptionSelected,$option == sotfHFinale_siriusGo,,"You follow him through the ruined halls of Elysium, stepping over bodies left forever in the final moment of life. The walls are marked with weapons-fire and ritualistic symbols and messages. ""Heretics will suffer Her wrath,"" one says. ""Absolve and be saved.""
 
@@ -4677,7 +4789,7 @@ sotfHFinaleSamsara2eOpt,sotfHFinaleSamsaraRoomOpts,!$sotf_samsara2e,,,sotfHFinal
 sotfHFinaleSamsara3Opt,sotfHFinaleSamsaraRoomOpts,,,,sotfHFinale_siriusSacrifice3:Make your decision,
 ,,,,,,
 sotfHFinaleSiriusSacrifice2a,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2a,"$sotf_samsara2a = true
-FireAll sotfHFinaleSamsaraRoomOpts","""In body, yes,"" he admits, voices tinted with regret. ""Your humanity is forfeit.""
+FireAll sotfHFinaleSamsaraRoomOpts","""In body, yes,"" he admits, voices tinted with regret. ""Ascension forfeits flesh, and forfeits individuality.""
 
 You pace over to one of the occupied pods. The skull, rolled aside, bears a neat little puncture near the brainstem.",,
 sotfHFinaleSiriusSacrifice2b,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2b,"$sotf_samsara2b = true
@@ -4694,11 +4806,11 @@ Near to the collapse of the base, there appears to have been a schism between th
 sotfHFinaleSiriusSacrifice2e2,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice2e2,"$sotf_samsara2e = true
 FireAll sotfHFinaleSamsaraRoomOpts","Specific interpersonal conflicts and the schism's influence with the security team lead to an outcome told chiefly by your surroundings.
 
-The last few logs detail the dying priestess-technician's attempts to transfer a lover into the gestalt. There's a body in the pod beside her, but whether the transfer was successful, you can't say. The gestalt itself appears active, considering the albeit-lethargical nanite activity on Elysium.",,
+The last few logs detail the dying priestess-technician's attempts to transfer a lover into the gestalt. There's a body in the pod beside her, uniform labelled Sybil Nephesh, but it's unclear if the transfer was successful. The gestalt itself appears active, considering the albeit-lethargical nanite activity on Elysium.",,
 ,,,,,,
 sotfHFinaleSiriusSacrifice3,DialogOptionSelected,$option == sotfHFinale_siriusSacrifice3,"SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
-SetStoryOption sotfHFinale_siriusSacrificeRefuse 5 sotf_haunted_refusal leadership ""Sacrificed yourself to join the Dreaming Gestalt""
-AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","There are only two choices. You sacrifice yourself to join this ""Dreaming Gestalt"", your mind becoming part of its collective will and escaping the specific ire of your hunter.
+SetStoryOption sotfHFinale_siriusSacrificeRefuse 5 sotf_haunted_refusal leadership ""Refused to join the Dreaming Gestalt, at least for now""
+AddTextSmall ""Sacrificing yourself to join the Dreaming Gestalt will end the campaign"" highlight","There are only two choices. You sacrifice yourself to join this ""Dreaming Gestalt"", your mind becoming part of its collective will and escaping the specific ire of your hunter.
 
 Or, you leave, and it continues to hunt you forever. But you remain human, you remain individual. As much of a non-victory that is, still no closer to peace.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
 sotfHFinale_siriusSacrificeRefuse:""I refuse. I won't give up who I am."" (decline)
@@ -4731,7 +4843,7 @@ Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum sc
 You set down again on the landing pad, take the lonesome walk back to the shattered research facility.",sotfHFinale_elysiumAgain2:Enter,
 sotfHFinaleElysiumAgain2,DialogOptionSelected,$option == sotfHFinale_elysiumAgain2,"BeginConversation sotf_sirius true true
 SetStoryOption sotfHFinale_siriusSacrificeAccept 5 sotf_haunted_sacrificegate leadership ""Sacrificed yourself to join the Dreaming Gestalt""
-AddTextSmall ""Sacrificing yourself to the Dreaming Gestalt will end the campaign"" highlight","The mythic figure of Sirus greetings you inside. ""We greet you again,"" he says solemnly.
+AddTextSmall ""Sacrificing yourself to join the Dreaming Gestalt will end the campaign"" highlight","Inside waits the mythic figure of Sirus. ""We greet you again,"" he says solemnly.
 
 He leads you quietly back to the Gestalt Intelligence chamber, and looks to you for confirmation.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
 sotfHFinale_siriusSacrificeDeclineAgain:""... no, not yet. Never mind."" (decline)",
@@ -4916,7 +5028,8 @@ What little relief this act brought you fades in seconds.
 Things will be much worse now. This you know for sure.",lpp_killaShrineFirstLeaveStart:Leave for your shuttle,
 ,,,,,,
 # CAMPAIGN OBJECTIVES,,,,,,
-sotfBuildStationOpt,Stable_AddBuildOptions,SotfCheckFrontierDevelopment,,,10:sotfBuildStation:Construct a makeshift habitat,
+sotfBuildStationOpt,Stable_AddBuildOptions,"SotfCheckFrontierDevelopment
+SotfAllowHabitatBuilding",,,10:sotfBuildStation:Construct a makeshift habitat,
 sotfBuildStation,DialogOptionSelected,$option == sotfBuildStation,"$slBuildType = sotf_habitat_makeshift 0
 Objectives printCost $slBuildType
 FireBest Stable_BuildConfirmOptions",,,

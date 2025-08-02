@@ -10,14 +10,17 @@ import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.combat.MutableStat;
 import com.fs.starfarer.api.impl.campaign.econ.CommRelayCondition;
 import com.fs.starfarer.api.impl.campaign.ids.*;
+import com.fs.starfarer.api.impl.campaign.intel.bar.events.BarEventManager;
 import com.fs.starfarer.api.impl.campaign.intel.events.TriTachyonHostileActivityFactor;
 import com.fs.starfarer.api.impl.campaign.intel.group.TTMercenaryAttack;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.Nex_SpecialForcesCommands;
 import com.fs.starfarer.api.impl.campaign.shared.SharedData;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
+import com.fs.starfarer.api.util.TimeoutTracker;
 import data.scripts.campaign.ids.SotfIDs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fs.starfarer.api.impl.campaign.econ.CommRelayCondition.*;
@@ -30,7 +33,7 @@ public class SotfDustkeeperObjectiveShareScript implements EveryFrameScript {
 
 	public StarSystemAPI system;
 
-	private IntervalUtil interval = new IntervalUtil(0.25f,0.35f);
+//	protected IntervalUtil interval = new IntervalUtil(0.25f,0.35f);
 
 	public SotfDustkeeperObjectiveShareScript(StarSystemAPI system) {
 		this.system = system;
@@ -38,9 +41,14 @@ public class SotfDustkeeperObjectiveShareScript implements EveryFrameScript {
 
 	@Override
 	public void advance(float amount) {
-		interval.advance(amount);
-		if (!interval.intervalElapsed()) return;
-		List<CampaignFleetAPI> fleets = system.getFleets();
+		// TODO: add this interval on the next save-breaking update for performance reasons
+		// just need to make sure the interval is created on existing saves
+//		if (interval == null) {
+//			interval = new IntervalUtil(0.25f,0.35f);
+//		}
+//		interval.advance(amount);
+//		if (!interval.intervalElapsed()) return;
+        List<CampaignFleetAPI> fleets = new ArrayList<>(system.getFleets());
 		for (CampaignFleetAPI fleet : Global.getSector().getHyperspace().getFleets()) {
 			if (fleet.isInOrNearSystem(system)) {
 				fleets.add(fleet);
@@ -64,9 +72,12 @@ public class SotfDustkeeperObjectiveShareScript implements EveryFrameScript {
 		}
 		for (CampaignFleetAPI fleet : fleets) {
 			boolean makeHostile = false;
+			// set mercenary fleets from crises as hostile to Dustkeepers so they help defend against them
 			if (fleet.getMemoryWithoutUpdate().contains(TTMercenaryAttack.TTMA_FLEET)) {
 				makeHostile = true;
 			} else if (fleet.getMemoryWithoutUpdate().contains(TriTachyonHostileActivityFactor.COMMERCE_RAIDER_FLEET)) {
+				makeHostile = true;
+			} else if (fleet.getMemoryWithoutUpdate().contains("$nex_HA_police")) {
 				makeHostile = true;
 			}
 			if (makeHostile) {

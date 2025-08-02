@@ -1,18 +1,16 @@
 package data.scripts.campaign.skills;
 
-import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.characters.*;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
-import com.fs.starfarer.api.combat.ShipHullSpecAPI;
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.combat.special.SotfInvokeHerBlessingPlugin;
 import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.combat.DefenseUtils;
-import org.magiclib.util.MagicAnim;
 
 import java.awt.*;
 
@@ -42,9 +40,14 @@ public class SotfPolarizedNanorepair {
 //	// flux level at which shieldless nonphase ships are always considered to be
 //	public static float NON_SHIELD_FLUX_LEVEL = 0.5f;
 
-	public static float ARMOR_REGEN_RATE = 0.02f;
-	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 650f;
-	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 0.8f;
+	public static float ARMOR_REGEN_RATE_FRIGATE = 0.02f;
+	public static float ARMOR_REGEN_RATE_DESTROYER = 0.015f;
+	public static float ARMOR_REGEN_RATE_CRUISER = 0.012f;
+	public static float ARMOR_REGEN_RATE_CAPITAL = 0.01f;
+	// NVM THIS CRAP IS TOO COMPLICATED
+//	public static float ARMOR_REGEN_RATE = 0.01f;
+//	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 650f;
+//	public static float TOTAL_ARMOR_REGEN_MAX_FRACTION = 0.8f;
 
 	public static class Desc implements DescriptionSkillEffect {
 		public String getString() {
@@ -89,11 +92,11 @@ public class SotfPolarizedNanorepair {
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%"
 //			);
-			info.addPara("Repair up to %s of armor rating per second; maximum total repair is " +
-							"the higher of %s armor points or %s of maximum armor", 0f, hc, hc,
-					"" + Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE * 100f) + "%",
-					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
-					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%"
+			info.addPara("Repair all damaged armor sections by %s/%s/%s/%s of their maximum armor per second, based on hull size", 0f, hc, hc,
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_FRIGATE * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_DESTROYER * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_CRUISER * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_CAPITAL * 100f) + "%"
 			);
 		}
 	}
@@ -108,30 +111,31 @@ public class SotfPolarizedNanorepair {
 			this.ship = ship;
 		}
 
-		protected void init() {
-			inited = true;
+//		protected void init() {
+//			inited = true;
+//
+//			float maxArmor = ship.getArmorGrid().getArmorRating();
+//			limit = Math.max(TOTAL_ARMOR_REGEN_MAX_POINTS, TOTAL_ARMOR_REGEN_MAX_FRACTION * maxArmor);
+//			limit *= 15f;
+//
+//			repKey1 = "sotf_polarizednanorepair_armor_ " + ship.getId() + "_repaired";
+//			float r1 = getRepaired(repKey1);
+//
+//			repaired = Math.max(repaired, r1);
+//		}
 
-			float maxArmor = ship.getArmorGrid().getArmorRating();
-			limit = Math.max(TOTAL_ARMOR_REGEN_MAX_POINTS, TOTAL_ARMOR_REGEN_MAX_FRACTION * maxArmor);
-
-			repKey1 = "sotf_polarizednanorepair_armor_ " + ship.getId() + "_repaired";
-			float r1 = getRepaired(repKey1);
-
-			repaired = Math.max(repaired, r1);
-		}
-
-		protected float getRepaired(String key) {
-			Float r = (Float) Global.getCombatEngine().getCustomData().get(key);
-			if (r == null) r = 0f;
-			return r;
-		}
+//		protected float getRepaired(String key) {
+//			Float r = (Float) Global.getCombatEngine().getCustomData().get(key);
+//			if (r == null) r = 0f;
+//			return r;
+//		}
 
 		public void advance(float amount) {
-			if (!inited) {
-				init();
-			}
+//			if (!inited) {
+//				init();
+//			}
 
-			if (repaired >= limit) return;
+//			if (repaired >= limit) return;
 			if (ship.isHulk()) return;
 			if (DefenseUtils.getMostDamagedArmorCell(ship) == null) return;
 
@@ -151,26 +155,23 @@ public class SotfPolarizedNanorepair {
 //
 //			float repairAmount = Math.min(limit - repaired, ship.getArmorGrid().getArmorRating() * ARMOR_REGEN_RATE * repairRate * amount);
 
-			float repairAmount = Math.min(limit - repaired, ship.getArmorGrid().getArmorRating() * ARMOR_REGEN_RATE * amount);
-			float left = repairAmount;
+			float rate = (float) SotfMisc.forShipsHullSize(ship,
+					ARMOR_REGEN_RATE_FRIGATE,
+					ARMOR_REGEN_RATE_DESTROYER,
+					ARMOR_REGEN_RATE_CRUISER,
+					ARMOR_REGEN_RATE_CAPITAL
+			);
+			// faster regen for COTL limited lifespan mimics
+			if (ship.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicLifespanListener.class)) {
+				rate *= 3f;
+			}
+
+			//float repairAmount = Math.min(limit - repaired, ship.getArmorGrid().getMaxArmorInCell() * rate * amount);
+			float repairAmount = ship.getArmorGrid().getMaxArmorInCell() * rate * amount;
+			//float left = repairAmount;
 
 			final float[][] grid = ship.getArmorGrid().getGrid();
 			final float max = ship.getArmorGrid().getMaxArmorInCell();
-
-			int numToRepair = 0;
-			// Iterate through all armor cells and find any that aren't at max
-			for (int x = 0; x < grid.length; x++)
-			{
-				for (int y = 0; y < grid[0].length; y++)
-				{
-					if (grid[x][y] < max)
-					{
-						numToRepair++;
-					}
-				}
-			}
-
-			float perCell = repairAmount / numToRepair;
 
 			for (int x = 0; x < grid.length; x++)
 			{
@@ -179,27 +180,26 @@ public class SotfPolarizedNanorepair {
 					if (grid[x][y] < max)
 					{
 						float cur = grid[x][y];
-						float repairable = Math.min(max - cur, perCell);
-						repairable = Math.min(repairable, left);
+						float repairable = Math.min(max - cur, repairAmount);
 						ship.getArmorGrid().setArmorValue(x, y, cur + repairable);
 						//ship.getArmorGrid().setArmorValue(x, y, max);
-						left -= repairable;
+						//left -= repairable;
 					}
 				}
 			}
 
-			if (left > 0) {
-				float singleCell = SotfMisc.repairSingleMostDamaged(ship, left);
-				left -= singleCell;
-			}
+//			if (left > 0) {
+//				float singleCell = SotfMisc.repairSingleMostDamaged(ship, left);
+//				left -= singleCell;
+//			}
 
 			ship.syncWithArmorGridState();
 			ship.syncWeaponDecalsWithArmorDamage();
 
-			if (repairAmount > left) {
-				repaired += (repairAmount - left);
-				Global.getCombatEngine().getCustomData().put(repKey1, repaired);
-			}
+//			if (repairAmount > left) {
+//				repaired += (repairAmount - left);
+//				Global.getCombatEngine().getCustomData().put(repKey1, repaired);
+//			}
 		}
 
 	}

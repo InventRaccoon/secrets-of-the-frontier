@@ -13,9 +13,13 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 
 	public static class SotfClingingFlareParams implements Cloneable {
 		public CombatEntityAPI attachedTo;
+		public String spritePath = "graphics/fx/starburst_glow1.png";
 		public Color color;
 		public float flareWidth;
 		public float flareHeight;
+		public float baseBrightness = 0f;
+		public boolean fadeSize = false;
+		public float angle = 0f;
 		
 		public SotfClingingFlareParams() {
 		}
@@ -38,7 +42,7 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 		
 	}
 	
-	protected SotfClingingFlareParams p;
+	public SotfClingingFlareParams p;
 	protected SpriteAPI sprite;
 	protected FaderUtil fader;
 
@@ -49,7 +53,7 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 		fader = new FaderUtil(0f, 1f, 2f);
 		fader.setBounceDown(true);
 		fader.fadeIn();
-		sprite = Global.getSettings().getSprite("graphics/fx/starburst_glow1.png");
+		sprite = Global.getSettings().getSprite(p.spritePath);
 	}
 	
 	public float getRenderRadius() {
@@ -85,7 +89,10 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 	}
 
 	public boolean isExpired() {
-		return p.attachedTo == null || p.attachedTo.isExpired() || !((ShipAPI)p.attachedTo).isAlive() || (p.attachedTo.getOwner() != 0 && p.attachedTo.getOwner() != 1);
+		if (p.attachedTo instanceof ShipAPI) {
+			return p.attachedTo == null || p.attachedTo.isExpired() || !((ShipAPI)p.attachedTo).isAlive() || (p.attachedTo.getOwner() != 0 && p.attachedTo.getOwner() != 1);
+		}
+		return p.attachedTo == null || p.attachedTo.isExpired() || p.attachedTo.wasRemoved();
 	}
 
 	public void render(CombatEngineLayers layer, ViewportAPI viewport) {
@@ -101,12 +108,16 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 		float alphaMult = viewport.getAlphaMult();
 		
 		alphaMult *= (b * 0.5f);
+		alphaMult += p.baseBrightness;
 		
 		float f = 0.5f + 0.5f * b;
-		f = 1f;
+		if (!p.fadeSize) {
+			f = 1f;
+		}
 		
 		sprite.setColor(p.color);
 		sprite.setSize(p.flareWidth * f, p.flareHeight * f);
+		sprite.setAngle(p.angle);
 		sprite.setAdditiveBlend();
 		sprite.setAlphaMult(alphaMult);
 		sprite.renderAtCenter(x, y);
@@ -114,6 +125,7 @@ public class SotfClingingFlareVisualScript extends BaseCombatLayeredRenderingPlu
 		//f *= 0.75f;
 		sprite.setColor(Misc.scaleAlpha(Color.white, 1f));
 		sprite.setSize(p.flareWidth * f, p.flareHeight * f * 0.33f);
+		sprite.setAngle(p.angle);
 		sprite.setAdditiveBlend();
 		sprite.setAlphaMult(alphaMult);
 		sprite.renderAtCenter(x, y);

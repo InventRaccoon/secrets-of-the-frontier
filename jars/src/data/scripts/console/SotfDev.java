@@ -6,6 +6,8 @@ import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
+import com.fs.starfarer.api.combat.ArmorGridAPI;
+import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.intel.misc.FleetLogIntel;
 import com.fs.starfarer.api.ui.SectorMapAPI;
@@ -38,10 +40,35 @@ public class SotfDev implements BaseCommand {
 	@Override
 	public CommandResult runCommand(String args, CommandContext context)
 	{
+		if (context.isInCombat()) {
+			if (!args.isEmpty()) {
+				if (args.equals("strip")) {
+					ShipAPI playerShip = Global.getCombatEngine().getPlayerShip();
+					if (playerShip != null) {
+						playerShip.setHitpoints(playerShip.getMaxHitpoints() * 0.5f);
+						final float[][] grid = playerShip.getArmorGrid().getGrid();
+						for (int x = 0; x < grid.length; x++)
+						{
+							for (int y = 0; y < grid[0].length; y++)
+							{
+								playerShip.getArmorGrid().setArmorValue(x, y, 0f);
+							}
+						}
+						playerShip.syncWithArmorGridState();
+						playerShip.syncWeaponDecalsWithArmorDamage();
+						Console.showMessage("Your armor's been stripped!");
+						return CommandResult.SUCCESS;
+					} else {
+						Console.showMessage("Couldn't find the player's ship!");
+						return CommandResult.ERROR;
+					}
+				}
+			}
+		}
 		if (!context.isInCampaign())
 		{
 			// Show a default error message
-			Console.showMessage(CommonStrings.ERROR_CAMPAIGN_ONLY);
+			Console.showMessage("Error: that wasn't a valid in-combat dev command.");
 			// Return the 'wrong context' result, this will alert the player by playing a special sound
 			return CommandResult.WRONG_CONTEXT;
 		}

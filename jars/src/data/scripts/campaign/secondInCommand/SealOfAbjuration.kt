@@ -20,8 +20,8 @@ class SealOfAbjuration : SCBaseSkillPlugin() {
 
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
-        tooltip.addPara("20%% increase to the flux required to reach the maximum effect of phase coil stress", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("-10%% damage taken by shields", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("20% increase to the flux required to reach the maximum effect of phase coil stress", Misc.getHighlightColor(), 0f)
+        tooltip.addPara("-10% damage taken by shields", Misc.getHighlightColor(), 0f)
 
         tooltip.addSpacer(10f)
 
@@ -29,7 +29,7 @@ class SealOfAbjuration : SCBaseSkillPlugin() {
 
         tooltip.addSpacer(10f)
 
-        tooltip.addPara("+60 seconds peak operating time", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("+60 seconds peak operating time", Misc.getHighlightColor(), 0f)
 
         tooltip.addSpacer(10f)
 

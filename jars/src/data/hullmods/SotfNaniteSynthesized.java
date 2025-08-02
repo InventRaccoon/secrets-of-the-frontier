@@ -305,6 +305,7 @@ public class SotfNaniteSynthesized extends BaseHullMod {
     }
 
     public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
+        ship.setInvalidTransferCommandTarget(true);
         ship.getSpriteAPI().setColor(JITTER_COLOR);
         ship.addListener(new SotfNaniteSynthesizedListener(ship));
         if (!ship.getVariant().hasHullMod(SotfIDs.HULLMOD_DAYDREAM_HULL)) {

@@ -288,6 +288,7 @@ public class SotfSierrasConcord extends BaseHullMod
             if (!(target instanceof ShipAPI) || !(param instanceof MissileAPI) || shieldHit) {
                 return null;
             }
+            if (((ShipAPI) target).isFighter()) return null;
             if (damage.getBaseDamage() < 1000) return null;
             if (Global.getCombatEngine().getPlayerShip() == ship) return null;
             boolean oopsies = (target.getOwner() == 0 && ship.getOwner() == 0);

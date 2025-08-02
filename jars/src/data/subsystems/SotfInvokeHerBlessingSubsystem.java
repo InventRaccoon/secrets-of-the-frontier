@@ -1,11 +1,9 @@
 package data.subsystems;
 
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
-import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
@@ -13,7 +11,6 @@ import data.hullmods.SotfNaniteSynthesized;
 import data.scripts.SotfModPlugin;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
-import data.scripts.combat.special.SotfFelInvasionPlugin;
 import data.scripts.combat.special.SotfInvokeHerBlessingPlugin;
 import data.scripts.combat.special.SotfInvokeHerBlessingPlugin.SotfInvokeHerBlessingEchoScript;
 import data.scripts.combat.special.SotfInvokeHerBlessingPlugin.SotfMimicLifespanListener;
@@ -23,7 +20,6 @@ import org.dark.shaders.distortion.RippleDistortion;
 import org.jetbrains.annotations.NotNull;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.combat.CombatUtils;
-import org.lazywizard.lazylib.combat.DefenseUtils;
 import org.lazywizard.lazylib.ui.FontException;
 import org.lazywizard.lazylib.ui.LazyFont;
 import org.lwjgl.util.vector.Vector2f;
@@ -32,13 +28,10 @@ import org.magiclib.subsystems.MagicSubsystem;
 import org.magiclib.subsystems.MagicSubsystemsManager;
 import org.magiclib.subsystems.drones.DroneFormation;
 import org.magiclib.subsystems.drones.MagicDroneSubsystem;
-import org.magiclib.subsystems.drones.PIDController;
 import org.magiclib.util.MagicTxt;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import static data.scripts.combat.special.SotfInvokeHerBlessingPlugin.*;
 import static data.shipsystems.SotfGravispatialSurgeSystem.*;
@@ -148,14 +141,12 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
                 }
 
                 if (haveUpgrade(SotfIDs.COTL_DREAMEATER)) {
-                    float percentHeal = (float) SotfMisc.forHullSize(ship.getShipTarget(), DREAMEATER_REPAIR_FRIGATE, DREAMEATER_REPAIR_DESTROYER, DREAMEATER_REPAIR_CRUISER, DREAMEATER_REPAIR_CAPITAL);
+                    float percentHeal = (float) SotfMisc.forShipsHullSize(ship.getShipTarget(), DREAMEATER_REPAIR_FRIGATE, DREAMEATER_REPAIR_DESTROYER, DREAMEATER_REPAIR_CRUISER, DREAMEATER_REPAIR_CAPITAL);
                     percentHeal *= lifespanMult;
                     ship.setHitpoints(Math.min(ship.getHitpoints() + (ship.getMaxHitpoints() * percentHeal), ship.getMaxHitpoints()));
-                    if (DefenseUtils.getMostDamagedArmorCell(ship) != null) {
-                        SotfMisc.repairMostDamaged(ship, ship.getArmorGrid().getArmorRating() * percentHeal);
-                        ship.syncWithArmorGridState();
-                        ship.syncWeaponDecalsWithArmorDamage();
-                    }
+
+                    SotfMisc.repairEvenly(ship, percentHeal);
+
                     EmpArcEntityAPI arc2 = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                             ship,
                             ship.getShipTarget().getLocation(), null, 12f, Misc.getPositiveHighlightColor(), Color.WHITE);
@@ -241,24 +232,25 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
 
     private static void strikeShip(Vector2f loc, ShipAPI ship, final ShipAPI target) {
         float maxDamp = MAX_DAMP;
-        float damage = DAMAGE;
-        float emp = EMP;
+        float damage = SHRIEK_DAMAGE_PER_SHIP;
+        float emp = SHRIEK_EMP_PER_SHIP;
         if (target.isFighter()) {
-            damage *= FIGHTER_DAMAGE_MULT;
-            emp *= FIGHTER_DAMAGE_MULT;
+            damage *= SHRIEK_DAMAGE_FIGHTER_MULT;
+            emp *= SHRIEK_DAMAGE_FIGHTER_MULT;
             maxDamp = FIGHTER_MAX_DAMP;
         }
 
+        int arcs = SHRIEK_ARCS_PER_SHIP;
         CombatEngineAPI engine = Global.getCombatEngine();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i <= arcs; i++) {
             EmpArcEntityAPI arc = engine.spawnEmpArcPierceShields(
                     ship,
                     Misc.getPointWithinRadius(loc, 60f),
                     null,
                     target,
                     DamageType.FRAGMENTATION,
-                    damage,
-                    emp,
+                    damage / arcs,
+                    emp / arcs,
                     99999f,
                     "tachyon_lance_emp_impact",
                     12f,
@@ -282,9 +274,9 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
         }
         target.getVelocity().scale(MAX_DAMP + (dampScale * (MIN_DAMP - maxDamp)));
 
-        if (target.isFighter() && target.getHullLevel() < COLLAPSE_THRESHOLD && !target.hasListenerOfClass(SotfFighterGraviticCollapseScript.class)) {
-            target.addListener(new SotfFighterGraviticCollapseScript(target));
-        }
+//        if (target.isFighter() && target.getHullLevel() < COLLAPSE_THRESHOLD && !target.hasListenerOfClass(SotfFighterGraviticCollapseScript.class)) {
+//            target.addListener(new SotfFighterGraviticCollapseScript(target));
+//        }
     }
 
     protected static void strikeMissile(Vector2f loc, ShipAPI ship, final MissileAPI target) {
@@ -386,8 +378,8 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
 
     // get player mimics capacity with or without Multifaceted
     public static int getMimicCapacityTheoretical(boolean withMultifaceted) {
-        int maxDp = SotfInvokeHerBlessingPlugin.BASE_DP;
-        maxDp += (Global.getSector().getPlayerPerson().getStats().getLevel() - 1) * SotfInvokeHerBlessingPlugin.DP_PER_LEVEL;
+        int maxDp = SotfMisc.getCOTLBaseDP();
+        maxDp += (Global.getSector().getPlayerPerson().getStats().getLevel() - 1) * SotfMisc.getCOTLDPPerLevel();
         if (withMultifaceted) {
             maxDp *= (1f + SotfInvokeHerBlessingPlugin.MULTIFACTED_MULT);
         }
@@ -577,14 +569,15 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
                 Color colorToUse = UI_COLOR;
 
                 if (dpUsed > capacity) {
-                    float overclock = 1f;
-                    if (dpUsed > capacity) {
-                        overclock = (float) dpUsed / capacity;
-                        if (overclock < OVERCLOCK_MIN_RATE) {
-                            overclock = OVERCLOCK_MIN_RATE;
-                        }
-                    }
-                    text += "\nOVERCLOCKED: " + Misc.getRoundedValueMaxOneAfterDecimal(overclock) + "x DECAY";
+//                    float overclock = 1f;
+//                    if (dpUsed > capacity) {
+//                        overclock = (float) dpUsed / capacity;
+//                        if (overclock < OVERCLOCK_MIN_RATE) {
+//                            overclock = OVERCLOCK_MIN_RATE;
+//                        }
+//                    }
+                    //text += "\nOVERCLOCKED: " + Misc.getRoundedValueMaxOneAfterDecimal(overclock) + "x DECAY";
+                    text += "\nOVERCLOCKED!!!";
                     text = SotfMisc.glitchify(text, 0.003f);
                     colorToUse = Misc.getNegativeHighlightColor();
                 }

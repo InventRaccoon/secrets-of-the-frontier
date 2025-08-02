@@ -5,20 +5,20 @@
 	"sprite":"graphics/fx/hit_glow_small.png",
 	"size":[4,4],	
 	"center":[2,2],
-	"collisionRadius":14,
+	"collisionRadius":30,
 	"collisionClass":"MISSILE_NO_FF",
 	"explosionColor":[105,255,195,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":80, # purely visual
 	"alwaysAccelerate":true,
-	"flameoutTime":0.1, # total time from flameout to full fadeout
+	"flameoutTime":0.25, # total time from flameout to full fadeout
 	"noEngineGlowTime":0, # time spent without the engine glow being rendered
-	"fadeTime":0.5, # fadeout duration
+	"fadeTime":0.25, # fadeout duration
 	#"glowColor":[180,255,0,125], # lime
 	"glowColor":[105,255,195,125], # sea green
 	# this should be the same as sotf_chalice_proxmine_proj's explosion
 	"explosionSpec":{"duration":0.1f,
-					"radius":250,
-					"coreRadius":200, # full damage within core radius
+					"radius":350,
+					"coreRadius":300, # full damage within core radius
 					"collisionClass":MISSILE_FF,
 					"collisionClassByFighter":MISSILE_FF,
 					"particleSizeMin":3.0,
@@ -44,15 +44,16 @@
 				    "style":"CUSTOM",
 					"styleSpec":{
 						"mode":"QUAD_STRIP", # PARTICLES or QUAD_STRIP, determines which params are used
-						"engineColor":[105,255,195,255],
+						"engineColor":[105,255,195,0],
 						"contrailDuration":0,
 						"contrailWidthMult":0,
 						"contrailWidthAddedFractionAtEnd":0,  # can be negative. makes trail spread out/narrow at the end
 						"contrailMinSeg":0, # min segment length, in pixels
-						"contrailMaxSpeedMult":0.5f,
+						"contrailMaxSpeedMult":0.5f, 
 						"contrailAngularVelocityMult":0.5f,
 						"contrailSpawnDistMult":.75, # how far away from engine it starts
 						"contrailColor":[80,100,0,0],
+						"glowAlternateColor":[105,255,195,255],
 						"glowSizeMult":20,
 						"type":"GLOW" # GLOW or SMOKE; additive or regular blend mode
 					},

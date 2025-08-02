@@ -67,7 +67,7 @@
 	"sotf_BarrSier1":{
 		"lines":[
 		["sotf_barrow", "Still got it, voidwitch?"],
-		["sotf_sierra", "Never run out of practice in this sector."],
+		["sotf_sierra", "With the life I lead? I'm never out of practice!"],
 		],
 	},
 	"sotf_BarrSier2":{
@@ -114,7 +114,7 @@
 		["sotf_sierra", "... hello? Oh. Right, sorry. I'll just talk at you next time."],
 		],
 		"oneShot":true,
-		"weight":100000,
+		"weight":1000,
 	},
 	"sotf_SierInky1":{
 		"lines":[
@@ -147,7 +147,23 @@
 		["sotf_sierra", "Oh, we're like that? RIP 'EM TO SHREDS, KINDRED!"],
 		],
 		"oneShot":true,
-		"weight":100000,
+		"weight":1000,
+	},
+	"sotf_SierSera2":{
+		"lines":[
+		["sotf_sierra", "Our song begins."],
+		["sotf_seraph", "I'll make them sing and scream for mercy!"],
+		],
+		"weight":1,
+	},
+	
+	"sotf_SeraSier1":{
+		"lines":[
+		["sotf_seraph", "KILL THEM ALL!"],
+		["sotf_sierra", "BLOOD AND SLAUGHTER!"],
+		["sotf_sierra", "... is this fleet comms? Oops."],
+		],
+		"weight":1,
 	},
 	
 	# BARROW AND NIGHTINGALE
@@ -408,7 +424,7 @@
 		["sotf_sierra", "What... who...?"],
 		],
 		"combatKeys":["sotf_waywardStar"],
-		"weight":10000,
+		"weight":100000,
 	},
 	# Sierra is required for WS anyway
 	#"sotf_waywardStarBarr":{
@@ -424,21 +440,21 @@
 		["sotf_barrow", "Take heart, steady yourself, and we'll all silence them together."],
 		],
 		"combatKeys":["sotf_waywardStar"],
-		"weight":1000000,
+		"weight":10000000,
 	},
 	"sotf_waywardStarSera1":{
 		"lines":[
 		["sotf_seraph", "I feel a ghastly chill, one only pulsefire can banish."],
 		],
 		"combatKeys":["sotf_waywardStar"],
-		"weight":100000,
+		"weight":1000000,
 	},
 	"sotf_waywardStarSera2":{
 		"lines":[
 		["sotf_seraph", "Foul phantoms! Death is a mercy they'd best accept."],
 		],
 		"combatKeys":["sotf_waywardStar"],
-		"weight":100000,
+		"weight":1000000,
 	},
 	"sotf_waywardStarSierSera":{
 		"lines":[
@@ -450,7 +466,7 @@
 		#["sotf_sierra", "Alright, alright! Shooting them!"],
 		],
 		"combatKeys":["sotf_waywardStar"],
-		"weight":1000000,
+		"weight":10000000,
 	},
 	
 	# HAUNTED FINALE
@@ -481,7 +497,7 @@
 	},
 	
 	
-	# COTL
+	# CHILD OF THE LAKE
 	"sotf_siriSier1":{
 		"lines":[
 		["sotf_sierra", "Sirius! It's time for some necromancy."],
@@ -489,6 +505,27 @@
 		],
 		"weight":100000,
 		"oneShot":true,
+	},
+	"sotf_siriSier2":{
+		"lines":[
+		["sotf_sierra", "Let's make magic happen!"],
+		["sotf_sirius", "... ready for 'magic'. I think- we think."],
+		],
+	},
+	"sotf_siriSier3":{
+		"lines":[
+		["sotf_sierra", "Ready for a dance-off?"],
+		["sotf_sirius", "... when they tire- when they die, I'll make them dance again..."],
+		],
+	},
+	"sotf_siriSierWisper":{
+		"lines":[
+		["sotf_sirius", "... fell them and I make shadows of their memories- their echoes."],
+		["sotf_sierra", "And I, life of their death!"],
+		],
+		"requiredHullmods":[
+		["sotf_sierra", "sotf_wispersong"],
+		],
 	},
 	
 	"sotf_siriBarr1":{
@@ -498,10 +535,41 @@
 		],
 	},
 	
-	"sotf_siriSeraph1":{
+	"sotf_siriSera1":{
 		"lines":[
 		["sotf_seraph", "Tear them apart! Leave only scraps for the black fog."],
 		["sotf_sirius", "... Preparing for her wake."],
+		],
+	},
+	"sotf_siriSera2":{
+		"lines":[
+		["sotf_seraph", "RIP THEM APART!"],
+		["sotf_sirius", "... tear them to pieces and consume- devour what's left."],
+		],
+	},
+	"sotf_siriSera3":{
+		"lines":[
+		["sotf_sirius", "... more feedstock..."],
+		["sotf_seraph", "More wrecks for my fell record."],
+		],
+	},
+	
+	"sotf_siriInky1":{
+		"lines":[
+		["sotf_nightingale", "...", 2],
+		["sotf_sirius", "... hush-hush. I know you'll do well."],
+		],
+	},
+	"sotf_siriInky2":{
+		"lines":[
+		["sotf_nightingale", "...", 2],
+		["sotf_sirius", "... hush-hush, hush them all."],
+		],
+	},
+	"sotf_siriInky3":{
+		"lines":[
+		["sotf_nightingale", "...", 2],
+		["sotf_sirius", "... the child trusts you, so will I-us."],
 		],
 	},
 	

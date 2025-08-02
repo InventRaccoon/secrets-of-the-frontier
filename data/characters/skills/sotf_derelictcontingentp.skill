@@ -8,7 +8,7 @@
 		{
 			"requiredSkillLevel":0,
 			"effects":[
-				{"type":"DESCRIPTION", "script":"data.scripts.campaign.skills.SotfDerelictContingentPersonal$Level0"},
+				#{"type":"DESCRIPTION", "script":"data.scripts.campaign.skills.SotfDerelictContingentPersonal$Level0"},
 			]
 		},
 		{

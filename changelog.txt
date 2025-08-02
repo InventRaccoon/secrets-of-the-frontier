@@ -3,33 +3,43 @@ Version 0.15:
 	- Spookier dreams
 	- Added a finale quest upon reaching max level
 	- Dream of somewhere you're meant to be, something you're meant to be, an escape from your torment, an end and a beginning
-- New Nexerelin custom start/background: "Child of the Lake"
-	- Unlocked by completing The Haunted finale
+- Added "Child of the Lake" starting option
+	- Available as custom start with or without Nexerelin, and as a Nex background
+	- Unlocked by completing The Haunted finale (or disabling start requirements)
 	- Trade in your starting skillpoint for an occult technological heirloom who serves you dutifully
 	- Necromancer gameplay with unique pseudo-aptitude for upgrading your special ability
-	- Story aspects and custom start version WIP
-- Added Thorn-class frigate and Lethargy Autolance available through COTL or as rare blueprints
+	- Story aspects are very WIP
+- Added "Cult of the Daydream" warship technology available as rare drops/blueprints or through COTL start
+	- Thorn-class heavy attack frigate
+	- Mercy Multilance, large energy antishield/finisher weapon
+	- Reckoner Autolance Array, medium energy PD/assault weapon
+	- Lethargy Autolance, small energy PD
+	- Chalice Resonance Cage, large synergy suppression weapon
+	- Barb-class attack drone, available via a LPC and via drone launchers in small and medium missile variety
+	- Nettle-class assault drone, available via LPC and via drone launcher, large missile
 
 - Adaptive Nanite Swarm invasion proc, ship choice and skill choice RNG are now seeded and cannot be easily savescummed
 - Adaptive Nanite Swarm now gains a fixed set of 7 new nanite-specific skills, rather than 8 normal skills
 	- Skills grant generically useful buffs but also unique benefits: regeneration of hull, armor and missiles, orbiting defense swarm, flux-based ballistic fire rate boost
-	- Unrelated to nanite "trait" skills, which are still 2-4 per fight
+	- These "daydream skills" are together approximately as strong as an alpha's vanilla skills
+	- Most of these are non-elite in battles vs small enemy fleets
+	- Unrelated to nanite "trait" skills (the funny ones), which are still 2-4 per fight
 - New nanite traits:
 	- Wyrmfire Executioner (offensive) - missile hits against targets below 50% hull fires a Dragonfire torpedo at them, twice vs capitals (30s cooldown per target)
 	- Tick Tock Tick Tock (hybrid) - brief strong timeflow bonus every 30 seconds
 	- Salvor's Scrapscreen (defensive) - ship gains a set of orbiting debris "drones" that are heavily armored
-	X Elegy of Opis (support) - every 3rd enemy ship that dies will first enter an undying rage ala Hatred Beyond Death's first stage
-	X Heretic Echoes (support) - every 4th ship that dies (allied or enemy) creates an echo. After 20s, echoes turn into a limited-lifespan mimic of the dead ship
-X Re-enabled nanite support traits by default
 - Leviathan's Bane (and ASB): increased projectile speed (4000 > 5000), no longer affected by proj speed bonuses
 - Perfect Storm and Hands of the Drowned skills are no longer effected by nanite swarm's timeflow boosts
 - Haunted: added an earlygame encounter with Annex-Wendigo, and a possible second, less friendly encounter
 - Added -1.5 guilt reduction for dumping the planetkiller into a black hole
 
-X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Increased CR per deployment of Sierra's ships (Pledge 15% > 25%, Vow 20% > 30%), supplies to recover unchanged
+- Concord Shift: reduced flux threshold at which speed bottoms out (75% > 65%), reduced minimum speed (65% > 50%), reduced flat speed bonus (75 > 50)
 - Edict Stormblaster now applies hidden bonus vs a certain new vanilla enemy type
+- Sierra will no longer get really excited when an enemy fighter intercepts one of her torpedoes
+- SiC: The Withering Hex: now deals 10% of missile damage as energy damage and 20% as EMP damage, now works on Sabot SRMs and similar MIRVs, added a mention that it does not affect DEMs
 - SiC: Agony's Encore timeflow on kill changed to 5/7/8/10 seconds depending on target hull size (was 10 seconds for any ship)
+- SiC: Spirit Ward reduced skinshield max HP to 16% of flux capacity, reduced efficiency to 0.6 flux/damage 
 - Fixed Sierra's core from A Promise appearing in codex
 - Fixed Soulbond not having a description in the codex
 - Fixed crash when hovering WIP Lifedrinker hullmod
@@ -38,22 +48,46 @@ X Sierra now spawns as a derelict if destroyed in combat and not recovered
 - Can no longer interact normally with Holdout while hostile to Dustkeepers
 - Echo-Inadvertent can now arrange for Barrow's restoration and Barrow will then join the pool of recruitable warminds (does not cost a SP)
 - Can no longer give Inadvertent a planetkiller if one has already been given to someone
-- Player is now allowed to recruit warminds if they have no automated ship points skills but currently have a no-auto-penalty ship in their fleet (e.g Memoir, automated XIV ship, Onslaught MK1)
+- Player is now allowed to recruit warminds (including Seraph and Barrow) if they have no automated ship skills but currently have a no-auto-penalty ship in their fleet (e.g Memoir, automated XIV ship, Onslaught MK1)
 - Trade fleets, smugglers and pilgrims within Mia's Star are now ignored by Dustkeeper fleets
 - Nexerelin special task groups of player-friendly factions are also made non-hostile to Dustkeepers while near Mia's Star
-- TT crisis mercenaries are now considered hostile with Dustkeepers when inside or near Mia's Star
+- TT crisis mercenaries and Nex independent crisis fleets are now considered hostile with Dustkeepers when inside or near Mia's Star
+- Hallowhall FP killed requirement per point of progress increased (5 > 6, this makes it slower) and reduced flat points for purifiers being defeated (75 > 25)
 - Cyberwarfare Protocols now unlocked in codex if player has seen Cyberwarfare Suite or has Nightingale/Seraph, and appears in its related entries
+- Fixed some skill cooldowns being effected twice by the ship's time multipliers, e.g Cyberwarfare
 - Cyberwarfare Suite: reduced cooldown to compensate for no longer being spammable with Temporal Shell (45 > 35 for ship hack, 20 > 15 for fighter hack)
 - Derelict Contingent now unlocked in codex if player has Barrow
 - Added some alt dialogue if using Spyglass' codephrase with Imoinu Kato during Usurpers
+- Picket (PROX) is now more suicidal
+- Renamed the two versions of Dustkeeper Proxy hullmod to include (Assault) and (Escort) suffixes
+- Fixed allied/enemy fleets being able to join in on ODS Songless fleet interaction and cause issues (fix requires new save)
 - Fixed Nightingale's alt chatter character not being applied after Omicron lab dialogue
-- Fixed some skill cooldowns being effected twice by the ship's time multipliers, e.g Cyberwarfare
-- Fixed crash that could happen with Blithe/Wendigo/Seraph fleets from other mods adding moduled capital ships
+- Fixed crash that could happen with Blithe/Wendigo/Seraph fleets when other mods add moduled capital ships. Existing bugged fleets will be erased from existence with extreme prejudice. Don't worry Blithe/Seraph respawn
 - Fixed Leviathan's Bane range being too short to reach very-far targets (increased 20000 > 50000)
 
 - Battle objectives csv now has a "flag" column (flags must be set in global sector memory for objective to spawn) and "notFlag" column (flags must not be set for objective to spawn)
 - Fixed ASB lidar beams being affected by ECM range penalty
-X Can no longer build orbital habitats in the Abyss
+- Can no longer build habitats at stable locations in systems if they are any of: hidden, abyssal, temporary location, have no jump points, deep space (i.e. not in the Abyss, Wayward Star, or Alpha Site)
+
+CotL changes since beta release:
+- Added hard mode toggled on via dialogue during initial Sirius dialogue, grants +1 skill point but permanently locks you to maximum guilt and gives Fel +1 trait per fight
+- Instead of Dreaming Gestalt learning blueprints from copied ships, mimics spawned from echoes now refit as if from a player-faction fleet (ERIT still autofits as if Dreaming Gestalt, but without any learning mechanic)
+- So yes, you can prioritize different weapons/fighters to influence mimic loadouts, and learning new BPs will add give mimics new options!
+- Base mimic lifespan reduced to 45 seconds for all hull sizes. At level 12, increase to 60 seconds
+- Overclock is now a non-scaling 250% decay penalty, but overclocked mimics deal 25% more damage, move 40% faster and vent flux 100% faster (overclock only affects mimics actually suffering the decay penalty, not expiring ones or reflections)
+- Subsystem-spawned mimics now deal 10% less damage, refit fighters 10% more slowly and take 20% more damage
+- Non-reflection mimics no longer have elite Spatial Expertise, swapped bonuses so only elite SE has ship system buffs and non-elite has the PPT and EMP resist
+- Mimics now take 5 seconds to spawn (was 3), are vulnerable for longer during formation (0.75s to 3.75s) and have reduced effective armor during this time
+- Unliving Vigor now halves mimic spawn time (to 2.5s), actual timer extended to 17.5s (so 15 seconds of buff usage)
+- Service Beyond Death fighters are now Barbs for frig/des and the new version of the Nettle for cru/cap
+- Every Rose Its Thorns reflections now consume mimic capacity
+- Shriek of the Damned damage per ship 900 > 800, damage mult vs fighters 2 > 1.2
+- Death Throes: EMP reduced to 150 but now scales off echo size like the energy damage does
+- Death Throes: echoes eaten by Dream Eater now spawn a short-lived nanite swarm that seeks out and assails hostiles with gravitic strikes
+- Polarized Nanorepair: reworked armor repair, now repairs every armor cell for 2%/1.5%/1.2%/1% of its value every second forever based on hull size tripled for non-reflection mimics
+- Dream Eater armor repair fixed to work properly, now repairs up to 10/15/25/40% of all armor cells' max value
+- Dream Eater minimum restoration 25% > 5%
+- Somewhat improved some special countermeasure variants
 
 Version 0.14.5b:
 - Cyberwarfare now blocked against a certain vanilla enemy type

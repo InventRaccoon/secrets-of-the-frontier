@@ -95,10 +95,12 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		}
 		FleetMemberAPI member = Global.getFactory().createFleetMember(FleetMemberType.SHIP, variant);
 		member.setShipName(Global.getSettings().createBaseFaction(SotfIDs.DREAMING_GESTALT).pickRandomShipName());
-		member.setCaptain(SotfPeople.genReverie());
-		member.updateStats();
-		member.getRepairTracker().setCR(ship.getCurrentCR());
-		member.getVariant().addPermaMod(HullMods.AUTOMATED);
+		member.setOwner(ship.getOriginalOwner());
+		if (member.getOwner() == 1) {
+			member.setCaptain(SotfPeople.genFelSubswarm());
+		} else {
+			member.setCaptain(SotfPeople.genReverie());
+		}
 
 		CampaignFleetAPI emptyFleet = Global.getFactory().createEmptyFleet(SotfIDs.DREAMING_GESTALT, "Nanite-Synthesized Ship", true);
 		emptyFleet.getFleetData().addFleetMember(member);
@@ -111,7 +113,10 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			((DefaultFleetInflaterParams) dfi.getParams()).rProb = 0f;
 		}
 		emptyFleet.inflateIfNeeded();
+		member.getVariant().addPermaMod(HullMods.AUTOMATED);
 		member.getVariant().addPermaMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED);
+		member.updateStats();
+		member.getRepairTracker().setCR(ship.getCurrentCR());
 
 		Vector2f spawnLoc = Misc.getPointAtRadius(ship.getLocation(),
 				ship.getCollisionRadius() + 400f + 200f * (float) Math.random());
@@ -213,13 +218,17 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 			for (ShipAPI toFade : shipAndModules) {
 				toFade.setExtraAlphaMult2(progress);
 
-				toFade.setCollisionClass(CollisionClass.NONE);
-				toFade.getMutableStats().getHullDamageTakenMult().modifyMult("ShardSpawnerInvuln", 0f);
 				if (progress < 0.5f) {
 					toFade.getVelocity().set(new Vector2f());
-				} else if (progress > 0.75f) {
+				}
+
+				if (progress <= 0.25f) {
+					toFade.setCollisionClass(CollisionClass.NONE);
+					toFade.getMutableStats().getHullDamageTakenMult().modifyMult("sotf_mimic_forming", 0f);
+				} else {
 					toFade.setCollisionClass(CollisionClass.SHIP);
-					toFade.getMutableStats().getHullDamageTakenMult().unmodifyMult("ShardSpawnerInvuln");
+					toFade.getMutableStats().getHullDamageTakenMult().unmodifyMult("sotf_mimic_forming");
+					toFade.getMutableStats().getEffectiveArmorBonus().modifyMult("sotf_mimic_forming", progress * progress);
 				}
 			}
 
@@ -415,6 +424,8 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		// TODO: list of all compatible ships on F1
 
 		//if (isForModSpec || ship == null) return;
+
+		tooltip.setBgAlpha(0.9f);
 	}
 
 	@Override

@@ -87,6 +87,13 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				StarSystemAPI system = playerFleet.getStarSystem();
 				if (system == null) system = Global.getSector().getStarSystem("sotf_mia");
 				for (CampaignFleetAPI fleet : Misc.getFleetsInOrNearSystem(system)) {
+					if (!fleet.getFaction().getId().equals(SotfIDs.DUSTKEEPERS)) continue;
+					fleet.getMemoryWithoutUpdate().set("$hassleComplete", true);
+					fleet.getMemoryWithoutUpdate().unset(MemFlags.WILL_HASSLE_PLAYER);
+				}
+				for (CampaignFleetAPI fleet : Global.getSector().getHyperspace().getFleets()) {
+					if (!fleet.getFaction().getId().equals(SotfIDs.DUSTKEEPERS)) continue;
+					if (!fleet.isInOrNearSystem(system)) continue;
 					fleet.getMemoryWithoutUpdate().set("$hassleComplete", true);
 					fleet.getMemoryWithoutUpdate().unset(MemFlags.WILL_HASSLE_PLAYER);
 				}

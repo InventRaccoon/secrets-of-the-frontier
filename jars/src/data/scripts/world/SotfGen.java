@@ -4,8 +4,11 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.BattleCreationContext;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
+import com.fs.starfarer.api.impl.campaign.FleetEncounterContext;
+import com.fs.starfarer.api.impl.campaign.FleetInteractionDialogPluginImpl;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3;
 import com.fs.starfarer.api.impl.campaign.ids.*;
@@ -13,6 +16,7 @@ import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.AddedEntity;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.EntityLocation;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.LocationType;
+import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantSeededFleetManager;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.SalvageSpecialAssigner;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.BaseSalvageSpecial;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
@@ -22,6 +26,7 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.campaign.missions.SotfHauntedFinale;
 import data.scripts.utils.SotfMisc;
 //import data.scripts.world.hwf.SotfHuntingGrounds;
 import data.scripts.world.lotl.SotfLightOfTheLake;
@@ -282,6 +287,8 @@ public class SotfGen implements SectorGeneratorPlugin
                 random.nextFloat() * 360f,
                 fleet.getRadius() + cache.getRadius() + 100f + 20f * random.nextFloat(),
                 12f + 5f * random.nextFloat());
+        fleet.getMemoryWithoutUpdate().set(MemFlags.FLEET_INTERACTION_DIALOG_CONFIG_OVERRIDE_GEN,
+                new SotfNightingaleFIDGen());
 
         SectorEntityToken anchor = system.getHyperspaceAnchor();
         List<SectorEntityToken> beacons = Global.getSector().getHyperspace().getEntitiesWithTag(Tags.WARNING_BEACON);
@@ -325,6 +332,19 @@ public class SotfGen implements SectorGeneratorPlugin
         sector_mem.set(SotfIDs.MEM_SPAWNED_NIGHTINGALE, true);
         sector_mem.set(SotfIDs.MEM_NIGHTINGALE_FLEET, fleet);
         sector_mem.set(SotfIDs.MEM_NIGHTINGALE_SYSTEM, system);
+    }
+
+    public static class SotfNightingaleFIDGen implements FleetInteractionDialogPluginImpl.FIDConfigGen {
+        public FleetInteractionDialogPluginImpl.FIDConfig createConfig() {
+            FleetInteractionDialogPluginImpl.FIDConfig config = new FleetInteractionDialogPluginImpl.FIDConfig();
+
+            config.pullInAllies = false;
+            config.pullInEnemies = false;
+            config.pullInStations = false;
+            config.alwaysLetGo = true;
+
+            return config;
+        }
     }
 
     // spawn an additional cryosleeper guarded by Hypnos-Annex-Barrow

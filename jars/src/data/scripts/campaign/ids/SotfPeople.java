@@ -636,6 +636,7 @@ public class SotfPeople {
             person.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
 
             person.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f); // ???
+            person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_fel");
             ip.addPerson(person);
         }
 
@@ -1175,7 +1176,7 @@ public class SotfPeople {
         person.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f); // ???
 
         person.getMemoryWithoutUpdate().set(SotfIDs.OFFICER_NOT_FEARLESS, true);
-        person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_meiryr");
+        person.getMemoryWithoutUpdate().set("$chatterChar", "sotf_fel");
         return person;
     }
 

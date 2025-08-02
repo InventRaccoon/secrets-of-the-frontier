@@ -91,7 +91,13 @@ public class SotfReinforcerEffect extends BaseBattleObjectiveEffect {
 //			throw new RuntimeException(e);
 //		}
 		if (OBJ_TO_FACTION_MAP.containsKey(objective.getType())) {
-			factionName += " " + Global.getSettings().createBaseFaction(OBJ_TO_FACTION_MAP.get(objective.getType())).getEntityNamePrefix();
+			String prefix = Global.getSettings().createBaseFaction(OBJ_TO_FACTION_MAP.get(objective.getType())).getEntityNamePrefix();
+			if (OBJ_TO_FACTION_MAP.get(objective.getType()).equals("derelict")) {
+				prefix = "Explorarium";
+			}
+			if (!prefix.isEmpty()) {
+				factionName += " " + Global.getSettings().createBaseFaction(OBJ_TO_FACTION_MAP.get(objective.getType())).getEntityNamePrefix();
+			}
 		}
 
 

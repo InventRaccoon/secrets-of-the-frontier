@@ -82,7 +82,7 @@ public class SotfChildOfTheLakeStart extends CustomStart {
 
         dialog.getTextPanel().setFontSmallInsignia();
         dialog.getTextPanel().addParagraph("Gained \"Invoke Her Blessing\"", Misc.getPositiveHighlightColor());
-        dialog.getTextPanel().highlightInLastPara(SotfMisc.DAYDREAM_COLOR, "\"Invoke Her Blessing\"", "gnawing guilt");
+        dialog.getTextPanel().highlightInLastPara(SotfMisc.DAYDREAM_COLOR, "\"Invoke Her Blessing\"");
         dialog.getTextPanel().addParagraph("    - Use on echoes left by destroyed ships to create a mimic that fights for you", SotfMisc.DAYDREAM_COLOR);
         dialog.getTextPanel().addParagraph("    - Choose from upgrades as you level", SotfMisc.DAYDREAM_COLOR);
         dialog.getTextPanel().addParagraph("Learned \"Cult of the Daydream\" ships and weapons blueprints", Misc.getPositiveHighlightColor());

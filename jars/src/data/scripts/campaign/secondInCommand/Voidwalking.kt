@@ -20,7 +20,7 @@ class Voidwalking : SCBaseSkillPlugin() {
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
         tooltip.addPara("+1 to burn level at which the fleet is considered to be moving slowly*", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("-15%% fuel usage", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("-15% fuel usage", Misc.getHighlightColor(), 0f)
 
         tooltip.addSpacer(10f)
 
@@ -37,14 +37,12 @@ class Voidwalking : SCBaseSkillPlugin() {
         stats!!.fuelUseMod.modifyMult(id, 0.85f)
     }
 
-    override fun advanceInCampaign(data: SCData, member: FleetMemberAPI?, amount: Float?) {
+    override fun advance(data: SCData, amount: Float?) {
         data.fleet.stats.dynamic.getMod(Stats.MOVE_SLOW_SPEED_BONUS_MOD).modifyFlat("sotf_voidwalking", 1f, "Void Walking")
-
     }
 
     override fun onDeactivation(data: SCData) {
         data.fleet.stats.dynamic.getMod(Stats.MOVE_SLOW_SPEED_BONUS_MOD).unmodify("sotf_voidwalking")
-
     }
 
 }

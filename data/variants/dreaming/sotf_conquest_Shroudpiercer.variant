@@ -15,24 +15,24 @@
       "autofire": false,
       "mode": "ALTERNATING",
       "weapons": {
-        "WS 011": "gauss",
-        "WS 012": "gauss"
+        "WS 011": "sotf_mercy",
+        "WS 012": "sotf_mercy"
       }
     },
     {
       "autofire": false,
       "mode": "ALTERNATING",
       "weapons": {
-        "WS 001": "squall",
-        "WS 002": "squall"
+        "WS 001": "sotf_chalice",
+        "WS 002": "sotf_chalice"
       }
     },
     {
       "autofire": false,
       "mode": "ALTERNATING",
       "weapons": {
-        "WS 019": "sabotpod",
-        "WS 020": "sabotpod"
+        "WS 019": "sotf_barbrail",
+        "WS 020": "sotf_barbrail"
       }
     },
     {
@@ -69,10 +69,10 @@
       "autofire": true,
       "mode": "LINKED",
       "weapons": {
-        "WS 003": "pdburst",
-        "WS 005": "pdburst",
-        "WS 007": "pdburst",
-        "WS 022": "heavyburst"
+        "WS 003": "sotf_lethargy",
+        "WS 005": "sotf_lethargy",
+        "WS 007": "sotf_lethargy",
+        "WS 022": "sotf_reckoner"
       }
     }
   ],

@@ -154,6 +154,23 @@ public class SotfFervor extends SotfBaseConcordAugment {
         stats.getPhaseCloakActivationCostBonus().modifyMult(id, ACTIVATION_COST_MULT);
     }
 
+//    @Override
+//    public boolean isApplicableToShip(ShipAPI ship) {
+//        if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_SERENITY)) return false;
+//        return shipHasOtherModInCategory(ship, spec.getId(), "sotf_concord");
+//    }
+//
+//    @Override
+//    public String getUnapplicableReason(ShipAPI ship) {
+//        if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_SERENITY)) {
+//            return "Incompatible with Concord - Serenity";
+//        }
+//        if (!shipHasOtherModInCategory(ship, spec.getId(), "sotf_concord")) {
+//            return "Requires a Phase Concord";
+//        }
+//        return super.getUnapplicableReason(ship);
+//    }
+
     public String getDescriptionParam(int index, ShipAPI.HullSize hullSize) {
         if (index == 0) return "zero";
         if (index == 1) return "" + (int)PHASE_DISSIPATION_MULT + Strings.X;

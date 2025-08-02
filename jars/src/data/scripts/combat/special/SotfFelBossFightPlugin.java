@@ -1,43 +1,22 @@
 package data.scripts.combat.special;
 
-import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
-import com.fs.starfarer.api.campaign.CampaignFleetAPI;
-import com.fs.starfarer.api.campaign.rules.MemoryAPI;
-import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
-import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.fleet.FleetGoal;
-import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
-import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
-import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
-import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
 import com.fs.starfarer.api.input.InputEventAPI;
-import com.fs.starfarer.api.mission.FleetSide;
-import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
-import data.scripts.SotfModPlugin;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
-import data.scripts.campaign.plugins.fel.SotfGuiltTracker;
-import data.scripts.campaign.skills.SotfATrickstersCalling;
-import data.scripts.campaign.skills.SotfDearDotty;
-import data.scripts.campaign.skills.SotfLeviathansBane;
 import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.MathUtils;
-import org.lazywizard.lazylib.combat.AIUtils;
 import org.lazywizard.lazylib.ui.FontException;
 import org.lazywizard.lazylib.ui.LazyFont;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.GL_ONE;
 
@@ -145,7 +124,7 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
             if (ship.isFighter()) continue;
             if (ship.getParentStation() != null) continue;
 
-            float iconSizeMult = (float) SotfMisc.forHullSize(ship, 1f, 1.35f, 1.75f, 2.25f);
+            float iconSizeMult = (float) SotfMisc.forShipsHullSize(ship, 1f, 1.35f, 1.75f, 2.25f);
             //iconSizeMult /= fadeOut;
             iconSprite.setSize(25f * iconSizeMult, 20f * iconSizeMult);
             float angle = Misc.getAngleInDegrees(player.getLocation(), ship.getLocation());

@@ -51,8 +51,8 @@ class SpiritWardListener(var ship: ShipAPI, var sierraMode: Boolean) : BaseEvery
     }
 
     companion object {
-        var shieldEfficiency = 0.5f
-        var shieldPercent = 0.2f
+        var shieldEfficiency = 0.6f
+        var shieldPercent = 0.16f
         var timeTilRechargeMax = 10f
 
         var priorDamageInstancesMax = 16

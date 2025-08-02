@@ -4,7 +4,7 @@ sotf_lowFreqPromise,Infrequent Discussion,Boolean,false,,"The [A Promise] quest,
 Recommended only for those who've played the questline before, and want to experience it whenever it decides to find them rather than on schedule.",,,
 sotf_noSierraSatbombConseq,Songs and Screams,Boolean,false,,"[Sierra], your AI friend, no longer has a negative reaction to the player's saturation bombardments. May harm characterization, non-canonical.",,,
 sotf_noDKSatbombConseq,"A Little Murder, As A Treat",Boolean,false,,"The [Dustkeeper Contingency] no longer triggers a special ""hatred"" condition when the player performs saturation bombardments. Does not negate the normal reputation penalties from atrocities. May harm characterization, non-canonical.",,,
-sotf_lockoutStarts,Start Requirements,Boolean,true,,"Certain Nexerelin starts/backgrounds require that the player fulfils certain requirements first:
+sotf_lockoutStarts,Start Requirements,Boolean,true,,"Certain starts/backgrounds require that the player fulfils certain requirements first:
 
 [Banshee's Lost Thread] requires 80 percent or higher in the [Dawn and Dust] mission
 [Child of the Lake] requires completing the endgame task of [The Haunted] custom start/background",,,
@@ -13,6 +13,7 @@ sotf_convoChance,Conversation Chance,Double,0.25,,Chance that certain unique off
 sotf_guiltHeader,Guilt Score,Header,Guilt,,,,,Guilt
 sotf_bonusGuilt,Bonus Guilt,Int,0,,"Value added to (or if negative, subtracted from) the player's accumulated guilt value.",-50,50,Guilt
 sotf_hauntedGuilt,The Haunted Starting Guilt,Int,7,,Starting guilt in the [The Haunted] Nexerelin custom start and background.,0,50,Guilt
+sotf_dreamSpeed,Dream Speed,Double,1,,Multiplies the speed at which dreams during [The Haunted] display text.,0.5,3,
 sotf_fastDreams,Quicker Torment,Boolean,false,,Makes dreams during [The Haunted] easier to skip through.,,,Guilt
 ,,,,,,,,
 sotf_guiltInvasionHeader,Adaptive Nanite Swarm,Header,Adaptive Nanite Swarm,,,,,Guilt
@@ -20,4 +21,11 @@ sotf_invasionThreshold,Invasion Threshold,Int,4,,"When total guilt reaches this 
 sotf_invasionChance,Base Chance,Double,0.15,,The base chance of being invaded in a given battle.,0,1,Guilt
 sotf_invasionChancePerGuilt,Chance Per Additional Guilt,Double,0.09,,Increase in invasion chance per point of guilt beyond the invasion threshold.,0,1,Guilt
 sotf_madnessThreshold,Madness Threshold,Int,7,,"Guilt threshold at which the player's perception of their hunter changes, becoming more unreliable and ethereal.",0,50,Guilt
-sotf_hfinaleHardMode,Haunted Finale Hard Mode,Boolean,false,,Makes the finale of The Haunted extremely difficult.,,,Guilt
+sotf_hfinaleHardMode,Haunted Finale Hard Mode,Boolean,false,,Makes the finale of The Haunted much more difficult.,,,Guilt
+,,,,,,,,
+sotf_cotlHeader,Child of the Lake,Header,Child of the Lake,,,,,Child of the Lake
+#sotf_cotlDPPenaltyPercent,Deployment Point Penalty,Double,0.9,,Multiplier applied to the player's deployment points limit when using the [Child of the Lake] start option. This shouldn't appear ingame because it doesn't work well.,0.5,1,Child of the Lake
+sotf_cotlBaseCapacity,Base Mimic Capacity,Int,10,,"Player's base mimic capacity, measured in deployment points.",0,100,Child of the Lake
+sotf_cotlCapacityPerLevel,Mimic Capacity Per Level,Int,3,,"Mimic capacity increase for each level gained, measured in deployment points.",0,20,Child of the Lake
+sotf_cotlMimicDamagePenalty,Mimic Damage Dealt,Double,0.9,,Multiplier for weapon damage and fighter refit speed for mimics created by using the [Invoke Her Blessing] subsystem.,0.5,1,Child of the Lake
+sotf_cotlMimicDamageTakenPenalty,Mimic Damage Taken,Double,1.2,,"Hull, armor and shield damage taken multiplier for mimics created by using the [Invoke Her Blessing] subsystem.",1,2,Child of the Lake

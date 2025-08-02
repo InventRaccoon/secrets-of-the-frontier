@@ -39,8 +39,8 @@
       "mode": "LINKED",
       "weapons": {
         "WS 001": "pdlaser",
-        "WS 002": "pdburst",
-        "WS 003": "pdburst",
+        "WS 002": "sotf_lethargy",
+        "WS 003": "sotf_lethargy",
         "WS 004": "pdlaser"
       }
     }

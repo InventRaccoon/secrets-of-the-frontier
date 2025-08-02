@@ -2,6 +2,7 @@
 	"id":"sotf_chalice_bolt_proj",
 	"specClass":"projectile",
 	"spawnType":"BALLISTIC_AS_BEAM",
+	"onHitEffect":"data.scripts.weapons.SotfChaliceBoltOnHitEffect",
 	"collisionClass":"RAY_FIGHTER",
 	"collisionClassByFighter":"RAY_FIGHTER",
 	"length":30.0,

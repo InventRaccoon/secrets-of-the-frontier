@@ -1,0 +1,59 @@
+{
+  "hullName": "Barb",
+  "hullId": "sotf_barb",
+  "hullSize": "FIGHTER",
+  "spriteName": "graphics/ships/dreaming/sotf_barb.png",
+  "style": "SOTF_DAYDREAM",
+  "height": 30,
+  "width": 20,
+  "center": [10, 15],
+  "collisionRadius": 19,
+  "shieldCenter": [0, 0],
+  "shieldRadius": 18.5,
+  "viewOffset": 0,
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "HIDDEN",
+      "arc": 30,
+      "angle": 0,
+      "locations": [2, 0]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "HIDDEN",
+      "arc": 30,
+      "angle": 0,
+      "locations": [0, -5]
+    },
+    {
+      "id": "WS 003",
+      "size": "SMALL",
+      "type": "SYSTEM",
+      "mount": "HIDDEN",
+      "arc": 5,
+      "angle": 180,
+      "locations": [-6, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-8, -0],
+      "length": 25,
+      "width": 8,
+      "angle": 180,
+      "contrailSize": 64,
+      "style": "SOTF_DAYDREAM"
+    }
+  ],
+  "bounds": [
+    -3, -10,
+    12, -0,
+    -3, 10,
+    -11, -0
+  ]
+}

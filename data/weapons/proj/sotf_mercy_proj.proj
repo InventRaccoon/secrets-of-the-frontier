@@ -1,0 +1,21 @@
+{
+	"id":"sotf_mercy_proj",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	#"onHitEffect":"data.scripts.weapons.SotfChaliceBoltOnHitEffect", # handled via Mercy effect damage listener
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":30.0,
+	"width":12.0,
+	#"hitGlowRadius":40,
+	"fadeTime":0.15,
+	#"fringeColor":[180,255,75,255],
+	"fringeColor":[255,65,45,200],
+	"coreColor":[255,155,155,255],
+	#"passThroughMissiles":true,
+	#"passThroughFighters":true,
+	"textureType":"ROUGH",  # only needed for BEAM spawnType
+	#"textureType":["graphics/fx/emp_arcs.png","graphics/fx/emp_arcs.png"],
+	"textureScrollSpeed":-256.0,
+	"pixelsPerTexel":5.0
+}

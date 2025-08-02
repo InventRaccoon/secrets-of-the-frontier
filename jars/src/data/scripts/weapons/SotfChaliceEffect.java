@@ -2,20 +2,18 @@ package data.scripts.weapons;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.combat.listeners.ApplyDamageResultAPI;
+import com.fs.starfarer.api.combat.listeners.DamageDealtModifier;
 import com.fs.starfarer.api.graphics.SpriteAPI;
-import com.fs.starfarer.api.impl.campaign.ids.Stats;
-import com.fs.starfarer.api.impl.combat.RealityDisruptorChargeGlow;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.combat.SotfClingingFlareVisualScript;
+import data.scripts.combat.SotfClingingFlareVisualScript.SotfClingingFlareParams;
 import org.lazywizard.lazylib.combat.CombatUtils;
 import org.lwjgl.util.vector.Vector2f;
-import org.magiclib.plugins.MagicTrailPlugin;
+import org.magiclib.util.MagicAnim;
 import org.magiclib.util.MagicRender;
-import org.magiclib.util.MagicTrailObject;
-import org.magiclib.util.MagicTrailTracker;
-import org.magiclib.weapons.MagicGuidedProjectileScript;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -25,7 +23,7 @@ import java.util.List;
  * IMPORTANT: will be multiple instances of this, as this doubles as the every frame effect and the on fire effect (same instance)
  * But also as the visual for each individual shot (created via onFire, using the non-default constructor)
  */
-public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEffectPlugin {
+public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEffectPlugin, DamageDealtModifier {
 
 	private static String BOLT_WEAPON_ID = "sotf_chalice_boltlauncher";
 	//protected WeaponAPI boltweapon;
@@ -35,9 +33,10 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 	protected Color COLOR = new Color(105,255,195);
 	protected SpriteAPI WHIRL1 = Global.getSettings().getSprite("fx", "sotf_whirl_1");
 	protected SpriteAPI WHIRL2 = Global.getSettings().getSprite("fx", "sotf_whirl_2");
+	protected SpriteAPI AURA = Global.getSettings().getSprite("fx", "sotf_chalice_mine_aura");
 	protected float whirlFade = 0f;
 	protected float whirlAngle = 0f;
-	private IntervalUtil whirlInterval = new IntervalUtil(0.2f, 0.25f);
+	private IntervalUtil whirlInterval = new IntervalUtil(0.15f, 0.2f);
 
 	//protected IntervalUtil interval = new IntervalUtil(0.1f, 0.2f);
 	public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
@@ -47,21 +46,26 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 		if (ship == null) return;
 		if (!ship.isAlive()) return;
 
+		// listener for secondary bolt EMP to damage conversion
+		if (!ship.hasListenerOfClass(SotfChaliceEffect.class)) {
+			ship.addListener(this);
+		}
+
 		whirlAngle += amount * 160f;
 
 		Vector2f loc = weapon.getFirePoint(0);
 		boolean charging = weapon.getChargeLevel() > 0;
 		if (charging) {
-			whirlFade += amount * ship.getMutableStats().getMissileRoFMult().getModifiedValue() * 2f;
-			if (whirlFade > 1f) {
-				whirlFade = 1f;
-			}
-			interval.advance(amount * ship.getMutableStats().getMissileRoFMult().getModifiedValue());
+//			whirlFade += amount * ship.getMutableStats().getMissileRoFMult().getModifiedValue() * 2f;
+//			if (whirlFade > 1f) {
+//				whirlFade = 1f;
+//			}
+			interval.advance(amount * ship.getMutableStats().getEnergyRoFMult().getModifiedValue());
 			if (interval.intervalElapsed()) {
-				engine.addHitParticle(loc, ship.getVelocity(), 25f, 2f, COLOR);
 				CombatEntityAPI target = findTarget(loc, weapon, engine);
 				if (target != null) {
 					//weapon.getShip().getFluxTracker().showOverloadFloatyIfNeeded("TEST", Misc.getNegativeHighlightColor(), 0f, true);
+					engine.addHitParticle(loc, ship.getVelocity(), 25f, 2f, COLOR);
 					float angle = weapon.getCurrAngle() + 60f;
 					if (right) {
 						angle = weapon.getCurrAngle() - 60f;
@@ -82,33 +86,43 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 				}
 			}
 		} else {
-			whirlFade -= amount * ship.getMutableStats().getMissileRoFMult().getModifiedValue();
-			if (whirlFade < 0f) {
-				whirlFade = 0f;
-			}
+//			whirlFade -= amount * ship.getMutableStats().getMissileRoFMult().getModifiedValue();
+//			if (whirlFade < 0f) {
+//				whirlFade = 0f;
+//			}
 			interval.setElapsed(0f);
 		}
 
+		whirlFade = weapon.getChargeLevel();
+
 		whirlInterval.advance(amount * whirlFade);
 		if (whirlInterval.intervalElapsed()) {
-			engine.addSwirlyNebulaParticle(loc, ship.getVelocity(), 12f, 2f,
-					0f, 0f, 0.6f, Misc.setAlpha(COLOR, 155), false);
+			engine.addSwirlyNebulaParticle(loc, ship.getVelocity(), 24f, 2f,
+					0f, 0f, 0.7f, Misc.setAlpha(COLOR, 185), false);
 		}
 
 		MagicRender.singleframe(
 				WHIRL1,
 				loc,
-				new Vector2f(20f, 20f),
+				new Vector2f(40f, 40f),
 				whirlAngle,
-				Misc.setAlpha(COLOR, Math.round(255 * whirlFade)),
+				Misc.setAlpha(COLOR, Math.round(155 * whirlFade)),
 				true
 		);
 		MagicRender.singleframe(
 				WHIRL2,
 				loc,
-				new Vector2f(20f, 20f),
+				new Vector2f(40f, 40f),
 				whirlAngle * 2f,
-				Misc.setAlpha(COLOR, Math.round(255 * whirlFade)),
+				Misc.setAlpha(COLOR, Math.round(155 * whirlFade)),
+				true
+		);
+		MagicRender.singleframe(
+				AURA,
+				loc,
+				new Vector2f(25f + 25f * whirlFade, 25f + 25f * whirlFade),
+				whirlAngle * 0.8f,
+				Misc.setAlpha(COLOR, Math.round(155 * whirlFade)),
 				true
 		);
 	}
@@ -119,12 +133,16 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 		missile.setEccmChanceOverride(1f);
 		//missile.setNoFlameoutOnFizzling(true);
 //		MissileAIPlugin proxAI = engine.createProximityFuseAI(missile);
+
+		// plugin that handles proxy mine behaviour
+		// waits until there is a nearby ship and then spawns an actual proxy mine that handles the countdown and explosion
+		// (proxy mines aren't very suitable for the normal-missile behaviour of approaching Chalice orbs)
 		engine.addPlugin(new BaseEveryFrameCombatPlugin() {
 			boolean spawnedMine = false;
 			MissileAPI proxyMine;
 			@Override
 			public void advance(float amount, List<InputEventAPI> events) {
-				if (missile.isExpired()) {
+				if (missile.isExpired() || missile.isFading() || missile.isFizzling()) {
 					engine.removePlugin(this);
 					return;
 				}
@@ -150,12 +168,83 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 					foundHostile = true;
 				}
 				if (!foundHostile) return;
-				CombatEntityAPI proxMine = engine.spawnProjectile(missile.getSource(), missile.getWeapon(), "sotf_chalice_proxmines", missile.getLocation(), missile.getFacing(), missile.getVelocity());
+				// uses missile velocity as "ship" velocity
+				// this adds the proxy mine weapon's launch velocity on top so it lunges forwards
+				CombatEntityAPI proxMine = engine.spawnProjectile(missile.getSource(), missile.getWeapon(),
+						"sotf_chalice_proxmines", missile.getLocation(), missile.getFacing(), missile.getVelocity());
+				// hand over collision duty to the proxy mine - have it inherit the missile's existing healthbar
 				proxMine.setHitpoints(missile.getHitpoints());
 				missile.setCollisionClass(CollisionClass.NONE);
+				// ensure missile does not despawn while the proxy mine is active
+				missile.setFlightTime(0f);
 				proxyMine = (MissileAPI) proxMine;
 				//engine.removeEntity(missile);
 				spawnedMine = true;
+			}
+		});
+
+		SotfClingingFlareVisualScript flare = new SotfClingingFlareVisualScript(
+				new SotfClingingFlareParams(missile, COLOR, 120f, 60f)
+		);
+		flare.p.baseBrightness = 0.25f;
+		flare.p.angle = 0f;
+		engine.addLayeredRenderingPlugin(
+				flare
+		);
+		missile.setCustomData("sotf_flare", flare);
+
+		engine.addPlugin(new BaseEveryFrameCombatPlugin() {
+			float alpha = 0f;
+			float auraAngle = 0f;
+			float glowBounce = 0f;
+			boolean down = false;
+			float glowBounceRateMult = 0.5f + (Misc.random.nextFloat() * 0.1f);
+			protected SpriteAPI AURA = Global.getSettings().getSprite("fx", "sotf_chalice_mine_aura");
+			@Override
+			public void advance(float amount, List<InputEventAPI> events) {
+				if (engine.isPaused()) return;
+				if (missile == null) {
+					engine.removePlugin(this);
+					return;
+				}
+				if (missile.wasRemoved()) {
+					engine.removePlugin(this);
+					return;
+				}
+				if (down) {
+					glowBounce -= amount * glowBounceRateMult;
+				} else {
+					glowBounce += amount * glowBounceRateMult;
+				}
+				if (glowBounce > 1f) {
+					down = true;
+				} else if (glowBounce < 0f) {
+					down = false;
+				}
+				if (!missile.isFizzling()) {
+					alpha += amount * 7f;
+					if (alpha > 1f) {
+						alpha = 1f;
+					}
+				} else {
+					alpha -= amount * 7f;
+					if (alpha < 0f) {
+						alpha = 0f;
+					}
+				}
+				auraAngle += amount * 120f;
+				missile.setSpriteAlphaOverride(alpha);
+				MagicRender.singleframe(
+						AURA,
+						missile.getLocation(),
+						new Vector2f(50f, 50f),
+						auraAngle,
+						Misc.setAlpha(COLOR, Math.round(alpha * (155 + (95 * glowBounce)))),
+						true
+				);
+				SotfClingingFlareVisualScript flare = (SotfClingingFlareVisualScript) missile.getCustomData().get("sotf_flare");
+				flare.p.baseBrightness = (0.5f * alpha);
+				missile.getEngineController().extendFlame("sotf_chalicemine_bounce", 1f, 1f, alpha + (MagicAnim.smooth(glowBounce) * 0.5f));
 			}
 		});
 	}
@@ -209,6 +298,23 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 			}
 		}
 		return best;
+	}
+
+	public String modifyDamageDealt(Object param, CombatEntityAPI target, DamageAPI damage, Vector2f point, boolean shieldHit) {
+		// bolt EMP to damage conversion
+		// would do as an on-hit extra damage instance but it would interact weirdly with armor strength
+		if (!shieldHit && param instanceof DamagingProjectileAPI proj && target instanceof ShipAPI targetShip) {
+			if (proj.getWeapon() != null && proj.getWeapon().getSpec().getWeaponId().equals("sotf_chalice_boltlauncher") && proj.getEmpAmount() > 0) {
+				float empDamageMult = targetShip.getMutableStats().getEmpDamageTakenMult().getModifiedValue();
+				if (empDamageMult < 0f) empDamageMult = 0f;
+				// Dweller has no direct EMP resistance but their weapons/engines can't take damage - count it as 100% resist
+				if (targetShip.getHullSpec().hasTag(Tags.DWELLER)) empDamageMult = 0f;
+				float empProportion = proj.getEmpAmount() / proj.getDamageAmount();
+				damage.getModifier().modifyMult("sotf_daydream_empconvert", 1f + (empProportion * (1f - empDamageMult)));
+				return "sotf_daydream_empconvert_mod";
+			}
+		}
+		return null;
 	}
 }
 

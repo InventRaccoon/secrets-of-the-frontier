@@ -16,6 +16,7 @@ import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SotfAbandonStationPlugin extends AbandonMarketPluginImpl {
 	
@@ -84,7 +85,8 @@ public class SotfAbandonStationPlugin extends AbandonMarketPluginImpl {
 
 	public void updateOrbitingEntities(LocationAPI loc, SectorEntityToken prev, SectorEntityToken built) {
 		if (loc == null) return;
-		for (SectorEntityToken other : loc.getAllEntities()) {
+		ArrayList<SectorEntityToken> entities = new ArrayList<>(loc.getAllEntities());
+		for (SectorEntityToken other : entities) {
 			if (other == prev) continue;
 			if (other.getOrbit() == null) continue;
 			if (other.getOrbitFocus() == prev) {

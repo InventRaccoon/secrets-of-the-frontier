@@ -18,7 +18,7 @@ import java.awt.*;
 
 public class SotfDaydreamHull extends BaseHullMod {
 
-	public static float SHIELD_RESIST = 0.1f;
+	public static float SHIELD_RESIST = 0.12f;
 	public static float EMP_DAMAGE_RESIST = 0.35f;
 	public static float PIERCE_MULT = 0.5f;
 
@@ -37,17 +37,22 @@ public class SotfDaydreamHull extends BaseHullMod {
 	}
 
 	public void applyEffectsBeforeShipCreation(ShipAPI.HullSize hullSize, MutableShipStatsAPI stats, String id) {
-		stats.getEnergyShieldDamageTakenMult().modifyMult(id, 1f - SHIELD_RESIST);
-		stats.getFragmentationShieldDamageTakenMult().modifyMult(id, 1f - (SHIELD_RESIST * 2f));
-		stats.getDynamic().getStat(Stats.SHIELD_PIERCED_MULT).modifyMult(id, 1f - PIERCE_MULT);
-		stats.getEmpDamageTakenMult().modifyMult(id, 1f - EMP_DAMAGE_RESIST);
+		float sizeMult = 1f;
+		if (hullSize.equals(ShipAPI.HullSize.FIGHTER)) {
+			sizeMult = 2;
+		}
+		stats.getEnergyShieldDamageTakenMult().modifyMult(id, 1f - (SHIELD_RESIST * sizeMult));
+		//stats.getFragmentationShieldDamageTakenMult().modifyMult(id, 1f - (SHIELD_RESIST * 2f));
+		stats.getDynamic().getStat(Stats.SHIELD_PIERCED_MULT).modifyMult(id, 1f - (PIERCE_MULT * sizeMult));
+		stats.getEmpDamageTakenMult().modifyMult(id, 1f - (EMP_DAMAGE_RESIST * sizeMult));
 	}
 
 	public String getDescriptionParam(int index, ShipAPI.HullSize hullSize) {
 		if (index == 0) return "" + Math.round(SHIELD_RESIST * 100f) + "%";
-		if (index == 1) return "" + Math.round(SHIELD_RESIST * 2f * 100f) + "%";
+		//if (index == 1) return "" + Math.round(SHIELD_RESIST * 2f * 100f) + "%";
+		if (index == 1) return "" + Math.round(PIERCE_MULT * 100f) + "%";
 		if (index == 2) return "" + Math.round(EMP_DAMAGE_RESIST * 100f) + "%";
-		if (index == 3) return "" + Math.round(PIERCE_MULT * 100f) + "%";
+		if (index == 3) return "doubled";
 		if (index == 4) return "halves";
 		return null;
 	}
