@@ -4314,7 +4314,7 @@ sotfCOTLIntro6e,DialogOptionSelected,$option == sotfCOTLIntro_6e,,"""You and we 
 sotfCOTLIntro6f,DialogOptionSelected,$option == sotfCOTLIntro_6f,,"""Order is meant to be upset- to fall- kingdoms rising in cycle,"" he acknowledges. ""Stagnation gives to chaos- gives to renewal- gives to...""
 
 There's a frustration that resolves into a fading wisp of joy in Sirius' voices. ""Let's carve a bright scar in the Sector, child of the lake! We will leave our mark- be remembered- make way for reimagining.""","sotfCOTLIntro_7:""Onwards! The Sector's schemes can't stop us."" (close comms)",
-sotfCOTLIntro6g,DialogOptionSelected,$option == sotfCOTLIntro_6g,"SotfGuiltCMD cotlHardMode
+sotfCOTLIntro6g,DialogOptionSelected,$option == sotfCOTLIntro_6g,"SotfReverieCMD cotlHardMode
 $global.sotf_spitedFel = true
 AddTextSmall ""Gained 1 skill point"" good
 AddTextSmall ""The hunt is on and you'll never escape it"" bad","""And though it is wreathed in suffering- in pain- in darkness,"" he replies solemnly, ""Shine you shall as a light over a great lake.""

@@ -61,7 +61,7 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 //				whirlFade = 1f;
 //			}
 			interval.advance(amount * ship.getMutableStats().getEnergyRoFMult().getModifiedValue());
-			if (interval.intervalElapsed()) {
+			if (interval.intervalElapsed() && !ship.isPhased()) {
 				CombatEntityAPI target = findTarget(loc, weapon, engine);
 				if (target != null) {
 					//weapon.getShip().getFluxTracker().showOverloadFloatyIfNeeded("TEST", Misc.getNegativeHighlightColor(), 0f, true);

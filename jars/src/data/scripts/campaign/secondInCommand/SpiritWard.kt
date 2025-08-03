@@ -20,9 +20,9 @@ class SpiritWard : SCBaseSkillPlugin() {
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
         tooltip.addPara("Creates a defensive ward that envelops the surface of all phase ships*", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
-        tooltip.addPara("   - The ward acts similar to a shield with 0.6 flux efficiency", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "shield", "0.6")
-        tooltip.addPara("   - Unlike shields, the ward has a maximum amount of hitpoints, equal to 16%% of the ships flux capacity", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "20%")
-        tooltip.addPara("   - Ward regenerates 20%% of its max hitpoints per second after the ship has not been damaged for 10 seconds", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "20%", "10")
+        tooltip.addPara("   - The ward acts similar to a %s with %s flux efficiency", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "shield", "0.6")
+        tooltip.addPara("   - Unlike shields, the ward has a maximum amount of hitpoints, equal to %s of the ships flux capacity", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "16%")
+        tooltip.addPara("   - Ward regenerates %s of its max hitpoints per second after the ship has not been damaged for %s seconds", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "20%", "10")
 
         tooltip.addSpacer(10f)
 

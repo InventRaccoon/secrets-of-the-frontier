@@ -227,7 +227,9 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
             return new Pair<>(null, false);
         }
         // make sure ship bounds are correctly updated before we do this because CollisionUtils may fail to do so
-        ship.getExactBounds().update(ship.getLocation(), ship.getFacing());
+        if (ship.getExactBounds() != null) {
+            ship.getExactBounds().update(ship.getLocation(), ship.getFacing());
+        }
         ShieldAPI shield = ship.getShield();
 
         // Check hit point when shield is off.

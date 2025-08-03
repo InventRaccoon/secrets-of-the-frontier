@@ -33,8 +33,8 @@ import java.util.Map;
 import static data.scripts.SotfModPlugin.WATCHER;
 
 /**
- *	THE HAUNTED: Begin with a pathetic pirate fleet, and enough guilt that Felcesis will invade you regularly
- *  BUT you also gain a free skill point - effectively 1 permanent bonus level
+ *	CHILD OF THE LAKE: Gain an occult technological heirloom who serves you faithfully
+ *  May include necromancy
  */
 
 public class SotfChildOfTheLakeStart extends CustomStart {
