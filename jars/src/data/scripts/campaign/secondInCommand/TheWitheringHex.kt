@@ -68,8 +68,6 @@ class TheWitheringHex : SCBaseSkillPlugin() {
                 return null
             }
 
-            var missile = param as MissileAPI
-
             var hexListener = target.getListeners(HexEffectListener::class.java).firstOrNull()
             if (hexListener == null) {
                 hexListener = HexEffectListener(target)
@@ -81,7 +79,7 @@ class TheWitheringHex : SCBaseSkillPlugin() {
 
             var mult = 0.3f
 
-            hexListener.effects.add(HexEffectListener.HexEffect(missile.weapon?.ship, offset, missile.baseDamageAmount * mult, 7f, IntervalUtil(0.25f, 0.25f), IntervalUtil(0.2f, 0.25f)))
+            hexListener.effects.add(HexEffectListener.HexEffect(param.weapon?.ship, offset, param.baseDamageAmount * mult, 7f, IntervalUtil(0.25f, 0.25f), IntervalUtil(0.2f, 0.25f)))
 
 
             return null
