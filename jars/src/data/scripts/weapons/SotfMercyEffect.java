@@ -96,7 +96,10 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
                 float empDamageMult = targetShip.getMutableStats().getEmpDamageTakenMult().getModifiedValue();
                 if (empDamageMult < 0f) empDamageMult = 0f;
                 // Dweller has no direct EMP resistance but their weapons/engines can't take damage - count it as 100% resist
-                if (targetShip.getHullSpec().hasTag(Tags.DWELLER)) empDamageMult = 0f;
+                if (targetShip.getHullSpec().hasTag(Tags.DWELLER)) {
+                    empDamageMult = 0f;
+                    //damage.setType(DamageType.HIGH_EXPLOSIVE);
+                }
                 float empProportion = proj.getEmpAmount() / proj.getDamageAmount();
                 damage.getModifier().modifyMult("sotf_daydream_empconvert", 1f + (empProportion * (1f - empDamageMult)));
                 return "sotf_daydream_empconvert_mod";

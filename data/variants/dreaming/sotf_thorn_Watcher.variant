@@ -3,7 +3,7 @@
   "hullId": "sotf_thorn",
   "displayName": "Watcher",
   "goalVariant": true,
-  "fluxCapacitors": 3,
+  "fluxCapacitors": 4,
   "fluxVents": 10,
   "quality": 1,
   "permaMods": [],

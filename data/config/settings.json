@@ -44,6 +44,7 @@
 	"sotf_WSSufferingThreshold":4, # if guilt >= this number, Wayward Star encounter enters Suffering Mode (i.e hard and unfair)
 	
 	"designTypeColors":{
+		"Secrets of the Frontier":[205,155,255,255], # for codex whichmod hover
 		"Anomalous Phase-Tech":[205,155,255,255],
 		"Dustkeeper Contingency":[20,255,178,255],
 		"Dustkeeper Proxies":[20,255,178,155],

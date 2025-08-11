@@ -1,3 +1,18 @@
+Version 0.15.0c:
+- Chalice secondary bolt damage increased (35/25 kinetic/EMP > 50/40), min DPS 140 > 200, max 240 > 360
+- Corrected Chalice description claiming it converted EMP resisted to energy damage: it converts to kinetic
+- Chalice secondary bolts now secretly deal HE damage vs Shrouded Dweller hull (this does not save their piss-poor hit strength but it's something?)
+- Barb-class Drone Launcher (small): ammo increased 1 > 2
+- Tweaks to Thrice-Speared's trashtalk-on-kill during boss fight
+- Hatred Beyond Death nanite trait now loses the corpse-fling ability when Fel leaves, even if the "undying rage" part has triggered
+- Adaptive nanite swarm: A Trickster's Calling now causes them to use the vanilla missile skill over the daydream one
+- Fixed a few typos in Haunted finale
+- Fixed cosmetic missing entity error during Haunted lvl 15 dream in random sector
+- Fixed Hypnos appearing in places where it really shouldn't
+- Fixed Thorn variants not having their OP spent properly
+- Fixed Hypnagogic Incursion not lunging proper distance while affected by timeflow bonuses
+- Fixed CotL nex custom start not giving the heavy machinery it claims to
+
 Version 0.15.0b:
 - Fixed SiC Withering Hex crash
 

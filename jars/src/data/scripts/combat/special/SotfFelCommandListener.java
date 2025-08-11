@@ -25,7 +25,7 @@ public class SotfFelCommandListener implements CommandListener {
     public void onPostExecute(@NotNull String command, @NotNull String args, @NotNull BaseCommand.CommandResult result, @NotNull BaseCommand.CommandContext context, @Nullable CommandListener interceptedBy) {
         if (Global.getCombatEngine() == null) return;
         if ((command.toLowerCase(Locale.ROOT).equals("nuke") || command.toLowerCase(Locale.ROOT).equals("god")) && Global.getCombatEngine().getCustomData().containsKey("sotf_fel_fight")) {
-            Global.getCombatEngine().getCombatUI().addMessage(0, Misc.getNegativeHighlightColor(), "Coward.");
+            Global.getCombatEngine().getCombatUI().addMessage(0, Misc.getNegativeHighlightColor(), "... coward.");
         }
     }
 }

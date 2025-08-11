@@ -4710,7 +4710,7 @@ sotfHFinaleElysium1,DialogOptionSelected,$option == sotfHFinale_elysium1,"AddTex
 AddText ""Data containing an undefined location on Elysium's surface streams in as the transmission drops.""
 $sotf_haunted_allowed = true
 FireBest sotfElysium",,,
-sotfHFinaleElysium2,DialogOptionSelected,$option == sotfHFinale_elysium2,$sotf_visited = true,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a void in the black clouds. The skies of Elysium are calm, unbothered your descent. It's as if the nanites haven't noticed you.
+sotfHFinaleElysium2,DialogOptionSelected,$option == sotfHFinale_elysium2,$sotf_visited = true,"Navigational instructions are provided by the orbiting satellite. The shuttle breaks atmos in a long arc directed into a void in the black clouds. The skies of Elysium are calm, unbothered by your descent. It's as if the nanites haven't noticed you.
 
 Below you, the icy surface of Elysium gleams with ritualistic visual-spectrum scars, the flight's terminus concluding in a site ringed by light.
 
@@ -4720,7 +4720,7 @@ sotfHFinaleElysium3,DialogOptionSelected,$option == sotfHFinale_elysium3,,"You s
 The habitat-facility before you is misfigured by damage and rampant retrofitting. The rounded form typical of colonial prefabs is twisted into harsh spires, the arches almost bringing to mind a Luddic temple in a vision of apocalypse.",sotfHFinale_elysium4:Enter,
 sotfHFinaleElysium4,DialogOptionSelected,$option == sotfHFinale_elysium4,,"The entrance to the facility opens with a hiss, not to a grand sanctuary, but a cramped airlock.
 
-The wait is brief as it seals you inside the lightless chamber, the weight in the air shifting the cycle completes. The airlock opens once more, and light streams inside.",sotfHFinale_elysium5:Continue,
+The wait is brief as it seals you inside the lightless chamber, the weight in the air shifting as the cycle completes. The airlock opens once more, and light streams inside.",sotfHFinale_elysium5:Continue,
 sotfHFinaleElysium5,DialogOptionSelected,$option == sotfHFinale_elysium5,,"Inside is what appears to be a meeting hall, gifted a view of the sky by a set of jagged rifts in the ceiling. The light of the lake hangs above you once more.
 
 The place has been arranged as if a church sanctum, chairs organized as pews, the podium an altar where a vac-dessicated skeleton in a scientist's uniform is slumped over. A pistol has fallen to the ground below.

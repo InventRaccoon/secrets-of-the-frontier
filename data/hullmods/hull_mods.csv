@@ -54,8 +54,8 @@ Shock Package,sotf_aux_shock,,,Dustkeeper Proxies,codex_unlockable,,,,TRUE,,0,0,
 
 Upon reaching maximum flux or falling below %s hull, the drone's reactor enters a self-detonation sequence. This disables all safeties (akin to the %s hullmod) and causes the drone to begin emitting shield-piercing EMP arcs at nearby hostiles, damaging itself in the process.
 
-On destruction, the drone detonates, dealing %s energy damage in a wide radius. All vessels hit by the explosion have their flux increased by %s of their flux capacity, divided equally between soft and hard flux, and are subject to severe EMP damage.","Flies towards enemies, shoots them, then EMPs them and explode.",,graphics/hullmods/sotf_proxy_shock.png
-Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfCyberwarfareSuite,This ship features an extensive suite of computing arrays and electronic warfare systems designed to break into hostile networks and execute cyberwarfare attacks.,"Increases hull integrity, armor, and flux capacity.",,graphics/hullmods/distributed_fire_control.png
+On destruction, the drone detonates, dealing %s energy damage in a wide radius. All vessels hit by the explosion have their flux increased by %s of their flux capacity, divided equally between soft and hard flux, and are subject to severe EMP damage.","Flies towards enemies, shoots them, then EMPs them and explodes.",,graphics/hullmods/sotf_proxy_shock.png
+Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,TRUE,,0,0,0,0,data.hullmods.SotfCyberwarfareSuite,This ship features an extensive suite of computing arrays and electronic warfare systems designed to break into hostile networks and execute cyberwarfare attacks.,Improves effectiveness and reduces cooldown of Cyberwarfare Protocols skill.,,graphics/hullmods/distributed_fire_control.png
 ,,,,,,,,,,,,,,,,,,,
 # DREAMING GESTALT,,,,,,,,,,,,,,,,,,,
 Daydream Synthesizer,sotf_daydream_synthesizer,3,0,Dreaming Gestalt,"req_spaceport, special, no_build_in, no_drop, no_drop_salvage,  codex_unlockable, restricted","Special, Requires Dock",,,,,8,16,30,50,data.hullmods.SotfDaydreamSynthesizer,<Description written in script>,A nanite swarm forms a copy of the ship at the start of combat.,,graphics/hullmods/sotf_daydream_synthesizer.png
@@ -63,7 +63,7 @@ Daydream Systems Engineering,sotf_daydreamhull,,,Cult of the Daydream,codex_requ
 
 Reduces energy damage taken by shields by %s. Reduces the chance of shields being pierced by weapons such as the Ion Beam by %s. Decreases EMP damage taken by %s. These benefits are %s if this hull is a fighter craft.
 
-Additionally, %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Resistant to EMP effects.,,graphics/hullmods/sotf_daydreamhull.png
+Additionally, %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Reduces energy damage taken by shields. Resistant to EMP and reality disruption.,,graphics/hullmods/sotf_daydreamhull.png
 Nanite-Synthesized,sotf_nanite_synthesized,,,Dreaming Gestalt,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfNaniteSynthesized,"Expressing itself as a mimickry of a warship's structure and systems, this vessel is actually a synchronized swarm of moderate-volition nanomachines.
 
 Nanite-synthesized ships cannot have their command overridden as there are no manual controls, the swarm-consciousness' perception is resistant to psychic effectors and electronic warfare attacks are only able to shut down or disrupt clusters of nanites rather than take full control.

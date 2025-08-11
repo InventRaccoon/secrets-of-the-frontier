@@ -675,7 +675,7 @@ public class SotfModPlugin extends BaseModPlugin {
         );
         CodexDataV2.makeUnrelated(
                 CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
-                CodexDataV2.getHullmodEntryId("flarelauncher_single")
+                CodexDataV2.getShipSystemEntryId("flarelauncher_single")
         );
 //        CodexDataV2.makeUnrelated(
 //                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
@@ -688,7 +688,7 @@ public class SotfModPlugin extends BaseModPlugin {
         );
         CodexDataV2.makeUnrelated(
                 CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
-                CodexDataV2.getHullmodEntryId("flarelauncher_fighter")
+                CodexDataV2.getShipSystemEntryId("flarelauncher_fighter")
         );
 //        CodexDataV2.makeUnrelated(
 //                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),

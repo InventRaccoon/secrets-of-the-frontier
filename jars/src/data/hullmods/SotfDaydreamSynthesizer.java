@@ -387,7 +387,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 		tooltip.addSectionHeading("Daydream Skills", Alignment.MID, opad);
 		tooltip.addPara("Reverie's skillset is roughly equivalent in power to an alpha core, but takes the form of " +
 				"7 unique skills that provide unique bonuses such as periodic missile reloads, gradual armor repair and a " +
-				"defensive swarm . See the hullmod's related entries in the codex for a full list.", opad, h,
+				"defensive swarm. See the hullmod's related entries in the codex for a full list.", opad, h,
 				"alpha core", "7 unique skills", "periodic missile reloads", "gradual armor repair", "defensive swarm", "related entries");
 //		tooltip.addPara("Reverie's skillset is roughly equivalent in power to an alpha core, but taking the " +
 //				"form of 6 unique skills that include the following bonuses: ", opad, new Color[]{h, bad}, "Capital ships", "cannot be dragged");

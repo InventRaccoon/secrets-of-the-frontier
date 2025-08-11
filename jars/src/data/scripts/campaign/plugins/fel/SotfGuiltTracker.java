@@ -12,6 +12,7 @@ import com.fs.starfarer.api.campaign.listeners.CurrentLocationChangedListener;
 import com.fs.starfarer.api.campaign.listeners.FleetInflationListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Items;
 import com.fs.starfarer.api.impl.campaign.rulecmd.AddRemoveCommodity;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.MarketCMD;
@@ -48,6 +49,8 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
         GUILTY_FACTIONS.add("draco"); // vampires
         GUILTY_FACTIONS.add("HIVER"); // bugs
         GUILTY_FACTIONS.add("enigma"); // ???
+
+        //GUILTY_FACTIONS.add(Factions.HEGEMONY);
     }
 
     public SotfGuiltTracker() {
@@ -166,7 +169,13 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
         //
     }
     public void reportSaturationBombardmentFinished(InteractionDialogAPI dialog, MarketAPI market, MarketCMD.TempData actionData) {
+        if (Global.getSettings().isDevMode()) {
+            Global.getSector().getCampaignUI().addMessage("DEV: Just satbombed: " + market.getFactionId());
+        }
         if (GUILTY_FACTIONS.contains(market.getFactionId())) {
+            if (Global.getSettings().isDevMode()) {
+                Global.getSector().getCampaignUI().addMessage("DEV: Guilt gain nullified by faction whitelist");
+            }
             return;
         }
         float guiltToAdd = 1f;

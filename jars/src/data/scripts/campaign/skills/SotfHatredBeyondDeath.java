@@ -242,8 +242,8 @@ public class SotfHatredBeyondDeath {
             if (ship.isStationModule()) return;
             if (ship.isFighter()) return;
             if (ship.getHullSpec().getHullId().contains("higgs")) return;
-            // do not remove if undying nanites have been triggered
-            if (ship.getCustomData().containsKey(ANATHEMA_TRIGGERED_KEY)) return;
+            // do not remove if already dead
+            if (ship.isHulk() || (ship.getHitpoints() / ship.getMaxHitpoints()) < 0.05f) return;
             ship.removeListenerOfClass(SotfSpiteExplosion.class);
         }
 

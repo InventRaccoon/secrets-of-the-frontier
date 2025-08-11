@@ -355,8 +355,8 @@ public class SotfGen implements SectorGeneratorPlugin
         WeightedRandomPicker<StarSystemAPI> backup = new WeightedRandomPicker<StarSystemAPI>(StarSystemGenerator.random);
         OUTER: for (StarSystemAPI system : Global.getSector().getStarSystems()) {
             if (system.hasTag(Tags.THEME_DERELICT_CRYOSLEEPER)) continue;
-            //if (system.isEnteredByPlayer()) continue;
-            float w = 0.001f;
+            if (system.hasTag(Tags.THEME_CORE)) continue;
+            float w = 0f;
             if (system.hasTag(Tags.THEME_DERELICT_PROBES)) {
                 w = 10f;
             } else if (system.hasTag(Tags.THEME_DERELICT_SURVEY_SHIP)) {
@@ -365,10 +365,9 @@ public class SotfGen implements SectorGeneratorPlugin
                 w = 1000f;
             } else if (system.hasTag(Tags.THEME_DERELICT)) {
                 w = 10f;
+            } else {
+                continue;
             }
-//            } else {
-//                continue;
-//            }
 
             int numPlanets = 0;
             boolean hasHab = false;

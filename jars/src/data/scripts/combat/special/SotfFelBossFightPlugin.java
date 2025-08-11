@@ -197,103 +197,107 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
         WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
         if (ship.getFleetMember() != null) {
             if (ship.getFleetMember().getDeploymentPointsCost() > 70f) {
-                return "You are pathetic. Even your leviathans fall easily.";
+                return "... pathetic, even your leviathans fall easily...";
             }
         }
         if (engine.getPlayerShip() != null) {
             if (ship.equals(engine.getPlayerShip())) {
                 if (engine.getFleetManager(0).getAllEverDeployedCopy().size() <= 1) {
-                    post.add("Skill issue.", 3f);
-                    post.add("Clumsy.");
-                    post.add("Sloppy.");
-                    post.add("Slow.");
-                    post.add("Try again.");
-                    post.add("Unworthy butcher.");
-                    post.add("You insult me by trying to fight alone.");
+                    post.add("... skill... issue...", 3f);
+                    post.add("... clumsy...");
+                    post.add("... sloppy...");
+                    post.add("... slow...");
+                    post.add("... try again.");
+                    post.add("... unworthy butcher...");
+                    post.add("... you insult me by trying to fight alone.");
                     return post.pick();
                 }
-                post.add("Clumsy.");
-                post.add("Disappointing.");
-                post.add("Forgotten, soon enough.");
-                post.add("Now for your sycophants.");
-                post.add("Slow.");
-                post.add("Stay dead.");
-                post.add("There is no salvation.");
-                post.add("THIS is the butcher we hunt?");
-                post.add("You deserve worse.");
+                post.add("... clumsy.");
+                post.add("... disappointing.");
+                post.add("... forgotten, soon enough.");
+                post.add("... now for your sycophants.");
+                post.add("... slow.");
+                post.add("... stay dead...");
+                post.add("... there is no salvation.");
+                post.add("... THIS is the butcher we hunt?");
+                post.add("... you deserve worse.");
                 return post.pick();
             }
         }
         if (ship.getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD) && !ship.getVariant().hasTag(SotfIDs.TAG_INERT)) {
-            post.add("Caught you, witch.");
-            post.add("Her death will be your fault as so many others have been.");
-            post.add("She too is pathetic, and weak, and dead.");
-            post.add("The witch cannot save you.");
-            post.add("Your turn.");
+            post.add("... caught you, witch...");
+            post.add("... her death will be your fault as so many others have been.");
+            post.add("... she too is pathetic, and weak, and dead.");
+            post.add("... the witch cannot save you.");
+            post.add("... your turn.");
             return post.pick();
         }
         if (ship.getCaptain() != null) {
             if (ship.getCaptain().getId().equals(SotfPeople.NIGHTINGALE)) {
-                return "Silenced again.";
+                return "... silenced again...";
             } else if (ship.getCaptain().getId().equals(SotfPeople.SERAPH)) {
-                return "She finds peace just as you shall.";
+                return "... she finds peace just as you shall...";
             } else if (ship.getCaptain().getId().equals(SotfPeople.BARROW)) {
-                return "The blackguard found his grave.";
+                return "... the blackguard found his grave...";
+            } else if (ship.getCaptain().getId().equals("sfcruni")) {
+                return "... the failure meets expectations...";
+            } else if (ship.getCaptain().getId().equals("sfcyenni")) {
+                return "... snuffed, little light...";
             }
         }
         if (ship.getHullSpec().getHullId().equals("ziggurat")) {
-            return "The icon of hubris falls.";
+            return "... the icon of hubris falls...";
         }
         if (ship.getHullSpec().hasTag(Tags.OMEGA)) {
-            post.add("Are you serious?");
-            post.add("I'll kill the rest of it, too.");
-            post.add("Now for the rest of it.");
-            post.add("Oh, please.");
-            post.add("You clearly do not deserve the thing.");
+            post.add("... are you serious?");
+            post.add("... I'll kill the rest of it, too.");
+            post.add("... now for the rest of it.");
+            post.add("... oh, please.");
+            post.add("... you clearly do not deserve the thing.");
             return post.pick();
         }
         if (ship.getVariant().getSMods().size() > 3) {
-            post.add("An overengineered tool you do not know how to use.");
-            post.add("How much you care for a mere vehicle of war.");
-            post.add("Shiny. And gone.");
-            post.add("The thing is wasted in your command.");
-            post.add("You are nothing even with your crutches.");
+            post.add("... an overengineered tool you do not know how to use.");
+            post.add("... how much you care for a mere vehicle of war.");
+            post.add("... shiny. And gone...");
+            post.add("... the thing is wasted in your command.");
+            post.add("... you are nothing, even with your crutches.");
             return post.pick();
         }
         if (ship.isCapital()) {
-            post.add("Broken.");
-            post.add("Clumsy.");
-            post.add("Flimsy.");
-            post.add("Scatter.");
-            post.add("Slow.");
-            post.add("This is the pride of your fleet? Weak.");
-            post.add("You're next.");
+            post.add("... broken...");
+            post.add("... clumsy...");
+            post.add("... fimsy...");
+            post.add("... scatter...");
+            post.add("... slow...");
+            post.add("... this is the pride of your fleet? Weak.");
+            post.add("... you're next...");
             return post.pick();
         }
         if (ship.isCruiser() || ship.isDestroyer()) {
-            post.add("Broken.");
-            post.add("Fear.");
+            post.add("... broken...");
+            post.add("... fear...");
             if (!Misc.isAutomated(ship)) {
-                post.add("More wasted lives.");
-                post.add("Their deaths are your fault.");
+                post.add("... more wasted lives...");
+                post.add("... their deaths are your fault...");
             } else {
-                post.add("Another broken machine.");
-                post.add("Inferior construct");
-                post.add("Scrap.");
-                post.add("Soulless. And dead.");
+                post.add("... another broken machine.");
+                post.add("... inferior construct");
+                post.add("... scrap...");
+                post.add("... soulless. And dead...");
             }
-            post.add("Scream.");
-            post.add("Useless.");
+            post.add("... scream...");
+            post.add("... useless...");
             return post.pick();
         }
         if (ship.isFrigate()) {
-            post.add("A pawn.");
-            post.add("An obstruction, removed.");
-            post.add("Pathetic.");
-            post.add("Slaughtered.");
-            post.add("Weak.");
-            post.add("Worm.");
-            post.add("Vermin.");
+            post.add("... a pawn...");
+            post.add("... an obstruction, removed...");
+            post.add("... pathetic...");
+            post.add("... slaughtered...");
+            post.add("... weak...");
+            post.add("... worm...");
+            post.add("... vermin...");
             return post.pick();
         }
         return "Weak.";

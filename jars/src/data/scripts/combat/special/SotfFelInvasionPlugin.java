@@ -14,6 +14,7 @@ import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.HullMods;
+import com.fs.starfarer.api.impl.campaign.ids.Skills;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
 import com.fs.starfarer.api.input.InputEventAPI;
@@ -239,7 +240,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                     skillsText += "\nSUP - HANDS OF THE DROWNED - GRAVITIC MINES";
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_REALITYBREAKER)) {
-                    skillsText += "\nERROR: description(\"reality_breaker\") not found";
+                    skillsText += "\nERROR: description(\"reality_breaker\") not found\nKILL IT KILL IT KILL IT";
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_PERFECTSTORM)) {
                     skillsText += "\nSUP - THE PERFECT STORM - PERIODIC OVERLOAD";
@@ -903,6 +904,12 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             stats.setSkillLevel(pick, 2);
             defPicked++;
         }
+
+        if (fel.getStats().getSkillLevel(SotfIDs.SKILL_ATRICKSTERSCALLING) > 0) {
+            fel.getStats().setSkillLevel(SotfIDs.SKILL_MISSILEREPLICATION, 0);
+            fel.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
+        }
+
         stats.refreshCharacterStatsEffects();
     }
 

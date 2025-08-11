@@ -72,6 +72,7 @@ public class SotfNGCCMD extends BaseCommandPlugin
                         MemoryAPI char_mem = Global.getSector().getPlayerPerson().getMemoryWithoutUpdate();
                         char_mem.set(SotfIDs.GUILT_KEY, SotfMisc.getHauntedGuilt());
                         char_mem.set(MemFlags.PLAYER_ATROCITIES, 4f);
+                        //Global.getSector().getPlayerPerson().getStats().addPoints(1);
                     }
                 });
                 return true;

@@ -117,8 +117,13 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 				ship.blockCommandForOneFrame(ShipCommand.ACCELERATE);
 			}
 
+			float time = amount / stats.getTimeMult().getModifiedValue();
+
 			if (amount > 0f) {
-				ship.getVelocity().scale((float) Math.pow(adjFalloffPerSec, amount));
+				stats.getTimeMult().unmodify(id);
+				float current = ship.getMutableStats().getTimeMult().getModifiedValue();
+				ship.getMutableStats().getTimeMult().modifyMult(id, 1 / current);
+				ship.getVelocity().scale((float) Math.pow(adjFalloffPerSec, time));
 			}
 
 			if (!appliedBoost) {
@@ -180,6 +185,7 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 
 		if (state == State.IDLE) {
 			if (shouldUnapply) {
+				stats.getTimeMult().unmodify(id);
 				stats.getMaxTurnRate().unmodify(id);
 				stats.getDeceleration().unmodify(id);
 				stats.getTurnAcceleration().unmodify(id);

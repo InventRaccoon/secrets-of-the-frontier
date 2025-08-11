@@ -3,7 +3,7 @@
   "hullId": "sotf_thorn",
   "displayName": "Gatekeeper",
   "goalVariant": true,
-  "fluxCapacitors": 6,
+  "fluxCapacitors": 8,
   "fluxVents": 10,
   "quality": 1,
   "permaMods": [],
