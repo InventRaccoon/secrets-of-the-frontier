@@ -52,6 +52,8 @@ public class SotfPersonalFleetBlithe extends PersonalFleetScript {
 		doctrine.setCombatFreighterCombatUseFraction(0.65f);
 		
 		m.triggerCreateFleet(FleetSize.VERY_LARGE, FleetQuality.DEFAULT, SotfIDs.DUSTKEEPERS, FleetTypes.PATROL_LARGE, loc);
+		// if you're looking at this code as an example, DO NOT USE triggerFleetSetFlagship
+		// I have specially modified Dustkeeper faction spawn code to avoid EXTREME crashing issues caused by it
 		m.triggerFleetSetFlagship("sotf_anamnesis_CS");
 		m.triggerSetFleetOfficers(OfficerNum.DEFAULT, OfficerQuality.HIGHER);
 		m.triggerSetFleetCommander(getPerson());

@@ -167,6 +167,29 @@ public class SotfHopeForHallowhallEventIntel extends BaseEventIntel implements F
 
 		MarketAPI holdout = Global.getSector().getEconomy().getMarket("sotf_holdout_market");
 		if (holdout == null) return;
+
+		SectorEntityToken hallowhall = Global.getSector().getEntityById("sotf_hallowhall");
+		if (hallowhall != null) {
+			if (hallowhall.getMarket().getFactionId().equals(Factions.PLAYER)) {
+				int size = hallowhall.getMarket().getSize();
+				int points = POINTS_FOR_HALLOWHALL_COLONY;
+				if (size > 3) {
+					points += (size - 3) * POINTS_PER_HALLOWHALL_SIZE;
+				}
+				SotfHFHColonizeHallowhallFactor factor = new SotfHFHColonizeHallowhallFactor(points);
+				addFactor(factor);
+				highestHallowhallSize = size;
+			}
+		}
+
+		SectorEntityToken astropolis = holdout.getStarSystem().getEntityById("sotf_hallowhall_astropolis");
+		if (astropolis != null) {
+			if (astropolis.getMarket().getFactionId().equals(Factions.PLAYER)) {
+				SotfHFHRestoreAstropolisFactor factor = new SotfHFHRestoreAstropolisFactor(POINTS_FOR_ASTROPOLIS);
+				addFactor(factor);
+			}
+		}
+
 		Industry hi = holdout.getIndustry(Industries.HEAVYINDUSTRY);
 		if (hi == null) hi = holdout.getIndustry(Industries.ORBITALWORKS);
 		if (hi == null) return;

@@ -11,14 +11,19 @@ import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
+import data.scripts.utils.SotfMisc;
 import exerelin.utilities.StringHelper;
 import org.lazywizard.console.BaseCommand;
+import org.lazywizard.console.BaseCommandWithSuggestion;
 import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.lazywizard.console.CommandUtils.isFloat;
 
-public class SotfFindSecret implements BaseCommand {
+public class SotfFindSecret implements BaseCommandWithSuggestion {
 
 	@Override
 	public CommandResult runCommand(String args, CommandContext context)
@@ -90,5 +95,19 @@ public class SotfFindSecret implements BaseCommand {
 			Console.showMessage("Couldn't find that secret!");
 			return CommandResult.ERROR;
 		}
+	}
+
+	@Override
+	public List<String> getSuggestions(int parameter, List<String> previous, CommandContext context) {
+		if (parameter != 0) return new ArrayList<>();
+		List<String> list = new ArrayList<>();
+		if (context.isInCampaign()) {
+			list.add("hypnos");
+			list.add("athena");
+			list.add("nightingale");
+			list.add("mia");
+			//list.add("lightofthelake");
+		}
+		return list;
 	}
 }

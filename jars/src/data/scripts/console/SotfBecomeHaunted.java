@@ -35,6 +35,7 @@ public class SotfBecomeHaunted implements BaseCommand {
 		}
 		if (addSkillPoint) Global.getSector().getPlayerPerson().getStats().addPoints(1);
 		SotfGen.trySpawnLOTL(Global.getSector());
+		Console.showMessage("There's no saving you now...");
 		return CommandResult.SUCCESS;
 	}
 }

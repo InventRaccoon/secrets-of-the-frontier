@@ -188,6 +188,7 @@ public class SotfMiaSystem {
 		Global.getSector().getEconomy().addUpdateListener(new SotfHoldoutDemandNegator(market));
 		// script to spawn fleets from Holdout
 		system.addScript(new SotfHoldoutProxyFleetManager(market));
+		Misc.makeStoryCritical(market, "sotf_forgeship_protected");
 
 		//
 		// END FORGESHIP

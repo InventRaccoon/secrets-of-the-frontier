@@ -101,6 +101,8 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 			case "showHallow":
 				dialog.getVisualPanel().showLargePlanet(Global.getSector().getEntityById("sotf_hallowhall"));
 				return true;
+			case "hallowColonized":
+				return Global.getSector().getEntityById("sotf_hallowhall").getMarket().getFactionId().equals(Factions.PLAYER);
 			case "addHallowhallEvent":
 				new SotfHopeForHallowhallEventIntel(text, true);
 				return true;

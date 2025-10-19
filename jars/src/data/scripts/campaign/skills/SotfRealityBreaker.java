@@ -135,6 +135,7 @@ public class SotfRealityBreaker {
 		/**
 		 * This was supposed to render ASB text but it ended up just breaking the game's rendering
 		 * ... so, uh, don't copy this code. It doesn't work. That's the point.
+		 * For actually-functional text rendering, please see SotfFelInvasionPlugin or SotfInvokeHerBlessingPlugin.
 		 */
 
 		private static void breakRendering(ShipAPI ship, Color textColor, Vector2f screenPos) {

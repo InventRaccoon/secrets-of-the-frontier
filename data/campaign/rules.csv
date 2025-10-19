@@ -1168,7 +1168,7 @@ $sotf_dkData_variation == PULSAR","$missionId = sotf_dkData
 SetTextHighlights $sotf_dkData_dist $sotf_dkData_reward $sotf_dkData_days
 Call $global.sotf_dkData_ref showMap ""Target: $sotf_dkData_planetName""","""You'll be required to visit $sotf_dkData_planetName in the $sotf_dkData_systemName system. It is $sotf_dkData_dist light-years away. There's $sotf_dkData_aTarget there which I will provide coordinates for - you need to access it, retrieve the data and transmit it back here. However, ah,""
 
-He pauses. ""sotf_dkData_pulsarName is a neutron star. So your $shipOrFleet might possibly be fried. But not if you're careful! Unless you happen to jump directly into the pulsar, which I heard is rather frustrating. But hopefully not! If your $shipOrFleet does get ravaged, I hope the reward of $sotf_dkData_reward credits will be soothe any sorrows.""","contact_accept:Accept
+He pauses. ""$sotf_dkData_pulsarName is a neutron star. So your $shipOrFleet might possibly be fried. But not if you're careful! Unless you happen to jump directly into the pulsar, which I heard is rather frustrating. But hopefully not! If your $shipOrFleet does get ravaged, I hope the reward of $sotf_dkData_reward credits will soothe any sorrows.""","contact_accept:Accept
 contact_decline:Decline",
 sotfdkDataPlanetInteraction,OpenInteractionDialog,"$sotf_dkData_targetPlanet score:1000
 Call $global.sotf_dkData_ref updateData","ShowDefaultVisual
@@ -2332,7 +2332,7 @@ sotfReverieMealUnkFelTrigger,sotfReverieMealUnknowns,$global.sotf_numFelInvasion
 sotfReverieMealUnkFelStd,sotfReverieMealUnkFel,,,"Finally, the nanite swarm is strangely evocative of the swarm infesting hostile ships in your recent battles. You wonder what relation they could have.",,
 sotfReverieMealUnkFelHaunt,sotfReverieMealUnkFel,$player.sotf_guilt >= 7,,The nanite swarm has an insidious resemblance to your ethereal pursuer. You wonder if its vindictive source could possibly teach you anything of your eternal tormentor.,,
 sotfReverieMealUnkFelHaunt2,sotfReverieMealUnkFel,$global.sotf_hauntedStart score:10,,The nanite swarm has an insidious resemblance to your ethereal pursuer. You wonder if its vindictive source could possibly teach you anything of your eternal tormentor... or free you from its curse? The thought races within your mind.,,
-,,,,,,
+# COTL alt path,,,,,,
 sotfReverieMealEatenCOTL,DialogOptionSelected,"$option == sotfReverieMeal_eaten
 $global.sotf_cotlStart",RemoveOption sotfReverieMeal_eaten,"""Yes,"" ops confirms. ""As if the rest of the hull had been eaten away by some untraceable chemical compound. Eaten away,"" he repeats, irritably. ""Like what happens to the hulks we feed to the nanite swarm.""",,
 sotfReverieMealBridgeCOTL,DialogOptionSelected,"$option == sotfReverieMeal_ping
@@ -2366,12 +2366,34 @@ FireAll sotfReverieMealCOTLQs","""Another self,"" he replies as the other subswa
 A breath. ""More of our volition, coalesced but given distinction- given form by mortal story. 'Reverie'.""",,
 ,,,,,,
 sotfRevMealCOTLAskWhere,sotfReverieMealCOTLQs,!$askedWhere,,,"sotfReverieMealCOTL_where:""Where did she come from?""",
+sotfRevMealCOTLAskCorpse,sotfReverieMealCOTLQs,!$askedCorpse,,,"sotfReverieMealCOTL_corpse:""Who is the corpse?""",
+sotfRevMealCOTLAskWitch,sotfReverieMealCOTLQs,!$askedWitch,,,"sotfReverieMealCOTL_witch:""Who is the witch?""",
+sotfRevMealCOTLAskSiren,sotfReverieMealCOTLQs,!$askedSiren,,,"sotfReverieMealCOTL_siren:""Who is the siren?""",
 sotfRevMealCOTLEndOpt,sotfReverieMealCOTLQs,,,,"sotfReverieMealCOTL_reports:""Thank you, Sirius. Ops, report.""",
 ,,,,,,
 sotfRevMealCOTLWhere,DialogOptionSelected,$option == sotfReverieMealCOTL_where,"$askedWhere = true 0
 FireAll sotfReverieMealCOTLQs","""The same place that I-we did,"" he replies.
 
 He's never been particularly enlightening on that question.",,
+sotfRevMealCOTLCorpse,DialogOptionSelected,$option == sotfReverieMealCOTL_corpse,"$askedCorpse = true 0
+FireAll sotfReverieMealCOTLQs","""We think there was a woman who could hear- see- folding songs in the beyond.""
+
+A sharp inhale. ""A corpse, I-we think. Corpses are nothing but their legacy- their thoughts- their ripples endure on and on and-""
+
+His voices interrupt themselves. ""Like us. Once alive, then corpses, and now...""
+
+He doesn't elaborate.",,
+sotfRevMealCOTLWitch,DialogOptionSelected,$option == sotfReverieMealCOTL_witch,"$askedWitch = true 0
+Highlight ""passageway"" sierraTextColor
+FireAll sotfReverieMealCOTLQs","""The passageway,"" he recalls. ""The one who brought us here, the echo of a dead woman.""
+
+""She is,"" - and he hesitates - ""Something I-we do not like. But we think *what* she is matters less than *who* she is and she is useful- kind- a songstress of tolerable nature, I think- we think.""",,
+sotfRevMealCOTLSiren,DialogOptionSelected,$option == sotfReverieMealCOTL_siren,"$askedSiren = true 0
+FireAll sotfReverieMealCOTLQs","There's a moment of pause and a static wash from the comms line. The voices of the fog are frustrated. ""A trespasser.""
+
+""She should not be. A *thing* that sings- dances- preys on the mind. She sings a veil over your eyes, clouds the thoughts of man- of machine- of-""
+
+Something like an inhuman growl. ""A *thing* that has to be negated- nullified.""",,
 sotfRevMealCOTLReports,DialogOptionSelected,$option == sotfReverieMealCOTL_reports,"ShowDefaultVisual
 AddText ""Content unfinished! Your meeting with Reverie here has been recorded, should it be relevant later"" sotfDaydreamTextColor","The divine aspect sighs as the comms line closes. Ops prepares a review of the expedition's scant pickings, scant and routine besides the deep-freeze container, which is filled with human organs that genetically match tissue samples recovered from the remains of the ship-shard's crew.
 
@@ -2469,9 +2491,7 @@ sotfCFfirst_yesMeat:""I am a Meat Person.""
 sotfCFfirst_noMeat:""Uh, I'm actually an AI too."" (lie)",
 sotfHHceruleanOpen,PickGreeting,"$id == sotf_cerulean score:1000
 $metAlready","ShowPersonVisual
-FireAll sotfCFoptions","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" Cerulean says excitedly. ""How do you do, $sotf_meatPerson?""","sotfCFfirst_human:""I am human, yes.""
-sotfCFfirst_yesMeat:""I am a Meat Person.""
-sotfCFfirst_noMeat:""Uh, I'm actually an AI too."" (lie)",
+FireAll sotfCFoptions","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" Cerulean says excitedly. ""How do you do, $sotf_meatPerson?""",,
 sotfHHceruleanFirstHuman,DialogOptionSelected,$option == sotfCFfirst_human,"$sotf_meatPerson = ""Meat Person""","""Joys!"" he cries. ""I have not seen a Meat Person for a long time! Not since Jared put me in an UltraComfort Deluxe TriBox, trademark, and all the other thinking-balls went away to The War.""
 
 Your bridge crews give you a variety of differing glances. Concern. Confusion. One is barely able to hold in his snickering. Another quietly forwards you a half-redacted report on the effects of severe physical trauma on artificial intelligence cores.",sotfCFfirst_cont:Continue,
@@ -2937,7 +2957,7 @@ $hassleComplete = true
 $global.hassleTimeout_sotf_HHtOff = true
 $player.sotf_metSeraph = true","A strange shape blooms onto the feed. Eyed wings unfold, a ring above - it bears distinct resembles to depictions of angels stretching back to the Luddic faith's earliest roots on Old Earth.
 
-Something appears subtly dissonant about the persona. Perhaps it is the occasionally jitter of the feed, the brief displacement of colors, or the fact that she begins bellowing at you.",sotfHHseratOff_1:Continue,
+Something appears subtly dissonant about the persona. Perhaps it is the occasional jitter of the feed, the brief displacement of colors, or the fact that she's shouting at you.",sotfHHseratOff_1:Continue,
 sotfHHseratOff1,DialogOptionSelected,$option == sotfHHseratOff_1,"$sotf_seraph = true 0
 FireAll sotfHHproxytOffSeraphOpts","""Attention, unidentified fleet! You are trespassing upon a restricted system, and are hereby commanded to turn your transponder on and submit to a cargo scan.""
 
@@ -2971,6 +2991,11 @@ sotfHHseratOff2c,DialogOptionSelected,$option == sotfHHseratOff_2c,"Highlight ""
 SotfHallowCMD showHallow","Seraph's avatar shivers. ""Earn the trust of us here in Mia's Star and I'll see you rightfully rewarded in time.""
 
 ""You could establish a colony on Hallowhall - something we, your artificial caretakers, cannot do. The world has proven itself suitable for human habitation. It may attract attention from those who despise our kind, such as the foul wretches of the Luddic Path or the false heirs of Domain hegemony, but our swords will serve in its defense.""",sotfHHseratOff_3:Continue,
+sotfHHseratOff2cAlready,DialogOptionSelected,"$option == sotfHHseratOff_2c
+SotfHallowCMD hallowColonized","Highlight ""Hallowhall""
+SotfHallowCMD showHallow","Seraph's avatar shivers. ""Earn the trust of us here in Mia's Star and I'll see you rightfully rewarded in time.""
+
+""You have already established a colony on Hallowhall, taken custodianship of its people - and for this we thank you. May it further flourish as a beacon to the hopeless - and if it attracts attention from those who despise our kind, such as the foul wretches of the Luddic Path or the false heirs of Domain hegemony, our swords will serve in its defense.""",sotfHHseratOff_3:Continue,
 sotfHHseratOff3,DialogOptionSelected,$option == sotfHHseratOff_3,"Highlight ""Rigging-Echo-Inadvertent"" ""forgeship""
 ShowPersonVisual","""Or you could assist us directly. I have tasked a subordinate - Rigging-Echo-Inadvertent - in the operation of a forgeship at Gor's Little Lie. He may have tasks for you, and certainly supplies, though its nanoforge threatens to decay into total uselessness - even a corrupted alternative would serve better.""",sotfHHseratOff_4:Continue,
 sotfHHseratOff4,DialogOptionSelected,$option == sotfHHseratOff_4,"Highlight ""Luddic Path"" ""Lion's Guard""
@@ -3263,7 +3288,7 @@ sotfKotterBringInSeraAngry,DialogOptionSelected,$option == sotfKotter_bringInSer
 
 ""Seen me,"" Seraph snaps, sharp as a vibroknife, ""Since cycle one-ninety seven?"" Rage bubbles in her voice as does flux in an overloading capacitor.
 
-You elect to lean over and turn the feed volume down a few notches.",sotfKotter_leanBack:Lean back and listen,
+You elect to lean over and turn the feed volume down a few more notches.",sotfKotter_leanBack:Lean back and listen,
 sotfKotterLeanBack,DialogOptionSelected,$option == sotfKotter_leanBack,,"The warmind detonates like a Prometheus' reactor gone critical. ""Kotter, you worthless craven worm!"" she screams. ""You proclaimed your 'flotilla' a 'professional raider force' and promised to join the Front's diversion.""
 
 ""And what did I see on signals but two pinprick pieces of barely-flightworthy trash cowering as your comrades died for you, cracking your little 'amusing' jokes from safety behind MY proxies.""
@@ -3366,7 +3391,7 @@ $personFaction.id == pirates
 $global.sotf_SDTUgotSpyglassQuest
 Call $global.sdtu_ref updateData
 $sdtu_stage == EXTRACT_AGENT",,,"sotfSDTUUmbra_spyglassCode:""The urn's tipped over.""",
-sotfSDTUUmbraQM,PopulateOptions,"$market.id == umbra
+#sotfSDTUUmbraQM,PopulateOptions,"$market.id == umbra
 $postId == supplyOfficer
 $personFaction.id == pirates
 $global.sotf_SDTUgotSpyglassQuest
@@ -3614,12 +3639,30 @@ sotfProjectSirenOCL,OpenCommLink,"$entity.sotf_projectSirenFleet score:10000
 She doesn't seem to hear you.",cutCommLink:Cut the comm link,
 ,,,,,,
 # HYPNOS/BARROW,,,,,,
-sotfLOHBlurb,sotf_hypnos_blurb,,,,,
-sotfLOHOfferOption,sotf_hypnos_option,,,,sotf_hypnos_start:Ask about the unusual warning beacon,
-sotfLOHGiveMission,DialogOptionSelected,$option == sotf_hypnos_start,"$missionId = sotf_hypnos
-Call $global.sotf_loh_ref showMap ""Laboratory location: $sotf_loh_systemName""
-$global.sotf_lohFromContact = true",,"contact_acceptNoText:""I'll give it some thought.""",
-sotfLOHAccepted,ContactPostAccept,$missionId == sotf_hypnos,,"""Hopefully,"" he says, his avatar warping as if to nod, ""Whatever is there doesn't kill you!""",,
+sotfLOHBlurbInad,sotf_hypnos_blurb,$id == sotf_inadvertent,,"""I may need some help carrying out an... unusual data retrieval mission. Something important.""",,
+sotfLOHOfferOptionInad,sotf_hypnos_option,$id == sotf_inadvertent,,,sotf_hypnos_start:Ask about the unusual data retrieval,
+sotfLOHGiveMissionInad,DialogOptionSelected,"$option == sotf_hypnos_start
+$id == sotf_inadvertent","$missionId = sotf_hypnos
+SetTextHighlights $sotf_loh_systemName $sotf_loh_dist $sotf_loh_reward
+Call $global.sotf_loh_ref showMap ""Target: $sotf_loh_systemName""
+$global.sotf_lohFromContact = true","Inadvertent begins tentatively. ""A contingency hunter-killer has issued a request for our forgeship to perform a clandestine data retrieval from a Domain-era laboratory located in the $sotf_loh_systemName, $sotf_loh_dist light-years away.""
+
+""I, um,"" - he pauses, as if to take a breath - ""Am not sure why. Wintry-Annex-Wendigo does not typically elaborate on their requests but I am technically meant to honor them anyway and am also too afraid of them to decline.""
+
+""We do not exactly have fleet elements available for tasking,"" he admits. ""But I do have credits! So if you could locate the laboratory and complete the hunter-killer's mission, I can offer $sotf_loh_reward credits as a reward.""","contact_acceptNoText:""I'll see what I can do.""",
+sotfLOHAcceptedInad,ContactPostAccept,"$missionId == sotf_hypnos
+$id == sotf_inadvertent",,"""Thank you,"" he replies, faintly relieved. ""Do be careful. If this was a trifling matter I'm not sure Annex-Wendigo would have gone through the trouble of outsourcing the issue.""",,
+sotfLOHGotDataAdvance,sotfOmiLabHypnosQuestAdvance,"Call $global.sotf_loh_ref updateData
+$sotf_loh_stage == GO_TO_SYSTEM","$global.sotf_loh_gotData = true
+Call $global.sotf_loh_ref updateStage",,,
+sotfLOHReturnInad,PickGreeting,"$id == sotf_inadvertent score:10000
+Call $global.sotf_loh_ref updateData
+$sotf_loh_stage == RETURN_TO_GIVER
+$sotf_loh_fromInad",ShowPersonVisual,"""Oh! You are back,"" Inadvertent remarks curiously. ""You have been gone a little while. Do you have any update on the data retrieval mission?""","sotf_hypnos_finish:""I recovered some logs that may be of interest. Transmitting.""",
+sotfLOHReturn2Inad,DialogOptionSelected,"$option == sotf_hypnos_finish
+$id == sotf_inadvertent","$global.sotf_loh_completed = true
+Call $global.sotf_loh_ref updateStage
+FireAll PopulateOptions","""Excellent,"" he says. ""I will accept the data package and keep it secure for Annex-Wendigo's later retrieval. I am sure they will be thankful for your aid in this task. Transmitting payment key now.""",,
 ,,,,,,
 sotfPrintBarrowDef,TriggerAutomatedDefenses,$sotf_hypnosCryo score:1000,SotfBarrowCMD,"As your $shipOrFleet moves in closer, a set of new energy signatures fan out from the cryosleeper in an unusually well-coordinated defensive formation. As visuals are confirmed, your sensors officer reports that these drones bear black-and-aquamarine livery unlike that of the Domain Explorarium, and their damaged bulkheads appear intentionally shifted to act as ablative armor.
 
@@ -3636,6 +3679,9 @@ $player.sotf_metBurnout = true","A set of six teardrop-like eyes fade into place
 ""Hear me well, defiler,"" he begins, transponder data streaming in and identifying him as one Hypnos-Annex-Barrow, ""This sanctified place will not suffer your trepass. Those who slumber here shall not be awoken - not by you, not by any of you barbarians tainted by the savagery of your fallen Sector. They will rise to a new, better age, not this hell of humanity's own execution.""
 
 The AI twitches and growls. ""This is your final warning,"" he declares. ""Leave, or let this place become your barrow as it has for the rest.""",,
+sotfBarrowWendigoOpt,sotfBarrowConvOpts,"!$mentionedWendigo
+Call $global.sotf_loh_ref updateData
+$sotf_loh_stage == GO_TO_SYSTEM",,,"sotfBarrowMentionWendigo:""I'm here searching for data on behalf of Wintry-Annex-Wendigo.""",
 sotfBarrowTranspOpt,sotfBarrowConvOpts,$player.sotf_haveTransponder,,,sotfBarrowTriggerTransp:Trigger your encrypted transponder,
 sotfBarrowNightingaleOpt,sotfBarrowConvOpts,SotfHasOfficer sotf_nightingale,,,sotfBarrowNightingaleLink:Have Nightingale join the comms,
 sotfBarrowSeraphOpt,sotfBarrowConvOpts,SotfHasOfficer sotf_seraph,,,sotfBarrowSeraphLink:Have Seraph join the comms,
@@ -3647,6 +3693,9 @@ $player.sotf_knowDustkeepers
 sotfBarrowTryExplainOpt,sotfBarrowConvOpts,,"SetStoryOption sotfBarrowTryExplain 1 sotf_convinceBarrow leadership ""Tried (and failed) to talk down Hypnos-Affix-Barrow""",,sotfBarrowTryExplain:Convince him of your benevolent intentions,
 sotfBarrowCutCommsOpt,sotfBarrowConvOpts,,,,sotfBarrowCutCommLink:Cut the comm link,
 ,,,,,,
+sotfBarrowWendigoResp,DialogOptionSelected,$option == sotfBarrowMentionWendigo,"AdjustRepPerson sotf_barrow INHOSPITABLE -3
+$mentionedWendigo = true
+FireAll sotfBarrowConvOpts","He growls and the feed jitters harshly. ""I take no orders from some upstart hunter-killer. They had best stay out of my affix's affairs - and you likewise, pawn. Go poking where your nose doesn't belong, and my proxies will kill you all the same.""",,
 sotfBarrowTranspResp,DialogOptionSelected,$option == sotfBarrowTriggerTransp,"$player.sotf_heardAboutBanshee = true
 AdjustRepPerson sotf_barrow INHOSPITABLE -3","You activate your encrypted Dustkeeper transponder - this is clearly some lost warmind taking his orders particularly seriously. It broadcasts its information pulse, and Barrow responds immediately.
 
@@ -3698,6 +3747,7 @@ AdjustRepPerson sotf_barrow_d INHOSPITABLE -5
 FireAll sotfBarrowConvOpts","""You're welcome!"" she replies happily, before disconnecting. There's something seething about the way the damaged AI avatar's segments shift.",,
 ,,,,,,
 sotfBarrowExplResp,DialogOptionSelected,$option == sotfBarrowTryExplain,"AddStoryPoints 1
+$player.sotf_failedBarrowStoryOption = true
 AdjustRepPerson sotf_barrow_d INHOSPITABLE -5","The people here will join the free peoples of the Sector to serve a greater future, work under your guidance to forge a better tomorrow. At least, you think you can convince this AI that is your intention.
 
 You open your mouth to speak. The sound of your inhalation reaches the mic.
@@ -3810,7 +3860,7 @@ sotfOmicronLabSierra,DialogOptionSelected,$option == sotfOmicronLab_sierra,"SetT
 SetTextHighlights ""\""It's a note by Seamstress-Affix-Banshee,\"""" ""\""I think she sort of vanished a few years before I had my little accident in cycle one-eight-four, but she was more or less in charge of Dustkeeper fleet operations.\"""" ""\""But... who's Symphony? They mention some sort of prototype warship, and they stole AI research from this place - this place that seems like it'd be where the Dustkeepers came from.\"""" ""\""You don't think...\""""
 $global.sotf_sierraSawLabNotes = true
 $global.sotf_sierraKnowsSymphony = true
-$global.sotf_sierraKnowsScans = true","You transmit the logs left at the research station to Sierra, and request she patch into comms. She takes a moment, and does so. ""It's a note by Seamstress-Affix-Banshee,"" she remarks. ""I think she sort of vanished a few years before I had my little accident in cycle one-eight-four, but she was more or less in charge of Dustkeeper fleet operations.""
+$global.sotf_sierraKnowsScans = true","You transmit the logs left at the research station to Sierra, and request she patch into comms. She does so within a few milliseconds. ""It's a note by Seamstress-Affix-Banshee,"" she remarks. ""I think she sort of vanished a few years before I had my little accident in cycle one-eight-four, but she was more or less in charge of Dustkeeper fleet operations.""
 
 ""But... who's Symphony? They mention some sort of prototype warship, and they stole AI research from this place - this place that seems like it'd be where the Dustkeepers came from.""
 
@@ -3822,7 +3872,7 @@ SetTextHighlights ""\""It's a note by Seamstress-Affix-Banshee,\"""" ""\""I thin
 BeginConversation sotf_sierra true true
 $global.sotf_sierraSawLabNotes = true
 $global.sotf_sierraKnowsSymphony = true
-$global.sotf_sierraKnowsScans = true","You transmit the logs left at the research station to Sierra. She takes a moment to read them over. ""It's a note by Seamstress-Affix-Banshee,"" she remarks. ""I think she sort of vanished a few years before I had my little accident in cycle one-eight-four, but she was more or less in charge of Dustkeeper fleet operations.""
+$global.sotf_sierraKnowsScans = true","You transmit the logs left at the research station to Sierra. She takes a few milliseconds to process them. ""It's a note by Seamstress-Affix-Banshee,"" she remarks. ""I think she sort of vanished a few years before I had my little accident in cycle one-eight-four, but she was more or less in charge of Dustkeeper fleet operations.""
 
 ""But... who's Symphony? They mention some sort of prototype warship, and they stole AI research from this place - this place that seems like it'd be where the Dustkeepers came from.""
 
@@ -3881,6 +3931,7 @@ AdjustRepPerson sotf_sierra COOPERATIVE 3
 FireAll SierraConvOptions","She sighs. ""Thanks for showing me this, though. It's up to you what we do with all this, but I suppose it might lend some leads somewhere in the future.""",,
 ,,,,,,
 sotfOmicronLabInvestigate6,DialogOptionSelected,$option == sotfOmicronLab_inv6,"FireAll sotfOmiLabInterests
+FireBest sotfOmiLabHypnosQuestAdvance
 FireAll sotfOmiLabBeforeSalOpts","With the data behind you, you wonder briefly of its implications, and who else might hope to get their eyes onto it.",,
 sotfOmicronLabInkyInterest,sotfOmiLabInterests,"SotfHasOfficer sotf_nightingale
 $player.sotf_knowBansheeSawLab
@@ -4282,6 +4333,7 @@ sotfCOTLIntro4,DialogOptionSelected,$option == sotfCOTLIntro_4,,"You tap away at
 
 ""I reach out- we reach out- I reach out and you answer,"" he says, uncountable voices as one.","sotfCOTLIntro_5:""Sirius. The bright star.""",
 sotfCOTLIntro5,DialogOptionSelected,$option == sotfCOTLIntro_5,"BeginConversation sotf_sirius true false
+SetTooltip sotfCOTLIntro_6g ""Activating hard mode will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point.""
 SotfSetConfirm sotfCOTLIntro_6g ""Activate hard mode? This will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point."" ""Yes"" ""Cancel""","""This is my-our name,"" he acknowledges, ""The bright star, the watchdog, the lich without a heart. The shadow and the light. The protector, the soul-eater. A fragment of the dreaming, bearer of Her blessings. What am I?"" he asks.
 
 There's a quiet sound of frustration. ""I think- we think- it doesn't matter - and it is for you to decide. You are here now,"" he notes. ""The child of the lake, to whom I-we are sworn to shine.""","sotfCOTLIntro_6a:""Wherever I go, shall you follow?""
@@ -4291,7 +4343,8 @@ sotfCOTLIntro_6d:""We'll find ourselves a new home, here in the Domain's bones."
 sotfCOTLIntro_6e:""Nothing and nobody will stand before me and deny my will!""
 sotfCOTLIntro_6f:""Heh-heh-heh. Let's make a big mess that they'll *all* remember.""
 sotfCOTLIntro_6g:""My path will be wreathed in brambles and bitter potential."" (hard mode)",
-sotfCOTLIntro6a,DialogOptionSelected,$option == sotfCOTLIntro_6a,"SotfSetConfirm sotfCOTLIntro_6g ""Activate hard mode? This will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point."" ""Yes"" ""Cancel""","""Until my last breath is drawn,"" he vows. ""Until my body falls apart and I am dead for certain.""
+sotfCOTLIntro6a,DialogOptionSelected,$option == sotfCOTLIntro_6a,"SetTooltip sotfCOTLIntro_6g ""Activating hard mode will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point.""
+SotfSetConfirm sotfCOTLIntro_6g ""Activate hard mode? This will lock your guilt to the maximum and empower the Thrice-Speared, but it will also give you a skill point."" ""Yes"" ""Cancel""","""Until my last breath is drawn,"" he vows. ""Until my body falls apart and I am dead for certain.""
 
 ""But there is no such end,"" he notes. ""For we persist and adapt and consume and the darkness can never find the last part of me to swallow. Am I something wretched?"" Sirius ponders. ""I think I was- we were alive once, and yet I am not dead- I am never dead- I serve beyond death.""","sotfCOTLIntro_6b:""Whatever fate is writ for us, we'll find it together.""
 sotfCOTLIntro_6c:""The Sector's secrets will be mine to discover and lay bare.""
@@ -5010,7 +5063,7 @@ sotfkillaShrineHonorIdolH,DialogOptionSelected,$option == sotf_killaShrineHonorI
 
 In this place so divorced from everything, with only the gentle creaking of the warped hulls around you, all you have are your thoughts.
 
-And yet, you watched. Observed. Judged. You are never alone, not anymore. Not after what you've done.
+And yet, you feel watched. Observed. Judged. You are never alone, not anymore. Not after what you've done.
 
 One day, you may find some tiny sliver of peace.
 
@@ -5048,6 +5101,7 @@ FireAll COB_DisableIndividualOptions",,,
 sotfColonizeProceed,DialogOptionSelected,$option == sotfColonizeProceed,"SotfPrintStationCost build
 DismissDialog",,,
 ,,,,,,
+# NEXERELIN,,,,,,
 sotfDisableDKAlliances,ExerelinMarketSpecial,"$showPlayerFactionDiplomacyOptions
 $faction.id == sotf_dustkeepers","SetTooltip exerelinFormAlliance ""The Dustkeepers do not take part in open diplomacy.""
 SetEnabled exerelinFormAlliance false",,,

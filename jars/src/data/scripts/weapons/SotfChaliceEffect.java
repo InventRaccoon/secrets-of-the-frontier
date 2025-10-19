@@ -90,7 +90,7 @@ public class SotfChaliceEffect implements EveryFrameWeaponEffectPlugin, OnFireEf
 //			if (whirlFade < 0f) {
 //				whirlFade = 0f;
 //			}
-			interval.setElapsed(0f);
+			//interval.setElapsed(0f);
 		}
 
 		whirlFade = weapon.getChargeLevel();

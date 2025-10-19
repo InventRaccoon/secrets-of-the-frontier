@@ -89,6 +89,8 @@ public class SotfHoldoutProxyFleetManager implements RouteManager.RouteFleetSpaw
 		}
 
 		if (tracker.intervalElapsed()) {
+			// TODO: probably remove this on a save-breaking update
+			Misc.makeStoryCritical(market, "sotf_forgeship_protected");
 			String sid = getRouteSourceId();
 
 			int light = getCount(FleetFactory.PatrolType.FAST);

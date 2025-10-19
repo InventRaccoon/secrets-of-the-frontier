@@ -30,6 +30,12 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
         }
 
         @JvmStatic
+        fun getInstanceIfAny() : SotfHauntedDreamCampaignVFX? {
+            var renderer = LunaCampaignRenderer.getRendererOfClass(SotfHauntedDreamCampaignVFX::class.java) as SotfHauntedDreamCampaignVFX?
+            return renderer
+        }
+
+        @JvmStatic
         fun fadeIn(durationDays: Float) {
             var renderer = getInstance()
 
@@ -39,6 +45,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.maxDuration = durationDays
             renderer.duration = 0f
             renderer.isFadeIn = true
+            renderer.fallback = 0f
         }
 
         @JvmStatic
@@ -48,6 +55,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.maxDuration = durationDays
             renderer.duration = durationDays
             renderer.isFadeIn = false
+            renderer.fallback = 0f
         }
 
         // Fade in, but do not set to fully faded-out first
@@ -61,6 +69,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.maxDuration = durationDays
             //renderer.duration = 0f
             renderer.isFadeIn = true
+            renderer.fallback = 0f
         }
 
         // Fade out, but do not set to maximum intensity first
@@ -71,6 +80,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             renderer.maxDuration = durationDays
             //renderer.duration = durationDays
             renderer.isFadeIn = false
+            renderer.fallback = 0f
         }
 
         @JvmStatic
@@ -83,6 +93,7 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
             //renderer.duration = 0f
             renderer.evenWhilePaused = true
             renderer.isFadeIn = true
+            renderer.fallback = 0f
         }
 
     }
@@ -117,11 +128,12 @@ class SotfHauntedDreamCampaignVFX : LunaCampaignRenderingPlugin {
     override fun advance(amount: Float) {
         fallback += amount
         if (fallback > 30f) {
-            duration = 0f
+            duration = -1f
+            fallback = 0f
             LunaCampaignRenderer.removeRenderer(this)
+            return
         }
         if (!Global.getSector().isPaused) {
-
             if (startDelay >= 0) {
                 startDelay -= Global.getSector().clock.convertToDays(amount)
                 return

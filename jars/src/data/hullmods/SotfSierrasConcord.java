@@ -311,9 +311,9 @@ public class SotfSierrasConcord extends BaseHullMod
         if (ship.getVariant().hasTag(SotfIDs.TAG_INERT) && !SotfMisc.isSiCNonInert()) {
             ship.getMutableStats().getPeakCRDuration().modifyMult(id, 0.1f);
         }
-        if (SotfModPlugin.NEW_SIERRA_MECHANICS) {
-            ship.getMutableStats().getMaxCrewMod().unmodify(HullMods.AUTOMATED);
-        }
+//        if (SotfModPlugin.NEW_SIERRA_MECHANICS) {
+//            ship.getMutableStats().getMaxCrewMod().unmodify(HullMods.AUTOMATED);
+//        }
         // build yourself in if s-mod dialogue broke it again - thank you SirHartley very cool
         String hullmodID = spec.getId();
         if (ship.getVariant().getNonBuiltInHullmods().contains(hullmodID)) {
@@ -365,14 +365,14 @@ public class SotfSierrasConcord extends BaseHullMod
         stats.getBreakProb().modifyMult(id, 0f);
         stats.getCrewLossMult().modifyMult(id, 0f);
 
-        if (!stats.getVariant().hasHullMod(HullMods.AUTOMATED) && SotfModPlugin.NEW_SIERRA_MECHANICS) {
-            stats.getVariant().addPermaMod(HullMods.AUTOMATED);
-            stats.getMaxCrewMod().unmodify(HullMods.AUTOMATED);
-        } else if (!SotfModPlugin.NEW_SIERRA_MECHANICS && stats.getVariant().hasHullMod(HullMods.AUTOMATED)) {
-            stats.getVariant().removePermaMod(HullMods.AUTOMATED);
-        }
-
-        stats.getMaxCrewMod().unmodify(HullMods.AUTOMATED);
+//        if (!stats.getVariant().hasHullMod(HullMods.AUTOMATED) && SotfModPlugin.NEW_SIERRA_MECHANICS) {
+//            stats.getVariant().addPermaMod(HullMods.AUTOMATED);
+//            stats.getMaxCrewMod().unmodify(HullMods.AUTOMATED);
+//        } else if (!SotfModPlugin.NEW_SIERRA_MECHANICS && stats.getVariant().hasHullMod(HullMods.AUTOMATED)) {
+//            stats.getVariant().removePermaMod(HullMods.AUTOMATED);
+//        }
+//
+//        stats.getMaxCrewMod().unmodify(HullMods.AUTOMATED);
     }
 
     // description, I'm not lazy so I made them dynamic instead of manually entering the values (yes this comment is an injoke)

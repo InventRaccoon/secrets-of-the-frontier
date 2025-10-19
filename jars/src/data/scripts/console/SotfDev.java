@@ -29,13 +29,17 @@ import data.scripts.dialog.SotfGenericDialogScript;
 import data.scripts.dialog.SotfGenericSierraDialogScript;
 import data.scripts.utils.SotfMisc;
 import org.lazywizard.console.BaseCommand;
+import org.lazywizard.console.BaseCommandWithSuggestion;
 import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
 import second_in_command.SCData;
 import second_in_command.SCUtils;
 import second_in_command.specs.SCOfficer;
 
-public class SotfDev implements BaseCommand {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SotfDev implements BaseCommandWithSuggestion {
 
 	@Override
 	public CommandResult runCommand(String args, CommandContext context)
@@ -182,5 +186,29 @@ public class SotfDev implements BaseCommand {
 			Console.showMessage("Invalid command!");
 			return CommandResult.ERROR;
 		}
+	}
+
+	@Override
+	public List<String> getSuggestions(int parameter, List<String> previous, CommandContext context) {
+		if (parameter != 0) return new ArrayList<>();
+		List<String> list = new ArrayList<>();
+		if (context.isInCombat()) {
+			list.add("strip");
+		} else if (context.isInCampaign()) {
+			list.add("hatred");
+			list.add("sierraAtrocity");
+			list.add("sendWendigo");
+			list.add("sendWendigoHostile");
+			list.add("hallowhallPoints");
+			list.add("hallowhallPoints+");
+			list.add("wsRevMeal");
+			if (SotfMisc.isSecondInCommandEnabled()) {
+				list.add("sierraXO");
+			}
+			list.add("hfinale");
+			list.add("hfinfel");
+			list.add("cotl");
+		}
+		return list;
 	}
 }

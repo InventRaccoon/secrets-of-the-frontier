@@ -149,7 +149,7 @@ public class SotfGen implements SectorGeneratorPlugin
         daydreams.setRelationship(Factions.OMEGA, RepLevel.VENGEFUL);
         // BORN FOR THIS
         daydreams.setRelationship(Factions.THREAT, RepLevel.VENGEFUL);
-        // WHAT IN HER GOOD NAME ARE YOU. DIE DIE DIE DIE DIE
+        // MAKE A MERCY OF THE BLEEDING SKY
         daydreams.setRelationship(Factions.DWELLER, RepLevel.VENGEFUL);
     }
 

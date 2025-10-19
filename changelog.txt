@@ -1,3 +1,40 @@
+Version 0.15.1:
+- Added "Legacy of Hypnos" quest, leading player to existing Hypnos content. Currently obtained from friendly rep Inadvertent (for now)
+
+- Drone launchers now have a cap of 2/6/6 drones depending on size, beyond which they become unable to fire until existing drones fired by the launcher have been destroyed
+- Barb mount: increased ammo (2 > 4), increased fire rate slightly
+- Barb/Nettle replicators now regenerate 2 drones every 30 seconds (was: every 60 seconds)
+- Increased range at which AI-controlled ships will start firing their drone launchers
+- Chalice stat card no longer lies about main projectile damage per shot (was: 1250. actually dealt 500)
+- Chalice main projectile damage increased 500 > 750, hitpoints 1500 > 2000
+- Chalice charge time reduced 6s > 5s, added 1s chargedown (effective fire rate unchanged and it still fires bolts the entire time)
+- Rebalanced Reckoner Autolance Array with a constant, much faster fire rate, with less energy damage per shot and better flux efficiency. 400/240 energy/EMP DPS for 260 flux/sec
+- Reckoner targeting paradigm adjusted so that secondary beams now prioritize hitting different targets and prioritize PD duty
+- Reckoner secondary beam targeting arc greatly increased (25 degrees > 60 degrees), damage proportion per shot adjusted (50% in main beam, 12.5% per secondary)
+- Reckoner damping effect per beam doubled
+- Barb/Nettle wings now have real descriptions
+
+- COTL: Removed level 12 mimic lifespan boost - now 45s at all levels
+- COTL hard mode is now described in option tooltip as well as on click
+- Added a notification after battle and on month end if the player has new upgrades to select
+- Added a couple of dialogue options to COTL WS encounter
+- The Revenant Host during Haunted finale can no longer use jump points
+- Leviathan's Bane warning beam made more visible
+
+- Cavalier (PROX) and Rampart (PROX) supply costs/DP reduced (20 > 18, Explorarium versions are 15)
+- Holdout Forgeship is now marked story-critical and can't be destroyed by NPC satbombs
+- Holdout no longer has tariffs. Commodities have their price and sale value slightly increased to compensate. Supplies have been hiked to more normal price levels rather than being extremely cheap (sorry). Non-commodities (e.g weapons, ships, special items) are slightly cheaper than previously
+- Hallowhall/astropolis colonization points are now granted on HFH event start if player has already done so
+- Added alt dialogue for Seraph giving HFH event if Hallowhall is already colonized
+- sotf_findsecret and sotf_dev commands now have autocomplete support
+
+- Fixed single-craft Nettle wing appearing in related entries of its weapons
+- Fixed duplicated dialogue option with Imoinu Kato during Usurpers Spyglass subquest
+- Fixed issue with Revenant Host causing flickering dream VFX during Haunted finale
+- Fixed CotL special countermeasure activating in simulator in some circumstances
+- Fixed Advanced Countermeasures defensive swarm not being properly cleaned up if nanite officer is removed from the ship but it is not destroyed (e.g when Thrice-Speared abandons a fleeing ship)
+- Fixed some unpurple quotes
+
 Version 0.15.0c:
 - Chalice secondary bolt damage increased (35/25 kinetic/EMP > 50/40), min DPS 140 > 200, max 240 > 360
 - Corrected Chalice description claiming it converted EMP resisted to energy damage: it converts to kinetic

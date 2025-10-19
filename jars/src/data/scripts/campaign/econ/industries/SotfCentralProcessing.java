@@ -64,8 +64,8 @@ public class SotfCentralProcessing extends BaseIndustry implements MarketImmigra
 		
 		int size = market.getSize();
 
-		demand(Commodities.SUPPLIES, Math.min(size, 3));
-		demand(Commodities.METALS, Math.min(size, 3));
+		demand(Commodities.SUPPLIES, size);
+		demand(Commodities.METALS, size);
 
 		Global.getSector().getListenerManager().addListener(this);
 

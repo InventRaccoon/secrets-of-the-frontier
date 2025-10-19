@@ -97,8 +97,10 @@ public class SotfFelLeashAssignmentAI extends BaseAssignmentAI {
 				curr.getRepairTracker().setCR(curr.getRepairTracker().getMaxCR());
 			}
 			SotfHauntedDreamCampaignVFX.fadeInFromCurrent(0.5f);
-		} else {
-			SotfHauntedDreamCampaignVFX.fadeOutFromCurrent(0.5f);
+		} else if (SotfHauntedDreamCampaignVFX.getInstanceIfAny() != null) {
+			if (SotfHauntedDreamCampaignVFX.getInstanceIfAny().getDuration() > 0f) {
+				SotfHauntedDreamCampaignVFX.fadeOutFromCurrent(0.5f);
+			}
 		}
 	}
 

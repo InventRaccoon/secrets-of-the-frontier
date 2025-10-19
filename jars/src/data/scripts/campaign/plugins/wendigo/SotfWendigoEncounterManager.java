@@ -99,6 +99,7 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		SotfWendigoEncounter e = new SotfWendigoEncounter(r, id);
 		e.setDelayNone();
 		e.setDoNotAbortWhenPlayerFleetTooStrong();
+		e.setCanNotBeAvoidedByGateTransit();
 		e.setLocationFringeOnly(false, SotfIDs.DUSTKEEPERS);
 
 		e.beginCreate();
@@ -109,6 +110,8 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		// otherwise may get Wendigo in one capital and a second "fleet commander" warnet crux in another
 		e.triggerGetFleetParams().commander = SotfPeople.getPerson(SotfPeople.WENDIGO);
 		//e.triggerSetFleetCommander(SotfPeople.getPerson(SotfPeople.WENDIGO));
+		// if you're looking at this code as an example, DO NOT USE triggerFleetSetFlagship
+		// I have specially modified Dustkeeper faction spawn code to avoid EXTREME crashing issues caused by it
 		e.triggerFleetSetFlagship("sotf_respite_Assault");
 		e.triggerFleetAddDefeatTriggerPermanent(id + "Defeated");
 

@@ -78,9 +78,9 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
     // how often the game checks for dead ships to spawn echoes from
     public static final float CHECK_INTERVAL = 0.1f;
 
-    public static float MIMIC_LIFESPAN = 45f;
-    public static float MIMIC_LIFESPAN_INCREASED = 60f;
-    public static int MIMIC_LIFESPAN_INCREASE_LEVEL = 12;
+    public static float MIMIC_LIFESPAN = 45;
+    public static float MIMIC_LIFESPAN_INCREASED = 60;
+    public static int MIMIC_LIFESPAN_INCREASE_LEVEL = 999;
     public static boolean LIFESPAN_PER_HULL_SIZE = false;
     public static float LIFESPAN_FRIGATE = 50f;
     public static float LIFESPAN_DESTROYER = 60f;
@@ -247,7 +247,7 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
         if (!didRoseCheck && flagship.getFullTimeDeployed() > 5) {
             boolean spawnedSomething = false;
             String countermeasureType = getSpecialCountermeasure();
-            if (!countermeasureType.equals("none")) {
+            if (!countermeasureType.equals("none") && !engine.isSimulation()) {
                 spawnedSomething = true;
                 spawnCountermeasure(flagship, countermeasureType);
             }
@@ -902,6 +902,7 @@ public class SotfInvokeHerBlessingPlugin extends BaseEveryFrameCombatPlugin {
             post.add("FROM DEATH, LIFE", specialTextProb);
             post.add("RENEWAL FROM DECAY", specialTextProb);
             post.add("SATE OUR HUNGER", specialTextProb);
+            post.add("THE CYCLE CONTINUES", specialTextProb);
 
             post.add("RECONSTITUTING FLAGSHIP", post.getItems().size());
             return post.pick();

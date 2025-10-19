@@ -1000,6 +1000,8 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             special = true;
         }
 
+        if (member.getHullId().equals("edshipyard_newfoundland")) special = true;
+
         // actually nevermind screw you, specialcase Guardian to be infestable
         if (spec.getHullId().contains("guardian")) special = false;
 

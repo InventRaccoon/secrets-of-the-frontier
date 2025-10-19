@@ -50,7 +50,7 @@ public class SotfGuiltTracker extends BaseCampaignEventListener implements Every
         GUILTY_FACTIONS.add("HIVER"); // bugs
         GUILTY_FACTIONS.add("enigma"); // ???
 
-        //GUILTY_FACTIONS.add(Factions.HEGEMONY);
+        //GUILTY_FACTIONS.add(Factions.HEGEMONY); // testing
     }
 
     public SotfGuiltTracker() {

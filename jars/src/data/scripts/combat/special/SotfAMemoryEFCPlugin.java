@@ -269,7 +269,7 @@ public class SotfAMemoryEFCPlugin extends BaseEveryFrameCombatPlugin {
 
         public boolean notifyAboutToTakeHullDamage(Object param, ShipAPI ship, Vector2f point, float damageAmount) {
             if (!emergencyDive) {
-                String key = "phaseAnchor_canDive";
+                String key = "sotf_AMemoryDiveKey";
                 boolean canDive = !Global.getCombatEngine().getCustomData().containsKey(key);
                 float depCost = 0f;
                 if (ship.getFleetMember() != null) {

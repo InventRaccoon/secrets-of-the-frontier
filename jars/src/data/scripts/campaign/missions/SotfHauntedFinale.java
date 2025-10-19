@@ -117,7 +117,9 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         setNoAbandon();
 
         makeImportant(planet, "$sotf_haunted", Stage.SCENE_OF_THE_CRIME);
-        makeImportant(killa, "$sotf_haunted", Stage.PAY_YOUR_PENANCE);
+        if (!noYma) {
+            makeImportant(killa, "$sotf_haunted", Stage.PAY_YOUR_PENANCE);
+        }
         makeImportant(lotl.getEntityById("sotf_elysium"), "$sotf_haunted", Stage.ENTER_ELYSIUM, Stage.SACRIFICE_YOURSELF);
 
         // set stage transitions when certain global flags are set
@@ -156,6 +158,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_HOSTILE, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_AGGRESSIVE, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_NO_REP_IMPACT, true);
+        fleet.getMemoryWithoutUpdate().set(MEMORY_KEY_NO_JUMP, true);
         //fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_LOW_REP_IMPACT, true);
         fleet.getMemoryWithoutUpdate().set(MemFlags.MEMORY_KEY_MAKE_ALWAYS_PURSUE, true);
         fleet.getMemoryWithoutUpdate().set("$sotf_haunted_felFleet", true);
@@ -188,7 +191,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         addFelComposition(fleetData, pick3);
 
         if (Global.getSettings().isDevMode()) {
-            Global.getSector().getCampaignUI().addMessage("Fel core comp picks: " + pick1 + " + " + pick2 + " + " + "pick3");
+            Global.getSector().getCampaignUI().addMessage("Fel core comp picks: " + pick1 + " + " + pick2 + " + " + pick3);
         }
 
         fleetData.sort();

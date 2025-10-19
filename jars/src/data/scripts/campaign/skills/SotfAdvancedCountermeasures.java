@@ -9,6 +9,7 @@ import com.fs.starfarer.api.characters.SkillSpecAPI;
 import com.fs.starfarer.api.combat.*;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
+import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 import com.fs.starfarer.api.impl.combat.threat.RoilingSwarmEffect;
@@ -17,6 +18,7 @@ import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.hullmods.SotfNaniteSynthesized;
+import data.scripts.campaign.ids.SotfIDs;
 import data.subsystems.SotfNaniteDronesSubsystem;
 import org.lwjgl.util.vector.Vector2f;
 import org.magiclib.subsystems.MagicSubsystemsManager;
@@ -69,6 +71,7 @@ public class SotfAdvancedCountermeasures {
 		}
 	}
 
+	// UNUSED NOW, replaced with "Swarm" below
 	public static class Drones extends BaseSkillEffectDescription implements ShipSkillEffect, AfterShipCreationSkillEffect {
 		public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
 			MagicSubsystemsManager.addSubsystemToShip(ship, new SotfNaniteDronesSubsystem(ship));
@@ -97,7 +100,13 @@ public class SotfAdvancedCountermeasures {
 		}
 
 		public void unapplyEffectsAfterShipCreation(ShipAPI ship, String id) {
-			ship.addListener(new SotfNaniteDefenseSwarmScript(ship));
+			ship.removeListener(new SotfNaniteDefenseSwarmScript(ship));
+			// remove the swarm from ships that only gained it via this
+			RoilingSwarmEffect swarm = RoilingSwarmEffect.getSwarmFor(ship);
+			if (swarm != null && !ship.getVariant().hasHullMod(HullMods.FRAGMENT_SWARM) &&
+					!ship.getVariant().hasHullMod(SotfIDs.HULLMOD_NANITE_SYNTHESIZED)) {
+				swarm.setForceDespawn(true);
+			}
 		}
 
 		public void apply(MutableShipStatsAPI stats, HullSize hullSize, String id, float level) {}
@@ -155,10 +164,10 @@ public class SotfAdvancedCountermeasures {
 
 				if (target == null) return;
 
-				RoilingSwarmEffect.SwarmMember pick = pickFragmentTowardsPointWithinRange(swarm, target.getLocation(), 150f);
+				RoilingSwarmEffect.SwarmMember pick = pickFragmentTowardsPointWithinRange(swarm, target.getLocation(), 450f);
 				if (pick == null) return;
 
-				pick.setRecentlyPicked(1f);
+				pick.setRecentlyPicked(0.5f);
 
 				lethargyFakeBeam(
 						Global.getCombatEngine(),

@@ -34,7 +34,7 @@ public class SotfForgeshipMarket extends OpenMarketPlugin {
 
     // very low tariffs
     public float getTariff() {
-        return 0.06f;
+        return 0f;
     }
 
     public void init(SubmarketAPI submarket) {
@@ -130,7 +130,7 @@ public class SotfForgeshipMarket extends OpenMarketPlugin {
         if (com.getId().equals(Commodities.SUPPLIES)) {
             limit *= 2f;
         } else if (com.isFuel()) {
-            limit *= 3f;
+            limit *= 4f;
         }
 
         if (limit < 0) limit = 0;

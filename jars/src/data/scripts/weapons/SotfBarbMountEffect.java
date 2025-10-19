@@ -6,10 +6,7 @@ import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.util.Misc;
 import org.lwjgl.util.vector.Vector2f;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Handles Cult of the Daydream drone launchers
@@ -19,26 +16,36 @@ import java.util.Map;
 public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeaponEffectPlugin {
 
 	public static Map<String, String> WING_IDS = new HashMap<>();
+	public static Map<String, Integer> MAX_DRONES = new HashMap<>();
 
 	static {
 		WING_IDS.put("sotf_barbmount", "sotf_barb_launched_wing");
 		WING_IDS.put("sotf_barbrail", "sotf_barb_launched_wing");
 		WING_IDS.put("sotf_nettlerail", "sotf_nettle_launched_wing");
+
+		MAX_DRONES.put("sotf_barbmount", 2);
+		MAX_DRONES.put("sotf_barbrail", 6);
+		MAX_DRONES.put("sotf_nettlerail", 6);
 	}
 
-	protected FighterWingAPI currWing = null;
+	protected List<ShipAPI> fighters = new ArrayList<>();
 	
 	@Override
 	public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
 		ShipAPI ship = weapon.getShip();
 		if (ship == null) return;
 
-//		if (currWing != null) {
-//			if (currWing.isDestroyed()) {
-//				engine.getFleetManager(currWing.getWingOwner()).removeDeployed(currWing, false);
-//				currWing = null;
-//			}
-//		}
+		for (ShipAPI fighter : new ArrayList<>(fighters)) {
+			if (!engine.isEntityInPlay(fighter) || fighter.isHulk()) {
+				fighters.remove(fighter);
+			}
+		}
+
+		if (fighters.size() >= getMaxDrones(weapon)) {
+			weapon.setForceNoFireOneFrame(true);
+		} else {
+			weapon.setForceNoFireOneFrame(false);
+		}
 	}
 	
 	public void onFire(DamagingProjectileAPI projectile, WeaponAPI weapon, CombatEngineAPI engine) {
@@ -52,6 +59,7 @@ public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeapon
 		leader.getWing().setSourceShip(projectile.getSource());
 		manager.removeDeployed(leader.getWing(), false);
 		manager.setSuppressDeploymentMessages(false);
+		fighters.add(leader);
 		
 		//Global.getSoundPlayer().playSound("threat_swarm_launched", 1f, 1f, projectile.getLocation(), takeoffVel);
 
@@ -77,6 +85,10 @@ public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeapon
 
 	public String getWingId(WeaponAPI weapon) {
 		return WING_IDS.get(weapon.getId());
+	}
+
+	public int getMaxDrones(WeaponAPI weapon) {
+		return MAX_DRONES.get(weapon.getId());
 	}
 
 	public FighterWingAPI findAlliedWing(Vector2f from, WeaponAPI weapon) {

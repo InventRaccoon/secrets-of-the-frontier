@@ -33,6 +33,7 @@ import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.SotfHostileActivityFactorManager;
 import data.scripts.campaign.SotfPlayerColonyScriptManager;
 import data.scripts.campaign.codex.SotfCodexUnlocker;
+import data.scripts.campaign.customstart.SotfHauntedDreamCampaignVFX;
 import data.scripts.campaign.customstart.SotfSkillsChangeAutoshipsEffect;
 import data.scripts.campaign.ghosts.SotfFelWhisperGhostCreator;
 import data.scripts.campaign.ids.SotfIDs;
@@ -292,6 +293,7 @@ public class SotfModPlugin extends BaseModPlugin {
         SotfGen.tryAddKottersCutthroats(sector);
         // spawn Mia's Star system for Hope for Hallowhall
         SotfGen.trySpawnMia(sector);
+        // spawn Light of the Lake if Haunted
         SotfGen.trySpawnLOTL(sector);
 
         Global.getSector().addTransientScript(new PausedTimeAdvancer());
@@ -404,6 +406,10 @@ public class SotfModPlugin extends BaseModPlugin {
 
             if (!sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class) && sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
                 sector.getIntelManager().addIntel(new SotfSiriusIntel(), false);
+            }
+            if (!Global.getSector().getListenerManager().hasListenerOfClass(SotfSiriusIntel.class) && sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class)) {
+                SotfSiriusIntel siriusIntel = (SotfSiriusIntel) sector.getIntelManager().getFirstIntel(SotfSiriusIntel.class);
+                sector.getListenerManager().addListener(siriusIntel);
             }
         }
 
@@ -668,28 +674,36 @@ public class SotfModPlugin extends BaseModPlugin {
 
     @Override
     public void onCodexDataGenerated() {
-        // make the single Barb not appear in related entries
-        CodexDataV2.makeUnrelated(
-                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
-                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
-        );
-        CodexDataV2.makeUnrelated(
-                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
-                CodexDataV2.getShipSystemEntryId("flarelauncher_single")
-        );
+//        // make the single Barb not appear in related entries
 //        CodexDataV2.makeUnrelated(
 //                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
-//                CodexDataV2.getWeaponEntryId("sotf_lethargy_f")
+//                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
 //        );
-
-        CodexDataV2.makeUnrelated(
-                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
-                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
-        );
-        CodexDataV2.makeUnrelated(
-                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
-                CodexDataV2.getShipSystemEntryId("flarelauncher_fighter")
-        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
+//                CodexDataV2.getShipSystemEntryId("flarelauncher_single")
+//        );
+////        CodexDataV2.makeUnrelated(
+////                CodexDataV2.getFighterEntryId("sotf_barb_launched_wing"),
+////                CodexDataV2.getWeaponEntryId("sotf_lethargy_f")
+////        );
+//
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+//                CodexDataV2.getHullmodEntryId(SotfIDs.HULLMOD_DAYDREAM_HULL)
+//        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+//                CodexDataV2.getShipSystemEntryId("flarelauncher_fighter")
+//        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+//                CodexDataV2.getWeaponEntryId("swarmer_fighter")
+//        );
+//        CodexDataV2.makeUnrelated(
+//                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
+//                CodexDataV2.getWeaponEntryId("lightdualmg")
+//        );
 //        CodexDataV2.makeUnrelated(
 //                CodexDataV2.getFighterEntryId("sotf_nettle_launched_wing"),
 //                CodexDataV2.getWeaponEntryId("sotf_lethargy_f")

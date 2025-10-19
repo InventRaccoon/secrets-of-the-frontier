@@ -6,9 +6,9 @@ sotf_peon_wing,sotf_peon_Bomber,"bomber1, bomber, low, auto_fighter, derelict, s
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 # DREAMING GESTALT,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 sotf_barb_wing,sotf_barb_Attack,"no_drop, no_sell, rare_bp, interceptor, sotf_dreaminggestalt, interceptor5, auto_fighter, codex_unlockable",3,,6,15,BOX,4000,400,300,4,INTERCEPTOR,Attack Drone,10,10000,,,,,,,,,,,,,
-sotf_barb_launched_wing,sotf_barb_Attack,"no_drop, no_sell, codex_require_related, independent_of_carrier",0,,6,99,CLAW,2000,400,300,1,INTERCEPTOR,Attack Drone,10,10000,,,,,,,,,,,,,30
+sotf_barb_launched_wing,sotf_barb_Attack,"no_drop, no_sell, invisible_in_codex, independent_of_carrier",0,,6,99,CLAW,2000,400,300,1,INTERCEPTOR,Attack Drone,10,10000,,,,,,,,,,,,,30
 sotf_nettle_wing,sotf_nettle_Assault,"no_drop, no_sell, rare_bp, fighter, sotf_dreaminggestalt, fighter5, auto_fighter, codex_unlockable",3,,6,18,BOX,4000,400,300,2,FIGHTER,Assault Drone,10,10000,,,,,,,,,,,,,
-sotf_nettle_launched_wing,sotf_nettle_Assault,"no_drop, no_sell, codex_require_related, independent_of_carrier",0,,6,99,CLAW,2000,200,300,1,FIGHTER,Assault Drone,10,10000,,,,,,,,,,,,,
+sotf_nettle_launched_wing,sotf_nettle_Assault,"no_drop, no_sell, invisible_in_codex, independent_of_carrier",0,,6,99,CLAW,2000,200,300,1,FIGHTER,Assault Drone,10,10000,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 # WISPS,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 sotf_wisp_wing,sotf_wisp_var,"no_drop, no_sell, restricted, independent_of_carrier, attack_at_an_angle, hide_in_codex",3,0,6,99,V,100000,300,,1,FIGHTER,Particle,99,100000,,,,,,,,,,,,,

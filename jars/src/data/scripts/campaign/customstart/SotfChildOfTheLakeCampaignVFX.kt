@@ -82,6 +82,10 @@ class SotfChildOfTheLakeCampaignVFX : LunaCampaignRenderingPlugin {
         if (!Global.getSector().isPaused) {
             if (isFadeIn) {
                 duration += Global.getSector().clock.convertToDays(amount)
+                // failsafe
+                if (duration >= maxDuration * 3) {
+                    LunaCampaignRenderer.removeRenderer(this)
+                }
             } else {
                 duration -= Global.getSector().clock.convertToDays(amount)
                 if (duration <= 0) {

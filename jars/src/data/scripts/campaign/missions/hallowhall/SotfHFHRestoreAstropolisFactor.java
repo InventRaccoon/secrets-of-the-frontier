@@ -23,7 +23,7 @@ public class SotfHFHRestoreAstropolisFactor extends BaseOneTimeFactor {
 		return new BaseFactorTooltip() {
 			@Override
 			public void createTooltip(TooltipMakerAPI tooltip, boolean expanded, Object tooltipParam) {
-				tooltip.addPara("Trust gained by restoring Hallowhall's astropolis",
+				tooltip.addPara("Trust gained by restoring Hallowhall's derelict astropolis.",
 						0f);
 			}
 			

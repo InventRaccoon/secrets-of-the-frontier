@@ -267,7 +267,7 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
         if (ship.isCapital()) {
             post.add("... broken...");
             post.add("... clumsy...");
-            post.add("... fimsy...");
+            post.add("... flimsy...");
             post.add("... scatter...");
             post.add("... slow...");
             post.add("... this is the pride of your fleet? Weak.");
@@ -300,7 +300,7 @@ public class SotfFelBossFightPlugin extends BaseEveryFrameCombatPlugin {
             post.add("... vermin...");
             return post.pick();
         }
-        return "Weak.";
+        return "... weak...";
     }
 
     public ShipAPI findShipToTrashtalk(CombatEngineAPI engine) {

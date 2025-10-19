@@ -151,6 +151,10 @@
 	[ 
         {"file":"sounds/sfx_misc/sotf_invokeherblessing.ogg","pitch":1.25,"volume":0.9},
 	],
+	"sotf_cotl_upgrade_available":
+	[
+		{"file":"sounds/sfx_interface/ui_char_receive_perk2.ogg","pitch":1,"volume":1},
+	],
 	
 	# Wyrmfire Executioner trigger
 	"sotf_wyrmfire_execute":

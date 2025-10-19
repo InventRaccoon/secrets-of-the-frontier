@@ -1,8 +1,14 @@
 package data.scripts.campaign.intel.misc
 
 import com.fs.starfarer.api.Global
-import com.fs.starfarer.api.campaign.FactionAPI
+import com.fs.starfarer.api.campaign.*
 import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin.ListInfoMode
+import com.fs.starfarer.api.campaign.listeners.EconomyTickListener
+import com.fs.starfarer.api.campaign.listeners.FleetEventListener
+import com.fs.starfarer.api.impl.campaign.CoreReputationPlugin
+import com.fs.starfarer.api.impl.campaign.CoreReputationPlugin.CustomRepImpact
+import com.fs.starfarer.api.impl.campaign.CoreReputationPlugin.RepActionEnvelope
+import com.fs.starfarer.api.impl.campaign.ids.Factions
 import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin
 import com.fs.starfarer.api.impl.campaign.skills.CombatEndurance
@@ -28,7 +34,7 @@ import lunalib.lunaUI.elements.LunaElement
 import java.awt.Color
 import kotlin.math.roundToInt
 
-class SotfSiriusIntel : BaseIntelPlugin() {
+class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListener {
 
     class SiriusSkillSection(var isTierActive: Boolean, var soundId: String) {
         var skills = ArrayList<SiriusSkillData>()
@@ -156,9 +162,16 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "consume mimic capacity"
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
+                    var label = tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
                             "skills are elite. If \"Perfect Replication\" is active, they spawn with 1-3 s-mods.",
-                        0f, gray, Misc.getStoryDarkBrighterColor(), "elite", "s-mods")
+                        gray, 0f)
+                    label.setHighlight("elite", "\"Perfect Replication\"", "s-mods")
+                    label.setHighlightColors(
+                        Misc.getStoryDarkBrighterColor(),
+                        Global.getSettings().getColor("sotfDaydreamTextColor").darker(),
+                        Misc.getStoryDarkBrighterColor()
+                    )
+
                     tooltip.codexEntryId = CodexDataV2.getShipEntryId("sotf_thorn")
                 }
 
@@ -252,9 +265,15 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                         0f, h, "" + SotfInvokeHerBlessingPlugin.BLESSING_DP_GATE.roundToInt(), "reflection*"
                     )
                     tooltip.addSpacer(opad)
-                    tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
+                    var label = tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
                             "skills are elite. If \"Perfect Replication\" is active, they spawn with 1-3 s-mods.",
-                        0f, gray, Misc.getStoryDarkBrighterColor(), "elite", "s-mods")
+                        gray, 0f)
+                    label.setHighlight("elite", "\"Perfect Replication\"", "s-mods")
+                    label.setHighlightColors(
+                        Misc.getStoryDarkBrighterColor(),
+                        Global.getSettings().getColor("sotfDaydreamTextColor").darker(),
+                        Misc.getStoryDarkBrighterColor()
+                    )
                 }
 
                 SotfIDs.COTL_DREAMEATER -> {
@@ -288,6 +307,7 @@ class SotfSiriusIntel : BaseIntelPlugin() {
 
     init {
         isImportant = true
+        Global.getSector().listenerManager.addListener(this)
     }
 
     override fun runWhilePaused(): Boolean {
@@ -306,6 +326,11 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         val tc = getBulletColorForMode(mode)
         bullet(info)
         val isUpdate = getListInfoParam() != null
+
+        if (isUpdate) {
+            info?.addPara("New upgrades are available for selection", initPad, h, "upgrades")
+        }
+
         unindent(info)
     }
 
@@ -357,13 +382,20 @@ class SotfSiriusIntel : BaseIntelPlugin() {
                 "" + SotfInvokeHerBlessingPlugin.LIFESPAN_CAPITAL.roundToInt(),
                 "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
             )
-        } else {
+        } else if (SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN_INCREASE_LEVEL < 999) {
             capacity.addPara(
                 "- Mimics have a lifespan of %s seconds (increased to %s seconds once you reach level %s), after " +
                         "which they lose %s of their maximum hull per second.", 0f, h,
                 "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN.roundToInt(),
                 "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN_INCREASED.roundToInt(),
                 "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN_INCREASE_LEVEL,
+                "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
+            )
+        } else {
+            capacity.addPara(
+                "- Mimics have a lifespan of %s seconds, after " +
+                        "which they lose %s of their maximum hull per second.", 0f, h,
+                "" + SotfInvokeHerBlessingPlugin.MIMIC_LIFESPAN.roundToInt(),
                 "" + (SotfInvokeHerBlessingPlugin.MIMIC_EXPIRE_RATE * 100f).roundToInt() + "%"
             )
         }
@@ -715,6 +747,29 @@ class SotfSiriusIntel : BaseIntelPlugin() {
         Global.getSector().memoryWithoutUpdate.set(id, new)
     }
 
+    private fun upgradeAvailable(): Boolean {
+        var upgradeAvailable = false
+        var playerLevel = Global.getSector().playerPerson.stats.level
+        if (playerLevel >= 3 && !haveUpgrade(SotfIDs.COTL_PERFECTREPLICATION) && !haveUpgrade(SotfIDs.COTL_MULTIFACETED)) {
+            upgradeAvailable = true
+        }
+        if (playerLevel >= 6 && !haveUpgrade(SotfIDs.COTL_ENHANCEDCOUNTERMEASURES) && !haveUpgrade(SotfIDs.COTL_SHRIEKOFTHEDAMNED)
+            && !haveUpgrade(SotfIDs.COTL_SERVICEBEYONDDEATH)) {
+            upgradeAvailable = true
+        }
+        if (playerLevel >= 9 && !haveUpgrade(SotfIDs.COTL_EVERYROSEITSTHORNS) && !haveUpgrade(SotfIDs.COTL_UNLIVINGVIGOR)
+            && !haveUpgrade(SotfIDs.COTL_DEATHTHROES)) {
+            upgradeAvailable = true
+        }
+        if (playerLevel >= 12 && !haveUpgrade(SotfIDs.COTL_RECONSTITUTION) && !haveUpgrade(SotfIDs.COTL_HULLSIPHON)) {
+            upgradeAvailable = true
+        }
+        if (playerLevel >= 15 && !haveUpgrade(SotfIDs.COTL_BLESSINGOFTHEDAYDREAM) && !haveUpgrade(SotfIDs.COTL_DREAMEATER)) {
+            upgradeAvailable = true
+        }
+        return upgradeAvailable
+    }
+
     private fun syncSiriusSkills() {
         var sirius = SotfPeople.getPerson(SotfPeople.SIRIUS_MIMIC)
         var countermeasures = 1f
@@ -793,6 +848,39 @@ class SotfSiriusIntel : BaseIntelPlugin() {
     }
 
     override fun getCommMessageSound(): String? {
+        if (upgradeAvailable()) {
+            return "sotf_cotl_upgrade_available"
+        }
         return getSoundMajorPosting()
+    }
+
+    override fun reportFleetDespawnedToListener(fleet: CampaignFleetAPI?,
+        reason: CampaignEventListener.FleetDespawnReason?,
+        param: Any?
+    ) {
+        return
+    }
+
+    override fun reportBattleOccurred(
+        fleet: CampaignFleetAPI?,
+        primaryWinner: CampaignFleetAPI?,
+        battle: BattleAPI?
+    ) {
+        if (isHidden || !battle?.isPlayerInvolved!!) {
+            return
+        }
+        if (upgradeAvailable()) {
+            this.sendUpdateIfPlayerHasIntel(Any(), null)
+        }
+    }
+
+    override fun reportEconomyMonthEnd() {
+        if (isHidden) return
+        if (upgradeAvailable()) {
+            this.sendUpdateIfPlayerHasIntel(Any(), null)
+        }
+    }
+
+    override fun reportEconomyTick(iterIndex: Int) {
     }
 }

@@ -289,7 +289,7 @@
 		"Tyrant Breaker",
 		"Tooth and Claw",
 		"Clever Cat",
-		# aspects
+		# aspects/realms
 		"Beast Beyond the Walls",
 		"Hunting Grounds",
 		"Eye of an Oracle",
@@ -313,7 +313,7 @@
 		"Wolf Pack",
 		"Heart of the Storm",
 		"Eurus",
-		# misc
+		# misc characters
 		"Soul of a City",
 		"Patron",
 		"Ironmonger",
@@ -326,6 +326,10 @@
 		"Mournsilke",
 		"Master of Shadows",
 		"Morrow",
+		# songs/lyrics
+		"All Things Devour",
+		"Carrion Comfort",
+		"Somnovorous",
 	],
 	"HEGEMONY":[
 		"Sword of Eventide",

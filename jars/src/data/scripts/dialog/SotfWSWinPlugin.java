@@ -202,7 +202,7 @@ public class SotfWSWinPlugin implements InteractionDialogPlugin {
             case NO:
                 // Gaslighting Sierra options feel like they're on par with not waving at Alviss, but gotta have something for the heartless monsters
                 textPanel.addParagraph("\"Oh,\" she replies awkwardly. \"Right. Just me being me, I guess. Nevermind.\" She sighs. \"Actually, I think that was all. I'll leave you to it.\"");
-                textPanel.highlightInLastPara(sc, "\"Oh,\"", "\"Right. Just me being me, I guess. Nevermind.\", \"Actually, I think that was all.  I'll leave you to it.\"");
+                textPanel.highlightInLastPara(sc, "\"Oh,\"", "\"Right. Just me being me, I guess. Nevermind.\"", "\"Actually, I think that was all.  I'll leave you to it.\"");
                 textPanel.addParagraph("She disconnects. A report is soon delivered to your quarters.");
 
                 // consequences

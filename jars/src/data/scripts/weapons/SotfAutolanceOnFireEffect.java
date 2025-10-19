@@ -14,6 +14,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.magiclib.plugins.MagicFakeBeamPlugin;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,8 +23,10 @@ import static org.magiclib.util.MagicFakeBeam.getCollisionPointOnCircumference;
 
 public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
 
-    public static float ARC = 25f;
-    public static float SIDE_OFFSET = 5f;
+    public static float ARC = 60f;
+    public static float SIDE_OFFSET = 10f;
+
+    public static float MAIN_BEAM_DAMAGE_PROP = 0.5f;
 
     public void onFire(DamagingProjectileAPI projectile, WeaponAPI weapon, CombatEngineAPI engine) {
         float disperseMult = (float) Math.random();
@@ -44,10 +47,10 @@ public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
                 8,
                 Color.WHITE,
                 color,
-                projectile.getDamageAmount() * 0.4f,
+                projectile.getDamageAmount() * MAIN_BEAM_DAMAGE_PROP,
                 weapon.getDamageType(),
-                projectile.getEmpAmount() * 0.4f,
-                0.5f,
+                projectile.getEmpAmount() * MAIN_BEAM_DAMAGE_PROP,
+                1f,
                 0.5f,
                 weapon.getShip()
         );
@@ -60,27 +63,31 @@ public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
         engine.addHitParticle(weapon.getFirePoint(2), vel, 5f, 1f, 0.15f, color);
         engine.addHitParticle(weapon.getFirePoint(3), vel, 5f, 1f, 0.15f, color);
         engine.addHitParticle(weapon.getFirePoint(4), vel, 5f, 1f, 0.15f, color);
+
+        List<CombatEntityAPI> targets = new ArrayList<>();
+
         // front left
-        fireBeamForBarrel(engine, weapon, projectile, 1, SIDE_OFFSET * 2f);
+        fireBeamForBarrel(engine, weapon, projectile, 1, SIDE_OFFSET * 2f, targets);
         // front right
-        fireBeamForBarrel(engine, weapon, projectile, 2, -SIDE_OFFSET * 2f);
+        fireBeamForBarrel(engine, weapon, projectile, 2, -SIDE_OFFSET * 2f, targets);
         // back left
-        fireBeamForBarrel(engine, weapon, projectile, 3, SIDE_OFFSET);
+        fireBeamForBarrel(engine, weapon, projectile, 3, SIDE_OFFSET, targets);
         // back right
-        fireBeamForBarrel(engine, weapon, projectile, 4, -SIDE_OFFSET);
+        fireBeamForBarrel(engine, weapon, projectile, 4, -SIDE_OFFSET, targets);
     }
 
-    public void fireBeamForBarrel(CombatEngineAPI engine, WeaponAPI weapon, DamagingProjectileAPI projectile, int index, float offset) {
+    public void fireBeamForBarrel(CombatEngineAPI engine, WeaponAPI weapon, DamagingProjectileAPI projectile, int index, float offset, List<CombatEntityAPI> targets) {
         float disperseMult = (float) Math.random();
         float newMult = disperseMult;
         if (Math.random() > 0.5f) {
             newMult *= -1f;
         }
         float spread = (weapon.getCurrSpread() / 2) * newMult;
-        CombatEntityAPI target = findTarget(weapon.getFirePoint(index), weapon, offset);
+        CombatEntityAPI target = findTarget(weapon.getFirePoint(index), weapon, offset, targets);
         Vector2f targetLoc = null;
         if (target != null) {
             targetLoc = target.getLocation();
+            targets.add(target);
         } else {
             targetLoc = pickNoTargetDest(weapon.getFirePoint(index), weapon, offset);
         }
@@ -95,10 +102,10 @@ public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
                 4,
                 Color.WHITE,
                 weapon.getSpec().getGlowColor(),
-                projectile.getDamageAmount() * 0.15f,
+                projectile.getDamageAmount() * ((1f - MAIN_BEAM_DAMAGE_PROP) * 0.25f),
                 weapon.getDamageType(),
-                projectile.getEmpAmount() * 0.15f,
-                0.5f,
+                projectile.getEmpAmount() * ((1f - MAIN_BEAM_DAMAGE_PROP) * 0.25f),
+                1f,
                 0.5f,
                 weapon.getShip()
         );
@@ -106,13 +113,13 @@ public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
 
     public Vector2f pickNoTargetDest(Vector2f from, WeaponAPI weapon, float angleOffset) {
         float range = weapon.getRange();
-        Vector2f dir = Misc.getUnitVectorAtDegreeAngle(weapon.getCurrAngle() + angleOffset);
+        Vector2f dir = Misc.getUnitVectorAtDegreeAngle(weapon.getCurrAngle() + (angleOffset / 5));
         dir.scale(range);
         Vector2f.add(from, dir, dir);
         return dir;
     }
 
-    public CombatEntityAPI findTarget(Vector2f from, WeaponAPI weapon, float angleOffset) {
+    public CombatEntityAPI findTarget(Vector2f from, WeaponAPI weapon, float angleOffset, List<CombatEntityAPI> targets) {
         float range = weapon.getRange();
 
         Iterator<Object> iter = Global.getCombatEngine().getAllObjectGrid().getCheckIterator(from,
@@ -157,10 +164,19 @@ public class SotfAutolanceOnFireEffect implements OnFireEffectPlugin {
 //                dist += 500f;
 //                arc += 5f;
 //            }
-            if (!Misc.isInArc(weapon.getCurrAngle() + angleOffset, arc, from, other.getLocation())) continue;
+            if (!Misc.isInArc(weapon.getCurrAngle(), arc, from, other.getLocation())) continue;
 
             float angleTo = Misc.getAngleInDegrees(from, other.getLocation());
-            float score = Misc.getAngleDiff(weapon.getCurrAngle(), angleTo);
+            float score = Misc.getAngleDiff(weapon.getCurrAngle() + angleOffset, angleTo);
+
+            if (targets.contains(other)) {
+                score += 10f;
+            }
+            if (other instanceof ShipAPI) {
+                if (!((ShipAPI) other).isFighter()) {
+                    score += 100f;
+                }
+            }
             //float score = dist;
 
             if (score < minScore) {

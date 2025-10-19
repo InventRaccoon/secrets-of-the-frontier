@@ -5,6 +5,7 @@
 	#"[SoTF - Watcher Beyond the Walls] With the right connection, you can call for help with large bounties and other challenges. The larger your fleet, the more help will arrive.",
 	{"freq":0.75, "tip":"[SoTF - Watcher Beyond the Walls] At world's end, kindness and fellowship is all we have. Treasure your friendships."},
 	{"freq":1, "tip":"[SoTF - Watcher Beyond the Walls] Saturation bombardment is an atrocity against humanity itself, and attracts an appropriate level of emnity from powers across the Sector."},
+	{"freq":1, "tip":"[SoTF - Watcher Beyond the Walls] The hotkeys used by any additional subsystems you gain can be changed in MagicLib's settings."},
 	{"freq":0.2, "tip":"[SoTF - Watcher Bey :: :: ] Your actions have consequences."},
 	
 	"[SoTF - Tactical Expansion] In larger battles, you may encounter defensive emplacements that can be reprogrammed to provide fire support to your fleet.",

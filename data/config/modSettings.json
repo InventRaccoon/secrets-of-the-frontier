@@ -16,7 +16,7 @@
 	"MoreMilitaryMissions":{
 		"DmReinforcementFactionBlacklist": [
             "sotf_sierra_faction",
-			"sotf_daydreamgestalt",
+			"sotf_dreaminggestalt",
 			"sotf_dustkeepers", # just do Burnouts instead, makes slightly more sense
 			"sotf_dustkeepers_proxies",
 			"sotf_symphony",
