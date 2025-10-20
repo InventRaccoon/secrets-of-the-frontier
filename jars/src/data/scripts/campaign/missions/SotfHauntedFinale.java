@@ -87,10 +87,9 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 killa = curr;
                 break;
             }
-            if (killa == null) noYma = true;
-        } else {
-            noYma = true;
         }
+
+        if (killa == null) noYma = true;
 
         resetSearch();
         preferSystemTags(ReqMode.NOT_ANY, Tags.THEME_REMNANT_MAIN, Tags.THEME_REMNANT_SECONDARY);
@@ -117,7 +116,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         setNoAbandon();
 
         makeImportant(planet, "$sotf_haunted", Stage.SCENE_OF_THE_CRIME);
-        if (!noYma) {
+        if (killa != null) {
             makeImportant(killa, "$sotf_haunted", Stage.PAY_YOUR_PENANCE);
         }
         makeImportant(lotl.getEntityById("sotf_elysium"), "$sotf_haunted", Stage.ENTER_ELYSIUM, Stage.SACRIFICE_YOURSELF);
