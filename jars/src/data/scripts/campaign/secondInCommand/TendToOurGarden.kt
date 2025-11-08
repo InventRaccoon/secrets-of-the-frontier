@@ -23,7 +23,7 @@ class TendToOurGarden : SCBaseSkillPlugin() {
 
     override fun addTooltip(data: SCData, tooltip: TooltipMakerAPI) {
 
-        tooltip.addPara("Disabling or destroying an opposing ship creates 2/2/3/4 guardian wisps, based on hullsize", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
+        tooltip.addPara("Landing the final blow on an opposing ship creates 2/2/3/4 guardian wisps, based on hullsize", 0f, Misc.getHighlightColor(), Misc.getHighlightColor())
         tooltip.addPara("   - Wisps fire a 1000 range energy beam that deals 100 damage per second", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "1000", "energy", "100")
         tooltip.addPara("   - Wisps disappear 30 seconds after being created", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "30")
         tooltip.addPara("   - Wisps prioritize firing at missiles and fighters", 0f, Misc.getTextColor(), Misc.getHighlightColor(), "missiles", "fighters")

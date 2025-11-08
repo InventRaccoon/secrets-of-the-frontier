@@ -33,7 +33,7 @@ public class SotfAuxShock extends SotfBaseAuxPackage {
 	private static final float RANGE_THRESHOLD = 450f;
 	private static final float RANGE_MULT = 0.25f;
 
-	private static float EXPLOSION_DAMAGE = 1500f;
+	private static float EXPLOSION_DAMAGE = 3500f;
 
 	private static Color EMP_COLOR = new Color(45, 120, 200, 255);
 
@@ -118,6 +118,7 @@ public class SotfAuxShock extends SotfBaseAuxPackage {
 								2f + (2f * randomFactor)
 						);
 					}
+					ship.removeListener(this);
 					return;
 				}
 				if (progress == 0f) {

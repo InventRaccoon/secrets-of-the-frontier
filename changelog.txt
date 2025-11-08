@@ -22,6 +22,7 @@ Version 0.15.1:
 - Leviathan's Bane warning beam made more visible
 
 - Cavalier (PROX) and Rampart (PROX) supply costs/DP reduced (20 > 18, Explorarium versions are 15)
+- Picket (PROX) explosion damage increased to 3500, fixed it applying multiple times per death
 - Holdout Forgeship is now marked story-critical and can't be destroyed by NPC satbombs
 - Holdout no longer has tariffs. Commodities have their price and sale value slightly increased to compensate. Supplies have been hiked to more normal price levels rather than being extremely cheap (sorry). Non-commodities (e.g weapons, ships, special items) are slightly cheaper than previously
 - Hallowhall/astropolis colonization points are now granted on HFH event start if player has already done so
