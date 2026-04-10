@@ -20,18 +20,18 @@ void main() {
 	//col.r = texture2D(tex, texCoord).r;
 	//col.b = texture2D(tex, texCoord - offset).b;
 
-	float brightness = (col.r + col.g + col.b) / 3;
+	float brightness = (col.r + col.g + col.b) / 3.0;
 	vec4 brightCol = vec4(brightness, brightness, brightness, col.a);
 
-	float noiseBrightness1 = (noiseCol1.r + noiseCol1.g + noiseCol1.b) / 3;
-	float noiseBrightness2 = (noiseCol1.r + noiseCol1.g + noiseCol1.b) / 3;
+	float noiseBrightness1 = (noiseCol1.r + noiseCol1.g + noiseCol1.b) / 3.0;
+	float noiseBrightness2 = (noiseCol1.r + noiseCol1.g + noiseCol1.b) / 3.0;
 
 	float noiseBright = (noiseBrightness1 + noiseBrightness2) / 2.0;
 
 	col.b *= 1.0 + (1.5 * level);
 	col.b += 0.2 * level;
 
-	col.g *= 1.0 + (1 * level);
+	col.g *= 1.0 + (1.0 * level);
 	col.g += 0.1 * level;
 
 	col.b += 0.4 * noiseBright * level;
