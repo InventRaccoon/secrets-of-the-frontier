@@ -13,7 +13,7 @@ uniform vec2 size;
 
 vec2 texCoord = gl_TexCoord[0].xy;
 
-float MAX_DAMAGE_INSTANCES = 16;
+int MAX_DAMAGE_INSTANCES = 16;
 uniform vec4 damageInfo[16];
 
 //float intensity = 1.25;
@@ -69,31 +69,31 @@ void main() {
 
 				float dist = distance(pos, uv);
 
-				float minimum = 0;
+				float minimum = 0.0;
 				float maximum = radius;
 
 				float distLevel = (dist - minimum) / (maximum - minimum);
 				distLevel = clamp(distLevel, 0.0, 1.0);
-				distLevel = 1 - distLevel;
+				distLevel = 1.0 - distLevel;
 
 				//color.a *= distLevel;
 
-				//color.r += 1 * distLevel;
+				//color.r += 1.0 * distLevel;
 
   				//color.a += 0.1;
 
-				additionalAlpha += 1 * distLevel * damageLevel;
+				additionalAlpha += 1.0 * distLevel * damageLevel;
 				additionalAlpha = clamp(additionalAlpha, 0.0, 1.0);
 			}
 
 			if (additionalAlpha != 0) {
 				float brightnessDem = (damCol.r + damCol.g + damCol.b) / 3.0;
 
-				color.r += (0.3 + shieldColor.r) * brightnessDem * additionalAlpha * additionalAlpha * additionalAlpha * 1;
-				color.g += (0.1 + shieldColor.g) * brightnessDem * additionalAlpha * additionalAlpha * additionalAlpha * 1;
-				color.b += shieldColor.b * brightnessDem * additionalAlpha * brightnessDem * brightnessDem * 1;
+				color.r += (0.3 + shieldColor.r) * brightnessDem * additionalAlpha * additionalAlpha * additionalAlpha * 1.0;
+				color.g += (0.1 + shieldColor.g) * brightnessDem * additionalAlpha * additionalAlpha * additionalAlpha * 1.0;
+				color.b += shieldColor.b * brightnessDem * additionalAlpha * brightnessDem * brightnessDem * 1.0;
 
-				color.r += 2 * additionalAlpha;
+				color.r += 2.0 * additionalAlpha;
 
 				color.a += additionalAlpha * 0.5;
 			}
