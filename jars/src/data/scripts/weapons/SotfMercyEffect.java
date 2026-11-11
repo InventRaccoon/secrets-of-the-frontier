@@ -10,6 +10,7 @@ import com.fs.starfarer.api.impl.combat.CryoblasterEffect;
 import com.fs.starfarer.api.impl.combat.GravitonBeamEffect;
 import com.fs.starfarer.api.util.TimeoutTracker;
 import org.lazywizard.lazylib.MathUtils;
+import org.lazywizard.lazylib.combat.DefenseUtils;
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.List;
@@ -20,13 +21,15 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
     //public static float HIT_STRENGTH_BONUS = 40f;
     public static float HIT_STRENGTH_BONUS = 0f;
     private static String ARMOR_REDUCTION_MOD_ID = "sotf_mercy_shredded";
-    public static float ARMOR_REDUCTION = 50f;
-    public static float SHRED_BASE = 40f;
-    public static float SHRED_PER_WEAPON = 20f;
+    //public static float ARMOR_REDUCTION = 50f;
+    public static float SHRED_BASE = 50f;
+    public static float SHRED_PER_WEAPON = 10f;
     public static float SHRED_DURATION = 0.75f;
-    public static float SHIELD_DAMAGE_MULT = 2.5f;
+    public static float SHIELD_DAMAGE_MULT = 2.5f; // all damage to shields is treated as this efficiency
 
-    public static float SPREAD_DEGREES = 2f;
+    public static int TOTAL_BOLTS = 24;
+    public static float SPREAD_DEGREES = 2.5f;
+    public static boolean CONVERT_EMP_TO_DAMAGE = false;
     protected boolean readyToFire = false;
 
     public void advance(float amount, CombatEngineAPI engine, WeaponAPI weapon) {
@@ -44,7 +47,7 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
             readyToFire = true;
         } else if (weapon.getChargeLevel() == 1f && readyToFire) {
             Global.getSoundPlayer().playSound("antimatter_blaster_fire", 1f, 1f, weapon.getLocation(), ship.getVelocity());
-            for (int i = 0; i <= 12; i++) {
+            for (int i = 0; i <= TOTAL_BOLTS; i++) {
                 float disperseMult = (float) Math.random();
                 float newMult = disperseMult;
                 if (Math.random() > 0.5f) {
@@ -57,7 +60,7 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
                     barrelIndex -= 4;
                 }
 
-                Vector2f randomVel = MathUtils.getRandomPointOnCircumference(null, MathUtils.getRandomNumberInRange(20f, 45f));
+                Vector2f randomVel = MathUtils.getRandomPointOnCircumference(null, MathUtils.getRandomNumberInRange(10f, 45f));
                 randomVel.x += ship.getVelocity().x;
                 randomVel.y += ship.getVelocity().y;
 
@@ -92,7 +95,10 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
         // shotgun bolt EMP to damage conversion
         // would do as an on-hit extra damage instance but it would interact weirdly with armor strength
         if (!shieldHit && param instanceof DamagingProjectileAPI proj && target instanceof ShipAPI targetShip) {
-            if (proj.getWeapon() != null && proj.getWeapon().getSpec().getWeaponId().equals("sotf_mercy_boltlauncher") && proj.getEmpAmount() > 0) {
+            if (CONVERT_EMP_TO_DAMAGE && proj.getWeapon() != null && proj.getWeapon().getSpec().getWeaponId().equals("sotf_mercy_boltlauncher") && proj.getEmpAmount() > 0) {
+                if (DefenseUtils.getArmorLevel(targetShip, point) > 0.1f) {
+                    return null;
+                }
                 float empDamageMult = targetShip.getMutableStats().getEmpDamageTakenMult().getModifiedValue();
                 if (empDamageMult < 0f) empDamageMult = 0f;
                 // Dweller has no direct EMP resistance but their weapons/engines can't take damage - count it as 100% resist
@@ -131,7 +137,7 @@ public class SotfMercyEffect implements EveryFrameWeaponEffectPlugin, DamageDeal
                 ship.getMutableStats().getEffectiveArmorBonus().modifyFlat(ARMOR_REDUCTION_MOD_ID, bonus * -1f);
             } else {
                 ship.removeListener(this);
-                ship.getMutableStats().getShieldDamageTakenMult().unmodify(ARMOR_REDUCTION_MOD_ID);
+                ship.getMutableStats().getEffectiveArmorBonus().unmodify(ARMOR_REDUCTION_MOD_ID);
             }
         }
     }

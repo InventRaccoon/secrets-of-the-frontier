@@ -5,8 +5,8 @@
 	#"onHitEffect":"data.scripts.weapons.SotfChaliceBoltOnHitEffect", # handled via Mercy effect damage listener
 	"collisionClass":"RAY_FIGHTER",
 	"collisionClassByFighter":"RAY_FIGHTER",
-	"length":30.0,
-	"width":12.0,
+	"length":25.0,
+	"width":10.0,
 	#"hitGlowRadius":40,
 	"fadeTime":0.15,
 	#"fringeColor":[180,255,75,255],

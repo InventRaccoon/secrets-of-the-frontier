@@ -119,7 +119,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
     @Override
     public void onActivate() {
         if (ship.getShipTarget() != null) {
-            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.hasListenerOfClass(SotfMimicDecayListener.class) && ship.isAlive()) {
+            if (ship.getShipTarget().getVariant().hasTag(SotfPeople.SIRIUS_MIMIC) && !ship.getShipTarget().hasListenerOfClass(SotfMimicDecayListener.class) && ship.getShipTarget().isAlive()) {
                 EmpArcEntityAPI arc = Global.getCombatEngine().spawnEmpArcVisual(ship.getShieldCenterEvenIfNoShield(),
                         ship,
                         ship.getShipTarget().getLocation(), null, 10f, Color.DARK_GRAY, Color.WHITE);
@@ -136,7 +136,7 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
                     }
                 } else {
                     // reflections don't have the lifespan listener, so just add the decay listener
-                    Global.getCombatEngine().addFloatingText(ship.getLocation(), "Expiring!", ship.getFluxTracker().getFloatySize() + 5f, SotfNaniteSynthesized.COLOR_STRONGER, ship, 0f, 0f);
+                    Global.getCombatEngine().addFloatingText(ship.getShipTarget().getLocation(), "Expiring!", ship.getShipTarget().getFluxTracker().getFloatySize() + 5f, SotfNaniteSynthesized.COLOR_STRONGER, ship.getShipTarget(), 0f, 0f);
                     ship.getShipTarget().addListener(new SotfMimicDecayListener(ship.getShipTarget(), haveUpgrade(SotfIDs.COTL_DEATHTHROES)));
                 }
 
@@ -605,6 +605,15 @@ public class SotfInvokeHerBlessingSubsystem extends MagicDroneSubsystem {
     @Override
     public DroneFormation getDroneFormation() {
         return new SotfSiriusFollowerFormation();
+    }
+
+    // drone systems typically have extra height to fit the drone info but this one doesn't display that
+    @Override
+    public int getNumHUDBars() {
+        if (hasCharges()) {
+            return 2;
+        }
+        return 1;
     }
 
     @Override

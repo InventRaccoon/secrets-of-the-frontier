@@ -111,6 +111,7 @@ public class SotfChildOfTheLakeStart extends CustomStart {
         AddRemoveCommodity.addCommodityGainText(Commodities.HEAVY_MACHINERY, 15, dialog.getTextPanel());
 
         PlayerFactionStore.setPlayerFactionIdNGC(Factions.PLAYER);
+        ExerelinSetupData.getInstance().backgroundId = null;
         ExerelinSetupData.getInstance().freeStart = true;
 
         data.addScript(new Script() {

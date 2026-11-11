@@ -40,8 +40,6 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 		MarketAPI holdout = getSourceMarket();
 		SectorEntityToken hallowhall = holdout.getStarSystem().getEntityById("sotf_hallowhall");
 
-		if (hallowhall == null) return null;
-
 		FleetCreatorMission m = new FleetCreatorMission(random);
 		m.beginFleet();
 		
@@ -65,12 +63,17 @@ public class SotfPersonalFleetSeraph extends PersonalFleetScript {
 		}
 		m.triggerFleetSetName("Seraph's Astral Castellans");
 		m.triggerFleetSetPatrolActionText("defending");
-		m.triggerOrderFleetPatrol(hallowhall);
+		if (hallowhall != null) {
+			m.triggerOrderFleetPatrol(hallowhall);
+		} else {
+			m.triggerOrderFleetPatrol(holdout.getStarSystem());
+		}
 		m.triggerFleetSetPatrolLeashRange(1000f);
 		
 		CampaignFleetAPI fleet = m.createFleet();
 		FleetMemberAPI flagship = fleet.getFleetData().addFleetMember("sotf_respite_Assault");
 		flagship.setCaptain(getPerson());
+		flagship.getVariant().addTag(Tags.VARIANT_DO_NOT_DROP_AI_CORE_FROM_CAPTAIN);
 		fleet.setCommander(getPerson());
 		fleet.getFlagship().setFlagship(false);
 		flagship.setFlagship(true);

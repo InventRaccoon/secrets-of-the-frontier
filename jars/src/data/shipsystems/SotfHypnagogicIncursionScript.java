@@ -19,7 +19,7 @@ public class SotfHypnagogicIncursionScript extends BaseShipSystemScript {
 
 	public static float SHIP_ALPHA_MULT = 0.25f;
 	public static float RELOAD_MULT = 10f;
-	public static float DISSIPATION_MULT = 2f;
+	public static float DISSIPATION_MULT = 3f;
 
 	public static final float MAX_TURN_BONUS = 50f;
 	public static final float TURN_ACCEL_BONUS = 50f;

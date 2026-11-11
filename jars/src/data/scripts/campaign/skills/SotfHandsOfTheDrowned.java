@@ -28,11 +28,14 @@ import java.util.Random;
 
 public class SotfHandsOfTheDrowned {
 
+	// Note: this is *how many ships* are targeted, each only can be attacked by 1 mine at a time
 	public static int MAX_PER_WAVE_BASE = 5;
 	public static int MAX_PER_WAVE_RANDOM = 5;
 
-	public static float DELAY_MIN = 0.85f;
-	public static float DELAY_MAX = 1.65f;
+	// How often mines will be spawned
+	public static float DELAY_MIN = 1f;
+	public static float DELAY_MAX = 2f;
+	// Chance a ship will be targeted by a given wave of mines
 	public static float MINE_CHANCE = 0.25f;
 
 	public static final Color JITTER_UNDER_COLOR = new Color(55,155,255,155);
@@ -72,7 +75,7 @@ public class SotfHandsOfTheDrowned {
 
 			info.addPara("Triggers a stealth minefield that assails the enemy fleet with gravitic mines until the ship is destroyed or retreats", hc, 0f);
 			info.addPara("A wave of mines appears every %s on average, with between %s and %s mines per wave, with no more than one mine appearing to strike a given hostile ship", 0f, hc, hc,
-					"" + timeBetweenMines, "" + MAX_PER_WAVE_BASE, "" + (MAX_PER_WAVE_BASE + MAX_PER_WAVE_RANDOM));
+					"" + timeBetweenMines + "s", "" + MAX_PER_WAVE_BASE, "" + (MAX_PER_WAVE_BASE + MAX_PER_WAVE_RANDOM));
 		}
 
 		public ScopeDescription getScopeDescription() {
@@ -95,7 +98,7 @@ public class SotfHandsOfTheDrowned {
 
 		public static class MinefieldData {
 			ShipAPI source;
-			IntervalUtil tracker = new IntervalUtil(0.85f, 1.65f);
+			IntervalUtil tracker = new IntervalUtil(DELAY_MIN, DELAY_MAX);
 			List<IncomingMine> incoming = new ArrayList<IncomingMine>();
 		}
 
@@ -157,9 +160,10 @@ public class SotfHandsOfTheDrowned {
 				picker.add(inc);
 			}
 
-			// 5-10 mines
+			// pick a number of valid ships to target
 			int numToSpawn = Math.max(1, Math.min(new Random().nextInt(MAX_PER_WAVE_BASE + 1) + MAX_PER_WAVE_RANDOM, picker.getItems().size()));
 
+			// randomly pick ships to target
 			for (int i = 0; i < numToSpawn && !picker.isEmpty(); i++) {
 				IncomingMine inc = picker.pickAndRemove();
 				data.incoming.add(inc);

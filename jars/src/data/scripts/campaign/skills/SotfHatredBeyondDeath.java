@@ -21,6 +21,7 @@ import com.fs.starfarer.api.loading.WeaponSpecAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.SotfModPlugin;
+import data.scripts.utils.SotfMisc;
 import org.dark.shaders.distortion.DistortionShader;
 import org.dark.shaders.distortion.RippleDistortion;
 import org.lazywizard.lazylib.combat.CombatUtils;
@@ -29,6 +30,8 @@ import org.lwjgl.util.vector.Vector2f;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+
+import static data.scripts.campaign.skills.SotfElegyOfOpis.ELEGY_DATA_KEY;
 
 public class SotfHatredBeyondDeath {
 
@@ -110,21 +113,37 @@ public class SotfHatredBeyondDeath {
         public boolean undying = false;
         public float progress = 0f;
 
+        // Elegy of Opis stuff
+        public String skillName = "Hatred Beyond Death";
+        protected float healPercent = ANATHEMA_HEAL_PERCENT;
+        protected float decayPercent = ANATHEMA_DECAY_PERCENT;
+        protected boolean applySafetyOverrides = true;
+        protected boolean requireElegyCharges = false;
+
         public SotfAnathemaUndyingScript(ShipAPI ship) {
             this.ship = ship;
+        }
+
+        public SotfAnathemaUndyingScript(ShipAPI ship, String skillName, float healPercent, float decayPercent, boolean applySafetyOverrides, boolean requireElegyCharges) {
+            this.ship = ship;
+            this.skillName = skillName;
+            this.healPercent = healPercent;
+            this.decayPercent = decayPercent;
+            this.applySafetyOverrides = applySafetyOverrides;
+            this.requireElegyCharges = requireElegyCharges;
         }
 
         public boolean notifyAboutToTakeHullDamage(Object param, ShipAPI ship, Vector2f point, float damageAmount) {
             if (!undying) {
                 float hull = ship.getHitpoints();
-                if (damageAmount >= hull) {
+                if (damageAmount >= hull && canTriggerUndying()) {
                     // heal up
-                    ship.setHitpoints(ship.getMaxHitpoints() * ANATHEMA_HEAL_PERCENT);
+                    ship.setHitpoints(ship.getMaxHitpoints() * healPercent);
                     // stop overloading
                     if (ship.getFluxTracker().isOverloaded()) {
                         ship.getFluxTracker().setOverloadDuration(0.25f);
                     }
-                    ship.getFluxTracker().setCurrFlux(ship.getCurrFlux() * 0.5f);
+                    ship.getFluxTracker().setCurrFlux(ship.getCurrFlux() * 0.8f);
                     // repair weapons and engines
                     for (WeaponAPI weapon : ship.getAllWeapons()) {
                         weapon.repair();
@@ -133,34 +152,27 @@ public class SotfHatredBeyondDeath {
                         engine.setHitpoints(engine.getMaxHitpoints());
                     }
 
+                    // deduct Elegy charges
+                    if (requireElegyCharges) {
+                        SotfElegyOfOpis.SotfElegyOfOpisScript.SotfElegyData data = (SotfElegyOfOpis.SotfElegyOfOpisScript.SotfElegyData) Global.getCombatEngine().getCustomData().get(ELEGY_DATA_KEY);
+                        data.charges -= SotfElegyOfOpis.ELEGY_CHARGE_COST;
+                    }
+
                     undying = true;
                     Global.getSoundPlayer().playSound("sotf_lastlaughprimed", 1f, 1f, ship.getLocation(), ship.getVelocity());
-                    return true;
-                }
-            }
-            // immune to hull damage for 0.25 seconds after triggering nanites (unless it gets hit by a torp or something)
-            else if (progress < 0.25f && !(damageAmount >= 1000f)) {
-                return true;
-            }
-            return false;
-        }
 
-        public void advance(float amount) {
-            String id = "sotf_anathema_modifier";
-            if (undying && ship.isAlive()) {
-                float timeMult = ship.getMutableStats().getTimeMult().getModifiedValue();
-                int brighten = 120;
-                Color ventColor = Misc.setBrightness(ship.getVentFringeColor(), 100);
-                if (progress == 0f) {
+                    Global.getCombatEngine().getCombatUI().addMessage(0, ship, SotfMisc.getShipNameColor(ship), ship.getName() + " (" + ship.getHullSpec().getHullNameWithDashClass() + ")",
+                            Misc.getTextColor(), " engaged parasitic nanites!");
+
                     if (ship.getFluxTracker().showFloaty()) {
                         Global.getCombatEngine().addFloatingTextAlways(ship.getLocation(),
-                                "Elegy of Opis: Undying!",
+                                skillName + ": Undying!",
                                 NeuralLinkScript.getFloatySize(ship) + 15f,
                                 ANATHEMA_BRIGHT,
                                 ship,
-                                16f * timeMult,
-                                1f/timeMult,
-                                1f/timeMult,
+                                16f,
+                                1f,
+                                1f,
                                 0.5f,
                                 0.5f,
                                 1f);
@@ -172,7 +184,7 @@ public class SotfHatredBeyondDeath {
 
                     // assign a new ship AI. Maximum aggression, do NOT back down!
                     if (ship != Global.getCombatEngine().getPlayerShip()) {
-                        ShipAIConfig config = new ShipAIConfig();
+                        ShipAIConfig config = new ShipAIConfig(ship);
                         config.alwaysStrafeOffensively = true;
                         config.backingOffWhileNotVentingAllowed = false;
                         config.turnToFaceWithUndamagedArmor = false;
@@ -181,8 +193,20 @@ public class SotfHatredBeyondDeath {
 
                         ship.setShipAI(Global.getSettings().createDefaultShipAI(ship, config));
                     }
-                }
 
+                    return true;
+                }
+            }
+            // immune to hull damage for 0.25 seconds after triggering nanites (unless it gets hit by a torp or something)
+            else if (undying && progress < 0.25f && !(damageAmount >= 1000f)) {
+                return true;
+            }
+            return false;
+        }
+
+        public void advance(float amount) {
+            String id = "sotf_anathema_modifier";
+            if (undying && ship.isAlive()) {
                 ship.fadeToColor(id, Color.BLACK, 0.1f, 0.1f, Math.min(progress * 2f, 0.9f));
                 ship.setJitter(id, ANATHEMA_DARK, Math.min(progress * 2f, 0.25f), 15, 10, 12f);
                 ship.setCircularJitter(true);
@@ -190,7 +214,7 @@ public class SotfHatredBeyondDeath {
                 // apply Safety Overrides effect
                 float sizeMult = 1f;
                 if (ship.isCapital()) sizeMult = 0.5f;
-                if (!ship.getVariant().hasHullMod(HullMods.SAFETYOVERRIDES)) {
+                if (!ship.getVariant().hasHullMod(HullMods.SAFETYOVERRIDES) && applySafetyOverrides) {
                     ship.getMutableStats().getMaxSpeed().modifyFlat(HullMods.SAFETYOVERRIDES, (Float) SPEED_BONUS.get(ship.getHullSize()) * sizeMult);
                     ship.getMutableStats().getAcceleration().modifyFlat(HullMods.SAFETYOVERRIDES, (Float) SPEED_BONUS.get(ship.getHullSize()) * sizeMult);
                     ship.getMutableStats().getDeceleration().modifyFlat(HullMods.SAFETYOVERRIDES, (Float) SPEED_BONUS.get(ship.getHullSize()) * sizeMult);
@@ -209,9 +233,9 @@ public class SotfHatredBeyondDeath {
                     ship.getEngineController().extendFlame(this, 0.25f * visualProgress, 0.25f * visualProgress, 0.25f * visualProgress);
                 }
 
-                float newHitPoints = ship.getHitpoints() - (ship.getMaxHitpoints() * ANATHEMA_DECAY_PERCENT * amount);
+                float newHitPoints = ship.getHitpoints() - (ship.getMaxHitpoints() * decayPercent * amount);
                 if (newHitPoints > 0f) {
-                    ship.setHitpoints(ship.getHitpoints() - (ship.getMaxHitpoints() * ANATHEMA_DECAY_PERCENT * amount));
+                    ship.setHitpoints(ship.getHitpoints() - (ship.getMaxHitpoints() * decayPercent * amount));
                 } else {
                     LowCRShipDamageSequence malfunctions = new LowCRShipDamageSequence(ship, 100f);
                     // 1 to kill, next are cosmetic
@@ -222,11 +246,21 @@ public class SotfHatredBeyondDeath {
                 }
 
                 if (Global.getCombatEngine().getPlayerShip().equals(ship)) {
-                    Global.getCombatEngine().maintainStatusForPlayerShip(id, "graphics/icons/status/sotf_elegyofopis_anathema.png", "Elegy of Opis", "Nanites active - make them pay", true);
+                    Global.getCombatEngine().maintainStatusForPlayerShip(id, "graphics/icons/status/sotf_elegyofopis_anathema.png", skillName, "Nanites active - make them pay", true);
                 }
 
                 progress += amount;
             }
+        }
+
+        private boolean canTriggerUndying() {
+            if (!ship.isAlive()) return false;
+            if (!requireElegyCharges) return true;
+            SotfElegyOfOpis.SotfElegyOfOpisScript.SotfElegyData data = (SotfElegyOfOpis.SotfElegyOfOpisScript.SotfElegyData) Global.getCombatEngine().getCustomData().get(ELEGY_DATA_KEY);
+            if (data != null) {
+                return data.charges >= SotfElegyOfOpis.ELEGY_CHARGE_COST;
+            }
+            return false;
         }
     }
 

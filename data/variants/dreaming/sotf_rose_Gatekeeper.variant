@@ -1,0 +1,46 @@
+{
+  "variantId": "sotf_rose_Gatekeeper",
+  "hullId": "sotf_rose",
+  "displayName": "Gatekeeper",
+  "goalVariant": true,
+  "fluxCapacitors": 8,
+  "fluxVents": 20,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardenedshieldemitter",
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "sotf_amaranth"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "sabotpod"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "sotf_tormentpulse"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "amblaster"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

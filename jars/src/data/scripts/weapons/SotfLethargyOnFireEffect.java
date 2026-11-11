@@ -54,7 +54,7 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
 
     /**
      * Code taken from MagicLib, by Tartiflette and Deathfly
-     * Almost entirely copypasted, but I need to add an onhit effect!
+     * Modified to add an on-hit effect and fix some bugs
      */
     public static void lethargyFakeBeam(CombatEngineAPI engine, Vector2f from, float range, float angle, float width,
                                         float full, float fading, float impactSize, Color core, Color fringe,
@@ -83,7 +83,15 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                     if (
                             e != source
                                     &&
-                                    ((ShipAPI) e).getParentStation() != e
+                                    // RACCOON: FIXED, now properly ignores the ship's own modules
+                                    ((ShipAPI) e).getParentStation() != source
+                                    &&
+                                    // RACCOON: FIXED, properly ignores modules' parent ship
+                                    source.getParentStation() != e
+                                    &&
+                                    // RACCOON: FIXED, a ship's modules can't shoot each other
+                                    source.getParentStation() == null ||
+                                    (source.getParentStation() != ((ShipAPI) e).getParentStation())
                                     &&
                                     e.getCollisionClass() != CollisionClass.NONE
                                     &&
@@ -226,7 +234,7 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
         if (ship.getCollisionClass() == CollisionClass.NONE) {
             return new Pair<>(null, false);
         }
-        // make sure ship bounds are correctly updated before we do this because CollisionUtils may fail to do so
+        // RACCOON: make sure ship bounds are correctly updated before we do this because CollisionUtils may fail to do so
         if (ship.getExactBounds() != null) {
             ship.getExactBounds().update(ship.getLocation(), ship.getFacing());
         }

@@ -5,7 +5,7 @@
 	
 	"statsScript":"data.shipsystems.SotfEntropicCatalystSystem",
 
-	#"runScriptWhilePaused":true, # only for the player's ship
+	"runScriptWhilePaused":true, # only for the player's ship
 	"runScriptWhileIdle":true, # unapply() never gets called
 		
 	"fadeActivationSoundOnChargedown":true,

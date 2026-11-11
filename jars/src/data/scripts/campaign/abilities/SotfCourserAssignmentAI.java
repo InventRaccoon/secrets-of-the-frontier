@@ -127,7 +127,7 @@ public class SotfCourserAssignmentAI extends BaseAssignmentAI implements FleetEv
 
 		Global.getSector().adjustPlayerReputation(
 				new CoreReputationPlugin.RepActionEnvelope(CoreReputationPlugin.RepActions.COMMISSION_BOUNTY_REWARD, totalFPKilledTogether * 0.5f * battle.getPlayerInvolvementFraction(),
-						null, null, false, true, "Change caused by assisting Annex-Courser to further the Cause"),
+						null, null, false, true, "Change caused by assisting Infix-Courser to further the Cause"),
 				SotfIDs.DUSTKEEPERS);
 		Global.getSector().adjustPlayerReputation(
 				new CoreReputationPlugin.RepActionEnvelope(CoreReputationPlugin.RepActions.COMMISSION_BOUNTY_REWARD, totalFPKilledTogether * 1.5f * battle.getPlayerInvolvementFraction(), null, null, false, false),

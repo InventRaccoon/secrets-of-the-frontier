@@ -1,0 +1,27 @@
+{
+	"id":"sotf_amaranth",
+	"specClass":"projectile",
+	"everyFrameEffect":"data.scripts.weapons.SotfAmaranthEffect",
+	"type":"ENERGY",
+	"mountTypeOverride":"SYNERGY",
+	"size":"LARGE",
+	"turretSprite":"graphics/weapons/sotf_chalice_turret.png",
+	"turretGlowSprite":"graphics/weapons/sotf_chalice_turret_glow.png",
+	"hardpointSprite":"graphics/weapons/sotf_chalice_hardpoint.png",
+	"hardpointGlowSprite":"graphics/weapons/sotf_chalice_hardpoint_glow.png",		
+	"hardpointOffsets":[2, 0],
+	"turretOffsets":[2, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	#"glowColor":[180,255,0,255],
+	"glowColor":[105,255,255,255],
+	"barrelMode":"ALTERNATING",
+	#"renderHints":[RENDER_LOADED_MISSILES],
+	"interruptibleBurst":false,
+	"animationType":"GLOW",
+	"autocharge":true,
+	"projectileSpecId":"sotf_amaranth_mine_proj",
+	"fireSoundTwo":"reaper_fire",
+}
+
+

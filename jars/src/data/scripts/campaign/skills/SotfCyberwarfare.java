@@ -17,7 +17,6 @@ import com.fs.starfarer.api.impl.campaign.ids.Stats;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 import com.fs.starfarer.api.impl.combat.CRPluginImpl;
-import com.fs.starfarer.api.impl.combat.threat.EnergyLashActivatedSystem;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
@@ -63,9 +62,12 @@ public class SotfCyberwarfare {
     public static String MINOR_HACK_KEY = "sotf_cyberwarfare_minorhack";
     public static String FIGHTER_HACK_KEY = "sotf_cyberwarfare_fighterhack";
 
+    public static final String SHIP_ECM_RATING_KEY = "sotf_cyberwarfare_ecmrating";
     public static final String AURA_VISUAL_KEY = "sotf_cyberwarfare_auravisual";
     public static final String SHIP_HACK_CD_KEY = "sotf_cyberwarfare_shipcdvisual";
     public static final String FIGHTER_HACK_CD_KEY = "sotf_cyberwarfare_fightercdvisual";
+
+    public static final String CD_REFRESH_KEY = "sotf_cyberwarfare_refresh";
 
     public static String DRONE_TSEQUENCE_KEY = "sotf_cyberwarfare_tseq";
 
@@ -178,11 +180,7 @@ public class SotfCyberwarfare {
         }
 
         public float getHackCooldown() {
-            return HACK_COOLDOWN * ship.getMutableStats().getDynamic().getValue(SotfIDs.STAT_CYBERWARFARE_COOLDOWN_MULT, 1f);
-        }
-
-        public float getHackPenetration() {
-            return ship.getMutableStats().getDynamic().getValue(SotfIDs.STAT_CYBERWARFARE_PENETRATION_MULT, 1f);
+            return HACK_COOLDOWN * ship.getMutableStats().getDynamic().getStat(SotfIDs.STAT_CYBERWARFARE_COOLDOWN_MULT).getModifiedValue();
         }
 
         public SotfCyberwarfareShipHackScript(ShipAPI ship) {
@@ -264,6 +262,17 @@ public class SotfCyberwarfare {
             if (internalCDTimer < 0) {
                 internalCDTimer = 0;
             }
+
+            // check for Breaching Warp cooldown refresh
+            if (ship.getCustomData().containsKey(CD_REFRESH_KEY)) {
+                ship.getCustomData().remove(CD_REFRESH_KEY);
+                if (ship.hasListenerOfClass(SotfCyberwarfareFighterHackScript.class)) {
+                    SotfCyberwarfareFighterHackScript fhscript = ship.getListeners(SotfCyberwarfareFighterHackScript.class).get(0);
+                    fhscript.internalCDTimer = 0;
+                }
+                internalCDTimer = 0;
+            }
+
             // if player ship, ONLY hack their selected target
             if (ship == Global.getCombatEngine().getPlayerShip()) {
                 player = true;
@@ -356,50 +365,7 @@ public class SotfCyberwarfare {
             }
             String hackType = hackPicker.pick();
 
-            float attackerRating = ship.getMutableStats().getDynamic().getValue(Stats.ELECTRONIC_WARFARE_FLAT);
-            float defenderRating = target.getMutableStats().getDynamic().getValue(Stats.ELECTRONIC_WARFARE_FLAT);
-            defenderRating = (defenderRating / getHackPenetration());
-
-            attackerRating += BASE_ECM_RATING;
-            defenderRating += BASE_ECM_RATING;
-
-            float defenderECCM = target.getMutableStats().getDynamic().getValue(Stats.ELECTRONIC_WARFARE_PENALTY_MULT);
-            if (defenderECCM < 1) {
-                defenderECCM = 1 - (defenderECCM / getHackPenetration());
-            }
-            if (defenderECCM > 1) {
-                defenderECCM = 1;
-            }
-
-            // penalty for civ grade
-            if (ship.getVariant().hasHullMod(HullMods.CIVGRADE) && !ship.getVariant().hasHullMod(HullMods.MILITARIZED_SUBSYSTEMS)) {
-                attackerRating -= 3f;
-            }
-            // penalty for subsystem dmods
-            for (String hullMod : ship.getVariant().getHullMods()) {
-                if (VULNERABLE_DMODS.contains(hullMod)) {
-                    attackerRating--;
-                }
-            }
-            // ditto for defenders
-            if (target.getVariant().hasHullMod(HullMods.CIVGRADE) && !target.getVariant().hasHullMod(HullMods.MILITARIZED_SUBSYSTEMS)) {
-                defenderRating -= 3f;
-            }
-            for (String hullMod : target.getVariant().getHullMods()) {
-                if (VULNERABLE_DMODS.contains(hullMod)) {
-                    defenderRating--;
-                }
-            }
-            if (attackerRating < 1) {
-                attackerRating = 1f;
-            }
-            if (defenderRating < 1) {
-                defenderRating = 1f;
-            }
-            float ECMscore = attackerRating - defenderRating;
-
-            float effectiveness = attackerRating / defenderRating;
-            effectiveness = effectiveness * defenderECCM;
+            float effectiveness = getHackEffectiveness(ship, target);
 
             if (effectiveness > 2f) {
                 effectiveness = 2f;
@@ -499,7 +465,7 @@ public class SotfCyberwarfare {
                                 Misc.getAngleInDegrees(from, targetWeapon.getLocation()),
                                 Misc.getDistance(from, targetWeapon.getLocation()),
                                 Color.WHITE,
-                                Misc.getNegativeHighlightColor());
+                                HACK_COLOR);
                         targetWeapon.disable(false);
                     }
                     break;
@@ -621,16 +587,6 @@ public class SotfCyberwarfare {
             }
             Global.getSoundPlayer().playSound("disabled_large_crit", 1f, 2f, target.getLocation(), target.getVelocity());
             target.getFluxTracker().showOverloadFloatyIfNeeded(hackText, HACK_COLOR, textSize, true);
-        }
-
-        public List<WeaponAPI> getHackableWeapons(ShipAPI ship) {
-            List<WeaponAPI> weapons = new ArrayList<>();
-            for (WeaponAPI weapon : ship.getUsableWeapons()) {
-                if (CRPluginImpl.isOkToPermanentlyDisableStatic(ship, weapon)) {
-                    weapons.add(weapon);
-                }
-            }
-            return weapons;
         }
 
         public ShipAPI findTarget(ShipAPI ship) {
@@ -794,7 +750,7 @@ public class SotfCyberwarfare {
         }
 
         public float getHackCooldown() {
-            return FIGHTER_HACK_COOLDOWN * ship.getMutableStats().getDynamic().getValue(SotfIDs.STAT_CYBERWARFARE_COOLDOWN_MULT, 1f);
+            return FIGHTER_HACK_COOLDOWN * ship.getMutableStats().getDynamic().getStat(SotfIDs.STAT_CYBERWARFARE_COOLDOWN_MULT).getModifiedValue();
         }
 
         public SotfCyberwarfareFighterHackScript(ShipAPI ship) {
@@ -1019,7 +975,7 @@ public class SotfCyberwarfare {
             if (!target.isAlive() ||
                     target.getOwner() == ship.getOwner() ||
                     !target.isFighter() || target.isDrone() ||
-                    target.isPhased() || target.getHullStyleId().contains("OMEGA") || target.getHullSpec().hasTag(Tags.MONSTER) || target.getWing() == null) {
+                    target.isPhased() || target.getHullStyleId().contains("OMEGA") || target.getHullSpec().hasTag(Tags.MONSTER) || target.getVariant().hasHullMod(SotfIDs.HULLMOD_WISP) || target.getWing() == null) {
                 isValid = false;
             }
             return isValid;
@@ -1177,5 +1133,60 @@ public class SotfCyberwarfare {
             return done;
         }
 
+    }
+
+    public static List<WeaponAPI> getHackableWeapons(ShipAPI ship) {
+        List<WeaponAPI> weapons = new ArrayList<>();
+        for (WeaponAPI weapon : ship.getUsableWeapons()) {
+            if (CRPluginImpl.isOkToPermanentlyDisableStatic(ship, weapon)) {
+                weapons.add(weapon);
+            }
+        }
+        return weapons;
+    }
+
+    public static float getECMRating(ShipAPI ship) {
+        if (ship.getCustomData().containsKey(SHIP_ECM_RATING_KEY)) {
+            return (float) ship.getCustomData().get(SHIP_ECM_RATING_KEY);
+        }
+        float rating = BASE_ECM_RATING;
+
+        rating += ship.getMutableStats().getDynamic().getValue(Stats.ELECTRONIC_WARFARE_FLAT);
+
+        // penalty for civ grade
+        if (ship.getVariant().hasHullMod(HullMods.CIVGRADE) && !ship.getVariant().hasHullMod(HullMods.MILITARIZED_SUBSYSTEMS)) {
+            rating -= 3f;
+        }
+        // penalty for subsystem dmods
+        for (String hullMod : ship.getVariant().getHullMods()) {
+            if (VULNERABLE_DMODS.contains(hullMod)) {
+                rating--;
+            }
+        }
+
+        rating = Math.max(rating, 1f);
+
+        ship.getCustomData().put(SHIP_ECM_RATING_KEY, rating);
+        return rating;
+    }
+
+    public static float getHackPenetration(ShipAPI ship) {
+        return ship.getMutableStats().getDynamic().getStat(SotfIDs.STAT_CYBERWARFARE_COOLDOWN_MULT).getModifiedValue();
+    }
+
+    public static float getECCMResistance(ShipAPI attacker, ShipAPI target) {
+        float eccm = target.getMutableStats().getDynamic().getValue(Stats.ELECTRONIC_WARFARE_PENALTY_MULT);
+        if (eccm < 1) {
+            eccm = 1 - (eccm / getHackPenetration(attacker));
+        }
+        // minimum of 1
+        return Math.max(eccm, 1f);
+    }
+
+    public static float getHackEffectiveness(ShipAPI ship, ShipAPI target) {
+        float effectiveness = (getECMRating(ship) / getECMRating(target)) * getECCMResistance(ship, target);
+        effectiveness = Math.min(effectiveness, 2f);
+        effectiveness = Math.max(effectiveness, 0.35f);
+        return effectiveness;
     }
 }

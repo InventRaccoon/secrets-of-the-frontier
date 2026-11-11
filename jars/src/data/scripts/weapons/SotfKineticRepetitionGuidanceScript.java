@@ -43,7 +43,7 @@ import java.util.List;
  *
  * @author Nicke535
  */
-public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
+public class SotfKineticRepetitionGuidanceScript extends BaseEveryFrameCombatPlugin {
     //---Settings: adjust to fill the needs of your implementation---
     //Sets guidance mode for the projectile when a target is fed to the script (or, in the case of ONE_TURN_DUMB, always).
     //Note that interceptor-style projectiles use notably more memory than the other types (as they practically run missile AI), so they should be used sparingly
@@ -65,7 +65,7 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
     //	- "REACQUIRE_RANDOM" : Selects a random valid target within TARGET_REACQUIRE_RANGE of the target
     //	- "REACQUIRE_RANDOM_PROJ" : Selects a random valid target within TARGET_REACQUIRE_RANGE of the projectile
     //	- "DISAPPEAR" : Remove the projectile altogether. Should only be used if the projectile has a scripted effect on-death of some sort (such as hand-scripted flak)
-    private static final String GUIDANCE_MODE_SECONDARY = "REACQUIRE_NEAREST_PROJ";
+    private static final String GUIDANCE_MODE_SECONDARY = "REACQUIRE_NEAREST";
 
     //Determines all valid target types for this projectile's target re-acquiring. Only used if the projectile actually uses re-acquiring of targets
     //Possible values are:
@@ -79,7 +79,6 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
     private static final List<String> VALID_TARGET_TYPES = new ArrayList<>();
 
     static {
-        VALID_TARGET_TYPES.add("MISSILE");
         VALID_TARGET_TYPES.add("FIGHTER");
         VALID_TARGET_TYPES.add("FRIGATE");
         VALID_TARGET_TYPES.add("DESTROYER");
@@ -93,7 +92,7 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
 
     //The maximum angle a target can be re-acquired at, in degrees.
     //90 means 90 degrees to either side, I.E. a hemisphere in front of the projectile. Values 180 and above turns off the limitation altogether
-    private static final float TARGET_REACQUIRE_ANGLE = 90f;
+    private static final float TARGET_REACQUIRE_ANGLE = 45f;
 
     //How fast the projectile is allowed to turn, in degrees/second
     private static final float TURN_RATE = 240f;
@@ -101,8 +100,8 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
     //If non-zero, the projectile will sway back-and-forth by this many degrees during its guidance (with a sway period determined by SWAY_PERIOD).
     //High values, as one might expect, give very poor tracking. Also, high values will decrease effective range (as the projectiles travel further) so be careful
     //Secondary and primary sway both run in parallel, allowing double-sine swaying if desired
-    private static final float SWAY_AMOUNT_PRIMARY = 4f;
-    private static final float SWAY_AMOUNT_SECONDARY = 2f;
+    private static final float SWAY_AMOUNT_PRIMARY = 6f;
+    private static final float SWAY_AMOUNT_SECONDARY = 3f;
 
     //Used together with SWAY_AMOUNT, determines how fast the swaying happens
     //1f means an entire sway "loop" (max sway right -> min sway -> max sway left -> min sway again) per second, 2f means 2 loops etc.
@@ -137,7 +136,7 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
     private static final float GUIDANCE_DELAY_MIN = 0.1f;
 
     //Whether phased ships are ignored for targeting (and an already phased target counts as "lost" and procs secondary targeting)
-    private static final boolean BROKEN_BY_PHASE = false;
+    private static final boolean BROKEN_BY_PHASE = true;
 
     //Whether the projectile switches to a new target if the current one becomes an ally
     private static final boolean RETARGET_ON_SIDE_SWITCH = true;
@@ -164,7 +163,7 @@ public class SotfReckonerBoltGuidanceScript extends BaseEveryFrameCombatPlugin {
      * @param target The target missile/asteroid/ship for the script's guidance.
      *               Can be null, if the script does not follow a target ("ONE_TURN_DUMB") or to instantly activate secondary guidance mode
      */
-    public SotfReckonerBoltGuidanceScript(@NotNull DamagingProjectileAPI proj, CombatEntityAPI target) {
+    public SotfKineticRepetitionGuidanceScript(@NotNull DamagingProjectileAPI proj, CombatEntityAPI target) {
         this.proj = proj;
         this.target = target;
         lastTargetPos = target != null ? target.getLocation() : new Vector2f(proj.getLocation());

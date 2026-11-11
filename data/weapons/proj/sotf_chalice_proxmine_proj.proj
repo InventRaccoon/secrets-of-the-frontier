@@ -7,7 +7,7 @@
 	"center":[2,2],
 	"collisionRadius":14,
 	"collisionClass":"MISSILE_NO_FF",
-	"explosionColor":[180,255,50,255],  # purely visual, will get a white additively blended core on top of this color
+	"explosionColor":[105,255,195,255],  # purely visual, will get a white additively blended core on top of this color
 	"explosionRadius":80, # purely visual
 	"alwaysAccelerate":true,
 	"flameoutTime":0.1, # total time from flameout to full fadeout

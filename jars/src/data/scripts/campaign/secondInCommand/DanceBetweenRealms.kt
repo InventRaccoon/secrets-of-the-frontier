@@ -32,12 +32,6 @@ class DanceBetweenRealms : SCBaseSkillPlugin() {
         tooltip.addPara("When a Concord ship benefiting from this skill is set as the flagship, it will use the imprint's skills instead of your own.", Misc.getGrayColor(), 0f)
     }
 
-    override fun advanceInCampaign(data: SCData?, member: FleetMemberAPI?, amount: Float?) {
-
-
-
-    }
-
     override fun applyEffectsBeforeShipCreation(data: SCData, stats: MutableShipStatsAPI, variant: ShipVariantAPI, hullSize: ShipAPI.HullSize, id: String) {
 
 

@@ -155,6 +155,9 @@ public class SotfModPlugin extends BaseModPlugin {
             return;
         }
 
+        Global.getSoundPlayer().setSuspendDefaultMusicPlayback(false);
+        Global.getSoundPlayer().pauseCustomMusic();
+
         // create any PersonAPIs that don't exist (ignores any that already do)
         SotfPeople.create();
 
@@ -244,6 +247,7 @@ public class SotfModPlugin extends BaseModPlugin {
 
         if (sector_mem.contains(SotfIDs.MEM_COTL_START)) {
             SotfMisc.ensurePlayerKnowsShip("sotf_thorn");
+            SotfMisc.ensurePlayerKnowsShip("sotf_rose");
 
             SotfMisc.ensurePlayerKnowsWeapon("sotf_lethargy");
             SotfMisc.ensurePlayerKnowsWeapon("sotf_reckoner");
@@ -283,7 +287,7 @@ public class SotfModPlugin extends BaseModPlugin {
         // spawn the ISS Athena for A Memory
         SotfGen.trySpawnAthena(sector);
         // setup for The Hunt for Walter Feros
-//        SotfGen.trySetupHuntingFeros(sector);
+        //SotfGen.trySetupHuntingFeros(sector);
         // spawn Nightingale's encounter
         SotfGen.trySpawnNightingale(sector);
         // spawn the Hypnos cryosleeper and Hypnos-Annex-Barrow
@@ -291,6 +295,8 @@ public class SotfModPlugin extends BaseModPlugin {
         // spawn the Askonia Probe for Mayfly's interaction
         SotfGen.trySpawnMayfly(sector);
         SotfGen.tryAddKottersCutthroats(sector);
+        // spawn some derelicts of the Dustkeeper cruisers
+        SotfGen.trySpawnDKCruisers(sector);
         // spawn Mia's Star system for Hope for Hallowhall
         SotfGen.trySpawnMia(sector);
         // spawn Light of the Lake if Haunted
@@ -410,6 +416,10 @@ public class SotfModPlugin extends BaseModPlugin {
             if (!Global.getSector().getListenerManager().hasListenerOfClass(SotfSiriusIntel.class) && sector.getIntelManager().hasIntelOfClass(SotfSiriusIntel.class)) {
                 SotfSiriusIntel siriusIntel = (SotfSiriusIntel) sector.getIntelManager().getFirstIntel(SotfSiriusIntel.class);
                 sector.getListenerManager().addListener(siriusIntel);
+            }
+            if (!Global.getSector().hasScript(SotfSiriusIntel.class) && sector.getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
+                SotfSiriusIntel siriusIntel = (SotfSiriusIntel) sector.getIntelManager().getFirstIntel(SotfSiriusIntel.class);
+                sector.getScripts().add(siriusIntel);
             }
         }
 
@@ -599,6 +609,14 @@ public class SotfModPlugin extends BaseModPlugin {
                 CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
         );
         CodexDataV2.makeRelated(
+                CodexDataV2.getShipSystemEntryId("sotf_intrusionprotocol"),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        CodexDataV2.makeRelated(
+                CodexDataV2.getShipSystemEntryId("sotf_breachwarp"),
+                CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
+        );
+        CodexDataV2.makeRelated(
                 CodexDataV2.getHullmodEntryId(HullMods.ECM),
                 CodexDataV2.getSkillEntryId(Skills.ELECTRONIC_WARFARE),
                 CodexDataV2.getSkillEntryId(SotfIDs.SKILL_CYBERWARFARE)
@@ -725,7 +743,7 @@ public class SotfModPlugin extends BaseModPlugin {
         if (ship.isFighter()) return null;
 
         // AI config for the "Fearless" behavior displayed by vanilla's automated ships, aka Reckless+, aka "unbound S key"
-        ShipAIConfig fearlessConfig = new ShipAIConfig();
+        ShipAIConfig fearlessConfig = new ShipAIConfig(ship);
         fearlessConfig.alwaysStrafeOffensively = true;
         fearlessConfig.backingOffWhileNotVentingAllowed = false;
         fearlessConfig.turnToFaceWithUndamagedArmor = false;
@@ -746,7 +764,7 @@ public class SotfModPlugin extends BaseModPlugin {
 
         // Dustkeeper escort auxiliaries have hacked programming, so they're more passive
         if (ship.getVariant().hasHullMod(SotfIDs.HULLMOD_AUX_ESCORT)) {
-            ShipAIConfig auxEscortConfig = new ShipAIConfig();
+            ShipAIConfig auxEscortConfig = new ShipAIConfig(ship);
             auxEscortConfig.personalityOverride = Personalities.STEADY;
             return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, auxEscortConfig), CampaignPlugin.PickPriority.MOD_SET);
         }
@@ -762,7 +780,7 @@ public class SotfModPlugin extends BaseModPlugin {
         // Also add a memory flag that can be assigned to any officer to prevent their automated ships from being fearless
         if (ship.getCaptain().getFaction().getId().equals(SotfIDs.DUSTKEEPERS) || ship.getCaptain().getFaction().getId().equals(SotfIDs.DUSTKEEPERS_BURNOUTS)
                 || ship.getCaptain().getMemoryWithoutUpdate().contains(SotfIDs.OFFICER_NOT_FEARLESS)) {
-            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, new ShipAIConfig()), CampaignPlugin.PickPriority.MOD_SET);
+            return new PluginPick<ShipAIPlugin>(Global.getSettings().createDefaultShipAI(ship, new ShipAIConfig(ship)), CampaignPlugin.PickPriority.MOD_SET);
         }
 
         return null;

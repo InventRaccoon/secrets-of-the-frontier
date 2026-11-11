@@ -223,7 +223,7 @@ public class SotfAPromise extends HubMissionWithSearch {
                     system2.getNameWithLowercaseTypeShort() + ".", opad);
             info.addPara("Whoever it was going to meet, it seemed to put a great importance on this task. ", opad);
         } else if (currentStage == Stage.RESCUE_SIERRA) {
-            info.addPara("You met an AI by the name of Outrider-Annex-Courser, who has asked you to free " +
+            info.addPara("You met an AI by the name of Outrider-Infix-Courser, who has asked you to free " +
                     "\"Sierra\" from a station in the " +
                     system2.getNameWithLowercaseTypeShort() + ".", opad);
             info.addPara("Defeat the station's Remnant defenders and rescue her.", opad);

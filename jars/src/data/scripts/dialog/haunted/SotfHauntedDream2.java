@@ -23,10 +23,7 @@ public class SotfHauntedDream2 extends SotfHauntedDreamBase {
         addLine("And in your wonder, you forget for the briefest moments. You look down to see the barbed spear " +
                 "burst from your chest, then another, then-", 6, s);
 
-        if (stage == 7 && counter >= 0) {
-            addWakeUpOption();
-            stage = 8;
-        }
+        addWakeUpOption(7);
     }
 
     @Override

@@ -236,14 +236,15 @@ public class SotfDustkeeperBetrayalPlugin extends BaseEveryFrameCombatPlugin {
                     if (!canJoinBetrayal || engine.getFleetManager(0).getShipFor(traitor) == null || engine.getFleetManager(0).getShipFor(deployed) == null) {
                         continue;
                     }
-                    if (Misc.getDistance(engine.getFleetManager(0).getShipFor(traitor).getLocation(), engine.getFleetManager(0).getShipFor(deployed).getLocation()) > 1500f) {
-                        traitors.add(deployed);
+                    if (Misc.getDistance(engine.getFleetManager(0).getShipFor(traitor).getLocation(), engine.getFleetManager(0).getShipFor(deployed).getLocation()) < 1500f) {
                         hackedAutos.add(deployed);
                         tookAnyAutos = true;
                     }
                 }
             }
         }
+
+        traitors.addAll(hackedAutos);
 
         ArrayList<DeployedFleetMemberAPI> traitorsDeployed = new ArrayList<DeployedFleetMemberAPI>();
 

@@ -248,10 +248,6 @@ public class SotfDustkeeperFleetCreator implements CreateFleetPlugin {
 
 		fleet.getFleetData().sort();
 
-		if (params.withOfficers) {
-			addCommanderAndOfficers(fleet, params, random);
-		}
-
 		ShipVariantAPI flagshipVariant = null;
 		if (params.flagshipVariantId != null) {
 			flagshipVariant = Global.getSettings().getVariant(params.flagshipVariantId);
@@ -272,15 +268,31 @@ public class SotfDustkeeperFleetCreator implements CreateFleetPlugin {
 				flagshipPicker.add(pickVariant, pick.getWeight());
 			}
 			flagshipVariant = flagshipPicker.pick();
+		} else if (getFP(fleet) >= 60) {
+			WeightedRandomPicker<ShipVariantAPI> flagshipPicker = new WeightedRandomPicker<ShipVariantAPI>(random);
+			// pick flagships using default variant weights, not the adjusted weights for Dustkeepers
+			// (which are 0 to avoid the ships spawning in the combatLarge role)
+			for (RoleEntryAPI pick : Global.getSettings().getDefaultEntriesForRole("sotf_flagship_small")) {
+				ShipVariantAPI pickVariant = Global.getSettings().getVariant(pick.getVariantId());
+				if (!fleet.getFaction().knowsShip(pickVariant.getHullSpec().getBaseHullId())) continue;
+				flagshipPicker.add(pickVariant, pick.getWeight());
+			}
+			flagshipVariant = flagshipPicker.pick();
 		}
 
 		if (flagshipVariant != null) {
 			FleetMemberAPI newFlagship = Global.getFactory().createFleetMember(FleetMemberType.SHIP, flagshipVariant);
 			newFlagship.setCaptain(fleet.getFlagship().getCaptain());
+			newFlagship.getVariant().addTag(Tags.VARIANT_ALWAYS_RECOVERABLE);
 			fleet.getFleetData().removeFleetMember(fleet.getFlagship());
 			fleet.getFleetData().addFleetMember(newFlagship);
 			fleet.getFleetData().setFlagship(newFlagship);
 			fleet.getFleetData().sort();
+		}
+
+		// this needs to run after the flagship code otherwise it can't tell if the flagship is a Repose or not
+		if (params.withOfficers) {
+			addCommanderAndOfficers(fleet, params, random);
 		}
 
 		/**

@@ -10,7 +10,7 @@ import java.util.*;
 
 /**
  * Handles Cult of the Daydream drone launchers
- * One script to handle multiple launchers - just need to add entries to WING_IDS
+ * One script to handle multiple launchers - just need to add entries to WING_IDS and MAX_DRONES
  */
 
 public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeaponEffectPlugin {
@@ -24,8 +24,8 @@ public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeapon
 		WING_IDS.put("sotf_nettlerail", "sotf_nettle_launched_wing");
 
 		MAX_DRONES.put("sotf_barbmount", 2);
-		MAX_DRONES.put("sotf_barbrail", 6);
-		MAX_DRONES.put("sotf_nettlerail", 6);
+		MAX_DRONES.put("sotf_barbrail", 4);
+		MAX_DRONES.put("sotf_nettlerail", 4);
 	}
 
 	protected List<ShipAPI> fighters = new ArrayList<>();
@@ -39,6 +39,10 @@ public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeapon
 			if (!engine.isEntityInPlay(fighter) || fighter.isHulk()) {
 				fighters.remove(fighter);
 			}
+		}
+
+		if (getWingId(weapon) == null) {
+			WING_IDS.put(weapon.getId(), "sotf_barb_launched_wing");
 		}
 
 		if (fighters.size() >= getMaxDrones(weapon)) {
@@ -78,6 +82,23 @@ public class SotfBarbMountEffect implements OnFireEffectPlugin, EveryFrameWeapon
 
 			// inherit projectile velocity
 			Vector2f.add(curr.getVelocity(), projectile.getVelocity(), curr.getVelocity());
+
+			if (projectile.getSource() != null && projectile.getSource().getHullSpec().getHullId().equals("rat_gilgamesh_drone")) {
+				Global.getCombatEngine().addPlugin(new BaseEveryFrameCombatPlugin() {
+					float timer = 0;
+					// time until drone self-destructs
+					final float max = 15f + ((float) Math.random());
+					@Override
+					public void advance(float amount, List<InputEventAPI> events) {
+						if (Global.getCombatEngine().isPaused()) return;
+						timer += amount * Global.getCombatEngine().getTimeMult().getModifiedValue();
+						if (timer >= max) {
+							Global.getCombatEngine().applyDamage(curr, curr.getLocation(), 1000, DamageType.HIGH_EXPLOSIVE, 0f, true, false, curr);
+							Global.getCombatEngine().removePlugin(this);
+						}
+					}
+				});
+			}
 		}
 		
 		engine.removeEntity(projectile);

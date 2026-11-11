@@ -14,7 +14,7 @@ import org.lwjgl.util.vector.Vector2f;
 import java.util.Random;
 
 /**
- *	Manages the appearances of one Wintry-Annex-Wendigo, Dustkeeper hunter-killer
+ *	Manages the appearances of one Wintry-Infix-Wendigo, Dustkeeper hunter-killer
  *  NOWHERE TO HIDE, DARLING MINE
  */
 
@@ -65,21 +65,25 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		//}
 	}
 
+	// Wendigo hunts player for using Courser Protocol while hostile to Dustkeepers
 	public static void sendWendigoCourserHunt() {
 		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoCourserHunt", "$sotf_WCHuntFleet");
 		e.endCreate();
 	}
 
+	// Wendigo hunts player and taunts them at start of Haunted playthrough
 	public static void sendWendigoHauntedWarning() {
 		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoHauntedWarning", "$sotf_WHauntedWarningFleet");
 		e.endCreate();
 	}
 
+	// Wendigo attacks player for satbombing during Haunted
 	public static void sendWendigoHauntedHunt() {
 		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoHauntedHunt", "$sotf_WHauntedHuntFleet");
 		e.endCreate();
 	}
 
+	// Wendigo hunts player for failing their Nexus mission
 	public static void sendWendigoFailureHunt() {
 		SotfWendigoEncounter e = createStandardWendigoHunt("sotfWendigoFailHunt", "$sotf_WFailHuntFleet");
 		e.endCreate();
@@ -105,6 +109,7 @@ public class SotfWendigoEncounterManager implements EveryFrameScript {
 		e.beginCreate();
 		e.triggerCreateFleet(HubMissionWithTriggers.FleetSize.MAXIMUM, HubMissionWithTriggers.FleetQuality.SMOD_2,
 				SotfIDs.DUSTKEEPERS, FleetTypes.PATROL_LARGE, new Vector2f());
+		e.triggerSetFleetSizeFraction(1.4f);
 		e.triggerSetFleetOfficers(HubMissionWithTriggers.OfficerNum.ALL_SHIPS,
 				HubMissionWithTriggers.OfficerQuality.UNUSUALLY_HIGH);
 		// otherwise may get Wendigo in one capital and a second "fleet commander" warnet crux in another

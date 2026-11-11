@@ -112,6 +112,7 @@ public class SotfHauntedStart extends CustomStart {
         ExerelinSetupData.getInstance().hardMode = true;
         ExerelinSetupData.getInstance().freeStart = true;
         ExerelinSetupData.getInstance().randomStartLocation = true;
+        ExerelinSetupData.getInstance().backgroundId = null;
         ExerelinSetupData.getInstance().dModLevel = 3;
 
         data.addScript(new Script() {

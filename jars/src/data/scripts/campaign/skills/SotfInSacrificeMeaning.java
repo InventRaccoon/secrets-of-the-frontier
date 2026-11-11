@@ -75,8 +75,8 @@ public class SotfInSacrificeMeaning {
 			}
 
 			info.addPara("When above %s hard flux and within %s units of an allied ship, automatically unload %s of maximum flux into the ally's capacitors", 0f, hc, hc,
-					"" + (int) (FLUX_THRESHOLD * 100f) + "%", "" + (int) (UNLOAD_PERCENT * 100f) + "%", seconds);
-			info.addPara("This effect cannot trigger for %s seconds after a flux unload, nor while the ship is phased or already overloading", 0f, hc, hc, "" + (int) COOLDOWN_SECONDS);
+					"" + (int) (FLUX_THRESHOLD * 100f) + "%", "" + (int) RANGE, "" + (int) (UNLOAD_PERCENT * 100f) + "%");
+			info.addPara("This effect cannot trigger for %s %s after a flux unload, nor while the ship is phased or already overloading", 0f, hc, hc, "" + (int) COOLDOWN_SECONDS, seconds);
 			info.addPara("Always unloads flux into the capacitors of the lowest-flux ally within range, and dumps soft flux before hard flux", hc, 0f);
 		}
 

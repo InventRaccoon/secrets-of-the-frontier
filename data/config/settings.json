@@ -31,7 +31,7 @@
 	# END LUNA-LIB SETTINGS
 	#
 	
-	"sotf_allowSupportTraits":false, # if true, nanite swarm gains a "support" trait in very large battles, which have wide-reaching effects (currently disabled by default because there are not many support traits yet)
+	"sotf_allowSupportTraits":true, # if true, nanite swarm gains a "support" trait in very large battles, which have wide-reaching effects (currently disabled by default because there are not many support traits yet)
 	
 	"sotf_unchainThyReckoning":false, # if true, nanite swarm is not restricted in the strength or uniqueness of the ships it can infest
 	
@@ -79,6 +79,8 @@
 		"sotf_recruitWarmind":0,
 		# A Memory: story point to allow a phase frigate wingman
 		"sotf_AMHarmonicTuning":1,
+		# THFWF
+		"sotf_danceWithBarrow":0,
 		# Talk down Barrow without a fight					(?)
 		"sotf_convinceBarrow":0,
 		# trick Seraph during her cargo scan dialogue
@@ -92,6 +94,9 @@
 	},
 	
 	"graphics":{
+		"cargo":{
+			"sotf_daydreamanalyzer_glow":"graphics/icons/cargo/sotf_daydreamanalyzer_glow.png",
+		},
 		"events":{
 			"sotf_hallowhall":"graphics/icons/missions/sotf_hallowhall.png",
 			"sotf_hallowhall_injector":"graphics/icons/missions/sotf_hallowhall_injector.png",
@@ -166,6 +171,12 @@
 			
 			"white":"graphics/portraits/sotf_dustkeeper_white.png",
 			"white_mini":"graphics/icons/cargo/sotf_dustkeeper_white_mini.png",
+			
+			"orange":"graphics/portraits/sotf_dustkeeper_orange.png",
+			"orange_mini":"graphics/icons/cargo/sotf_dustkeeper_orange_mini.png",
+			
+			"indigo":"graphics/portraits/sotf_dustkeeper_indigo.png",
+			"indigo_mini":"graphics/icons/cargo/sotf_dustkeeper_indigo_mini.png",
 		},
 		"objectives":{
 		    "sotf_objective_reinf":"graphics/warroom/sotf_objective_reinf.png",
@@ -199,6 +210,8 @@
 			"sotf_covenant_diffuse":"graphics/ships/sierra/sotf_pledge_glow2.png",
 			
 			"sotf_thorn_glow":"graphics/ships/dreaming/sotf_thorn_glow.png",
+			"sotf_rose_glow_front":"graphics/ships/dreaming/sotf_rose_glow_front.png",
+			"sotf_rose_glow_back":"graphics/ships/dreaming/sotf_rose_glow_back.png",
 			
 			"sotf_spirit_ward_1":"graphics/fx/sotf_spirit_ward_noise1.png",
 			"sotf_spirit_ward_2":"graphics/fx/sotf_spirit_ward_noise2.png",
@@ -223,6 +236,7 @@
 			
 			"sotf_cotl_reconstitution":"graphics/icons/skills/daydream/sotf_polarizednanorepair.png",
 			"sotf_cotl_hullsiphon":"graphics/icons/skills/daydream/sotf_hullsiphon.png",
+			"sotf_cotl_norestforthewicked":"graphics/icons/skills/daydream/sotf_perfectreplication.png",
 			
 			"sotf_cotl_blessingofthedaydream":"graphics/icons/skills/daydream/sotf_blessingofthedaydream.png",
 			"sotf_cotl_dreameater":"graphics/icons/skills/daydream/sotf_dreameater.png",
@@ -243,6 +257,7 @@
 			"sotf_mimic_expiring":"graphics/icons/danger2.png",
 			"sotf_mimic_vigor":"graphics/icons/tactical/cr_tactical2.png",
 			
+			"sotf_targetui_corner":"graphics/icons/sotf_targetcorner.png",
 			"sotf_skull_icon":"graphics/icons/skills/sotf_skull.png",
 			"sotf_fel_pointer":"graphics/icons/empty_fleet.png",
 		}

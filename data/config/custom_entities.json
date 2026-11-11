@@ -277,4 +277,8 @@
 		"baseId":"derelict_cryosleeper",
 	},
 	
+	"sotf_bravoWormholeCache":{
+		"baseId":"large_cache",
+	},
+	
 }

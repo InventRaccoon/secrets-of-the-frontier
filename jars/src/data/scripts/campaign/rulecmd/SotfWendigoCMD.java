@@ -1,13 +1,19 @@
-// rulecommands for Annex-Wendigo
+// rulecommands for Infix-Wendigo
 package data.scripts.campaign.rulecmd;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
+import com.fs.starfarer.api.campaign.comm.IntelInfoPlugin;
+import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
+import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.rulecmd.BaseCommandPlugin;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.campaign.missions.dkcontact.SotfDKContactIntel;
+import data.scripts.campaign.plugins.wendigo.SotfWendigoEncounterManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +30,32 @@ public class SotfWendigoCMD extends BaseCommandPlugin
 
         cmd = params.get(0).getString(memoryMap);
 
+        PersonAPI wendigo = SotfPeople.getPerson(SotfPeople.WENDIGO);
+        MarketAPI market;
+
         switch (cmd) {
             case "canOfferAFFW":
                 return !getStations().isEmpty();
+            case "addContact":
+                market = dialog.getInteractionTarget().getMarket();
+                SotfDKContactIntel intel = new SotfDKContactIntel(wendigo, market);
+                Global.getSector().getIntelManager().addIntel(intel, false, dialog.getTextPanel());
+                Global.getSector().getMemoryWithoutUpdate().set("$sotf_gotWendigoContact", true);
+
+                market.getCommDirectory().addPerson(wendigo);
+                return true;
+            case "sendHatredHunter":
+                market = dialog.getInteractionTarget().getMarket();
+                for (IntelInfoPlugin contact : Global.getSector().getIntelManager().getIntel(SotfDKContactIntel.class)) {
+                    SotfDKContactIntel contactIntel = (SotfDKContactIntel) contact;
+                    if (contactIntel.getPerson().getId().equals(SotfPeople.WENDIGO)) {
+                        contactIntel.loseContact(dialog);
+                    }
+                }
+                market.getCommDirectory().removePerson(wendigo);
+
+                SotfWendigoEncounterManager.sendWendigoHatredHunt();
+                return true;
             default:
                 return true;
         }

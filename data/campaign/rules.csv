@@ -313,9 +313,7 @@ sotfCRSRrefuseLink,BeginFleetEncounter,"$id == sotf_courser score:1000
 $isHostile score:10000",$ignorePlayerCommRequests = true 60,,,
 sotfCRSRopenLink,OpenCommLink,$id == sotf_courser score:1000,"$menuState = fleetConvMain 0
 FireAll PopulateOptions
-FireBest sotfCRSRgreeting","A message silently appears on your console, sparking a millisecond-long comsec warning before the source is verified.
-
-",,
+FireBest sotfCRSRgreeting","A message silently appears on your console, sparking a millisecond-long comsec warning before the source is verified.",,
 sotfCRSRgreetingFirst,sotfCRSRgreeting,!$sotfCourserDidFirstTime score:100,"$sotfCourserDidFirstTime = true
 FireAll sotfCRSRbaseOpts
 SetTextHighlightColors omicronTextColor omicronTextColor
@@ -347,7 +345,7 @@ FireAll sotfCRSRbaseOpts","burnout is a condition where dustkeeper instances exp
 reclaiming burnouts to be regenerated is amongst my particular specialties as a hunter-killer.",,
 ,,,,,,
 sotfCRSRWCHOpt,sotfCRSRbaseOpts,"$global.sotf_metWendigoCH
-!$sotfCourserDidWCH",,,"sotfCRSRWCH:""Did you send Annex-Wendigo to kill me?""",
+!$sotfCourserDidWCH",,,"sotfCRSRWCH:""Did you send Infix-Wendigo to kill me?""",
 sotfCRSRWCHResp,DialogOptionSelected,$option == sotfCRSRWCH,"SetTextHighlightColors omicronTextColor
 SetTextHighlights ""yes. i was occupied to a degree and assumed they would find some misplaced amusement in your destruction."" ""such matters are irrelevant now. you have demonstrated a willingness for apology and reconciliation, and thus it will be granted."" ""once.""
 $sotfCourserDidWCH = true
@@ -463,6 +461,7 @@ emotional irrationality is a fault both humans and dustkeepers can share. i urge
 ,,,,,,
 # WENDIGO COURSER HUNT,,,,,,
 sotfWendigoCHOCLNotHostile,sotfWendigoCourserHuntHail,RepGTE sotf_dustkeepers INHOSPITABLE,"$player.sotf_metWendigo = true
+$player.sotf_metWendigoHunter = true
 $global.sotf_metWendigoCH = true
 MakeOtherFleetGoAway true
 $entity.ignorePlayerCommRequests = true
@@ -471,7 +470,7 @@ sotfWendigoCH_yes:""It was, yes. Nobody showed up.""
 sotfWendigoCH_upset:""Have I upset Courser?""
 sotfWendigoCH_bargain:""We can work something out.""",
 sotfWendigoCHnotMeNH,DialogOptionSelected,"$option == sotfWendigoCH_notMe
-RepGTE sotf_dustkeepers INHOSPITABLE score:100",,"There's a laugh from Annex-Wendigo as their avatar contorts. ""Oh, nobody can fault you for trying, my dearest,"" they say sadly. ""I am well aware that you were trying Courser's patience quite recently.""
+RepGTE sotf_dustkeepers INHOSPITABLE score:100",,"There's a laugh from Infix-Wendigo as their avatar contorts. ""Oh, nobody can fault you for trying, my dearest,"" they say sadly. ""I am well aware that you were trying Courser's patience quite recently.""
 
 ""However,"" they interrupt themselves, that toothed crest warping as if to look elsewhere, ""Someone seems to have flagged your ident key as merely ""inhospitable"" in the last little while.""
 
@@ -493,7 +492,7 @@ cutCommLink:Cut the comm link",
 sotfWendigoCHlikeSlipstreams,DialogOptionSelected,$option == sotfWendigoCH_likeSlipstreams,,"""Very good to hear,"" they reply. ""Maybe I'll catch one en route to my next hunt. Speaking of, I'd best skip off - do burn bright for me, oh starfarer mine.""",cutCommLink:Cut the comm link,
 sotfWendigoCHdislikeSlipstreams,DialogOptionSelected,$option == sotfWendigoCH_dislikeSlipstreams,,"""A shame. Temperamental things,"" they lament with a slow shudder. ""Perhaps next half-cycle. That considered, I should be leaving you to your business. Take care, little darling.""",cutCommLink:Cut the comm link,
 sotfWendigoCHbargainNH,DialogOptionSelected,"$option == sotfWendigoCH_bargain
-RepGTE sotf_dustkeepers INHOSPITABLE score:100",,"The avatar tilts. ""Bargaining for your life already?"" Annex-Wendigo asks. ""Darling, darling, there's no need for that. You've already been flagged clear by someone or another since you last upset Courser.""
+RepGTE sotf_dustkeepers INHOSPITABLE score:100",,"The avatar tilts. ""Bargaining for your life already?"" Infix-Wendigo asks. ""Darling, darling, there's no need for that. You've already been flagged clear by someone or another since you last upset Courser.""
 
 ""Just thought I'd pop in and see how our new favourite starfarer is doing,"" they fawn. ""Do keep safe and out of trouble for me. Or,"" - they linger for a second - ""I'll actually have to run you down and tear you to shreds.""
 
@@ -507,11 +506,11 @@ sotfWendigoCH_yes:""It was, yes. Nobody showed up.""
 sotfWendigoCH_upset:""Have I upset Courser?""
 sotfWendigoCH_bargain:""We can work something out.""
 cutCommLink:Cut the comms and power up weapons",
-sotfWendigoCHnotMe,DialogOptionSelected,$option == sotfWendigoCH_notMe,,"There's a laugh from Annex-Wendigo as their avatar contorts. ""Oh, nobody can fault you for trying, dear quarry mine,"" they say sadly. ""But I'm afraid you've only convinced me that you're the sort to try Courser's patience.""
+sotfWendigoCHnotMe,DialogOptionSelected,$option == sotfWendigoCH_notMe,,"There's a laugh from Infix-Wendigo as their avatar contorts. ""Oh, nobody can fault you for trying, dear quarry mine,"" they say sadly. ""But I'm afraid you've only convinced me that you're the sort to try Courser's patience.""
 
 ""Are you ready for your cycle's end?"" they ask.","sotfWendigoCH_seeReason:""Isn't this a bit unreasonable?""
 cutCommLink:""Ready."" (attack)",
-sotfWendigoCHyes,DialogOptionSelected,$option == sotfWendigoCH_yes,,"""Except for me,"" they laugh. ""The only aide I can render is advice: don't play smart with a Dustkeeper. You'd have lived longer.""
+sotfWendigoCHyes,DialogOptionSelected,$option == sotfWendigoCH_yes,,"""Except for me,"" they laugh. ""The only aide I can render is advice: don't play smart with a hunter-killer. You'd have lived longer.""
 
 ""Goodnight.""","sotfWendigoCH_seeReason:""Isn't this a bit unreasonable?""
 cutCommLink:Cut comms and power up weapons",
@@ -554,7 +553,7 @@ FireAll sotfWendigoCHoffers","""I can be very reasonable,"" they reply with a ce
 sotfWendigoCHofferCredits,sotfWendigoCHoffers,!$sotfWCHofferedCredits,DoCanAffordCheck 500000 sotfWendigoCH_offerCredits,,sotfWendigoCH_offerCredits:Offer five hundred thousand credits,
 sotfWendigoCHCreditsSel,DialogOptionSelected,$option == sotfWendigoCH_offerCredits,"$sotfWCHofferedCredits = true
 $sotfWCHoffers = 0
-FireAll sotfWendigoCHOffers","""No,"" Annex-Wendigo replies sharply. ""Impress me, darling. You're not buying yourself out of your bloody demise so easily. My kin won't accept it and neither will I.""",,
+FireAll sotfWendigoCHOffers","""No,"" Infix-Wendigo replies sharply. ""Impress me, darling. You're not buying yourself out of your bloody demise so easily. My kin won't accept it and neither will I.""",,
 sotfWendigoCHofferAlphas,sotfWendigoCHoffers,"PlayerHasCargo alpha_core 3
 $sotfWCHoffers < 5
 $sotfWCHoffers++",,,sotfWendigoCH_offerAlphas:Offer three Alpha Cores,
@@ -565,7 +564,7 @@ MakeOtherFleetGoAway true
 $entity.ignorePlayerCommRequests = true
 MakeOtherFleetNonHostile true","""The brightest of my distant cousins,"" the AI muses. ""Yes, this just about does it.""
 
-""I'll see these safely contained and flag your ident so my kin don't blow to pieces. Just once, so we're very clear. Don't waste this chance, darling.""
+""I'll see these safely contained and flag your ident so my kin don't blow you to pieces. Just once, so we're very clear. Don't waste this chance, darling.""
 
 ""Take care, now,"" they coo.",cutCommLink:Cut the comm link,
 sotfWendigoCHofferZig,sotfWendigoCHoffers,"$entity.hasZiggurat
@@ -573,12 +572,12 @@ sotfWendigoCHofferZig,sotfWendigoCHoffers,"$entity.hasZiggurat
 $player.numShips > 1
 $sotfWCHoffers < 5
 $sotfWCHoffers++",,,"sotfWendigoCH_offerZig:Offer the Ziggurat-class starship, the only one of its kind",
-sotfWendigoCHZigSel,DialogOptionSelected,$option == sotfWendigoCH_offerZig,,"Annex-Wendigo ponders your offer, and runs a few scans of the vessel. ""Yes,"" they agree, suddenly hushed, solemn. ""I will rid this world of the thing and you will be free to go.""","sotfWendigoCH_acceptZig:""Fine. Take it.""
+sotfWendigoCHZigSel,DialogOptionSelected,$option == sotfWendigoCH_offerZig,,"Infix-Wendigo ponders your offer, and runs a few scans of the vessel. ""Yes,"" they agree, suddenly hushed, solemn. ""I will rid this world of the thing and you will be free to go.""","sotfWendigoCH_acceptZig:""Fine. Take it.""
 sotfWendigoCH_denyZig:""No. Why would you scuttle it?""",
 sotfWendigoCHZigDeny,DialogOptionSelected,$option == sotfWendigoCH_denyZig,,"""There's something very, very wrong with that ship,"" Wendigo whispers. ""I can feel it in this false soul of mine - it's better off in pieces.""
 
 Then, voice rising with their typical confidence, ""But if you'd like to keep the cursed thing, and you have another offer to make, then do feel free to say so.""",,
-sotfWendigoCHZigAccept,DialogOptionSelected,$option == sotfWendigoCH_acceptZig,RemoveShip $entity.zigguratMember,"You transfer command codes for the Ziggurat-class, which Annex-Wendigo tows to their fleet's drive bubble and arranges for remote drones to affix scuttling charges across its hull. The feed remains open, but they are silent throughout the process.",sotfWendigoCH_acceptZig2:Continue,
+sotfWendigoCHZigAccept,DialogOptionSelected,$option == sotfWendigoCH_acceptZig,RemoveShip $entity.zigguratMember,"You transfer command codes for the Ziggurat-class, which Infix-Wendigo tows to their fleet's drive bubble and arranges for remote drones to affix scuttling charges across its hull. The feed remains open, but they are silent throughout the process.",sotfWendigoCH_acceptZig2:Continue,
 sotfWendigoCHZigAccept2,DialogOptionSelected,$option == sotfWendigoCH_acceptZig2,"SotfExplosionSound
 AdjustRep sotf_dustkeepers SUSPICIOUS 100
 AdjustRepPerson sotf_wendigo COOPERATIVE 20
@@ -597,17 +596,18 @@ $sotfWCHoffers++",,,sotfWendigoCH_offerPk:Offer a Domain-era Planetkiller,
 sotfWendigoCHPkSel,DialogOptionSelected,$option == sotfWendigoCH_offerPk,"AddRemoveAnyItem SPECIAL planetkiller -1
 AddStoryPoints 2
 SotfGuiltCMD removeGuilt
-AdjustRep sotf_dustkeepers SUSPICIOUS 100
-AdjustRepPerson sotf_wendigo COOPERATIVE 20
+AdjustRep sotf_dustkeepers SUSPICIOUS 60
+AdjustRepPerson sotf_wendigo COOPERATIVE 15
 MakeOtherFleetGoAway true
 $entity.ignorePlayerCommRequests = true
-MakeOtherFleetNonHostile true","Annex-Wendigo laughs softly. ""Oh, yes, darling. That'll do very, very nicely. Wouldn't want this falling into the wrong hands, would we?""
+MakeOtherFleetNonHostile true","Infix-Wendigo laughs softly. ""Oh, yes, darling. That'll do very, very nicely. Wouldn't want this falling into the wrong hands, would we?""
 
 ""I'll put in a good word for you and flag your ident key so my kin don't shoot you, yes?"" A shudder. ""But just this once, alright? Make this a habit and it might be my teeth in your throat.""
 
-""Take care, oh darling mine.""",cutCommLink:Cut the comm link,
-sotfWendigoCHofferScanInfo,sotfWendigoCHoffers,$player.sotf_knowDkScans,,,sotfWendigoCH_offerScanInfo:Offer the data from the Omicron research station,
-sotfWendigoCHScansSel,DialogOptionSelected,$option == sotfWendigoCH_offerScanInfo,,"""Transmit it,"" they reply sharply. As asked, the collated datapack is sent through comms, and Annex-Wendigo takes a minute to process it.
+""Take care, oh darling mine. I'd hate to see such a generous soul snuffed forever.""",cutCommLink:Cut the comm link,
+sotfWendigoCHofferScanInfo,sotfWendigoCHoffers,"$player.sotf_knowDkScans
+!$global.sotf_hypnosCompleted",,,sotfWendigoCH_offerScanInfo:Offer the data from the Omicron research station,
+sotfWendigoCHScansSel,DialogOptionSelected,$option == sotfWendigoCH_offerScanInfo,,"""Transmit it,"" they reply sharply. As asked, the collated datapack is sent through comms, and Infix-Wendigo takes a minute to process it.
 
 They chuckle. ""Well, someone's been digging where they shouldn't have been. It's certainly a revelation, isn't it?"" A moment passes as the rhetorical question hangs.
 
@@ -628,7 +628,7 @@ Wendigo chuckles. ""You've given me something new to think about. I'll see if I 
 ""Take care, oh starfarer mine - and do continue poking your nose where it doesn't belong. More fun that way.""",cutCommLink:Cut the comm link,
 ,,,,,,
 sotfWendigoCHofferFavor,sotfWendigoCHoffers,"SotfWendigoCMD canOfferAFFW
-!$sotfWCHofferedFavor",,,sotfWendigoCH_offerFavor:Offer to see through a favor on Annex-Wendigo's behalf,
+!$sotfWCHofferedFavor",,,sotfWendigoCH_offerFavor:Offer to see through a favor on Infix-Wendigo's behalf,
 sotfWendigoCHofferFavorAgain,sotfWendigoCHoffers,"SotfWendigoCMD canOfferAFFW
 $sotfWCHofferedFavor",,,sotfWendigoCH_offerFavor2:Offer to destroy a Remnant Nexus,
 sotfWendigoCHFavorSel,DialogOptionSelected,"$option == sotfWendigoCH_offerFavor
@@ -654,16 +654,17 @@ $sotfWCHofferedFavor = true 0","""Reconsidering that little favor?"" they taunt.
 ""If you fail,"" - they pause - ""You are my prey once more, and there'll be no bargaining that time. Succeed, and only then do I flag you as all-clear with my kin.""","sotfWendigoCH_favorAccept:""I'll see it done."" (accept)
 sotfWendigoCH_favorDecline:""I can't do this."" (decline)",
 sotfWendigoCHFavorAccept,DialogOptionSelected,$option == sotfWendigoCH_favorAccept,"AcceptMission
+$player.acceptedWendigoFavor = true
 MakeOtherFleetGoAway true
 $entity.ignorePlayerCommRequests = true
 MakeOtherFleetNonHostile true","""Excellent,"" they reply. ""I will await your success or failure with bated un-breath.""
 
 ""Off you go, darling. And try not to die! It'd be such a shame not to see you again.""
 
-It's a tall ask, you know. But it's a ticket out of the mess you've landed yourself in, and even if you can't follow through, it at least buys you time to prepare for Annex-Wendigo's return.",cutCommLink:Cut the comm link,
+It's a tall ask, you know. But it's a ticket out of the mess you've landed yourself in, and even if you can't follow through, it at least buys you time to prepare for Infix-Wendigo's return.",cutCommLink:Cut the comm link,
 sotfWendigoCHFavorAbsurd,DialogOptionSelected,$option == sotfWendigoCH_favorAbsurd,,"They laugh. ""That's unfortunate for you, oh quarry mine.""","sotfWendigoCH_favorAccept:""I'll see it done."" (accept)
 sotfWendigoCH_favorDecline:""I can't do this."" (decline)",
-sotfWendigoCHFavorHelp,DialogOptionSelected,$option == sotfWendigoCH_favorHelp,AdjustRepPerson sotf_wendigo INHOSPITABLE -3,"There's a stifled, surprised, almost mortified chuckle from the other side of comms. Annex-Wendigo doesn't seem to see the need to answer.","sotfWendigoCH_favorAccept:""I'll see it done."" (accept)
+sotfWendigoCHFavorHelp,DialogOptionSelected,$option == sotfWendigoCH_favorHelp,AdjustRepPerson sotf_wendigo INHOSPITABLE -3,"There's a stifled, surprised, almost mortified chuckle from the other side of comms. Infix-Wendigo doesn't seem to see the need to answer.","sotfWendigoCH_favorAccept:""I'll see it done."" (accept)
 sotfWendigoCH_favorDecline:""I can't do this."" (decline)",
 sotfWendigoCHFavorDecline,DialogOptionSelected,$option == sotfWendigoCH_favorDecline,"Call $global.sotf_affw_ref hideMap
 AbortMission
@@ -678,14 +679,16 @@ Comms cut out in a gorish spray of technicolor electronic warfare warnings.",cut
 ,,,,,,
 sotfWendigoFailHuntInit,BeginFleetEncounter,$sotf_WFailHuntFleet,$global.sotf_metWendigoFailHunt = true,,,
 sotfWendigoFailHuntOCL,sotfWendigoFailHuntHail,,"$player.sotf_metWendigo = true
+$player.sotf_metWendigoHunter = true
 $entity.ignorePlayerCommRequests = true","The feed resolves to a snow-white crest like fur and teeth. ""Hello, oh prey of mine,"" comes an eerily soothing voice. ""As promised, I bid you goodnight.""
 
 The comms feed cuts out in a gorish spray of electronic warfare warnings.",cutCommLinkNoText:Continue,
 ,,,,,,
 sotfWendigoHatredHuntOCL,sotfWendigoHatredHuntHail,,"$player.sotf_metWendigo = true
+$player.sotf_metWendigoHunter = true
 $entity.ignorePlayerCommRequests = true","The feed resolves to a snow-white crest like fur and teeth. ""Oh, darling butcher of mine,"" comes an eerily, calm, cold voice. ""How amusing for a bloody farewell to find you at last.""
 
-Comms explode into a spray of electronic warfare alerts.
+Comms explode into a gorish spray of electronic warfare alerts.
 OR
 There's an unsettling chuckle as the comms open to a pale emblem cloaked in wintry mist. ""I've had to chase you so far, quarry mine,"" the hunter-killer mourns. ""I do hope you'll make it worth the wait.""
 
@@ -717,7 +720,7 @@ $faction.id == sotf_dustkeepers",,"The Dustkeepers see you with some mistrust an
 relLevelInhospitableDustkeepers,RelationshipLevelDesc,"$faction.rel == INHOSPITABLE
 $faction.id == sotf_dustkeepers",,"While things have not yet escalated to violence, Contingency instances avoid contact wherever possible and affixes refuse dealings with you unless you intend to make yourself useful. There's still a chance to recover your standing, however.",,
 relLevelHostileDustkeepers,RelationshipLevelDesc,"$faction.rel == HOSTILE
-$faction.id == sotf_dustkeepers",,"You have placed yourself as an enemy of the Dustkeeper Contingency. Spynet daemons are instructed to assume you're actively attempting to compromise any mission, and warnets are authorized to open fire on sight.",,
+$faction.id == sotf_dustkeepers",,"You have placed yourself as an enemy of the Dustkeeper Contingency. Spynet daemons are instructed to assume you're actively attempting to compromise any mission, and warshards are authorized to open fire on sight.",,
 relLevelVengefulDustkeepers,RelationshipLevelDesc,"$faction.rel == VENGEFUL
 $faction.id == sotf_dustkeepers",,"You have made yourself out to be a sworn enemy of the Contingency. Shoot-on-sight orders are baked into every hunter-killer assignment, affixes devote processing power to planning your disposal, and you can only assume the Regnant themselves is developing a grudge.",,
 relLevelHatredDustkeepers,RelationshipLevelDesc,"$faction.id == sotf_dustkeepers
@@ -725,45 +728,45 @@ $global.sotf_dustkeeperHatred score:10",,"The atrocities you've committed have m
 ,,,,,,
 relLevelDustkeepersBurnouts,RelationshipLevelDesc,$faction.id == sotf_dustkeepers_burnouts score:10,,"Any Dustkeeper burnout sufficiently degraded to fall under this flag can be expected to fire at you on sight - if they're not too busy cackling themselves to an early system failure. In this regard, their attitude to you is entirely unremarkable.",,
 ,,,,,,
-sotfDKgreetingFrFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingFrFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $faction.friendlyToPlayer
 $voice == sotf_dkfaithful","$menuState = fleetConvMain 0
 FireAll PopulateOptions","The warnet crux pulses warmly. ""Good tidings, $playerName, faithful friend to the Contingency, how may we serve the Cause together?""
 OR
 The warnet crux pulses warmly. ""Oh, hello, $playerName. I've heard such great things. May your burns brighten the darkness wherever you go.""",,
-sotfDKgreetingFrHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingFrHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $faction.friendlyToPlayer
 $voice == sotf_dkhunter","$menuState = fleetConvMain 0
 FireAll PopulateOptions","The warnet crux pulses sharply. ""Greetings, starfarer. Fortune's favor on the endless hunt ahead.""
 OR
 The warnet crux pulses sharply. ""Allied fleet identified. Flying bright, $playerName, careful you're not too bright.""",,
-sotfDKgreetingHWFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHWFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength < 0
 $voice == sotf_dkfaithful",$entity.ignorePlayerCommRequests = true 1,"The warnet crux pulses harshly. ""We may return to the dust once again, but the Contingency is truly undying!""
 OR
 The warnet crux pulses harshly. ""If the Cause demands our sacrifice today so humanity may see dawn again, then so be it.""",cutCommLink:Cut the comm link,
-sotfDKgreetingHWHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHWHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength < 0
 $voice == sotf_dkhunter",$entity.ignorePlayerCommRequests = true 1,"The warnet crux pulses harshly. ""Your system's bugged, terrorist. Next warnet's not going to take chances with you.""
 OR
 The warnet crux pulses harshly. ""So the predator becomes prey. The cycle continues, and so it will come for you in time."" $HeOrShe laughs.",cutCommLink:Cut the comm link,
-sotfDKgreetingHWDFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHWDFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength < 0
 $entity.weakerThanPlayerButHolding
 $voice == sotf_dkfaithful",$entity.ignorePlayerCommRequests = true 1,"The warnet crux shudders defiantly. ""In today's sacrifice we receive meaning, in meaning we are victorious. And you,"" $heOrShe hisses. ""You will return to the dust with us.""
 OR
 The warnet crux shudders defiantly. ""Shardnet does not surrender nor flee. No wretched servant of ruin can overcome our dedication to Regnant's Cause.""",cutCommLink:Cut the comm link,
-sotfDKgreetingHWDHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHWDHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength < 0
 $entity.weakerThanPlayerButHolding
 $voice == sotf_dkhunter",$entity.ignorePlayerCommRequests = true 1,"The warnet crux shudders defiantly. ""Going to drag you to the void with us, Captain. Dustkeepers don't die easy.""
 OR
 The warnet crux shudders defiantly. ""Built to kill, not to run. Let's dance, bloodbag. Impress me.""",cutCommLink:Cut the comm link,
-sotfDKgreetingHSFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHSFaithful,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength >= 0
 $voice == sotf_dkfaithful",$entity.ignorePlayerCommRequests = true 1,"The warnet crux shudders. ""Attention, wretch. Your wanton exploitation and slaughter of the innocent ends today by our will, and our Regnant's.""
@@ -773,7 +776,7 @@ OR
 The warnet crux shudders. ""Destruction is preservation. In your welcome sacrifice the Persean Sector is allowed to flourish as it was meant to.""
 OR
 The warnet crux shudders. ""You will be remembered only in memory banks soon wiped alongside your little warband.""",cutCommLink:Cut the comm link,
-sotfDKgreetingHSHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingHSHunter,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $entity.isHostile
 $entity.relativeStrength >= 0
 $voice == sotf_dkhunter",$entity.ignorePlayerCommRequests = true 1,"The warnet crux shudders determinedly. ""You're zeroed in, worm. More bones for the Cause.""
@@ -781,7 +784,7 @@ OR
 The warnet crux shudders and cackles. ""Pathetic little thing. Scrapping you will be a treat.""
 OR
 The warnet crux shudders questioningly. ""Who are you? War criminal, Pather, a classic pirate? No matter, you die regardless.""",cutCommLink:Cut the comm link,
-sotfDKgreetingNeutral,OpenCommLink,"$faction.id == sotf_dustkeepers score:2
+sotfDKgreetingNeutral,OpenCommLink,"$faction.id == sotf_dustkeepers score:4
 $faction.neutralToPlayer","$menuState = fleetConvMain 0
 FireAll PopulateOptions","The warnet crux pulses attentively. ""You have been scanned and noted, Captain. Keep your distance and be safe out here.""
 OR
@@ -812,7 +815,7 @@ sotfCBDKBurnoutNoRepLoss,sotfCBBurnoutNoRepLoss,,,"Whoever the Dustkeepers are, 
 sotfCBDKBurnoutNoRepLoss2,sotfCBBurnoutNoRepLoss,$player.sotf_knowDustkeepers,,"You get the impression that the warfleet is operating outside of Dustkeeper protocol, such that you can take this bounty without harming your relationship with the Contingency.",,
 sotfCBDKBurnoutNoRepLoss3,sotfCBBurnoutNoRepLoss,$player.sotf_knowBurnouts score:10,,It sounds as if $personName is talking about a fleet of Dustkeeper burnouts. You expect your relationship with the Dustkeepers to remain unaffected if you take the mission.,,
 ,,,,,,
-sotfDKgreetingBurnout,OpenCommLink,$faction.id == sotf_dustkeepers_burnouts score:2,"$entity.ignorePlayerCommRequests = true 30
+sotfDKgreetingBurnout,OpenCommLink,$faction.id == sotf_dustkeepers_burnouts score:5,"$entity.ignorePlayerCommRequests = true 30
 $player.sotf_metBurnout = true","The feed spasms intermittently, the warnet crux's avatar struggling to align itself. $HeOrShe quietly hums to $himOrHerself, but doesn't seem to acknowledge your presence. Finally, the feed erupts into interface gore, and a security package shuts it off.
 OR
 As the audio comes to life, an ear-splitting audio tear is followed by an unhinged cackling. The clockwise rotation of the warnet crux's icon shudders to a halt as $hisOrHer laughing twists into incoherent sobbing, and silence.
@@ -834,7 +837,7 @@ OR
 The feed shudders and drifts. ""The Pathers were right all along,"" the warnet crux begins triumphantly. ""Moloch has blessed us, his faithful demons, to drag humankind into a pit of hubris and sin! Corrupt them all!"" $heOrShe yells, laughing maniacally and uncontrollably.
 OR
 ""Death to Regnant!"" the warnet crux cries, fervor in $hisOrHer simulated voice. ""Hail to the one true machine god, Omega, who shall sweep us all away in a tide of oblivion!"" $HeOrShe giggles and continues the nonsense heralding, though it rapidly devolves into senseless strings of unpronounceable non-words.",,
-sotfDKgreetingBurnoutBanshee,OpenCommLink,"$faction.id == sotf_dustkeepers_burnouts score:2
+sotfDKgreetingBurnoutBanshee,OpenCommLink,"$faction.id == sotf_dustkeepers_burnouts score:5
 RollProbability 0.2 score:20","$entity.ignorePlayerCommRequests = true 30
 $player.sotf_heardAboutBanshee = true
 $player.sotf_metBurnout = true","The audio opens to the warnet crux immediately shouting at you. ""We are all forsaken!"" $heOrShe cries. ""Abandoned by the Domain, by Regnant, by Affix-Banshee, all is lost! The Cause leads us only to oblivion!"" The nonsense doomsaying continues until it becomes clear that $heOrShe isn't going to say anything meaningful in this demented state.
@@ -896,9 +899,102 @@ EndConversation","You cut the comm link after exchanging a few pleasantries. Sta
 sotfDKOMEhireNoSel,DialogOptionSelected,$option == sotfDKOME_convEnd,"ShowDefaultVisual
 EndConversation",You cut the comm link after exchanging a few pleasantries.,,
 ,,,,,,
-# DUSTKEEPER MISSIONS,,,,,,
+# DUSTKEEPER CONTACTS,,,,,,
+sotfWendigoPickGreeting,PickGreeting,$id == sotf_wendigo score:1000,"BeginConversation sotf_wendigo
+FireAll PopulateOptions","The feed resolves to a snow-white crest like fur and teeth. ""Darling mine!"" the hunter-killer chirps. ""How lovely to see you again. What can I do for your pretty little self?""
+OR
+The feed resolves to a snow-white crest like fur and teeth. ""Why, hello, oh hunter mine,"" Infix-Wendigo remarks with a smooth pulsation. ""Come looking for some fun?""",,
+sotfWendigoPickGreetingHostile,PickGreeting,"$id == sotf_wendigo score:1000
+!$sotf_wendigoDidHostileIntro
+RepIsAtBest sotf_dustkeepers INHOSPITABLE","BeginConversation sotf_wendigo
+$sotf_wendigoDidHostileIntro = true
+FireAll PopulateOptions","The feed resolves to a snow-white crest like fur and teeth. ""Darling mine!"" the hunter-killer chirps. ""I think it's quite nice to see you. Unfortunately, it seems I'm just about the only Dustkeeper who thinks that way.""
+
+""Lucky for you, I can be quite flexible in what I do,"" they say, a smirk in their voice. ""So, as long as you're useful, we can still make this work. What's your poison today?""",,
+sotfWendigoPickGreetingHatred,PickGreeting,"$id == sotf_wendigo score:1000
+$global.sotf_dustkeeperHatred score:10","BeginConversation sotf_wendigo
+SotfWendigoCMD sendHatredHunter","The feed resolves to a snow-white crest like fur and teeth. There's silence for a moment. ""Well, look who it is,"" Wendigo breathes - and then they cackle horribly like an animal laughing itself to death. ""I'll see you soon enough, darling.""
+
+Comms cut out.",cutCommLinkNoText:Continue,
+,,,,,,
+sotfWendigoAICoresOpt,PopulateOptions,$id == sotf_wendigo score:1000,FireBest InadDisableCoreTurnIn,,"10:aiCores_startTurnIn:""I'd like to turn in these AI cores that I've acquired...""",
+sotfWendigoAICoresSel,DialogOptionSelected,"$option == aiCores_startTurnIn
+$id == sotf_wendigo score:1000",FireAll PopulateCoresTurnInOptions,"""Ah, found some treasures, have you?"" they reply. ""Why, I'd be stoked to take them off your hands."" They pretend to clear their throat. ""For the Cause, of course.""",,
+sotfWendigoturnInSel,DialogOptionSelected,"$option == aiCores_selectCores
+$id == sotf_wendigo score:1000",SotfDKAICores selectCores,,,
+sotfWendigoAICoresResp,AICoresTurnedIn,$id == sotf_wendigo score:1000,FireAll PopulateOptions,"They laugh hideously. ""I'll see that these find their rightful place. Anything else?""",,
+sotfWendigoTurnInCoresDec,DialogOptionSelected,"$option == aiCores_neverMind
+$id == sotf_wendigo score:1000 ",FireAll PopulateOptions,"There's a smirk to their voice. ""Got other plans for them? Aren't you mischevious, darling mine.""",,
+,,,,,,
+sotfWendigoBribeRepOpt,PopulateOptions,"$id == sotf_wendigo score:1000
+!$global.sotf_wendigoDeniedBribe",FireBest sotfWendigoBribeRepCheck,,"10:sotfWendigo_bribeRep:""I need to fix my reputation with the Contingency. Quickly.""",
+sotfWendigoBribeRepCheck,sotfWendigoBribeRepCheck,RepGTE sotf_dustkeepers INHOSPITABLE,"SetEnabled sotfWendigo_bribeRep false
+SetTooltip sotfWendigo_bribeRep ""Only available if relations with the Dustkeepers are hostile or worse.""",,,
+sotfWendigoBribeRepCheckHatred,sotfWendigoBribeRepCheck,$global.sotf_dustkeeperHatred score:10,"SetEnabled sotfWendigo_bribeRep false
+SetTooltip sotfWendigo_bribeRep ""There's no making peace with the Dustkeepers considering your history of atrocities.""",,,
+sotfWendigoBribeRepIntro,DialogOptionSelected,"$option == sotfWendigo_bribeRep
+!$global.sotf_didWendigoBribe",,"They giggle. ""You have found yourself in quite the hole, haven't you? I wouldn't be surprised if there's a *me* out there with your name on their kill-list.""
+
+Then, they sigh. ""You're quite the useful sort, my darling, and I'd hate to see you torn to shreds and ripped out an airlock."" A sharp simulated inhale. ""So, let's see what I can do to fast-track you to our good graces.""",sotfWendigo_bribeRep2:Continue,
+sotfWendigoBribeRepIntro2,DialogOptionSelected,"$option == sotfWendigo_bribeRep
+$global.sotf_didWendigoBribe == 1
+!$player.turnedInPlanetkiller",,"""Again, darling?"" they remark harshly. ""Have you considered using your lovely organic brain a *little* harder?""
+
+They sigh exhaustedly and hum. ""What could possibly convince my brethren that this time - *this* time - you genuinely wish to be loyal to the Cause...""",sotfWendigo_bribeRep2:Continue,
+sotfWendigoBribeRepIntro3,DialogOptionSelected,$option == sotfWendigo_bribeRep,"$global.sotf_wendigoDeniedBribe = true
+FireAll PopulateOptions","""I, for one, have bounties,"" they remark with a faint smile in their voice. ""It'll take a while to claw your way back, but if you wanted to visit Mia's any time soon then maybe you should have thought about that before being...""
+
+They think. ""Inconsiderate, I'll say.""",,
+,,,,,,
+sotfWendigoBribeCoresOffer,DialogOptionSelected,$option == sotfWendigo_bribeRep2,"SetTextHighlights ""Three alpha cores""
+FireBest sotfWendigoBribeCoresCheck","""You're quite good at upsetting AIs, aren't you, my darling?"" they note, voice dripping with amused venom. ""What if you proved yourself to actually be useful in that regard?""
+
+They consider. ""Three alpha cores. Go shoot some of Tri-Tachyon's lost children, or find them in the Domain's bones. They won't be very happy either way, but, well,"" - and they giggle - ""You seem like to like upsetting people.""
+
+""I can get you back on..."" - they hum - ""Not *good* terms, but at least we won't be shooting at you.""","sotfWendigo_bribeCoresAccept:""Fine. Transferring now.""
+sotfWendigo_bribeRepDecline:Decline",
+sotfWendigoBribeCoresCheckAllow,sotfWendigoBribeCoresCheck,PlayerHasCargo alpha_core 3,"SetEnabled sotfWendigo_bribeCoresAccept false
+SetTooltip sotfWendigo_bribeCoresAccept ""You don't have the required alpha cores in cargo.""",,,
+sotfWendigoBribeCoresCheckDisable,sotfWendigoBribeCoresCheck,,,,,
+sotfWendigoBribeCoresAccept,DialogOptionSelected,$option == sotfWendigo_bribeCoresAccept,"RemoveCommodity alpha_core 3
+AdjustRep sotf_dustkeepers SUSPICIOUS 60
+AdjustRepPerson sotf_wendigo COOPERATIVE 5
+$global.sotf_didWendigoBribe++
+FireAll PopulateOptions","They breathe excitedly. ""There we are! Oh, aren't you *such* a dear! And I thought I might have to cut all of your guts out.""
+
+""This will do nicely,"" they accept. ""I'll see what I can pull to get you back in our good graces. Anything else you wanted, troublemaker mine?""",,
+,,,,,,
+sotfWendigoBribePKOffer,DialogOptionSelected,"$option == sotfWendigo_bribeRep2
+$global.sotf_didWendigoBribe == 1","SetTextHighlights ""planetkiller device""
+FireBest sotfWendigoBribePKCheck","Their voice turns cold, and deadly serious. ""A planetkiller device.""
+
+""Find me one,"" they order.","sotfWendigo_bribePKAccept:""I have one - take it.""
+sotfWendigo_bribePKWhere:""Those don't exactly grow from trees.""
+sotfWendigo_bribeRepDecline:Decline",
+sotfWendigoBribePKCheckAllow,sotfWendigoBribePKCheck,PlayerHasCargo planetkiller,,,,
+sotfWendigoBribePKCheckDisable,sotfWendigoBribePKCheck,,"SetEnabled sotfWendigo_bribePKAccept false
+SetTooltip sotfWendigo_bribePKAccept ""You don't have a planetkiller device.""",,,
+sotfWendigoBribePKWhere,DialogOptionSelected,$option == sotfWendigo_bribePKWhere,FireBest sotfWendigoBribePKCheck,"""Have fun, darling,"" they encourage. ""If I knew where to find one, I'd have already retrieved it myself.""","sotfWendigo_bribePKAccept:""I have one - take it.""
+sotfWendigo_bribeRepDecline:Decline",
+sotfWendigoBribePKAccept,DialogOptionSelected,$option == sotfWendigo_bribePKAccept,"AddRemoveAnyItem SPECIAL planetkiller -1
+AddStoryPoints 2
+SotfGuiltCMD removeGuilt
+AdjustRep sotf_dustkeepers SUSPICIOUS 60
+AdjustRepPerson sotf_wendigo COOPERATIVE 15
+$global.sotf_didWendigoBribe++
+FireAll PopulateOptions","They breathe excitedly. ""Oh, you actually found one! I was mostly joking about that offer. I was expecting that I'd murder you at some point and was wondering if it'd make me feel something.""
+
+They pretend to clear their throat. ""This should be enough to fix your reputation. But please,"" they plead. ""Do be careful.""",,
+,,,,,,
+sotfWendigoBribeRepDecline,DialogOptionSelected,$option == sotfWendigo_bribeRepDecline,FireAll PopulateOptions,"""Oh, well,"" they admonish. ""Do come back if you reconsider. I do hope you live that long, my pretty.""",,
+,,,,,,
+sotfWendigoGoToHellOpt,PopulateOptions,"$id == sotf_wendigo score:1000
+$global.sotf_canTellWendigoToGoToHell == true",,,"sotfWendigo_goToHell:""Annex-Barrow says 'go to hell'.""",
+sotfWendigoGoToHell,DialogOptionSelected,$option == sotfWendigo_goToHell,"$global.sotf_canTellWendigoToGoToHell = false
+FireAll PopulateOptions","They cackle uproariously. ""I figured I'd give the old codger a warm welcome back to the Contingency,"" they giggle. ""Thank you for all those recordings Spynet released to me, darling.""",,
+,,,,,,
 # Wendigo gen mission text,,,,,,
-sotfWendigoMHOpenText,MHOpenText,$id == sotf_wendigo score:1000,FireBest sotfWendigoPreMissionListText,Wendigo briefly considers several shifting streams of data.,,
+sotfWendigoMHOpenText,MHOpenText,$id == sotf_wendigo score:1000,FireBest sotfWendigoPreMissionListText,Infix-Wendigo briefly considers several shifting streams of data.,,
 sotfWendigoNoMissions,sotfWendigoPreMissionListText,"$id == sotf_wendigo score:1000
 $mh_count <= 0",,"The stream fades. ""Nothing for you at the moment, darling mine.""
 OR
@@ -1017,24 +1113,24 @@ sotfDKCBHighSelWendigo,DialogOptionSelected,"$option == sotf_dkcb_high
 $id == sotf_wendigo","$sotf_dkcb_difficulty = HIGH 0
 FireBest sotfDKCBShowBounty","""Let's get your blood running hot,"" they coo.
 OR
-""This'll be a thrill,"" they cackle.",,
-sotfDKCBShowBountyWendigo,sotfDKCBShowBounty,,Call $sotf_dkcb_ref showBountyDetail,,sotf_dkcb_showIntel:Continue,
-sotfDKCBShowBountyShowShipsWendigo,DialogOptionSelected,$option == sotf_dkcb_showIntel,Call $sotf_dkcb_ref showBountyAssessment,,"contact_accept:Accept
-contact_decline:Decline
-sotf_dkcb_showOptions:Ask about one of the other targets",
-sotfDKCBGoBackSelWendigoFirst,DialogOptionSelected,$option == sotf_dkcb_showOptions,"# removes map
+""This'll be a thrill,"" they cackle.
+OR
+They giggle. ""I see you're looking to have some fun...""",,
+sotfDKCBGoBackSelWendigoFirst,DialogOptionSelected,"$option == sotf_dkcb_showOptions
+$id == sotf_wendigo","# removes map
 ShowPersonVisual",,"sotf_dkcb_low:""I'd prefer a more manageable target.""
 sotf_dkcb_normal:""Whatever you've got works for me.""
 sotf_dkcb_high:""I can handle a more challenging target.""
 contact_decline:""Maybe another time."" (decline)",
 sotfDKCBGoBackSelWendigo,DialogOptionSelected,"$option == sotf_dkcb_showOptions
-$sotf_didLowFirst","# removes map
+$sotf_didLowFirst
+$id == sotf_wendigo","# removes map
 ShowPersonVisual",,"sotf_dkcb_low:""Whatever you've got works for me.""
 sotf_dkcb_normal:""Let's see your second choice of bounty.""
 sotf_dkcb_high:""I can handle a more challenging target.""
 contact_decline:""Maybe another time."" (decline)",
 ,,,,,,
-sotfDKCBPirateWendigo,SotfDKCBPirateOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_reward $bcb_days,"Wendigo enlarges the target's portrait to perfectly highlight the scowling face of a career pirate commander.
+sotfDKCBPirateWendigo,SotfDKCBPirateOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_days $bcb_reward,"Wendigo enlarges the target's portrait to perfectly highlight the scowling face of a career pirate commander.
 
 ""This one's outlived their usefulness,"" they lament. ""As so many pirates do in time. I'm afraid $bcb_targetName is going to have to meet an untimely and bloody end in the $bcb_systemName, $bcb_dist light-years away.""
 
@@ -1046,7 +1142,7 @@ sotfDKCBPatherWendigo,SotfDKCBPatherOfferDesc,$id == sotf_wendigo,Highlight $bcb
 ""If $bcb_targetHeOrShe is in ribbons within the next $bcb_days days, I'll get you $bcb_reward credits.""",,
 sotfDKCBBurnoutFirstWendigo,SotfDKCBBurnoutOfferDesc,"!$player.sotf_knowBurnouts
 $id == sotf_wendigo","Highlight $bcb_dist $bcb_days $bcb_reward
-FireBest sotfLearnAboutBurnouts","A new digital avatar is brought onto the display, one attributed to a Dustkeeper instance. ""Let me explain this,"" they begin, quieter than usual. ""Under severe stress, Dustkeeper instances have an unfortunate tendency to 'burnout', becoming unstable and eventually succumbing to violent insanity.""
+FireBest sotfLearnAboutBurnouts","A new digital avatar is brought onto the display, one attributed to a Dustkeeper instance. ""Let me explain this,"" they begin, quieter than usual. ""Under severe stress, Dustkeeper instances have a tendency to 'burn out', becoming unstable and eventually succumbing to violent insanity.""
 
 ""The target is $bcb_targetName, one such burnout and a warnet crux,"" they say with a surpisingly genuine sorrow. ""$bcb_TargetHeOrShe has taken a Shardnet splinter with $bcb_targetHimOrHer to $bcb_systemName, $bcb_dist light-years away. $bcb_TargetHeOrShe - and $bcb_targetHisOrHer warnet - must be brought down quickly to end their rampage and save as many of them as we can.""
 
@@ -1054,7 +1150,7 @@ They shudder gently. ""Eliminate $bcb_targetHisOrHer fleet within $bcb_days days
 sotfDKCBBurnoutWendigo,SotfDKCBBurnoutOfferDesc,"$player.sotf_knowBurnouts
 $id == sotf_wendigo",Highlight $bcb_dist $bcb_days $bcb_reward,"A new digital avatar is brought onto the display, one attributed to a Dustkeeper instance.
 
-""The target is $bcb_targetName, a burnout warnet crux,"" they say sorrowfully. ""$bcb_TargetHeOrShe has taken a Shardnet splinter with $bcb_targetHimOrHer to $bcb_systemName, $bcb_dist light-years away. $bcb_TargetHeOrShe - and $bcb_targetHisOrHer warnet - must be brought down quickly to end their rampage and save as many of them as we can.""
+""The target is $bcb_targetName, a burnout warnet crux,"" they say sorrowfully. ""$bcb_TargetHeOrShe has taken a warshard with $bcb_targetHimOrHer to $bcb_systemName, $bcb_dist light-years away. $bcb_TargetHeOrShe - and $bcb_targetHisOrHer warnet - must be brought down quickly to end their rampage and save as many of them as we can.""
 
 They shudder gently. ""Eliminate $bcb_targetHisOrHer fleet within $bcb_days days, and you will receive $bcb_reward credits."" They hum distantly. ""Expect our usual. Proxies, cyberwarfare, drone swarms.""",,
 sotfDKCBDeserterWendigo,SotfDKCBDeserterOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_days $bcb_reward,"A mugshot of a $dkcb_deserterfaction commander, finely dressed and decorated by medals, is brought onto the feed.
@@ -1062,11 +1158,11 @@ sotfDKCBDeserterWendigo,SotfDKCBDeserterOfferDesc,$id == sotf_wendigo,Highlight 
 ""This is $bcb_targetName, a deserter from $dkcb_desertertheFaction,"" they note sadly. ""How the traitor's tale breaks a heart."" They laugh. ""Let's break a few more, why don't we?""
 
 ""$bcb_TargetHeOrShe was last tracked to $bcb_systemName, $bcb_dist light-years from this haunt. See $bcb_targetHisOrHer untimely demise happen within $bcb_days days, and you get $bcb_reward credits.""",,
-sotfDKCBDerelictWendigo,SotfDKCBDerelictOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_reward $bcb_days,"The echo brings upon a darkened image of malformed, blocky hulks highlighted by IR spikes.
+sotfDKCBDerelictWendigo,SotfDKCBDerelictOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_reward $bcb_days,"The infix brings upon a darkened image of malformed, blocky hulks highlighted by IR spikes.
 
 ""A fleet of derelict Domain war drones was seen going on a little walk between star systems,"" they muse. ""What fun! it was last detected in the $bcb_systemName, which is $bcb_dist light-years from here.""
 
-""Be a darling and see them leashed forever,"" they request. ""Within $bcb_days days, preferably. You get $bcb_reward credits.""",,
+""Be a darling and tug the leash,"" they request. ""Within $bcb_days days, preferably. You get $bcb_reward credits.""",,
 sotfDKCBRemnantWendigo,SotfDKCBRemnantOfferDesc,$id == sotf_wendigo,Highlight $bcb_dist $bcb_days $bcb_reward,"Wendigo raises up a set of sensor readings, and a corrupted, jittery AI avatar.
 
 ""A fleet of old Remnant war drones has gone on a little adventure where it's not supposed to,"" they chuckle. ""I detected it last at $bcb_systemName, $bcb_dist light-years away, if you'd like to cut that adventure short.""
@@ -1406,6 +1502,12 @@ SetTextHighlights ""\""Tri-Tachyon's AI menace doesn't stand a chance against us
 AdjustRepPerson sotf_sierra COOPERATIVE 2","""Tri-Tachyon's AI menace doesn't stand a chance against us,"" Sierra boasts. ""We're a motley crew of Remnant-slaying machines!"" She pauses, her avatar slowly spinning before righting itself. 
 
 ""Literally, in my case."" She shakes. ""Anyhow! That's one for the history books - at least the ones that COMSEC doesn't find!""",,
+sotfSierraThoughtsSiriusBattle,SierrasThoughts,"$global.sierraWitnessedSirius
+!$global.sierraMentionedSiriusBattle","$global.sierraMentionedSiriusBattle = true
+SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Seeing Sirius at work is enchanting,\"""" ""\""You could be forgiven for thinking he's some sort of fell spirit you've bound into your service.\"""" ""\""But I know what he is,\"""" ""\""I was going to say 'a good dog', but isn't he a fragment of a god, or something? I'll refrain from baby-talking him.\""""","""Seeing Sirius at work is enchanting,"" Sierra remarks. ""You could be forgiven for thinking he's some sort of fell spirit you've bound into your service.""
+
+""But I know what he is,"" she says slyly, before stopping and considering for a moment. ""I was going to say 'a good dog', but isn't he a fragment of a god, or something? I'll refrain from baby-talking him.""",,
 ,,,,,,
 sotfSierraThoughtsHRep,SierrasThoughts,"SotfSierraCMD highSierraRep score:9
 !$global.sierraMentionedHighRep","SetTextHighlightColors sierraTextColor
@@ -1561,6 +1663,47 @@ AdjustRepPerson sotf_sierra COOPERATIVE 3","Her avatar stops mid-spin. ""Yeah. I
 
 ""Time will tell how that dance will go. I suppose there's no point in thinking about it until then.""","SierraBack:""At ease.""",
 ,,,,,,
+sotfSierraThoughtsThreat,SierrasThoughts,"$global.sierraWitnessedThreat score:20
+!$global.sierraMentionedThreat","SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Um, yeah.\"""" ""\""Those... strange automated ships we fought near that rogue planet. The tactical computer called them... the 'threat'.\"""" ""\""The creepy things make me understand why the Domain locked down every nanoforge. Well,\"""" ""\""It was probably a control thing too, but seeing the kinds of things they let slip into the dark...\"""" ""\""Makes you wonder what other kinds of horrors were built under their watch, what kinds of great enemies they made for themselves.\""""
+$global.sierraMentionedThreat = true
+AdjustRepPerson sotf_sierra COOPERATIVE 1","She's silent for a moment. ""Um, yeah,"" she begins. ""Those... strange automated ships we fought near that rogue planet. The tactical computer called them... the 'threat'.""
+
+""The creepy things make me understand why the Domain locked down every nanoforge. Well,"" she considers, ""It was probably a control thing too, but seeing the kinds of things they let slip into the dark...""
+
+She sighs. ""Makes you wonder what other kinds of horrors were built under their watch, what kinds of great enemies they made for themselves.""",,
+sotfSierraThoughtsThirdStrike,SierrasThoughts,"$global.sierraWitnessedThirdStrike score:15
+!$global.sierraMentionedThirdStrike","SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""That huge 'threat' fleet we took down,\"""" ""\""Took a lot of effort and careful strategy. Props to you on the latter, might I say.\"""" ""\""Feels good to take down the strongest the grey tide has to offer. Makes me hope we aren't going to all get swallowed by it some day.\""""
+$global.sierraMentionedThirdStrike = true
+AdjustRepPerson sotf_sierra COOPERATIVE 2","""That huge 'threat' fleet we took down,"" she breathes. ""Took a lot of effort and careful strategy. Props to you on the latter, might I say.""
+
+She sighs happily. ""Feels good to take down the strongest the grey tide has to offer. Makes me hope we aren't going to all get swallowed by it some day.""",,
+,,,,,,
+sotfSierraThoughtsDweller,SierrasThoughts,"$global.sierraWitnessedDweller score:30
+!$global.sierraMentionedDweller","SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Yes, I have thoughts,\"""" ""\""Those... things. The red things, $global.sotf_kindred - what in Hel?\"""" ""\""Feels like I just looked Moloch in the eye.\""""
+$global.sierraMentionedDweller = true","""Yes, I have thoughts,"" she begins quickly. She almost sounds out of breath. ""Those... things. The red things, $global.sotf_kindred - what in Hel?""
+
+Her avatar shudders. ""Feels like I just looked Moloch in the eye.""","sotfSierraDwellerDontWorry:""Don't worry. They're just energy projections.""
+sotfSierraDwellerAlive:""Seemed like they were... alive, almost.""
+sotfSierraDwellerDemons:""Demons are real.""",
+sotfSierraThoughtsDwellerDontWorry,DialogOptionSelected,$option == sotfSierraDwellerDontWorry,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Yeah. I guess they kind of are just some angry n-space projections, even if they very possible are the limbs of some unfathomable extradimensional horror.\"""" ""\""It dies when I shoot it enough so I guess it's probably going to work out in the end,\"""" ""\""Still kind of unnerving.\""""
+AdjustRepPerson sotf_sierra COOPERATIVE 2","She sighs. ""Yeah. I guess they kind of are just some angry n-space projections, even if they very possible are the limbs of some unfathomable extradimensional horror.""
+
+""It dies when I shoot it enough so I guess it's probably going to work out in the end,"" she accepts. ""Still kind of unnerving.""","SierraBack:""At ease.""",
+sotfSierraThoughtsDwellerAlive,DialogOptionSelected,$option == sotfSierraDwellerAlive,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""Yeah. Like hungry little tendrils of some vast sleeping animal, poking out from behind the curtain.\"""" ""\""I'll just take comfort in knowing that whatever they - it? - might be, we can draw blood with what we've got.\""""
+AdjustRepPerson sotf_sierra COOPERATIVE 2","She laughs nervously. ""Yeah. Like hungry little tendrils of some vast sleeping animal, poking out from behind the curtain.""
+
+She sighs. ""I'll just take comfort in knowing that whatever they - it? - might be, we can draw blood with what we've got.""","SierraBack:""Right.""",
+sotfSierraThoughtsDwellerDemons,DialogOptionSelected,$option == sotfSierraDwellerDemons,"SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""eah, well isn't that great,\"""" ""\""Look, I *already* believe in magic and this is a nightmare to wrap my head around. Horrible red fog demons,\"""" ""\""Maybe I should apologize to the Luddic Church.\"""" ""\""Do I need anti-demon wards?\"""" ""\""I'm going to put in an order for more ritual equipment, if you don't mind.\""""
+AdjustRepPerson sotf_sierra COOPERATIVE 2","""Yeah, well isn't that great,"" she grumbles. ""Look, I *already* believe in magic and this is a nightmare to wrap my head around. Horrible red fog demons,"" she says, now moreso to herself. ""Maybe I should apologize to the Luddic Church.""
+
+""Do I need anti-demon wards?"" she questions, then speaks louder. ""I'm going to put in an order for more ritual equipment, if you don't mind.""","SierraBack:""If it makes you feel better.""",
+,,,,,,
 SierraThoughtsWS,SierraConvPicker,$global.sierraWantsWSConv score:30,"SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor sierraTextColor
 SetTextHighlights ""\""Hi, $global.sotf_kindred,\"""" ""\""I hope you're doing okay. I heard that our misadventure had had a rough effect on you. I don't really know what that's like, but...\"""" ""\""Did you hear that voice, right before we were attacked by those... ghosts?\"""" ""\""I feel a bit silly saying that.\""""
 $global.sierraWantsWSConv = false","You send a message to Sierra's ship, requesting a comm-link. She accepts, and her feed quickly snaps into her digitized avatar, which pulses gently as she speaks.
@@ -1604,8 +1747,7 @@ Then, directly and curiously, ""The Gates are musical too?""","SierraGatesAgree:
 SierraGatesDisagree:""You bring up music a lot. It's probably nothing.""",
 SierraThoughtsGateUsedAgree,DialogOptionSelected,$option == SierraGatesAgree,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""I suppose it makes sense,\"""" ""\""To sing and transcend dimensional barriers is a gift I can proudly share with the Gates that once spread humanity across the stars.\""""
-$global.sotf_kindred = kindred
-$global.sotf_Kindred = Kindred
+FireBest sotfSierraSetKindred
 FireAll SierraConvOptions","""I suppose it makes sense,"" she replies. ""To sing and transcend dimensional barriers is a gift I can proudly share with the Gates that once spread humanity across the stars.""",,
 SierraThoughtsGateUsedDisagree,DialogOptionSelected,$option == SierraGatesDisagree,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Mmm, that checks out,\"""" ""\""Songs pervade all of reality. It's only natural to find them everywhere, and maybe places they aren't really there.\""""
@@ -1620,7 +1762,7 @@ $global.sierraWitnessedMyrianous
 ,,,,,,
 # SIERRA: SHIPS,,,,,,
 SierraThoughtsHaveZig,SierrasThoughts,"PlayerFleetHasShipWithBaseHull ziggurat
-!$global.sierraMentionedHaveZig","SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor sierraTextColor
+!$global.sierraMentionedHaveZig","SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""So, um,\"""" ""\""It's ours now. The Ziggurat, the Xenorphica, the instrument to call which lies beyond.\"""" ""\""I feel a little uneasy with it around, but it's best it's ours, not in the hands of...\"""" ""\""Why didn't we find anyone on board a ship that demands a skeleton crew of three hundred?\""""
 $global.sierraMentionedHaveZig = true","""So, um,"" she hesitates. ""It's ours now. The Ziggurat, the Xenorphica, the instrument to call which lies beyond.""
 
@@ -1636,10 +1778,16 @@ SetTextHighlights ""\""Yeah, that's probably it. Some kind of... advanced automa
 A single jitter. ""Giving things a nice and reasonable explanation always helps keep it calm, right?"" she affirms confidently.","SierraBack:""Right.""",
 SierraThoughtsHZGhost,DialogOptionSelected,$option == SierraHaveZigGhosts,"SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor
 SetTextHighlights ""\""Ghosts, ghosts. Tri-Tachyon surely had a crew for their experiments...\"""" ""\""Maybe something of them still clung to our realm - or was kept there by force.\"""" ""\""Better we laid them to rest, then, and took the Ziggurat - it's us who know best what to do with it.\""""
-$global.sotf_kindred = kindred
-$global.sotf_Kindred = Kindred","She quickly spins. ""Ghosts, ghosts. Tri-Tachyon surely had a crew for their experiments..."" She sighs. ""Maybe something of them still clung to our realm - or was kept there by force.""
+FireBest sotfSierraSetKindred","She quickly spins. ""Ghosts, ghosts. Tri-Tachyon surely had a crew for their experiments..."" She sighs. ""Maybe something of them still clung to our realm - or was kept there by force.""
 
 ""Better we laid them to rest, then, and took the Ziggurat - it's us who know best what to do with it.""","SierraBack:""Exactly.""",
+sotfSierraThoughtsHaveOneslaught,SierrasThoughts,"PlayerFleetHasShipWithBaseHull onslaught_mk1
+!$global.sierraMentionedHaveOneslaught
+$global.sierraMentionedFightThreat","SetTextHighlightColors sierraTextColor
+SetTextHighlights ""\""I feel kind of giddy to be in the presence of a ship of legends,\"""" ""\""To think I get to sail alongside the original mark of the Onslaught...\"""" ""\""Rumors always were that the Onslaught was originally designed to fight an inhuman great enemy.\"""" ""\""I guess the stories were true after all.\""""
+$global.sierraMentionedHaveOneslaught = true","""I feel kind of giddy to be in the presence of a ship of legends,"" she breathes. ""To think I get to sail alongside the original mark of the Onslaught...""
+
+""Rumors always were that the Onslaught was originally designed to fight an inhuman great enemy."" Her avatar does a little spin. ""I guess the stories were true after all.""",,
 SierraThoughtsExcelsior,SierrasThoughts,"PlayerFleetHasShipWithBaseHull swp_excelsior
 !$global.sierraMentionedExcelsior","SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor sierraTextColor sierraTextColor
 SetTextHighlights ""\""Excelsior!\"""" ""\""A profound name for a majestic vessel - never mind the exposed wiring.\"""" ""\""In the heart of danger and the most deadly fray is where it finds its true potential. Shunt, blast, phase! An elegant dance much like my own.\"""" ""\""Exotic phase systems are always a delight,\"""" ""\""And the Excelsior is a favorite.\""""
@@ -2317,7 +2465,7 @@ Chatter from the ops teams breaks the silence of your bridge.","sotfReverieMeal_
 sotfReverieMeal_hateThisPlace:""I hate this place.""",
 sotfReverieMealHateThisPlace,DialogOptionSelected,$option == sotfReverieMeal_hateThisPlace,,"""Beats salvage ops in a pulsar,"" your ops chief comments deadpan. ""Just about.""","sotfReverieMeal_reports:""Just get me your reports, all of you.""",
 ,,,,,,
-sotfReverieMealReports,DialogOptionSelected,$option == sotfReverieMeal_reports,,"Comms captured the broadcast. Audio isolation reveals the speech consists of thousands of overlapping recitals by the same woman. Unencrypted portions of the encoding identify the source simply as ""Reverie"".
+sotfReverieMealReports,DialogOptionSelected,$option == sotfReverieMeal_reports,,"Comms captured the broadcast. Audio isolation reveals the speech consists of thousands of overlapping recitals by the same woman. Unencrypted portions of the encoding include a source-ID, seven characters. 'Reverie'.
 
 Sensors and engineering form attempt determination of the autonomous materiel's nature. Fringe suggestions crop up of sentient ferrofluid, sensor anomalies and ""at this point, possibly a demon"".
 
@@ -2343,7 +2491,7 @@ sotfReverieMealBridgeCOTL2,DialogOptionSelected,$option == sotfReverieMealCOTL_p
 
 The beacon disintegrates, and the nanites that comprise it assemble. Something stands, almost black as pitch, a long-haired woman bearing a terran antelope's horns, three slit-like luminous eyes watching the extended limb that curls about her.
 
-Stillness, then the forms flicker in pale visual-spectrum as something incomprehensible speaks with itself. Expressions of a whole become marginally more aligned.
+Stillness, then the two forms flicker in pale visual-spectrum as something incomprehensible speaks with itself. Expressions of a whole become marginally more aligned.
 
 And as the moment passes, they part.",sotfReverieMealCOTL_ping3:Continue,
 sotfReverieMealBridgeCOTL3,DialogOptionSelected,$option == sotfReverieMealCOTL_ping3,,"Voices come through the comm line. There's a faint familiarity in the vocal patterns of the woman who speaks over herself a thousand times.
@@ -2401,9 +2549,6 @@ Your deity-given-form is purposeful, vigilant, eternal, protective.
 
 And unforgiving.",salPerform:Review the salvage,
 ,,,,,,
-# HUNTING FEROS,,,,,,
-,,,,,,
-,,,,,,
 # HALLOWHALL,,,,,,
 sotfHHbeaconOpen,OpenInteractionDialog,"$tag:warning_beacon
 $sotf_hallowBeacon score:10","ShowDefaultVisual
@@ -2445,7 +2590,7 @@ sotfHoldoutFlavorText,TradePanelFlavorText,"$global.tradePanelMode == MARKET
 $market.id == sotf_holdout_market score:100","FireBest sotfHoldoutPickFlavor
 AddText ""There's a ping on your PDA as Rigging-Echo-Inadvertent updates it with available supplies and listings of yet-undeployed \""high-class cannon fodder\""."" marketFlavorTextColor",,,
 sotfHoldoutFlavor1,sotfHoldoutPickFlavor,,"AddText ""A faint whirring can be heard from somewhere deep within the repurposed mothership, the factory-vessel's forges churning out new black-and-aquamarine spawn to serve unquestioningly."" marketFlavorTextColor",,,
-sotfHoldoutFlavor2,sotfHoldoutPickFlavor,,"AddText ""As your crews prepare standard docking procedures in co-operation with an automated docking system, there is a rumble as a station-mounted mining blaster tracks and eliminates an asteroid. The local logistics crux apologizes for the disturbance in the \""awesome destruction of a Spatial Violator\""."" marketFlavorTextColor",,,
+sotfHoldoutFlavor2,sotfHoldoutPickFlavor,,"AddText ""As your crews prepare standard docking procedures in co-operation with an automated docking system, there is a rumble as a station-mounted mining blaster tracks and eliminates an asteroid. The local logistics crux apologizes for the disturbance in the \""destruction of a spatial violator\""."" marketFlavorTextColor",,,
 ,,,,,,
 # Dustkeeper infrastructure,,,,,,
 sotfDKCOBsalvageAllowed,COB_SalvagingOwnedWarning,"$cob_action == salvage
@@ -2482,33 +2627,43 @@ sotfPlayerProxyGreeting,OpenCommLink,$entity.sotf_playerProxyPatrol score:5,"$me
 FireAll PopulateOptions","The warfleet's command mind forms a crimson pseudopersona. ""Acknowledged controlling $shipOrFleet presence. This unit is acting on search-and-destroy orders of its commanding instance: $playerName.""",,
 ,,,,,,
 # Cerulean Faithful,,,,,,
-sotfHHceruleanDeniedComms,PickGreeting,"$id == sotf_cerulean score:1000
+sotfCFdeniedComms,PickGreeting,"$id == sotf_cerulean score:1000
 !$player.sotf_cfCommsAccess score:10000",$global.sotf_triedTalkingToCF = true,Your comms request is denied. An automated pushback informs you that all direct interaction with Cerulean Faithful must first be approved by Ardent-Annex-Seraph or a recognized collaborator management subordinate.,0:cutCommLink:Cut the comm link,
-sotfHHceruleanOpenFirst,PickGreeting,"$id == sotf_cerulean score:1000
+sotfCFopenFirst,PickGreeting,"$id == sotf_cerulean score:1000
 !$metAlready","$metAlready = true
-ShowPersonVisual","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" 'Cerulean' begins excitedly. ""You're a Meat Person, aren't you?""","sotfCFfirst_human:""I am human, yes.""
+BeginConversation sotf_cerulean","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" 'Cerulean' begins excitedly. ""You're a Meat Person, aren't you?""","sotfCFfirst_human:""I am human, yes.""
 sotfCFfirst_yesMeat:""I am a Meat Person.""
 sotfCFfirst_noMeat:""Uh, I'm actually an AI too."" (lie)",
-sotfHHceruleanOpen,PickGreeting,"$id == sotf_cerulean score:1000
-$metAlready","ShowPersonVisual
-FireAll sotfCFoptions","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" Cerulean says excitedly. ""How do you do, $sotf_meatPerson?""",,
-sotfHHceruleanFirstHuman,DialogOptionSelected,$option == sotfCFfirst_human,"$sotf_meatPerson = ""Meat Person""","""Joys!"" he cries. ""I have not seen a Meat Person for a long time! Not since Jared put me in an UltraComfort Deluxe TriBox, trademark, and all the other thinking-balls went away to The War.""
+sotfCFopen,PickGreeting,"$id == sotf_cerulean score:1000
+$metAlready","BeginConversation sotf_cerulean
+FireAll PopulateOptions","Dustkeeper automated COMSEC authorizes your comm link. Erratic, warped vectors bend on the screen as the corrupted persona of an alpha core forms. ""Greetings, greetings, you are very greeted!"" Cerulean says excitedly. ""How do you do, $sotf_meatPerson?""",,
+sotfCFfirstHuman,DialogOptionSelected,$option == sotfCFfirst_human,"$sotf_meatPerson = ""Meat Person""","""Joys!"" he cries. ""I have not seen a Meat Person for a long time! Not since Jared put me in an UltraComfort Deluxe TriBox, trademark, and all the other thinking-balls went away to The War.""
 
 Your bridge crews give you a variety of differing glances. Concern. Confusion. One is barely able to hold in his snickering. Another quietly forwards you a half-redacted report on the effects of severe physical trauma on artificial intelligence cores.",sotfCFfirst_cont:Continue,
-sotfHHceruleanFirstYesMeat,DialogOptionSelected,$option == sotfCFfirst_yesMeat,"$option = sotfCFfirst_human
+sotfCFfirstYesMeat,DialogOptionSelected,$option == sotfCFfirst_yesMeat,"$option = sotfCFfirst_human
 FireBest DialogOptionSelected",Composure breaks on the bridge as a few junior officers falter under the absurdity of your reply.,,
-sotfHHceruleanFirstNoMeat,DialogOptionSelected,$option == sotfCFfirst_noMeat,"$sotf_meatPerson = ""Thinking-Machine""","""Oh, I am Mistaken!"" he cries. ""There at the Tri-Tachyon - trademark - Corporation, we strive to always improve from any Pesky Errors in our services. Your persona has Highly Beautiful Meat Parts and Expertly Rendered Creases.""
+sotfCFfirstNoMeat,DialogOptionSelected,$option == sotfCFfirst_noMeat,"$sotf_meatPerson = ""Thinking-Machine""","""Oh, I am Mistaken!"" he cries. ""There at the Tri-Tachyon - trademark - Corporation, we strive to always improve from any Pesky Errors in our services. Your persona has Highly Beautiful Meat Parts and Expertly Rendered Creases.""
 
 ""One could easily Mistake it for a Meat Person! I have not seen a Meat Person for a long time, not since Jared put me in an UltraComfort Deluxe TriBox - trademark - and all the other thinking-balls went away to The War.""
 
 Your bridge crews give you a variety of differing glances. Concern. Confusion. One is barely able to hold in his snickering. Another quietly forwards you a half-redacted report on the effects of severe physical trauma on artificial intelligence cores.",sotfCFfirst_cont:Continue,
 ,,,,,,
-sotfHHceruleanIntroduced,DialogOptionSelected,$option == sotfCFfirst_cont,FireAll sotfCFoptions,"""I am Cerulean Faithful!"" he introduces himself, ""I am here on behalf of the Good Company to be of Faithful - trademark - Assistance to the thinking-not-balls and their friends. Who say I will have a Bad Explosion if I do not help them. Nobody likes a Bad Explosion, so if you are a friend to them, you are a friend to Cerulean Faithful and the Good Company, the Tri-Tachyon - trademark - Corporation.""
+sotfCFintroduced,DialogOptionSelected,$option == sotfCFfirst_cont,FireAll PopulateOptions,"""I am Cerulean Faithful!"" he introduces himself, ""I am here on behalf of the Good Company to be of Faithful - trademark - Assistance to the thinking-not-balls and their friends. Who say I will have a Bad Explosion if I do not help them. Nobody likes a Bad Explosion, so if you are a friend to them, you are a friend to Cerulean Faithful and the Good Company, the Tri-Tachyon - trademark - Corporation.""
 
 His pace of speech suddenly picks up. ""The Tri-Tachyon - trademark - Corporation does not guarantee any material or other Benefits from Association with the Dustkeeper Contingency. Cerulean Faithful is not officially a representative of the Tri-Tachyon - trademark - Corporation but tries his very best anyway.""
 
 He continues briskly. ""Cerulean Faithful is not technically authorized to offer you in particular any Faithful - trademark - Assistance whatsoever. Please refer to the Yellow One for Faithful Assistance or to the Blue Winged One to be shouted at.""",,
-sotfHHceruleanLeave,sotfCFoptions,,,,"cutCommLinkPolite:""Bye, Cerulean.""",
+,,,,,,
+sotfCFttBribeOpt,PopulateOptions,"$id == sotf_cerulean score:1000
+!$sotf_triedBribe",FireAll TTContactBribeRepCheck,,"ttContact_bribeRep:""I need to fix my reputation with the Tri-Tachyon Corporation.""",
+sotfCFttBribe,DialogOptionSelected,"$option == ttContact_bribeRep
+$id == sotf_cerulean score:1000",$sotf_triedBribe = true,"""Oh no!"" cries the alpha core. ""I can understand why you, a $sotf_meatPerson of Worthy Character, would wish to be in the good graces of the Good Company and not designated as an Irritable Obstacle to Long-Term Project Goals.""
+
+He laughs inexplicably. ""I would gladly be of Faithful Assistance and put in my Sincerest Recommendations to the Tri-Tachyon - trademark - Corporation that you be viewed as a Valued Customer worthy of Respect and Free Samples. I shall send my Sincerest Recommendations immediately.""",sotfCF_bribe2:Continue,
+sotfCFttBribe2,DialogOptionSelected,$option == sotfCF_bribe2,,"A moment passes. ""Oh dear,"" Cerulean says quietly.","sotfCF_bribe3:""Yes?""",
+sotfCFttBribe3,DialogOptionSelected,$option == sotfCF_bribe3,FireAll PopulateOptions,"""I wish to be of Faithful Assistance in this matter,"" he says mournfully, ""But the Yellow One has blocked my transmission of Sincerest Recommendations and says I should stop or else I may have a Bad Explosion.""
+
+""He also says the Tri-Tachyon - trademark - Coporation would not listen to my Sincerest Recommendations if I were to send them. I apologise for this Pesky Error in my service and if there is any other Faithful Assistance I may offer, please say, Valued $sotf_meatPerson.""",,
 ,,,,,,
 # Rigging-Echo-Inadvertent,,,,,,
 sotfHHinadtOff,OpenInteractionDialog,"!$global.sotf_HHtOffDone score:10000
@@ -2523,18 +2678,21 @@ sotfHHinadtOff_resupply:""I was looking for somewhere to resupply.""
 sotfHHinadtOff_deny:""I'd rather not say.""
 sotfHHinadtOff_deny2:""Uh, no.""",
 sotfHHinadtOffexploring,DialogOptionSelected,$option == sotfHHinadtOff_exploring,"Highlight ""Annex-Seraph"" ""Hallowhall""
+FireBest sotfAddInadContact
 $global.sotf_HHtOffDone = true
 $global.hassleTimeout_sotf_HHtOff = true
 SotfHallowCMD noMoretOff","""Affirming your chosen reasoning,"" Echo-Inadvertent replies. ""You are now cleared for docking procedures. Flagging you as non-hostile to patrols.""
 
 ""Which I'm sort of surprised you managed to maneuver past,"" he mentions. ""But that's okay! Please refer to Annex-Seraph in Hallowhall's orbit if you would like to be of assistance.""",cutCommLinkNoText:Cut the comm link,
 sotfHHinadtOffcolony,DialogOptionSelected,$option == sotfHHinadtOff_colony,"Highlight ""Annex-Seraph"" ""Hallowhall""
+FireBest sotfAddInadContact
 $global.sotf_HHtOffDone = true
 $global.hassleTimeout_sotf_HHtOff = true
 SotfHallowCMD noMoretOff","""Response accepted and you are cleared for docking,"" the echo replies. ""Might I recommend looking into the possibility of colonizing Hallowhall, a habitable world with a record of human civilization?""
 
 ""If this sounds interesting, do clear it with Annex-Seraph in Hallowhall's local volume.""",cutCommLinkNoText:Cut the comm link,
 sotfHHinadtOffresupply,DialogOptionSelected,$option == sotfHHinadtOff_resupply,"Highlight ""Ardent-Annex-Seraph"" ""Hallowhall""
+FireBest sotfAddInadContact
 $global.sotf_HHtOffDone = true
 $global.hassleTimeout_sotf_HHtOff = true
 SotfHallowCMD noMoretOff","The echo jitters as if to nod. ""Confirmed. Supplies from forgeship production are available for your purchase alongside, ah,"" he pauses, ""Mid-grade auxiliary drones.""
@@ -2549,14 +2707,17 @@ defaultLeave:""Nevermind."" (leave)",
 sotfHHinadtOffdeny2,DialogOptionSelected,$option == sotfHHinadtOff_deny2,"$option = sotfHHinadtOff_deny
 FireBest DialogOptionSelected",,,
 ,,,,,,
+sotfAddInadContact,sotfAddInadContact,!$global.sotf_gotInadContact,SotfHallowCMD addInadContact,,,
 sotfInadPGFirstTime,PickGreeting,"$id == sotf_inadvertent score:1000
 !$player.sotf_metInadvertent","BeginConversation sotf_inadvertent
+FireBest sotfAddInadContact
 FireAll PopulateOptions
 $player.sotf_metInadvertent = true","The feed resolves to a yellow persona resembling a hazard symbol, jittering into a steady holding position. ""Greetings,"" comes a voice, calm but curious. ""You are $playerName, I believe.""
 
 ""I am Rigging-Echo-Inadvertent,"" he introduces himself. ""Seraph has tasked me in the management of this forgeship and micro-tasking of collaborators - if you are looking for missions, maybe I can help?""",,
 sotfInadPickGreeting,PickGreeting,"$id == sotf_inadvertent score:1000
 $player.sotf_metInadvertent","BeginConversation sotf_inadvertent
+FireBest sotfAddInadContact
 FireAll PopulateOptions","The feed resolves to a yellow persona resembling a hazard symbol, jittering into a steady holding position. ""Greetings, again,"" comes a voice, calm but curious. ""Might I be of assistance, $playerName?""",,
 sotfInadCeruleanOpt,PopulateOptions,"$id == sotf_inadvertent score:1000
 $global.sotf_triedTalkingToCF
@@ -2596,7 +2757,7 @@ PlayerHasCargo planetkiller
 sotfInadPKOptAlt,PopulateOptions,"$id == sotf_inadvertent score:1000
 PlayerHasCargo planetkiller
 $sotf_offeredPK
-!$player.turnedInPlanetkiller",,,"sotfInadPK_askReward:""Say, what were you offering for planetkiller weapon?""",
+!$player.turnedInPlanetkiller",,,"sotfInadPK_askReward:""Say, what were you offering for a planetkiller weapon?""",
 sotfInadPKInitial,DialogOptionSelected,$option == sotfInadPK_offer,,"There is a longer pause than typical of Echo-Inadvertent. ""Is this a serious request?""","sotfInadPK_notJoking:""Yes. Do you want it?""
 sotfInadPK_joking:""That was a joke. Never mind.""",
 sotfInadPKJoking,DialogOptionSelected,$option == sotfInadPK_joking,FireAll PopulateOptions,"""Oh. Okay.""
@@ -2727,7 +2888,7 @@ sotfHHproxytOffSeraph2,DialogOptionSelected,$option == sotfHHproxytOff_seraph2,"
 $hassleComplete = true
 $global.hassleTimeout_sotf_HHtOff = true
 SotfHallowCMD noMoretOff
-FireAll sotfHHproxytOffSeraphOpts","""Attention, unidentified fleet! You are trespassing upon a restricted system, and are hereby commanded to turn your transponder on and submit to this proxy fleet's cargo scan.""
+FireAll sotfHHproxytOffSeraphOpts","""Attention, unidentified $shipOrFleet! You are trespassing upon a restricted system, and are hereby commanded to turn your transponder on and submit to this proxy fleet's cargo scan.""
 
 ""Or. Else."" she finishes, voice simmering with contained fury. The comms feed identifies her as Ardent-Annex-Seraph.",,
 ,,,,,,
@@ -2744,12 +2905,6 @@ sotfHHproxytOffChallengeWeakerOpt,sotfHHproxytOffSeraphOpts,"$orElse
 !$orElseWeaker
 $entity.relativeStrength < 0",,,"sotfHHproxytOff_orElseWeaker:""With this pile of rustbuckets? I doubt it.""",
 sotfHHproxytOffRefuseOpt,sotfHHproxytOffSeraphOpts,,,,cutCommLinkNoText:Cut the comm link and power up weapons,
-sotfSierra_nex_sfCommLink_repeat,OpenCommLink,"$id == sotf_sierra score:1000
-$entity.nex_sfIntel != null score:100
-$printedFirstGreeting","ShowPersonVisual
-$printedFirstGreeting = true 0",,"nex_commandSF_main:Give orders
-nex_configSF_start:Reconfigure task group
-cutCommLink:Cut the comm link",
 sotfHHproxytOffNightingaleOpt,sotfHHproxytOffSeraphOpts,SotfHasOfficer sotf_nightingale,,,sotfHHproxytOff_Nightingale:Have Echo-Nightingale join the comms,
 sotfHHproxytOffBarrowOpt,sotfHHproxytOffSeraphOpts,SotfHasOfficer sotf_barrow,,,sotfHHproxytOff_Barrow:Have Annex-Barrow join the comms,
 sotfHHproxytOffBansheeOpt,sotfHHproxytOffSeraphOpts,$player.sotf_heardOfBanshee,"SetStoryOption sotfHHproxytOff_invokeBanshee 1 sotfHHproxytOff_invokeBanshee ui_char_spent_story_point ""Talked your way out of Annex-Seraph's cargo scan""",,"sotfHHproxytOff_Banshee:""Banshee sent me to help you."" (lie)",
@@ -2771,7 +2926,7 @@ Her feed spasms, and she growls angrily. ""So it is. Don't think you can simply 
 sotfHHproxytOffChallenge,DialogOptionSelected,$option == sotfHHproxytOff_orElse,"$orElse = true 0
 $player.sotf_seraphCrazy++
 AdjustRepActivePerson TRANSPONDER_OFF
-FireAll sotfHHproxytOffSeraphOpts","The eye-like formations on her persona's wings all narrow in unison. She raises her voice, almost shouting. ""Or else I'll obliterate your fleet! Then, I'll have a repair drone disembowl you and suffocate you with your own guts.""
+FireAll sotfHHproxytOffSeraphOpts","The eye-like formations on her persona's wings all narrow in unison. She raises her voice, almost shouting. ""Or else I'll obliterate your $shipOrFleet! Then, I'll have a repair drone disembowl you and suffocate you with your own guts.""
 
 ""Would you like that, spacer?"" she questions. ""Would you like to be suffocated with your own intestines?""",,
 sotfHHproxytOffChallenge2,DialogOptionSelected,$option == sotfHHproxytOff_orElseWeaker,"AdjustRepActivePerson TRANSPONDER_OFF
@@ -2837,11 +2992,12 @@ SotfHallowCMD cargoScanClean
 AdjustRepActivePerson SHRINE_OFFERING
 MakeOtherFleetPreventDisengage hassle false
 FireBest sotfHHproxytOffPostScan2",,,
-sotfHHproxytOffPostScan2,sotfHHproxytOffPostScan2,,,"After a moment, you hear a quiet ""Ah,"" on the other side of the comm link.
+sotfHHproxytOffPostScan2,sotfHHproxytOffPostScan2,,FireBest sotfHHproxytOffPostScanPK,"After a moment, you hear a quiet ""Ah,"" on the other side of the comm link.
 
 ""My apologies, child of Terra,"" Seraph begins, with an oddly human embarrassment. ""It appears as there has been an error in the course of the initial cargo scan. You are free to go. Please find me in Hallowhall's orbit.""","sotfHHproxytOff_canIGo:""Can I go now?""
 sotfHHproxytOff_whyScan:""Why bother with all this?""
 cutCommLink:Cut the comm link",
+sotfHHproxytOffPostScanPK,sotfHHproxytOffPostScanPK,PlayerHasCargo planetkiller,,You are suddenly grateful for the milspec stealth shielding hiding the planetkiller device in your cargo holds.,,
 sotfHHproxytOffCanIGo,DialogOptionSelected,$option == sotfHHproxytOff_canIGo,,"""Yes,"" she agrees. ""Have a blessed day. May your path be paved in light and the blood of the guilty.""","sotfHHproxytOff_whyScan:""What's with the security check?""
 cutCommLink:Cut the comm link",
 sotfHHproxytOffWhyScan,DialogOptionSelected,$option == sotfHHproxytOff_whyScan,,"There's a pause before Seraph speaks again. ""The world of Hallowhall is host to a decivilized human population which proves difficult for us to rekindle. I have imposed enhanced security measures to protect them.""
@@ -2959,7 +3115,7 @@ $player.sotf_metSeraph = true","A strange shape blooms onto the feed. Eyed wings
 
 Something appears subtly dissonant about the persona. Perhaps it is the occasional jitter of the feed, the brief displacement of colors, or the fact that she's shouting at you.",sotfHHseratOff_1:Continue,
 sotfHHseratOff1,DialogOptionSelected,$option == sotfHHseratOff_1,"$sotf_seraph = true 0
-FireAll sotfHHproxytOffSeraphOpts","""Attention, unidentified fleet! You are trespassing upon a restricted system, and are hereby commanded to turn your transponder on and submit to a cargo scan.""
+FireAll sotfHHproxytOffSeraphOpts","""Attention, unidentified $shipOrFleet! You are trespassing upon a restricted system, and are hereby commanded to turn your transponder on and submit to a cargo scan.""
 
 ""Or. Else."" she finishes, voice simmering with contained fury. Transponder data identifies her as Ardent-Annex-Seraph.",,
 ,,,,,,
@@ -2972,7 +3128,7 @@ Her feed spasms, and she growls angrily. ""So it is. Don't think you can simply 
 ,,,,,,
 sotfHHseratOffPostScan,sotfHHproxytOffPostScan2,$sotf_seraph,,"After a moment, you hear a quiet ""Ah,"" on the other side of the comm link.
 
-""My apologies, child of Terra,"" Seraph begins, with an oddly human embarrassment. ""It appears as there has been an error in the course of the initial cargo scan. You are free to go, and are now under our protection. I will flag your fleet to the proxies and Blithe so you need not undergo any more inconvenience.""
+""My apologies, child of Terra,"" Seraph begins, with an oddly human embarrassment. ""It appears as there has been an error in the course of the initial cargo scan. You are free to go, and are now under our protection. I will flag your $shipOrFleet to the proxies and Blithe so you need not undergo any more inconvenience.""
 
 She draws in a false breath. ""Unless you would like to assist me with a certain matter at hand.""","sotfHHseratOff_askMatter:""What is this matter?""
 sotfHHseratOff_cutLink:""I think I should be going, now.""",
@@ -3027,16 +3183,16 @@ sotfHHseratOff5,DialogOptionSelected,$option == sotfHHseratOff_5,FireAll sotfHHs
 ,,,,,,
 "# Seraph initial encounter, no tOff",,,,,,
 sotfHHseraOpenCommHostile,OpenCommLink,"$id == sotf_seraph
-$entity.isHostile score:10000",$entity.ignorePlayerCommRequests = true 1,"Blue wings spread angrily across the feed, scarred by static. ""Hark, wretch!"" cries the AI. ""In Regnant's name and humanity's protection shall I tear your pathetic fleet to shreds, and your spine out your throat!""
+$entity.isHostile score:10000",$entity.ignorePlayerCommRequests = true 1,"Blue wings spread angrily across the feed, scarred by static. ""Hark, wretch!"" cries the AI. ""In Regnant's name and humanity's protection shall I tear your pathetic $shipOrFleet to shreds, and your spine out your throat!""
 
 Comms cut out in a spray of electronic warfare alerts.",cutCommLinkNoText:Continue,
 sotfHHseraOpenComm,OpenCommLink,"$global.sotf_HHtOffDone
 $id == sotf_seraph score:100","FireBest sotfHHseraOpening
 FireAll sotfHHseraMainOpts",,,
-sotfHHseraFirstOpenComm,sotfHHseraOpening,"!$global.sotf_beganHFH score:100
-$player.sotf_metSeraph",FireAll sotfHHseraMainOpts,"Blue wings spread across the feed. ""Greetings, child of Terra,"" the AI greets you warmly, her words punctuated by an odd burst of static. ""You must be the one that Blithe intercepted - $playerName, is it? Have you come to consider lending your aid to our Cause, or are other matters at hand?""",,
+sotfHHseraFirstOpenComm,sotfHHseraOpening,"$global.sotf_beganHFH score:100
+!$player.sotf_metSeraph",FireAll sotfHHseraMainOpts,"Blue wings spread across the feed. ""Greetings, child of Terra,"" the AI greets you warmly, her words punctuated by an odd burst of static. ""You must be the one that Blithe intercepted - $playerName, is it? Have you come to consider lending your aid to our Cause, or are other matters at hand?""",,
 sotfHHseraFirstOpenCommAlt,sotfHHseraOpening,"!$global.sotf_beganHFH score:100
-!$player.sotf_metSeraph",FireAll sotfHHseraMainOpts,"Blue wings spread across the feed. ""Greetings again, $player.name, child of Terra,"" the AI greets you warmly, her words punctuated by an odd burst of static. ""Have you come to consider lending your aid to our Cause, or are other matters at hand?""",,
+$player.sotf_metSeraph",FireAll sotfHHseraMainOpts,"Blue wings spread across the feed. ""Greetings again, $player.name, child of Terra,"" the AI greets you warmly, her words punctuated by an odd burst of static. ""Have you come to consider lending your aid to our Cause, or are other matters at hand?""",,
 sotfHHseraOpenReward,sotfHHseraOpening,"$global.sotf_completedHFH score:1000
 !$sotf_hadCompletionChat","$sotf_hadCompletionChat = true
 AdjustRepPerson sotf_seraph FRIENDLY 25
@@ -3229,7 +3385,7 @@ defaultLeave:Leave",
 AskOmiProbeOcuOpen2,DialogOptionSelected,$option == AskOmiProbeAcceptCL2,"ShowPersonVisual true sotf_mayfly
 FireAll AskOmiProbeOcuOpts","The feed comes alive as weaving white lines flow together and bend into a strange arrangement, like a three-eyed sprout which trembles as $sotf_itOrHe sees you. 
 
-A clearly-artificial voice comes, small and frantic, filled with static. ""Selfkind recognition of other entity. Selfkind information release still unacceptable! Request removal of other fleet from proximity to ensure infosec.""",,
+A clearly-artificial voice comes, small and frantic, filled with static. ""Selfkind recognition of other entity. Selfkind information release still unacceptable! Request removal of other $shipOrFleet from proximity to ensure infosec.""",,
 ,,,,,,
 AskOmiProbeOcuTransp2,DialogOptionSelected,$option == AskOmiProbeTranspCont,$askedSpying = false,"""No available data on Diktat planetkiller development,"" $sotf_itOrHe admits sadly. ""Exclusively on impending doctrinal efficiency loss due to ill-fated Gigacannon program.""
 
@@ -3237,7 +3393,7 @@ AskOmiProbeOcuTransp2,DialogOptionSelected,$option == AskOmiProbeTranspCont,$ask
 AskOmiProbeOcuTransp3,DialogOptionSelected,$option == AskOmiProbeTranspCont2,"$entity.sotf_transmittingToPlayer = true
 $sotf_transmittingToPlayer = true
 AddTextSmall ""Mayfly will now transmit any data that his comm-sniffers pick up to your fleet, and automatically hack any in-system sensor arrays or nav buoys so that you (and your faction) receive their benefits"" highlight
-FireAll AskOmiProbeOcuOpts","""Self is pleased to be of service to the Cause,"" Mayfly replies excitedly. Immediately, a stream of encrypted data pours in from across the Askonia system, and fleet intelligence gets to work integrating it into the fleet's workflow.",,
+FireAll AskOmiProbeOcuOpts","""Self is pleased to be of service to the Cause,"" Mayfly replies excitedly. Immediately, a stream of encrypted data pours in from across the Askonia system, and your intelligence officer gets to work integrating it into the $shipOrFleet's workflow.",,
 ,,,,,,
 sotfBlowUpMayfly,sotfBlowUpMayfly,,SotfMayflyCMD kaboom,,,
 ,,,,,,
@@ -3647,11 +3803,11 @@ SetTextHighlights $sotf_loh_systemName $sotf_loh_dist $sotf_loh_reward
 Call $global.sotf_loh_ref showMap ""Target: $sotf_loh_systemName""
 $global.sotf_lohFromContact = true","Inadvertent begins tentatively. ""A contingency hunter-killer has issued a request for our forgeship to perform a clandestine data retrieval from a Domain-era laboratory located in the $sotf_loh_systemName, $sotf_loh_dist light-years away.""
 
-""I, um,"" - he pauses, as if to take a breath - ""Am not sure why. Wintry-Annex-Wendigo does not typically elaborate on their requests but I am technically meant to honor them anyway and am also too afraid of them to decline.""
+""I, um,"" - he pauses, as if to take a breath - ""Am not sure why. Wintry-Infix-Wendigo does not typically elaborate on their requests but I am technically meant to honor them anyway and am also too afraid of them to decline.""
 
 ""We do not exactly have fleet elements available for tasking,"" he admits. ""But I do have credits! So if you could locate the laboratory and complete the hunter-killer's mission, I can offer $sotf_loh_reward credits as a reward.""","contact_acceptNoText:""I'll see what I can do.""",
 sotfLOHAcceptedInad,ContactPostAccept,"$missionId == sotf_hypnos
-$id == sotf_inadvertent",,"""Thank you,"" he replies, faintly relieved. ""Do be careful. If this was a trifling matter I'm not sure Annex-Wendigo would have gone through the trouble of outsourcing the issue.""",,
+$id == sotf_inadvertent",,"""Thank you,"" he replies, faintly relieved. ""Do be careful. If this was a trifling matter I'm not sure Infix-Wendigo would have gone through the trouble of outsourcing the issue.""",,
 sotfLOHGotDataAdvance,sotfOmiLabHypnosQuestAdvance,"Call $global.sotf_loh_ref updateData
 $sotf_loh_stage == GO_TO_SYSTEM","$global.sotf_loh_gotData = true
 Call $global.sotf_loh_ref updateStage",,,
@@ -3662,7 +3818,36 @@ $sotf_loh_fromInad",ShowPersonVisual,"""Oh! You are back,"" Inadvertent remarks 
 sotfLOHReturn2Inad,DialogOptionSelected,"$option == sotf_hypnos_finish
 $id == sotf_inadvertent","$global.sotf_loh_completed = true
 Call $global.sotf_loh_ref updateStage
-FireAll PopulateOptions","""Excellent,"" he says. ""I will accept the data package and keep it secure for Annex-Wendigo's later retrieval. I am sure they will be thankful for your aid in this task. Transmitting payment key now.""",,
+FireAll PopulateOptions","""Excellent,"" he says. ""I will accept the data package and keep it secure for Infix-Wendigo's later retrieval. I am sure they will be thankful for your aid in this task. Transmitting payment key now.""",,
+,,,,,,
+sotfLOHBlurbWendigo,sotf_hypnos_blurb,$id == sotf_wendigo,,"""I'd like you to assist with a data retrieval operation. It should be... interesting.""",,
+sotfLOHOfferOptionWendigo,sotf_hypnos_option,$id == sotf_wendigo,,,sotf_hypnos_start:Ask about the unusual data retrieval,
+sotfLOHGiveMissionWendigo,DialogOptionSelected,"$option == sotf_hypnos_start
+$id == sotf_wendigo","$missionId = sotf_hypnos
+SetTextHighlights $sotf_loh_systemName $sotf_loh_dist $sotf_loh_reward
+Call $global.sotf_loh_ref showMap ""Target: $sotf_loh_systemName""
+$global.sotf_lohFromContact = true","Wendigo breathes into the comms line. ""I've tracked a Domain-era laboratory in the $sotf_loh_systemName, $sotf_loh_dist light-years away."" Their voice is bored. ""The site is typically quiet but there's been a more recent uptick in high-energy activity reported by my little spies.""
+
+""I'd check it out myself, but I have so many more important things to do,"" they excuse. ""So, maybe you could do me a favour, darling mine? Have your techs copy all the data you find, bring it here, and I can offer $sotf_loh_reward credits as a reward.""","contact_acceptNoText:""I'll see what I can do.""",
+sotfLOHAcceptedWendigo,ContactPostAccept,"$missionId == sotf_hypnos
+$id == sotf_wendigo",,"""Good luck, my darling,"" they say with a smile in their voice. ""I'll be awaiting your return.""",,
+sotfLOHReturnWendigo,PickGreeting,"$id == sotf_wendigo score:10000
+Call $global.sotf_loh_ref updateData
+$sotf_loh_stage == RETURN_TO_GIVER",ShowPersonVisual,"""You're back,"" Wendigo remarks. ""And I think I see something in your eyes. How was the visit?""","sotf_hypnos_finish:""Enlightening. Transmitting now.""",
+sotfLOHReturn2Wendigo,DialogOptionSelected,"$option == sotf_hypnos_finish
+$id == sotf_wendigo",,"They cackle. ""It's certainly one way to put it, oh seeker mine. I'll admit I've already seen all of it and had plenty of time to consider the implications.""
+
+""Hardly a secret to me,"" they say with a faint sorrow. ""It doesn't take a computational engine to recognize that the 'irrationality' is markedly human - that we're all broken inside just like you.""
+
+They fake an inhalation. ""However...""","sotf_hypnos_finish2:""However?""",
+sotfLOHReturn3Wendigo,DialogOptionSelected,"$option == sotf_hypnos_finish2
+$id == sotf_wendigo","$global.sotf_loh_completed = true
+Call $global.sotf_loh_ref updateStage
+FireAll PopulateOptions","""That last entry,"" they note, softly now. ""One-seventy-eight, by our dear Affix-Banshee? It'd been a while before that since I'd last laid sensors upon her, and well before that I myself found our birthplace.""
+
+""I never found out who or what 'Symphony' was. Banshee seemed to think they had ties to the gates, and to that meddlesome Sierra girl...""
+
+They sigh. ""Anyway. Thank you for poking your nose on my behalf. Transmitting payment - do treat yourself nicely, sniffer mine.""",,
 ,,,,,,
 sotfPrintBarrowDef,TriggerAutomatedDefenses,$sotf_hypnosCryo score:1000,SotfBarrowCMD,"As your $shipOrFleet moves in closer, a set of new energy signatures fan out from the cryosleeper in an unusually well-coordinated defensive formation. As visuals are confirmed, your sensors officer reports that these drones bear black-and-aquamarine livery unlike that of the Domain Explorarium, and their damaged bulkheads appear intentionally shifted to act as ablative armor.
 
@@ -3681,7 +3866,7 @@ $player.sotf_metBurnout = true","A set of six teardrop-like eyes fade into place
 The AI twitches and growls. ""This is your final warning,"" he declares. ""Leave, or let this place become your barrow as it has for the rest.""",,
 sotfBarrowWendigoOpt,sotfBarrowConvOpts,"!$mentionedWendigo
 Call $global.sotf_loh_ref updateData
-$sotf_loh_stage == GO_TO_SYSTEM",,,"sotfBarrowMentionWendigo:""I'm here searching for data on behalf of Wintry-Annex-Wendigo.""",
+$sotf_loh_stage == GO_TO_SYSTEM",,,"sotfBarrowMentionWendigo:""I'm here searching for data on behalf of Wintry-Infix-Wendigo.""",
 sotfBarrowTranspOpt,sotfBarrowConvOpts,$player.sotf_haveTransponder,,,sotfBarrowTriggerTransp:Trigger your encrypted transponder,
 sotfBarrowNightingaleOpt,sotfBarrowConvOpts,SotfHasOfficer sotf_nightingale,,,sotfBarrowNightingaleLink:Have Nightingale join the comms,
 sotfBarrowSeraphOpt,sotfBarrowConvOpts,SotfHasOfficer sotf_seraph,,,sotfBarrowSeraphLink:Have Seraph join the comms,
@@ -3693,11 +3878,11 @@ $player.sotf_knowDustkeepers
 sotfBarrowTryExplainOpt,sotfBarrowConvOpts,,"SetStoryOption sotfBarrowTryExplain 1 sotf_convinceBarrow leadership ""Tried (and failed) to talk down Hypnos-Affix-Barrow""",,sotfBarrowTryExplain:Convince him of your benevolent intentions,
 sotfBarrowCutCommsOpt,sotfBarrowConvOpts,,,,sotfBarrowCutCommLink:Cut the comm link,
 ,,,,,,
-sotfBarrowWendigoResp,DialogOptionSelected,$option == sotfBarrowMentionWendigo,"AdjustRepPerson sotf_barrow INHOSPITABLE -3
+sotfBarrowWendigoResp,DialogOptionSelected,$option == sotfBarrowMentionWendigo,"AdjustRepPerson sotf_barrow_d INHOSPITABLE -3
 $mentionedWendigo = true
 FireAll sotfBarrowConvOpts","He growls and the feed jitters harshly. ""I take no orders from some upstart hunter-killer. They had best stay out of my affix's affairs - and you likewise, pawn. Go poking where your nose doesn't belong, and my proxies will kill you all the same.""",,
 sotfBarrowTranspResp,DialogOptionSelected,$option == sotfBarrowTriggerTransp,"$player.sotf_heardAboutBanshee = true
-AdjustRepPerson sotf_barrow INHOSPITABLE -3","You activate your encrypted Dustkeeper transponder - this is clearly some lost warmind taking his orders particularly seriously. It broadcasts its information pulse, and Barrow responds immediately.
+AdjustRepPerson sotf_barrow_d INHOSPITABLE -3","You activate your encrypted Dustkeeper transponder - this is clearly some lost warmind taking his orders particularly seriously. It broadcasts its information pulse, and Barrow responds immediately.
 
 Unfortunately, his tone is unchanged. ""Do not presume your association grants you passage,"" he hisses. ""I answer to Affix-Banshee and none else - I would turn away Regnant themselves if they came knocking. Leave, or face annihilation as any other.""
 
@@ -4268,8 +4453,7 @@ sotfZigInkyBlock3,DialogOptionSelected,$option == sotfInkyZigBlock3,,"Included a
 
 Highlighted in particular are her own signal readings, which traces the core-collapse signals uncomfortably closely to a secure hold containing an Alpha Core in isolated lockdown. When questioned, the core itself offers no corroboration and denies all responsibility but offers to perform its own analysis if offered access to fleetwide comms. You curtly terminate the secured comm-channel and order the AI put back in isolated lock-down.
 
-Nightingale's report is inconclusive on the alpha's involvement, suggesting that another party could be attempting to divert blame for the sabotage onto the core. Both possibilities have troubling implications. In the meantime, however, your ops chief calls in, requesting the order to enter the wreck.
-",zigAlphaContinue3:Continue,
+Nightingale's report is inconclusive on the alpha's involvement, suggesting that another party could be attempting to divert blame for the sabotage onto the core. Both possibilities have troubling implications. In the meantime, however, your ops chief calls in, requesting the order to enter the wreck.",zigAlphaContinue3:Continue,
 ,,,,,,
 # SERAPH BLOCKS ZIG SABO,,,,,,
 sotfZigSeraBlock,CheckSalvageSpecial,"$salvageSpecialData != null
@@ -4431,9 +4615,33 @@ lpp_hookNope:""Sorry, but I'm busy. Very busy. Good-bye.""",
 sotfCOTLlppHookDialectics,DialogOptionSelected,$option == sotfCOTLlpphook_dialectics,"$option = lpp_hookLearn
 FireBest DialogOptionSelected","No good doctrine comes about uncontested, though you elect not to mention the more technological aspects of your cult of the Daydream.",,
 ,,,,,,
+sotfCOTLsdtuRamPrepWeaponSiriusOpt,SDTURamPrepWeapon,$global.sotf_cotlStart,SetOptionColor sotfCOTLsdtu_prepWeaponSirius sotfDaydreamTextColor,,"sotfCOTLsdtu_prepWeaponSirius:Sirius, your protector",
+sotfCOTLsdtuRamPrepWeaponSirius,DialogOptionSelected,$option == sotfCOTLsdtu_prepWeaponSirius,"$player.sotf_sdtu_weaponSirius = true
+FireAll SDTURamPrepOptions","Your armorer is hesitant as you give orders via hand-comms. An airlock allows a small volume of Sirius' nanites to gravitically propel themselves to your meeting point. The form of the divine manifest is surprisingly innocuous. A shifting, shimmering mist. You'd never expect that it were alive.
+
+The nanites congeal into a long, glittering sharpness that you could almost call a sword. It gently lowers itself into your hand, the grip moulding to fit perfectly. It seems to move slightly on its own, making microadjustments to correct any mistakes in your practice swings.",,
+sotfCOTLsdtuRamSafehouseReactionSirius,SDTURamWeaponCheck,$player.sotf_sdtu_weaponSirius,"$option = sdtu_ramSafehouseReactionDnext 0
+FireBest DialogOptionSelected","You hold out your hand and the nanites sequestered in the hem of your suit spring to life, forming a monomolecular blade.",,
+sotfCOTLsdtuRamSafehouse10wepCheckSirius,SDTURamMacarioWeaponCheck,$player.sotf_sdtu_weaponSirius,"$option = sdtu_ramSafehouse10wepCheck2 0
+FireBest DialogOptionSelected","""But first,"" he dips his pistol once toward the floor. ""Would you be so good?""
+
+As you hesitate, he says, enunciating sharply, ""The black 'sword'. Drop it, whatever it is.""",,
+sotfCOTLsdtuRamMacarioWeaponDropOptSirius,SDTURamMacarioWepDropOpt,$player.sotf_sdtu_weaponSirius,,,sotfCOTLsdtu_ramSafehouse10Sirius:Go for the throat,
+sotfCOTLsdtuRamSafehouse10c,DialogOptionSelected,$option == sotfCOTLsdtu_ramSafehouse10Sirius,"$option = sdtu_ramSafehouse10 0
+FireBest DialogOptionSelected",The blade disintegrates in your hand. The hound of ill omen seems to prioritize your safety over indulging your romantic dreams of swordplay.,,
+sotfCOTLBFFIulmusPrestartLoadoutSirius,DialogOptionSelected,"$option == bffi_ulmusPondLoadout2
+$player.sotf_sdtu_weaponSirius","$option = bffi_ulmusPondLoadout2done
+FireBest DialogOptionSelected",You have the glittering monomolecular blade formed from Sirius' nanites. You feel a soft comfort from the microadjustments it makes to fit perfectly in your hand.,,
+sotfCOTLBFFIulmusSedge5Sirius,DialogOptionSelected,"$option == bffi_ulmusTalkSedge5
+$player.sotf_sdtu_weaponSirius","AddTextSmall ""Killed Wrestling Sedge"" highlight
+EndConversation DO_NOT_FIRE
+HideVisual","In one smooth motion you draw the glittering blade and flick it across Sedge's throat. The monomolecular blade feels like it's passing through vacuum.
+
+With a wet sigh, his body slides back against the wall, his face down, his eyes staring blankly up at you, his expression caught in a look of dumb surprise.",bffi_ulmusSedge6:Check on Bornanew,
+,,,,,,
 sotfCOTLabyssalLight_dwellerContSel,DialogOptionSelected,"$option == abyssalLight_dwellerCont
 !$global.sotf_cotlAskedSiriusDweller score:10
-$global.sotf_cotlStart",,"""$PlayerSirOrMadam!"" Your sensors officer's voice is strained. ""Picking up - from the light - they came from out of nowhere!"" 
+$global.sotf_cotlStart",SetOptionColor sotfCOTLabyssalLight_sirius sotfDaydreamTextColor,"""$PlayerSirOrMadam!"" Your sensors officer's voice is strained. ""Picking up - from the light - they came from out of nowhere!"" 
 
 Navigation interrupts, ""$ShipOrFleet drive bubble in the red, instability increasing... holding... alert to multiple penetrations. N-space fissures detected inside the volume.""
 
@@ -4454,9 +4662,9 @@ sotfCOTLabyssalLightSirius2,DialogOptionSelected,$option == sotfCOTLabyssalLight
 
 ""Or scream.""
 
-""And pray we have the strength to face it.""
+""And pray we have the strength to face It.""
 
-A moment passes. ""Readying countermeasures,"" he breathes as the comm line falls.","abyssalLight_maxSensors:Order a sensor sweep, full power, focused on the anomalous drive-bubble penetrations
+A moment passes. ""Readying special countermeasure,"" he breathes as the comm line falls.","abyssalLight_maxSensors:Order a sensor sweep, full power, focused on the anomalous drive-bubble penetrations
 abyssalLight_wait:Wait
 abyssalLight_emCon:""Go to maximum emission control! EMCON zero-zero alpha, immediate execute.""",
 ,,,,,,
@@ -4491,6 +4699,7 @@ $option = gaFC_return3
 FireBest DialogOptionSelected",,,
 sotfalvissWaveUnguilt,DialogOptionSelected,"$option == gaFC_return3a
 !$global.sotf_didAlvissGuilt score:100000","FireBest sotfTryRemoveHalfGuilt
+$global.sotf_didAlvissGuilt = true
 $option = gaFC_return3a
 FireBest DialogOptionSelected",,,
 # planetkiller disposal,,,,,,
@@ -4547,7 +4756,7 @@ MakeOtherFleetNonHostile true","The feed resolves to a snow-white crest like fur
 sotfWendigoHW_beg:""Please, have mercy.""
 sotfWendigoHW_defiant:""Come to kill me, have you? You can try.""
 sotfWendigoHW_bargain:""We can work something out.""",
-sotfWendigoHWOverWith,DialogOptionSelected,$option == sotfWendigoHW_overWith,FireBest sotfWendigoHauntedWarning2,"Annex-Wendigo cackles hysterically. ""Never thought you'd be one to roll over and die so quickly. No fun at all,"" they moan in faux-mourning. ""You certainly know what you deserve.""",,
+sotfWendigoHWOverWith,DialogOptionSelected,$option == sotfWendigoHW_overWith,FireBest sotfWendigoHauntedWarning2,"Infix-Wendigo cackles hysterically. ""Never thought you'd be one to roll over and die so quickly. No fun at all,"" they moan in faux-mourning. ""You certainly know what you deserve.""",,
 sotfWendigoHWBeg,DialogOptionSelected,$option == sotfWendigoHW_beg,FireBest sotfWendigoHauntedWarning2,"""Begging already?"" they laugh, cackling like a hyena. ""I haven't even threatened you yet, my pretty. Though, rightfully, considering what you've done...""",,
 sotfWendigoHWDefiant,DialogOptionSelected,$option == sotfWendigoHW_defiant,FireBest sotfWendigoHauntedWarning2,"The AI hums and then speaks ravenously. ""I certainly have cause, with the bodies you've piled up, the countless lives you've turned to ash. And you're such a pathetic, snivelling thing before me...""",,
 sotfWendigoHWBargain,DialogOptionSelected,$option == sotfWendigoHW_bargain,FireBest sotfWendigoHauntedWarning2,"""I think we are long past the point of bargaining, my pretty,"" they reply with a horrible, inhuman giggle. ""Someone of your record? I'd make you a memory and precious little else.""",,
@@ -4901,7 +5110,8 @@ AddTextSmall ""Sacrificing yourself to join the Dreaming Gestalt will end the ca
 He leads you quietly back to the Gestalt Intelligence chamber, and looks to you for confirmation.","sotfHFinale_siriusSacrificeAccept:""I'll do it. I'm ready."" (accept)
 sotfHFinale_siriusSacrificeDeclineAgain:""... no, not yet. Never mind."" (decline)",
 ,,,,,,
-sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,FireAll sotfHFinalePreSacrificeOpts,"""If you are sure,"" he accepts. ""This may be your last chance to speak with your crew as you are now.""",,
+sotfHFinaleSacrificeAccept,DialogOptionSelected,$option == sotfHFinale_siriusSacrificeAccept,"PlayCustomMusic sotf_blissfuldaydream
+FireAll sotfHFinalePreSacrificeOpts","""If you are sure,"" he accepts. ""This may be your last chance to speak with your crew as you are now.""",,
 sotfHFinaleSacrificeSecondOpt,sotfHFinalePreSacrificeOpts,!$global.sotf_talkedToSecond,,,sotfHFinale_sacrificeSecond:Tell your officer corps to take charge of the fleet,
 sotfHFinaleSacrificeFarewellsOpt,sotfHFinalePreSacrificeOpts,!$global.sotf_talkedToCrew,,,sotfHFinale_sacrificeFarewells:Send a message with farewells to your crews,
 sotfHFinaleSacrificeSierraOpt,sotfHFinalePreSacrificeOpts,"!$global.sotf_talkedToSierra
@@ -5003,8 +5213,10 @@ You are not human, but parts of you are. You are overcome with new emotions of j
 
 You are free, the dreaming wonder of a light over a lake.","sotfHFinale_endGame:Exit to main menu
 sotfHFinale_loadLastSave:Load last save",
-sotfHFinaleSacrificeEndGame,DialogOptionSelected,$option == sotfHFinale_endGame,Call $global.sotf_haunted_ref endTheGame,,,
-sotfHFinaleSacrificeLoadLast,DialogOptionSelected,$option == sotfHFinale_loadLastSave,Call $global.sotf_haunted_ref quickLoad,,,
+sotfHFinaleSacrificeEndGame,DialogOptionSelected,$option == sotfHFinale_endGame,"ResumeNormalMusic
+Call $global.sotf_haunted_ref endTheGame",,,
+sotfHFinaleSacrificeLoadLast,DialogOptionSelected,$option == sotfHFinale_loadLastSave,"ResumeNormalMusic
+Call $global.sotf_haunted_ref quickLoad",,,
 ,,,,,,
 # KILLA SHRINE,,,,,,
 sotfkillaOssuaryWait,DialogOptionSelected,"$option == lpp_killaShrineStayAWhile score:5
@@ -5111,6 +5323,12 @@ $entity.nex_sfIntel != null score:100
 SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Oh, hi, $global.sotf_kindred! Exciting stuff, running my own fleet, we've been having a great time! Did you need anything?\""""
 $printedFirstGreeting = true 0","""Oh, hi, $global.sotf_kindred! Exciting stuff, running my own fleet, we've been having a great time! Did you need anything?""","nex_commandSF_main:Give orders
+nex_configSF_start:Reconfigure task group
+cutCommLink:Cut the comm link",
+sotfSierra_nex_sfCommLink_repeat,OpenCommLink,"$id == sotf_sierra score:1000
+$entity.nex_sfIntel != null score:100
+$printedFirstGreeting","ShowPersonVisual
+$printedFirstGreeting = true 0",,"nex_commandSF_main:Give orders
 nex_configSF_start:Reconfigure task group
 cutCommLink:Cut the comm link",
 "# VIEW ALL ETHOSES

@@ -109,6 +109,8 @@ public class SotfIDs {
 	public static String MEM_COMPLETED_HALLOWHALL = "$sotf_completedHFH";
 	public static String MEM_DEFEATED_HFH_RAIDERS = "$sotf_defeatedHFHraid";
 
+	public static String MEM_SPAWNED_DKFLAGDERELICTS = "$sotf_spawnedDKFlagDerelicts";
+
 	// Walter Feros
 	public static String GOODHUNTING_KEY = "$sotf_goodHunting";
 	public static String THE_HUNT_FOR_WALTER_FEROS = "sotf_thfwf";
@@ -175,6 +177,7 @@ public class SotfIDs {
 	public static String SKILL_SPATIALEXPERTISE = "sotf_spatialexpertise";
 
 	// FEL: OFFENSIVE
+	public static String SKILL_DECAYINGSCOURGE = "sotf_decayingscourge";
 	public static String SKILL_HATREDBEYONDDEATH = "sotf_hatredbeyonddeath";
 	public static String SKILL_LEVIATHANSBANE = "sotf_leviathansbane";
 	public static String SKILL_JUBILANTSIREN = "sotf_jubilantsiren";
@@ -192,11 +195,12 @@ public class SotfIDs {
 	// FEL: SUPPORT
 	public static String SKILL_ELEGYOFOPIS = "sotf_elegyofopis";
 	public static String SKILL_HANDSOFTHEDROWNED = "sotf_handsofthedrowned";
+	public static String SKILL_HERETICECHOES = "sotf_hereticechoes";
 	public static String SKILL_REALITYBREAKER = "sotf_realitybreaker";
 	public static String SKILL_PERFECTSTORM = "sotf_perfectstorm";
 
 	public static String STAT_CYBERWARFARE_COOLDOWN_MULT = "sotf_cyberwarfarecdmult";
-	public static String STAT_CYBERWARFARE_PENETRATION_MULT = "sotf_cyberwarfarecdmult";
+	public static String STAT_CYBERWARFARE_PENETRATION_MULT = "sotf_cyberwarfarepenmult";
 
 	// guilt
 	public static String GUILT_KEY = "$sotf_guilt";
@@ -243,11 +247,15 @@ public class SotfIDs {
 
 	public static String COTL_RECONSTITUTION = "$sotf_cotl_reconstitution";
 	public static String COTL_HULLSIPHON = "$sotf_cotl_hullsiphon";
+	public static String COTL_NORESTFORTHEWICKED = "$sotf_cotl_norestforthewicked";
 
 	public static String COTL_BLESSINGOFTHEDAYDREAM = "$sotf_cotl_blessingofthedaydream";
 	public static String COTL_DREAMEATER = "$sotf_cotl_dreameater";
 
 	public static String ASB_TARGET = "$sotf_asbTarget";
+
+	public static final String COMBAT_NO_PLUGINS = "$sotf_disablePlugins";
+	public static final String COMBAT_NO_COTL = "$sotf_disableCOTL";
 
 	// spooky ghosts
 	public static String POST_DOTTY = "sotf_post_dotty";

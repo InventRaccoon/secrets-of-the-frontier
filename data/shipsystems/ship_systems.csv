@@ -1,10 +1,14 @@
 name,id,flux/second,f/s (base rate),f/s (base cap),flux/use,f/u (base rate),f/u (base cap),cr/u,max uses,regen,charge up,active,down,cooldown,toggle,noDissipation,noHardDissipation,hardFlux,noFiring,noTurning,noStrafing,noAccel,noShield,noVent,isPhaseCloak,tags,icon
 Concord Shift,sotf_concordshift,,,,,,,,2,0.1,0.2,3,0.25,0.25,,,TRUE,TRUE,TRUE,,,,,TRUE,TRUE,"restricted, defensive",graphics/icons/hullsys/phase_cloak.png
 Interdimensional Entry,sotf_concordentry,1,,,,,,,,,0.2,,0.2,2,TRUE,,,,TRUE,TRUE,TRUE,TRUE,TRUE,,,restricted,graphics/icons/hullsys/phase_cloak.png
-Catalyst Scourge,sotf_entropiccatalyst,,,,,,0.2,,,,0.5,10,1,10,,,,,,,,,,,,"restricted, offensive",graphics/icons/hullsys/entropy_amplifier.png
+Entropic Catalyst,sotf_entropiccatalyst,,,,,,0.2,,,,0.5,10,1,10,,,,,,,,,,,,"restricted, offensive",graphics/icons/hullsys/entropy_amplifier.png
 Gravitic Surge,sotf_gravispatialsurge,1,,,,,,,2,0.1,0.4,0.4,0.25,0.5,,,,,,,TRUE,TRUE,,,,"restricted, movement",graphics/icons/hullsys/burn_drive.png
 Hypnagogic Incursion,sotf_hypnagogicincursion,,,,,,0.05,,2,0.25,0,0.05,0.5,0.5,,,TRUE,,TRUE,,,,,TRUE,,"restricted, movement",graphics/icons/hullsys/displacer.png
+Ontological Anchor,sotf_ontologicalanchor,,,,,,0.15,,,,2,0.25,0.75,8,,,,,,,,,,,,"restricted, offensive",graphics/icons/hullsys/emp_emitter.png
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Breaching Warp,sotf_breachwarp,,,,,,0.1,,,,0.5,0,0.5,18,,,,TRUE,,,,,,,,movement,graphics/icons/hullsys/teleport.png
+Intrusion Protocol,sotf_intrusionprotocol,,,,,,0.25,,,,1.5,,1,30,,,,,,,,,,,,,graphics/icons/hullsys/quantum_disruptor.png
+Temporal Accelerator,sotf_temporalaccelerator,1,,,,,0.05,,3,0.125,0,0.05,0.2,,,,,,,,,,,,,,graphics/icons/hullsys/temporal_shell.png
 Drone Strike,sotf_dronestrike,,,,,,0.05,,2,0.05,0.5,,0.25,1,,,,,,,,,,,,offensive,graphics/icons/hullsys/interdictor_array.png
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,
 Off-Site Pilum Platforms,sotf_lrms,,,,,,0,,,,0.05,,0.05,1.2,,,,,,,,,,,,offensive,graphics/icons/hullsys/interdictor_array.png

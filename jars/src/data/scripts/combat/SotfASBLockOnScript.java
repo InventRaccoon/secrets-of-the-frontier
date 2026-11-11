@@ -3,23 +3,29 @@ package data.scripts.combat;
 
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.*;
-import com.fs.starfarer.api.fleet.FleetMemberAPI;
-import com.fs.starfarer.api.fleet.FleetMemberType;
+import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Stats;
+import com.fs.starfarer.api.impl.combat.RealityDisruptorChargeGlow;
 import com.fs.starfarer.api.input.InputEventAPI;
+import com.fs.starfarer.api.loading.WeaponSpecAPI;
+import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
-import org.magiclib.util.MagicUI;
+import data.scripts.utils.SotfMisc;
+import org.lazywizard.lazylib.MathUtils;
+import org.lazywizard.lazylib.VectorUtils;
 import data.scripts.weapons.SotfASBEveryFrameScript;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.lazywizard.lazylib.ui.FontException;
 import org.lazywizard.lazylib.ui.LazyFont;
 import org.lazywizard.lazylib.ui.LazyFont.DrawableString;
+import org.magiclib.util.MagicUI;
 
 import java.awt.*;
 import java.util.List;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glPopAttrib;
 
 public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
 
@@ -31,7 +37,6 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
     public float progress = 0f;
     public Vector2f firingLocation;
     public DamagingProjectileAPI shot;
-    //public MissileAPI shot;
 
     public static class ASBParams implements Cloneable {
         // REQUIRED
@@ -44,17 +49,31 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
 
         // EXTRAS
         public String weaponId = "sotf_asb"; // weapon used for projectile
+        public String threatIndicatorId = "sotf_threatmarker"; // weapon used to deploy a hidden mine for AI purposes
         public String lidarId = "sotf_lidardrone_Variant";
-        public String acquiringTarget = "ASB TRACING TARGET";
-        public String targetLocked = "!! ASB TARGET LOCKED !!";
+        public String acquiringTarget = "!! ASC TRACING TARGET !!";
+        public String targetLocked = "!! ASC TARGET LOCKED !!";
+
+        // displayed below target ship in-world
+        public String targetLockingString = "!! ASC TRACING TARGET !!";
+        public String targetLockingStringHostile = "!! WARNING: TRACED BY HOSTILE LIDAR !!";
+        public String targetLockedString = "!! ASC TARGET LOCKED !!";
+        public String targetLockedStringHostile = "!! WARNING: HOSTILE ASC TARGET LOCKED !!";
+
+        public boolean showStatusMessage = false;
         public String statusTitle = "!! WARNING: TRACED BY LIDAR !!"; // top line of status when player is being locked
-        public String statusSubtext = "!! ASB LOCK IMMINENT !!"; // bottom line of status
+        public String statusSubtext = "!! ASC LOCK IMMINENT !!"; // bottom line of status
         public String lockedString = "TARGET LOCKED!"; // popup when fully locked
         public Color lockedColor = Misc.getNegativeHighlightColor();
         public String acquiredSound = "sotf_asb_acquired"; // sound when beginning lock
         public String lockSound = "sotf_asb_locked"; // sound when fully locked
         public String fireSound = "sotf_asb_fire"; // global sound on firing
         public String lidarLoop = "system_high_energy_focus_loop"; // loop emitted by lidar laser
+
+        public boolean showIndicators = true;
+        public boolean suppressLockedAlert = false; // prevents lockedAlert message from being shown
+        public String lockedAlert = "target-locked by anti-ship cannon"; // at top of screen, Shipname (x-class) target-locked by...
+        public Color uiColor = Misc.getNegativeHighlightColor();
         public float chargeTime = 6f; // time taken by lidar to lock the ship
 
         //public float decayRate = 18f; // seconds over which a mark decays if not maintained
@@ -81,19 +100,37 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
 
     public ASBParams p;
 
+    protected float fadeIn = 0f;
+    protected float fadeBounce = 0f;
+    protected boolean bounceUp = true;
+    protected boolean flicker = false;
+
+    private static DrawableString TODRAW17;
     private static DrawableString TODRAW14;
     private static DrawableString TODRAW10;
-    private static final float UIscaling = Global.getSettings().getScreenScaleMult();
 
-    static {
+    protected SpriteAPI cornerSprite = Global.getSettings().getSprite("ui", "sotf_targetui_corner");
+
+    public void init(CombatEngineAPI engine) {
         try {
-            LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
+            int fontMult = 2;
+            LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/insignia17LTAaa.fnt");
+            TODRAW17 = fontdraw.createText();
+            TODRAW17.setBlendSrc(GL_ONE);
+            TODRAW17.setFontSize(17 * fontMult);
+
+            fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
             TODRAW14 = fontdraw.createText();
+            TODRAW14.setBlendSrc(GL_ONE);
+            TODRAW14.setFontSize(14 * fontMult);
 
             fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
             TODRAW10 = fontdraw.createText();
+            TODRAW10.setBlendSrc(GL_ONE);
+            TODRAW10.setFontSize(10 * fontMult);
 
         } catch (FontException ignored) {
+
         }
     }
 
@@ -109,8 +146,14 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
         }
         firingLocation = new Vector2f((Global.getCombatEngine().getMapWidth() * 0.15f * (xSide)), y);
         p.target.setCustomData(SotfIDs.ASB_TARGET, true);
-        Global.getCombatEngine().addLayeredRenderingPlugin(new SotfASBLockRingsScript(this));
+        //Global.getCombatEngine().addLayeredRenderingPlugin(new SotfASBLockRingsScript(this));
         Global.getSoundPlayer().playSound(p.acquiredSound, 1f, 2f, p.target.getLocation(), p.target.getVelocity());
+        Global.getCombatEngine().addPlugin(new SotfASBWarnScript(p.target, this));
+        if (p.target.getOwner() == 0 && !p.suppressLockedAlert) {
+            Global.getCombatEngine().getCombatUI().addMessage(0, p.target,
+                    SotfMisc.getShipNameColor(p.target), p.target.getName() + " (" + p.target.getHullSpec().getHullNameWithDashClass() + ")",
+                    Misc.getTextColor(), " " + p.lockedAlert);
+        }
     }
 
     public void advance(float amount, List<InputEventAPI> events) {
@@ -119,8 +162,11 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             progress += (amount * engine.getTimeMult().getModifiedValue()) / p.chargeTime;
         }
 
+        float bounceMult = 1f;
+
         if (expiring) {
             progress = 1f;
+            bounceMult = 6f;
         }
         if (expireProgress >= 1f) {
             p.target.getCustomData().remove(SotfIDs.ASB_TARGET);
@@ -132,9 +178,31 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             expiring = true;
         }
 
+        if (fadeIn <= 1f) fadeIn += amount * 4f;
+        if (fadeIn > 1f) fadeIn = 1f;
+
+        if (fadeIn >= 1f) {
+            if (bounceUp) {
+                fadeBounce += amount * 4f * bounceMult;
+                if (fadeBounce > 1f) {
+                    fadeBounce = 1f;
+                    bounceUp = false;
+                }
+            } else {
+                fadeBounce -= amount * bounceMult;
+                if (fadeBounce < 0f) {
+                    fadeBounce = 0f;
+                    bounceUp = true;
+                }
+            }
+        }
+
         if (expiring) {
             //MagicUI.drawHUDStatusBar(engine.getPlayerShip(), 1, Misc.getPositiveHighlightColor(), Misc.getPositiveHighlightColor(), 0, null, null, false);
-            expireProgress += amount;
+            expireProgress += amount * 0.5f;
+            if (expireProgress > 1f) {
+                expireProgress = 1f;
+            }
         }
 
         // Lidar drone with a rangefinding laser
@@ -156,6 +224,7 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             //drone.getMutableStats().getHullDamageTakenMult().modifyMult("dem", 0f); // so it's non-targetable
             //drone.setCollisionClass(CollisionClass.NONE);
 
+            fleetManager.removeDeployed(drone.getWing(), true);
             fleetManager.setSuppressDeploymentMessages(wasSuppressing);
             drone.getMutableStats().getSightRadiusMod().modifyMult(p.key, 0f);
         }
@@ -180,7 +249,7 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             }
             Global.getSoundPlayer().playLoop(p.lidarLoop, p.target, (1f + progress) * 0.5f, 1f, p.target.getLocation(), p.target.getVelocity());
             // blinking status icon
-            if (p.target.equals(engine.getPlayerShip())) {
+            if (p.showStatusMessage && p.target.equals(engine.getPlayerShip())) {
                 if (showStatus) {
                     engine.maintainStatusForPlayerShip(p.key, "graphics/icons/hullsys/lidar_barrage.png", p.statusTitle, p.statusSubtext, true);
                     showStatus = false;
@@ -209,9 +278,9 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             Vector2f fireSoundLoc = new Vector2f(engine.getViewport().convertScreenXToWorldX(engine.getViewport().getCenter().x),
                     engine.getViewport().convertScreenYToWorldY(engine.getViewport().getCenter().y));
             Global.getSoundPlayer().playSound(p.fireSound, 1f, 1f, fireSoundLoc, new Vector2f(0f,0f));
-            Global.getCombatEngine().addFloatingText(new Vector2f(p.target.getShieldCenterEvenIfNoShield().x, p.target.getShieldCenterEvenIfNoShield().y + p.target.getShieldRadiusEvenIfNoShield() + 50f),
-                    "-" + p.lockedString + "-",
-                    60f, p.lockedColor, p.target, 1f, 0.2f);
+            //Global.getCombatEngine().addFloatingText(new Vector2f(p.target.getShieldCenterEvenIfNoShield().x, p.target.getShieldCenterEvenIfNoShield().y + p.target.getShieldRadiusEvenIfNoShield() + 50f),
+            //        "-" + p.lockedString + "-",
+            //         60f, p.lockedColor, p.target, 1f, 0.2f);
             expiring = true;
             fired = true;
         }
@@ -227,65 +296,249 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
         }
     }
 
-    // old code I couldn't figure out how to work
+    public void renderInUICoords(ViewportAPI viewport) {
+        CombatEngineAPI engine = Global.getCombatEngine();
+        if (!engine.isUIShowingHUD()) return;
+        if (p.target == null || engine.getPlayerShip() == null) return;
+        if (p.target != engine.getPlayerShip()) return;
+        if (engine.getViewport().isNearViewport(p.target.getLocation(), -150f)) return;
 
-    private static void addHUDStatusText(ShipAPI ship, Color textColor, Vector2f screenPos) {
-        Color borderCol = textColor == null ? MagicUI.GREENCOLOR : textColor;
-        if (!ship.isAlive()) {
-            borderCol = MagicUI.BLUCOLOR;
-        }
-        float alpha = 1f;
-        if (Global.getCombatEngine().isUIShowingDialog()) {
-            return;
-        }
-        Color shadowcolor = new Color(Color.BLACK.getRed() / 255f, Color.BLACK.getGreen() / 255f, Color.BLACK.getBlue() / 255f,
-                1f - Global.getCombatEngine().getCombatUI().getCommandUIOpacity());
-        Color color = new Color(borderCol.getRed() / 255f, borderCol.getGreen() / 255f, borderCol.getBlue() / 255f,
-                alpha * (borderCol.getAlpha() / 255f)
-                        * (1f - Global.getCombatEngine().getCombatUI().getCommandUIOpacity()));
+        float alphaMult = fadeIn * (1f - fadeBounce * 0.5f) * (1f - expireProgress);
+        int alpha = Math.round(255 * alphaMult);
 
-        final Vector2f boxLoc = new Vector2f(screenPos.getX(), screenPos.getY());
-        final Vector2f shadowLoc = new Vector2f(screenPos.getX() + 1f, screenPos.getY() - 1f);
-        if (UIscaling !=1 ) {
-            boxLoc.scale(UIscaling);
-            shadowLoc.scale(UIscaling);
-            TODRAW10.setFontSize(10*UIscaling);
+        Color color = new Color(p.uiColor.getRed() / 255f, p.uiColor.getGreen() / 255f, p.uiColor.getBlue() / 255f, alphaMult);
+
+        LazyFont.DrawableString toUse = TODRAW17;
+        if (TODRAW17 != null && TODRAW14 != null) {
+            String text = p.targetLockingString;
+            String text2 = p.targetLockedString;
+            if (p.target.getOwner() == 0) {
+                text = p.targetLockingStringHostile;
+                text2 = p.targetLockedStringHostile;
+            }
+
+            String textToUse = text;
+            if (progress >= 1) {
+                textToUse = text2;
+            }
+
+            toUse.setText(textToUse);
+            toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+            //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            Vector2f pos = new Vector2f(
+                    engine.getViewport().getCenter().x,
+                    engine.getViewport().getCenter().y + engine.getViewport().getVisibleHeight() * 0.3f
+            );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos.x + 1, pos.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(color, alpha));
+            //toUse.setBaseColor(color);
+            toUse.draw(pos);
+
+            toUse = TODRAW14;
+            toUse.setText("LOCKING: " + Math.round(progress * 100f) + "%");
+            toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+            //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            Vector2f pos2 = new Vector2f(
+                    pos.x,
+                    pos.y - 24f
+            );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos2.x + 1, pos2.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(color, alpha));
+            //toUse.setBaseColor(color);
+            toUse.draw(pos2);
+
+        }
+    }
+
+    public void renderInWorldCoords(ViewportAPI viewport) {
+        CombatEngineAPI engine = Global.getCombatEngine();
+        if (p.target == null) return;
+        if (!engine.isUIShowingHUD()) return;
+
+        float alphaMult = fadeIn * (1f - fadeBounce * 0.5f) * (1f - expireProgress);
+        int alpha = Math.round(255 * alphaMult);
+
+        Color color = new Color(p.uiColor.getRed() / 255f, p.uiColor.getGreen() / 255f, p.uiColor.getBlue() / 255f, alphaMult);
+
+        if (p.showIndicators) {
+            float degrees = 45f;
+            cornerSprite.setSize(30f, 30f);
+            for (int i = 0; i < 4; i++) {
+                Vector2f pointLoc = MathUtils.getPointOnCircumference(p.target.getLocation(), p.target.getShieldRadiusEvenIfNoShield() * 1.25f, degrees);
+                //cornerSprite.setAlphaMult(alphaMult);
+                cornerSprite.setAngle(degrees + 45f);
+                cornerSprite.setColor(color);
+                cornerSprite.renderAtCenter(pointLoc.x, pointLoc.y);
+
+                degrees += 90f;
+            }
         }
 
-        // Global.getCombatEngine().getViewport().
-        openGL11ForText();
-        // TODRAW10.setText(text);
-        // TODRAW10.setMaxHeight(26);
-        TODRAW10.setText("TARGET ACQUIRED");
-        TODRAW10.setBaseColor(shadowcolor);
-        TODRAW10.draw(shadowLoc);
-        TODRAW10.setBaseColor(color);
-        TODRAW10.draw(boxLoc);
-        closeGL11ForText();
+        LazyFont.DrawableString toUse = TODRAW17;
+        if (TODRAW17 != null && TODRAW14 != null) {
+
+            String text = p.targetLockingString;
+            String text2 = p.targetLockedString;
+            if (p.target.getOwner() == 0) {
+                text = p.targetLockingStringHostile;
+                text2 = p.targetLockedStringHostile;
+            }
+
+            String textToUse = text;
+            if (progress >= 1) {
+                textToUse = text2;
+            }
+
+            toUse.setText(textToUse);
+            toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+            //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            Vector2f pos = new Vector2f(
+                    p.target.getLocation().x,
+                    p.target.getLocation().y - p.target.getShieldRadiusEvenIfNoShield() * 1.3f
+            );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos.x + 1, pos.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(color, alpha));
+            //toUse.setBaseColor(color);
+            toUse.draw(pos);
+
+            toUse = TODRAW14;
+            toUse.setText("LOCKING: " + Math.round(progress * 100f) + "%");
+            toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+            //toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+            Vector2f pos2 = new Vector2f(
+                    pos.x,
+                    pos.y - 24f
+            );
+            toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+            toUse.draw(pos2.x + 1, pos2.y - 1);
+            toUse.setBaseColor(Misc.setBrightness(color, alpha));
+            //toUse.setBaseColor(color);
+            toUse.draw(pos2);
+
+        }
     }
 
     /**
-     * GL11 to start, when you want render text of Lazyfont.
+     *  Code by zoeythegirlgal, modified by Inventor Raccoon
      */
-    private static void openGL11ForText() {
-        GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-        GL11.glMatrixMode(GL11.GL_PROJECTION);
-        GL11.glPushMatrix();
-        GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-        GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-    }
+    public static class SotfASBWarnScript extends BaseEveryFrameCombatPlugin {
 
-    /**
-     * GL11 to close, when you want render text of Lazyfont.
-     */
-    private static void closeGL11ForText() {
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopMatrix();
-        GL11.glPopAttrib();
-    }
+        private ShipAPI target;
+        private SotfASBLockOnScript ASBScript;
+        private DamagingProjectileAPI shot;
+        private CombatEntityAPI threatIndicator = null;
+        private final IntervalUtil repositionInterval = new IntervalUtil(0.1f, 0.1f);
+        private final CombatEngineAPI engine = Global.getCombatEngine();
+        private float timer = 0f;
+        private float responseTime;
+        private float damage = 4000f;
+        private DamageType damageType = DamageType.ENERGY;
+        private boolean shotWasFired = false;
 
+        public SotfASBWarnScript(ShipAPI target, SotfASBLockOnScript ASBScript) {
+            this.target = target;
+            this.ASBScript = ASBScript;
+
+            responseTime = 1.5f;
+            if (target.getShield() != null) {
+                if (target.getShield().getType().equals(ShieldAPI.ShieldType.FRONT)) {
+                    responseTime = 0.5f;
+                }
+            }
+
+            WeaponSpecAPI wpnSpec = Global.getSettings().getWeaponSpec(ASBScript.p.weaponId);
+            if (wpnSpec != null) {
+                damage = wpnSpec.getDerivedStats().getDamagePerShot();
+                damageType = wpnSpec.getDamageType();
+            }
+        }
+
+        @Override
+        public void advance(float amount, List<InputEventAPI> events) {
+            super.advance(amount, events);
+
+            if (!shotWasFired && ASBScript.fired) {
+                if (ASBScript.shot != null) {
+                    shot = ASBScript.shot;
+                }
+                shotWasFired = true;
+            }
+
+            if (shotWasFired && (shot == null || shot.didDamage() || shot.isExpired())) {
+                cleanup();
+                return;
+            }
+
+            timer += amount * Global.getCombatEngine().getTimeMult().getModifiedValue();
+            // delay reactions somewhat
+            if (timer < responseTime) return;
+
+            if (threatIndicator == null) {
+                threatIndicator = createThreatIndicator();
+            }
+            repositionThreatIndicator(amount);
+        }
+
+        private void repositionThreatIndicator(float amount) {
+            repositionInterval.advance(amount);
+            if (repositionInterval.intervalElapsed()) {
+                deleteThreatIndicator();
+                threatIndicator = createThreatIndicator();
+            }
+        }
+
+        private void deleteThreatIndicator() {
+            if (threatIndicator != null) {
+                threatIndicator.setHitpoints(0.00001f);
+                engine.removeEntity(threatIndicator);
+            }
+        }
+
+        private void cleanup() {
+            deleteThreatIndicator();
+            engine.removePlugin(this);
+        }
+
+        public CombatEntityAPI createThreatIndicator() {
+            CombatEntityAPI threatIndicator = engine.spawnProjectile(
+                    null,
+                    null,
+                    ASBScript.p.threatIndicatorId,
+                    getThreatIndicatorPlacement(),
+                    0f,
+                    null
+            );
+            if (threatIndicator instanceof MissileAPI) {
+                MissileAPI missile = (MissileAPI) threatIndicator;
+                // these don't actually change behaviour, just makes the AI *think* this is a giant mine that's about to explode
+                missile.setNoMineFFConcerns(true);
+                missile.setMineExplosionRange(target.getShieldRadiusEvenIfNoShield() + 300f);
+                missile.setMinePrimed(true);
+                missile.setUntilMineExplosion(0f);
+                // these actually do change its damage but the mine will never actually explode or hit anything
+                missile.setDamageAmount(damage);
+                missile.getDamage().setType(damageType);
+            }
+            threatIndicator.setOwner(0);
+            if (target.getOwner() == 0) {
+                threatIndicator.setOwner(1);
+            }
+            return threatIndicator;
+        }
+
+        private Vector2f getThreatIndicatorPlacement() {
+            float radius = target.getShieldRadiusEvenIfNoShield() + 30f;
+            Vector2f targetLocation = target.getLocation();
+            Vector2f direction = VectorUtils.getDirectionalVector(targetLocation, ASBScript.firingLocation);
+            Vector2f directionToReturn = new Vector2f(targetLocation.x + (direction.x * radius), targetLocation.y + (direction.y * radius));
+            return directionToReturn;
+        }
+    }
 }

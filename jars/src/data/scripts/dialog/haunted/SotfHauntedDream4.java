@@ -25,10 +25,7 @@ public class SotfHauntedDream4 extends SotfHauntedDreamBase {
         addLine("You take it. A cold grasp, but sympathetic. Understanding, pitying, offering.", 9, m);
         addLine("Then, something pulls your legs out from under you, and drags you into the fog.", 10, s);
 
-        if (stage == 11 && counter >= 0) {
-            addWakeUpOption();
-            stage = 12;
-        }
+        addWakeUpOption(11);
     }
 
     @Override

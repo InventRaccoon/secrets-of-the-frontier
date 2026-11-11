@@ -6,8 +6,10 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.characters.SkillSpecAPI;
+import com.fs.starfarer.api.combat.BaseEveryFrameCombatPlugin;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipHullSpecAPI;
+import com.fs.starfarer.api.combat.WeaponAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
@@ -17,17 +19,20 @@ import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.SalvageSpecialAssigner;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.impl.hullmods.Automated;
+import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.scripts.SotfModPlugin;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
 import lunalib.lunaSettings.LunaSettings;
+import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.combat.DefenseUtils;
 import second_in_command.SCUtils;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import static com.fs.starfarer.api.characters.MutableCharacterStatsAPI.SkillLevelAPI;
 import static com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.*;
@@ -373,6 +378,14 @@ public class SotfMisc {
         return hard;
     }
 
+    public static boolean getAllowedRealityBreaker() {
+        boolean allowed = true;
+        if (Global.getSettings().getModManager().isModEnabled("lunalib")) {
+            allowed = LunaSettings.getBoolean("secretsofthefrontier", "sotf_allowRealityBreaker");
+        }
+        return allowed;
+    }
+
     // retrieve player Guilt score
     public static float getPlayerGuilt() {
         return Global.getSector().getPlayerPerson().getMemoryWithoutUpdate().getFloat(SotfIDs.GUILT_KEY)
@@ -711,6 +724,13 @@ public class SotfMisc {
         }
     }
 
+    public static Color getShipNameColor(ShipAPI ship) {
+        if (ship.isAlly()) return Misc.getHighlightColor();
+        if (ship.getOwner() == 1) return Misc.getNegativeHighlightColor();
+        if (ship.getOwner() == 0) return Misc.getPositiveHighlightColor();
+        return Global.getSettings().getColor("textNeutralColor");
+    }
+
     /**
      * Recursively repairs a ship's armor (starting with the most damaged cells) up to a specific amount
      * @param ship Ship to repair
@@ -767,6 +787,50 @@ public class SotfMisc {
 
         ship.syncWithArmorGridState();
         ship.syncWeaponDecalsWithArmorDamage();
+    }
+
+    public static void ewarChargeVisuals(ShipAPI ship) {
+        for (WeaponAPI weapon : ship.getAllWeapons()) {
+            if (!weapon.getSpec().getWeaponId().contains("sotf_dksparker") || !weapon.isDecorative()) continue;
+            final ShipAPI thisShip = ship;
+            final WeaponAPI thisWeapon = weapon;
+            final float slotAngle = weapon.getArcFacing() + ship.getFacing();
+            int baseNumSparksForSlot = 3 + weapon.getSlot().getSlotSize().ordinal();
+            if (weapon.getSlot().getSlotSize().ordinal() == 2) {
+                baseNumSparksForSlot += 2;
+            }
+            final int numSparksForSlot = baseNumSparksForSlot;
+            Global.getCombatEngine().addPlugin(new BaseEveryFrameCombatPlugin() {
+                ShipAPI ship = thisShip;
+                WeaponAPI weapon = thisWeapon;
+                float angle = slotAngle;
+
+                float timer = 0;
+                float numSparks = numSparksForSlot * 2f;
+                float sparksDone = 0;
+                float overDuration = 0.4f;
+                @Override
+                public void advance(float amount, List<InputEventAPI> events) {
+                    timer += amount * Global.getCombatEngine().getTimeMult().getModifiedValue();
+                    for (int i = 0; i < numSparks; i++) {
+                        if (i < sparksDone) continue;
+                        if (timer >= ((overDuration / numSparks) * i)) {
+                            Global.getCombatEngine().addHitParticle(MathUtils.getPoint(
+                                            weapon.getLocation(), 5f * sparksDone, weapon.getArcFacing() + ship.getFacing()),
+                                    ship.getVelocity(),
+                                    12f,
+                                    7f,
+                                    0.2f,
+                                    new Color(100,165,255));
+                            sparksDone++;
+                        }
+                    }
+                    if (sparksDone == numSparks) {
+                        Global.getCombatEngine().removePlugin(this);
+                    }
+                }
+            });
+        }
     }
 
     public static boolean isSecondInCommandEnabled() {

@@ -1,0 +1,75 @@
+{
+  "variantId": "sotf_anapausis_Strike",
+  "hullId": "sotf_anapausis",
+  "displayName": "Strike",
+  "goalVariant": true,
+  "fluxCapacitors": 2,
+  "fluxVents": 30,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "magazines",
+    "ecm",
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "ionpulser",
+        "WS 003": "ionpulser"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "sabotpod"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "reaper",
+        "WS 005": "reaper"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 011": "gorgon",
+        "WS 012": "gorgon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "lightneedler",
+        "WS 010": "lightneedler"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "irpulse",
+        "WS 008": "irpulse"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "pdburst",
+        "WS 013": "pdburst",
+        "WS 014": "pdburst"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

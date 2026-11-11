@@ -20,6 +20,7 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.Misc.Token;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
+import data.scripts.campaign.missions.dkcontact.SotfDKContactIntel;
 import data.scripts.campaign.missions.hallowhall.SotfHopeForHallowhallEventIntel;
 import data.scripts.utils.SotfMisc;
 import data.scripts.world.mia.SotfPersonalFleetSeraph;
@@ -144,6 +145,7 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				text.setFontInsignia();
 
 				FleetMemberAPI copy = Global.getFactory().createFleetMember(FleetMemberType.SHIP, flagship.getVariant());
+				copy.getVariant().removeTag(Tags.VARIANT_DO_NOT_DROP_AI_CORE_FROM_CAPTAIN);
 				playerFleet.getFleetData().addFleetMember(copy);
 				copy.setCaptain(seraph);
 				copy.setShipName(flagship.getShipName());
@@ -185,6 +187,11 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 				member.getVariant().addTag("sotf_morrowshield");
 				Global.getSector().getPlayerFleet().getFleetData().addFleetMember(member);
 				AddShip.addShipGainText(member, dialog.getTextPanel());
+				return true;
+			case "addInadContact":
+				SotfDKContactIntel intel = new SotfDKContactIntel(SotfPeople.getPerson(SotfPeople.INADVERTENT), dialog.getInteractionTarget().getMarket());
+				Global.getSector().getIntelManager().addIntel(intel, false, dialog.getTextPanel());
+				Global.getSector().getMemoryWithoutUpdate().set("$sotf_gotInadContact", true);
 				return true;
 			case "hasAutomated":
 				return Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE) || SotfMisc.playerHasNoAutoPenaltyShip();

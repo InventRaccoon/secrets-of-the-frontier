@@ -100,7 +100,7 @@ public class SotfPeople {
     public static void createCharacters() {
         ImportantPeopleAPI ip = Global.getSector().getImportantPeople();
 
-        // Outrider-Annex-Courser, elite Dustkeeper hunter-killer and spiritual successor of old "Omicron" character
+        // Outrider-Infix-Courser, elite Dustkeeper hunter-killer and spiritual successor of old "Omicron" character
         if (getPerson(COURSER) == null) {
             PersonAPI person = Global.getFactory().createPerson();
             person.setId(COURSER);
@@ -108,7 +108,7 @@ public class SotfPeople {
             person.setGender(Gender.ANY); // NB, masc
             person.setRankId(Ranks.SPACE_COMMANDER);
             person.setPostId(SotfIDs.POST_COURSER);
-            SotfMisc.giveDustkeeperName(person, "Outrider", "Annex", "Courser");
+            SotfMisc.giveDustkeeperName(person, "Outrider", "Infix", "Courser");
             person.setImportance(PersonImportance.HIGH);
             person.setPersonality(Personalities.STEADY);
 
@@ -385,7 +385,7 @@ public class SotfPeople {
 
         if (getPerson(SLIVER_2) == null) {
             PersonAPI person = genDustkeeperSliver();
-            person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_dustkeepers", "yellow"));
+            person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_dustkeepers", "orange"));
             person.setPersonality(Personalities.STEADY);
             person.setId(SLIVER_2);
             person.setAICoreId(SotfIDs.SLIVER_CHIP_2);
@@ -445,11 +445,11 @@ public class SotfPeople {
             ip.addPerson(person);
         }
 
-        // Wintry-Annex-Wendigo, hunter-killer
+        // Wintry-Infix-Wendigo, hunter-killer
         if (getPerson(WENDIGO) == null) {
             PersonAPI person = genDustkeeperAnnex();
             person.setId(WENDIGO);
-            SotfMisc.giveDustkeeperName(person, "Wintry", null, "Wendigo");
+            SotfMisc.giveDustkeeperName(person, "Wintry", "Infix", "Wendigo");
             person.setPostId(SotfIDs.POST_HUNTERKILLER);
             person.setGender(Gender.ANY); // NB, fem
 
@@ -473,7 +473,7 @@ public class SotfPeople {
             ip.addPerson(person);
         }
 
-        // Wintry-Annex-Wendigo but spoofed
+        // Wintry-Infix-Wendigo but spoofed
         if (getPerson(WENDIGO_SPOOFED) == null) {
             PersonAPI person = genDustkeeperAnnex();
             person.setId(WENDIGO_SPOOFED);
@@ -497,84 +497,84 @@ public class SotfPeople {
         }
 
         // Locke, Dustkeeper sympathiser and messenger
-//        if (getPerson(LOCKE) == null) {
-//            PersonAPI person = Global.getFactory().createPerson();
-//            person.setId(LOCKE);
-//            person.setFaction(Factions.INDEPENDENT);
-//            person.setGender(Gender.MALE);
-//            person.setRankId(Ranks.CITIZEN);
-//            person.setPostId(Ranks.POST_UNKNOWN);
-//            person.getName().setFirst("Aphelion");
-//            person.getName().setLast("Locke");
-//            person.setImportance(PersonImportance.VERY_LOW);
-//            // technician
-//            person.getStats().setSkillLevel(Skills.FIELD_REPAIRS, 1);
-//            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait44.png")) {
-//                person.setPortraitSprite("graphics/portraits/portrait44.png");
-//            } else {
-//                person.setPortraitSprite("graphics/portraits/portrait46.png");
-//            }
-//            ip.addPerson(person);
-//        }
+        if (getPerson(LOCKE) == null) {
+            PersonAPI person = Global.getFactory().createPerson();
+            person.setId(LOCKE);
+            person.setFaction(Factions.INDEPENDENT);
+            person.setGender(Gender.MALE);
+            person.setRankId(Ranks.CITIZEN);
+            person.setPostId(Ranks.POST_UNKNOWN);
+            person.getName().setFirst("Aphelion");
+            person.getName().setLast("Locke");
+            person.setImportance(PersonImportance.VERY_LOW);
+            // technician
+            person.getStats().setSkillLevel(Skills.FIELD_REPAIRS, 1);
+            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait44.png")) {
+                person.setPortraitSprite("graphics/portraits/portrait44.png");
+            } else {
+                person.setPortraitSprite("graphics/portraits/portrait46.png");
+            }
+            ip.addPerson(person);
+        }
 
         // Vacha Rask, pirate enforcer and Kanta cousin
-//        if (getPerson(VACHA_RASK) == null) {
-//            PersonAPI person = Global.getFactory().createPerson();
-//            person.setId(VACHA_RASK);
-//            person.getName().setFirst("Vacha");
-//            person.getName().setLast("Rask");
-//            person.setFaction(Factions.PIRATES);
-//            person.setGender(Gender.FEMALE);
-//            person.setRankId(Ranks.SPACE_COMMANDER);
-//            person.setPostId(Ranks.POST_FLEET_COMMANDER);
-//            person.setImportance(PersonImportance.MEDIUM);
-//            person.setPersonality(Personalities.AGGRESSIVE);
-//
-//            person.getStats().setSkillLevel(Skills.WOLFPACK_TACTICS, 1);
-//            person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS, 1);
-//            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait_pirate06.png")) {
-//                person.setPortraitSprite("graphics/portraits/portrait_pirate06.png");
-//            } else {
-//                person.setPortraitSprite("graphics/portraits/portrait_pirate05.png");
-//            }
-//            SotfMisc.tryAddNPCTo(person, "kantas_den", Factions.PIRATES);
-//            ip.addPerson(person);
-//        }
+        if (getPerson(VACHA_RASK) == null) {
+            PersonAPI person = Global.getFactory().createPerson();
+            person.setId(VACHA_RASK);
+            person.getName().setFirst("Vacha");
+            person.getName().setLast("Rask");
+            person.setFaction(Factions.PIRATES);
+            person.setGender(Gender.FEMALE);
+            person.setRankId(Ranks.SPACE_COMMANDER);
+            person.setPostId(Ranks.POST_FLEET_COMMANDER);
+            person.setImportance(PersonImportance.MEDIUM);
+            person.setPersonality(Personalities.AGGRESSIVE);
+
+            person.getStats().setSkillLevel(Skills.WOLFPACK_TACTICS, 1);
+            person.getStats().setSkillLevel(Skills.TACTICAL_DRILLS, 1);
+            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait_pirate06.png")) {
+                person.setPortraitSprite("graphics/portraits/portrait_pirate06.png");
+            } else {
+                person.setPortraitSprite("graphics/portraits/portrait_pirate05.png");
+            }
+            SotfMisc.tryAddNPCTo(person, "kantas_den", Factions.PIRATES);
+            ip.addPerson(person);
+        }
 
         // Nagasi Chen, TT exec
-//        if (getPerson(NAGASI_CHEN) == null) {
-//            PersonAPI person = Global.getFactory().createPerson();
-//            person.setId(NAGASI_CHEN);
-//            person.setFaction(Factions.TRITACHYON);
-//            person.setGender(Gender.FEMALE);
-//            person.setRankId(Ranks.SPACE_ADMIRAL); // Senior Operation Manager
-//            person.setPostId(Ranks.POST_EXECUTIVE);
-//            person.getName().setFirst("Nagasi");
-//            person.getName().setLast("Chen");
-//            person.setImportance(PersonImportance.HIGH);
-//            person.getStats().setSkillLevel(Skills.INDUSTRIAL_PLANNING, 1);
-//            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait_corporate11.png")) {
-//                person.setPortraitSprite("graphics/portraits/portrait_corporate11.png");
-//            } else {
-//                person.setPortraitSprite("graphics/portraits/portrait_corporate09.png");
-//            }
-//            ip.addPerson(person);
-//        }
+        if (getPerson(NAGASI_CHEN) == null) {
+            PersonAPI person = Global.getFactory().createPerson();
+            person.setId(NAGASI_CHEN);
+            person.setFaction(Factions.TRITACHYON);
+            person.setGender(Gender.FEMALE);
+            person.setRankId(Ranks.SPACE_ADMIRAL); // Senior Operation Manager
+            person.setPostId(Ranks.POST_EXECUTIVE);
+            person.getName().setFirst("Nagasi");
+            person.getName().setLast("Chen");
+            person.setImportance(PersonImportance.HIGH);
+            person.getStats().setSkillLevel(Skills.INDUSTRIAL_PLANNING, 1);
+            if (!Global.getSector().getPlayerPerson().getPortraitSprite().equals("graphics/portraits/portrait_corporate11.png")) {
+                person.setPortraitSprite("graphics/portraits/portrait_corporate11.png");
+            } else {
+                person.setPortraitSprite("graphics/portraits/portrait_corporate09.png");
+            }
+            ip.addPerson(person);
+        }
 
         // Walter Feros, ghostified
-//        if (getPerson(FEROS) == null) {
-//            PersonAPI person = genFeros();
-//            person.getStats().setLevel(8);
-//            person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
-//            person.getStats().setSkillLevel(Skills.ENERGY_WEAPON_MASTERY, 2);
-//            person.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE, 2);
-//            person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
-//            person.getStats().setSkillLevel(Skills.POINT_DEFENSE, 2);
-//            person.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
-//            person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
-//            person.getStats().setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2);
-//            ip.addPerson(person);
-//        }
+        if (getPerson(FEROS) == null) {
+            PersonAPI person = genFeros();
+            person.getStats().setLevel(8);
+            person.getStats().setSkillLevel(Skills.TARGET_ANALYSIS, 2);
+            person.getStats().setSkillLevel(Skills.ENERGY_WEAPON_MASTERY, 2);
+            person.getStats().setSkillLevel(Skills.COMBAT_ENDURANCE, 2);
+            person.getStats().setSkillLevel(Skills.HELMSMANSHIP, 2);
+            person.getStats().setSkillLevel(Skills.POINT_DEFENSE, 2);
+            person.getStats().setSkillLevel(Skills.MISSILE_SPECIALIZATION, 2);
+            person.getStats().setSkillLevel(Skills.SYSTEMS_EXPERTISE, 2);
+            person.getStats().setSkillLevel(Skills.ORDNANCE_EXPERTISE, 2);
+            ip.addPerson(person);
+        }
 
         // Dotty, Faithful Figment
         if (getPerson(DOTTY) == null) {
@@ -598,16 +598,16 @@ public class SotfPeople {
         }
 
         // Warhorn, leviathan hunter
-//        if (getPerson(WARHORN) == null) {
-//            PersonAPI person = genWarhorn(false);
-//            ip.addPerson(person);
-//        }
-//
-//        // Warhorn, ghostified
-//        if (getPerson(WARHORN_GHOST) == null) {
-//            PersonAPI person = genWarhorn(true);
-//            ip.addPerson(person);
-//        }
+        if (getPerson(WARHORN) == null) {
+            PersonAPI person = genWarhorn(false);
+            ip.addPerson(person);
+        }
+
+        // Warhorn, ghostified
+        if (getPerson(WARHORN_GHOST) == null) {
+            PersonAPI person = genWarhorn(true);
+            ip.addPerson(person);
+        }
 
         // Felcesis Thrice-Speared, adaptive nanite swarm, self-appointed arbiter and your relentless hunter
         if (getPerson(FEL) == null) {
@@ -718,9 +718,11 @@ public class SotfPeople {
 
         //PersonAPI seraph = getPerson(SERAPH);
 
-        //PersonAPI courser = getPerson(COURSER);
+        PersonAPI courser = getPerson(COURSER);
+        SotfMisc.giveDustkeeperName(courser, "Outrider", "Infix", "Courser");
 
-        //PersonAPI wendigo = getPerson(WENDIGO);
+        PersonAPI wendigo = getPerson(WENDIGO);
+        SotfMisc.giveDustkeeperName(wendigo, "Wintry", "Infix", "Wendigo");
 
         PersonAPI fel = getPerson(FEL);
         fel.setFaction(SotfIDs.DREAMING_GESTALT);

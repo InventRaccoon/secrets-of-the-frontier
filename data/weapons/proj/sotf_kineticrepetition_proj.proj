@@ -1,0 +1,18 @@
+{
+	"id":"sotf_kineticrepetition_proj",
+	"specClass":"projectile",
+	"spawnType":"BALLISTIC_AS_BEAM",
+	"onFireEffect":"data.scripts.weapons.SotfKineticRepetitionEffect",
+	"collisionClass":"RAY_FIGHTER",
+	"collisionClassByFighter":"RAY_FIGHTER",
+	"length":30.0,
+	"width":10.0,
+	"fadeTime":0.25,
+	#"fringeColor":[180,255,75,255],
+	"fringeColor":[175,255,215,255],
+	"coreColor":[215,255,235,200],
+	"textureType":"SMOOTH",  # only needed for BEAM spawnType
+	#"textureType":["graphics/fx/emp_arcs.png","graphics/fx/emp_arcs.png"],
+	"textureScrollSpeed":-256.0,
+	"pixelsPerTexel":1.0
+}

@@ -1,0 +1,46 @@
+{
+  "variantId": "sotf_rose_Watcher",
+  "hullId": "sotf_rose",
+  "displayName": "Watcher",
+  "goalVariant": true,
+  "fluxCapacitors": 8,
+  "fluxVents": 20,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "hardenedshieldemitter",
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "sotf_amaranth"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 001": "sotf_barbrail"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 004": "sotf_tormentpulse"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

@@ -30,6 +30,7 @@
 			{"text":"Opening fire."},
 			{"text":"Rot and death."},
 			{"text":"Sleep now..."},
+			{"text":"Split and sunder."},
 			{"text":"Sweet dreams..."},
 		],
 		"need_help":[
@@ -48,13 +49,15 @@
 		"running":[
 		],
 		"hull_90":[
+			{"text":"Armor reconstitution initiated."},
 			{"text":"Nanorepair activated."},
 			{"text":"Armor reconstitution initiated."},
-			{"text":"Reconstruction nanites dispatched."},
+			{"text":"Reconstructing ourself."},
 			{"text":"This is a scratch, soon repaired."},
 		],
 		"hull_50":[
 			{"text":"Cohesion at fifty percent."},
+			{"text":"Reflection cohesion is compromised."},
 			{"text":"Swarm is losing integrity."},
 		],
 		"hull_30":[
@@ -75,12 +78,12 @@
 			
 			{"text":"Cut, never killed..."},
 			{"text":"We'll always be back..."},
-			{"text":"The swarm never dies..."},
+			{"text":"We never die..."},
 		],
 		"victory":[
 			{"text":"A cold death for all of them."},
+			{"text":"Consider this part of the realm 'protected'."},
 			{"text":"Excellent. Till we shed hull again..."},
-			{"text":"You'd make fine additions to the gestalt."},
 		],
 	}
 }

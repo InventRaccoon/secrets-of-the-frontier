@@ -120,7 +120,8 @@ public class SotfDKCustProdContr extends HubMissionWithBarEvent {
 			ShipHullSpecAPI spec = Global.getSettings().getHullSpec(id);
 			if (spec.hasTag(Tags.NO_SELL)) continue;
 			if (!spec.hasTag(Tags.AUTOMATED_RECOVERABLE)) continue; // no Nexus
-			if (spec.getBuiltInMods().contains(SotfIDs.HULLMOD_CWARSUITE) && getPerson().getId().equals(SotfPeople.INADVERTENT)) continue;
+			if (spec.getBuiltInMods().contains(SotfIDs.HULLMOD_CWARSUITE) && getPerson().getId().equals(SotfPeople.INADVERTENT)
+					&& spec.getHullSize().equals(HullSize.CAPITAL_SHIP)) continue;
 			if (!spec.hasTag(SotfIDs.TAG_DUSTKEEPER_AUXILIARY) && getPerson().getId().equals(SotfPeople.INADVERTENT) &&
 					getPerson().getRelToPlayer().isAtBest(RepLevel.WELCOMING)) continue;
 			ships.add(id);

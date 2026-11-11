@@ -1,0 +1,21 @@
+{
+	"id":"sotf_kineticrepetition",  # this id must match what's in the spreadsheet
+	"specClass":"projectile",
+	"type":"ENERGY",
+	"size":"LARGE",
+	"turretSprite":"graphics/weapons/sotf_chalice_turret.png",
+	"turretGlowSprite":"graphics/weapons/sotf_chalice_turret_glow.png",
+	"hardpointSprite":"graphics/weapons/sotf_chalice_hardpoint.png",
+	"hardpointGlowSprite":"graphics/weapons/sotf_chalice_hardpoint_glow.png",
+	"glowColor":[175,255,215,255],
+	"turretOffsets":[10, 0],
+	"turretAngleOffsets":[0],
+	"hardpointOffsets":[15, 0],
+	"hardpointAngleOffsets":[0],
+	"barrelMode":"ALTERNATING", # or LINKED.  whether barrels fire at the same time or alternate.
+	"animationType":"GLOW",
+	"autocharge":true,  # whether the weapon will continue charging and fire if the LMB is tapped instead of held
+	"requiresFullCharge":false,  # for pulse weapons - whether the weapon will fire at a lower strength partial charge
+	"projectileSpecId":"sotf_kineticrepetition_proj",  # projectile that will be fired
+	"fireSoundTwo":"sotf_chalice_bolt_fire",
+}

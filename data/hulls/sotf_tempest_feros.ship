@@ -12,7 +12,6 @@
         -6
     ],
     "builtInWings": [
-	"sotf_dotty_wing",
 	"sotf_terminator_single"
 	],
     "center": [
@@ -47,7 +46,7 @@
     ],
     "height": 92,
     "hullId": "sotf_tempest_feros",
-    "hullName": "Feros' Tempest",
+    "hullName": "Tempest (Mod)",
     "hullSize": "FRIGATE",
     "shieldCenter": [
         15,

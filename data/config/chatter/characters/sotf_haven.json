@@ -5,14 +5,15 @@
 	"personalities":[],
 	"gender":["f"],
 	"chance":0, # manually set via memory when she is created
-	"talkativeness":2, # she's always going to be a centerpiece in any fight
+	"talkativeness":4, # she's always going to be a centerpiece in any fight
 	"categoryTags":["sotf", "special"],
 	
 	"lines":{
 		"start":[
 			{"text":"Ah, here comes the fun part of my job."},
 			{"text":"Gunnery online. Let's see how they like this..."},
-			{"text":"Hostile warships on radar. Brace up, my darlings."},
+			{"text":"Heat signatures, dears! Let's see them go cold."},
+			{"text":"Hostile warships on radar. Brace up, my dears."},
 			{"text":"Initiating combat protocols. Oh, I'm going to enjoy this..."},
 			{"text":"Visitors? A warm welcome is in order, my dears."},
 		],
@@ -27,14 +28,16 @@
 		],
 		"engaged":[
 			{"text":"Ah, a new shipment of scrap metal! Just what I needed."},
-			{"text":"Closer, pet, let me get a good lock..."},
+			{"text":"Closer, petal, let me get a good lock..."},
+			{"text":"Darling, you don't stand a chance..."},
 			{"text":"Firing on targets."},
 			{"text":"Here they come, poor things."},
-			{"text":"I see you!"},
+			{"text":"I see you, sweetheart!"},
 			{"text":"Letting loose."},
 			{"text":"Locked target - poor thing."},
 			{"text":"Oh darling, haven't you made a big mistake..."},
 			{"text":"Opening fire."},
+			{"text":"Releasing ordnance!"},
 		],
 		"need_help":[
 			{"text":"On me, little ones. The gunnery arrays will keep you safe."},

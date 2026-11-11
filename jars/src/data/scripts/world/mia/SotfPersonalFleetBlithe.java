@@ -37,9 +37,6 @@ public class SotfPersonalFleetBlithe extends PersonalFleetScript {
 	public CampaignFleetAPI spawnFleet() {
 		
 		MarketAPI holdout = getSourceMarket();
-		SectorEntityToken hallowhall = holdout.getStarSystem().getEntityById("sotf_hallowhall");
-
-		if (hallowhall == null) return null;
 
 		FleetCreatorMission m = new FleetCreatorMission(random);
 		m.beginFleet();

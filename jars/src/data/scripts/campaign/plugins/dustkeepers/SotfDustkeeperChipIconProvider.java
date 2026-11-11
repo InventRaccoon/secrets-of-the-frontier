@@ -32,7 +32,7 @@ public class SotfDustkeeperChipIconProvider implements CommodityIconProvider {
 		PORTRAIT_MINIS.put(SotfPeople.BARROW, Global.getSettings().getSpriteName("sotf_characters", "barrow_mini"));
 		PORTRAIT_MINIS.put(SotfPeople.SERAPH, Global.getSettings().getSpriteName("sotf_characters", "seraph_mini"));
 		PORTRAIT_MINIS.put(SotfPeople.SLIVER_1, Global.getSettings().getSpriteName("sotf_dustkeepers", "red_mini"));
-		PORTRAIT_MINIS.put(SotfPeople.SLIVER_2, Global.getSettings().getSpriteName("sotf_dustkeepers", "yellow_mini"));
+		PORTRAIT_MINIS.put(SotfPeople.SLIVER_2, Global.getSettings().getSpriteName("sotf_dustkeepers", "orange_mini"));
 		PORTRAIT_MINIS.put(SotfPeople.ECHO_1, Global.getSettings().getSpriteName("sotf_dustkeepers", "white_mini"));
 		PORTRAIT_MINIS.put(SotfPeople.ECHO_2, Global.getSettings().getSpriteName("sotf_dustkeepers", "blue_mini"));
 	}
@@ -54,25 +54,17 @@ public class SotfDustkeeperChipIconProvider implements CommodityIconProvider {
 
 	public String getRankIconName(CargoStackAPI stack) {
 		if (!SotfModPlugin.WATCHER) return null;
-		switch (stack.getCommodityId()) {
-			case SotfIDs.NIGHTINGALE_CHIP:
-				return PORTRAIT_MINIS.get(SotfPeople.NIGHTINGALE);
-			case SotfIDs.BARROW_CHIP_D:
-			case SotfIDs.BARROW_CHIP:
-				return PORTRAIT_MINIS.get(SotfPeople.BARROW);
-			case SotfIDs.SERAPH_CHIP:
-				return PORTRAIT_MINIS.get(SotfPeople.SERAPH);
-			case SotfIDs.SLIVER_CHIP_1:
-				return PORTRAIT_MINIS.get(SotfPeople.SLIVER_1);
-			case SotfIDs.SLIVER_CHIP_2:
-				return PORTRAIT_MINIS.get(SotfPeople.SLIVER_2);
-			case SotfIDs.ECHO_CHIP_1:
-				return PORTRAIT_MINIS.get(SotfPeople.ECHO_1);
-			case SotfIDs.ECHO_CHIP_2:
-				return PORTRAIT_MINIS.get(SotfPeople.ECHO_2);
-		}
-		return null;
-	}
+        return switch (stack.getCommodityId()) {
+            case SotfIDs.NIGHTINGALE_CHIP -> PORTRAIT_MINIS.get(SotfPeople.NIGHTINGALE);
+            case SotfIDs.BARROW_CHIP_D, SotfIDs.BARROW_CHIP -> PORTRAIT_MINIS.get(SotfPeople.BARROW);
+            case SotfIDs.SERAPH_CHIP -> PORTRAIT_MINIS.get(SotfPeople.SERAPH);
+            case SotfIDs.SLIVER_CHIP_1 -> PORTRAIT_MINIS.get(SotfPeople.SLIVER_1);
+            case SotfIDs.SLIVER_CHIP_2 -> PORTRAIT_MINIS.get(SotfPeople.SLIVER_2);
+            case SotfIDs.ECHO_CHIP_1 -> PORTRAIT_MINIS.get(SotfPeople.ECHO_1);
+            case SotfIDs.ECHO_CHIP_2 -> PORTRAIT_MINIS.get(SotfPeople.ECHO_2);
+            default -> null;
+        };
+    }
 
 	public String getIconName(CargoStackAPI stack) {
 		return null;

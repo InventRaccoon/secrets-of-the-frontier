@@ -25,7 +25,7 @@ public class SotfWSCheckScript implements EveryFrameScript {
         }
         CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
         if (Global.getSector().getMemoryWithoutUpdate().contains("$sotf_WSCombatWon")) {
-            Global.getSector().removeScript(this);
+            //Global.getSector().removeScript(this);
             return;
         }
         if (!playerFleet.getContainingLocation().getMemoryWithoutUpdate().contains("$sotf_waywardstar") || !SotfMisc.playerHasSierra()) {

@@ -52,6 +52,7 @@ public class SotfAMemoryEFCPlugin extends BaseEveryFrameCombatPlugin {
 
     private boolean didStressWarning = false;
     private boolean didStressCallout = false;
+    private boolean allowAdvance = false;
 
     public SotfAMemoryEFCPlugin(BattleCreationContext context) {
         this.context = context;
@@ -68,10 +69,13 @@ public class SotfAMemoryEFCPlugin extends BaseEveryFrameCombatPlugin {
         }
         engine.getCustomData().put("$sotf_noSierraChatter", true);
         engine.getCustomData().put("$sotf_AMemory", true);
+        engine.getCustomData().put("$sotf_disablePlugins", true);
         engine.getCustomData().put(SotfIDs.INVASION_NEVER_KEY, true);
+        allowAdvance = true;
     }
 
     public void advance(float amount, List<InputEventAPI> events) {
+        if (!allowAdvance) return;
         Color sc = Global.getSector().getFaction(SotfIDs.SIERRA_FACTION).getBaseUIColor();
         CombatFleetManagerAPI playerManager = engine.getFleetManager(0);
         boolean sierraAlive = false;

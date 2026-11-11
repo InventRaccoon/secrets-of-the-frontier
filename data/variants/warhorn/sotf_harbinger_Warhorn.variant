@@ -4,12 +4,23 @@
     "fluxVents": 11,
     "goalVariant": true,
     "hullId": "sotf_harbinger_warhorn",
+	"sMods": [
+        "heavyarmor",
+        "neural_interface",
+		"magazines"
+   ],
     "hullMods": [
         "unstable_injector",
-        "fluxbreakers"
+        "fluxbreakers",
+		"heavyarmor",
+        "neural_interface",
+		"magazines"
     ],
-    "permaMods": [],
-    "sMods": [],
+    "permaMods": [
+		"heavyarmor",
+        "neural_interface",
+		"magazines"
+	],
     "variantId": "sotf_harbinger_Warhorn",
     "weaponGroups": [
         {

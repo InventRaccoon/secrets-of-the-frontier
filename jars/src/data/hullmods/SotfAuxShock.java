@@ -141,7 +141,7 @@ public class SotfAuxShock extends SotfBaseAuxPackage {
 
 					// assign a new ship AI if needed
 					if (ship != Global.getCombatEngine().getPlayerShip()) {
-						ShipAIConfig config = new ShipAIConfig();
+						ShipAIConfig config = new ShipAIConfig(ship);
 						config.alwaysStrafeOffensively = true;
 						config.backingOffWhileNotVentingAllowed = false;
 						config.turnToFaceWithUndamagedArmor = false;

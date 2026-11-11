@@ -7,6 +7,7 @@ import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.loading.WeaponSlotAPI;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.MathUtils;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -66,117 +67,12 @@ public class SotfDroneStrikeSystem extends MineStrikeStationStats {
 
                 if (target != null) {
                     spawnMine(ship, target);
-
-                    for (WeaponAPI weapon : ship.getAllWeapons()) {
-                        if (!weapon.getSpec().getWeaponId().contains("sotf_dksparker") || !weapon.isDecorative()) continue;
-                        final ShipAPI thisShip = ship;
-                        final WeaponAPI thisWeapon = weapon;
-                        final float slotAngle = weapon.getArcFacing() + ship.getFacing();
-                        int baseNumSparksForSlot = 3 + weapon.getSlot().getSlotSize().ordinal();
-                        if (weapon.getSlot().getSlotSize().ordinal() == 2) {
-                            baseNumSparksForSlot += 2;
-                        }
-                        final int numSparksForSlot = baseNumSparksForSlot;
-                        Global.getCombatEngine().addPlugin(new BaseEveryFrameCombatPlugin() {
-                            ShipAPI ship = thisShip;
-                            WeaponAPI weapon = thisWeapon;
-                            float angle = slotAngle;
-
-                            float timer = 0;
-                            float numSparks = numSparksForSlot * 2f;
-                            float sparksDone = 0;
-                            float overDuration = 0.4f;
-                            @Override
-                            public void advance(float amount, List<InputEventAPI> events) {
-                                timer += amount * Global.getCombatEngine().getTimeMult().getModifiedValue();
-                                for (int i = 0; i < numSparks; i++) {
-                                    if (i < sparksDone) continue;
-                                    if (timer >= ((overDuration / numSparks) * i)) {
-                                        Global.getCombatEngine().addHitParticle(MathUtils.getPoint(
-                                                weapon.getLocation(), 5f * sparksDone, weapon.getArcFacing() + ship.getFacing()),
-                                                ship.getVelocity(),
-                                                12f,
-                                                7f,
-                                                0.2f,
-                                                new Color(100,165,255));
-                                        sparksDone++;
-                                    }
-                                }
-                                if (sparksDone == numSparks) {
-                                    Global.getCombatEngine().removePlugin(this);
-                                }
-                            }
-                        });
-                    }
+                    SotfMisc.ewarChargeVisuals(ship);
                 }
             }
 
         } else if (state == State.OUT ) {
         }
-    }
-
-    private Vector2f findClearLocation(ShipAPI ship, Vector2f dest) {
-        if (isLocationClear(dest)) return dest;
-
-        float incr = 50f;
-
-        WeightedRandomPicker<Vector2f> tested = new WeightedRandomPicker<Vector2f>();
-        for (float distIndex = 1; distIndex <= 32f; distIndex *= 2f) {
-            float start = (float) Math.random() * 360f;
-            for (float angle = start; angle < start + 360; angle += 60f) {
-                Vector2f loc = Misc.getUnitVectorAtDegreeAngle(angle);
-                loc.scale(incr * distIndex);
-                Vector2f.add(dest, loc, loc);
-                tested.add(loc);
-                if (isLocationClear(loc)) {
-                    return loc;
-                }
-            }
-        }
-
-        if (tested.isEmpty()) return dest; // shouldn't happen
-
-        return tested.pick();
-    }
-
-    private boolean isLocationClear(Vector2f loc) {
-        for (ShipAPI other : Global.getCombatEngine().getShips()) {
-            if (other.isShuttlePod()) continue;
-            if (other.isFighter()) continue;
-
-//			Vector2f otherLoc = other.getLocation();
-//			float otherR = other.getCollisionRadius();
-
-//			if (other.isPiece()) {
-//				System.out.println("ewfewfewfwe");
-//			}
-            Vector2f otherLoc = other.getShieldCenterEvenIfNoShield();
-            float otherR = other.getShieldRadiusEvenIfNoShield();
-            if (other.isPiece()) {
-                otherLoc = other.getLocation();
-                otherR = other.getCollisionRadius();
-            }
-
-
-//			float dist = Misc.getDistance(loc, other.getLocation());
-//			float r = other.getCollisionRadius();
-            float dist = Misc.getDistance(loc, otherLoc);
-            float r = otherR;
-            //r = Math.min(r, Misc.getTargetingRadius(loc, other, false) + r * 0.25f);
-            float checkDist = MIN_SPAWN_DIST;
-            if (other.isFrigate()) checkDist = MIN_SPAWN_DIST_FRIGATE;
-            if (dist < r + checkDist) {
-                return false;
-            }
-        }
-        for (CombatEntityAPI other : Global.getCombatEngine().getAsteroids()) {
-            float dist = Misc.getDistance(loc, other.getLocation());
-            if (dist < other.getCollisionRadius() + MIN_SPAWN_DIST) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public void spawnMine(ShipAPI source, Vector2f mineLoc) {

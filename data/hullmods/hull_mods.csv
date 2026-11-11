@@ -32,7 +32,8 @@ This ship's phase dive does not prevent ships with %s from also initiating phase
 Concord - Wispersong,sotf_wispersong,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,5,12,18,24,data.hullmods.SotfWispersong,"A specially-tuned energy emitter, installed to Sierra's specifications. Triggers in response to brief spacial interference caused by nearby starship reactor detonations, exacerbating the agitation and generating short-lived particles that are attracted to enemy ships.
 
 When a hostile ship is disabled within %s units, it creates %s/%s/%s/%s wisps based on its hull size. Wisps detonate after %s seconds or upon premature destruction. Each wisp discharges energy for %s energy damage and %s EMP every half a second, at the cost of one second of its lifespan.",Creates wisps when nearby ships are destroyed.,,graphics/hullmods/sotf_wispersong.png
-Concord - Soulbond,sotf_soulbond,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,5,12,18,25,data.hullmods.SotfSoulbond,<Description written in script>,Allows this ship and the flagship to travel to each other.,,graphics/hullmods/sotf_soulbond.png
+Concord - Soulbond,sotf_soulbond,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, codex_unlockable",Special,100000,,,,4,8,12,15,data.hullmods.SotfSoulbond,<Description written in script>,Allows this ship and the flagship to travel to each other.,,graphics/hullmods/sotf_soulbond.png
+Concord - Countercurse,sotf_countercurse,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, hide_in_codex",Special,100000,,,,4,8,12,15,data.hullmods.SotfLifedrinker,,Weapons and Concord Shift curse hostile ships. Cursed ships build flux while phased.,,graphics/hullmods/sotf_soulbond.png
 Concord - Lifedrinker,sotf_lifedrinker,3,0,Anomalous Phase-Tech,"special, no_drop, no_drop_salvage, restricted, hide_in_codex",Special,100000,,,,5,12,18,30,data.hullmods.SotfLifedrinker,"An extensive hull refit package that replaces the exterior armor and shield emitters with a low-volition nanomechanical shell lined with esoteric ""entropic inversion nodes"" that gradually reverse the armor's state of destruction. Inverted entropy can be discharged into surrounding space as a defensive burst.
 
 Removes the ship's shield emitter. The ship passively regenerates %s armor per second, prioritizing the most damaged sections of armor. Increases maximum armor by %s. Reflective properties reduce incoming beam damage and EMP damage by %s.
@@ -59,11 +60,11 @@ Cyberwarfare Suite,sotf_cwarsuite,,,Dustkeeper Contingency,codex_unlockable,,,,T
 ,,,,,,,,,,,,,,,,,,,
 # DREAMING GESTALT,,,,,,,,,,,,,,,,,,,
 Daydream Synthesizer,sotf_daydream_synthesizer,3,0,Dreaming Gestalt,"req_spaceport, special, no_build_in, no_drop, no_drop_salvage,  codex_unlockable, restricted","Special, Requires Dock",,,,,8,16,30,50,data.hullmods.SotfDaydreamSynthesizer,<Description written in script>,A nanite swarm forms a copy of the ship at the start of combat.,,graphics/hullmods/sotf_daydream_synthesizer.png
-Daydream Systems Engineering,sotf_daydreamhull,,,Cult of the Daydream,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfDaydreamHull,"Designed as part of an enigmatic exotic-warfare program intended to combat extradimensional threats, this hull uses specialized fields tuning algorithms to mitigate certain harmful phenomena and emanations.
+Daydream Systems Engineering,sotf_daydreamhull,,,Cult of the Daydream,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfDaydreamHull,"Designed as part of an enigmatic exotic-warfare program intended to combat extradimensional threats, specialized component hardening and systems tuning algorithms are used by this hull to mitigate certain harmful phenomena and emanations.
 
 Reduces energy damage taken by shields by %s. Reduces the chance of shields being pierced by weapons such as the Ion Beam by %s. Decreases EMP damage taken by %s. These benefits are %s if this hull is a fighter craft.
 
-Additionally, %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs.",Reduces energy damage taken by shields. Resistant to EMP and reality disruption.,,graphics/hullmods/sotf_daydreamhull.png
+Additionally, %s the duration of certain reality-disrupting effects that prolong weapon and engine repairs, and %s combat readiness loss from solar coronae and other hazards.",Reduces energy damage taken by shields. Resistant to EMP and reality disruption.,,graphics/hullmods/sotf_daydreamhull.png
 Nanite-Synthesized,sotf_nanite_synthesized,,,Dreaming Gestalt,codex_require_related,,,,TRUE,,0,0,0,0,data.hullmods.SotfNaniteSynthesized,"Expressing itself as a mimickry of a warship's structure and systems, this vessel is actually a synchronized swarm of moderate-volition nanomachines.
 
 Nanite-synthesized ships cannot have their command overridden as there are no manual controls, the swarm-consciousness' perception is resistant to psychic effectors and electronic warfare attacks are only able to shut down or disrupt clusters of nanites rather than take full control.
@@ -72,6 +73,7 @@ When the vessel's hull integrity reaches zero, the nanites lose cohesion and dis
 ,,,,,,,,,,,,,,,,,,,
 Elite Pilots,sotf_elitepilots,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfElitePilots,"This fighter's pilot is exceptionally skilled and gains the benefit of non-elite Helmsmanship, Impact Mitigation and Gunnery Implants.",Exceptionally skilled fighter pilot.,,graphics/hullmods/assault_package.png
 ,,,,,,,,,,,,,,,,,,,
+SotF Background Modifier,sotf_backgroundmodifier,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfBackgroundStatModifier,Applies modifiers from SotF backgrounds.,Applies modifiers from SotF backgrounds.,,
 Can't Vent,sotf_noventing,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfNoVenting,Can't vent.,Can't vent.,,graphics/hullmods/flux_coil_adjunct.png
 Tarnished Fighters,sotf_fighteroverlay,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfFighterOverlay,Applies d-hull overlay to spawned fighters.,Fighters have an overlay.,,graphics/hullmods/flux_coil_adjunct.png
 Volition Swarm,sotf_volitionswarm,,,,,,,,TRUE,TRUE,0,0,0,0,data.hullmods.SotfVolitionSwarm,This ship is a volition swarm.,Volition swarm.,,

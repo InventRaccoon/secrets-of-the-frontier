@@ -147,7 +147,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 
     public static void spawnFleet() {
         CampaignFleetAPI fleet = FleetFactoryV3.createEmptyFleet(SotfIDs.DREAMING_GESTALT, FleetTypes.PATROL_LARGE, null);
-        fleet.setInflater(null); // no autofit tyvm
+        //fleet.setInflater(null); // no autofit tyvm
         fleet.setNoFactionInName(true);
         fleet.setName("The Revenant Host");
         fleet.getMemoryWithoutUpdate().set(MEMORY_KEY_NO_SHIP_RECOVERY, true);
@@ -194,7 +194,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         }
 
         fleetData.sort();
-        fleetData.syncIfNeeded();
+        //fleetData.syncIfNeeded();
 
         LocationAPI lotl = Global.getSector().getStarSystem("sotf_lotl");
         SectorEntityToken elysium = lotl.getEntityById("sotf_elysium");
@@ -253,13 +253,13 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_TICKTOCK);
                 addFelMember(fleetData, "sotf_medusa_Hybrid", Personalities.STEADY, SotfIDs.SKILL_INSACRIFICEMEANING);
 
-                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_LEVIATHANSBANE);
-                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
-                addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                addFelMember(fleetData, "sotf_thorn_Unmaker", Personalities.RECKLESS, SotfIDs.SKILL_LEVIATHANSBANE);
+                addFelMember(fleetData, "sotf_thorn_Unmaker", Personalities.RECKLESS);
+                addFelMember(fleetData, "sotf_thorn_Gatekeeper", Personalities.RECKLESS);
                 //addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
                 if (hard) {
                     addFelMember(fleetData, "aurora_Attack", Personalities.RECKLESS, SotfIDs.SKILL_TICKTOCK);
-                    addFelMember(fleetData, "sotf_wolf_Overdriven", Personalities.RECKLESS);
+                    addFelMember(fleetData, "sotf_thorn_Gatekeeper", Personalities.RECKLESS);
                 }
                 break;
             case "unrelenting":
@@ -278,9 +278,6 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
                 addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
                 addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
                 addFelMember(fleetData, "vanguard_Strike", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
-                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
-                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
-                addFelMember(fleetData, "sotf_warden_aux_Overdriven", Personalities.RECKLESS, SotfIDs.SKILL_HATREDBEYONDDEATH);
 
                 if (hard) {
                     addFelMember(fleetData, "sotf_repose_Steadfast", Personalities.RECKLESS, SotfIDs.SKILL_SCRAPSCREEN);
@@ -315,6 +312,7 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
         boolean hard = SotfMisc.getHFinaleHardMode();
 
         member.setVariant(member.getVariant().clone(), false, false);
+        member.getVariant().addTag(Tags.TAG_NO_AUTOFIT);
         member.getVariant().setSource(VariantSource.REFIT);
 
         if (variantId.contains("tesseract")) {
@@ -367,7 +365,6 @@ public class SotfHauntedFinale extends HubMissionWithSearch implements FleetEven
 //                captain.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 0f);
 //            }
         }
-        member.updateStats();
         member.setCaptain(captain);
         fleetData.addFleetMember(member);
     }

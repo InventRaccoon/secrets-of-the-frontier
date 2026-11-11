@@ -13,7 +13,8 @@ Selkie - actively tried to sabotage the project (also Respite, Anamnesis, vector
 Lortus - Siegeworks emplacements
 Quacken - Warhorn portrait
 Gwyvern - mystery unimplemented sprite
-SnazzyPantsMcGee - Pact, Syzygy, majority of Cult of the Daydream tech
+SnazzyPantsMcGee - Pact, Syzygy, Respite, majority of Cult of the Daydream tech
+Kirbo - Anapausis, Polychronios, Pledge
 Nes - paintjob sprites and some phase glows
 Pyrophage - never actively tried to sabotage the project (also Siegeworks hangar concept)
 AxleMC131 - Parapet/Peon, Lethargy Autolance

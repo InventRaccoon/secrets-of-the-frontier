@@ -33,7 +33,8 @@ public class SotfLeviathansBane {
     // max range at which targets can be marked
     public static float MAX_SPOTTING_RANGE = 1200f;
     // cooldown after The Reminder fires a shot
-    public static float RELOAD_TIME = 90f;
+    // TODO: DON'T LEAVE THIS AT 30 SECONDS LOL (should be 90)
+    public static float RELOAD_TIME = 15f;
     // percent of hull damage applied as cooldown reduction
     public static float REFUND_PERCENT = 0.02f;
 
@@ -110,6 +111,7 @@ public class SotfLeviathansBane {
         protected boolean playerHasSelectedTarget = true;
         protected ShipAPI playerAlreadySelected;
         protected boolean alertedPlayer = false; // heads up so player knows to pick a target
+        protected Color uiColor = SotfMisc.getEidolonColor();
 
         public SotfLeviathansBaneScript(ShipAPI ship) {
             this.ship = ship;
@@ -181,7 +183,7 @@ public class SotfLeviathansBane {
 
             if (!ship.getCustomData().containsKey(CD_KEY)) {
                 SotfRingTimerVisualScript.AuraParams p = new SotfRingTimerVisualScript.AuraParams();
-                p.color = SotfMisc.getEidolonColor();
+                p.color = uiColor;
                 p.ship = ship;
                 p.radius = ship.getShieldRadiusEvenIfNoShield() + 35f;
                 p.thickness = 9f;
@@ -224,10 +226,14 @@ public class SotfLeviathansBane {
             if (target != null) {
                 SotfASBLockOnScript.ASBParams params = new SotfASBLockOnScript.ASBParams(ship, ship.getOwner(), target, MARKING_KEY);
                 params.weaponId = WEAPON_ID;
-                params.statusTitle = "!! HIDECRACKER - PREY ACQUIRED !!";
-                params.statusSubtext = "!! " + pickSubtextString() + ", " + pickSubtext2String() + " !!";
+                params.targetLockingString = "!! HIDECRACKER - PREY ACQUIRED !!";
+                params.targetLockingStringHostile = "!! WARNING: HIDECRACKER PREY ACQUIRED !!";
+                params.targetLockedString = "!! " + pickLockString() + " !!";
+                params.targetLockedStringHostile = params.targetLockedString;
                 params.lockedString = pickLockString();
-                params.lockedColor = SotfMisc.getEidolonColor();
+                params.lockedColor = uiColor;
+                params.lockedAlert = "marked as prey by the Hidecracker";
+                params.uiColor = uiColor;
 
                 SotfASBLockOnScript asbScript = new SotfASBLockOnScript(params);
                 Global.getCombatEngine().addPlugin(asbScript);
@@ -257,12 +263,6 @@ public class SotfLeviathansBane {
                 if (Misc.getDistance(from, other.getLocation()) > range) continue;
 
                 ShipAPI otherShip = (ShipAPI) other;
-                // can't be the target of another anti ship battery
-                if (otherShip.getCustomData().containsKey(SotfIDs.ASB_TARGET)) {
-                    //if (!otherShip.getCustomData().get(SotfIDs.ASB_TARGET).equals(ASB_KEY)) {
-                        continue;
-                    //}
-                }
 
                 if (!isValidTarget(ship, otherShip)) continue;
 
@@ -333,6 +333,9 @@ public class SotfLeviathansBane {
                 if (!station.getVariant().hasHullMod(HullMods.VASTBULK)) {
                     isValid = false;
                 }
+            }
+            if (target.getCustomData().containsKey(SotfIDs.ASB_TARGET)) {
+                isValid = false;
             }
             return isValid;
         }

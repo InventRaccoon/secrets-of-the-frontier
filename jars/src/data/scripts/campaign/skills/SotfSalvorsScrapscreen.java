@@ -33,10 +33,16 @@ public class SotfSalvorsScrapscreen {
 
 	public static class AblativeArmor extends BaseSkillEffectDescription implements ShipSkillEffect, AfterShipCreationSkillEffect {
 		public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
+			if (ship.isStationModule()) return;
+			if (ship.isFighter()) return;
+			if (ship.getHullSpec().getHullId().contains("higgs")) return;
 			MagicSubsystemsManager.addSubsystemToShip(ship, new SotfScrapscreenDronesSubsystem(ship));
 		}
 
 		public void unapplyEffectsAfterShipCreation(ShipAPI ship, String id) {
+			if (ship.isStationModule()) return;
+			if (ship.isFighter()) return;
+			if (ship.getHullSpec().getHullId().contains("higgs")) return;
 			MagicSubsystemsManager.removeSubsystemFromShip(ship, SotfScrapscreenDronesSubsystem.class);
 		}
 

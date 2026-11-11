@@ -7,9 +7,9 @@
   "height": 164,
   "width": 144,
   "center": [72, 74],
-  "collisionRadius": 107.5,
+  "collisionRadius": 113,
   "shieldCenter": [8, 0],
-  "shieldRadius": 99.5,
+  "shieldRadius": 104,
   "viewOffset": 0,
   "builtInMods": [
     "sotf_cwarsuite",

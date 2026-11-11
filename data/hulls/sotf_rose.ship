@@ -1,0 +1,151 @@
+{
+  "hullName": "Rose",
+  "hullId": "sotf_rose",
+  "hullSize": "DESTROYER",
+  "spriteName": "graphics/ships/dreaming/sotf_rose.png",
+  "style": "SOTF_DAYDREAM",
+  "height": 144,
+  "width": 144,
+  "center": [72, 72],
+  "collisionRadius": 99,
+  "shieldCenter": [6, -0],
+  "shieldRadius": 92,
+  "viewOffset": 0,
+  "builtInMods": [
+    "sotf_daydreamhull"
+  ],
+  "builtInWeapons": {
+    "WS 003": "sotf_amaranth",
+    "WS 004": "sotf_tormentpulse"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "MEDIUM",
+      "type": "SYNERGY",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [27, 48]
+    },
+    {
+      "id": "WS 002",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 210,
+      "angle": -45,
+      "locations": [12, -47]
+    },
+    {
+      "id": "WS 003",
+      "size": "LARGE",
+      "type": "BUILT_IN",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 0,
+      "locations": [20, -0]
+    },
+    {
+      "id": "WS 004",
+      "size": "LARGE",
+      "type": "BUILT_IN",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-21, -0]
+    },
+    {
+      "id": "FRONT_GLOW",
+      "size": "LARGE",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [0, -0]
+    },
+    {
+      "id": "BACK_GLOW",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [0, -0]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-32, 36],
+      "length": 35,
+      "width": 10,
+      "angle": 170,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-32, -36],
+      "length": 35,
+      "width": 10,
+      "angle": -170,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-35, 23],
+      "length": 45,
+      "width": 10,
+      "angle": -185,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-35, -23],
+      "length": 45,
+      "width": 10,
+      "angle": 185,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-50, 15.5],
+      "length": 25,
+      "width": 7,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    },
+    {
+      "location": [-50, -15.5],
+      "length": 25,
+      "width": 7,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "SOTF_DAYDREAM"
+    }
+  ],
+  "bounds": [
+    61, -0,
+    53, 23,
+    36, 37.5,
+    15, 66,
+    -16, 40,
+    -34, 40,
+    -43, 30,
+    -31, 28,
+    -69.5, 3,
+    -69.5, -3,
+    -31, -28,
+    -43, -30,
+    -34, -40,
+    -23, -44,
+    -18, -41,
+    14.5, -67,
+    27, -57,
+    43, -53,
+    53, -43,
+    50, -37,
+    35, -35,
+    50, -22
+  ]
+}

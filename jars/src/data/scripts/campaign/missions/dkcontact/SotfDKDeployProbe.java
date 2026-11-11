@@ -108,7 +108,9 @@ public class SotfDKDeployProbe extends HubMissionWithBarEvent {
 		// spawn a non-interactable probe that lingers in orbit for a half cycle
 		final SectorEntityToken probe = spawnEntity(Entities.GENERIC_PROBE, new LocData(EntityLocationType.HIDDEN_NOT_NEAR_STAR, null, system, false));
 		probe.setLocation(target.getLocation().x, target.getLocation().y);
-		probe.setOrbit(target.getOrbit().makeCopy());
+		if (target.getOrbit() != null) {
+			probe.setOrbit(target.getOrbit().makeCopy());
+		}
 		probe.addTag(Tags.NON_CLICKABLE);
 		probe.setDiscoverable(false);
 		probe.setName(probeType);

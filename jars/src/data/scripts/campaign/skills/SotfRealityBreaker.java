@@ -1,6 +1,7 @@
 // ERROR 404: COMMENT NOT FOUND. Starts a timer, then crashes the game via NPE
 package data.scripts.campaign.skills;
 
+import com.fs.starfarer.api.EveryFrameScript;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.characters.AfterShipCreationSkillEffect;
 import com.fs.starfarer.api.characters.MutableCharacterStatsAPI;
@@ -11,6 +12,7 @@ import com.fs.starfarer.api.combat.listeners.AdvanceableListener;
 import com.fs.starfarer.api.impl.campaign.skills.BaseSkillEffectDescription;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.ui.FontException;
 import org.lazywizard.lazylib.ui.LazyFont;
 import org.lwjgl.opengl.Display;
@@ -20,9 +22,11 @@ import org.magiclib.util.MagicUI;
 
 import java.awt.*;
 
+import static data.scripts.utils.SotfMisc.getAllowedRealityBreaker;
+
 public class SotfRealityBreaker {
 
-	public static final float TIME_LIMIT = 360f;
+	public static final float TIME_LIMIT = 300f;
 
 	public static class LevelMinus1 extends BaseSkillEffectDescription implements AfterShipCreationSkillEffect {
 
@@ -61,16 +65,27 @@ public class SotfRealityBreaker {
 		}
 	}
 
-	public static class SotfRealityBreakerScript implements AdvanceableListener {
+	public static class SotfRealityBreakerScript extends BaseEveryFrameCombatPlugin implements AdvanceableListener {
 		protected ShipAPI ship;
 		protected float timer;
 		protected boolean showStatus = true;
+		private static LazyFont.DrawableString TODRAW14;
 		public SotfRealityBreakerScript(ShipAPI ship) {
 			this.ship = ship;
+
+			try {
+				LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
+				TODRAW14 = fontdraw.createText();
+				TODRAW14.setFontSize(28);
+			} catch (FontException ignored) {
+			}
+
+			Global.getCombatEngine().addPlugin(this);
 		}
 
 		public void advance(float amount) {
-			if (!ship.isAlive() || ship.isFighter()) {
+			if (!ship.isAlive()) {
+				Global.getCombatEngine().removePlugin(this);
 				return;
 			}
 			timer += amount / ship.getMutableStats().getTimeMult().getModifiedValue();
@@ -92,7 +107,6 @@ public class SotfRealityBreaker {
 				status = "Reality breaker deploying";
 				subtext = "Too late";
 				showStatus = true;
-				breakRendering(ship, Color.WHITE, ship.getLocation());
 				ship.setJitter(this, Color.WHITE, 1 - (left / 5), 500, 200);
 			}
 
@@ -107,85 +121,86 @@ public class SotfRealityBreaker {
 			if (timer < TIME_LIMIT) {
 				return;
 			}
-			// make sure you can't disarm it by adding a new weapon to the files
-			String weaponId = "sotf_realitybreaker";
-			if (Global.getSettings().getWeaponSpec(weaponId) != null) {
-				weaponId += "" + Misc.random.nextInt(9999);
+
+			if (getAllowedRealityBreaker()) {
+				// make sure you can't disarm it by adding a new weapon to the files
+				String weaponId = "sotf_realitybreaker";
+				if (Global.getSettings().getWeaponSpec(weaponId) != null) {
+					weaponId += "" + Misc.random.nextInt(9999);
+				}
+				// crash the game via NullPointerException
+				Global.getCombatEngine().spawnProjectile(ship, null, weaponId, ship.getLocation(), 360f, ship.getVelocity());
+			} else {
+				Global.getCombatEngine().endCombat(0f);
+				Global.getSector().addScript(new EveryFrameScript() {
+					@Override
+					public boolean isDone() {
+						return false;
+					}
+
+					@Override
+					public boolean runWhilePaused() {
+						return true;
+					}
+
+					@Override
+					public void advance(float amount) {
+						if (Global.getSector().getCampaignUI().isShowingDialog()) {
+							Global.getSector().getCampaignUI().getCurrentInteractionDialog().dismiss();
+						}
+						Global.getSector().getCampaignUI().cmdExitWithoutSaving();
+					}
+				});
 			}
-			// crash the game via NPE
-			Global.getCombatEngine().spawnProjectile(ship, null, weaponId, ship.getLocation(), 360f, ship.getVelocity());
 		}
 
-		private static LazyFont.DrawableString TODRAW14;
-		private static LazyFont.DrawableString TODRAW10;
-		private static final float UIscaling = Global.getSettings().getScreenScaleMult();
+		@Override
+		public void renderInWorldCoords(ViewportAPI viewport) {
+			CombatEngineAPI engine = Global.getCombatEngine();
+			if (engine.getPlayerShip() == null) return;
+			if (!engine.isUIShowingHUD()) return;
+			if (!ship.isAlive()) return;
+			if (timer == 0) return;
+			ShipAPI player = engine.getPlayerShip();
 
-		static {
-			try {
-				LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
-				TODRAW14 = fontdraw.createText();
+			LazyFont.DrawableString toUse = TODRAW14;
+			if (toUse != null) {
+				float glitchChance = 0.005f + (0.04f * (timer / TIME_LIMIT));
+				float left = TIME_LIMIT - timer;
 
-				fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
-				TODRAW10 = fontdraw.createText();
+				String timeLeft = "" + Math.round(left);
+				String status = "REALITY_BREAKER";
 
-			} catch (FontException ignored) {
+//				if (left < (TIME_LIMIT * 0.65f)) {
+//					status = "Reality breaker arming";
+//				}
+//				if (left < (TIME_LIMIT * 0.35f)) {
+//					status = "Reality breaker almost ready";
+//				}
+				if (left < 5f) {
+					//status = "Reality breaker deploying";
+					timeLeft = "TOO_LATE";
+				}
+				if (left < 1f) {
+					status = "ERROR";
+				}
+
+				String timerString = status + " - " + timeLeft;
+
+				toUse.setText(SotfMisc.glitchify(timerString, glitchChance));
+				toUse.setAnchor(LazyFont.TextAnchor.CENTER);
+				//toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+				toUse.setAlignment(LazyFont.TextAlignment.CENTER);
+				Vector2f pos = new Vector2f(
+						player.getLocation().x - 28,
+						player.getLocation().y + 350
+				);
+				toUse.setBaseColor(Color.BLACK);
+				toUse.draw(pos.x + 1, pos.y - 1);
+				toUse.setBaseColor(Color.WHITE);
+				toUse.draw(pos);
+				//toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
 			}
-		}
-
-		/**
-		 * This was supposed to render ASB text but it ended up just breaking the game's rendering
-		 * ... so, uh, don't copy this code. It doesn't work. That's the point.
-		 * For actually-functional text rendering, please see SotfFelInvasionPlugin or SotfInvokeHerBlessingPlugin.
-		 */
-
-		private static void breakRendering(ShipAPI ship, Color textColor, Vector2f screenPos) {
-			Color borderCol = textColor == null ? MagicUI.GREENCOLOR : textColor;
-			if (!ship.isAlive()) {
-				borderCol = MagicUI.BLUCOLOR;
-			}
-			float alpha = 1f;
-			Color shadowcolor = new Color(Color.BLACK.getRed() / 255f, Color.BLACK.getGreen() / 255f, Color.BLACK.getBlue() / 255f,
-					1f - Global.getCombatEngine().getCombatUI().getCommandUIOpacity());
-			Color color = new Color(borderCol.getRed() / 255f, borderCol.getGreen() / 255f, borderCol.getBlue() / 255f,
-					alpha * (borderCol.getAlpha() / 255f)
-							* (1f - Global.getCombatEngine().getCombatUI().getCommandUIOpacity()));
-
-			final Vector2f boxLoc = new Vector2f(screenPos.getX(), screenPos.getY());
-			final Vector2f shadowLoc = new Vector2f(screenPos.getX() + 1f, screenPos.getY() - 1f);
-			if (UIscaling !=1 ) {
-				boxLoc.scale(UIscaling);
-				shadowLoc.scale(UIscaling);
-				TODRAW10.setFontSize(10*UIscaling);
-			}
-
-			// Global.getCombatEngine().getViewport().
-			openGL11ForText();
-			// TODRAW10.setText(text);
-			// TODRAW10.setMaxHeight(26);
-			TODRAW10.setText("ERROR");
-			TODRAW10.setBaseColor(shadowcolor);
-			TODRAW10.draw(shadowLoc);
-			TODRAW10.setBaseColor(color);
-			TODRAW10.draw(boxLoc);
-			closeGL11ForText();
-		}
-
-		private static void openGL11ForText() {
-			GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-			GL11.glMatrixMode(GL11.GL_PROJECTION);
-			GL11.glPushMatrix();
-			GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
-			GL11.glOrtho(0.0, Display.getWidth(), 0.0, Display.getHeight(), -1.0, 1.0);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		}
-
-		private static void closeGL11ForText() {
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glPopMatrix();
-			GL11.glPopAttrib();
 		}
 	}
 

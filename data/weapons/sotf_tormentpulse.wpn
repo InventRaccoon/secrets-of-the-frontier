@@ -1,0 +1,24 @@
+{
+	"id":"sotf_tormentpulse",
+	"specClass":"projectile",
+	"everyFrameEffect":"data.scripts.weapons.SotfTormentPulseEffect",
+	"type":"ENERGY",
+	"size":"LARGE",
+	"turretSprite":"graphics/weapons/sotf_chalice_turret.png",
+	"turretGlowSprite":"graphics/weapons/sotf_chalice_turret_glow.png",
+	"hardpointSprite":"graphics/weapons/sotf_chalice_hardpoint.png",
+	"hardpointGlowSprite":"graphics/weapons/sotf_chalice_hardpoint_glow.png",		
+	"hardpointOffsets":[0, 0],
+	"turretOffsets":[0, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	#"glowColor":[180,255,0,255],
+	"glowColor":[255,105,105,255],
+	"barrelMode":"ALTERNATING",
+	"animationType":"GLOW",
+	"autocharge":true,
+	"projectileSpecId":"sotf_tormentpulse_shot",
+	"fireSoundTwo":"shock_repeater_fire",
+}
+
+

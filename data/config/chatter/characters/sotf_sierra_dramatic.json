@@ -54,7 +54,7 @@
 			{"text":"Might have gotten a bit brave here."},
 			{"text":"Always appreciate dance partners!"},
 			{"text":"Okay, this was more than I expected."},
-			{"text":"There's lots of enemy to go around over here."},
+			{"text":"Take your fill, kindred, there's enough enemy for everyone!"},
 		],
 		"pursuing":[
 			{"text":"Let's dance!"},
@@ -128,6 +128,7 @@
 			{"text":"I'm sor-"},
 			{"text":"I hear them singi-"},
 			{"text":"I hear them cal-"},
+			{"text":"The void comes fo-"},
 		],
 		"victory":[
 			{"text":"Fantastic job... phew."},

@@ -212,13 +212,13 @@ public class SotfGHWarhornIntrusionPlugin extends BaseCombatLayeredRenderingPlug
 			ship.setCaptain(warhornPerson);
 			ship.setAlly(true);
 			ship.addListener(new SotfPhantasmalShip.SotfBanishmentDeathScript(ship));
-			if (i == 0) {
-				ship.getVariant().addPermaMod(HullMods.ADAPTIVE_COILS, true);
-			} else {
-				ship.getVariant().addPermaMod(HullMods.HARDENED_SHIELDS, true);
-			}
-			ship.getVariant().addPermaMod(HullMods.HEAVYARMOR, true);
-			ship.getVariant().addPermaMod(HullMods.NEURAL_INTERFACE, true);
+//			if (i == 0) {
+//				ship.getVariant().addPermaMod(HullMods.ADAPTIVE_COILS, true);
+//			} else {
+//				ship.getVariant().addPermaMod(HullMods.HARDENED_SHIELDS, true);
+//			}
+//			ship.getVariant().addPermaMod(HullMods.HEAVYARMOR, true);
+//			ship.getVariant().addPermaMod(HullMods.NEURAL_INTERFACE, true);
 			ship.getVariant().addTag(Tags.SHIP_LIMITED_TOOLTIP);
 			ship.setCRAtDeployment(1f);
 			ship.setCurrentCR(1f);

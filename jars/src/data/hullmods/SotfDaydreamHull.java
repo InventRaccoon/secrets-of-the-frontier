@@ -1,5 +1,4 @@
-// Built-in for Dustkeeper Proxy drones
-// Has no actual effect nowadays - upgrades are baked into the hull
+// Built-in for Cult of the Daydream ships
 package data.hullmods;
 
 import com.fs.starfarer.api.GameState;
@@ -21,6 +20,7 @@ public class SotfDaydreamHull extends BaseHullMod {
 	public static float SHIELD_RESIST = 0.12f;
 	public static float EMP_DAMAGE_RESIST = 0.35f;
 	public static float PIERCE_MULT = 0.5f;
+	public static float CORONA_EFFECT_MULT = 0f;
 
 	public void advanceInCombat(ShipAPI ship, float amount) {
 		if (!Global.getCurrentState().equals(GameState.COMBAT)) {
@@ -45,6 +45,7 @@ public class SotfDaydreamHull extends BaseHullMod {
 		//stats.getFragmentationShieldDamageTakenMult().modifyMult(id, 1f - (SHIELD_RESIST * 2f));
 		stats.getDynamic().getStat(Stats.SHIELD_PIERCED_MULT).modifyMult(id, 1f - (PIERCE_MULT * sizeMult));
 		stats.getEmpDamageTakenMult().modifyMult(id, 1f - (EMP_DAMAGE_RESIST * sizeMult));
+		stats.getDynamic().getStat(Stats.CORONA_EFFECT_MULT).modifyMult(id, CORONA_EFFECT_MULT);
 	}
 
 	public String getDescriptionParam(int index, ShipAPI.HullSize hullSize) {
@@ -54,6 +55,7 @@ public class SotfDaydreamHull extends BaseHullMod {
 		if (index == 2) return "" + Math.round(EMP_DAMAGE_RESIST * 100f) + "%";
 		if (index == 3) return "doubled";
 		if (index == 4) return "halves";
+		if (index == 5) return "nullifies";
 		return null;
 	}
 }

@@ -12,8 +12,6 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.events.OfficerManagerEvent;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
-import com.fs.starfarer.api.impl.campaign.ids.Factions;
-import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.ids.Skills;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.combat.RiftLanceEffect;
@@ -22,6 +20,7 @@ import com.fs.starfarer.api.mission.FleetSide;
 import com.fs.starfarer.api.util.IntervalUtil;
 import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
+import data.hullmods.SotfNaniteSynthesized;
 import data.scripts.SotfModPlugin;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
@@ -29,7 +28,6 @@ import data.scripts.campaign.plugins.fel.SotfGuiltTracker;
 import data.scripts.campaign.skills.SotfDearDotty;
 import data.scripts.campaign.skills.SotfLeviathansBane;
 import data.scripts.campaign.skills.SotfATrickstersCalling;
-import data.scripts.combat.SotfNeutrinoLockVisualScript;
 import data.scripts.utils.SotfMisc;
 import org.lazywizard.lazylib.MathUtils;
 import org.lazywizard.lazylib.ui.FontException;
@@ -75,6 +73,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         if (Global.getSector() == null) { return; }
         if (engine.getFleetManager(FleetSide.ENEMY).getGoal().equals(FleetGoal.ESCAPE)) return;
         if (engine.getCustomData().containsKey(SotfIDs.INVASION_NEVER_KEY)) return;
+        if (engine.getCustomData().containsKey(SotfIDs.COMBAT_NO_PLUGINS)) return;
 
         if (!SotfModPlugin.WATCHER) {
             return;
@@ -156,6 +155,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             boolean madness = false;
             int numFelInvasions = 0;
             String[] messageArray = new String[] {"",""};
+            Color color = Misc.getNegativeHighlightColor();
 
             protected float fadeIn = 0f;
             protected float fadeOut = 1f;
@@ -164,6 +164,8 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 
             protected float expireFade = 1f;
             protected boolean expiring = false;
+
+            protected boolean siriusMode = false;
 
             protected SpriteAPI iconSprite = Global.getSettings().getSprite("ui", "sotf_fel_pointer");
 
@@ -186,14 +188,27 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 } catch (FontException ignored) {
                 }
 
+                MemoryAPI sector_mem = Global.getSector().getMemoryWithoutUpdate();
+                if (sector_mem.contains(SotfIDs.MEM_COTL_START)) {
+                    siriusMode = true;
+                    color = SotfNaniteSynthesized.COLOR_STRONGER;
+                }
+
 //                jitter.setUseCircularJitter(true);
 //                jitter.setSetSeedOnRender(false);
                 iconSprite.setSize(35f, 30f);
-                iconSprite.setColor(Misc.setAlpha(Misc.getNegativeHighlightColor(), 155));
+                iconSprite.setColor(Misc.setAlpha(color, 155));
 
                 PersonAPI fel = SotfPeople.getPerson(SotfPeople.FEL);
                 skillsText = "";
 
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_DECAYINGSCOURGE)) {
+                    if (siriusMode) {
+                        skillsText += "\nOFF - DECAYING SCOURGE - HERETIC'S ROT";
+                    } else {
+                        skillsText += "\nOFF - DECAYING SCOURGE - ROTTING LASH";
+                    }
+                }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_HATREDBEYONDDEATH)) {
                     skillsText += "\nOFF - HATRED BEYOND DEATH - UNDYING RAGE";
                 }
@@ -234,10 +249,17 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 }
 
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_ELEGYOFOPIS)) {
-                    skillsText += "\nSUP - ELEGY OF OPIS - UNDYING AURA";
+                    skillsText += "\nSUP - ELEGY OF OPIS - UNDYING GIFT";
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_HANDSOFTHEDROWNED)) {
-                    skillsText += "\nSUP - HANDS OF THE DROWNED - GRAVITIC MINES";
+                    skillsText += "\nSUP - HANDS OF THE DROWNED - GRAVITIC MINEFIELD";
+                }
+                if (fel.getStats().hasSkill(SotfIDs.SKILL_HERETICECHOES)) {
+                    if (siriusMode) {
+                        skillsText += "\nSUP - HERETIC ECHOES - STOLEN BLESSING";
+                    } else {
+                        skillsText += "\nOFF - HERETIC ECHOES - MIMIC NECROMANCER";
+                    }
                 }
                 if (fel.getStats().hasSkill(SotfIDs.SKILL_REALITYBREAKER)) {
                     skillsText += "\nERROR: description(\"reality_breaker\") not found\nKILL IT KILL IT KILL IT";
@@ -277,23 +299,27 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                     );
                     toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
                     toUse.draw(pos.x + 1, pos.y - 1);
-                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.setBaseColor(Misc.setBrightness(color, alpha));
                     toUse.draw(pos);
                     //toUse.draw(loc.x, loc.y - shieldRadius * 0.6f);
 
-                    String text = SotfMisc.glitchify("ASSESSING TRAITS:" + skillsText, glitchChance);
-                    //text += ":" + SotfMisc.glitchify(skillsText, glitchChance);
-                    toUse.setText(text);
-                    toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
-                    toUse.setAlignment(LazyFont.TextAlignment.LEFT);
-                    pos = new Vector2f(
-                            viewport.convertWorldXtoScreenX(player.getLocation().x + player.getShieldRadiusEvenIfNoShield() * 1.25f),
-                            viewport.convertWorldYtoScreenY(player.getLocation().y)
-                    );
-                    toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
-                    toUse.draw(pos.x + 1, pos.y - 1);
-                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
-                    toUse.draw(pos);
+                    String text = "";
+
+                    if (!skillsText.isEmpty()) {
+                        text = SotfMisc.glitchify("ASSESSING TRAITS:" + skillsText, glitchChance);
+                        //text += ":" + SotfMisc.glitchify(skillsText, glitchChance);
+                        toUse.setText(text);
+                        toUse.setAnchor(LazyFont.TextAnchor.CENTER_LEFT);
+                        toUse.setAlignment(LazyFont.TextAlignment.LEFT);
+                        pos = new Vector2f(
+                                viewport.convertWorldXtoScreenX(player.getLocation().x + player.getShieldRadiusEvenIfNoShield() * 1.25f),
+                                viewport.convertWorldYtoScreenY(player.getLocation().y)
+                        );
+                        toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
+                        toUse.draw(pos.x + 1, pos.y - 1);
+                        toUse.setBaseColor(Misc.setBrightness(color, alpha));
+                        toUse.draw(pos);
+                    }
 
                     text = SotfMisc.glitchify("HOST SHIP:\n" + ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
                     //text += ":\n" + SotfMisc.glitchify(ship.getHullSpec().getNameWithDesignationWithDashClass(), glitchChance);
@@ -306,7 +332,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                     );
                     toUse.setBaseColor(Misc.setBrightness(Color.BLACK, alpha));
                     toUse.draw(pos.x + 1, pos.y - 1);
-                    toUse.setBaseColor(Misc.setBrightness(Misc.getNegativeHighlightColor(), alpha));
+                    toUse.setBaseColor(Misc.setBrightness(color, alpha));
                     toUse.draw(pos);
                 }
             }
@@ -435,7 +461,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                                 Misc.getTextColor(), spawnString);
                     } else {
                         engine.getCombatUI().addMessage(0, ship,
-                                Misc.getNegativeHighlightColor(), "Felcesis commandeered the " + ship.getName() + " (" + ship.getHullSpec().getHullNameWithDashClass() + ")",
+                                Misc.getNegativeHighlightColor(), "The Thrice-Speared ", Misc.getTextColor(), " commandeered the ", Misc.getNegativeHighlightColor(), ship.getName() + " (" + ship.getHullSpec().getHullNameWithDashClass() + ")",
                                 Misc.getTextColor(), spawnString);
                     }
                 }
@@ -522,7 +548,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         if (numInvasions > 1 && !madness) {
             spawnString = " was infested by adaptive nanites";
         } else if (guilt >= SotfMisc.getGuiltMadnessThreshold()) {
-            // Preceded by "Felcesis has commandeered the (ship name)"
+            // Preceded by "The Thrice-Speared has commandeered the (ship name)"
             WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
             post.add(" and is hunting you down");
             post.add(" and has come to exact vengeance");
@@ -539,18 +565,27 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         String spawnString = "'s adaptive nanite infestation has subsided";
         if (guilt >= SotfMisc.getGuiltMadnessThreshold()) {
             WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
-            post.add("Felcesis was banished... for now");
-            post.add("Felcesis was defeated... for now");
-            post.add("Felcesis was bound once again");
-            post.add("Felcesis will return to hunt you again");
-            post.add("Felcesis has indicted you", 0.03f * post.getItems().size());
+            post.add("The Thrice-Speared was banished... for now");
+            post.add("The Thrice-Speared was defeated... for now");
+            post.add("The Thrice-Speared was bound once again");
+            post.add("The Thrice-Speared will return to hunt you again");
+            post.add("Felcesis Thrice-Speared has indicted you", 0.03f * post.getItems().size());
             spawnString = post.pick();
         }
         return spawnString;
     }
 
-    // when infestation completes, appended to ship name
+    // top of invasion HUD
     private String getFelUIWarning(int numInvasions, boolean madness) {
+        if (Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
+            WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
+            post.add("DAYDREAM TECHNOLOGY DETECTED");
+            post.add("HERETIC THREAT DETECTED");
+            post.add("IT'S COMING FOR US");
+            post.add("NO REST FOR THE WICKED...");
+            post.add("THRICE-SPEARED INFECTION FOUND");
+            return post.pick();
+        }
         String warningString = "HIGH ENERGY READING DETECTED";
         if (madness) {
             WeightedRandomPicker<String> post = new WeightedRandomPicker<String>();
@@ -604,17 +639,20 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         PersonAPI fel = SotfPeople.getPerson(SotfPeople.FEL);
 
         // perform player fleet analysis
+        int playerLevel = Global.getSector().getPlayerStats().getLevel();
         float totalFP = 0f;
         float totalDP = 0f;
         float carrierFP = 0f;
         float phaseFP = 0f;
         float preyFP = 0f;
         float missileFP = 0f;
+        int synthesizers = 0;
         List<FleetMemberAPI> enemies = engine.getFleetManager(FleetSide.PLAYER).getDeployedCopy();
         List<FleetMemberAPI> reserves = engine.getFleetManager(FleetSide.PLAYER).getReservesCopy();
         List<FleetMemberAPI> all = new ArrayList<>();
         all.addAll(enemies);
         all.addAll(reserves);
+        // note: "enemies" in this context are the player's fleet
         for (FleetMemberAPI enemy : all) {
             if (enemy.isFighterWing()) continue;
             totalFP += enemy.getFleetPointCost();
@@ -641,6 +679,10 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             // missile users: anything that the game thinks can effectively use Missile Specialization
             if (pref.toString().contains("YES_MISSILE")) {
                 missileFP += enemy.getFleetPointCost();
+            }
+
+            if (enemy.getVariant().hasHullMod(SotfIDs.HULLMOD_DAYDREAM_SYNTHESIZER)) {
+                synthesizers++;
             }
         }
 
@@ -672,7 +714,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         fel.getStats().setSkillLevel(SotfIDs.SKILL_SPATIALEXPERTISE, 2);
 
         // if small fleet, remove swarm PD and hull/armor regen and some defensive skills
-        if (totalFP < 75f) {
+        if (playerLevel < 5) {
             fel.getStats().setSkillLevel(SotfIDs.SKILL_ADVANCEDCOUNTERMEASURES, 1);
             fel.getStats().setSkillLevel(SotfIDs.SKILL_FIELDSRESONANCE, 1);
             fel.getStats().setSkillLevel(SotfIDs.SKILL_POLARIZEDNANOREPAIR, 1);
@@ -696,6 +738,17 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             numDefensive++;
         }
 
+        // earlygame, only 1 non-defensive trait
+        if (playerLevel < 3) {
+            total = 1;
+            numDefensive = 0;
+        }
+
+        if (playerLevel < 5) {
+            total = 2;
+            numDefensive = 1;
+        }
+
         // if Haunted player kicked Fel's icon at Killa, add 1 more skill
         if (Global.getSector().getMemoryWithoutUpdate().contains("sotf_spitedFel")) {
             total++;
@@ -705,17 +758,10 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             }
         }
 
-        // earlygame, remove 1 defensive trait
-        if (totalFP < 75f) {
-            total -= 1;
-            numDefensive -= 1;
-        }
-
-        // TODO: turn this permanently on once there's a few more support traits
         //boolean addSupportTrait = totalAllyDP >= 250f;
         boolean addSupportTrait = false;
         if (Global.getSettings().getBoolean("sotf_allowSupportTraits")) {
-            addSupportTrait = totalAllyDP >= 250f;
+            addSupportTrait = playerLevel >= 10 && totalAllyDP >= 120f;
         }
 
         WeightedRandomPicker<String> offensivePicker = new WeightedRandomPicker<String>(random);
@@ -723,11 +769,22 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         WeightedRandomPicker<String> hybridPicker = new WeightedRandomPicker<String>(random);
         WeightedRandomPicker<String> supportPicker = new WeightedRandomPicker<String>(random);
 
+        // DECAYING SCOURGE: Generalist, but kind of rare. More common vs Sirius and Reverie because it counters them
+        float decayWeight = 0.5f;
+        if (Global.getSector().getMemoryWithoutUpdate().contains(SotfIDs.MEM_COTL_START)) {
+            decayWeight = 1.1f;
+        }
+        decayWeight += (synthesizers * 0.25f);
+
         // HATRED BEYOND DEATH: generally requires Fel to be near enemy ships, so not on backline carriers
         float hatredWeight = 1f;
         if (nonCombatCarrier) {
             hatredWeight *= 0f;
         }
+
+        // LEVIATHAN'S BANE: Based on how much of the player fleet the Hidecracker can fire at
+        // Very likely to be picked against capspam and similar comps, or if Fel picks a frigate against top-heavy fleets, or vs stations
+        float leviathanWeight = 0f + (4f * (preyFP / totalFP));
 
         // JUBILANT TECH-SIREN: a generally useful offensive skill
         float sirenWeight = 0.75f;
@@ -737,10 +794,6 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         if (member.getVariant().hasHullMod(SotfIDs.HULLMOD_CWARSUITE)) {
             sirenWeight += 3;
         }
-
-        // LEVIATHAN'S BANE: Based on how much of the player fleet the Hidecracker can fire at
-        // Very likely to be picked against capspam and similar comps, or if Fel picks a frigate against top-heavy fleets, or vs stations
-        float leviathanWeight = 0f + (4f * (preyFP / totalFP));
 
         // WYRMFIRE EXECUTIONER: Only if we have missiles to trigger it with
         float wyrmfireWeight = 1f;
@@ -764,9 +817,10 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
 //            fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);
 //        }
         // do not spawn Dotty during earlygame, she is too high a force multiplier
-        if (totalFP < 75f) {
+        if (playerLevel < 5f) {
             dottyWeight = 0f;
         }
+        // forces max level Dotty
         fel.getMemoryWithoutUpdate().set(SotfDearDotty.DOTTY_BOND_KEY, 999999f);
 
         // WISPERING GROVETENDER: performs somewhat better versus enemy fighters
@@ -801,10 +855,16 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             scrapscreenWeight = 1.5f;
         }
 
+        // ELEGY OF OPIS: we need lots of allies to actually use this thing
+        float elegyWeight = 1f;
+        if (totalAllyFP - member.getFleetPointCost() < 70f) {
+            elegyWeight = 0f;
+        }
+
         // HANDS OF THE DROWNED: always OK except if we're fighting alongside a station with mines
         float drownedWeight = 1f;
         for (FleetMemberAPI ally : allies) {
-            if (ally.getVariant().hasHullMod("stealth_minefield")) {
+            if (ally.getVariant().hasHullMod("stealth_minefield") || ally.getVariant().hasHullMod("stealth_minefield_lt")) {
                 drownedWeight = 0f;
                 break;
             }
@@ -825,11 +885,16 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 }
             }
         }
+        // setting now just automatically loads your last save
+//        if (!SotfMisc.getAllowedRealityBreaker()) {
+//            realityBreakerWeight = 0f;
+//        }
 
         // OFFENSIVE
         offensivePicker.add(SotfIDs.SKILL_HATREDBEYONDDEATH, hatredWeight);
         offensivePicker.add(SotfIDs.SKILL_LEVIATHANSBANE, leviathanWeight);
         offensivePicker.add(SotfIDs.SKILL_JUBILANTSIREN, sirenWeight);
+        offensivePicker.add(SotfIDs.SKILL_DECAYINGSCOURGE, decayWeight);
         offensivePicker.add(SotfIDs.SKILL_WYRMFIRE, wyrmfireWeight);
 
         // HYBRID
@@ -845,8 +910,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         defensivePicker.add(SotfIDs.SKILL_SCRAPSCREEN, scrapscreenWeight);
 
         // SUPPORT
-        // TODO: change Elegy of Opis to support trait pool once reworked
-        //supportPicker.add(SotfIDs.SKILL_ELEGYOFOPIS, elegyWeight);
+        supportPicker.add(SotfIDs.SKILL_ELEGYOFOPIS, elegyWeight);
         supportPicker.add(SotfIDs.SKILL_HANDSOFTHEDROWNED, drownedWeight);
         supportPicker.add(SotfIDs.SKILL_PERFECTSTORM, perfectWeight);
         supportPicker.add(SotfIDs.SKILL_REALITYBREAKER, realityBreakerWeight);
@@ -856,10 +920,10 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
             String pick = supportPicker.pick();
             stats.setSkillLevel(pick, 2);
 
-            // don't stack undying effects
-            if (pick.equals(SotfIDs.SKILL_ELEGYOFOPIS)) {
-                offensivePicker.remove(SotfIDs.SKILL_HATREDBEYONDDEATH);
-            }
+            // this combo is ok actually, Elegy only affects allies, Hatred only affects self
+//            if (pick.equals(SotfIDs.SKILL_ELEGYOFOPIS)) {
+//                offensivePicker.remove(SotfIDs.SKILL_HATREDBEYONDDEATH);
+//            }
         }
 
         // hybrid skills have a reduced chance to be picked per pool compared to specialized skills
@@ -1006,7 +1070,7 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
         if (spec.getHullId().contains("guardian")) special = false;
 
         // if the existing captain is more skilled than an integrated Alpha, probably a no-go
-        if (member.getCaptain().getStats().getLevel() > 8) {
+        if (member.getCaptain().getStats().getLevel() > 9) {
             special = true;
         }
         return special;

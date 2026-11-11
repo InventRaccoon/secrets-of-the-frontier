@@ -112,7 +112,7 @@ public class SotfLegacyOfHypnos extends HubMissionWithSearch {
         Color h = Misc.getHighlightColor();
 
         if (!fromInad) {
-            info.addPara("Annex-Wendigo informed you about a Domain-era laboratory located in " + system.getNameWithNoType() + ". They " +
+            info.addPara("Infix-Wendigo informed you about a Domain-era laboratory located in " + system.getNameWithNoType() + ". They " +
                     "requested you find the station and recover any important data you can find.", opad);
         } else {
             info.addPara("Echo-Inadvertent informed you about a Domain-era laboratory located in " + system.getNameWithNoType() + ". He " +

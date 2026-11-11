@@ -4,7 +4,7 @@
 	"personalities":["aggressive", "reckless"],
 	"gender":["m"],
 	"chance":0, # manually set via memory when he is created
-	"talkativeness":0.65, # not much for words, also he chats for two ships
+	"talkativeness":1,
 	"categoryTags":["sotf", "special"],
 	
 	"lines":{
@@ -86,6 +86,7 @@
 			{"text":"These scars will be scabbed over with your armor plates!"},
 		],
 		"overload":[
+			{"text":"Kah, overloaded!"},
 			{"text":"Keh, brace for impact!"},
 			{"text":"Stormy waters..."},
 		],

@@ -26,6 +26,10 @@
 		"sotf_scavenge_ambience": [
 			{"file":"scavenge_ambience_v1.ogg", "source":"sounds/music/music.bin", "pitch":1,"volume":0.6},
 		],
+		# Dreaming Gestalt theme
+		"sotf_blissfuldaydream": [
+			{"file":"sotf_blissfuldaydream.ogg", "source":"sounds/music", "pitch":1,"volume":0.6},
+		],
 	},
     # EDICT
     "sotf_edict_fire":

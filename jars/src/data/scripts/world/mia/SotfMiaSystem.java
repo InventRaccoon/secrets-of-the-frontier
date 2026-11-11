@@ -103,6 +103,7 @@ public class SotfMiaSystem {
 			planet2.getMarket().addCondition(Conditions.POOR_LIGHT);
 			planet2.getMarket().addCondition(Conditions.FARMLAND_RICH);
 			planet2.getMarket().addCondition(Conditions.ORE_MODERATE);
+			planet2.getMarket().addCondition(Conditions.VOLATILES_TRACE);
 			planet2.getMarket().addCondition(Conditions.ORGANICS_COMMON);
 		} else if (hallowhallType.equals(Planets.PLANET_WATER)) {
 			planet2.getMarket().addCondition(Conditions.WATER_SURFACE);
@@ -244,7 +245,7 @@ public class SotfMiaSystem {
 		float radius = system.getMaxRadiusInHyperspace() + 200f;
 		try_again:
 		for (int i = 0; i < 100; i++) {
-			Vector2f loc = new Vector2f(getRandom(46500f, 54500f), 0f);
+			Vector2f loc = new Vector2f(getRandom(86500f, 94500f), 0f);
 			VectorUtils.rotate(loc, getRandom(180, 240f), loc);
 
 			for (StarSystemAPI location : sector.getStarSystems()) {

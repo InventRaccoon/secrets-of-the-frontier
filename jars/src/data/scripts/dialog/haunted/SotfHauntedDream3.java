@@ -23,10 +23,7 @@ public class SotfHauntedDream3 extends SotfHauntedDreamBase {
                 "until you can run no longer.", 5, l);
         addLine("And you accept its judgement.", 6, s);
 
-        if (stage == 7 && counter >= 0) {
-            addWakeUpOption();
-            stage = 8;
-        }
+        addWakeUpOption(7);
     }
 
     @Override

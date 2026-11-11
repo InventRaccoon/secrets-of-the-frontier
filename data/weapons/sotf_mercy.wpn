@@ -1,9 +1,9 @@
 {
   "id": "sotf_mercy",
   "specClass": "beam",
-  "everyFrameEffect":"data.scripts.weapons.SotfMercyEffect",
   "type": "ENERGY",
   "size": "LARGE",
+  "everyFrameEffect": "data.scripts.weapons.SotfMercyEffect",
   "collisionClass": "RAY",
   "collisionClassByFighter": "RAY_FIGHTER",
   "turretSprite": "graphics/weapons/sotf_scatterlance_turret.png",
@@ -18,36 +18,42 @@
   ],
   "hitGlowRadius": 0,
   "turretOffsets": [
+    18,
+    0,
     16,
     5,
     16,
     -5,
     19,
-    2,
+    3,
     19,
-    -2
+    -3
   ],
   "turretAngleOffsets": [
-    1,
-    -1,
-    0.33,
-    -0.33
+    0,
+    2.5,
+    -2.5,
+    1.25,
+    -1.25
   ],
   "hardpointOffsets": [
+	26,
+    0,
     24,
     5,
     24,
     -5,
     27,
-    2,
+    3,
     27,
-    -2
+    -3
   ],
   "hardpointAngleOffsets": [
-    1,
-    -1,
-    0.33,
-    -0.33
+    0,
+    2.5,
+    -2.5,
+    1.25,
+    -1.25
   ],
   "beamFireOnlyOnFullCharge": true,
   "fringeColor": [
@@ -62,11 +68,16 @@
     255,
     255
   ],
-  #"convergeOnPoint": true,
   "width": 12,
   "textureType": ROUGH,
   "textureScrollSpeed": 64,
   "pixelsPerTexel": 1,
-  "pierceSet":[PROJECTILE_FF,PROJECTILE_NO_FF,PROJECTILE_FIGHTER,MISSILE_FF,MISSILE_NO_FF],
+  "pierceSet": [
+    PROJECTILE_FF,
+    PROJECTILE_NO_FF,
+    PROJECTILE_FIGHTER,
+    MISSILE_FF,
+    MISSILE_NO_FF
+  ],
   "fireSoundTwo": "sotf_mercy_fire"
 }

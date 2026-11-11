@@ -4,6 +4,7 @@ package data.hullmods;
 import com.fs.starfarer.api.GameState;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.characters.SkillSpecAPI;
+import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Skills;
@@ -15,9 +16,9 @@ import data.scripts.campaign.ids.SotfIDs;
 
 import java.awt.*;
 
-public class SotfCyberwarfareSuite extends SotfBaseAuxPackage {
+public class SotfCyberwarfareSuite extends BaseHullMod {
 
-	public static float CWAR_COOLDOWN_MULT = 0.75f;
+	public static float CWAR_COOLDOWN_MULT = 0.85f;
 	public static float CWAR_PENETRATION_PERCENT = 30f;
 
 	public void applyEffectsBeforeShipCreation(ShipAPI.HullSize hullSize, MutableShipStatsAPI stats, String id) {
@@ -70,5 +71,9 @@ public class SotfCyberwarfareSuite extends SotfBaseAuxPackage {
 			label.italicize();
 			tooltip.addPara("   - " + author2, gray, pad);
 		}
+	}
+
+	public int getDisplaySortOrder() {
+		return 200;
 	}
 }

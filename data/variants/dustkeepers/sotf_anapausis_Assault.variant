@@ -1,0 +1,74 @@
+{
+  "variantId": "sotf_anapausis_Assault",
+  "hullId": "sotf_anapausis",
+  "displayName": "Assault",
+  "goalVariant": true,
+  "fluxCapacitors": 8,
+  "fluxVents": 30,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit",
+    "hardenedshieldemitter"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 002": "heavyblaster"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 001": "harpoonpod",
+        "WS 011": "harpoon",
+        "WS 012": "harpoon"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 004": "railgun",
+        "WS 005": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "railgun",
+        "WS 010": "railgun"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 003": "pulselaser"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 007": "ioncannon",
+        "WS 008": "ioncannon"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 006": "pdburst",
+        "WS 013": "pdlaser",
+        "WS 014": "pdlaser"
+      }
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

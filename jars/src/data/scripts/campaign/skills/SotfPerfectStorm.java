@@ -22,8 +22,8 @@ import java.util.List;
 
 public class SotfPerfectStorm {
 
-	public static float TIME_BETWEEN_STRIKES = 35f;
-	public static float OVERLOAD_TIME = 2.5f;
+	public static float TIME_BETWEEN_STRIKES = 50f;
+	public static float OVERLOAD_TIME = 3f;
 	public static final String TIMER_KEY = "sotf_perfectstormcdvisual";
 
 	public static final String REACTED_KEY = "sotf_perfectstorm_reacted";
@@ -83,6 +83,9 @@ public class SotfPerfectStorm {
 
 		protected float timer = TIME_BETWEEN_STRIKES;
 		protected float reaction_timer = 0.25f;
+
+		protected boolean allowedToAdvance = false;
+
 		public SotfSilenceBetweenStrikesScript(ShipAPI ship) {
 			this.ship = ship;
 		}
@@ -96,7 +99,10 @@ public class SotfPerfectStorm {
 			// one instance: note that AdvanceableListeners don't actually *do* anything when assigned to the engine
 			if (!Global.getCombatEngine().getListenerManager().hasListenerOfClass(SotfSilenceBetweenStrikesScript.class)) {
 				Global.getCombatEngine().getListenerManager().addListener(this);
+				allowedToAdvance = true;
 			}
+
+			if (!allowedToAdvance) return;
 
 			// create timer visual
 			if (!ship.getCustomData().containsKey(TIMER_KEY)) {
@@ -165,7 +171,7 @@ public class SotfPerfectStorm {
 						if (otherShip.getCustomData().containsKey(WILL_REACT_KEY)) {
 							willReact = (boolean) otherShip.getCustomData().get(WILL_REACT_KEY);
 						} else {
-							float reactionChance = 10f;
+							float reactionChance = 0.1f;
 							if (captain.isDefault() && ai) {
 								reactionChance += 0.3f;
 							} else if (ai) {

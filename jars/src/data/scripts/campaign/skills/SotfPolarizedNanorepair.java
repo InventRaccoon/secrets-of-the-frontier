@@ -44,6 +44,11 @@ public class SotfPolarizedNanorepair {
 	public static float ARMOR_REGEN_RATE_DESTROYER = 0.015f;
 	public static float ARMOR_REGEN_RATE_CRUISER = 0.012f;
 	public static float ARMOR_REGEN_RATE_CAPITAL = 0.01f;
+
+	public static float ARMOR_REGEN_SOFTCAP_FRIGATE = 450f;
+	public static float ARMOR_REGEN_SOFTCAP_DESTROYER = 850f;
+	public static float ARMOR_REGEN_SOFTCAP_CRUISER = 1250f;
+	public static float ARMOR_REGEN_SOFTCAP_CAPITAL = 1650f;
 	// NVM THIS CRAP IS TOO COMPLICATED
 //	public static float ARMOR_REGEN_RATE = 0.01f;
 //	public static float TOTAL_ARMOR_REGEN_MAX_POINTS = 650f;
@@ -92,11 +97,17 @@ public class SotfPolarizedNanorepair {
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_POINTS) + "",
 //					"" + (int)Math.round(TOTAL_ARMOR_REGEN_MAX_FRACTION * 100f) + "%"
 //			);
-			info.addPara("Repair all damaged armor sections by %s/%s/%s/%s of their maximum armor per second, based on hull size", 0f, hc, hc,
+			info.addPara("Repair all damaged armor sections by up to %s/%s/%s/%s of their maximum armor per second, based on hull size and the ship's armor value", 0f, hc, hc,
 					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_FRIGATE * 100f) + "%",
 					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_DESTROYER * 100f) + "%",
 					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_CRUISER * 100f) + "%",
 					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_CAPITAL * 100f) + "%"
+			);
+			info.addPara("Maximum repair rate at or less than %s/%s/%s/%s armor value, based on hull size", 0f, hc, hc,
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_FRIGATE * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_DESTROYER * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CRUISER * 100f) + "%",
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CAPITAL * 100f) + "%"
 			);
 		}
 	}
@@ -107,8 +118,16 @@ public class SotfPolarizedNanorepair {
 		protected float limit = 0f;
 		protected float repaired = 0f;
 		protected String repKey1;
+
+		// persistent modifiers due to the ship's inherent nature
+		protected float repairMod = 1f;
+
 		public SotfPolarizedNanorepairArmorRegen(ShipAPI ship) {
 			this.ship = ship;
+
+			if (ship.getVariant().hasHullMod("tahlan_daemonplating") || ship.getVariant().hasHullMod("tahlan_daemonarmor")) {
+				repairMod *= 0.5f;
+			}
 		}
 
 //		protected void init() {
@@ -161,10 +180,22 @@ public class SotfPolarizedNanorepair {
 					ARMOR_REGEN_RATE_CRUISER,
 					ARMOR_REGEN_RATE_CAPITAL
 			);
+			float softcap = (float) SotfMisc.forShipsHullSize(ship,
+					ARMOR_REGEN_SOFTCAP_FRIGATE,
+					ARMOR_REGEN_SOFTCAP_DESTROYER,
+					ARMOR_REGEN_SOFTCAP_CRUISER,
+					ARMOR_REGEN_SOFTCAP_CAPITAL
+			);
+			float rating = ship.getArmorGrid().getArmorRating();
+			if (ship.getArmorGrid().getArmorRating() > softcap) {
+				rate *= (softcap / rating);
+			}
 			// faster regen for COTL limited lifespan mimics
 			if (ship.hasListenerOfClass(SotfInvokeHerBlessingPlugin.SotfMimicLifespanListener.class)) {
 				rate *= 3f;
 			}
+
+			rate *= repairMod;
 
 			//float repairAmount = Math.min(limit - repaired, ship.getArmorGrid().getMaxArmorInCell() * rate * amount);
 			float repairAmount = ship.getArmorGrid().getMaxArmorInCell() * rate * amount;

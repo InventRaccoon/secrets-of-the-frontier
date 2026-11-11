@@ -1,0 +1,26 @@
+{
+	"id":"sotf_amaranth_proxmines",
+	"specClass":"projectile",
+	"type":"ENERGY",
+	"mountTypeOverride":"SYNERGY",
+	"size":"LARGE",
+	"turretSprite":"graphics/weapons/reality_disruptor_turret_base.png",
+	"turretGlowSprite":"graphics/weapons/reality_disruptor_turret_glow.png",
+	"hardpointSprite":"graphics/weapons/reality_disruptor_hardpoint_base.png",
+	"hardpointGlowSprite":"graphics/weapons/reality_disruptor_hardpoint_glow.png",		
+	"hardpointOffsets":[40, 0],
+	"turretOffsets":[30, 0],
+	"hardpointAngleOffsets":[0],
+	"turretAngleOffsets":[0],
+	"glowColor":[180,255,0,255],
+	#"glowColor":[25,100,155,255],
+	"barrelMode":"ALTERNATING",
+	#"renderHints":[RENDER_LOADED_MISSILES],
+	"interruptibleBurst":false,
+	"animationType":"GLOW",
+	"autocharge":true,
+	"projectileSpecId":"sotf_amaranth_proxmine_proj",
+	"fireSoundTwo":"reaper_fire",
+}
+
+

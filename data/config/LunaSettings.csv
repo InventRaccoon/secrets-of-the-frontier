@@ -13,18 +13,19 @@ sotf_convoChance,Conversation Chance,Double,0.25,,Chance that certain unique off
 sotf_guiltHeader,Guilt Score,Header,Guilt,,,,,Guilt
 sotf_bonusGuilt,Bonus Guilt,Int,0,,"Value added to (or if negative, subtracted from) the player's accumulated guilt value.",-50,50,Guilt
 sotf_hauntedGuilt,The Haunted Starting Guilt,Int,7,,Starting guilt in the [The Haunted] Nexerelin custom start and background.,0,50,Guilt
-sotf_dreamSpeed,Dream Speed,Double,1,,Multiplies the speed at which dreams during [The Haunted] display text.,0.5,3,
+sotf_dreamSpeed,Dream Speed,Double,1,,Multiplies the speed at which dreams during [The Haunted] display text.,0.5,3,Guilt
 sotf_fastDreams,Quicker Torment,Boolean,false,,Makes dreams during [The Haunted] easier to skip through.,,,Guilt
+sotf_hfinaleHardMode,Haunted Finale Hard Mode,Boolean,false,,Makes the finale of The Haunted much more difficult.,,,Guilt
 ,,,,,,,,
 sotf_guiltInvasionHeader,Adaptive Nanite Swarm,Header,Adaptive Nanite Swarm,,,,,Guilt
 sotf_invasionThreshold,Invasion Threshold,Int,4,,"When total guilt reaches this level, an [adaptive nanite swarm] will begin invading the player's battles to punish them.",0,25,Guilt
 sotf_invasionChance,Base Chance,Double,0.15,,The base chance of being invaded in a given battle.,0,1,Guilt
 sotf_invasionChancePerGuilt,Chance Per Additional Guilt,Double,0.09,,Increase in invasion chance per point of guilt beyond the invasion threshold.,0,1,Guilt
 sotf_madnessThreshold,Madness Threshold,Int,7,,"Guilt threshold at which the player's perception of their hunter changes, becoming more unreliable and ethereal.",0,50,Guilt
-sotf_hfinaleHardMode,Haunted Finale Hard Mode,Boolean,false,,Makes the finale of The Haunted much more difficult.,,,Guilt
+sotf_allowRealityBreaker,enable_reality_breaker_crashcode,Boolean,true,,enable_reality_breaker_crashcode,,,Guilt
 ,,,,,,,,
 sotf_cotlHeader,Child of the Lake,Header,Child of the Lake,,,,,Child of the Lake
-#sotf_cotlDPPenaltyPercent,Deployment Point Penalty,Double,0.9,,Multiplier applied to the player's deployment points limit when using the [Child of the Lake] start option. This shouldn't appear ingame because it doesn't work well.,0.5,1,Child of the Lake
+sotf_cotlDPPenaltyPercent,Deployment Point Penalty,Double,1.2,,Multiplier applied to the deployment point cost of all of the player's ships while playing Child of the Lake.,1,3,Child of the Lake
 sotf_cotlBaseCapacity,Base Mimic Capacity,Int,10,,"Player's base mimic capacity, measured in deployment points.",0,100,Child of the Lake
 sotf_cotlCapacityPerLevel,Mimic Capacity Per Level,Int,3,,"Mimic capacity increase for each level gained, measured in deployment points.",0,20,Child of the Lake
 sotf_cotlMimicDamagePenalty,Mimic Damage Dealt,Double,0.9,,Multiplier for weapon damage and fighter refit speed for mimics created by using the [Invoke Her Blessing] subsystem.,0.5,1,Child of the Lake

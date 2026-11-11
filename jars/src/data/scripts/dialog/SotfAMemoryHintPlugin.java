@@ -101,6 +101,7 @@ public class SotfAMemoryHintPlugin implements InteractionDialogPlugin {
 
                 options.clearOptions();
                 options.addOption("Return to your duties", OptionId.CONT, null);
+                break;
             case CONT:
                 Global.getSector().setPaused(false);
                 dialog.dismiss();

@@ -53,14 +53,18 @@
 	# warmind/netdaemon portraits
 	"portraits":{
 		"standard_male":[
-			"graphics/portraits/sotf_dustkeeper_red.png",
 			"graphics/portraits/sotf_dustkeeper_blue.png",
+			"graphics/portraits/sotf_dustkeeper_indigo.png",
+			"graphics/portraits/sotf_dustkeeper_orange.png",
+			"graphics/portraits/sotf_dustkeeper_red.png",
 			"graphics/portraits/sotf_dustkeeper_yellow.png",
 			"graphics/portraits/sotf_dustkeeper_white.png",
 		],
 		"standard_female":[
-			"graphics/portraits/sotf_dustkeeper_red.png",
 			"graphics/portraits/sotf_dustkeeper_blue.png",
+			"graphics/portraits/sotf_dustkeeper_indigo.png",
+			"graphics/portraits/sotf_dustkeeper_orange.png",
+			"graphics/portraits/sotf_dustkeeper_red.png",
 			"graphics/portraits/sotf_dustkeeper_yellow.png",
 			"graphics/portraits/sotf_dustkeeper_white.png",
 		],
@@ -90,6 +94,8 @@
 		},
 		"hulls":{
 			# so that they don't spawn in normally
+			"sotf_polychronios":0,
+			"sotf_anapausis":0,
 			"sotf_respite":0,
 			"sotf_anamnesis":0,
 			"sotf_repose":0,

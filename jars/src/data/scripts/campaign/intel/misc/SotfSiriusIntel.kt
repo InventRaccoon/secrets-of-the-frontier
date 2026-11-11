@@ -13,6 +13,7 @@ import com.fs.starfarer.api.impl.campaign.ids.Tags
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin
 import com.fs.starfarer.api.impl.campaign.skills.CombatEndurance
 import com.fs.starfarer.api.impl.codex.CodexDataV2
+import com.fs.starfarer.api.loading.VariantSource
 import com.fs.starfarer.api.ui.*
 import com.fs.starfarer.api.ui.TooltipMakerAPI.TooltipCreator
 import com.fs.starfarer.api.ui.TooltipMakerAPI.TooltipLocation
@@ -156,11 +157,11 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
 //                        "Spawn two Scarab-class frigate reflections* at the start of combat.",
 //                        0f, h, "Scarab-class", "reflections*"
 //                    )
-                    tooltip.addSpacer(opad)
-                    tooltip.addPara(
-                        "Reflections created by this upgrade consume mimic capacity.",
-                        0f, h, "consume mimic capacity"
-                    )
+//                    tooltip.addSpacer(opad)
+//                    tooltip.addPara(
+//                        "Reflections created by this upgrade consume mimic capacity.",
+//                        0f, h, "consume mimic capacity"
+//                    )
                     tooltip.addSpacer(opad)
                     var label = tooltip.addPara("Reflections are special mimics that have no lifespan limit, no d-mods, and all of their " +
                             "skills are elite. If \"Perfect Replication\" is active, they spawn with 1-3 s-mods.",
@@ -220,13 +221,21 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(CombatEndurance.REGEN_RATE * 100f) + "%",
                         "" + CombatEndurance.TOTAL_REGEN_MAX_POINTS.roundToInt() + "",
                         "" + (CombatEndurance.TOTAL_REGEN_MAX_HULL_FRACTION * 100f).roundToInt() + "%")
-                    tooltip.addPara("    - Repair all damaged armor sections by %s/%s/%s/%s of their maximum armor per second, based on hull size",
+                    tooltip.addPara("    - Repair all damaged armor sections by up to %s/%s/%s/%s of their maximum armor per second, based on hull size",
                         0f,
                         Misc.getHighlightColor(),
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_FRIGATE * 100f) + "%",
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_DESTROYER * 100f) + "%",
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_CRUISER * 100f) + "%",
                         "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_RATE_CAPITAL * 100f) + "%"
+                    )
+                    tooltip.addPara("    - Maximum repair rate at or less than %s/%s/%s/%s armor rating, based on hull size",
+                        0f,
+                        Misc.getHighlightColor(),
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_SOFTCAP_FRIGATE * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_SOFTCAP_DESTROYER * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_SOFTCAP_CRUISER * 100f) + "%",
+                        "" + Misc.getRoundedValueMaxOneAfterDecimal(SotfPolarizedNanorepair.ARMOR_REGEN_SOFTCAP_CAPITAL * 100f) + "%"
                     )
                     tooltip.codexEntryId = CodexDataV2.getSkillEntryId(SotfIDs.SKILL_POLARIZEDNANOREPAIR)
                     tooltip.addSpacer(opad)
@@ -253,6 +262,32 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
                     tooltip.addSpacer(opad)
                     tooltip.addPara("Reflected damage ignores the target mimic's shields.",
                         gray, 0f)
+                }
+
+                SotfIDs.COTL_NORESTFORTHEWICKED -> {
+                    tooltip.addPara(
+                        "%s (excluding mimics) now create echoes when destroyed. Mimics created from friendly ships use %s less mimic capacity (minimum capacity usage of %s).",
+                        0f, h, "Friendly ships",
+                        "" + ((1f - SotfInvokeHerBlessingPlugin.NOREST_DP_MULT) * 100f).roundToInt() + "%",
+                        "1"
+                    )
+                    tooltip.addSpacer(opad)
+                    if (SotfInvokeHerBlessingPlugin.MIMIC_DAMAGE_MULT < 1f || SotfInvokeHerBlessingPlugin.MIMIC_DAMAGE_TAKEN_MULT > 1f) {
+                        tooltip.addPara(
+                            "Friendly ships have no range limit on creating echoes, the linger time of their echoes is increased by %s, and mimics created by their echoes don't suffer the stat penalties of typical temporary mimics.",
+                            0f, h, "" + (SotfInvokeHerBlessingPlugin.NOREST_ECHO_LIFETIME_MULT * 100f).roundToInt() + "%"
+                        )
+                    } else {
+                        tooltip.addPara(
+                            "Friendly ships have no range limit on creating echoes and the linger time of their echoes is increased by %s.",
+                            0f, h, "" + (SotfInvokeHerBlessingPlugin.NOREST_ECHO_LIFETIME_MULT * 100f).roundToInt() + "%"
+                        )
+                    }
+                    tooltip.addSpacer(opad)
+                    tooltip.addPara(
+                        "Disables the %s mimics that Sirius typically creates in fights where no enemies can be mimicked.",
+                        0f, h, "special countermeasure"
+                    )
                 }
 
                 // TIER 5
@@ -308,13 +343,36 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
     init {
         isImportant = true
         Global.getSector().listenerManager.addListener(this)
+        Global.getSector().scripts.add(this)
     }
 
     override fun runWhilePaused(): Boolean {
         return true
     }
 
-    override fun advanceImpl(amount: Float) {}
+    override fun advanceImpl(amount: Float) {
+        var playerfleet = Global.getSector().playerFleet ?: return
+        if (playerfleet.fleetData?.membersListCopy == null) return
+        for (member in playerfleet.fleetData.membersListCopy) {
+            if (!member.variant.hasHullMod("sotf_backgroundmodifier")) {
+                if (member.variant.source != VariantSource.REFIT) {
+                    var variant = member.variant.clone();
+                    variant.originalVariant = null;
+                    variant.hullVariantId = Misc.genUID()
+                    variant.source = VariantSource.REFIT
+                    member.setVariant(variant, false, true)
+                }
+
+                member.variant.addPermaMod("sotf_backgroundmodifier")
+
+//                var moduleSlots = member.variant.moduleSlots
+//                for (slot in moduleSlots) {
+//                    var module = member.variant.getModuleVariant(slot)
+//                    module.addPermaMod("sotf_backgroundmodifier")
+//                }
+            }
+        }
+    }
 
     override fun addBulletPoints(info: TooltipMakerAPI?, mode: ListInfoMode) {
         val h = Misc.getHighlightColor()
@@ -363,7 +421,7 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
 
         capacity.addSectionHeading("Invoke Her Blessing", c, bg, Alignment.MID, opad).position.setXAlignOffset(0f)
         capacity.addSpacer(10f)
-        capacity.addPara("- Gain the %s subsystem in combat. Allied and enemy ships destroyed within %s range " +
+        capacity.addPara("- Gain the %s subsystem in combat. Enemy ships destroyed within %s range " +
                 "of the flagship leave an %s for %s seconds. Using the subsystem on an echo orders Sirius to create " +
                 "a %s that fights for your fleet. Mimics are refit using your known blueprints and faction doctrine.", 0f, h,
             "\"Invoke Her Blessing\"",
@@ -428,6 +486,14 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
                 "- Mimics created with Invoke Her Blessing do not count against the fleet's deployment point limit.", 0f
             )
         }
+        capacity.addSpacer(10f);
+        val dpPenalty = getFloat(SotfIDs.SOTF, "sotf_cotlDPPenaltyPercent")!!
+        if (dpPenalty > 1f) {
+            capacity.addPara(
+                "- The deployment point cost of all of your ships is increased by %s.", 0f, bad,
+                "" + ((dpPenalty - 1f) * 100f).roundToInt() + "%"
+            )
+        }
         capacity.addSpacer(10f)
         capacity.addPara("- Sirius has a maximum mimic capacity of %s deployment points, increased to %s with " +
                 "the %s upgrade (base value of %s; increased by %s for each level you gain)", 0f, h,
@@ -438,8 +504,7 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
             "" + SotfMisc.getCOTLDPPerLevel()
         )
         capacity.addSpacer(10f)
-        capacity.addPara("- Expiring mimics and those created by means other than Invoke Her Blessing do not count " +
-                "against Sirius' capacity.", 0f
+        capacity.addPara("- Expiring mimics do not count against Sirius' capacity.", 0f
         )
         capacity.addSpacer(10f)
 //        capacity.addPara("- Exceeding Sirius' capacity induces %s, causing mimics to decay proportionally more quickly (at %s " +
@@ -460,9 +525,9 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
                 "prematurely expire it and free up capacity for new mimics.", 0f, h, "[R]"
         )
         capacity.addSpacer(10f)
-        capacity.addPara("Sirius' safety interlocks have been disabled and he can replicate almost all ship designs, excluding " +
-                "extradimensional or non-mechanical threats. He will synthesize a large countermeasure-vessel to assist " +
-                "against most non-replicable hostiles.",
+        capacity.addPara("Sirius' can replicate almost all ship designs, excluding extradimensional or non-mechanical " +
+                "threats. He will synthesize a large countermeasure-vessel to assist against enemy fleets where no hostiles " +
+                "can be mimicked. These special countermeasures do not count towards his capacity.",
             Misc.getGrayColor(), 0f
         )
         var autopilotToggleText = "Autopilot usage of IHB (disabled)"
@@ -582,6 +647,7 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
         var s4 = SiriusSkillSection(playerLevel >= 12, "technology3")
         addToSection(s4, SotfIDs.COTL_RECONSTITUTION, "Reconstitution")
         addToSection(s4, SotfIDs.COTL_HULLSIPHON, "Hull Siphon")
+        addToSection(s4, SotfIDs.COTL_NORESTFORTHEWICKED, "No Rest For The Wicked")
         sections.add(s4)
 
         var s5 = SiriusSkillSection(playerLevel >= 15, "technology4")
@@ -761,7 +827,7 @@ class SotfSiriusIntel : BaseIntelPlugin(), FleetEventListener, EconomyTickListen
             && !haveUpgrade(SotfIDs.COTL_DEATHTHROES)) {
             upgradeAvailable = true
         }
-        if (playerLevel >= 12 && !haveUpgrade(SotfIDs.COTL_RECONSTITUTION) && !haveUpgrade(SotfIDs.COTL_HULLSIPHON)) {
+        if (playerLevel >= 12 && !haveUpgrade(SotfIDs.COTL_RECONSTITUTION) && !haveUpgrade(SotfIDs.COTL_HULLSIPHON) && !haveUpgrade(SotfIDs.COTL_NORESTFORTHEWICKED)) {
             upgradeAvailable = true
         }
         if (playerLevel >= 15 && !haveUpgrade(SotfIDs.COTL_BLESSINGOFTHEDAYDREAM) && !haveUpgrade(SotfIDs.COTL_DREAMEATER)) {

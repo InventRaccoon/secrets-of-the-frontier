@@ -4,10 +4,8 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
-import com.fs.starfarer.api.combat.BattleCreationContext;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
-import com.fs.starfarer.api.impl.campaign.FleetEncounterContext;
 import com.fs.starfarer.api.impl.campaign.FleetInteractionDialogPluginImpl;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetFactoryV3;
 import com.fs.starfarer.api.impl.campaign.fleets.FleetParamsV3;
@@ -16,7 +14,6 @@ import com.fs.starfarer.api.impl.campaign.procgen.StarSystemGenerator;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.AddedEntity;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.EntityLocation;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.BaseThemeGenerator.LocationType;
-import com.fs.starfarer.api.impl.campaign.procgen.themes.RemnantSeededFleetManager;
 import com.fs.starfarer.api.impl.campaign.procgen.themes.SalvageSpecialAssigner;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.BaseSalvageSpecial;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
@@ -26,7 +23,6 @@ import com.fs.starfarer.api.util.Misc;
 import com.fs.starfarer.api.util.WeightedRandomPicker;
 import data.scripts.campaign.ids.SotfIDs;
 import data.scripts.campaign.ids.SotfPeople;
-import data.scripts.campaign.missions.SotfHauntedFinale;
 import data.scripts.utils.SotfMisc;
 //import data.scripts.world.hwf.SotfHuntingGrounds;
 import data.scripts.world.lotl.SotfLightOfTheLake;
@@ -152,15 +148,6 @@ public class SotfGen implements SectorGeneratorPlugin
         // MAKE A MERCY OF THE BLEEDING SKY
         daydreams.setRelationship(Factions.DWELLER, RepLevel.VENGEFUL);
     }
-
-//    public static void trySetupHuntingFeros(SectorAPI sector) {
-//        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
-//
-//        StarSystemAPI huntingGrounds = sector.getStarSystem("sotf_huntinggrounds");
-//        if (huntingGrounds == null) {
-//            new SotfHuntingGrounds().generate(sector);
-//        }
-//    }
 
     public static void trySpawnAthena(SectorAPI sector) {
         MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
@@ -356,6 +343,7 @@ public class SotfGen implements SectorGeneratorPlugin
         OUTER: for (StarSystemAPI system : Global.getSector().getStarSystems()) {
             if (system.hasTag(Tags.THEME_DERELICT_CRYOSLEEPER)) continue;
             if (system.hasTag(Tags.THEME_CORE)) continue;
+            if (!sector.getEconomy().getMarkets(system).isEmpty()) continue;
             float w = 0f;
             if (system.hasTag(Tags.THEME_DERELICT_PROBES)) {
                 w = 10f;
@@ -464,6 +452,39 @@ public class SotfGen implements SectorGeneratorPlugin
             debris.setDiscoverable(true);
             debris.setFaction(Factions.NEUTRAL);
         }
+    }
+
+    // spawn an Anapausis and Polychronios derelict each
+    public static void trySpawnDKCruisers(SectorAPI sector) {
+        MemoryAPI sector_mem = sector.getMemoryWithoutUpdate();
+        if (sector_mem.contains(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS)) return;
+        WeightedRandomPicker<StarSystemAPI> systems = new WeightedRandomPicker<StarSystemAPI>(StarSystemGenerator.random);
+        for (StarSystemAPI system : Global.getSector().getStarSystems()) {
+            if (!system.hasTag(Tags.THEME_REMNANT_MAIN)) continue; // MAIN are the ones with beacons
+            if (system.hasTag(Tags.THEME_HIDDEN)) continue;
+            float w = 1f;
+            // red beacon
+            if (system.hasTag(Tags.THEME_REMNANT_RESURGENT)) {
+                w = 10000f;
+            }
+
+            systems.add(system, w);
+        }
+        StarSystemAPI system = systems.pick();
+        if (system == null) return;
+        StarSystemAPI system2 = systems.pick();
+        if (system2 == null) return;
+        StarSystemAPI system3 = systems.pick();
+        if (system3 == null) return;
+
+        SotfMisc.addStoryDerelictWithName(system, system.getCenter(), "sotf_anapausis_Strike", ShipRecoverySpecial.ShipCondition.AVERAGE, 3000f, true, "ODS Please Hold");
+        SotfMisc.addStoryDerelictWithName(system2, system2.getCenter(), "sotf_polychronios_Hunter", ShipRecoverySpecial.ShipCondition.AVERAGE, 3500f, true, "ODS Forever More");
+        SotfMisc.addStoryDerelictWithName(system3, system3.getCenter(), "sotf_doxology_Strike", ShipRecoverySpecial.ShipCondition.AVERAGE, 3500f, true, "ODS Moment of Glory");
+
+        sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS, true);
+        sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys1", system);
+        sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys2", system2);
+        sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys3", system3);
     }
 
     public static void addBarrowGraveyard(SectorEntityToken focus) {

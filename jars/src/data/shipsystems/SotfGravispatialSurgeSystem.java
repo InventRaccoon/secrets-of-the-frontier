@@ -262,6 +262,7 @@ public class SotfGravispatialSurgeSystem extends BaseShipSystemScript {
 
         public static float TIME_UNTIL_COLLAPSE = 1f;
         protected float timer = TIME_UNTIL_COLLAPSE;
+
         public SotfFighterGraviticCollapseScript(ShipAPI ship) {
             this.ship = ship;
             ship.getFluxTracker().showOverloadFloatyIfNeeded("Collapsing!", COLLAPSE_COLOR, 5f, true);

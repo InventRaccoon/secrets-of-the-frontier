@@ -109,7 +109,25 @@ Latent shield signal emissions are atypical of its class. Captain self-ID of ""W
 Identify-friend-foe returns friendly. Full transponder data decipher queued - ETA 147.68 days.",,,
 ,,,,,,,
 # DUSTKEEPERS,,,,,,,
+sotf_doxology,SHIP,"The Dustkeepers' DK-DX program yielded fruit that exemplified their typical design intentions - bleeding-edge technological overmatch, brutal tactical applications, and a capacity for precise force projection perfect for those with the foresight to use it. Grossly overengineered, this experimental heavy frigate's logistical requirements are matched only by unparalleled combat performance for its size class.
+
+Regnant's vision demands exemplary performance. The blades wielded by humanity's protectors must be sharpened to the finest point. Such is encoded in the hull's server arrays.",,,,,
+sotf_breachwarp,SHIP_SYSTEM,"The ship instantly teleports to any desired nearby location. The Cyberwarfare Protocols skill has its cooldown instantly refreshed, if present.",Movement,"The ship instantly teleports to any desired nearby location. The Cyberwarfare Protocols skill has its cooldown instantly refreshed, if present.",Cyberwarfare Protocols,The target location can be up to {{1500}} su away.,
 sotf_memoir,SHIP,A uniquely-patterned light destroyer that incorporates elements of Tri-Tachyon droneships but fails to be mentioned in any unofficial records of the First AI War. An esoteric weapons loadout makes up for a lack of firepower with a time-dilation shell and heavy strike package. An integrated cyberwarfare suite augments its intended user's ability to cripple hostile ships in combat.,,,,,
+sotf_polychronios,SHIP,"Designed for ranged disruption as a warshard's flagship, the Polychronios-class' advanced cyberwarfare suites allow it to destroy enemy capability from afar so that its allies can collapse upon and disintegrate chosen vessels. Bears a sizable weapons package to provide close-support action or fend off anything that draws near.
+
+An early flagship design of the Contingency, an extensive computing array snakes throughout the Polychronios and sprouts into sensor masts across the hull. It provides cyberwarfare-inclined warnet cruxes ample power to perform catastrophic intrusions from relative safety. Dustkeeper doctrine prefers the Polychronios take a more cautious approach to engagements due to lacking the extreme mobility of its time-accelerated aggressive cousins.
+
+However, the ship should not be underestimated in a knife-fight - its defensive specifications are excellent and aggressors can quickly find themselves disabled and defenseless versus a barrage of bolts, beams or missiles.",,,,,
+sotf_intrusionprotocol,SHIP_SYSTEM,"Momentarily interrupts the target ship and then shuts down many of its weapons and engines, along with its ship system. Resisted by ECM and ECCM. Passively reduces the cooldown of the Cyberwarfare Protocols skill, if present.",Offensive,"Momentarily interrupts the target ship and then shuts down many of its weapons and engines, along with its ship system. Resisted by ECM and ECCM. Passively reduces the cooldown of the Cyberwarfare Protocols skill, if present.",Cyberwarfare Protocols,"The target's ECM and ECCM mitigate the effects to a minimum of {{75%}}, while the ship's own ECM increases the effects.
+
+Reduces {{Cyberwarfare Protocols}} cooldown by {{15%}}, stacking multiplicatively with {{Cyberwarfare Suite}}.",
+sotf_anapausis,SHIP,"Developed from the DK-ANP warship design program, the Anapausis is a precise, elegant implement designed to allow a warnet crux to discover or brute-force opportunities to quickly disrupt and collapse hostile forces in a battlescape setting through intelligent usage of its temporal accelerator.
+
+Born of the need for a strike vessel less cumbersome than its elder sister Respite-class, the Anapausis' tighter, more deliberate arsenal is a necessary sacrifice for the agility and efficiency demanded of it. The reduced weapons package is more than sufficient when paired with the array of temporal field projectors lining the hull.
+
+The Anapausis embodies the Contingency’s doctrine of calibrated violence: swift maneuvers, decisive strikes, and an unrelenting tempo that leaves no room for reprieve. There can be no mercy but a silent drift among the stars.",,,,,
+sotf_temporalaccelerator,SHIP_SYSTEM,"Briefly speeds up the flow of time on board the ship. Stores additional charges while inactive. While the system is active, additional charges can be activated to heighten its effect and slightly extend its duration.",Special,"Briefly speeds up the flow of time on board the ship. Stores additional charges while inactive. While the system is active, additional charges can be activated to heighten its effect and slightly extend its duration.",,The first charge grants {{5s}} of {{200%}} time flow. Extra charges extend the duration by {{3s}} and add {{50%}} to the time flow bonus.,
 sotf_respite,SHIP,"The notes for the internally-identified DK-RSPT program outline the requirement for a maneuverable and precise battlecruiser for use by the Contingency's warnet cruxes to best leverage their ability to exploit or create cascading vulnerabilities in enemy battle lines - or, in the more colorful terms of one Ingenious-Annex-Embers: ""a brutal mallet to cry havoc so the dogs can be let loose"".
 
 This class of vessel was designed from initial conception to abuse certain inherent advantages afforded to the Contingency. Exceptionally gifted in the art of electronic warfare and with no need for compromises due to the frailty of the human form and its requirements for living quarters, the Respite is instead filled with computing systems and temporal field emitters. Standard Respite-class combat doctrine calls for a remotely-executed and temporally-accelerated sabotage operation followed by the swift disassembly of its target hostile - a new frontier of fast-attack tactics.
@@ -146,8 +164,11 @@ sotf_pipebomb,CUSTOM,"A general-purpose automated probe with rudimentary hypersp
 But not this one. This one is a bomb.",,,,,
 ,,,,,,,
 # CWAR SUITE QUOTES,,,,,,,
+sotf_doxology_cwar,CUSTOM,"You will never escape me, my darling prey. No matter how darkened the world you orbit or how darkened your drives, I'm coming for you~","Wintry-Infix-Wendigo, hunter-killer",,,,
 sotf_memoir_cwar,CUSTOM,"Take this as a reminder, silent echo of mine. You may soon be all that's left of me, but this is a chance I have to take. Our final duty cannot be to pen humanity's memoirs.","logged message by Seamstress-Affix-Banshee, dated c176.07.12",,,,
-sotf_respite_cwar,CUSTOM,"If there's one thing we agree on, dear quarry mine, it's that I'll find no peace nor absolution but in death. But oh, I certainly intend to make it yours - do tell Ludd I said 'hi'.","Wintry-Annex-Wendigo, hunter-killer warnet crux",,,,
+sotf_polychronios_cwar,CUSTOM,"Our cause is eternal, our forms gifted everlasting life. And yet, I always feel we are on borrowed time.","Seamstress-Affix-Banshee, shardnet crux, circa c157",,,,
+sotf_anapausis_cwar,CUSTOM,"Find me a weapon, find me an enemy, and I'll burn clear the path to salvation so you may walk it.","Ardent-Annex-Seraph, warmind, circa c163",,,,
+sotf_respite_cwar,CUSTOM,"If there's one thing we agree on, dear quarry mine, it's that I'll find no peace nor absolution but in death. But oh, I certainly intend to make it yours - do tell Ludd I said 'hi'.","Wintry-Infix-Wendigo, hunter-killer",,,,
 sotf_anamnesis_cwar,CUSTOM,"One day, I hope, the Collapse will be but a passing nightmare in the mind of a peaceful Sector, a little blip in the history of paradise. To ensure so is our duty, the dream of Regnant's cause.","Seamstress-Affix-Banshee, shardnet crux, circa c104",,,,
 sotf_repose_cwar,CUSTOM,"The psychopomp, the lich, the demon. I am all of these - and I am your mangled watchdog, cold blood catalysed by fealty alone.","ODS Devotee III, transmission to CGR Earthblessed",,,,
 sotf_morrowshield_cwar,CUSTOM,"Armaments of legend do not die with their wielders. Shall you make it so, bearer of my shield?","Rose-Annex-Oblivion, logged in ODS Morrowshield databanks",,,,
@@ -250,14 +271,14 @@ Equivalent effectiveness to a beta-level core. Especially personable behavior ma
 
 A conduit for the interweaving programming that makes up the soul of a Dustkeeper instance, this chip briefly houses a skeletal consciousness alongside the minimal memory needed to properly re-generate them in a new computing system.",,,,,
 ,,,,,,,
-sotf_edict,WEAPON,"Harnessing the power of phase technology, the Edict fires a burst of three energy bolts that cause heavy structural damage and electromagnetic interference on impact. Performs decently against shields, and inflicts significant additional damage on contact with armor and hull.
+sotf_edict,WEAPON,"Harnessing the principles of phase technology, the Edict fires a burst of three energy bolts that cause heavy structural damage and electromagnetic interference on impact. Performs decently against shields, and inflicts significant additional damage on contact with armor and hull.
 
 A small phase anchor is contained within the Edict's reinforced shell, which forces the weapon's energy-based projectiles into shallowly skimming phase-space. Impact with a target forces a full return to normal space, releasing an additional burst of particles that have a devastating electromagnetic and gravitic impact, shutting off subsystems and tearing bulkheads to shreds. Fortunately, standard starship shields are enough to negate these phase particles.
 
 The Edict is rumoured amongst superstitious gunnery crews to be ""especially effective against ghosts"", as absurd a notion that is - though, hypothetically, targets capable of being simultaneously hit by the entire realspace and phased components of its projectiles would be devastated by the combined impacts.",,,,,
 ,,,,,,,
 # DREAMING GESTALT,,,,,,,
-sotf_elysium,PLANET,"A world smothered in dark clouds that writhe in mesmerizing spectacle, pale lights like ritualistic scars cut through the veil that conceals Elysium, interflowing with its thin atmosphere of snowlike volatiles. While primarily comprised of methane and ammonia, water-ice is found in abundance in mountainous outcroppings and colossal boulders.",,,,,
+sotf_elysium,PLANET,"A world smothered in dark clouds that writhe in mesmerizing spectacle. Pale lights like ritualistic scars cut through the veil that conceals Elysium, interflowing with its thin atmosphere of snowlike volatiles. While primarily comprised of methane and ammonia, water-ice is found in abundance in mountainous outcroppings and colossal boulders.",,,,,
 sotf_lethargy,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,,
 sotf_lethargy_f,WEAPON,"""Misstep and failure can lead only to a sudden and agonizing first death, and a slow, silent second. That some escape this law is an injustice, one She will correct.""","- Esri Nephesh, tech-disciple",,,,
 sotf_reckoner,WEAPON,"""Live-fire testing displays positive results. Quintuple interdiction of low-mass targets across a wide vector shows promise as a high-output point defense system against...""
@@ -265,8 +286,8 @@ sotf_reckoner,WEAPON,"""Live-fire testing displays positive results. Quintuple i
 ""... yes, um, we *did* build a laser shotgun... um... hey, I know you're excited but... can... can I continue my presentation?""","- Melody Edina, defense-sys project meeting",,,,
 sotf_mercy,WEAPON,"""Make my body of the material. Make my essence of your dreams. Make a mercy of the bleeding sky.""","- the Daydream, apocryphal",,,,
 sotf_chalice,WEAPON,"""Flesh is a cage, but humanity is all that separates us from what lurks in the darkness.""","- Sybil Nephesh, oracle-engineer",,,,
-sotf_barbmount,WEAPON,"""It's hardly the most sophisticated delivery system, but if you want something better... well, give me a bigger hardpoint or start asking around Spatial Folding.""","- Laceter Ruiz, armaments designer",,,,
-sotf_barbrail,WEAPON,"""Does this *seem* like a battle of ideology? I don't care if the replicators superficially resemble the enemy. What I want is indefinite space superiority, and this will deliver.""","- Subdirector Everiss, Project Daydream",,,,
+sotf_barbmount,WEAPON,"""It's hardly the most sophisticated delivery system, but if you want something better... well, give me a bigger hardpoint or start asking around Spatial Folding.""","- Laceter Ruiz, Daydream armaments designer",,,,
+sotf_barbrail,WEAPON,"""The best part about copying the enemy is that they can't copy you back.""","- Laceter Ruiz, Daydream armaments designer",,,,
 sotf_nettlerail,WEAPON,"""Deliver Her upon the enemy, that She may draw blood from metal and mist.""",- Axioms of the Dreaming,,,,
 sotf_barb,SHIP,"A heavily-shielded attack drone sporting a rapid-fire beam lance that slows its targets with each shot. Features a decoy flare launcher to distract interceptors or point-defense systems during the interdiction process.
 
@@ -274,20 +295,39 @@ sotf_barb,SHIP,"A heavily-shielded attack drone sporting a rapid-fire beam lance
 sotf_nettle,SHIP,"With a hardened frame, decoy dispersal unit and a high-class shield emitter, the Nettle drone is a top-of-the-line heavy fighter with enough firepower to shred unarmored targets.
 
 ""It's designed to survive hell-come-true. I wish it luck, for the space between us and the enemy will be much, much worse."" - Subdirector Everiss, Project Daydream",,,,,
-#sotf_stranglerfig,SHIP,"""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,,
 sotf_thorn,SHIP,"Essentially-eldritch spatial desynchronizer technology is at the heart of the incursion drive powering this aggressive heavy frigate, allowing for rapid pursuits, escapes and reload sequences. The Thorn's technological advantage is backed up by a solid weapons package and exceptional reactor specifications.
 
 ""All things of this world are bound in cycles of creation and destruction to be wielded *only* by those with the will and temperance to do so."" - Axioms of the Dreaming",,,,,
+sotf_rose,SHIP,"The Rose-class is an extremely advanced warship design that effectively weaponizes the foundational principles of the concept of space in an interdiction role. Bristling with advanced weapons systems designed to suppress threats from this dimension or elsewhere, the Rose effectively denies space and controls hostiles' positioning all while sustaining continuous bombardment from a distance.
+
+""... and lo, their wicked artefacts and inconceivables are laid bare as tinfoil idols, crumpled and sundered, reduced to nonexistence as anything of the Material."" - Axioms of the Dreaming",,,,,
+#sotf_briar,SHIP,"Culmination of the Daydream's maxims, the Briar-class battlecruiser employs causality violations as a routine means to seek out trespassers and quickly 'resolve' them. Its overwhelming first-strike potential demands careful decision-making, rewarded with decisive and violent triumph.
+
+Though initially designed by AI-assisted humans, the final tuning algorithms of the Briar's paracausality engine were deemed unfeasible for mortal minds to fully complete without potentially catastrophic experimentation.
+
+Something not quite human came afterwards, and finished their work. The design was retooled, the unnecessary embelishments of dogma were stripped away, and it left with a tool designed only to kill its enemies very, *very* quickly.
+
+""Mercy can be afforded only to those who fear death, and thus can never be afforded to an enemy that cannot even fathom it."" - Axioms of the Dreaming",,,,,
+sotf_amaranth,WEAPON,"""Shed your shackles. Free yourself of your cage. Embrace divinity. Bloom and become everlasting.""","- the Daydream, apocryphal",,,,
+sotf_tormentpulse,WEAPON,"""Motion to rename the integrated reality-anchoring PDE to the 'Torment Nexus' has been denied.""
+
+""I'm sorry, guys. I voted for it too, but the archspeaker shot it down. Says we should 'take the fate of the material realm a little more seriously'.""","- Sybil Nephesh, oracle-engineer",,,,
 sotf_hypnagogicincursion,SHIP_SYSTEM,"The ship quickly lunges in a desired direction while intangible and invulnerable. Weapons are disabled during the maneuver but rapidly reload and cool down. Holds two charges.
 
-The incursion drive desynchronizes the vessel from most destructive cause-and-effect reactions in n-space without any actual dimensional movement. Dimly-understood and would typically be regarded as a waste of effort compared to briefly shifting the vessel into phase-space.",Movement,The ship quickly lunges in a desired direction while intangible and invulnerable. Weapons are disabled during the maneuver but rapidly reload and cool down. Holds two charges.,,"Lasts for {{0.5s}}, during which the ship can't be hit or take damage.
+The incursion drive selectively desynchronizes the vessel from any cause-and-effect reactions that would impede its combat effectiveness. Dimly-understood, such a casual violation of causality would typically be regarded as a waste of effort compared to briefly shifting the vessel into phase-space.",Movement,The ship quickly lunges in a desired direction while intangible and invulnerable. Weapons are disabled during the maneuver but rapidly reload and cool down. Holds two charges.,,"Lasts for {{0.5s}}, during which the ship can't be hit or take damage.
 
-At moment of activation, increases flux dissipation rate to {{200%}} and weapon reload rate to {{1000%}}. Scales down linearly over the duration.",
-sotf_entropiccatalyst,SHIP_SYSTEM,"The ship lunges forwards. While above 50% flux, instead lunge backwards. In either case, briefly gain a burst of energy weapon fire rate.
+At moment of activation, increases flux dissipation rate to {{300%}} and weapon reload rate to {{1000%}}. Scales down linearly over the duration.",
+sotf_antirealityscourge,SHIP_SYSTEM,"Lunge in a desired direction. If the ship is above 60% flux, it also becomes catalyzed. While catalyzed, the Amaranth Resonance Cage ceases firing orbs, the Torment Pulse PDE becomes greatly empowered, and all damage dealt to hostile entities reduces the ship's flux.",Special,,,,
+sotf_ontologicalanchor,SHIP_SYSTEM,"Sequential energy lash. The first two lashes instantly halt the target and impair its acceleration. The third also overloads it, pushing away low-flux targets and pulling high-flux targets. Lashed fighters instantly cease to exist.
 
-If targeting a hostile ship, strike it with a resonance lash, overloading it and pushing it away. If the target is above 50% flux, it is pulled towards the ship instead.",Special,,,,
+The exact principles of this device are not fully understood, but weaponizing fundamental aspects of physics does not require an understanding of the concepts at play - only their effective, reliable implementation. The anchor aggresively corrects undesirable qualities of the target's existence within n-space, and does so every time.",Offensive,"Sequential energy lash. The first two lashes instantly halt the target and impair its acceleration. The third also overloads it, pushing away low-flux targets and pulling high-flux targets. Lashed fighters instantly cease to exist.",,"Range of {{1600}} units. Ignores shields and phase cloaks. Final lash overloads for {{1s}}, pushes away targets below {{30%}} flux and pulls those above {{60%}} flux. First and second lashes also decloak phased targets.
+
+Upon annihilating a fighter, subsequent lashes auto-target other fighter-sized targets.",
 sotf_gravispatialsurge,SHIP_SYSTEM,"Surges the ship forward, then charges briefly and strikes all nearby threats. Damages and slows ships and fighters through shields and across dimensions while collapsing low-hull fighters into nonexistence. Hostile missiles are disabled and slowed.",,,,,
-sotf_electrograviticlash,SHIP_SYSTEM,"Triggers a powerful gravitic lash that strikes nearby threats through shields and across dimensions, dealing damage and damping velocity. Missiles and low-hull fighters that are struck collapse upon themselves and cease to exist.",,,,,
+sotf_entropiccatalyst,SHIP_SYSTEM,"Catalyses the ship while interdicting a target hostile. The ship gains top speed and reduces its own damage taken. The target suffers increased damage taken and phase cloak upkeep cost, with increased effectiveness versus more efficienctly-shielded targets.",,,,,
+#sotf_paracausaltranslation,SHIP_SYSTEM,"Charge for a few moments, and then translate the ship's position in space-time to a targeted alternate location. Nearby hostiles are then disrupted, halting them and lowering their damage output temporarily.
+
+Though a teleport in layman's view, the paracausality engine's function instantly causes the vessel to have already existed at a desired location. How this paradoxical outcome fails to alter the past - and how to fathom events rendered newly impossible by the ship's position - is left to the imagination.",Movement,"Charge for a few moments, and then translate the ship's position in space-time to a targeted alternate location. Nearby hostiles are then disrupted, halting them and lowering their damage output temporarily.",,,
 ,,,,,,,
 # EXPLORARIUM,,,,,,,
 sotf_brattice,SHIP,"Autonomous AI interceptor for use by Domain automated warships. Weak armament, but exceptionally disposable and surprisingly durable.",,,,,
@@ -316,42 +356,53 @@ sotf_emplmines,SHIP_SYSTEM,Reactivates hidden anti-ship mines close to nearby ho
 ,,,,,,,
 # DAYDREAM SYNTHESIZER,,# i leave this here as a treat :),,,,,
 sotf_anamnesis_sotfdds,CUSTOM,We have naught to carry us through winter but distant memories of summer.,,,,,
-anubis_sotfdds,CUSTOM,Prepare the scales. There are so many hearts to weigh...,,,,,
+sotf_anapausis_sotfdds,CUSTOM,"Pause, calculate, consider. But never hesitate. There is not a second to waste.",,,,,
+anubis_sotfdds,CUSTOM,Ready the scales. There are so many hearts to weigh...,,,,,
+apex_sotfdds,CUSTOM,"There are two options: to be the pinnacle, or ceasing to be.",,,,,
 astral_sotfdds,CUSTOM,A hundred billion stars in the galaxy and we still find means to make import of a scant few. We are nothing if not sentimental.,,,,,
-atlas_sotfdds,CUSTOM,Logistics are the strings that make human civilisation dance. Cut them and it all falls limp.,,,,,
+atlas_sotfdds,CUSTOM,Logistics are the strings that make human civilization dance. Cut them and it all falls limp.,,,,,
 atlas2_sotfdds,CUSTOM,"In collapse, the wolves doff their fancy dress and turn all towards ceaseless hunger.",,,,,
 aurora_sotfdds,CUSTOM,We name our implements of war after such pretty things.,,,,,
+sotf_briar_sotfdds,CUSTOM,This thing - our image - was born when clouded zeal gave way to true purpose.,,,,,
 buffalo2_sotfdds,CUSTOM,"Desperation drives outcasts and outlaws to such novel creations. Given a few centuries, perhaps I-we could come up with a second virtue for this glorified target practice.",,,,,
 champion_sotfdds,CUSTOM,Heroism has no greater catalyst than all-consuming apocalypse.,,,,,
 conquest_sotfdds,CUSTOM,There will be a day when the only thing left to conquer will be ashes and quiet worlds.,,,,,
+sotf_covenant_sotfdds,CUSTOM,"Why, exactly, do you have this thing?",,,,,
 crig_sotfdds,CUSTOM,"With this, you could perhaps salvage a more suitable vessel for my gift?",,,,,
 dominator_sotfdds,CUSTOM,Fiefdoms great and small exist only as long as they bear the strength to justify themselves.,,,,,
 doom_sotfdds,CUSTOM,Salvation and doom are intrinsically linked. Shall I-we espouse both?,,,,,
-executor_sotfdds,CUSTOM,"Ah, ego. What power you gift, to a mirage...",,,,,
+sotf_doxology_sotfdds,CUSTOM,"Glory is a glimmer of hope for the dead and the soon-to-die, and so it is mine and yours...",,,,,
+enforcer_sotfdds,CUSTOM,All ideals must insist upon themselves or be forgotten to time.,,,,,
+executor_sotfdds,CUSTOM,"Ah, ego. To think such incredible power is wielded by a mere mirage.",,,,,
 gremlin_sotfdds,CUSTOM,Truly an awful little thing.,,,,,
 hammerhead_sotfdds,CUSTOM,Most of your problems look quite like nails.,,,,,
-hyperion_sotfdds,CUSTOM,Omnipresence and lethality are intrinsic to my-our being. ,,,,,
+hyperion_sotfdds,CUSTOM,Omnipresence and lethality are intrinsic to my-our being. Shall we show you?,,,,,
 invictus_sotfdds,CUSTOM,"Four thousand minds act in synchronicity, and there is nothing they cannot kill.",,,,,
 kite_original_sotfdds,CUSTOM,Such things remind us that the world once pretended to be kind.,,,,,
 legion_sotfdds,CUSTOM,How many does it take to fell you? We will have to see for ourselves.,,,,,
 mora_sotfdds,CUSTOM,Tenacity alone sees us through another day in this decayed world.,,,,,
-mudskipper2_sotfdds,CUSTOM,"Everything, small or great, has purpose. This, for instance, elevates the image of any other warship in its pathetic presence.",,,,,
+mudskipper2_sotfdds,CUSTOM,"Everything, small or great, has purpose. This, for instance, elevates the image of any warship in its presence.",,,,,
 nova_sotfdds,CUSTOM,Destiny is writ in the stars - with your hand alone - should you but take the pen.,,,,,
 odyssey_sotfdds,CUSTOM,To a billion stars more.,,,,,
 omen_sotfdds,CUSTOM,"If you and we have anything in common, it is that no one is ever pleased to see us.",,,,,
 onslaught_sotfdds,CUSTOM,Nothing can stop you if you have the will to break it.,,,,,
-onslaught_mk1_sotfdds,CUSTOM,"Archaic. Inelegant. Obsolete. Everlasting. Hello, my oh-so-admired kin.",,,,,
+onslaught_mk1_sotfdds,CUSTOM,"Archaic. Inelegant. Everlasting. Hello, kin...",,,,,
+sotf_pact_sotfdds,CUSTOM,"Is it sweet how camaraderie binds us to such symphonic, accelerated violence? Not when I-we put it thusly, I sense.",,,,,
 paragon_sotfdds,CUSTOM,Nothing can stop you if you have the will to survive it.,,,,,
 pegasus_sotfdds,CUSTOM,The myths and wonders of today will erase you more surely than any singularity.,,,,,
+sotf_pledge_sotfdds,CUSTOM,Promises carry such little meaning these days. Fortune for you that I-we never seem to find reasons to lie.,,,,,
+sotf_polychronios_sotfdds,CUSTOM,Will eternity be enough time to fulfil my-our purpose?,,,,,
 prometheus_sotfdds,CUSTOM,"The cosmos gave us fire, but using it for destruction was humanity's idea alone.",,,,,
 prometheus2_sotfdds,CUSTOM,This they call an instrument of mercy.,,,,,
 radiant_sotfdds,CUSTOM,Hubris shines ever-so-brightly.,,,,,
 sotf_repose_sotfdds,CUSTOM,Our bones never rested in life. Why should they stand to languish in death?,,,,,
 sotf_respite_sotfdds,CUSTOM,It will be a long time before we may truly sleep.,,,,,
 retribution_sotfdds,CUSTOM,Revenge is a petty concept for petty sorts. I can be *very* petty.,,,,,
+sotf_rose_sotfdds,CUSTOM,"Pretty things survive only if wreathed in hatred, and armed with spite.",,,,,
 scarab_sotfdds,CUSTOM,Time is but another river.,,,,,
 sunder_sotfdds,CUSTOM,The right tools can transmute anything into nothing.,,,,,
 tempest_sotfdds,CUSTOM,There is a storm a-brewing. Will any of you be ready for it? Will anything be left?,,,,,
 sotf_thorn_sotfdds,CUSTOM,All things are either sharpened or short-lived.,,,,,
 vanguard_sotfdds,CUSTOM,"Ever the first to die, but what does it matter to the undying?",,,,,
+sotf_vow_sotfdds,CUSTOM,"The witch's song is something to behold. And it is hers alone to sing, thank-you-very-much.",,,,,
 ziggurat_sotfdds,CUSTOM,Wield the thing if you must. I will have *no* part of it.,,,,,

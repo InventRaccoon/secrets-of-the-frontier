@@ -6,10 +6,22 @@
   "fluxCapacitors": 10,
   "fluxVents": 30,
   "quality": 1,
-  "permaMods": [],
+  "sMods": [
+        "heavyarmor",
+        "neural_interface",
+        "hardenedshieldemitter"
+   ],
+  "permaMods": [
+	"heavyarmor",
+        "neural_interface",
+        "hardenedshieldemitter"
+  ],
   "hullMods": [
     "targetingunit",
-    "turretgyros"
+    "turretgyros",
+	"heavyarmor",
+        "neural_interface",
+        "hardenedshieldemitter"
   ],
   "weaponGroups": [
     {

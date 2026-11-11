@@ -119,9 +119,12 @@ public class SotfHauntedDreamBase implements InteractionDialogPlugin {
         }
     }
 
-    public void addWakeUpOption() {
-        options.clearOptions();
-        options.addOption("Wake up", OptionId.WAKE_UP);
+    public void addWakeUpOption(int atStage) {
+        if (stage == atStage && counter >= 0) {
+            stage++;
+            options.clearOptions();
+            options.addOption("Wake up", OptionId.WAKE_UP);
+        }
     }
 
     public String getEndingTrigger() {

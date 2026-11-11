@@ -1,0 +1,56 @@
+{
+  "variantId": "sotf_champion_Realmguard",
+  "hullId": "champion",
+  "displayName": "Realmguard",
+  "goalVariant": true,
+  "fluxCapacitors": 0,
+  "fluxVents": 29,
+  "quality": 1,
+  "permaMods": [],
+  "hullMods": [
+    "targetingunit"
+  ],
+  "weaponGroups": [
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 008": "sotf_mercy"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 009": "sotf_chalice"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "ALTERNATING",
+      "weapons": {
+        "WS 006": "heavy_mass_driver",
+        "WS 007": "heavy_mass_driver"
+      }
+    },
+    {
+      "autofire": true,
+      "mode": "LINKED",
+      "weapons": {
+        "WS 000": "sotf_lethargy",
+        "WS 001": "sotf_lethargy",
+        "WS 004": "sotf_lethargy",
+        "WS 005": "sotf_lethargy",
+        "WS 010": "sotf_lethargy",
+        "WS 011": "sotf_lethargy"
+      }
+    },
+    {
+      "autofire": false,
+      "mode": "LINKED",
+      "weapons": {}
+    }
+  ],
+  "modules": [],
+  "wings": []
+}

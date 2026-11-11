@@ -61,7 +61,7 @@ public class SotfBaseDKCBCreator extends BaseCustomBountyCreator {
 
 			String main = "Echo-Inadvertent brings forward the selected docket.";
 			if (mission.getPerson().getId().equals(SotfPeople.WENDIGO)) {
-				main = "Annex-Wendigo hums satisfiedly as they enlarge the selected docket.";
+				main = "Infix-Wendigo hums satisfiedly as they enlarge the selected docket.";
 			} else if (mission.getPerson().getId().equals("sotf_twins")) {
 				main = "Affix-Calliope taps the selected docket, and it vanishes.";
 			}

@@ -23,6 +23,14 @@ public class SotfHaveMod extends BaseCommandPlugin {
 	@Override
 	public boolean execute(String ruleId, InteractionDialogAPI dialog, List<Misc.Token> params, Map<String, MemoryAPI> memoryMap) {
 		String id = params.get(0).getString(memoryMap);
-		return Global.getSettings().getModManager().isModEnabled(id);
+		// flip = looking for the mod. Else looking that it isn't there
+		boolean flip = true;
+		if (params.size() > 1) {
+			flip = params.get(1).getBoolean(memoryMap);
+		}
+		if (flip) {
+			return Global.getSettings().getModManager().isModEnabled(id);
+		}
+		return !Global.getSettings().getModManager().isModEnabled(id);
 	}
 }

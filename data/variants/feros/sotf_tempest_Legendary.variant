@@ -2,7 +2,7 @@
   "variantId": "sotf_tempest_Legendary",
   "hullId": "sotf_tempest_feros",
   "displayName": "Legendary",
-  "goalVariant": true,
+  "goalVariant": false,
   "fluxCapacitors": 15,
   "fluxVents": 15,
   "quality": 1,

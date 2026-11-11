@@ -4,24 +4,17 @@ import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.campaign.LocationAPI;
 import com.fs.starfarer.api.campaign.SectorEntityToken;
 import com.fs.starfarer.api.campaign.StarSystemAPI;
-import com.fs.starfarer.api.characters.SkillSpecAPI;
-import com.fs.starfarer.api.impl.campaign.ids.Skills;
 import com.fs.starfarer.api.impl.campaign.intel.misc.FleetLogIntel;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
-import data.scripts.utils.SotfMisc;
-import exerelin.utilities.StringHelper;
-import org.lazywizard.console.BaseCommand;
 import org.lazywizard.console.BaseCommandWithSuggestion;
 import org.lazywizard.console.CommonStrings;
 import org.lazywizard.console.Console;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.lazywizard.console.CommandUtils.isFloat;
 
 public class SotfFindSecret implements BaseCommandWithSuggestion {
 
@@ -38,6 +31,7 @@ public class SotfFindSecret implements BaseCommandWithSuggestion {
 		LocationAPI location = null;
 		String text = "That secret can be found in ";
 		if (!args.isEmpty()) {
+			// holy wall of if statements
 			if (args.equals("hypnos") || args.equals("barrow")) {
 				SectorEntityToken entity = (SectorEntityToken) Global.getSector().getMemoryWithoutUpdate().get(SotfIDs.HYPNOS_CRYO);
 				location = entity.getContainingLocation();
@@ -49,6 +43,10 @@ public class SotfFindSecret implements BaseCommandWithSuggestion {
 			} else if (args.equals("mia") || args.equals("hallowhall") || args.equals("seraph")) {
 				location = Global.getSector().getStarSystem("sotf_mia");
 				text = "That's not really a secret! But this is where to find ";
+			} else if (args.equals("anapausis")) {
+				location = (StarSystemAPI) Global.getSector().getMemoryWithoutUpdate().get(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys1");
+			} else if (args.equals("polychronios")) {
+				location = (StarSystemAPI) Global.getSector().getMemoryWithoutUpdate().get(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys2");
 			} else if (args.equals("lightofthelake") || args.equals("reverie") || args.equals("lotl") || args.equals("sirius")) {
 				location = Global.getSector().getStarSystem("sotf_lotl");
 				if (location != null) {

@@ -335,6 +335,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 
 	public static boolean reverieCanSynthesize(ShipHullSpecAPI spec) {
 		if (spec.isDefaultDHull()) spec = spec.getDParentHull();
+		if (Global.getSector() != null && Global.getSector().getPlayerFaction().knowsShip(spec.getHullId())) return true;
 		return SotfMisc.shipHasBlueprint(spec) || spec.hasTag(Tags.SHIP_REMNANTS) ||
 				spec.hasTag("derelict") ||
 				spec.hasTag(SotfIDs.TAG_DUSTKEEPER_AUXILIARY) ||
@@ -378,7 +379,7 @@ public class SotfDaydreamSynthesizer extends BaseHullMod {
 
 		tooltip.addSectionHeading("Ship Synthesis", Alignment.MID, opad);
 		tooltip.addPara("- Only ships with a readily-available blueprint can be replicated, including anything one could reasonably find in Domain-era ruins. Common Domain, " +
-				"Tri-Tachyon and Dustkeeper drone designs can also be mimicked.", opad);
+				"Tri-Tachyon and Dustkeeper drone designs can also be mimicked. This requirement is ignored if you have the ship's blueprint learned.", opad);
 		tooltip.addPara("- Reflections have no d-mods.", opad);
 		tooltip.addPara("- Subswarm attempts to scan and learn all weapon and fighter designs to replicate the " +
 				"original ship's loadout as closely as possible. Unusually exotic weapon designs may be " +

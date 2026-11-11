@@ -1,6 +1,6 @@
 {
-  "variantId": "sotf_tempest_Modified",
-  "hullId": "sotf_tempest_feros",
+  "variantId": "sotf_tempest_Modified_GH",
+  "hullId": "sotf_tempest_feros_GH",
   "displayName": "Modified",
   "goalVariant": true,
   "fluxCapacitors": 10,

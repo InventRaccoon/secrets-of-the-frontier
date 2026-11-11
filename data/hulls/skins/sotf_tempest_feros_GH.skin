@@ -1,0 +1,8 @@
+{
+	"baseHullId":"sotf_tempest_feros",
+	"skinHullId":"sotf_tempest_feros_GH",
+	"hullName":"Feros' Tempest",
+	"builtInWings": ["sotf_dotty_wing", "sotf_terminator_single"],
+	"fighterBays":2,
+	"addHints":["HIDE_IN_CODEX"],
+}

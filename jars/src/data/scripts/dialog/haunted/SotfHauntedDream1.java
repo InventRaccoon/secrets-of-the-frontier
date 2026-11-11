@@ -28,9 +28,6 @@ public class SotfHauntedDream1 extends SotfHauntedDreamBase {
                 "The faintest sliver of hope that you could mean anything.", 8, l);
         addLine("Then, it's gone. You feel something impale you, the slick blood run onto your hands, the fog consume you...", 9, s);
 
-        if (stage == 10 && counter >= 0) {
-            addWakeUpOption();
-            stage = 11;
-        }
+        addWakeUpOption(10);
     }
 }

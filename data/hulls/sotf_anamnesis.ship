@@ -7,9 +7,9 @@
   "height": 258,
   "width": 532,
   "center": [266, 150],
-  "collisionRadius": 304.5,
+  "collisionRadius": 321,
   "shieldCenter": [0, -0],
-  "shieldRadius": 289.5,
+  "shieldRadius": 312,
   "viewOffset": 0,
   "builtInMods": [
     "automated",
@@ -26,12 +26,12 @@
     "CAP 002": "sotf_dkengcap_l",
     "CAP 003": "sotf_dkengcap_l",
     "CAP 004": "sotf_dkengcap_l",
-	"SPARK 001": "sotf_dksparker",
-	"SPARK 002": "sotf_dksparker",
-	"SPARK 003": "sotf_dksparker",
-	"SPARK 004": "sotf_dksparker",
-	"SPARK 005": "sotf_dksparker",
-	"SPARK 006": "sotf_dksparker",
+    "SPARK 001": "sotf_dksparker",
+    "SPARK 002": "sotf_dksparker",
+    "SPARK 003": "sotf_dksparker",
+    "SPARK 004": "sotf_dksparker",
+    "SPARK 005": "sotf_dksparker",
+    "SPARK 006": "sotf_dksparker"
   },
   "weaponSlots": [
     {

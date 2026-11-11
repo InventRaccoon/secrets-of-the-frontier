@@ -11,6 +11,7 @@ import com.fs.starfarer.api.campaign.listeners.FleetEventListener;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.intel.BaseIntelPlugin;
@@ -194,9 +195,21 @@ public class SotfSierraConvIntel extends BaseIntelPlugin implements FleetEventLi
 					sector_mem.set("$sierraFactionFought", otherFleet.getFaction().getId(), 60);
 				}
 			}
+			if (sector_mem.contains(SotfIDs.MEM_COTL_START) && SotfMisc.playerHasSierra()) {
+				sector_mem.set("$sierraWitnessedSirius", true);
+			}
 			MemoryAPI fleet_mem = otherFleet.getMemoryWithoutUpdate();
 			if (fleet_mem.contains("$ziggurat") && SotfMisc.playerHasSierra()) {
 				sector_mem.set("$sierraWitnessedZigFight", true);
+			}
+			if (otherFleet.getFaction().getId().equals(Factions.THREAT) && SotfMisc.playerHasSierra()) {
+				sector_mem.set("$sierraWitnessedThreat", true);
+				if (otherFleet.getName().equals("Third Strike") && battle.wasFleetDefeated(otherFleet, primaryWinner)) {
+					sector_mem.set("$sierraWitnessedThirdStrike", true);
+				}
+			}
+			if (otherFleet.getFaction().getId().equals(Factions.DWELLER) && SotfMisc.playerHasSierra()) {
+				sector_mem.set("$sierraWitnessedDweller", true);
 			}
 			for (FleetMemberAPI member : Misc.getSnapshotMembersLost(otherFleet)) {
 				if (member.getHullId().equals("tesseract") && SotfMisc.playerHasSierra()) {

@@ -60,26 +60,29 @@ public class SotfDKCustomBounty extends BaseCustomBounty {
 
 		DifficultyChoice lowDifficulty = DifficultyChoice.LOW;
 
-		// Wendigo gives 2 medium bounties and 1 hard bounty
+		int minDifficulty = 0;
+
+		// Wendigo gives 2 medium bounties and 1 hard bounty, and the difficulty is floored
 		if (getPerson().getId().equals(SotfPeople.WENDIGO)) {
 			lowDifficulty = DifficultyChoice.NORMAL;
+			minDifficulty = 4;
 		}
 
-		int dLow = pickDifficulty(lowDifficulty);
+		int dLow = Math.max(minDifficulty, pickDifficulty(lowDifficulty));
 		creatorLow = pickCreator(dLow, lowDifficulty);
 		if (creatorLow != null) {
 			dataLow = creatorLow.createBounty(createdAt, this, dLow, Stage.BOUNTY);
 		}
 		if (dataLow == null || dataLow.fleet == null) return false;
 
-		int dNormal = pickDifficulty(DifficultyChoice.NORMAL);
+		int dNormal = Math.max(minDifficulty,pickDifficulty(DifficultyChoice.NORMAL));
 		creatorNormal = pickCreator(dNormal, DifficultyChoice.NORMAL);
 		if (creatorNormal != null) {
 			dataNormal = creatorNormal.createBounty(createdAt, this, dNormal, Stage.BOUNTY);
 		}
 		if (dataNormal == null || dataNormal.fleet == null) return false;
 
-		int dHigh = pickDifficulty(DifficultyChoice.HIGH);
+		int dHigh = Math.max(minDifficulty + 1, pickDifficulty(DifficultyChoice.HIGH));
 		creatorHigh = pickCreator(dHigh, DifficultyChoice.HIGH);
 		if (creatorHigh != null) {
 			dataHigh = creatorHigh.createBounty(createdAt, this, dHigh, Stage.BOUNTY);

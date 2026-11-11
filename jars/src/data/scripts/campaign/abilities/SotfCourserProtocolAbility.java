@@ -327,10 +327,10 @@ public class SotfCourserProtocolAbility extends BaseDurationAbility {
 		}
 
 		LabelAPI label = tooltip.addPara("Emits an encrypted communication pulse, calling for aid. " +
-				"Outrider-Annex-Courser will arrive to the system via a transverse jump and escort you " +
+				"Outrider-Infix-Courser will arrive to the system via a transverse jump and escort you " +
 				"for " + followDur + " days, joining you in combat " +
 				"as long as they are within " + joinRange + " units.", pad);
-		label.setHighlight("Outrider-Annex-Courser", followDur + " days", joinRange + " units");
+		label.setHighlight("Outrider-Infix-Courser", followDur + " days", joinRange + " units");
 		label.setHighlightColors(dk, highlight, highlight);
 
 		if (expanded) {

@@ -27,7 +27,14 @@ public class SotfHasOfficer extends BaseCommandPlugin {
 		CampaignFleetAPI playerFleet = Global.getSector().getPlayerFleet();
 
 		String id = params.get(0).getString(memoryMap);
-		return haveOfficer(id);
+		boolean haveOfficer = haveOfficer(id);
+		if (params.size() > 1) {
+			boolean wantOfficer = params.get(1).getBoolean(memoryMap);
+			if (!wantOfficer) {
+				return !haveOfficer;
+			}
+		}
+		return haveOfficer;
 	}
 
 	public static boolean haveOfficer(String id) {
@@ -73,6 +80,7 @@ public class SotfHasOfficer extends BaseCommandPlugin {
 				}
 			}
 		}
+
 		return hasOfficer;
 	}
 }

@@ -35,7 +35,7 @@ public class MissionDefinition implements MissionDefinitionPlugin {
 			api.addBriefingItem("Put on a good show");
 			api.addBriefingItem("Feros is an exceptional captain and commander skilled in wolfpack tactics");
 			api.addBriefingItem("ISS Once in a Lullaby has been heavily upgraded and is a top-spec frigate");
-			api.addBriefingItem("That won't be enough");
+			api.addBriefingItem("Will it be enough?");
 		} else {
 			api.setFleetTagline(FleetSide.ENEMY, "### EA SY PRE Y");
 
@@ -48,7 +48,7 @@ public class MissionDefinition implements MissionDefinitionPlugin {
 		List<FleetMemberAPI> playerShips = new ArrayList<>();
 
 		// Walter Feros in his modified Tempest
-		FleetMemberAPI flagship = api.addToFleet(FleetSide.PLAYER, "sotf_tempest_Modified", FleetMemberType.SHIP, "ISS Once in a Lullaby",true);
+		FleetMemberAPI flagship = api.addToFleet(FleetSide.PLAYER, "sotf_tempest_Modified_GH", FleetMemberType.SHIP, "ISS Once in a Lullaby",true);
 		flagship.getRepairTracker().setCR(0.85f);
 		PersonAPI feros = SotfPeople.genFeros();
 		flagship.setCaptain(feros);
@@ -65,6 +65,9 @@ public class MissionDefinition implements MissionDefinitionPlugin {
 
 		// Vacha Rask, distant Kanta cousin and family enforcer
 		FleetMemberAPI blackfire = api.addToFleet(FleetSide.ENEMY, "atlas2_Standard", FleetMemberType.SHIP, "Blackfire Souleater", false);
+//		PersonAPI person = Global.getFactory().createPerson();
+//		person.getStats().setSkillLevel(SotfIDs.SKILL_ELEGYOFOPIS, 2); // testing!
+//		blackfire.setCaptain(person);
 
 		// doms get 2/3 Pilums so they aren't as liable to eviscerate player fleet instantly with Harpoon spam
 		FleetMemberAPI dom1 = api.addToFleet(FleetSide.ENEMY, "dominator_d_Assault", FleetMemberType.SHIP, false);

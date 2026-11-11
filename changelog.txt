@@ -1,3 +1,85 @@
+Version 0.15.2:
+- New Cult of the Daydream ship: Rose-class interdictor
+	- An elite destroyer specializing in bombarding, controlling and erasing hostiles from afar
+	- Spite is the armor of beauty, make the enemy suffer!
+	- Obtained similarly to other CotD designs; loading a Child of the Lake save will automatically add Rose-class to known blueprints
+- New Dustkeeper flagships: Doxology-class heavy frigate and Polychronios-class & Anapausis-class cruisers
+	- Doxology: an overengineered teleporting menace with too many guns
+	- Polychronios: a disruptive support ship with an EWAR focus
+	- Anapausis: a time-accelerated hunter-killer rewarding strategic use of its charged system
+	- All 3 are used as the leader of smaller Dustkeeper fleets
+	- You can order these from Inadvertent when he has spare forge slots and you have enough reputation with him
+	- Also, one guaranteed recoverable derelict of each will appear in high-danger Remnant systems
+
+- Added Thrice-Speared "support" category traits. These can only spawn once you reach level 10 and have a decent-sized (120DP) fleet, and have wide-reaching effects
+- New Thrice-Speared traits:
+	- Decaying Scourge (offense): Can periodically lash a nearby ship, dealing 8% of its current hull value as damage over time. Also halts the target. Versus nanite mimics and reflections, also overloads for 2s and deals an additional 8% of current hull instantly
+	- Elegy of Opis (support): Gain a charge for each dead ally ship, at 3 charges the next ally that would be destroyed instead enters an undying rage, regaining 35% hull but decaying over time
+	- Hands of the Drowned (support): Passively spawns waves of gravitic mines that deal damage and pull in their victims
+	- reality_breaker (support): NullPointerException (KILL IT KILL IT KILL IT)
+	- The Perfect Storm (support): Every 50 seconds, overloads ALL player-side ships for 3 seconds unless they are venting or phased (non-player ships will try to use this to dodge the overload)
+
+- Changes to anti-ship cannon strikes (i.e. Leviathan's Bane & some add-on mod ASCs):
+	- Targets should react more naturally to the incoming attack (thanks zoeythegirlgal for the original code!)
+	- Ships will now start turning around during the lockon sequence if they have front shields
+	- Replaced lock-on rings with a text display and targeting indicator on affected ships (LIDAR beam is also still present). The text display is visible near the center of the screen if the target is the player's ship and they're panned away
+	- Added a UI message when a player-side ship is targeted by an anti-ship cannon
+
+- Concord - Soulbond: reduced OP cost from 10/15 des/cru to 8/12
+- New Pledge sprite by Kirbo (thanks so much!!!!)
+- New Sierra conversation topics: Sirius, Oneslaught, Threat, Third Strike, Dweller
+
+- New Respite sprite by Selkie and Snazzy (THANKS :)!!!)
+- Fixed Cyberwarfare Suite cooldown reduction and penetration stats being affected by each other's modifiers resulting in a net near-zero change
+- Cyberwarfare Suite cooldown reduction listed value nerfed (25% > 15%), actual effect buffed (2.5% > 15%)
+- Wendigo and Courser infex changed from Annex to "Infix" to denote their special status as hunter-killers
+- Mia's Star: Increased distance from core, trace volatiles to Hallowhall (this is partly a nerf - can no longer use soil nanites)
+- Rigging-Echo-Inadvertent is now added as a contact when met so he appears in the intel tab. Dustkeeper contacts (ie just him right now) don't count towards the player's max contacts
+- Dustkeeper fleet flagships are now more likely to be recoverable after battle with their fleets or burnouts
+- Wendigo's Ether Wolves fleet is now bigger
+- Added 2 new generic Dustkeeper portraits, Indigo and Orange. Yellow recruitable sliver is now orange on new saves
+- Increased priority of Dustkeeper Burnout comm dialogue so they're less likely to be overriden
+- Can now ask Cerulean Faithful to fix your Tri-Tachyon reputation
+
+- Felcesis is now primarily referred to as "The Thrice-Speared"
+- Thrice-Speared: rebalanced earlygame difficulty rampup (now 1 trait until player has 40dp of ships, fewer daydream skills until 60dp, 2 traits until 100dp)
+- Thrice-Speared: invasion UI is now Sirius-flavored while playing Child of the Lake
+- Rebalanced support traits that were in the files but didn't appear normally. Added a toggle to replace the reality_breaker crashcode with an equivalent non-crash punishment
+- Dear Dotty: can no longer be rolled as a trait until player is level 5
+- Revenant Host: replaced Wolves and Wardens with approximately equivalent DP of Thorns
+- The Haunted: added unique music to the ending dialogue sequence
+
+- Polarized Nanorepair skill: now soft-caps the regen at 450/850/1250/1650 armor (e.g 1650 armor capital regens armor at rate of 1%/s, 3300 capital regens 0.5%/s). With Tahlan Shipworks, halved regen rate on ships with Hel Plating or Hel Carapace (sorry. Or you're welcome. It depends on if you play more CotL or Haunted, really)
+- Thorn: increased Hypnagogic Incursion flux dissipation boost (+100% base, decaying > +200% base, decaying)
+- Daydream Systems Engineering: now provides immunity to solar coronae and similar hazards, ala s-modded Solar Shielding
+- Mercy Multilance (beams and bolts): Reduced range (1000 > 700). TLDR for below changes: nerfed performance against armor and small ships
+- Mercy Multilance (beams): Now fires 5 beams (was 4) with increased spread. Total damage unchanged, effective armor penetration nerf. Increased base armor shred, reduced stacking (40 + 20 per extra multilance > 50 + 10). Fixed bug where the last stack of armor shred would never expire
+- Mercy Multilance (bolts): Now fires 24 bolts for total of 2400 fragmentation damage (was 12 bolts for 600 energy). No longer applies EMP damage (was 600). Slightly widened bolt spread
+- Chalice Resonance Cage: Increased flux per shot (1500 > 2250, flux efficiency including bolts ~0.77 > 1.15)
+- Daydream drone replicators: reduced max drones active (6 > 4), barb mount is still 2
+- Drones fired using the system of Random Assortment of Things' Gilgamesh now self-destruct after 15 seconds (sorry)
+
+- Child of the Lake: Added a 1.2x multiplier to the deployment point cost of all the player's ships. There's a LunaLib setting to adjust this (range 1x-3x, 1x means no penalty)
+- CotL: If the enemy fleet has no mimicable ships (even if it doesn't fit the criteria for a special countermeasure), Sirius will spawn a custom-fitted Champion reflection
+- CotL: Removed "original captain must be level 8 or lower" condition for spawning echoes from ships
+- CotL: Friendly ships no longer create echoes by default
+- CotL: New T4 upgrade, "No Rest For The Wicked": Friendly ships dying at any range create echoes that linger for twice as long. Mimics created by these echoes only take up 50% of the usual mimic capacity and don't suffer the normal mimic stat penalties
+- CotL: non-reflection mimics no longer have combat chatter
+- CotL: Added monomolecular blade form for Sirius (available during certain vanilla dialogues)
+
+- Fixed Nexerelin backgrounds applying to Haunted/CotL custom starts sometimes (sorry, it caused weird bugs)
+- Fixed being able to give Wendigo (Courser Hunt interaction) the Hypnos data if you did Hypnos for them/Inad and thus they already have the data
+- Fixed certain interactions with Hypnos-Annex-Barrow incorrectly reducing reputation with Dauntless-Annex-Barrow
+- Fixed Blithe/Seraph fleets failing to respawn if Hallowhall, um, "ceases to exist inside Mia's Star" (e.g it was teleported out using Ind.Evo)
+- Fixed Seraph's chip being able to drop from the ODS Last Light when fought
+- Fixed Dustkeeper fleet commanders flying Reposes not being oldguards
+- Fixed Cyberwarfare Protocols being able to target wisps
+- Fixed Lethargy/Reckoner beams being able to hit a ship's own modules
+- Fixed Mercy on-hit armor effectiveness reduction not fully expiring
+- Fixed Revenant Host ships not being nanite-synthesized (i.e. dark and spooky)
+- Fixed being able to cast Invoke Her Blessing on friendly expiring mimics if also hovering over an echo
+- Fixed inverted range check on Dustkeeper betrayal taking over allied autoships and possible concurrent modification exception
+
 Version 0.15.1:
 - Added "Legacy of Hypnos" quest, leading player to existing Hypnos content. Currently obtained from friendly rep Inadvertent (for now)
 

@@ -1,0 +1,390 @@
+{
+  "hullName": "Anapausis",
+  "hullId": "sotf_anapausis",
+  "hullSize": "CRUISER",
+  "spriteName": "graphics/ships/dustkeepers/sotf_anapausis.png",
+  "style": "HIGH_TECH",
+  "height": 298,
+  "width": 216,
+  "center": [108, 157],
+  "collisionRadius": 192.5,
+  "shieldCenter": [-3, -0],
+  "shieldRadius": 185,
+  "viewOffset": 0,
+  "builtInMods": [
+    "automated",
+    "operations_center",
+    "sotf_cwarsuite"
+  ],
+  "builtInWings": [
+    "terminator_wing"
+  ],
+  "builtInWeapons": {
+    "CAP 001": "sotf_dkengcap_lm",
+    "CAP 002": "sotf_dkengcap_m",
+    "CAP 003": "sotf_dkengcap_m",
+    "CWAR 001": "sotf_dkcwarpoint",
+    "CWAR 002": "sotf_dkcwarpoint",
+    "CWAR 003": "sotf_dkcwarpoint",
+    "CWAR 004": "sotf_dkcwarpoint",
+    "CWAR 005": "sotf_dkcwarpoint",
+    "CWAR 006": "sotf_dkcwarpoint",
+    "CWAR 007": "sotf_dkcwarpoint",
+    "CWAR 008": "sotf_dkcwarpoint",
+    "SPARK 001": "sotf_dksparker",
+    "SPARK 002": "sotf_dksparker",
+    "SPARK 003": "sotf_dksparker",
+    "SPARK 004": "sotf_dksparker"
+  },
+  "weaponSlots": [
+    {
+      "id": "WS 001",
+      "size": "MEDIUM",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 100,
+      "angle": 0,
+      "locations": [34, -0]
+    },
+    {
+      "id": "WS 002",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": 30,
+      "locations": [27, 41]
+    },
+    {
+      "id": "WS 003",
+      "size": "MEDIUM",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": -30,
+      "locations": [27, -41]
+    },
+    {
+      "id": "WS 004",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": 0,
+      "locations": [74, 15]
+    },
+    {
+      "id": "WS 005",
+      "size": "SMALL",
+      "type": "UNIVERSAL",
+      "mount": "HARDPOINT",
+      "arc": 10,
+      "angle": -0,
+      "locations": [74, -15]
+    },
+    {
+      "id": "WS 006",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 241,
+      "angle": 0,
+      "locations": [93, -0]
+    },
+    {
+      "id": "WS 007",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 45,
+      "locations": [76, 37]
+    },
+    {
+      "id": "WS 008",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -45,
+      "locations": [76, -37]
+    },
+    {
+      "id": "WS 009",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": 50,
+      "locations": [59, 49]
+    },
+    {
+      "id": "WS 010",
+      "size": "SMALL",
+      "type": "HYBRID",
+      "mount": "TURRET",
+      "arc": 160,
+      "angle": -50,
+      "locations": [59, -49]
+    },
+    {
+      "id": "WS 011",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 130,
+      "angle": 75,
+      "locations": [-3, 42]
+    },
+    {
+      "id": "WS 012",
+      "size": "SMALL",
+      "type": "SYNERGY",
+      "mount": "TURRET",
+      "arc": 130,
+      "angle": -75,
+      "locations": [-3, -42]
+    },
+    {
+      "id": "WS 013",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": 135,
+      "locations": [-99, 53]
+    },
+    {
+      "id": "WS 014",
+      "size": "SMALL",
+      "type": "ENERGY",
+      "mount": "TURRET",
+      "arc": 240,
+      "angle": -135,
+      "locations": [-99, -53]
+    },
+    {
+      "id": "CAP 001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 110,
+      "angle": 180,
+      "locations": [-91, -0]
+    },
+    {
+      "id": "CAP 002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": 95,
+      "locations": [-42, 83]
+    },
+    {
+      "id": "CAP 003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "TURRET",
+      "arc": 145,
+      "angle": -95,
+      "locations": [-42, -83]
+    },
+    {
+      "id": "LB 1",
+      "size": "LARGE",
+      "type": "LAUNCH_BAY",
+      "mount": "HIDDEN",
+      "arc": 360,
+      "angle": 0,
+      "locations": [-37, -0]
+    },
+    {
+      "id": "SPARK 002",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 103,
+      "locations": [9, -92]
+    },
+    {
+      "id": "SPARK 001",
+      "size": "MEDIUM",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -103,
+      "locations": [9, 92]
+    },
+    {
+      "id": "SPARK 004",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 82,
+      "locations": [-7, -86]
+    },
+    {
+      "id": "SPARK 003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -82,
+      "locations": [-7, 86]
+    },
+    {
+      "id": "CWAR 002",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -140,
+      "locations": [-130, -93]
+    },
+    {
+      "id": "CWAR 001",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 140,
+      "locations": [-130, 93]
+    },
+    {
+      "id": "CWAR 003",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 150,
+      "locations": [-128, 75]
+    },
+    {
+      "id": "CWAR 004",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -150,
+      "locations": [-128, -75]
+    },
+    {
+      "id": "CWAR 006",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -155,
+      "locations": [-124, -67]
+    },
+    {
+      "id": "CWAR 005",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 155,
+      "locations": [-124, 67]
+    },
+    {
+      "id": "CWAR 007",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": 135,
+      "locations": [-98, 82]
+    },
+    {
+      "id": "CWAR 008",
+      "size": "SMALL",
+      "type": "DECORATIVE",
+      "mount": "HIDDEN",
+      "arc": 0,
+      "angle": -135,
+      "locations": [-98, -82]
+    }
+  ],
+  "engineSlots": [
+    {
+      "location": [-91, -0],
+      "length": 150,
+      "width": 21,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-42, 83],
+      "length": 90,
+      "width": 15,
+      "angle": 95,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-42, -83],
+      "length": 90,
+      "width": 15,
+      "angle": -95,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-125, 49],
+      "length": 75,
+      "width": 12,
+      "angle": 180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    },
+    {
+      "location": [-125, -49],
+      "length": 75,
+      "width": 12,
+      "angle": -180,
+      "contrailSize": 30,
+      "style": "HIGH_TECH"
+    }
+  ],
+  "bounds": [
+    -138, -8.5,
+    -106.5, -13,
+    -116, -62.5,
+    -97, -86,
+    -82.5, -78,
+    -65, -81.5,
+    -32, -69.5,
+    -5, -90.5,
+    0.5, -74.5,
+    6, -96,
+    16, -93,
+    12, -77.5,
+    35.5, -63.5,
+    67.5, -59,
+    140, -25.5,
+    140.5, -19,
+    112.5, -20,
+    140, -0,
+    112.5, 20,
+    140.5, 19,
+    140, 25.5,
+    67.5, 59,
+    35.5, 63.5,
+    12, 77.5,
+    16, 93,
+    6, 96,
+    0.5, 74.5,
+    -5, 90.5,
+    -32, 69.5,
+    -65, 81.5,
+    -82.5, 78,
+    -97, 86,
+    -116, 62.5,
+    -106.5, 13,
+    -138, 8.5
+  ]
+}
