@@ -17,6 +17,7 @@ Version 0.15.3:
 - Non-capital Dustkeeper flagship hulls now have identical spawn behaviour between Dustkeepers and Burnouts: they can spawn as non-flagships but only at 33% rarity
 - Hallowhall astropolis now requires 100 domain-grade parts to restore
 - Derelict Contingent skill rescaled to roughly match old values at a new cap of 5 dmods rather than 4 (to match Derelict Operations)
+- Sirius' monomolecular blade form now supported in relevant parts of Diktat content
 - Fixed Reckoner Autolance Array having incorrect stats
 - Fixed Doxology missing a non-flagship role for non-Dustkeeper fleets
 - Fixed Cerulean offering some administrative functions such as commissions/unrest (his rank and post have been changed to AI Core and Alpha Core)

@@ -4625,6 +4625,7 @@ sotfCOTLgaRequestMeetingDivinity,DialogOptionSelected,$option == sotfCOTLgaReque
 $option = gaRequestMeeting50 0
 FireBest DialogOptionSelected",,,
 ,,,,,,
+# Luddic shrine intro,,,,,,
 sotfCOTLlppHookResponseNope,LPPHookResponses,$global.sotf_cotlStart,,,"sotfCOTLlpphook_nope:""Not interested. The Daydream's blessings be with you. Bye!""",
 sotfCOTLlppHookNope,DialogOptionSelected,$option == sotfCOTLlpphook_nope,"$option = lpp_hookNope
 FireBest DialogOptionSelected",,,
@@ -4640,6 +4641,7 @@ lpp_hookNope:""Sorry, but I'm busy. Very busy. Good-bye.""",
 sotfCOTLlppHookDialectics,DialogOptionSelected,$option == sotfCOTLlpphook_dialectics,"$option = lpp_hookLearn
 FireBest DialogOptionSelected","No good doctrine comes about uncontested, though you elect not to mention the more technological aspects of your cult of the Daydream.",,
 ,,,,,,
+# Monomolecular blade form,,,,,,
 sotfCOTLsdtuRamPrepWeaponSiriusOpt,SDTURamPrepWeapon,$global.sotf_cotlStart,SetOptionColor sotfCOTLsdtu_prepWeaponSirius sotfDaydreamTextColor,,"sotfCOTLsdtu_prepWeaponSirius:Sirius, your protector",
 sotfCOTLsdtuRamPrepWeaponSirius,DialogOptionSelected,$option == sotfCOTLsdtu_prepWeaponSirius,"$player.sotf_sdtu_weaponSirius = true
 FireAll SDTURamPrepOptions","Your armorer is hesitant as you give orders via hand-comms. An airlock allows a small volume of Sirius' nanites to gravitically propel themselves to your meeting point. The form of the divine manifest is surprisingly innocuous. A shifting, shimmering mist. You'd never expect that it were alive.
@@ -4663,6 +4665,11 @@ EndConversation DO_NOT_FIRE
 HideVisual","In one smooth motion you draw the glittering blade and flick it across Sedge's throat. The monomolecular blade feels like it's passing through vacuum.
 
 With a wet sigh, his body slides back against the wall, his face down, his eyes staring blankly up at you, his expression caught in a look of dumb surprise.",bffi_ulmusSedge6:Check on Bornanew,
+sotfCOTLSDSWjoveEventideVisitWepSirius,SDSWjoveEventideVisitWep,$player.sotf_sdtu_weaponSirius,,"The understeward makes no comment upon the glittering nanites hidden within your clothes, surely gone undetected.",,
+sotfCOTLSDSWilmWeaponSword,DialogOptionSelected,"$option == sdsw_ilmStartSelAusual2
+$player.sotf_sdtu_weaponSirius","$global.sdsw_kill = true
+$global.sdsw_readyForMacario = true
+FireAll SDSWilmStartOpts","Sirius' nanites embed themselves into your clothing, once again prepared to form the glittering monomolecular blade that'll carve through the Daydream's enemies.",,
 ,,,,,,
 sotfCOTLabyssalLight_dwellerContSel,DialogOptionSelected,"$option == abyssalLight_dwellerCont
 !$global.sotf_cotlAskedSiriusDweller score:10
