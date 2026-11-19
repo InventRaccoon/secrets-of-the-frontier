@@ -20,12 +20,19 @@ APbarOption,AddBarEvents,"!$market.isHidden
 !$global.sotf_beganPromise
 SotfPromiseCMD checkStart
 !SotfPromiseCMD checkLowFreq
-RollProbability 0.5","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
+RollProbability 0.5
+!$global.extendedMode","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
 APbarOptionLowFreq,AddBarEvents,"!$market.isHidden
 !$global.sotf_beganPromise
 SotfPromiseCMD checkStart
 SotfPromiseCMD checkLowFreq
-RollProbability 0.02","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
+RollProbability 0.02
+!$global.extendedMode","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
+APbarOptionExt,AddBarEvents,"!$market.isHidden
+!$global.sotf_beganPromise
+SotfPromiseCMD checkStart
+RollProbability 0.02
+$global.extendedMode","AddBarEvent APbar_start ""Join the patrol officers in their discussion"" ""A few shabby-looking ship officers share drinks, telling stories and occasionally bursting out in laughter or argument, drawing eyes from the other spacers.""",,,
 APbar1,DialogOptionSelected,$option == APbar_start,"$missionId = $sotf_apromise
 ShowPersonVisual false sotf_apromise_bar_league
 ShowSecondPerson sotf_apromise_bar_heg","You slide in amongst the ship captains, who seem to have no problem with you joining their revelry, and catch the tail-end of an extended boastful story about ""That one time I phased through two Sunders just to nail a Colossus in the engines with a Reaper, you should've seen it!""
@@ -2278,7 +2285,8 @@ $global.sotf_cotlStart","$global.sotf_AMCOTLwarning = true 5
 AddTextSmall ""Sirius will be inactive during this phase operation"" sotfDaydreamTextColor",,,
 MemoryAthenaYesOpt,MemoryAthena1TryOpts,,,,"MemoryAthenaComeAboard:""I'll head over now.""",
 MemoryAthenaNoOpt,MemoryAthena1TryOpts,,,,"MemoryAthenaAbsolutelyNot:""This sounds far too risky.""",
-MemoryAthenaSPOpt,MemoryAthena1TryOpts,!$global.sotf_AMHarmonicTuning,,,"MemoryAthenaHarmonicTuning:""Just us? Could we take other phase ships?""",
+MemoryAthenaSPOpt,MemoryAthena1TryOpts,"!$global.sotf_AMHarmonicTuning
+!$global.extendedMode",,,"MemoryAthenaHarmonicTuning:""Just us? Could we take other phase ships?""",
 MemoryAthenaSierraConv3,DialogOptionSelected,$option == MemoryAthenaComeAboard,"SetTextHighlightColors sierraTextColor
 SetTextHighlights ""\""Ready?\""""","You take a shuttle to Sierra's ship, walking through the miniature garden held within the hab module and taking a seat at the central command console - not that any of the controls truly function.
 
@@ -2312,7 +2320,8 @@ MemoryAthena2COTLWarning,MemoryAthena2TryOpts,"!$global.sotf_AMCOTLwarning
 $global.sotf_cotlStart","$global.sotf_AMCOTLwarning = true 5
 AddTextSmall ""Sirius will be inactive for this battle"" sotfDaydreamTextColor",,,
 MemoryAthena2LDTOpt,MemoryAthena2TryOpts,,,,"MemoryAthenaComeAboard:""Let's do it.""",
-MemoryAthena2SPOpt,MemoryAthena2TryOpts,!$global.sotf_AMHarmonicTuning,,,"MemoryAthenaHarmonicTuning:""Couldn't we bring another phase ship?""",
+MemoryAthena2SPOpt,MemoryAthena2TryOpts,"!$global.sotf_AMHarmonicTuning
+!$global.extendedMode",,,"MemoryAthenaHarmonicTuning:""Couldn't we bring another phase ship?""",
 MemoryAthena2NoOpt,MemoryAthena2TryOpts,,,,"MemoryAthenaAbsolutelyNot:""We're not ready yet.""",
 MemoryAthenaHTuning,DialogOptionSelected,$option == MemoryAthenaHarmonicTuning,"SetStoryOption MemoryAthenaHTYes 1 sotf_AMHarmonicTuning technology ""Inspired Sierra to employ harmonic coil tuning""
 SetTextHighlightColors sierraTextColor sierraTextColor sierraTextColor
@@ -2340,7 +2349,10 @@ MemoryAthenaBack2,MemoryAthenaBack,SotfAMemoryCMD checkFightStarted score:1000,F
 ,,,,,,
 # WAYWARD STAR,,,,,,
 WSvowWreckDetails,ShowSalvageEntityDetails,"$customType == wreck
-$sotf_WSvow score:1000",ShowDefaultVisual,"A strange vessel, drifting through space. This was shooting at you not so long ago, between feverish requests for a waltz. Now it is still, though strangely unmarked by battle damage. The exterior hull is unlike any you've seen previously. Though it clearly shares ancestry with Remnant droneships, this is a specialized and purpose-built design.",,
+$sotf_WSvow score:1000","ShowDefaultVisual
+FireBest sotfWSVowWreckDescription",,,
+sotfWSVowWreckDescription,sotfWSVowWreckDescription,,,"A strange vessel, drifting through space. This was shooting at you not so long ago, between feverish requests for a waltz. Now it is still, though strangely unmarked by battle damage. The exterior hull is unlike any you've seen previously. Though it clearly shares ancestry with Remnant droneships, this is a specialized and purpose-built design.",,
+sotfWSVowWreckDescriptionEM,sotfWSVowWreckDescription,$global.extendedMode,,"A strange vessel, drifting through space. This was shooting at you not so long ago, between feverish requests for a waltz. Now it is still, marked by extensive battle damage. The exterior hull is unlike any you've seen previously. Though it clearly shares ancestry with Remnant droneships, this is a specialized and purpose-built design.",,
 WSvowExplore,CheckSalvageSpecial,"$salvageSpecialData != null
 $customType == wreck
 $sotf_WSvow score:1000","$WSvowExplored = true
@@ -3435,7 +3447,7 @@ A few seconds pass as she formulates a second reply. ""I have choice words for h
 cutCommLink:""Uh, Kotter? I have to leave. Important business."" (cut the comm link)",
 sotfKotterBringInSera,DialogOptionSelected,$option == sotfKotter_bringInSera,ShowSecondPerson sotf_seraph,"Seraph routes into the comm line, blue washing over the feed like terran tides. Captain Lagrange grins. ""Aye! If it isn't the tin can back again. I 'aven't-""
 
-""Who,"" Seraph snaps, sharp as a vibroknife, ""Are you."" It's phrased as a demand, not a question. There's a subtly impatient jitter to her avatar's movements.
+""Who,"" Seraph snaps, sharp as a vibroknife, ""Are you."" It's a demand, not a question. There's a subtly impatient jitter to her avatar's movements.
 
 The captain laughs. ""One-ninety-seven, the Hazen job! Helluva thing we pulled, us lot, gotcha right in-""
 
@@ -3715,8 +3727,7 @@ FireBest DialogOptionSelected",,,
 sotfTTSciBetrayal4b,DialogOptionSelected,$option == sotfTTSciSierraEndCL2,,"The rest of the capital reclaimers catch up with Sierra's ship. Surprised by the vessel's combination of shields and phase cloak, and the inhuman skill of its pilot, a few of the cockier fast-movers are destroyed in the ensuing battle before her ship is finally surrounded and disabled.
 
 $personName leans back and claps their hands together. ""Well, that's dealt with. Hopefully those reflexive blast shields you mentioned did their job."" $HeOrShe nods to you. ""I cannot thank you enough for your contribution to my research, Captain, I assure you I will not let the opportunity go to waste."" Then, the scientist sits forward. ""I have some plans to make - I'll transfer the funds when we get confirmation of the core's integrity. Travel safe.""",sotfTTSciSierraEndBetrayal:Cut the comm link,
-sotfTTSciBetrayal5,DialogOptionSelected,$option == sotfTTSciSierraEndBetrayal,"AddCredits 5000000
-AddStoryPoints 3
+sotfTTSciBetrayal5,DialogOptionSelected,$option == sotfTTSciSierraEndBetrayal,"FireBest sotfSierraBetrayalReward
 SotfSierraCMD loseShipToBetrayal
 $global.sotf_sierraBetrayed = true
 $global.sotf_sierraBetrayal = science
@@ -3738,8 +3749,7 @@ sotfTTSciCoreBetrayal,DialogOptionSelected,$option == sotfTTSciGiveSierraCore,,"
 
 $HeOrShe exhales sharply. ""Alright, I'll send over some of my techs to transfer the core to our secure storage, then I'll authorize the payment. Travel safe, Captain,"" $heOrShe finishes.
 ",sotfTTSciSierraCoreBetrayal2:Cut the comm link,
-sotfTTSciCoreBetrayal2,DialogOptionSelected,$option == sotfTTSciSierraCoreBetrayal2,"AddCredits 5000000
-AddStoryPoints 3
+sotfTTSciCoreBetrayal2,DialogOptionSelected,$option == sotfTTSciSierraCoreBetrayal2,"FireBest sotfSierraBetrayalReward
 SotfSierraCMD loseCoreToBetrayal
 $global.apromise_soldsierra = true
 Call $global.apromise_ref updateStage
@@ -3749,6 +3759,10 @@ $global.sotf_projectSirenFaction = tritachyon
 CESetHidden sotf_ttprojectlead true","You exchange some pleasantries, and then cut the comm link.
 
 As you do, the hairs on your neck stand up, as if roused by a cold breath of distant everwinter.",cutCommLinkNoText:Leave,
+sotfSierraBetrayalReward,sotfSierraBetrayalReward,,"AddCredits 5000000
+AddStoryPoints 3",,,
+sotfSierraBetrayalRewardExt,sotfSierraBetrayalReward,$global.extendedMode,"AddCredits 1500000
+AddStoryPoints 1",,,
 ,,,,,,
 sotfTTSciMaybeLater,DialogOptionSelected,$option == sotfTTSciNeedTime,"FireAll PopulateOptions
 ","$HeOrShe sighs. ""Fine, give it another thought. Be quick, though. You wouldn't believe what a new project like this could do for my next performance report.""",,
@@ -4323,7 +4337,10 @@ sotfLTinkyDamagedOpt,sotfLTinkyConvOpts,!$LTaskedDamaged,,,"sotfLTinkyAskDamaged
 sotfLTinkyWhatHappenedOpt,sotfLTinkyConvOpts,!$LTaskedWhatHappened,,,"sotfLTinkyAskWhatHappened:""What happened?""",
 sotfLTinkyWhatNowOpt,sotfLTinkyConvOpts,"!$LTaskedWhatNow
 $LTaskedQuestion",,,"sotfLTinkyAskWhatNow:""What now?""",
-sotfLTinkyRecoverOpt,sotfLTinkyConvOpts,$LTaskedWhatNow,,,sotfLTinkyRecover:Order the ODS Songless recovered and integrated into the fleet,
+sotfLTinkyRecoverOpt,sotfLTinkyConvOpts,"$LTaskedWhatNow
+!$global.extendedMode",,,sotfLTinkyRecover:Order the ODS Songless recovered and integrated into the fleet,
+sotfLTinkyRecoverOptExt,sotfLTinkyConvOpts,"$LTaskedWhatNow
+$global.extendedMode","SetStoryOption sotfLTinkyRecover 2 sotfLTinky_recover leadership ""Recovered Inky-Echo-Nightingale""",,sotfLTinkyRecover:Order the ODS Songless recovered and integrated into the fleet,
 sotfLTinkyCutCommsOpt,sotfLTinkyConvOpts,,,,cutCommLinkNoText:Cut the comm link,
 ,,,,,,
 sotfLTinkySierraResp,DialogOptionSelected,"$option == sotfLTinkyAskSierra
@@ -4490,10 +4507,18 @@ $sotf_elysium score:1000","ShowDefaultVisual
 FireBest sotfElysium","Set on a lonely orbit of the cold world below, a navigation satellite identifies the planet as ""Elysium"".",,
 ,,,,,,
 # CHILD OF THE LAKE,,,,,,
-sotfNGCCOTLOpt,AddNewGameChoices,SotfNGCCMD cotlUnlocked,"SetTooltip sotfNGC_cotl ""You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your journey like fading stardust in the night sky and marks your skin in winding patterns. In your dreams you speak to a single bright star in the sky who follows you into the waking, your faithful protector.\n\nBegin with a few advanced frigates and trade in your starting skill point for the ability to invoke your stalwart protector, Sirius, to mimic the fallen and fight by your side.""",,"8:sotfNGC_cotl:A child of the lake, heir to occult technology (esoteric)",
-sotfNGCCOTLPicked,NewGameOptionSelected,$option == sotfNGC_cotl,"NGCAddShip sotf_thorn_Gatekeeper
+sotfNGCCOTLOpt,AddNewGameChoices,"SotfNGCCMD cotlUnlocked
+!$extendedMode","SetTooltip sotfNGC_cotl ""You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your journey like fading stardust in the night sky and marks your skin in winding patterns. In your dreams you speak to a single bright star in the sky who follows you into the waking, your faithful protector.\n\nBegin with a few advanced frigates and trade in your starting skill point for the ability to invoke your stalwart protector, Sirius, to mimic the fallen and fight by your side.""",,"8:sotfNGC_cotl:A child of the lake, heir to occult technology (esoteric)",
+sotfNGCCOTLPicked,NewGameOptionSelected,"$option == sotfNGC_cotl
+!$extendedMode","NGCAddShip sotf_thorn_Gatekeeper
 NGCAddShip wolf_Starting
 NGCAddShip dram_Light
+SotfNGCCMD cotlSmallText
+NGCSetDifficulty normal",,0:sotfNGC_cotlCont:Continue,
+sotfNGCCOTLOptExt,AddNewGameChoices,"SotfNGCCMD cotlUnlocked
+$extendedMode","SetTooltip sotfNGC_cotl ""You awoke from scheduled thawing of your cryosleep pod around a quiet star in the Sector's fringe. Whoever you once were marks your journey like fading stardust in the night sky and marks your skin in winding patterns. In your dreams you speak to a single bright star in the sky who follows you into the waking, your faithful protector.\n\nBegin with an advanced frigate and trade in your starting skill point for the ability to invoke your stalwart protector, Sirius, to mimic the fallen and fight by your side.""",,,
+sotfNGCCOTLPickedExt,NewGameOptionSelected,"$option == sotfNGC_cotl
+$extendedMode","NGCAddShip sotf_thorn_Gatekeeper
 SotfNGCCMD cotlSmallText
 NGCSetDifficulty normal",,0:sotfNGC_cotlCont:Continue,
 sotfNGCCOTLContinue,NewGameOptionSelected,$option == sotfNGC_cotlCont,"$ngcSkipTutorial = true
@@ -4671,9 +4696,14 @@ abyssalLight_emCon:""Go to maximum emission control! EMCON zero-zero alpha, imme
 # THE HAUNTED,,,,,,
 ,,,,,,
 # NEW GAME CREATION,,,,,,
-sotfNGCHauntedOpt,AddNewGameChoices,,"SetTooltip sotfNGC_haunted ""Good and evil are loose concepts in this decayed world with dead Gates. You did whatever it took to rise to your height of power, leaving a trail of broken souls, oaths of vengeance and an unholy headcount.\n\nEven with a number of eyes in the shadows and many subordinates too afraid to turn against you, a miscalculation in a fringe system provided the perfect opportunity, and taking control of the better part of your fleet, your second decided to leave you an infamous blip in history.\n\nBegin with a small band of pirate loyalists. Your great potential still lingers in the form of an extra skill point, but you're forever hunted by a 'malevolent spirit' that possesses hostile ships to grant them unusual abilities.""",,7:sotfNGC_haunted:A forgotten warlord haunted by the past. (very hard),
+sotfNGCHauntedOpt,AddNewGameChoices,,"SetTooltip sotfNGC_haunted ""Good and evil are loose concepts in this decayed world with dead Gates. You did whatever it took to rise to your height of power, leaving a trail of broken souls, oaths of vengeance and an unholy headcount.\n\nEven with a number of eyes in the shadows and many subordinates too afraid to turn against you, a miscalculation in a fringe system provided the perfect opportunity, and taking control of the better part of your fleet, your second decided to leave you an infamous blip in history.\n\nBegin with a small band of pirate loyalists. Your great potential still lingers in the form of an extra skill point, but you're forever hunted by a 'malevolent spirit' that possesses hostile ships to grant them unusual abilities.""",,"7:sotfNGC_haunted:A forgotten warlord, haunted by the past. (very hard)",
 sotfNGCHauntedPicked,NewGameOptionSelected,$option == sotfNGC_haunted,"NGCAddShip manticore_pirates_Support
 NGCAddShip hound_d_pirates_Shielded
+NGCAddShip mudskipper2_Hellbore
+SotfNGCCMD hauntedSmallText
+NGCSetDifficulty normal",,0:sotfNGC_hauntedCont:Continue,
+sotfNGCHauntedPickedExt,NewGameOptionSelected,"$option == sotfNGC_haunted
+$extendedMode","NGCAddShip hound_d_pirates_Shielded
 NGCAddShip mudskipper2_Hellbore
 SotfNGCCMD hauntedSmallText
 NGCSetDifficulty normal",,0:sotfNGC_hauntedCont:Continue,

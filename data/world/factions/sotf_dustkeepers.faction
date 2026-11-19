@@ -94,11 +94,13 @@
 		},
 		"hulls":{
 			# so that they don't spawn in normally
-			"sotf_polychronios":0,
-			"sotf_anapausis":0,
 			"sotf_respite":0,
 			"sotf_anamnesis":0,
 			"sotf_repose":0,
+			# rare as non-flagships
+			"sotf_polychronios":0.33,
+			"sotf_anapausis":0.33,
+			"sotf_doxology":0.33,
 		},
 	},
 	# ships the faction gets access to when importing S&W out-of-faction

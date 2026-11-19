@@ -6,7 +6,7 @@
   "fluxCapacitors": 0,
   "fluxVents": 0,
   "quality": 0,
-  "permaMods": ["glitched_sensors", "comp_structure"],
+  "permaMods": [],
   "weaponGroups": [
 	{
       "autofire": false,

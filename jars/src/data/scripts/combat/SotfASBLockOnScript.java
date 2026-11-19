@@ -116,17 +116,14 @@ public class SotfASBLockOnScript extends BaseEveryFrameCombatPlugin {
             int fontMult = 2;
             LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/insignia17LTAaa.fnt");
             TODRAW17 = fontdraw.createText();
-            TODRAW17.setBlendSrc(GL_ONE);
             TODRAW17.setFontSize(17 * fontMult);
 
             fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
             TODRAW14 = fontdraw.createText();
-            TODRAW14.setBlendSrc(GL_ONE);
             TODRAW14.setFontSize(14 * fontMult);
 
             fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
             TODRAW10 = fontdraw.createText();
-            TODRAW10.setBlendSrc(GL_ONE);
             TODRAW10.setFontSize(10 * fontMult);
 
         } catch (FontException ignored) {

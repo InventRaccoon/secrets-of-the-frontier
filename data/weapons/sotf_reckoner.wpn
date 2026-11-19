@@ -29,10 +29,10 @@
   ],
   "turretAngleOffsets": [
     0,
-    5,
-    -5,
-    10,
-    -10
+    0,
+    0,
+    0,
+    0
   ],
   "hardpointOffsets": [
     15.5,
@@ -48,12 +48,12 @@
   ],
   "hardpointAngleOffsets": [
     0,
-    5,
-    -5,
-    10,
-    -10
+    0,
+    0,
+    0,
+    0
   ],
-  "barrelMode": "LINKED",
+  "barrelMode": "ALTERNATING",
   "animationType":"GLOW_AND_FLASH",
   "muzzleFlashSpec":{"length":10.0,
 					   "spread":5.0,

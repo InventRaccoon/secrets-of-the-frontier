@@ -1,3 +1,28 @@
+Version 0.15.3:
+- Survival Mode:
+	- Haunted has no Manticore
+	- Child of the Lake starts only with a Thorn
+	- Banshee's Lost Thread has no Mule
+	- Reduced spawn rate of warminds at Holdout
+	- Pledge has more dmods
+	- Sierra does not negotiate her salary down from 2000 credits a month
+	- Reduced reward for selling Sierra to TT
+	- Can't use SP option during A Memory
+	- Vow is now wracked with many dmods
+	- Nightingale now requires 2SP to recover
+	- Hallowhall's resources are worse and it is polluted
+	- Doubled Courser Protocol cooldown
+	- Increased cost to upgrade a habitat to an outpost to match 75% of survival mode colony cost
+	- Increased cost to restore Hallowhall's astropolis
+- Non-capital Dustkeeper flagship hulls now have identical spawn behaviour between Dustkeepers and Burnouts: they can spawn as non-flagships but only at 33% rarity
+- Hallowhall astropolis now requires 100 domain-grade parts to restore
+- Derelict Contingent skill rescaled to roughly match old values at a new cap of 5 dmods rather than 4 (to match Derelict Operations)
+- Fixed Reckoner Autolance Array having incorrect stats
+- Fixed Doxology missing a non-flagship role for non-Dustkeeper fleets
+- Fixed Cerulean offering some administrative functions such as commissions/unrest (his rank and post have been changed to AI Core and Alpha Core)
+- Fixed incorrect interaction between Leviathan's Bane's cooldown and time multipliers
+- Fixed certain shaders failing to compile on Mac/Linux
+
 Version 0.15.2:
 - New Cult of the Daydream ship: Rose-class interdictor
 	- An elite destroyer specializing in bombarding, controlling and erasing hostiles from afar

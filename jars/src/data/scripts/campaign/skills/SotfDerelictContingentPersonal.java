@@ -87,10 +87,10 @@ public class SotfDerelictContingentPersonal {
 		public void apply(MutableShipStatsAPI stats, ShipAPI.HullSize hullSize, String id, float level) {
 			if (stats.getFleetMember() != null) {
 				FleetMemberAPI member = stats.getFleetMember();
-				if (member.getVariant() != null && !member.getVariant().hasTag(Tags.VARIANT_UNRESTORABLE) && !member.getVariant().hasTag("sotf_dcontingent_unrestorable")) {
-					member.getVariant().addTag("sotf_dcontingent_unrestorable");
-					member.getVariant().addTag(Tags.VARIANT_UNRESTORABLE);
-				}
+//				if (member.getVariant() != null && !member.getVariant().hasTag(Tags.VARIANT_UNRESTORABLE) && !member.getVariant().hasTag("sotf_dcontingent_unrestorable")) {
+//					member.getVariant().addTag("sotf_dcontingent_unrestorable");
+//					member.getVariant().addTag(Tags.VARIANT_UNRESTORABLE);
+//				}
 				if (member.getCaptain() != null && member.getCaptain().isAICore()) {
 					MemoryAPI captainMemory = member.getCaptain().getMemoryWithoutUpdate();
 					if (!captainMemory.contains("$sotf_dcontingent_origmult") && captainMemory.contains(AICoreOfficerPlugin.AUTOMATED_POINTS_MULT)) {
@@ -140,7 +140,7 @@ public class SotfDerelictContingentPersonal {
 					"-" + new DecimalFormat("#.##").format(MULTIPLIER_REDUCTION_PER_DMOD) + "x"
 			);
 
-			info.addPara("\nThis skill prevents the piloted ship's d-mods from being removed by restoration or the Hull Restoration skill.", dhc, 0f);
+			//info.addPara("\nThis skill prevents the piloted ship's d-mods from being removed by restoration or the Hull Restoration skill.", dhc, 0f);
 			info.addPara("*Maximum effect reached at %s d-mods.", 0f, dtc, dhc,
 					"" + (int) MAX_DMODS);
 			info.addPara("**The effective armor value can not go below a percentage of " +

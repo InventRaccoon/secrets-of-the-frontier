@@ -14,6 +14,8 @@
 		"sotf_thorn_Unmaker":5,
 	},
 	"combatSmall":{
+		"sotf_doxology_Strike":10,
+		
 		# Proxy ships aren't used in standard roles by Dustkeepers, since they're non-priority
 		"sotf_warden_aux_Assault":4,
 		"sotf_warden_aux_CS":3,

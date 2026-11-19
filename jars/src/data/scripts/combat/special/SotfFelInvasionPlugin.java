@@ -179,11 +179,9 @@ public class SotfFelInvasionPlugin extends BaseEveryFrameCombatPlugin {
                 try {
                     LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
                     TODRAW14 = fontdraw.createText();
-                    TODRAW14.setBlendSrc(GL_ONE);
 
                     fontdraw = LazyFont.loadFont("graphics/fonts/victor10.fnt");
                     TODRAW10 = fontdraw.createText();
-                    TODRAW10.setBlendSrc(GL_ONE);
 
                 } catch (FontException ignored) {
                 }

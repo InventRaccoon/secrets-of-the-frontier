@@ -74,15 +74,15 @@ public class SotfOfficerJankHandler implements EveryFrameScript {
 
         for (FleetMemberAPI member : playerFleet.getFleetData().getMembersListCopy()) {
             if (member.getVariant().hasTag("sotf_dcontingent_unrestorable")) {
-                if (member.getCaptain() != null) {
-                    if (!member.getCaptain().getStats().hasSkill(SotfIDs.SKILL_DERELICTCONTINGENTP)) {
-                        member.getVariant().removeTag("sotf_dcontingent_unrestorable");
-                        member.getVariant().removeTag(Tags.VARIANT_UNRESTORABLE);
-                    }
-                } else {
+//                if (member.getCaptain() != null) {
+//                    if (!member.getCaptain().getStats().hasSkill(SotfIDs.SKILL_DERELICTCONTINGENTP)) {
+//                        member.getVariant().removeTag("sotf_dcontingent_unrestorable");
+//                        member.getVariant().removeTag(Tags.VARIANT_UNRESTORABLE);
+//                    }
+//                } else {
                     member.getVariant().removeTag("sotf_dcontingent_unrestorable");
                     member.getVariant().removeTag(Tags.VARIANT_UNRESTORABLE);
-                }
+//                }
             }
         }
     }

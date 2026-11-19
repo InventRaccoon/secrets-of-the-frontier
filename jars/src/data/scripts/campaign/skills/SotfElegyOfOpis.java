@@ -157,7 +157,6 @@ public class SotfElegyOfOpis {
                 try {
                     LazyFont fontdraw = LazyFont.loadFont("graphics/fonts/victor14.fnt");
                     TODRAW14 = fontdraw.createText();
-                    TODRAW14.setBlendSrc(GL_ONE);
                     TODRAW14.setFontSize(28);
                 } catch (FontException ignored) {
                 }
