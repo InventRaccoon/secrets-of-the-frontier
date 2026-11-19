@@ -37,7 +37,9 @@ import java.util.*;
 public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyInteractionListener, EveryFrameScript {
 
 	public static float WARMIND_SPAWN_PROB = 1f;
+	public static float WARMIND_SPAWN_PROB_EXTENDED = 0.2f;
 	public static float ADDITIONAL_WARMIND_SPAWN_PROB = 0.5f;
+	public static float ADDITIONAL_WARMIND_SPAWN_PROB_EXTENDED = 0f;
 
 	public static class AvailableOfficer {
 		public PersonAPI person;
@@ -87,8 +89,6 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 		//if (Global.getSector().getFaction(SotfIDs.DUSTKEEPERS).getRelationshipLevel(Factions.PLAYER).isAtBest(RepLevel.FAVORABLE)) return;
 		
 		pruneFromRemovedMarkets();
-		
-		float officerProb = 0.5f;
 
 		CampaignClockAPI clock = Global.getSector().getClock();
 		long mult = clock.getCycle() * 12L + clock.getMonth();
@@ -99,8 +99,15 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 		
 		float dur = getOfficerDuration(random);
 		recentlyChecked.add(market.getId(), dur * 0.5f);
+
+		float spawnProb = WARMIND_SPAWN_PROB;
+		float extraSpawnProb = ADDITIONAL_WARMIND_SPAWN_PROB;
+		if (Misc.isExtended()) {
+			spawnProb = WARMIND_SPAWN_PROB_EXTENDED;
+			extraSpawnProb = ADDITIONAL_WARMIND_SPAWN_PROB_EXTENDED;
+		}
 		
-		if (random.nextFloat() < WARMIND_SPAWN_PROB) {
+		if (random.nextFloat() < spawnProb) {
 			AvailableOfficer officer = createOfficer(market);
 			if (officer != null) {
 				officer.timeRemaining = dur;
@@ -108,7 +115,7 @@ public class SotfDustkeeperOfficerManagerEvent implements CallableEvent, ColonyI
 			}
 		}
 
-		if (random.nextFloat() < ADDITIONAL_WARMIND_SPAWN_PROB) {
+		if (random.nextFloat() < extraSpawnProb) {
 			AvailableOfficer officer = createOfficer(market);
 			if (officer != null) {
 				officer.timeRemaining = dur;

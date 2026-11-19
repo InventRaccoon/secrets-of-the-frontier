@@ -6,6 +6,7 @@ import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.combat.EngagementResultAPI;
 import com.fs.starfarer.api.impl.campaign.CoreReputationPlugin;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
+import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial;
 import com.fs.starfarer.api.util.Misc;
 import data.scripts.campaign.ids.SotfIDs;
@@ -146,6 +147,20 @@ public class SotfWSWinPlugin implements InteractionDialogPlugin {
                 ShipRecoverySpecial.PerShipData copy = (ShipRecoverySpecial.PerShipData) dsep.getData().ship.clone();
                 copy.variant = Global.getSettings().getVariant(copy.variantId).clone();
                 copy.variantId = null;
+
+                if (Misc.isExtended()) {
+                    copy.condition = ShipRecoverySpecial.ShipCondition.PRISTINE; // so it doesn't get any random d-mods
+                    copy.variant.addPermaMod(HullMods.DEGRADED_SHIELDS);
+                    copy.variant.addPermaMod(HullMods.GLITCHED_SENSORS);
+                    copy.variant.addPermaMod(HullMods.DEGRADED_ENGINES);
+                    copy.variant.addPermaMod(HullMods.DEGRADED_DRIVE_FIELD);
+                    copy.variant.addPermaMod(HullMods.FAULTY_GRID);
+                    copy.variant.addPermaMod(HullMods.COMP_STRUCTURE);
+                    copy.variant.addPermaMod(HullMods.ERRATIC_INJECTOR);
+                    copy.variant.addPermaMod(HullMods.INCREASED_MAINTENANCE);
+                    copy.variant.addPermaMod(HullMods.COMP_ARMOR);
+                }
+
                 data.addShip(copy);
                 Misc.setSalvageSpecial(vow, data);
 

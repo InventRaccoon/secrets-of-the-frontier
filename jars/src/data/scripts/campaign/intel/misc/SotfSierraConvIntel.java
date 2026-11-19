@@ -48,6 +48,7 @@ public class SotfSierraConvIntel extends BaseIntelPlugin implements FleetEventLi
 
 	// monthly "maintenance" cost for Sierra in credits
 	private static final float MAINTENANCE_COST = 50f;
+	private static final float MAINTENANCE_COST_EXTENDED = 2000f;
 	private float randThoughtCounter = 0f;
 	private final float randThoughtTime = 30f;
 	//private static PersonAPI sierra = SotfPeople.getPerson(SotfPeople.SIERRA);
@@ -290,6 +291,9 @@ public class SotfSierraConvIntel extends BaseIntelPlugin implements FleetEventLi
 
 		MonthlyReport.FDNode officersNode = report.getNode(MonthlyReport.FLEET, MonthlyReport.OFFICERS);
 		float monthly = MAINTENANCE_COST;
+		if (Misc.isExtended()) {
+			monthly = MAINTENANCE_COST_EXTENDED;
+		}
 		MonthlyReport.FDNode costNode = report.getNode(officersNode, "sotf_node_sierra");
 
 		// Sierra will waive her maintenance fee if you're ridiculously poor
@@ -318,8 +322,10 @@ public class SotfSierraConvIntel extends BaseIntelPlugin implements FleetEventLi
 					if (expanded) {
 						tooltip.addPara("Spending includes exotic flora, media subscriptions, updated atmospheric " +
 								"simulations and the ship \"party fund\".", Misc.getGrayColor(),10f);
-						tooltip.addPara("\"Two thousand credits per month? I'm hardly going to be saving for a " +
-								"rustic homestead in the Ailmar wilds, knock that down to like... fifty?\"", SotfMisc.getSierraColor().darker(), 10f);
+						if (!Misc.isExtended()) {
+							tooltip.addPara("\"Two thousand credits per month? I'm hardly going to be saving for a " +
+									"rustic homestead in the Ailmar wilds, knock that down to like... fifty?\"", SotfMisc.getSierraColor().darker(), 10f);
+						}
 					}
 				}
 			};

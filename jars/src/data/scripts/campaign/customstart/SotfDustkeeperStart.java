@@ -61,8 +61,12 @@ public class SotfDustkeeperStart extends CustomStart {
         CampaignFleetAPI tempFleet = FleetFactoryV3.createEmptyFleet(
                 PlayerFactionStore.getPlayerFactionIdNGC(), FleetTypes.PATROL_SMALL, null);
 
-        addFleetMember("mule_Standard", dialog, data, tempFleet, "flagship");
-        addFleetMember("wayfarer_Starting", dialog, data, tempFleet, "none");
+        if (!Misc.isExtended()) {
+            addFleetMember("mule_Standard", dialog, data, tempFleet, "flagship");
+            addFleetMember("wayfarer_Starting", dialog, data, tempFleet, "none");
+        } else {
+            addFleetMember("wayfarer_Starting", dialog, data, tempFleet, "flagship");
+        }
         addFleetMember("shepherd_Starting", dialog, data, tempFleet, "none");
         addFleetMember("dram_Light", dialog, data, tempFleet, "none");
         //addFleetMember("sotf_glimmer_Nightingale", dialog, data, tempFleet, "nightingale");

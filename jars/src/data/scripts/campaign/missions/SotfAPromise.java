@@ -5,15 +5,18 @@ import com.fs.starfarer.api.campaign.*;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
+import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
+import com.fs.starfarer.api.impl.campaign.ids.HullMods;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial.PerShipData;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial.ShipCondition;
+import com.fs.starfarer.api.loading.VariantSource;
 import com.fs.starfarer.api.ui.SectorMapAPI;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
@@ -109,7 +112,19 @@ public class SotfAPromise extends HubMissionWithSearch {
         spawnShipGraveyard(Factions.INDEPENDENT, 4, 4, omicron_flair_locdata);
         spawnShipGraveyard(SotfIDs.DUSTKEEPERS, 3,3, omicron_flair_locdata);
 
-        voidwretch = spawnDerelict(new DerelictShipEntityPlugin.DerelictShipData(new PerShipData(Global.getSettings().getVariant("sotf_pledge_Base"), ShipCondition.PRISTINE, "Voidwretch", SotfIDs.SIERRA_FACTION, 0f), false), new LocData(EntityLocationType.ORBITING_PARAM, courser, system2));
+        ShipVariantAPI pledgeVariant = Global.getSettings().getVariant("sotf_pledge_Base").clone();
+        pledgeVariant.setSource(VariantSource.REFIT);
+        if (Misc.isExtended()) {
+            pledgeVariant.addPermaMod(HullMods.GLITCHED_SENSORS);
+            pledgeVariant.addPermaMod(HullMods.DEGRADED_ENGINES);
+            pledgeVariant.addPermaMod(HullMods.COMP_STRUCTURE);
+            pledgeVariant.addPermaMod(HullMods.INCREASED_MAINTENANCE);
+            pledgeVariant.addPermaMod(HullMods.COMP_ARMOR);
+        } else {
+            pledgeVariant.addPermaMod(HullMods.GLITCHED_SENSORS);
+            pledgeVariant.addPermaMod(HullMods.COMP_STRUCTURE);
+        }
+        voidwretch = spawnDerelict(new DerelictShipEntityPlugin.DerelictShipData(new PerShipData(pledgeVariant, ShipCondition.PRISTINE, "Voidwretch", SotfIDs.SIERRA_FACTION, 0f), false), new LocData(EntityLocationType.ORBITING_PARAM, courser, system2));
         voidwretch.getMemoryWithoutUpdate().set("$apromise_pledge", true);
         //setEntityMissionRef(dreg, "$apromise_ref");
         makeImportant(voidwretch, "$apromise", Stage.RESTORE_SIERRA);

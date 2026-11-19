@@ -134,6 +134,9 @@ public class SotfPrintStationCost extends BaseCommandPlugin {
 	}
 
 	public int [] getQuantities() {
+		if (Misc.isExtended()) {
+			return new int[] {750, 150, 375};
+		}
 		return new int[] {750, 75, 150};
 	}
 

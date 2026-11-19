@@ -65,12 +65,16 @@ public class SotfHoldoutDemandNegator implements EconomyUpdateListener, EveryFra
 				desc = "Internal fuel production";
 			}
 			com.getAvailableStat().modifyFlat(modId, supply, desc);
-			if (commodityId.equals(Commodities.SUPPLIES)) {
-				com.getPlayerSupplyPriceMod().modifyMult("sotf_holdout_pricehike", 1.45f);
-			} else {
-				com.getPlayerSupplyPriceMod().modifyMult("sotf_holdout_pricehike", 1.05f);
+			float hikeMultOffset = 0f;
+			if (Misc.isExtended()) {
+				hikeMultOffset = 0.1f;
 			}
-			com.getPlayerDemandPriceMod().modifyMult("sotf_holdout_sellreduction", 0.95f);
+			if (commodityId.equals(Commodities.SUPPLIES)) {
+				com.getPlayerSupplyPriceMod().modifyMult("sotf_holdout_pricehike", 1.45f + hikeMultOffset);
+			} else {
+				com.getPlayerSupplyPriceMod().modifyMult("sotf_holdout_pricehike", 1.05f + hikeMultOffset);
+			}
+			com.getPlayerDemandPriceMod().modifyMult("sotf_holdout_sellreduction", 0.95f + (hikeMultOffset * -1f));
 		}
 	}
 

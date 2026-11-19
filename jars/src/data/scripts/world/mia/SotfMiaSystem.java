@@ -101,13 +101,25 @@ public class SotfMiaSystem {
 		if (hallowhallType.equals(Planets.PLANET_TERRAN_ECCENTRIC)) {
 			planet2.getMarket().addCondition(Conditions.TECTONIC_ACTIVITY);
 			planet2.getMarket().addCondition(Conditions.POOR_LIGHT);
-			planet2.getMarket().addCondition(Conditions.FARMLAND_RICH);
-			planet2.getMarket().addCondition(Conditions.ORE_MODERATE);
 			planet2.getMarket().addCondition(Conditions.VOLATILES_TRACE);
-			planet2.getMarket().addCondition(Conditions.ORGANICS_COMMON);
+			if (Misc.isExtended()) {
+				planet2.getMarket().addCondition(Conditions.FARMLAND_ADEQUATE);
+				planet2.getMarket().addCondition(Conditions.ORE_SPARSE);
+				planet2.getMarket().addCondition(Conditions.ORGANICS_TRACE);
+				planet2.getMarket().addCondition(Conditions.POLLUTION);
+			} else {
+				planet2.getMarket().addCondition(Conditions.FARMLAND_RICH);
+				planet2.getMarket().addCondition(Conditions.ORE_MODERATE);
+				planet2.getMarket().addCondition(Conditions.ORGANICS_COMMON);
+			}
 		} else if (hallowhallType.equals(Planets.PLANET_WATER)) {
 			planet2.getMarket().addCondition(Conditions.WATER_SURFACE);
-			planet2.getMarket().addCondition(Conditions.ORGANICS_PLENTIFUL);
+			if (Misc.isExtended()) {
+				planet2.getMarket().addCondition(Conditions.ORGANICS_COMMON);
+				planet2.getMarket().addCondition(Conditions.POLLUTION);
+			} else {
+				planet2.getMarket().addCondition(Conditions.ORGANICS_PLENTIFUL);
+			}
 		}
 
 		SectorEntityToken astropolis = system.addCustomEntity("sotf_hallowhall_astropolis",

@@ -387,6 +387,13 @@ public class SotfCourserProtocolAbility extends BaseDurationAbility {
 		return true;
 	}
 
+	public float getCooldownDays() {
+		if (Misc.isExtended()) {
+			return spec.getDeactivationCooldown() * 2f;
+		}
+		return spec.getDeactivationCooldown();
+	}
+
 }
 
 

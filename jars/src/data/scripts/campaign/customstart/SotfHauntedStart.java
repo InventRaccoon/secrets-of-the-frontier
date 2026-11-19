@@ -65,8 +65,12 @@ public class SotfHauntedStart extends CustomStart {
         CampaignFleetAPI tempFleet = FleetFactoryV3.createEmptyFleet(
                 PlayerFactionStore.getPlayerFactionIdNGC(), FleetTypes.PATROL_SMALL, null);
 
-        addFleetMember("manticore_pirates_Support", dialog, data, tempFleet, "flagship");
-        addFleetMember("hound_d_pirates_Shielded", dialog, data, tempFleet, "none");
+        if (!Misc.isExtended()) {
+            addFleetMember("manticore_pirates_Support", dialog, data, tempFleet, "flagship");
+            addFleetMember("hound_d_pirates_Shielded", dialog, data, tempFleet, "none");
+        } else {
+            addFleetMember("hound_d_pirates_Shielded", dialog, data, tempFleet, "flagship");
+        }
         addFleetMember("mudskipper2_Hellbore", dialog, data, tempFleet, "bait");
 
         MutableCharacterStatsAPI stats = data.getPerson().getStats();

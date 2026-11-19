@@ -139,7 +139,8 @@ public class SotfLeviathansBane {
             if (target != null) {
                 cdMult = 2f;
             }
-            internalCDTimer -= amount * Global.getCombatEngine().getTimeMult().getModifiedValue() * cdMult;
+            float timeMult = (Global.getCombatEngine().getTimeMult().getModifiedValue() * ship.getMutableStats().getTimeMult().getModifiedValue());
+            internalCDTimer -= amount * timeMult * cdMult;
             if (internalCDTimer < 0f) {
                 internalCDTimer = 0;
             }

@@ -119,11 +119,14 @@ public class SotfHallowAstropolisCMD extends BaseCommandPlugin {
 	}
 	
 	public String [] getResources() {
-		return new String[] {Commodities.CREW, Commodities.HEAVY_MACHINERY, Commodities.SUPPLIES};
+		return new String[] {Commodities.CREW, Commodities.HEAVY_MACHINERY, Commodities.SUPPLIES, Commodities.PARTS};
 	}
 
 	public int [] getQuantities() {
-		return new int[] {1000, 400, 300};
+		if (Misc.isExtended()) {
+			return new int[] {1000, 500, 450, 200};
+		}
+		return new int[] {1000, 400, 300, 100};
 	}
 
 	public void build(String factionId) {

@@ -28,13 +28,13 @@ import java.text.DecimalFormat;
 
 public class SotfDerelictContingentPersonal {
 
-	public static float AVOID_DAMAGE_CHANCE_PER_DMOD = 10f; // nerfed from 15f of old vanilla version
+	public static float AVOID_DAMAGE_CHANCE_PER_DMOD = 8f; // nerfed from 15f of old vanilla version
 	public static float AVOID_DAMAGE_DAMAGE_MULT = 0.1f;
 
-	public static float SHIELDLESS_ARMOR_BONUS_PER_DMOD = 0.04f; // nerfed from 0.05f
-	public static float MAX_DMODS = 4; // 36% reduction to hull damage taken, on average
+	public static float SHIELDLESS_ARMOR_BONUS_PER_DMOD = 0.03f; // nerfed from 0.05f
+	public static float MAX_DMODS = 5; // 36% reduction to hull damage taken, on average
 
-	public static float MULTIPLIER_REDUCTION_PER_DMOD = 0.25f;
+	public static float MULTIPLIER_REDUCTION_PER_DMOD = 0.2f;
 
 	public static class Level0 implements DescriptionSkillEffect {
 		public String getString() {
@@ -132,12 +132,12 @@ public class SotfDerelictContingentPersonal {
 					"" + (int)Math.round((1f - AVOID_DAMAGE_DAMAGE_MULT) * 100f) + "%"
 			);
 
-			info.addPara("%s minimum armor value** for damage reduction per d-mod for unshielded ships", 0f, hc, hc,
-					"+" + (int)Math.round(SHIELDLESS_ARMOR_BONUS_PER_DMOD * 100f) + "%"
+			info.addPara("%s reduction per d-mod* to captain's automated ship points multiplier", 0f, hc, hc,
+					"-" + new DecimalFormat("#.##").format(MULTIPLIER_REDUCTION_PER_DMOD) + "x"
 			);
 
-			info.addPara("%s reduction per d-mod to captain's automated ship points multiplier", 0f, hc, hc,
-					"-" + new DecimalFormat("#.##").format(MULTIPLIER_REDUCTION_PER_DMOD) + "x"
+			info.addPara("%s minimum armor value** for damage reduction per d-mod for unshielded ships", 0f, hc, hc,
+					"+" + (int)Math.round(SHIELDLESS_ARMOR_BONUS_PER_DMOD * 100f) + "%"
 			);
 
 			//info.addPara("\nThis skill prevents the piloted ship's d-mods from being removed by restoration or the Hull Restoration skill.", dhc, 0f);

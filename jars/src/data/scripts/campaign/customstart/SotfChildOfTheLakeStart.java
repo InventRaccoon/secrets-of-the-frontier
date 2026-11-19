@@ -72,8 +72,10 @@ public class SotfChildOfTheLakeStart extends CustomStart {
                 PlayerFactionStore.getPlayerFactionIdNGC(), FleetTypes.PATROL_SMALL, null);
 
         addFleetMember("sotf_thorn_Gatekeeper", dialog, data, tempFleet, "flagship");
-        addFleetMember("wolf_Starting", dialog, data, tempFleet, "none");
-        addFleetMember("dram_Light", dialog, data, tempFleet, "none");
+        if (!Misc.isExtended()) {
+            addFleetMember("wolf_Starting", dialog, data, tempFleet, "none");
+            addFleetMember("dram_Light", dialog, data, tempFleet, "none");
+        }
 
         data.getStartingCargo().getCredits().add(30000);
         AddRemoveCommodity.addCreditsGainText(30000, dialog.getTextPanel());

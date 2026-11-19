@@ -104,10 +104,10 @@ public class SotfPolarizedNanorepair {
 					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_RATE_CAPITAL * 100f) + "%"
 			);
 			info.addPara("Maximum repair rate at or less than %s/%s/%s/%s armor value, based on hull size", 0f, hc, hc,
-					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_FRIGATE * 100f) + "%",
-					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_DESTROYER * 100f) + "%",
-					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CRUISER * 100f) + "%",
-					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CAPITAL * 100f) + "%"
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_FRIGATE),
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_DESTROYER * 100f),
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CRUISER * 100f),
+					Misc.getRoundedValueMaxOneAfterDecimal(ARMOR_REGEN_SOFTCAP_CAPITAL * 100f)
 			);
 		}
 	}

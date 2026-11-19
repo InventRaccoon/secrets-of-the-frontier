@@ -422,8 +422,8 @@ public class SotfPeople {
             person.setId(CERULEAN);
             person.setAICoreId(SotfIDs.CERULEAN_CORE);
             person.setGender(Gender.MALE);
-            person.setRankId(Ranks.UNKNOWN);
-            person.setPostId(Ranks.POST_ADMINISTRATOR);
+            person.setRankId(Ranks.AI_CORE);
+            person.setPostId(Ranks.POST_ALPHA_CORE);
             person.getName().setFirst("Cerulean");
             person.getName().setLast("Faithful");
             person.setPortraitSprite(Global.getSettings().getSpriteName("sotf_characters", "cerulean"));
@@ -723,6 +723,10 @@ public class SotfPeople {
 
         PersonAPI wendigo = getPerson(WENDIGO);
         SotfMisc.giveDustkeeperName(wendigo, "Wintry", "Infix", "Wendigo");
+
+        PersonAPI cerulean = getPerson(CERULEAN);
+        cerulean.setRankId(Ranks.AI_CORE);
+        cerulean.setPostId(Ranks.POST_ALPHA_CORE);
 
         PersonAPI fel = getPerson(FEL);
         fel.setFaction(SotfIDs.DREAMING_GESTALT);
