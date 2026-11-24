@@ -15,6 +15,7 @@ public class SotfIDs {
 
 	public static final String SIERRA_CORE = "sotf_sierracore";
 	public static final String SIERRA_CORE_OFFICER = "sotf_sierracore_officer";
+	public static final String SIERRA_CORE_OFFICER_IMPRINT = "sotf_sierracore_officer_imprint";
 	public static final String SIERRA_FACTION = "sotf_sierra_faction";
 
 	public static final String PING_SIERRA = "sotf_ping_sierra";

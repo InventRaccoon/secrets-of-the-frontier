@@ -11,9 +11,11 @@ import com.fs.starfarer.api.fleet.FleetMemberType;
 import com.fs.starfarer.api.impl.campaign.DerelictShipEntityPlugin;
 import com.fs.starfarer.api.impl.campaign.ids.Factions;
 import com.fs.starfarer.api.impl.campaign.ids.HullMods;
+import com.fs.starfarer.api.impl.campaign.ids.MemFlags;
 import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.impl.campaign.missions.hub.HubMissionWithSearch;
 import com.fs.starfarer.api.impl.campaign.missions.hub.ReqMode;
+import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.SalvageDefenderInteraction;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial.PerShipData;
 import com.fs.starfarer.api.impl.campaign.rulecmd.salvage.special.ShipRecoverySpecial.ShipCondition;
 import com.fs.starfarer.api.loading.VariantSource;
@@ -131,6 +133,9 @@ public class SotfAPromise extends HubMissionWithSearch {
 
         station = spawnEntity(SotfIDs.APROMISE_STATION, new LocData(EntityLocationType.ORBITING_PLANET, null, system2));
         station.getMemoryWithoutUpdate().set("$apromise_anom", true);
+        if (Misc.isExtended()) {
+            station.getMemoryWithoutUpdate().set(MemFlags.SALVAGE_DEFENDER_OVERRIDE, SotfIDs.APROMISE_STATION + "_ext");
+        }
         //setEntityMissionRef(station, "$apromise_ref");
         makeImportant(station, "$apromise", Stage.RESCUE_SIERRA);
 

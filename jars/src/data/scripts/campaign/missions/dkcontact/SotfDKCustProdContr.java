@@ -55,8 +55,8 @@ public class SotfDKCustProdContr extends HubMissionWithBarEvent {
 
 	public static float PROD_DAYS = 60f;
 	
-	public static float MIN_CAPACITY = 50000;
-	public static float MAX_CAPACITY = 500000;
+	public static float MIN_CAPACITY = 75000;
+	public static float MAX_CAPACITY = 750000;
 	
 	public static float MAX_PROD_CAPACITY_AT_SHIP_UNITS = 10;
 	public static float MAX_PROD_CAPACITY_MULT = 0.35f;

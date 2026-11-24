@@ -626,6 +626,7 @@ public class SotfSierrasConcord extends BaseHullMod
         imprint.setPortraitSprite("graphics/portraits/characters/sierra/sotf_sierra_imprint.png");
         imprint.getMemoryWithoutUpdate().set("$chatterChar", "sotf_sierra");
         imprint.setFaction(SotfIDs.SIERRA_FACTION);
+        //imprint.setAICoreId(SotfIDs.SIERRA_CORE_OFFICER_IMPRINT);
         imprint.setRankId(SotfIDs.RANK_SIERRA);
         imprint.setPostId(SotfIDs.POST_SIERRA);
 

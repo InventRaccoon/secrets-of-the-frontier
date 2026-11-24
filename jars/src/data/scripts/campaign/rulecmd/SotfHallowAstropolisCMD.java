@@ -109,7 +109,7 @@ public class SotfHallowAstropolisCMD extends BaseCommandPlugin {
 		text.setHighlightColorsInLastPara(Misc.getHighlightColor(), Misc.getHighlightColor());
 		text.addPara("The astropolis' expansive modular structure provides ample room for the colony to grow.");
 		
-		Misc.showCost(text, null, null, getResources(), getQuantities());
+		Misc.showCost(text, "Resources: consumed (available)", true, 98, null, null, getResources(), getQuantities(), null);
 		
 		if (canBuild(type)) {
 			text.addPara("Proceed with restoration?");

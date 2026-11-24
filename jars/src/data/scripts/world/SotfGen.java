@@ -477,9 +477,10 @@ public class SotfGen implements SectorGeneratorPlugin
         StarSystemAPI system3 = systems.pick();
         if (system3 == null) return;
 
-        SotfMisc.addStoryDerelictWithName(system, system.getCenter(), "sotf_anapausis_Strike", ShipRecoverySpecial.ShipCondition.AVERAGE, 3000f, true, "ODS Please Hold");
-        SotfMisc.addStoryDerelictWithName(system2, system2.getCenter(), "sotf_polychronios_Hunter", ShipRecoverySpecial.ShipCondition.AVERAGE, 3500f, true, "ODS Forever More");
-        SotfMisc.addStoryDerelictWithName(system3, system3.getCenter(), "sotf_doxology_Strike", ShipRecoverySpecial.ShipCondition.AVERAGE, 3500f, true, "ODS Moment of Glory");
+        boolean recoverable = !Misc.isExtended();
+        SotfMisc.addStoryDerelictWithName(system, system.getCenter(), "sotf_anapausis_Strike", ShipRecoverySpecial.ShipCondition.WRECKED, 3000f, recoverable, "ODS Please Hold");
+        SotfMisc.addStoryDerelictWithName(system2, system2.getCenter(), "sotf_polychronios_Hunter", ShipRecoverySpecial.ShipCondition.WRECKED, 3500f, recoverable, "ODS Forever More");
+        SotfMisc.addStoryDerelictWithName(system3, system3.getCenter(), "sotf_doxology_Strike", ShipRecoverySpecial.ShipCondition.WRECKED, 4000f, recoverable, "ODS Moment of Glory");
 
         sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS, true);
         sector_mem.set(SotfIDs.MEM_SPAWNED_DKFLAGDERELICTS + "_sys1", system);

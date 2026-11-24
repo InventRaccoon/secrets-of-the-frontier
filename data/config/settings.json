@@ -85,6 +85,8 @@
 		"sotf_convinceBarrow":0,
 		# trick Seraph during her cargo scan dialogue
 		"sotfHHproxytOff_invokeBanshee":1,
+		# fast talk Seraph during her cargo scan dialogue w PK
+		"sotfHHproxytOff_PKfasttalk":1,
 		
 		# Dustkeeper missions
 		# Data retrieval, do raid without risk

@@ -162,6 +162,7 @@ public class SotfIntrusionProtocolScript extends BaseShipSystemScript {
 		effectiveness *= 1.35f;
 		effectiveness = Math.max(effectiveness, 0.75f);
 
+		// Hack weapons
 		List<WeaponAPI> hackable = SotfCyberwarfare.getHackableWeapons(target);
 		WeightedRandomPicker weaponPicker = new WeightedRandomPicker<WeaponAPI>();
 		for (WeaponAPI weapon : hackable) {
@@ -187,6 +188,7 @@ public class SotfIntrusionProtocolScript extends BaseShipSystemScript {
 			targetWeapon.disable(false);
 		}
 
+		// Hack engines
 		ShipEngineControllerAPI ec = target.getEngineController();
 		float limit = ec.getFlameoutFraction() * 0.75f * effectiveness;
 
@@ -224,6 +226,7 @@ public class SotfIntrusionProtocolScript extends BaseShipSystemScript {
 		}
 		ec.computeEffectiveStats(target == Global.getCombatEngine().getPlayerShip());
 
+		// Overload
 		if (!target.getFluxTracker().isOverloadedOrVenting()) {
 			target.getFluxTracker().beginOverloadWithTotalBaseDuration(DISRUPTION_DUR);
 
@@ -234,6 +237,19 @@ public class SotfIntrusionProtocolScript extends BaseShipSystemScript {
 			}
 		}
 
+		// Disable system
+		if (target.getSystem() != null) {
+			if (target.getSystem().isActive()) {
+				target.getSystem().deactivate();
+			}
+			// remove active system charges
+			if (target.getSystem().getAmmoPerSecond() > 0f && target.getSystem().getAmmoPerSecond() > 0f) {
+				target.getSystem().setAmmo(0);
+			}
+			target.getSystem().setCooldownRemaining(6f * effectiveness);
+		}
+
+		// VFX
 		float numBeams = VFX_BEAMS.get(target.getHullSize());
 		if (effectiveness <= 0.65f) {
 			numBeams--;
@@ -256,14 +272,6 @@ public class SotfIntrusionProtocolScript extends BaseShipSystemScript {
 					hackColor
 			);
 		}
-		if (target.getSystem().isActive()) {
-			target.getSystem().deactivate();
-		}
-		// remove active system charges
-		if (target.getSystem().getAmmoPerSecond() > 0f && target.getSystem().getAmmoPerSecond() > 0f) {
-			target.getSystem().setAmmo(0);
-		}
-		target.getSystem().setCooldownRemaining(6f * effectiveness);
 
 		target.getFluxTracker().showOverloadFloatyIfNeeded("Intrusion Protocol!", hackColor, 4f, true);
 	}

@@ -1,6 +1,7 @@
 name,id,demand class,base price,export value,price variability,utility,origin,tags,stack size,cargo space,icon,sound id,sound id drop,order,economyTier,econUnit,iconWidthMult,plugin,desc
 # only used for her officer,,,,,,,,,,,,,,,,,,,
 Sierra Core,sotf_sierracore_officer,sotf_sierracore_officer,,,,1,,"nonecon, no_loss_from_combat, no_drop, hide_in_codex",1000,1,graphics/icons/cargo/sotf_sierracore.png,ui_chip_pickup,ui_alpha_core_drop,41,,,1,,
+Sierra Imprint Core,sotf_sierracore_officer_imprint,sotf_sierracore_officer_imprint,,,,1,,"nonecon, no_loss_from_combat, no_drop, hide_in_codex",1000,1,graphics/icons/cargo/sotf_sierracore.png,ui_chip_pickup,ui_alpha_core_drop,41,,,1,,
 # during bounty,,,,,,,,,,,,,,,,,,,
 Project SIREN,sotf_projectsiren_core,sotf_projectsiren_core,,,,1,,"nonecon, no_loss_from_combat, no_drop, hide_in_codex",1000,1,graphics/icons/cargo/sotf_sierracore.png,ui_chip_pickup,ui_alpha_core_drop,41,,,1,,
 ,,,,,,,,,,,,,,,,,,,

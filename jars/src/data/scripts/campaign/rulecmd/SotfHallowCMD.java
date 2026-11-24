@@ -84,6 +84,8 @@ public class SotfHallowCMD extends BaseCommandPlugin {
 
 				text.setFontInsignia();
 				return true;
+			case "noShieldedCargo":
+				return Misc.getShieldedCargoFraction(playerFleet) < 0.001f;
 			case "noMoretOff":
 				StarSystemAPI system = playerFleet.getStarSystem();
 				if (system == null) system = Global.getSector().getStarSystem("sotf_mia");

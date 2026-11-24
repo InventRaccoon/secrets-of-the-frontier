@@ -34,7 +34,7 @@ public class SotfOfficerJankHandler implements EveryFrameScript {
                 if (member.getHullSpec().hasTag("sotf_add_concord") && !member.getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD)) {
                     member.getVariant().addPermaMod(SotfIDs.SIERRAS_CONCORD);
                 }
-                if (member.getCaptain() == SotfPeople.getPerson(SotfPeople.SIERRA) && !member.getVariant().getHullMods().contains(SotfIDs.SIERRAS_CONCORD)) {
+                if ((member.getCaptain() == SotfPeople.getPerson(SotfPeople.SIERRA) || member.getCaptain().hasTag("sierra_imprint")) && !member.getVariant().getHullMods().contains(SotfIDs.SIERRAS_CONCORD)) {
                     member.setCaptain(null);
                 }
                 if (member.getVariant().hasHullMod(SotfIDs.SIERRAS_CONCORD) && !member.getVariant().hasTag(SotfIDs.TAG_INERT)) {

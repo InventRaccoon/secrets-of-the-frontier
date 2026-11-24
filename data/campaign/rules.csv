@@ -2919,7 +2919,7 @@ $entity.relativeStrength < 0",,,"sotfHHproxytOff_orElseWeaker:""With this pile o
 sotfHHproxytOffRefuseOpt,sotfHHproxytOffSeraphOpts,,,,cutCommLinkNoText:Cut the comm link and power up weapons,
 sotfHHproxytOffNightingaleOpt,sotfHHproxytOffSeraphOpts,SotfHasOfficer sotf_nightingale,,,sotfHHproxytOff_Nightingale:Have Echo-Nightingale join the comms,
 sotfHHproxytOffBarrowOpt,sotfHHproxytOffSeraphOpts,SotfHasOfficer sotf_barrow,,,sotfHHproxytOff_Barrow:Have Annex-Barrow join the comms,
-sotfHHproxytOffBansheeOpt,sotfHHproxytOffSeraphOpts,$player.sotf_heardOfBanshee,"SetStoryOption sotfHHproxytOff_invokeBanshee 1 sotfHHproxytOff_invokeBanshee ui_char_spent_story_point ""Talked your way out of Annex-Seraph's cargo scan""",,"sotfHHproxytOff_Banshee:""Banshee sent me to help you."" (lie)",
+sotfHHproxytOffBansheeOpt,sotfHHproxytOffSeraphOpts,$player.sotf_heardOfBanshee,"SetStoryOption sotfHHproxytOff_Banshee 1 sotfHHproxytOff_invokeBanshee ui_char_spent_story_point ""Talked your way out of Annex-Seraph's cargo scan""",,"sotfHHproxytOff_Banshee:""Banshee sent me to help you."" (lie)",
 ,,,,,,
 sotfHHproxytOffYourBeacon,DialogOptionSelected,$option == sotfHHproxytOff_yourBeacon,"$didBeacon = true 0
 FireAll sotfHHproxytOffSeraphOpts","""Yes,"" she hisses. ""I am. Now I repeat: turn your transponder on and submit to a cargo scan.""",,
@@ -2984,15 +2984,38 @@ sotfHHproxytOffBansheeCont,DialogOptionSelected,$option == sotfHHproxytOff_Bansh
 ,,,,,,
 sotfHHproxytOffScanContinue,DialogOptionSelected,$option == sotfHHproxytOff_doScan,"AddText ""After a brief wait, the Dustkeeper fleet transmits the scan results.""
 SotfHallowCMD cargoScanRigged
-AdjustRepActivePerson TRANSPONDER_OFF
 FireBest sotfHHproxytOffPostScan",,,
-sotfHHproxytOffPostScan,sotfHHproxytOffPostScan,,FireAll sotfHHproxytOffSeraph2Opts,"""Well, well, well,"" the AI laughs. ""Did you really think you could smuggle a planetcracker into Mia's Star under my watch? You bringers of ruin are all the same, your tricks unveiled by my honed sight and unbreaking will.""",,
+sotfHHproxytOffPostScan,sotfHHproxytOffPostScan,,"AdjustRepActivePerson TRANSPONDER_OFF
+FireAll sotfHHproxytOffSeraph2Opts","""Well, well, well,"" the AI laughs. ""Did you really think you could smuggle a planetcracker into Mia's Star under my watch? You bringers of ruin are all the same, your tricks unveiled by my honed sight and unbreaking will.""",,
+sotfHHproxytOffPostScanPK,sotfHHproxytOffPostScan,"PlayerHasCargo planetkiller
+SotfHallowCMD noShieldedCargo","AdjustRepActivePerson -25
+SetStoryOption sotfHHproxytOff2PK_sp 1 sotfHHproxytOff_PKfasttalk ui_char_spent_story_point ""Fast-talked Seraph into letting you keep the planetkiller device""","""You..."" the AI begins, a sharp scratching from the audio feed accompanying the surprise in her voice. ""Actually have one.""
+
+Her voice lowers as targeting lasers across the other fleet begin acquiring your $shipOrFleet. ""You have one minute to indicate preparations for a cargo transfer before I open fire,"" she snarls.","sotfHHproxytOff2PK_sp:Fast-talk her into letting you keep it for now
+sotfHHproxytOff2PK_givePK:Order the planetkiller transferred - and quickly
+cutCommLinkNoText:Cut the comm link and power up weapons",
+sotfHHproxytOff2PKSP,DialogOptionSelected,$option == sotfHHproxytOff2PK_sp,MakeOtherFleetPreventDisengage hassle false,"You begin to spin an elaborate tale of your standoff against AI-controlled Fourteenth Battlegroup hulls protecting the secret cache containing the planetkiller device, and how you liberated it from those clearly in no shape to keep it safe. The combat logs don't lie.
+
+You have, of course, appeared to find much worthier keepers here - and having heard rumours of stalwart AI defenders of humanity taking roost in Mia's Star, have come to deliver the planetkiller into their safe manipulators of your own will.
+
+Annex-Seraph seems to consider it for a moment, jittering harshly.",sotfHHproxytOff2PK_sp2:Continue,
+sotfHHproxytOff2PKSP2,DialogOptionSelected,$option == sotfHHproxytOff2PK_sp2,"SetTextHighlightColors highlight
+SetTextHighlights ""forgeship orbiting Gor's Little Lie"" ""Hallowhall""
+AdjustRepActivePerson 15","There's a simulated sigh. ""A far-fetched tale, no doubt embelished, and one you did not seem so keen to share freely,"" she critiques. ""Nevertheless your proof appears genuine.""
+
+""Go to the forgeship orbiting Gor's Little Lie, the gas giant,"" she instructs. ""Echo-Inadvertent can arrange for its safe transfer and authorize a reward. If you wish to be of further service,"" - 'service' has an air of sarcasm to it - ""Find me in the orbit of the world of Hallowhall.""","sotfHHproxytOff_whyScan:""What's with the security check?""
+cutCommLinkPolite:Cut the comm link",
+sotfHHproxytOff2PKgive,DialogOptionSelected,$option == sotfHHproxytOff2PK_givePK,"MakeOtherFleetPreventDisengage hassle false
+AdjustRepActivePerson 15
+AddRemoveAnyItem SPECIAL planetkiller -1
+$player.turnedInPlanetkiller = true","You order that cargo drones be dispatched to prepare the planetkiller device for transfer to the opposing fleet. Seraph's targeting lasers snap off a few seconds before her deadline, and the transfer completes without further incident. Without intention to employ the device, she accepts your excuse of its activation codes being missing.
+
+""You are free to go,"" she instructs. ""And I implore you to cause no more trouble lest the next time we meet involve your internals losing their distinction as such.""","sotfHHproxytOff_whyScan:""What's with the security check?""
+cutCommLink:Cut the comm link",
 ,,,,,,
 sotfHHproxytOff2UhWhatOpt,sotfHHproxytOffSeraph2Opts,,,,"sotfHHproxytOff2_UhWhat:""I... don't have a planetkiller?""",
 sotfHHproxytOff2IsThisJokeOpt,sotfHHproxytOffSeraph2Opts,,,,"sotfHHproxytOff2_IsThisJoke:""Is this a joke?""",
 sotfHHproxytOff2IWishOpt,sotfHHproxytOffSeraph2Opts,,,,"sotfHHproxytOff2_IWish:""Hah! I wish.""",
-sotfHHproxytOff2GivePK,sotfHHproxytOffSeraph2Opts,"PlayerHasCargo planetkiller
-$sotf_disabled",,,"sotfHHproxytOff2_givePk:""I give you this planetkiller freely.""",
 ,,,,,,
 sotfHHproxytOff2UhWhat,DialogOptionSelected,$option == sotfHHproxytOff2_UhWhat,FireBest sotfHHproxytOffDoSecondScan,"She growls. ""Don't try playing stupid, Pather scum. I've caught you red-handed, and I'd suggest you start praying to your false god befo-""",,
 sotfHHproxytOff2IsThisJoke,DialogOptionSelected,$option == sotfHHproxytOff2_IsThisJoke,FireBest sotfHHproxytOffDoSecondScan,"She growls. ""A joke? I haven't told a joke in four decades, imbecile. Planetcrackers are no subject of humor, and the penalty for their possession is a summary execut-""",,
@@ -3009,7 +3032,7 @@ sotfHHproxytOffPostScan2,sotfHHproxytOffPostScan2,,FireBest sotfHHproxytOffPostS
 ""My apologies, child of Terra,"" Seraph begins, with an oddly human embarrassment. ""It appears as there has been an error in the course of the initial cargo scan. You are free to go. Please find me in Hallowhall's orbit.""","sotfHHproxytOff_canIGo:""Can I go now?""
 sotfHHproxytOff_whyScan:""Why bother with all this?""
 cutCommLink:Cut the comm link",
-sotfHHproxytOffPostScanPK,sotfHHproxytOffPostScanPK,PlayerHasCargo planetkiller,,You are suddenly grateful for the milspec stealth shielding hiding the planetkiller device in your cargo holds.,,
+#sotfHHproxytOffPostScanPK,sotfHHproxytOffPostScanPK,PlayerHasCargo planetkiller,"AddTextSmall ""Planetkiller concealed by shielded cargo holds"" highlight",You are suddenly grateful for the milspec stealth shielding hiding the planetkiller device.,,
 sotfHHproxytOffCanIGo,DialogOptionSelected,$option == sotfHHproxytOff_canIGo,,"""Yes,"" she agrees. ""Have a blessed day. May your path be paved in light and the blood of the guilty.""","sotfHHproxytOff_whyScan:""What's with the security check?""
 cutCommLink:Cut the comm link",
 sotfHHproxytOffWhyScan,DialogOptionSelected,$option == sotfHHproxytOff_whyScan,,"There's a pause before Seraph speaks again. ""The world of Hallowhall is host to a decivilized human population which proves difficult for us to rekindle. I have imposed enhanced security measures to protect them.""

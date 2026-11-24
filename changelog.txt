@@ -4,6 +4,7 @@ Version 0.15.3:
 	- Child of the Lake starts only with a Thorn
 	- Banshee's Lost Thread has no Mule
 	- Reduced spawn rate of warminds at Holdout
+	- More defenders at the anomalous station during A Promise
 	- Pledge has more dmods
 	- Sierra does not negotiate her salary down from 2000 credits a month
 	- Reduced reward for selling Sierra to TT
@@ -14,10 +15,16 @@ Version 0.15.3:
 	- Doubled Courser Protocol cooldown
 	- Increased cost to upgrade a habitat to an outpost to match 75% of survival mode colony cost
 	- Increased cost to restore Hallowhall's astropolis
+	- Preset DK flagship derelicts are not guaranteed to be recoverable
 - Non-capital Dustkeeper flagship hulls now have identical spawn behaviour between Dustkeepers and Burnouts: they can spawn as non-flagships but only at 33% rarity
+- Preset DK flagship wrecks now have more dmods
+- Increased Inadvertent's production order cap by ~50%
 - Hallowhall astropolis now requires 100 domain-grade parts to restore
+- Seraph is now somewhat more competent with cargo scans
 - Derelict Contingent skill rescaled to roughly match old values at a new cap of 5 dmods rather than 4 (to match Derelict Operations)
 - Sirius' monomolecular blade form now supported in relevant parts of Diktat content
+- SiC: fixed transfer command in pre-battle dialogue to an imprint-controlled ship causing the imprint to swap to the player's former flagship
+- Fixed Polychronios' Intrusion Protocol crashing when used against targets with no ship system
 - Fixed Reckoner Autolance Array having incorrect stats
 - Fixed Doxology missing a non-flagship role for non-Dustkeeper fleets
 - Fixed Cerulean offering some administrative functions such as commissions/unrest (his rank and post have been changed to AI Core and Alpha Core)
