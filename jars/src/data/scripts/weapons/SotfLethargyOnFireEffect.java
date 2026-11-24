@@ -90,8 +90,8 @@ public class SotfLethargyOnFireEffect implements OnFireEffectPlugin {
                                     source.getParentStation() != e
                                     &&
                                     // RACCOON: FIXED, a ship's modules can't shoot each other
-                                    source.getParentStation() == null ||
-                                    (source.getParentStation() != ((ShipAPI) e).getParentStation())
+                                    (source.getParentStation() == null ||
+                                    (source.getParentStation() != ((ShipAPI) e).getParentStation()))
                                     &&
                                     e.getCollisionClass() != CollisionClass.NONE
                                     &&
